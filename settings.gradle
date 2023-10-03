@@ -6,16 +6,16 @@ include 'teacher:lesson_2_single_responsibility_principle:step_3_srp_level_packa
 include 'teacher:lesson_2_single_responsibility_principle:step_4_srp_level_application_layer'
 
 
-include 'travel_insurance_calculator:step_1'
-include 'travel_insurance_calculator:step_2'
-include 'travel_insurance_calculator:step_3'
-include 'travel_insurance_calculator:step_4'
-include 'travel_insurance_calculator:step_5'
-include 'travel_insurance_calculator:step_6'
-include 'travel_insurance_calculator:step_7'
-include 'travel_insurance_calculator:step_8'
-include 'travel_insurance_calculator:step_9'
-include 'travel_insurance_calculator:step_10'
+include 'teacher:travel_insurance_calculator:step_1'
+include 'teacher:travel_insurance_calculator:step_2'
+include 'teacher:travel_insurance_calculator:step_3'
+include 'teacher:travel_insurance_calculator:step_4'
+include 'teacher:travel_insurance_calculator:step_5'
+include 'teacher:travel_insurance_calculator:step_6'
+include 'teacher:travel_insurance_calculator:step_7'
+include 'teacher:travel_insurance_calculator:step_8'
+include 'teacher:travel_insurance_calculator:step_9'
+include 'teacher:travel_insurance_calculator:step_10'
 
 
 
