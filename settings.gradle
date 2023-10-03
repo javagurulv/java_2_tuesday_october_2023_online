@@ -6,4 +6,17 @@ include 'teacher:lesson_2_single_responsibility_principle:step_3_srp_level_packa
 include 'teacher:lesson_2_single_responsibility_principle:step_4_srp_level_application_layer'
 
 
+include 'trevel_insurance_calculator:step_1'
+include 'trevel_insurance_calculator:step_2'
+include 'trevel_insurance_calculator:step_3'
+include 'trevel_insurance_calculator:step_4'
+include 'trevel_insurance_calculator:step_5'
+include 'trevel_insurance_calculator:step_6'
+include 'trevel_insurance_calculator:step_7'
+include 'trevel_insurance_calculator:step_8'
+include 'trevel_insurance_calculator:step_9'
+include 'trevel_insurance_calculator:step_10'
+
+
+
 include 'team_xxx'
