@@ -19,4 +19,7 @@ include 'teacher:travel_insurance_calculator:step_10'
 
 
 
+include 'student_yyy_travel_insurance_calculator'
+
+
 include 'team_xxx'
