@@ -9,3 +9,10 @@ Lesson 1 plan:
 7. Agile processes
 8. Trello
 9. Homework (simple console app)
+
+
+CI/CD
+
+Continues Integration
+Continues Delivery
+
