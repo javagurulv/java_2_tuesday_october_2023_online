@@ -50,5 +50,12 @@ public class Wheelchair {
         this.bachHeight = userSizes.backHeight;
     }
 
+    public List<Component> getComponents() {
+        return components;
+    }
 
+    public void setComponents(List<Component> components) {
+        this.components = components;
+
+    }
 }
