@@ -5,6 +5,8 @@ public class ConsoleInterface {
 
     public static void main(String[] args) throws InterruptedException {
         Scanner scan = new Scanner(System.in);
+        ComponentList componentList = new ComponentList();
+        Wheelchair wheelchair = new Wheelchair(0,0,0,0);
         UserSizes size = new UserSizes(0,0,0,0);
         int choose = 0;
         while (choose != 7) {
@@ -97,19 +99,26 @@ public class ConsoleInterface {
                     System.out.println("А теперь давайте поговорим о самой коляске. " +
                             "\n Я буду на выбор давать Вам несколько вариантов основных элементов, из которых Вам надо будет выбрать один вариант. \n " +
                             "В каждм пункте будет указана цена, которая будет прибавляться к стоимости коляске. \n " +
-                            "Если вместо цены стоит прочерк, значит этот элемент входит в базовую стоимость и не увеличивает общую стоимость коляски.");
-                            System.out.println("1) колеса 3 дюйма");
-                            System.out.println("2) колеса 4 дюйма");
-                            System.out.println("3) колеса 5 дюйма");
-                            System.out.println("4) колеса 6 дюйма");
-                            int frontWheel = scan.nextInt();
-
-
-            }
+                            "Если вместо цены стоит ноль, значит этот элемент входит в базовую стоимость и не увеличивает общую стоимость коляски.");
+                    System.out.println();
+                    System.out.println("Начнем с передних колес. Выберете тип и размер передних колес коляски");
+                            for (int i = 0; i<componentList.getWheels().size();i++){
+                                System.out.println(i+1 + ". " + componentList.getWheels().get(i).getInformation() + "     цена: " + componentList.getWheels().get(i).getPrice());}
+                            int wheel = scan.nextInt();
+                    wheelchair.components.add(componentList.getWheels().get(wheel-1));
+                    System.out.println("Теперь определимся с тормозами");
+                    for (int i = 0; i<componentList.getBreaks().size();i++){
+                        System.out.println(i+1 + ". " + componentList.getBreaks().get(i).getInformation() + "     цена: " + componentList.getBreaks().get(i).getPrice());}
+                    int breaks = scan.nextInt();
+                    wheelchair.components.add(componentList.getBreaks().get(breaks-1));
+                    System.out.println("На последок выберем подлокотники");
+                    for (int i = 0; i<componentList.getArmrest().size();i++){
+                        System.out.println(i+1 + ". " + componentList.getArmrest().get(i).getInformation() + "     цена: " + componentList.getArmrest().get(i).getPrice());}
+                    int armrest = scan.nextInt();
+                    wheelchair.components.add(componentList.getBreaks().get(breaks-1));
         }
-
-
     }
+}
 }
 
 
