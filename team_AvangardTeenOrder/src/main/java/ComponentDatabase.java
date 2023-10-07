@@ -9,7 +9,6 @@ public class ComponentDatabase {
     }
 
     public void addComponent(Component component) {
-
         this.componentList.add(component);
     }
 
@@ -23,8 +22,8 @@ public class ComponentDatabase {
         for (Component component : components) {
             componentMap.put(component.getCategory(), new ArrayList<>());
         }
-        for (Component comp : components) {
-            componentMap.get(comp.getCategory()).add(comp);
+        for (Component component : components) {
+            componentMap.get(component.getCategory()).add(component);
         }
         return componentMap;
     }
