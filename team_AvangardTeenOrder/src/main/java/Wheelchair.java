@@ -11,11 +11,15 @@ public class Wheelchair {
      private int bachHeight;
      List<Component> components;
 
+
     public Wheelchair(int seatWidth, int seatDepth, int footrestLength, int bachHeight) {
         this.seatWidth = 0;
         this.seatDepth = 0;
         this.footrestLength = 0;
         this.components = new ArrayList<>();
+    }
+    public void AddComponents(Component component) {
+components.add(component);
     }
 
     public int getSeatWidth() {
