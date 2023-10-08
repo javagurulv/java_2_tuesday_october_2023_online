@@ -89,4 +89,36 @@ public class UserSizes {
         return footrestLength;
 
     }
+
+    public int getPelvisWidth() {
+        return pelvisWidth;
+    }
+
+    public void setPelvisWidth(int pelvisWidth) {
+        this.pelvisWidth = pelvisWidth;
+    }
+
+    public int getThighLength() {
+        return thighLength;
+    }
+
+    public void setThighLength(int thighLength) {
+        this.thighLength = thighLength;
+    }
+
+    public int getBackHeight() {
+        return backHeight;
+    }
+
+    public void setBackHeight(int backHeight) {
+        this.backHeight = backHeight;
+    }
+
+    public int getShinLength() {
+        return shinLength;
+    }
+
+    public void setShinLength(int shinLength) {
+        this.shinLength = shinLength;
+    }
 }
