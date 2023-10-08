@@ -12,7 +12,7 @@ public class ConsoleInterface {
         while (choose != 7) {
             System.out.println("Подбор коляски Avangard Teen");
             System.out.println("Выберете пункт из меню");
-            System.out.println("1. Ввести антромоиетрические данные клинта (длинна бедра, ширина таза, длинна голени, высота спины до нижнего края лопатки)");
+            System.out.println("1. Ввести антромоиетрические данные клиента (длинна бедра, ширина таза, длинна голени, высота спины до нижнего края лопатки)");
             System.out.println("2. Изменить антропометрические данные клиента");
             System.out.println("3. Показать введенные антропометрические данные");
             System.out.println("4. Провести детализацию коляски");
@@ -98,7 +98,7 @@ public class ConsoleInterface {
                 case (4):
                     System.out.println("А теперь давайте поговорим о самой коляске. " +
                             "\n Я буду на выбор давать Вам несколько вариантов основных элементов, из которых Вам надо будет выбрать один вариант. \n " +
-                            "В каждм пункте будет указана цена, которая будет прибавляться к стоимости коляске. \n " +
+                            "В каждом пункте будет указана цена, которая будет прибавляться к стоимости коляске. \n " +
                             "Если вместо цены стоит ноль, значит этот элемент входит в базовую стоимость и не увеличивает общую стоимость коляски.");
                     System.out.println();
                     System.out.println("Начнем с передних колес. Выберете тип и размер передних колес коляски");
@@ -108,6 +108,7 @@ public class ConsoleInterface {
                     }
                     int wheel = scan.nextInt();
                     wheelchair.AddComponents(wheels.get(wheel - 1).getCategory(), wheels.get(wheel - 1));
+                    wheels.clear();
                     System.out.println("Теперь определимся с тормозами");
                     List<Component> breaks = componentList.allBrakes();
                     for (int i = 0; i < breaks.size(); i++) {
@@ -115,6 +116,7 @@ public class ConsoleInterface {
                     }
                     int breaksChoose = scan.nextInt();
                     wheelchair.AddComponents(componentList.getBrake().get(breaksChoose - 1).getCategory(), componentList.getBrake().get(breaksChoose - 1));
+                    breaks.clear();
                     System.out.println("На последок выберем подлокотники");
                     List<Component> armrest = componentList.allArmrest();
                     for (int i = 0; i < armrest.size(); i++) {
@@ -122,6 +124,7 @@ public class ConsoleInterface {
                     }
                     int armrestChoose = scan.nextInt();
                     wheelchair.AddComponents(componentList.getArmrest().get(breaksChoose - 1).getCategory(), componentList.getArmrest().get(breaksChoose - 1));
+                    armrest.clear();
                     break;
                 case (5):
                     System.out.println("какой из параметров вы хотите изменить?");
@@ -156,8 +159,6 @@ public class ConsoleInterface {
                     }
                     System.out.println("нажмите \"ок\", чтобы продолжить");
                     okey = scan.next();
-
-
             }
         }
     }
