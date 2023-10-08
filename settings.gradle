@@ -24,5 +24,6 @@ include 'student_yyy_travel_insurance_calculator'
 
 include 'team_xxx'
 include 'team_fitness_club'
+include 'team_autoservice'
 include 'student_andrejs_cekalins_travel_insurance_calculator'
 include 'student_dainis_fjodorovs_travel_insurance_calculator'
