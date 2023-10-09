@@ -1,29 +1,38 @@
 import java.util.Objects;
 
 public class Decor {
+
+    private int decorId;
     private String typeOfDecor;
     private String allergens;
     private String colourOfDecor;
     private int price;
 
-
     @Override
     public String toString() {
         return "Decor{" +
-                "typeOfDecor='" + typeOfDecor + '\'' +
+                "decorId=" + decorId +
+                ", typeOfDecor='" + typeOfDecor + '\'' +
                 ", allergens='" + allergens + '\'' +
                 ", colourOfDecor='" + colourOfDecor + '\'' +
                 ", price=" + price +
                 '}';
     }
 
-    public Decor(String typeOfDecor, String allergens, String colourOfDecor, int price) {
+    public Decor(int decorId, String typeOfDecor, String allergens, String colourOfDecor, int price) {
+        this.decorId = decorId;
         this.typeOfDecor = typeOfDecor;
         this.allergens = allergens;
         this.colourOfDecor = colourOfDecor;
         this.price = price;
     }
+    public int getDecorId() {
+        return decorId;
+    }
 
+    public void setDecorId(int decorId) {
+        this.decorId = decorId;
+    }
     public String getTypeOfDecor() {
         return typeOfDecor;
     }
@@ -61,12 +70,11 @@ public class Decor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Decor decor = (Decor) o;
-        return price == decor.price && Objects.equals(typeOfDecor, decor.typeOfDecor) && Objects.equals(allergens, decor.allergens) && Objects.equals(colourOfDecor, decor.colourOfDecor);
+        return decorId == decor.decorId && price == decor.price && Objects.equals(typeOfDecor, decor.typeOfDecor) && Objects.equals(allergens, decor.allergens) && Objects.equals(colourOfDecor, decor.colourOfDecor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(typeOfDecor, allergens, colourOfDecor, price);
+        return Objects.hash(decorId, typeOfDecor, allergens, colourOfDecor, price);
     }
-
 }

@@ -1,6 +1,7 @@
 import java.util.Objects;
 
 public class Shell {
+    private int shellId;
     private String typeOfShell;
     private String allergens;
     private int weight;
@@ -10,20 +11,28 @@ public class Shell {
     @Override
     public String toString() {
         return "Shell{" +
-                "typeOfShell='" + typeOfShell + '\'' +
+                "shellId=" + shellId +
+                ", typeOfShell='" + typeOfShell + '\'' +
                 ", allergens='" + allergens + '\'' +
                 ", weight=" + weight +
                 ", price=" + price +
                 '}';
     }
 
-    public Shell(String typeOfShell, String allergens, int weight, int price) {
+    public Shell(int shellId, String typeOfShell, String allergens, int weight, int price) {
+        this.shellId = shellId;
         this.typeOfShell = typeOfShell;
         this.allergens = allergens;
         this.weight = weight;
         this.price = price;
     }
+    public int getShellId() {
+        return shellId;
+    }
 
+    public void setShellId(int shellId) {
+        this.shellId = shellId;
+    }
     public String getTypeOfShell() {
         return typeOfShell;
     }
@@ -56,17 +65,17 @@ public class Shell {
         this.price = price;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Shell shell = (Shell) o;
-        return weight == shell.weight && price == shell.price && Objects.equals(typeOfShell, shell.typeOfShell) && Objects.equals(allergens, shell.allergens);
+        return shellId == shell.shellId && weight == shell.weight && price == shell.price && Objects.equals(typeOfShell, shell.typeOfShell) && Objects.equals(allergens, shell.allergens);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(typeOfShell, allergens, weight, price);
+        return Objects.hash(shellId, typeOfShell, allergens, weight, price);
     }
+
 }

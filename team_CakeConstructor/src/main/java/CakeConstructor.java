@@ -24,34 +24,41 @@ public class CakeConstructor {
 
             switch (userChoice) {
                 case 1: {
+                    System.out.println("Please, enter your client ID!");
+                    int clientId = scan.nextInt();
+
                     System.out.println("Choose a biscuit!");
                     list.printListOfBiscuit(biscuits);
-                    String biscuit = scan.nextLine();
-                    int price = list.priceBiscuit(biscuits, biscuit);
+                    int biscuitId = scan.nextInt();
+                    int price = list.priceBiscuit(biscuits, biscuitId);
+                    String biscuit = list.biscuit(biscuits,biscuitId);
 
 
                     System.out.println("Choose a filling!");
                     list.printListOfFilling(fillings);
-                    String filling = scan.nextLine();
-                    price = list.priceFilling(fillings, filling) + price;
+                    int fillingId = scan.nextInt();
+                    price = list.priceFilling(fillings, fillingId) + price;
+                    String filling = list.filling(fillings,fillingId);
 
 
                     System.out.println("Choose a shell!");
                     list.printListOfShell(shells);
-                    String shell = scan.nextLine();
-                    price = list.priceShell(shells, shell) + price;
+                    int shellId = scan.nextInt();
+                    price = list.priceShell(shells, shellId) + price;
+                    String shell = list.shell(shells,shellId);
 
 
                     System.out.println("Choose a decor!");
                     list.printListOfDecor(decors);
-                    String decor = scan.nextLine();
-                    price = list.priceDecor(decors, decor) + price;
+                    int decorId = scan.nextInt();
+                    price = list.priceDecor(decors, decorId) + price;
+                    String decor = list.decor(decors,decorId);
 
 
-                    System.out.println("Please, enter your client ID!");
-                    int clientId = scan.nextInt();
-                    Cake cake = new Cake(biscuit, filling, shell, decor, clientId, price);
+                    Cake cake = new Cake(biscuit,filling,shell,decor,clientId,price);
                     cakeConstructor.add(cake);
+                    break;
+
                 }
 
                 case 2: {
@@ -59,10 +66,11 @@ public class CakeConstructor {
                     int clientId = scan.nextInt();
                     for (Cake cake : cakeConstructor) {
                         if (clientId == cake.getClientId()) {
-                            cake.toString();
+                            System.out.println(cake);
                         }
                     }
-
+                    System.out.println("  ");
+                    break;
                 }
                 case 3: {
                     System.out.println("Thank you for being with us!");

@@ -5,26 +5,35 @@ public class Filling {
     private String allergens;
     private int weight;
     private int price;
+    private int fillingId;
 
 
     @Override
     public String toString() {
         return "Filling{" +
-                "typeOfFilling='" + typeOfFilling + '\'' +
+                "fillingId=" + fillingId +
+                ", typeOfFilling='" + typeOfFilling + '\'' +
                 ", allergens='" + allergens + '\'' +
                 ", weight=" + weight +
                 ", price=" + price +
                 '}';
     }
 
-    public Filling(String typeOfFilling,  String allergens, int weight, int price) {
+    public Filling(int fillingId, String typeOfFilling, String allergens, int weight, int price) {
+        this.fillingId = fillingId;
         this.typeOfFilling = typeOfFilling;
         this.allergens = allergens;
         this.weight = weight;
         this.price = price;
 
     }
+    public int getFillingId() {
+        return fillingId;
+    }
 
+    public void setFillingId(int fillingId) {
+        this.fillingId = fillingId;
+    }
     public String getTypeOfFilling() {
         return typeOfFilling;
     }
@@ -63,12 +72,12 @@ public class Filling {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Filling filling = (Filling) o;
-        return weight == filling.weight && price == filling.price && Objects.equals(typeOfFilling, filling.typeOfFilling)  && Objects.equals(allergens, filling.allergens);
+        return weight == filling.weight && price == filling.price && fillingId == filling.fillingId && Objects.equals(typeOfFilling, filling.typeOfFilling) && Objects.equals(allergens, filling.allergens);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(typeOfFilling, allergens, weight, price);
+        return Objects.hash(typeOfFilling, allergens, weight, price, fillingId);
     }
 
 }

@@ -5,12 +5,12 @@ public class ListOfIngridients {
 
     public List<Biscuit> createListOfBiscuit() {
         List<Biscuit> biscuit = new ArrayList<>();
-        biscuit.add(new Biscuit("vanilla", "milk, eggs", 200, 2));
-        biscuit.add(new Biscuit("chocolate", "milk, eggs, kakao", 200, 2));
-        biscuit.add(new Biscuit("poppy", "milk, eggs, poppy", 200, 2));
-        biscuit.add(new Biscuit("french biscuit with berry ", "milk, eggs, berry", 100, 2));
-        biscuit.add(new Biscuit("carrot", "milk, eggs", 200, 2));
-        biscuit.add(new Biscuit("hot chocolate", "milk, eggs, chocolate", 200, 2));
+        biscuit.add(new Biscuit(1, "vanilla", "milk, eggs", 200, 2));
+        biscuit.add(new Biscuit(2,"chocolate", "milk, eggs, kakao", 200, 2));
+        biscuit.add(new Biscuit(3,"poppy", "milk, eggs, poppy", 200, 2));
+        biscuit.add(new Biscuit(4,"french biscuit with berry ", "milk, eggs, berry", 100, 2));
+        biscuit.add(new Biscuit(5,"carrot", "milk, eggs", 200, 2));
+        biscuit.add(new Biscuit(6,"hot chocolate", "milk, eggs, chocolate", 200, 2));
         return biscuit;
     }
 
@@ -20,10 +20,10 @@ public class ListOfIngridients {
         }
     }
 
-    public int priceBiscuit(List<Biscuit> biscuits, String biscuit) {
+    public int priceBiscuit(List<Biscuit> biscuits, int biscuitId) {
         int price = 0;
         for (Biscuit biscuit1 : biscuits) {
-            if (biscuit1.getTypeOfBiscuit() == biscuit) {
+            if (biscuit1.getBiscuitId() == biscuitId) {
                 price = biscuit1.getPrice();
             }
         }
@@ -33,19 +33,19 @@ public class ListOfIngridients {
 
     public List<Filling> createListOfFilling() {
         List<Filling> fillings = new ArrayList<>();
-        fillings.add(new Filling("kreme strawberry ", "milk, strawberry", 100, 5));
-        fillings.add(new Filling("kreme raspberry", "raspberry, milk", 100, 6));
-        fillings.add(new Filling("kreme currant", "currant, milk", 100, 5));
-        fillings.add(new Filling("kudor lemon", "lemon,milk", 100, 5));
-        fillings.add(new Filling("kudor laim", " milk", 100, 5));
-        fillings.add(new Filling("kudor orange", "milk, orange", 100, 5));
-        fillings.add(new Filling("jelly strawberry", "strawberry", 100, 5));
-        fillings.add(new Filling("jelly raspberry", "raspberry", 100, 6));
-        fillings.add(new Filling("jelly currant", "currant", 100, 5));
-        fillings.add(new Filling("jelly wine", "wine", 100, 9));
-        fillings.add(new Filling("cheesecake vanilla ", "milk, eggs", 100, 5));
-        fillings.add(new Filling("cheesecake matcha-tea", " milk", 100, 6));
-        fillings.add(new Filling("cheesecake chocolate", " chocolate, milk", 100, 5));
+        fillings.add(new Filling(1,"kreme strawberry ", "milk, strawberry", 100, 5));
+        fillings.add(new Filling(2,"kreme raspberry", "raspberry, milk", 100, 6));
+        fillings.add(new Filling(3,"kreme currant", "currant, milk", 100, 5));
+        fillings.add(new Filling(4,"kudor lemon", "lemon,milk", 100, 5));
+        fillings.add(new Filling(5,"kudor laim", " milk", 100, 5));
+        fillings.add(new Filling(6,"kudor orange", "milk, orange", 100, 5));
+        fillings.add(new Filling(7,"jelly strawberry", "strawberry", 100, 5));
+        fillings.add(new Filling(8,"jelly raspberry", "raspberry", 100, 6));
+        fillings.add(new Filling(9,"jelly currant", "currant", 100, 5));
+        fillings.add(new Filling(10,"jelly wine", "wine", 100, 9));
+        fillings.add(new Filling(11,"cheesecake vanilla ", "milk, eggs", 100, 5));
+        fillings.add(new Filling(12,"cheesecake matcha-tea", " milk", 100, 6));
+        fillings.add(new Filling(13,"cheesecake chocolate", " chocolate, milk", 100, 5));
         return fillings;
     }
 
@@ -55,10 +55,10 @@ public class ListOfIngridients {
         }
     }
 
-    public int priceFilling(List<Filling> fillings, String filling) {
+    public int priceFilling(List<Filling> fillings, int fillingId) {
         int price = 0;
         for (Filling filling1 : fillings) {
-            if (filling1.getTypeOfFilling() == filling) {
+            if (filling1.getFillingId() == fillingId) {
                 price = filling1.getPrice();
             }
         }
@@ -67,19 +67,19 @@ public class ListOfIngridients {
 
     public List<Shell> createListOfShell() {
         List<Shell> shells = new ArrayList<>();
-        shells.add(new Shell("cream", "milk, eggs", 100, 6));
-        shells.add(new Shell("cream-cheese", "milk", 100, 5));
-        shells.add(new Shell("cream-cheese with raspberry", "milk, raspberry", 100, 5));
-        shells.add(new Shell("cream-cheese with mango", "milk, mango", 100, 5));
-        shells.add(new Shell("cream-cheese with raspberry-strawberry", "milk, raspberry,strawberry", 100, 5));
-        shells.add(new Shell("ganache with milk chocolate", "milk, chocolate", 100, 5));
-        shells.add(new Shell("ganache with dark chocolate", "milk, chocolate", 100, 5));
-        shells.add(new Shell("ganache with liqueur ", "milk, chocolate", 100, 5));
-        shells.add(new Shell("strawberry mousse ", "milk, strawberry", 100, 5));
-        shells.add(new Shell("raspberry mousse", "milk, raspberry", 100, 5));
-        shells.add(new Shell("champagne mousse", "milk", 100, 5));
-        shells.add(new Shell("chocolate mousse", "milk, chocolate", 100, 5));
-        shells.add(new Shell("mascarpone mousse", "milk", 100, 5));
+        shells.add(new Shell(1,"cream", "milk, eggs", 100, 6));
+        shells.add(new Shell(2,"cream-cheese", "milk", 100, 5));
+        shells.add(new Shell(3,"cream-cheese with raspberry", "milk, raspberry", 100, 5));
+        shells.add(new Shell(4,"cream-cheese with mango", "milk, mango", 100, 5));
+        shells.add(new Shell(5,"cream-cheese with raspberry-strawberry", "milk, raspberry,strawberry", 100, 5));
+        shells.add(new Shell(6,"ganache with milk chocolate", "milk, chocolate", 100, 5));
+        shells.add(new Shell(7,"ganache with dark chocolate", "milk, chocolate", 100, 5));
+        shells.add(new Shell(8,"ganache with liqueur ", "milk, chocolate", 100, 5));
+        shells.add(new Shell(9,"strawberry mousse ", "milk, strawberry", 100, 5));
+        shells.add(new Shell(10,"raspberry mousse", "milk, raspberry", 100, 5));
+        shells.add(new Shell(11,"champagne mousse", "milk", 100, 5));
+        shells.add(new Shell(12,"chocolate mousse", "milk, chocolate", 100, 5));
+        shells.add(new Shell(13, "mascarpone mousse", "milk", 100, 5));
         return shells;
     }
 
@@ -89,10 +89,10 @@ public class ListOfIngridients {
         }
     }
 
-    public int priceShell(List<Shell> shells, String shell) {
+    public int priceShell(List<Shell> shells, int shellId) {
         int price = 0;
         for (Shell shell1 : shells) {
-            if (shell1.getTypeOfShell() == shell) {
+            if (shell1.getShellId()== shellId) {
                 price = shell1.getPrice();
             }
         }
@@ -101,18 +101,18 @@ public class ListOfIngridients {
 
     public List<Decor> createListOfDecor() {
         List<Decor> decors = new ArrayList<>();
-        decors.add(new Decor("red ganache with dark chocolate", "milk, chocolate", "red", 4));
-        decors.add(new Decor("red ganache with white chocolate", "milk, chocolate", "red", 4));
-        decors.add(new Decor("red ganache with milk chocolate", "milk, chocolate", "red", 4));
-        decors.add(new Decor("blue ganache with dark chocolate", "milk, chocolate", "blue", 4));
-        decors.add(new Decor("blue ganache with milk chocolate", "milk, chocolate","blue", 4));
-        decors.add(new Decor("blue ganache with white chocolate", "milk, chocolate", "blue", 4));
-        decors.add(new Decor("red cream-cheese", "молоко", "red", 4));
-        decors.add(new Decor("blue cream-cheese", "молоко", "blue", 4));
-        decors.add(new Decor("red velvet", "milk, chocolate", "red", 8));
-        decors.add(new Decor("blue velvet", "milk, chocolate","blue", 8));
-        decors.add(new Decor("red mirror glaze", "milk, chocolate","red", 7));
-        decors.add(new Decor("blue mirror glaze", "milk, chocolate","blue", 7));
+        decors.add(new Decor(1,"red ganache with dark chocolate", "milk, chocolate", "red", 4));
+        decors.add(new Decor(2,"red ganache with white chocolate", "milk, chocolate", "red", 4));
+        decors.add(new Decor(3,"red ganache with milk chocolate", "milk, chocolate", "red", 4));
+        decors.add(new Decor(4,"blue ganache with dark chocolate", "milk, chocolate", "blue", 4));
+        decors.add(new Decor(5,"blue ganache with milk chocolate", "milk, chocolate","blue", 4));
+        decors.add(new Decor(6,"blue ganache with white chocolate", "milk, chocolate", "blue", 4));
+        decors.add(new Decor(7,"red cream-cheese", "молоко", "red", 4));
+        decors.add(new Decor(8,"blue cream-cheese", "молоко", "blue", 4));
+        decors.add(new Decor(9,"red velvet", "milk, chocolate", "red", 8));
+        decors.add(new Decor(10,"blue velvet", "milk, chocolate","blue", 8));
+        decors.add(new Decor(11,"red mirror glaze", "milk, chocolate","red", 7));
+        decors.add(new Decor(12,"blue mirror glaze", "milk, chocolate","blue", 7));
         return decors;
     }
 
@@ -122,14 +122,51 @@ public class ListOfIngridients {
         }
     }
 
-    public int priceDecor(List<Decor> decors, String decor) {
+    public int priceDecor(List<Decor> decors, int decor) {
         int price = 0;
         for (Decor decor1 : decors) {
-            if (decor1.getTypeOfDecor() == decor) {
+            if (decor1.getDecorId() == decor) {
                 price = decor1.getPrice();
             }
         }
         return price;
+    }
+
+    public String biscuit (List<Biscuit>biscuits, int biscuitId){
+        String biscuit=" ";
+        for (Biscuit biscuit1:biscuits){
+            if (biscuit1.getBiscuitId()==biscuitId){
+                biscuit = biscuit1.getTypeOfBiscuit();
+            }
+        }
+        return biscuit;
+    }
+    public String filling (List<Filling> fillings, int fillingId){
+        String filling=" ";
+        for (Filling filling1:fillings){
+            if (filling1.getFillingId()==fillingId){
+                filling = filling1.getTypeOfFilling();
+            }
+        }
+        return filling;
+    }
+    public String shell (List<Shell> shells, int shellId){
+        String shell =" ";
+        for (Shell shell1:shells){
+            if (shell1.getShellId()==shellId){
+                shell=shell1.getTypeOfShell();
+            }
+        }
+        return shell;
+    }
+    public String decor (List<Decor> decors, int decorId){
+        String decor =" ";
+        for (Decor decor1: decors){
+            if (decor1.getDecorId()==decorId){
+                decor= decor1.getTypeOfDecor();
+            }
+        }
+        return decor;
     }
 }
 
