@@ -182,8 +182,8 @@ public class ListOfIngridients {
         Scanner scan = new Scanner(System.in);
         System.out.println("Choose a filling!");
         printListOfFilling(fillings);
-        int fillinfId = scan.nextInt();
-        String filling = findFilling(fillings,fillinfId);
+        int fillingId = scan.nextInt();
+        String filling = findFilling(fillings, fillingId);
         return filling;
     }
     public String shell (List<Shell>shells){
