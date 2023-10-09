@@ -1,7 +1,8 @@
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class ConsoleInterface {
+public class
+ConsoleInterface {
 
     public static void main(String[] args) throws InterruptedException {
         Scanner scan = new Scanner(System.in);
@@ -140,7 +141,6 @@ public class ConsoleInterface {
                         showCathegory.add(component.getValue().getCategory());
                     }
                     int value = scan.nextInt();
-                    List<Component> chence = new ArrayList();
                     System.out.println("выберете новое значение параметра " + showCathegory.get(value - 1));
                     List<Component> newChoose = new ArrayList<>();
                     for (int i = 0; i < componentList.getAllComponents().size(); i++) {
