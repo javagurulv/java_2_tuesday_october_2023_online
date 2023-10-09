@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Wheelchair {
     UserSizes userSizes;
@@ -9,17 +10,21 @@ public class Wheelchair {
      private int seatDepth;
      private int footrestLength;
      private int bachHeight;
-     List<Component> components;
+     Map<Category,Component> components;
+     private int priceWheelchair;
 
 
-    public Wheelchair(int seatWidth, int seatDepth, int footrestLength, int bachHeight) {
-        this.seatWidth = 0;
-        this.seatDepth = 0;
-        this.footrestLength = 0;
-        this.components = new ArrayList<>();
+    public Wheelchair(int seatWidth, int seatDepth, int footrestLength, int bachHeight, Map<Category, Component> components) {
+        this.seatWidth = seatWidth;
+        this.seatDepth = seatDepth;
+        this.footrestLength = footrestLength;
+        this.bachHeight = bachHeight;
+        this.components = components;
+        this.priceWheelchair = 177700;
     }
-    public void AddComponents(Component component) {
-components.add(component);
+
+    public void AddComponents(Category category, Component component) {
+components.put(category,component);
     }
 
     public int getSeatWidth() {
@@ -54,12 +59,20 @@ components.add(component);
         this.bachHeight = userSizes.backHeight;
     }
 
-    public List<Component> getComponents() {
+    public void setComponents(Map<Category, Component> components) {
+        this.components = components;
+    }
+
+    public Map<Category, Component> getComponents() {
         return components;
     }
 
-    public void setComponents(List<Component> components) {
-        this.components = components;
+    public int getPriceWheelchair() {
+        return priceWheelchair;
+    }
 
+    public void setPriceWheelchair(int priceWheelchair) {
+        this.priceWheelchair = priceWheelchair;
     }
 }
+

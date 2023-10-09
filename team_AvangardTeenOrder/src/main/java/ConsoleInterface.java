@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class ConsoleInterface {
@@ -8,13 +6,13 @@ public class ConsoleInterface {
     public static void main(String[] args) throws InterruptedException {
         Scanner scan = new Scanner(System.in);
         ComponentList componentList = new ComponentList();
-        Wheelchair wheelchair = new Wheelchair(0,0,0,0);
-        UserSizes size = new UserSizes(0,0,0,0);
+        Wheelchair wheelchair = new Wheelchair(0, 0, 0, 0, new HashMap<>());
+        UserSizes size = new UserSizes(0, 0, 0, 0);
         int choose = 0;
         while (choose != 7) {
             System.out.println("Подбор коляски Avangard Teen");
             System.out.println("Выберете пункт из меню");
-            System.out.println("1. Ввести антромоиетрические данные клинта (длинна бедра, ширина таза, длинна голени, высота спины до нижнего края лопатки)");
+            System.out.println("1. Ввести антромоиетрические данные клиента (длинна бедра, ширина таза, длинна голени, высота спины до нижнего края лопатки)");
             System.out.println("2. Изменить антропометрические данные клиента");
             System.out.println("3. Показать введенные антропометрические данные");
             System.out.println("4. Провести детализацию коляски");
@@ -52,8 +50,9 @@ public class ConsoleInterface {
                     System.out.println("Какой из параметров хотите поменять?");
                     System.out.println("1. ширина таза:  " + size.getPelvisWidth());
                     System.out.println("2. длинна бедра: " + size.getThighLength());
-                    System.out.println("3. длинна спины до нижнего края лопатки: " +size.getBackHeight());
+                    System.out.println("3. длинна спины до нижнего края лопатки: " + size.getBackHeight());
                     System.out.println("4. длинну голени: " + size.getShinLength());
+
                     int chanch = scan.nextInt();
                     switch (chanch) {
                         case (1):
@@ -90,7 +89,7 @@ public class ConsoleInterface {
                 case (3):
                     System.out.println("ширина таза:  " + size.getPelvisWidth());
                     System.out.println("длинна бедра: " + size.getThighLength());
-                    System.out.println("длинна спины до нижнего края лопатки: " +size.getBackHeight());
+                    System.out.println("длинна спины до нижнего края лопатки: " + size.getBackHeight());
                     System.out.println("длинна голени: " + size.getShinLength());
                     System.out.println("Нажмите \"ок\", чтобы продолжить");
                     String okey = scan.next();
@@ -99,57 +98,80 @@ public class ConsoleInterface {
                 case (4):
                     System.out.println("А теперь давайте поговорим о самой коляске. " +
                             "\n Я буду на выбор давать Вам несколько вариантов основных элементов, из которых Вам надо будет выбрать один вариант. \n " +
-                            "В каждм пункте будет указана цена, которая будет прибавляться к стоимости коляске. \n " +
+                            "В каждом пункте будет указана цена, которая будет прибавляться к стоимости коляске. \n " +
                             "Если вместо цены стоит ноль, значит этот элемент входит в базовую стоимость и не увеличивает общую стоимость коляски.");
                     System.out.println();
                     System.out.println("Начнем с передних колес. Выберете тип и размер передних колес коляски");
                     List<Component> wheels = componentList.allWheels();
-                            for (int i = 0; i<wheels.size(); i++) {
-                                System.out.println(i+1 + ". " + componentList.getWheels().get(i).getInformation() + "     цена: " + componentList.getWheels().get(i).getPrice());}
-                            int wheel = scan.nextInt();
-                    wheelchair.AddComponents(wheels.get(wheel-1));
+                    for (int i = 0; i < wheels.size(); i++) {
+                        System.out.println(i + 1 + ". " + componentList.getWheels().get(i).getInformation() + "     цена: " + componentList.getWheels().get(i).getPrice());
+                    }
+                    int wheel = scan.nextInt();
+                    wheelchair.AddComponents(wheels.get(wheel - 1).getCategory(), wheels.get(wheel - 1));
+                    wheels.clear();
                     System.out.println("Теперь определимся с тормозами");
                     List<Component> breaks = componentList.allBrakes();
-                    for (int i = 0; i<breaks.size();i++){
-                        System.out.println(i+1 + ". " + componentList.getBrake().get(i).getInformation() + "     цена: " + componentList.getBrake().get(i).getPrice());}
+                    for (int i = 0; i < breaks.size(); i++) {
+                        System.out.println(i + 1 + ". " + componentList.getBrake().get(i).getInformation() + "     цена: " + componentList.getBrake().get(i).getPrice());
+                    }
                     int breaksChoose = scan.nextInt();
-                    wheelchair.AddComponents(componentList.getBrake().get(breaksChoose-1));
+                    wheelchair.AddComponents(componentList.getBrake().get(breaksChoose - 1).getCategory(), componentList.getBrake().get(breaksChoose - 1));
+                    breaks.clear();
                     System.out.println("На последок выберем подлокотники");
                     List<Component> armrest = componentList.allArmrest();
-                    for (int i = 0; i<armrest.size();i++){
-                        System.out.println(i+1 + ". " + componentList.getArmrest().get(i).getInformation() + "     цена: " + componentList.getArmrest().get(i).getPrice());}
+                    for (int i = 0; i < armrest.size(); i++) {
+                        System.out.println(i + 1 + ". " + componentList.getArmrest().get(i).getInformation() + "     цена: " + componentList.getArmrest().get(i).getPrice());
+                    }
                     int armrestChoose = scan.nextInt();
-                    wheelchair.AddComponents(componentList.getArmrest().get(breaksChoose-1));
+                    wheelchair.AddComponents(componentList.getArmrest().get(armrestChoose - 1).getCategory(), componentList.getArmrest().get(armrestChoose - 1));
+                    armrest.clear();
                     break;
                 case (5):
                     System.out.println("какой из параметров вы хотите изменить?");
-                    for (int i = 0; i< wheelchair.getComponents().size();i++){
-                        System.out.println(i + 1 + ". " +
-                                wheelchair.getComponents().get(i).getCategory() +": " +
-                                        wheelchair.getComponents().get(i).getInformation() + ". Цена: " +
-                                        wheelchair.getComponents().get(i).getPrice());}
-                    int chenceDetalization = scan.nextInt();
+                    int number = 0;
+                    List<Category> showCathegory = new ArrayList<>();
+                    for (Map.Entry<Category, Component> component : wheelchair.getComponents().entrySet()) {
+                        number++;
+
+                        System.out.println(number + ". " +
+                                component.getKey() + ": " +
+                                component.getValue().getInformation() + ". Цена: " +
+                                component.getValue().getPrice());
+                        showCathegory.add(component.getValue().getCategory());
+                    }
+                    int value = scan.nextInt();
                     List<Component> chence = new ArrayList();
-                            System.out.println("введите новое значение параметра " + wheelchair.getComponents().get(chenceDetalization - 1).getCategory());
-                           for (int i = 0; i< componentList.getAllComponents().size();i++)
-                           {if(wheelchair.getComponents().get(chenceDetalization - 1).getCategory().equals(componentList.getAllComponents().get(i).getCategory()))
-                          {chence.add(componentList.allComponents.get(i));}}
-                       for(int i = 0; i<chence.size();i++)
-                       {System.out.println(i+1 + ". " + chence.get(i).getInformation() + " цена: " + chence.get(i).getPrice());}
-                       int newChoose = scan.nextInt();
-                       wheelchair.AddComponents(chence.get(newChoose));
+                    System.out.println("выберете новое значение параметра " + showCathegory.get(value - 1));
+                    List<Component> newChoose = new ArrayList<>();
+                    for (int i = 0; i < componentList.getAllComponents().size(); i++) {
+                        if (showCathegory.get(value - 1).equals(componentList.getAllComponents().get(i).getCategory())) {
+                            newChoose.add(componentList.getAllComponents().get(i));
+                        }
+                    }
+                    for (int i = 0; i < newChoose.size(); i++) {
+                        System.out.println(i + 1 + ". " + newChoose.get(i).getInformation() + "цена: " + newChoose.get(i).getPrice());
+                    }
+                    value = scan.nextInt();
+                    wheelchair.AddComponents(newChoose.get(value - 1).getCategory(), newChoose.get(value - 1));
                     break;
                 case (6):
-                    for (int i = 0; i< wheelchair.getComponents().size();i++){
-                        System.out.println(
-                                wheelchair.getComponents().get(i).getCategory() +": " +
-                                wheelchair.getComponents().get(i).getInformation() + ". Цена: " +
-                                wheelchair.getComponents().get(i).getPrice());
+                    for (Map.Entry<Category, Component> component : wheelchair.getComponents().entrySet()) {
+                        System.out.println((component.getKey() + ": " + component.getValue().getInformation()) + "  Цена: " + component.getValue().getPrice());
                     }
                     System.out.println("нажмите \"ок\", чтобы продолжить");
                     okey = scan.next();
+                    int priceComponents = 0;
+                    for (Map.Entry<Category, Component> component : wheelchair.getComponents().entrySet()) {
+                        priceComponents += component.getValue().getPrice();
+                    }
+                    int price = wheelchair.getPriceWheelchair() + priceComponents;
+                    System.out.println("Общая стоимость: Кресло-коляска Aвангард Teen - " + wheelchair.getPriceWheelchair());
+                    for (Map.Entry<Category, Component> component : wheelchair.getComponents().entrySet()) {
+                        System.out.println(component.getKey() + " - " + component.getValue().getPrice());
+                    }
+                    System.out.println("Общая стоимость: " + price);
 
+            }
         }
     }
-}
 }
