@@ -1,38 +1,36 @@
+import java.util.List;
 import java.util.Objects;
 
 public class Cake {
 
-    private int clientId;
-    private int typeOfCake;
     private String biscuit;
-    private String cakeFilling;
+    private String filling;
+    private String shell;
+    private String decor;
+    private int clientId;
+    private int price;
 
-    private String cakeShell;
-    private String  cakeDecor;
 
-    public Cake(int clientId, int  typeOfCake, String biscuit, String cakeFilling, String cakeShell, String cakeDecor) {
+    @Override
+    public String toString() {
+        return "Cake{" +
+                "biscuit='" + biscuit + '\'' +
+                ", filling='" + filling + '\'' +
+                ", shell='" + shell + '\'' +
+                ", decor='" + decor + '\'' +
+                ", clientId=" + clientId +
+                ", price=" + price +
+                '}';
+    }
+
+    public Cake (String biscuit, String filling, String shell, String decor, int clientId, int price){
+        this.biscuit=biscuit;
+        this.filling=filling;
+        this.shell = shell;
+        this.decor = decor;
+        this.price=price;
         this.clientId = clientId;
-        this.typeOfCake = typeOfCake;
-        this.biscuit = biscuit;
-        this.cakeFilling = cakeFilling;
-        this.cakeShell = cakeShell;
-        this.cakeDecor = cakeDecor;
 
-    }
-    public int getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
-    public int getTypeOfCake() {
-        return typeOfCake;
-    }
-
-    public void setTypeOfCake(int typeOfCake) {
-        this.typeOfCake = typeOfCake;
     }
 
     public String getBiscuit() {
@@ -43,56 +41,59 @@ public class Cake {
         this.biscuit = biscuit;
     }
 
-    public String getCakeFilling() {
-        return cakeFilling;
+    public String getFilling() {
+        return filling;
     }
 
-    public void setCakeFilling(String cakeFilling) {
-        this.cakeFilling = cakeFilling;
+    public void setFilling(String filling) {
+        this.filling = filling;
     }
 
-    public String getCakeShell() {
-        return cakeShell;
+    public String getShell() {
+        return shell;
     }
 
-    public void setCakeShell(String cakeShell) {
-        this.cakeShell = cakeShell;
+    public void setShell(String shell) {
+        this.shell = shell;
     }
 
-    public String getCakeDecor() {
-        return cakeDecor;
+    public String getDecor() {
+        return decor;
     }
 
-    public void setCakeDecor(String cakeDecor) {
-        this.cakeDecor = cakeDecor;
+    public void setDecor(String decor) {
+        this.decor = decor;
     }
 
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cake cake = (Cake) o;
-        return clientId == cake.clientId && typeOfCake == cake.typeOfCake && Objects.equals(biscuit, cake.biscuit) && Objects.equals(cakeFilling, cake.cakeFilling) && Objects.equals(cakeShell, cake.cakeShell) && Objects.equals(cakeDecor, cake.cakeDecor);
+        return clientId == cake.clientId && price == cake.price && Objects.equals(biscuit, cake.biscuit) && Objects.equals(filling, cake.filling) && Objects.equals(shell, cake.shell) && Objects.equals(decor, cake.decor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clientId, typeOfCake, biscuit, cakeFilling, cakeShell, cakeDecor);
+        return Objects.hash(biscuit, filling, shell, decor, clientId, price);
     }
 
-
-    @Override
-    public String toString() {
-        return "Cake{" +
-                "clientId=" + clientId +
-                ", typeOfCake=" + typeOfCake +
-                ", biscuit='" + biscuit + '\'' +
-                ", cakeFilling='" + cakeFilling + '\'' +
-                ", cakeShell='" + cakeShell + '\'' +
-                ", cakeDecor='" + cakeDecor + '\'' +
-                '}';
-    }
 
 
 
