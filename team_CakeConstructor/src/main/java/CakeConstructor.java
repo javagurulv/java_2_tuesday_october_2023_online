@@ -27,33 +27,17 @@ public class CakeConstructor {
                     System.out.println("Please, enter your client ID!");
                     int clientId = scan.nextInt();
 
-                    System.out.println("Choose a biscuit!");
-                    list.printListOfBiscuit(biscuits);
-                    int biscuitId = scan.nextInt();
-                    int price = list.priceBiscuit(biscuits, biscuitId);
-                    String biscuit = list.biscuit(biscuits,biscuitId);
+                    String biscuit = list.biscuit(biscuits);
+                    int price = list.priceBiscuit(biscuits, biscuit);
 
+                    String filling = list.filling(fillings);
+                    price = list.priceFilling(fillings, filling) + price;
 
-                    System.out.println("Choose a filling!");
-                    list.printListOfFilling(fillings);
-                    int fillingId = scan.nextInt();
-                    price = list.priceFilling(fillings, fillingId) + price;
-                    String filling = list.filling(fillings,fillingId);
+                    String shell = list.shell(shells);
+                    price = list.priceShell(shells, shell) + price;
 
-
-                    System.out.println("Choose a shell!");
-                    list.printListOfShell(shells);
-                    int shellId = scan.nextInt();
-                    price = list.priceShell(shells, shellId) + price;
-                    String shell = list.shell(shells,shellId);
-
-
-                    System.out.println("Choose a decor!");
-                    list.printListOfDecor(decors);
-                    int decorId = scan.nextInt();
-                    price = list.priceDecor(decors, decorId) + price;
-                    String decor = list.decor(decors,decorId);
-
+                    String decor = list.decor(decors);
+                    price = list.priceDecor(decors, decor) + price;
 
                     Cake cake = new Cake(biscuit,filling,shell,decor,clientId,price);
                     cakeConstructor.add(cake);
