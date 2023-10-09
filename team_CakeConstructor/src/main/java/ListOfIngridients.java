@@ -108,8 +108,8 @@ public class ListOfIngridients {
         decors.add(new Decor(4,"blue ganache with dark chocolate", "milk, chocolate", "blue", 4));
         decors.add(new Decor(5,"blue ganache with milk chocolate", "milk, chocolate","blue", 4));
         decors.add(new Decor(6,"blue ganache with white chocolate", "milk, chocolate", "blue", 4));
-        decors.add(new Decor(7,"red cream-cheese", "молоко", "red", 4));
-        decors.add(new Decor(8,"blue cream-cheese", "молоко", "blue", 4));
+        decors.add(new Decor(7,"red cream-cheese", "milk", "red", 4));
+        decors.add(new Decor(8,"blue cream-cheese", "milk", "blue", 4));
         decors.add(new Decor(9,"red velvet", "milk, chocolate", "red", 8));
         decors.add(new Decor(10,"blue velvet", "milk, chocolate","blue", 8));
         decors.add(new Decor(11,"red mirror glaze", "milk, chocolate","red", 7));
@@ -175,32 +175,28 @@ public class ListOfIngridients {
         System.out.println("Choose a biscuit!");
         printListOfBiscuit(biscuits);
         int biscuitId = scan.nextInt();
-        String biscuit = findBiscuit(biscuits,biscuitId);
-        return biscuit;
+        return findBiscuit(biscuits,biscuitId);
     }
     public String filling (List <Filling> fillings){
         Scanner scan = new Scanner(System.in);
         System.out.println("Choose a filling!");
         printListOfFilling(fillings);
         int fillingId = scan.nextInt();
-        String filling = findFilling(fillings, fillingId);
-        return filling;
+        return findFilling(fillings, fillingId);
     }
     public String shell (List<Shell>shells){
         Scanner scan = new Scanner(System.in);
-        System.out.println("Choose a biscuit!");
+        System.out.println("Choose a shell!");
         printListOfShell(shells);
         int shellId= scan.nextInt();
-        String shell = findShell(shells,shellId);
-        return shell;
+        return findShell(shells,shellId);
     }
     public String decor (List <Decor> decors){
         Scanner scan = new Scanner(System.in);
-        System.out.println("Choose a filling!");
+        System.out.println("Choose a decor!");
         printListOfDecor(decors);
         int decorId = scan.nextInt();
-        String decor = findDecor(decors,decorId);
-        return decor;
+        return findDecor(decors,decorId);
     }
     public List<Cake> createCake (int clientId){
         List<Biscuit> biscuits = createListOfBiscuit();
