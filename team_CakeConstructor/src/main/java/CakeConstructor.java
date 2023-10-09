@@ -7,10 +7,6 @@ public class CakeConstructor {
 
     public static void main(String[] args) {
         ListOfIngridients list = new ListOfIngridients();
-        List<Biscuit> biscuits = list.createListOfBiscuit();
-        List<Filling> fillings = list.createListOfFilling();
-        List<Shell> shells = list.createListOfShell();
-        List<Decor> decors = list.createListOfDecor();
         List<Cake> cakeConstructor = new ArrayList<>();
 
         while (true) {
@@ -27,20 +23,7 @@ public class CakeConstructor {
                     System.out.println("Please, enter your client ID!");
                     int clientId = scan.nextInt();
 
-                    String biscuit = list.biscuit(biscuits);
-                    int price = list.priceBiscuit(biscuits, biscuit);
-
-                    String filling = list.filling(fillings);
-                    price = list.priceFilling(fillings, filling) + price;
-
-                    String shell = list.shell(shells);
-                    price = list.priceShell(shells, shell) + price;
-
-                    String decor = list.decor(decors);
-                    price = list.priceDecor(decors, decor) + price;
-
-                    Cake cake = new Cake(biscuit,filling,shell,decor,clientId,price);
-                    cakeConstructor.add(cake);
+                    cakeConstructor = list.createCake(clientId);
                     break;
 
                 }

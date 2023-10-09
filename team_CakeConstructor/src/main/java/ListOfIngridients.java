@@ -24,7 +24,7 @@ public class ListOfIngridients {
     public int priceBiscuit(List<Biscuit> biscuits, String  biscuit) {
         int price = 0;
         for (Biscuit biscuit1 : biscuits) {
-            if (biscuit1.getTypeOfBiscuit() == biscuit) {
+            if (biscuit1.getTypeOfBiscuit().equals(biscuit)) {
                 price = biscuit1.getPrice();
             }
         }
@@ -59,7 +59,7 @@ public class ListOfIngridients {
     public int priceFilling(List<Filling> fillings, String filling) {
         int price = 0;
         for (Filling filling1 : fillings) {
-            if (filling1.getTypeOfFilling() == filling) {
+            if (filling1.getTypeOfFilling().equals(filling)) {
                 price = filling1.getPrice();
             }
         }
@@ -93,7 +93,7 @@ public class ListOfIngridients {
     public int priceShell(List<Shell> shells, String shell) {
         int price = 0;
         for (Shell shell1 : shells) {
-            if (shell1.getTypeOfShell() == shell) {
+            if (shell1.getTypeOfShell().equals(shell)) {
                 price = shell1.getPrice();
             }
         }
@@ -126,7 +126,7 @@ public class ListOfIngridients {
     public int priceDecor(List<Decor> decors, String decor) {
         int price = 0;
         for (Decor decor1 : decors) {
-            if (decor1.getTypeOfDecor() == decor) {
+            if (decor1.getTypeOfDecor().equals(decor)) {
                 price = decor1.getPrice();
             }
         }
@@ -201,6 +201,30 @@ public class ListOfIngridients {
         int decorId = scan.nextInt();
         String decor = findDecor(decors,decorId);
         return decor;
+    }
+    public List<Cake> createCake (int clientId){
+        List<Biscuit> biscuits = createListOfBiscuit();
+        List<Filling> fillings = createListOfFilling();
+        List<Shell> shells = createListOfShell();
+        List<Decor> decors = createListOfDecor();
+        List<Cake> cakeConstructor = new ArrayList<>();
+
+        String biscuit = biscuit(biscuits);
+        int price = priceBiscuit(biscuits, biscuit);
+
+        String filling = filling(fillings);
+        price = priceFilling(fillings, filling) + price;
+
+        String shell = shell(shells);
+        price = priceShell(shells, shell) + price;
+
+        String decor = decor(decors);
+        price = priceDecor(decors, decor) + price;
+
+        Cake cake1 = new Cake(biscuit,filling,shell,decor,clientId,price);
+        cakeConstructor.add(cake1);
+
+        return cakeConstructor;
     }
 }
 
