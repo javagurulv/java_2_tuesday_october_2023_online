@@ -11,6 +11,7 @@ public class Wheelchair {
      private int footrestLength;
      private int bachHeight;
      Map<Category,Component> components;
+     private int priceWheelchair;
 
 
     public Wheelchair(int seatWidth, int seatDepth, int footrestLength, int bachHeight, Map<Category, Component> components) {
@@ -19,6 +20,7 @@ public class Wheelchair {
         this.footrestLength = footrestLength;
         this.bachHeight = bachHeight;
         this.components = components;
+        this.priceWheelchair = 177700;
     }
 
     public void AddComponents(Category category, Component component) {
@@ -63,6 +65,14 @@ components.put(category,component);
 
     public Map<Category, Component> getComponents() {
         return components;
+    }
+
+    public int getPriceWheelchair() {
+        return priceWheelchair;
+    }
+
+    public void setPriceWheelchair(int priceWheelchair) {
+        this.priceWheelchair = priceWheelchair;
     }
 }
 
