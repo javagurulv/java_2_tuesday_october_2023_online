@@ -21,43 +21,25 @@ public class ClientWorkoutsApplication {
             int userChoice = Integer.parseInt(scanner.nextLine());
             int id = !clients.isEmpty() ? clients.get(clients.size() - 1).getId() + 1 : 1;
             switch (userChoice) {
-                case 1: {
+                case 1 -> {
                     System.out.println("Enter client first name: ");
-                    String clientFirstName = scanner.nextLine();
-                    clientFirstName = (!clientFirstName.isEmpty()) ? clientFirstName.toLowerCase().substring(0, 1).
-                            toUpperCase().concat(clientFirstName.substring(1)) : clientFirstName;
+                    String clientFirstName = formattedName(scanner.nextLine());
                     System.out.println("Enter client last name: ");
-                    String clientLastName = scanner.nextLine();
-                    clientLastName = (!clientLastName.isEmpty()) ? clientLastName.toLowerCase().substring(0, 1).
-                            toUpperCase().concat(clientLastName.substring(1)) : clientLastName;
+                    String clientLastName = formattedName(scanner.nextLine());
                     System.out.println("Enter client personal code: ");
                     String clientPersonalCode = scanner.nextLine();
                     System.out.println("Choose client workout.");
                     System.out.println("1. GYM");
                     System.out.println("2. Swimming Pool");
                     System.out.println("3. Group Classes");
-                    int userChoiceWorkout = Integer.parseInt(scanner.nextLine());
-                    Workouts clientWorkout = null;
-                    switch (userChoiceWorkout) {
-                        case 1: {
-                            clientWorkout = Workouts.GYM;
-                            break;
-                        }
-                        case 2: {
-                            clientWorkout = Workouts.SWIMMING_POOL;
-                            break;
-                        }
-                        case 3: {
-                            clientWorkout = Workouts.GROUP_CLASSES;
-                        }
-                    }
+                    Workouts clientWorkout = getWorkout(Integer.parseInt(scanner.nextLine()));
                     Client client = new Client(clientFirstName, clientLastName, clientPersonalCode, clientWorkout);
                     client.setId(id);
                     clients.add(client);
                     System.out.println("New client was added to list.");
                     break;
                 }
-                case 2: {
+                case 2 -> {
                     System.out.println("Enter client first name: ");
                     String clientFirstName = scanner.nextLine();
                     System.out.println("Enter client last name: ");
@@ -69,7 +51,7 @@ public class ClientWorkoutsApplication {
                     System.out.println("Client was removed from list. ");
                     break;
                 }
-                case 3: {
+                case 3 -> {
                     System.out.println("Clients list: ");
                     for (Client client : clients) {
                         System.out.println(client);
@@ -77,7 +59,7 @@ public class ClientWorkoutsApplication {
                     System.out.println("Client list end.");
                     break;
                 }
-                case 4: {
+                case 4 -> {
                     System.out.println("Change client workout: ");
                     System.out.println("Enter client first name: ");
                     String clientFirstName = scanner.nextLine();
@@ -90,43 +72,43 @@ public class ClientWorkoutsApplication {
                     System.out.println("1. GYM");
                     System.out.println("2. Swimming Pool");
                     System.out.println("3. Group Classes");
-                    int userChoiceWorkout = Integer.parseInt(scanner.nextLine());
-                    switch (userChoiceWorkout){
-                        case 1: {
-                            for (Client client : clients) {
-                                if (client.equals(changeClientWorkout)) {
-                                    client.setWorkouts(Workouts.GYM);
-                                }
-                            }
-                            System.out.println("Client workout has changed to GYM.");
-                            break;
-                        }
-                        case 2: {
-                            for (Client client : clients) {
-                                if (client.equals(changeClientWorkout)) {
-                                    client.setWorkouts(Workouts.SWIMMING_POOL);
-                                }
-                            }
-                            System.out.println("Client workout has changed to Swimming Pool.");
-                            break;
-                        }
-                        case 3: {
-                            for (Client client : clients) {
-                                if (client.equals(changeClientWorkout)) {
-                                    client.setWorkouts(Workouts.GROUP_CLASSES);
-                                }
-                            }
-                            System.out.println("Client workout has changed to Group Classes.");
+
+                    for (Client client : clients) {
+                        if (client.equals(changeClientWorkout)) {
+                            client.setWorkouts(getWorkout(Integer.parseInt(scanner.nextLine())));
                             break;
                         }
                     }
                     break;
-                    }
-                case 5: {
+                }
+                case 5 -> {
                     System.out.println("All the best");
                     System.exit(0);
                 }
             }
         }
+    }
+
+    public static String formattedName(String name) {
+        return name.toLowerCase().substring(0, 1).toUpperCase().concat(name.substring(1));
+    }
+
+    public static Workouts getWorkout(int id) {
+        Workouts selectedWorkout = null;
+        switch (id) {
+            case 1 -> {
+                selectedWorkout = Workouts.GYM;
+            }
+            case 2 -> {
+                selectedWorkout = Workouts.SWIMMING_POOL;
+            }
+            case 3 -> {
+                selectedWorkout = Workouts.GROUP_CLASSES;
+            }
+            default -> {
+                System.out.println("No such workout option");
+            }
+        }
+        return selectedWorkout;
     }
 }
