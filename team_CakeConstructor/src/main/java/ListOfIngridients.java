@@ -107,8 +107,8 @@ public class ListOfIngridients {
         decors.add(new Decor(4,"blue ganache with dark chocolate", "milk, chocolate", "blue", 4));
         decors.add(new Decor(5,"blue ganache with milk chocolate", "milk, chocolate","blue", 4));
         decors.add(new Decor(6,"blue ganache with white chocolate", "milk, chocolate", "blue", 4));
-        decors.add(new Decor(7,"red cream-cheese", "молоко", "red", 4));
-        decors.add(new Decor(8,"blue cream-cheese", "молоко", "blue", 4));
+        decors.add(new Decor(7,"red cream-cheese", "milk", "red", 4));
+        decors.add(new Decor(8,"blue cream-cheese", "milk", "blue", 4));
         decors.add(new Decor(9,"red velvet", "milk, chocolate", "red", 8));
         decors.add(new Decor(10,"blue velvet", "milk, chocolate","blue", 8));
         decors.add(new Decor(11,"red mirror glaze", "milk, chocolate","red", 7));

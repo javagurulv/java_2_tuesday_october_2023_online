@@ -31,31 +31,31 @@ public class CakeConstructor {
                     list.printListOfBiscuit(biscuits);
                     int biscuitId = scan.nextInt();
                     int price = list.priceBiscuit(biscuits, biscuitId);
-                    String biscuit = list.biscuit(biscuits,biscuitId);
+                    String biscuit = list.biscuit(biscuits, biscuitId);
 
 
                     System.out.println("Choose a filling!");
                     list.printListOfFilling(fillings);
                     int fillingId = scan.nextInt();
                     price = list.priceFilling(fillings, fillingId) + price;
-                    String filling = list.filling(fillings,fillingId);
+                    String filling = list.filling(fillings, fillingId);
 
 
                     System.out.println("Choose a shell!");
                     list.printListOfShell(shells);
                     int shellId = scan.nextInt();
                     price = list.priceShell(shells, shellId) + price;
-                    String shell = list.shell(shells,shellId);
+                    String shell = list.shell(shells, shellId);
 
 
                     System.out.println("Choose a decor!");
                     list.printListOfDecor(decors);
                     int decorId = scan.nextInt();
                     price = list.priceDecor(decors, decorId) + price;
-                    String decor = list.decor(decors,decorId);
+                    String decor = list.decor(decors, decorId);
 
 
-                    Cake cake = new Cake(biscuit,filling,shell,decor,clientId,price);
+                    Cake cake = new Cake(biscuit, filling, shell, decor, clientId, price);
                     cakeConstructor.add(cake);
                     break;
 
