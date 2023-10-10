@@ -5,6 +5,7 @@ import java.util.Map;
 public class Wheelchair {
     UserSizes userSizes;
     ComponentDatabase componentDatabase;
+    UserData userData;
 
      private int seatWidth;
      private int seatDepth;
@@ -12,6 +13,10 @@ public class Wheelchair {
      private int bachHeight;
      Map<Category,Component> components;
      private int priceWheelchair;
+
+    private String nameSurname;
+    private String phoneNumber;
+    private String address;
 
 
     public Wheelchair(int seatWidth, int seatDepth, int footrestLength, int bachHeight, Map<Category, Component> components) {
