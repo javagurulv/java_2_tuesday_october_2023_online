@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ListOfIngridients {
 
@@ -20,10 +21,10 @@ public class ListOfIngridients {
         }
     }
 
-    public int priceBiscuit(List<Biscuit> biscuits, int biscuitId) {
+    public int priceBiscuit(List<Biscuit> biscuits, String  biscuit) {
         int price = 0;
         for (Biscuit biscuit1 : biscuits) {
-            if (biscuit1.getBiscuitId() == biscuitId) {
+            if (biscuit1.getTypeOfBiscuit().equals(biscuit)) {
                 price = biscuit1.getPrice();
             }
         }
@@ -55,10 +56,10 @@ public class ListOfIngridients {
         }
     }
 
-    public int priceFilling(List<Filling> fillings, int fillingId) {
+    public int priceFilling(List<Filling> fillings, String filling) {
         int price = 0;
         for (Filling filling1 : fillings) {
-            if (filling1.getFillingId() == fillingId) {
+            if (filling1.getTypeOfFilling().equals(filling)) {
                 price = filling1.getPrice();
             }
         }
@@ -89,10 +90,10 @@ public class ListOfIngridients {
         }
     }
 
-    public int priceShell(List<Shell> shells, int shellId) {
+    public int priceShell(List<Shell> shells, String shell) {
         int price = 0;
         for (Shell shell1 : shells) {
-            if (shell1.getShellId()== shellId) {
+            if (shell1.getTypeOfShell().equals(shell)) {
                 price = shell1.getPrice();
             }
         }
@@ -107,8 +108,8 @@ public class ListOfIngridients {
         decors.add(new Decor(4,"blue ganache with dark chocolate", "milk, chocolate", "blue", 4));
         decors.add(new Decor(5,"blue ganache with milk chocolate", "milk, chocolate","blue", 4));
         decors.add(new Decor(6,"blue ganache with white chocolate", "milk, chocolate", "blue", 4));
-        decors.add(new Decor(7,"red cream-cheese", "молоко", "red", 4));
-        decors.add(new Decor(8,"blue cream-cheese", "молоко", "blue", 4));
+        decors.add(new Decor(7,"red cream-cheese", "milk", "red", 4));
+        decors.add(new Decor(8,"blue cream-cheese", "milk", "blue", 4));
         decors.add(new Decor(9,"red velvet", "milk, chocolate", "red", 8));
         decors.add(new Decor(10,"blue velvet", "milk, chocolate","blue", 8));
         decors.add(new Decor(11,"red mirror glaze", "milk, chocolate","red", 7));
@@ -122,17 +123,17 @@ public class ListOfIngridients {
         }
     }
 
-    public int priceDecor(List<Decor> decors, int decor) {
+    public int priceDecor(List<Decor> decors, String decor) {
         int price = 0;
         for (Decor decor1 : decors) {
-            if (decor1.getDecorId() == decor) {
+            if (decor1.getTypeOfDecor().equals(decor)) {
                 price = decor1.getPrice();
             }
         }
         return price;
     }
 
-    public String biscuit (List<Biscuit>biscuits, int biscuitId){
+    public String findBiscuit (List<Biscuit>biscuits, int biscuitId){
         String biscuit=" ";
         for (Biscuit biscuit1:biscuits){
             if (biscuit1.getBiscuitId()==biscuitId){
@@ -141,7 +142,7 @@ public class ListOfIngridients {
         }
         return biscuit;
     }
-    public String filling (List<Filling> fillings, int fillingId){
+    public String findFilling (List<Filling> fillings, int fillingId){
         String filling=" ";
         for (Filling filling1:fillings){
             if (filling1.getFillingId()==fillingId){
@@ -150,7 +151,7 @@ public class ListOfIngridients {
         }
         return filling;
     }
-    public String shell (List<Shell> shells, int shellId){
+    public String findShell (List<Shell> shells, int shellId){
         String shell =" ";
         for (Shell shell1:shells){
             if (shell1.getShellId()==shellId){
@@ -159,7 +160,7 @@ public class ListOfIngridients {
         }
         return shell;
     }
-    public String decor (List<Decor> decors, int decorId){
+    public String findDecor (List<Decor> decors, int decorId){
         String decor =" ";
         for (Decor decor1: decors){
             if (decor1.getDecorId()==decorId){
@@ -167,6 +168,59 @@ public class ListOfIngridients {
             }
         }
         return decor;
+    }
+
+    public String biscuit (List<Biscuit>biscuits){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Choose a biscuit!");
+        printListOfBiscuit(biscuits);
+        int biscuitId = scan.nextInt();
+        return findBiscuit(biscuits,biscuitId);
+    }
+    public String filling (List <Filling> fillings){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Choose a filling!");
+        printListOfFilling(fillings);
+        int fillingId = scan.nextInt();
+        return findFilling(fillings, fillingId);
+    }
+    public String shell (List<Shell>shells){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Choose a shell!");
+        printListOfShell(shells);
+        int shellId= scan.nextInt();
+        return findShell(shells,shellId);
+    }
+    public String decor (List <Decor> decors){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Choose a decor!");
+        printListOfDecor(decors);
+        int decorId = scan.nextInt();
+        return findDecor(decors,decorId);
+    }
+    public List<Cake> createCake (int clientId){
+        List<Biscuit> biscuits = createListOfBiscuit();
+        List<Filling> fillings = createListOfFilling();
+        List<Shell> shells = createListOfShell();
+        List<Decor> decors = createListOfDecor();
+        List<Cake> cakeConstructor = new ArrayList<>();
+
+        String biscuit = biscuit(biscuits);
+        int price = priceBiscuit(biscuits, biscuit);
+
+        String filling = filling(fillings);
+        price = priceFilling(fillings, filling) + price;
+
+        String shell = shell(shells);
+        price = priceShell(shells, shell) + price;
+
+        String decor = decor(decors);
+        price = priceDecor(decors, decor) + price;
+
+        Cake cake1 = new Cake(biscuit,filling,shell,decor,clientId,price);
+        cakeConstructor.add(cake1);
+
+        return cakeConstructor;
     }
 }
 
