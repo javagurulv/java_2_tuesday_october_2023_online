@@ -9,8 +9,7 @@ ConsoleInterface {
         ComponentList componentList = new ComponentList();
         Wheelchair wheelchair = new Wheelchair(0, 0, 0, 0, new HashMap<>());
         UserSizes size = new UserSizes(0, 0, 0, 0);
-        int choose = 0;
-        while (choose != 7) {
+        while (true) {
             System.out.println("Подбор коляски Avangard Teen");
             System.out.println("Выберете пункт из меню");
             System.out.println("1. Ввести антромоиетрические данные клиента (длинна бедра, ширина таза, длинна голени, высота спины до нижнего края лопатки)");
@@ -20,7 +19,7 @@ ConsoleInterface {
             System.out.println("5. Внести изменения в детализацию коляски");
             System.out.println("6. Просмотр детализации и подсчет стоимости коляски");
             System.out.println("7. Заполнить личные данные для связи и выйти");
-            choose = scan.nextInt();
+            int choose = scan.nextInt();
 
             switch (choose) {
                 case (1):
@@ -170,6 +169,9 @@ ConsoleInterface {
                         System.out.println(component.getKey() + " - " + component.getValue().getPrice());
                     }
                     System.out.println("Общая стоимость: " + price);
+                case (7):
+                    System.out.println("Gооd Bye");
+                    System.exit(0);
 
             }
         }
