@@ -1,7 +1,8 @@
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class ConsoleInterface {
+public class
+ConsoleInterface {
 
     public static void main(String[] args) throws InterruptedException {
         Scanner scan = new Scanner(System.in);
@@ -123,7 +124,7 @@ public class ConsoleInterface {
                         System.out.println(i + 1 + ". " + componentList.getArmrest().get(i).getInformation() + "     цена: " + componentList.getArmrest().get(i).getPrice());
                     }
                     int armrestChoose = scan.nextInt();
-                    wheelchair.AddComponents(componentList.getArmrest().get(breaksChoose - 1).getCategory(), componentList.getArmrest().get(breaksChoose - 1));
+                    wheelchair.AddComponents(componentList.getArmrest().get(armrestChoose - 1).getCategory(), componentList.getArmrest().get(armrestChoose - 1));
                     armrest.clear();
                     break;
                 case (5):
@@ -140,18 +141,18 @@ public class ConsoleInterface {
                         showCathegory.add(component.getValue().getCategory());
                     }
                     int value = scan.nextInt();
-                    List<Component> chence = new ArrayList();
-                    System.out.println("вберете новое значение параметра " + showCathegory.get(value-1));
-                    List <Component>newChoose = new ArrayList<>();
-                    for (int i = 0; i < componentList.getAllComponents().size(); i++){
-                        if(showCathegory.get(value-1).equals(componentList.getAllComponents().get(i).getCategory())){
-                            newChoose.add(componentList.getAllComponents().get(i));}
+                    System.out.println("выберете новое значение параметра " + showCathegory.get(value - 1));
+                    List<Component> newChoose = new ArrayList<>();
+                    for (int i = 0; i < componentList.getAllComponents().size(); i++) {
+                        if (showCathegory.get(value - 1).equals(componentList.getAllComponents().get(i).getCategory())) {
+                            newChoose.add(componentList.getAllComponents().get(i));
                         }
-                    for (int i = 0; i<newChoose.size();i++){
-                        System.out.println(i+1 + ". " +  newChoose.get(i).getInformation() + "цена: " + newChoose.get(i).getPrice());
+                    }
+                    for (int i = 0; i < newChoose.size(); i++) {
+                        System.out.println(i + 1 + ". " + newChoose.get(i).getInformation() + "цена: " + newChoose.get(i).getPrice());
                     }
                     value = scan.nextInt();
-                    wheelchair.AddComponents(newChoose.get(value-1).getCategory(),newChoose.get(value-1));
+                    wheelchair.AddComponents(newChoose.get(value - 1).getCategory(), newChoose.get(value - 1));
                     break;
                 case (6):
                     for (Map.Entry<Category, Component> component : wheelchair.getComponents().entrySet()) {
@@ -159,6 +160,17 @@ public class ConsoleInterface {
                     }
                     System.out.println("нажмите \"ок\", чтобы продолжить");
                     okey = scan.next();
+                    int priceComponents = 0;
+                    for (Map.Entry<Category, Component> component : wheelchair.getComponents().entrySet()) {
+                        priceComponents += component.getValue().getPrice();
+                    }
+                    int price = wheelchair.getPriceWheelchair() + priceComponents;
+                    System.out.println("Общая стоимость: Кресло-коляска Aвангард Teen - " + wheelchair.getPriceWheelchair());
+                    for (Map.Entry<Category, Component> component : wheelchair.getComponents().entrySet()) {
+                        System.out.println(component.getKey() + " - " + component.getValue().getPrice());
+                    }
+                    System.out.println("Общая стоимость: " + price);
+
             }
         }
     }
