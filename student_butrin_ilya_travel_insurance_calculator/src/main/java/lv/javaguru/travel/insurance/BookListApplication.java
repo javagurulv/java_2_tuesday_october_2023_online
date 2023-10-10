@@ -1,12 +1,17 @@
 package lv.javaguru.travel.insurance;
 
-import java.security.PublicKey;
-import java.util.List;
+import lv.javaguru.travel.insurance.consoleUI.*;
+
 import java.util.Scanner;
 
 public class BookListApplication {
-    DataBook data = new DataBook();
+    Database data = new InMemoryDatabaseImpl();
+    UIAction addBook = new AddBookUIAction(data);
+    UIAction removeBook = new RemoveBookUIAction(data);
+    UIAction getbook = new GetAllBooksUIAction(data);
+    UIAction exit = new ExitUIAction();
     public static void main(String[] args) {
+
         BookListApplication bookListApplication = new BookListApplication();
         while (true) {
            showMenu();
@@ -28,44 +33,17 @@ public class BookListApplication {
 
             switch (choose) {
                 case (1):
-                    addBook();
+                    addBook.execute();
                     break;
                 case (2):
-                    removeBook();
+                    removeBook.execute();
                     break;
                 case (3):
-                    showAllBooks();
+                    getbook.execute();
                     break;
                 case (4):
-                    finishProgram();
+                    exit.execute();
 
             }
-        }
-            private void addBook() {
-                Scanner scan = new Scanner(System.in);
-                System.out.println("Введите автора");
-                String author = scan.nextLine();
-                System.out.println("Введите название книги");
-                String title = scan.nextLine();
-                Book book = new Book(author, title);
-                data.addBook(book);
-            }
-            private void removeBook(){
-                Scanner scan = new Scanner(System.in);
-                System.out.println("Введите автора");
-                String author = scan.nextLine();
-                System.out.println("Введите название книги");
-                String title = scan.nextLine();
-                Book book = new Book(author, title);
-                data.deleteBook(book);
-        }
-        private  void showAllBooks (){
-            List<Book> books = data.getBooks();
-            for (Book bookFromList : books)
-                System.out.println(bookFromList.getAuthor() + "  " + bookFromList.getTitle());
-        }
-        private void finishProgram () {
-        System.out.println("Good BYE");
-        System.exit(0);
         }
 }
