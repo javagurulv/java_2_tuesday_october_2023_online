@@ -12,7 +12,7 @@ ConsoleInterface {
         UserData userData = new UserData("","","");
         while (true) {
             System.out.println("Подбор коляски Avangard Teen");
-            System.out.println("Выберете пункт из меню");
+            System.out.println("Выберите пункт из меню");
             System.out.println("1. Ввести антромоиетрические данные клиента (длинна бедра, ширина таза, длинна голени, высота спины до нижнего края лопатки)");
             System.out.println("2. Изменить антропометрические данные клиента");
             System.out.println("3. Показать введенные антропометрические данные");
@@ -27,20 +27,20 @@ ConsoleInterface {
                     System.out.println("введите ширину таза пользователя");
                     int pelwicWidth = scan.nextInt();
                     size.setPelvisWidth(pelwicWidth);
-                    System.out.println("введите длинну бедра пользователя");
+                    System.out.println("введите длину бедра пользователя");
                     int thighLength = scan.nextInt();
                     size.setThighLength(thighLength);
-                    System.out.println("введите длинну спины пользователя до нижнего края лопатки");
+                    System.out.println("введите длину спины пользователя до нижнего края лопатки");
                     int backLength = scan.nextInt();
                     size.setBackHeight(backLength);
-                    System.out.println("введите длинну голени пользователя");
+                    System.out.println("введите длину голени пользователя");
                     int shinLength = scan.nextInt();
                     size.setShinLength(shinLength);
                     System.out.println("проверте введенные данные: ");
                     System.out.println("ширина таза:  " + size.getPelvisWidth());
-                    System.out.println("длинна бедра: " + size.getThighLength());
-                    System.out.println("длинна спины до нижнего края лопатки: " + size.getBackHeight());
-                    System.out.println("длинну голени: " + size.getShinLength());
+                    System.out.println("длина бедра: " + size.getThighLength());
+                    System.out.println("длина спины до нижнего края лопатки: " + size.getBackHeight());
+                    System.out.println("длину голени: " + size.getShinLength());
                     // создаем класс антропометрические данные и вставляем туда конструктор
                     System.out.println("Нажмите \"ок\", чтобы сохранить данные");
                     String ok = scan.next();
@@ -50,9 +50,9 @@ ConsoleInterface {
                 case (2):
                     System.out.println("Какой из параметров хотите поменять?");
                     System.out.println("1. ширина таза:  " + size.getPelvisWidth());
-                    System.out.println("2. длинна бедра: " + size.getThighLength());
-                    System.out.println("3. длинна спины до нижнего края лопатки: " + size.getBackHeight());
-                    System.out.println("4. длинну голени: " + size.getShinLength());
+                    System.out.println("2. длина бедра: " + size.getThighLength());
+                    System.out.println("3. длина спины до нижнего края лопатки: " + size.getBackHeight());
+                    System.out.println("4. длину голени: " + size.getShinLength());
 
                     int chanch = scan.nextInt();
                     switch (chanch) {
@@ -64,7 +64,7 @@ ConsoleInterface {
                             Thread.sleep(2000);
                             break;
                         case (2):
-                            System.out.println("введите новое значение длинны бедра");
+                            System.out.println("введите новое значение длины бедра");
                             int newThighLength = scan.nextInt();
                             size.setThighLength(newThighLength);
                             System.out.println("Новое значение сохранено");
@@ -72,14 +72,14 @@ ConsoleInterface {
                             //сет в антропологии
                             break;
                         case (3):
-                            System.out.println("введите новое значение длинна спины до нижнего края лопатки");
+                            System.out.println("введите новое значение длины спины до нижнего края лопатки");
                             int newBackLength = scan.nextInt();
                             size.setBackHeight(newBackLength);
                             System.out.println("Новое значение сохранено");
                             Thread.sleep(2000);
                             break;
                         case (4):
-                            System.out.println("введите новое значение длинны голени");
+                            System.out.println("введите новое значение длины голени");
                             int newShinLength = scan.nextInt();
                             size.setShinLength(newShinLength);
                             System.out.println("Новое значение сохранено");
@@ -89,9 +89,9 @@ ConsoleInterface {
                     break;
                 case (3):
                     System.out.println("ширина таза:  " + size.getPelvisWidth());
-                    System.out.println("длинна бедра: " + size.getThighLength());
-                    System.out.println("длинна спины до нижнего края лопатки: " + size.getBackHeight());
-                    System.out.println("длинна голени: " + size.getShinLength());
+                    System.out.println("длина бедра: " + size.getThighLength());
+                    System.out.println("длина спины до нижнего края лопатки: " + size.getBackHeight());
+                    System.out.println("длина голени: " + size.getShinLength());
                     System.out.println("Нажмите \"ок\", чтобы продолжить");
                     String okey = scan.next();
                     break;
@@ -141,7 +141,7 @@ ConsoleInterface {
                         showCathegory.add(component.getValue().getCategory());
                     }
                     int value = scan.nextInt();
-                    System.out.println("выберете новое значение параметра " + showCathegory.get(value - 1));
+                    System.out.println("выберите новое значение параметра " + showCathegory.get(value - 1));
                     List<Component> newChoose = new ArrayList<>();
                     for (int i = 0; i < componentList.getAllComponents().size(); i++) {
                         if (showCathegory.get(value - 1).equals(componentList.getAllComponents().get(i).getCategory())) {
@@ -172,15 +172,15 @@ ConsoleInterface {
                     System.out.println("Общая стоимость: " + price);
                 case (7):
                     System.out.println("введите Имя, Фамилия");
-                    String nameSurname = scan.nextLine();
+                    String nameSurname = scan.next();
                     userData.setNameSurname(nameSurname);
                     System.out.println("введите номер телефона");
-                    String phoneNumber = scan.nextLine();
+                    String phoneNumber = scan.next();
                     userData.setPhoneNumber(phoneNumber);
                     System.out.println("введите фактический адрес проживания");
-                    String userAddress = scan.nextLine();
+                    String userAddress = scan.next();
                     userData.setUserAddress(userAddress);
-                    System.out.println("проверте введенные данные: ");
+                    System.out.println("проверьте введенные данные: ");
                     System.out.println("Имя, Фамилия:  " + userData.getNameSurname());
                     System.out.println("номер телефона: " + userData.getPhoneNumber());
                     System.out.println("фактический адрес проживания: " + userData.getUserAddress());
