@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @Component
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
-private  DateTimeService dateTimeService;
+
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
         TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse();
@@ -17,9 +17,6 @@ private  DateTimeService dateTimeService;
         response.setAgreementDateFrom(request.getAgreementDateFrom());
         response.setAgreementDateTo(request.getAgreementDateTo());
 
-        long differenceDays = dateTimeService.getDifferenceDays(request.getAgreementDateFrom(),request.getAgreementDateTo()); {
-            response.setAgreementPrice(new BigDecimal(differenceDays));
-        }
         return response;
     }
 }
