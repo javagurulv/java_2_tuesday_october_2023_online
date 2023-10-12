@@ -6,6 +6,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,10 +20,12 @@ class TravelCalculatePremiumServiceImplTest {
 
 
     @BeforeEach
-    public void setUpRequest() {
+    public void setUpRequest() throws ParseException {
+        Date dateFrom = new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2000");
+        Date dateTo = new SimpleDateFormat("dd/MM/yyyy").parse("16/05/2000");
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
-                "Ivan", "Ivanov", new Date((long) 2023.05 / 01),
-                new Date((long) 2023.05 / 16));
+                "Ivan", "Ivanov", dateFrom,
+                dateTo);
         response = serviceImpl.calculatePremium(request);
     }
 
@@ -40,19 +45,24 @@ class TravelCalculatePremiumServiceImplTest {
     }
 
     @Test
-    public void getDateFrom() {
+    public void getDateFrom() throws ParseException {
 
-        Date dateFrom = response.getAgreementDateFrom();
-        assertEquals(new Date((long)2023.05 / 01), dateFrom);
+        Date dateFrom1 = response.getAgreementDateFrom();
+        assertEquals(new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2000"), dateFrom1);
     }
 
     @Test
-    public void getDateTo() {
+    public void getDateTo() throws ParseException {
 
-        Date dateTo = response.getAgreementDateTo();
-        assertEquals(new Date((long) 2023.05 / 16), dateTo);
+        Date dateTo1 = response.getAgreementDateTo();
+        assertEquals(new SimpleDateFormat("dd/MM/yyyy").parse("16/05/2000"), dateTo1);
     }
 
-
+    @Test
+    public void getAgreementPrice() {
+        response.setAgreementPrice();
+        BigDecimal agreementPrice = response.getAgreementPrice();
+        assertEquals(new BigDecimal(15), agreementPrice);
+    }
 
 }

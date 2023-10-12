@@ -1,7 +1,9 @@
 package lv.javaguru.travel.insurance.rest;
 
 import java.math.BigDecimal;
+
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class TravelCalculatePremiumResponse {
 
@@ -18,8 +20,8 @@ public class TravelCalculatePremiumResponse {
         return agreementPrice;
     }
 
-    public void setAgreementPrice(BigDecimal agreementPrice) {
-        this.agreementPrice = agreementPrice;
+    public void setAgreementPrice() {
+        this.agreementPrice = calculateDaysCount();
     }
 
     public String getPersonFirstName() {
@@ -53,5 +55,12 @@ public class TravelCalculatePremiumResponse {
     public void setAgreementDateTo(Date agreementDateTo) {
         this.agreementDateTo = agreementDateTo;
     }
+
+    private BigDecimal calculateDaysCount() {
+        long daysCount = this.agreementDateTo.getTime() - this.agreementDateFrom.getTime();
+        long days = TimeUnit.DAYS.convert(daysCount, TimeUnit.MILLISECONDS);
+        return new BigDecimal(days);
+    }
+
 
 }
