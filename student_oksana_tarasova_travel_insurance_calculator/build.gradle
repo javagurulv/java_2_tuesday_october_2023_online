@@ -4,6 +4,12 @@ dependencies {
 		exclude (group: 'ch.qos.logback', module: 'logback-classic')
 	}
 
+	compileOnly('org.projectlombok:lombok:1.18.24')
+	annotationProcessor('org.projectlombok:lombok:1.18.24')
+
+	testCompileOnly('org.projectlombok:lombok:1.18.24')
+	testAnnotationProcessor('org.projectlombok:lombok:1.18.24')
+
 	testImplementation('org.springframework.boot:spring-boot-starter-test:2.7.5') {
 		exclude (group: 'ch.qos.logback', module: 'logback-classic')
 	}

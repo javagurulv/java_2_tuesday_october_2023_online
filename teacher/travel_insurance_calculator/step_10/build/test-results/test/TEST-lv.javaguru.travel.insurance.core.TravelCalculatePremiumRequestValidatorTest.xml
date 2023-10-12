@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidatorTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-10-11T13:35:54" hostname="DESKTOP-B776MGB" time="2.558">
+  <properties/>
+  <testcase name="shouldReturnErrorWhenAgreementDateToIsNull()" classname="lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidatorTest" time="2.469"/>
+  <testcase name="shouldReturnErrorWhenPersonFirstNameIsEmpty()" classname="lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidatorTest" time="0.009"/>
+  <testcase name="shouldReturnErrorWhenPersonLastNameIsNull()" classname="lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidatorTest" time="0.006"/>
+  <testcase name="shouldReturnErrorWhenPersonFirstNameIsNull()" classname="lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidatorTest" time="0.005"/>
+  <testcase name="shouldReturnErrorWhenAgreementDateFromIsNull()" classname="lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidatorTest" time="0.006"/>
+  <testcase name="shouldReturnErrorWhenPersonLastNameIsEmpty()" classname="lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidatorTest" time="0.006"/>
+  <testcase name="shouldNotReturnErrorWhenPersonFirstNameIsPresent()" classname="lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidatorTest" time="0.012"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
