@@ -1,7 +1,5 @@
 package domain;
 
-import database.Workouts;
-
 import java.util.Objects;
 
 public class Client {

@@ -1,4 +1,4 @@
-package database;
+package domain;
 
 public enum Workouts {
     GYM,

@@ -1,5 +1,5 @@
 package services;
-import database.Workouts;
+import domain.Workouts;
 
 public class GetWorkoutService {
 
