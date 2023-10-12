@@ -64,7 +64,8 @@ public class ClientWorkoutsApplication {
         System.out.println("1. GYM");
         System.out.println("2. Swimming Pool");
         System.out.println("3. Group Classes");
-        Workouts newWorkout = GetWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
+        GetWorkoutService getWorkoutService = new GetWorkoutService();
+        Workouts newWorkout = getWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
         ChangeClientWorkoutService changeClientWorkoutService = new ChangeClientWorkoutService(database);
         changeClientWorkoutService.changeClientWorkout(clientFirstName, clientLastName, clientPersonalCode, newWorkout);
         System.out.println("Client workout has been changed.");
@@ -102,7 +103,8 @@ public class ClientWorkoutsApplication {
         System.out.println("1. GYM");
         System.out.println("2. Swimming Pool");
         System.out.println("3. Group Classes");
-        Workouts clientWorkout = GetWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
+        GetWorkoutService getWorkoutService = new GetWorkoutService();
+        Workouts clientWorkout = getWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
         AddClientService addClientService = new AddClientService(database);
         addClientService.addClient(clientFirstName, clientLastName, clientPersonalCode, clientWorkout);
         System.out.println("New client was added to list.");
