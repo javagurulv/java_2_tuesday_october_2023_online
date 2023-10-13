@@ -8,5 +8,7 @@ public interface Database {
 
     void removeClient(Client client);
 
+    void saveClient(List<Client> clients);
+
     List<Client> getAllClients();
 }

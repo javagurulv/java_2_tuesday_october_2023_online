@@ -6,7 +6,7 @@ import services.*;
 import java.util.Scanner;
 
 public class ClientWorkoutsApplication {
-    public static Database database = new InMemoryDatabase();
+    public static Database database = new InFileDatabase();
 
     private static UIAction exitUIAction = new ExitUIAction();
 

@@ -22,4 +22,8 @@ public class InMemoryDatabase implements Database {
     public List<Client> getAllClients() {
         return clients;
     }
+
+    public void saveClient(List<Client> clients){
+
+    }
 }
