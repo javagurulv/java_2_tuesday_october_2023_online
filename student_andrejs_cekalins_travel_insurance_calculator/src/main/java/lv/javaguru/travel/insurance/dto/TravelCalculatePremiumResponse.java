@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lv.javaguru.travel.insurance.dto.CoreResponse;
-import lv.javaguru.travel.insurance.dto.ValidationError;
 
 import java.math.BigDecimal;
 import java.util.Date;

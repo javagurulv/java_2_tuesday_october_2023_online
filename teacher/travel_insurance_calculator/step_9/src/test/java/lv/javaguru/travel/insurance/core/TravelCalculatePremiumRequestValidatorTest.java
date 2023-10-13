@@ -89,5 +89,4 @@ public class TravelCalculatePremiumRequestValidatorTest {
         List<ValidationError> errors = requestValidator.validate(request);
         assertTrue(errors.isEmpty());
     }
-
 }
