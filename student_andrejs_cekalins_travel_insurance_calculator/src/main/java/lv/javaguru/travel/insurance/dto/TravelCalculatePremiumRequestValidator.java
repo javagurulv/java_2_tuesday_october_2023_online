@@ -14,7 +14,7 @@ public class TravelCalculatePremiumRequestValidator {
         return errors;
     }
     private Optional<ValidationError> validatePersonFirstName(TravelCalculatePremiumRequest request) {
-        return (request.getPersonFirstName()==null || request.getPersonLastName().isEpty())
+        return (request.getPersonFirstName()==null || request.getPersonLastName().isEmpty())
                 ? Optional.of(new ValidationError("personFirstName", "Must not be empty"))
                 : Optional.empty();
     }
