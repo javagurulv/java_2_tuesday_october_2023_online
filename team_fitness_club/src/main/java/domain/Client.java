@@ -1,7 +1,9 @@
+package domain;
+
 import java.util.Objects;
 
 public class Client {
-    private int id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String personalCode;
@@ -9,7 +11,6 @@ public class Client {
 
 
     public Client(String name, String lastName, String personalCode, Workouts workouts) {
-        this.id = 1;
         this.firstName = name;
         this.lastName = lastName;
         this.personalCode = personalCode;
@@ -22,7 +23,7 @@ public class Client {
         this.personalCode = personalCode;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -42,7 +43,7 @@ public class Client {
         this.personalCode = personalCode;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -77,7 +78,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
+        return "domain.Client{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
