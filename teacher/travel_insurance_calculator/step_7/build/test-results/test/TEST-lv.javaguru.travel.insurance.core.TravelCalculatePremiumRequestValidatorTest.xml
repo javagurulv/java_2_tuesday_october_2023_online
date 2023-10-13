@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidatorTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-10-11T13:36:04" hostname="DESKTOP-B776MGB" time="2.65">
-  <properties/>
-  <testcase name="shouldReturnErrorWhenPersonFirstNameIsEmpty()" classname="lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidatorTest" time="2.628"/>
-  <testcase name="shouldReturnErrorWhenPersonFirstNameIsNull()" classname="lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidatorTest" time="0.009"/>
-  <testcase name="shouldNotReturnErrorWhenPersonFirstNameIsPresent()" classname="lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidatorTest" time="0.007"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
