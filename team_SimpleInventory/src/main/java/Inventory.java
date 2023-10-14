@@ -3,9 +3,14 @@ import java.util.Scanner;
 public class Inventory {
 
     private static Database database = new InMemoryDatabase();
-    private static UIAction addProductAction = new AddProductsUIAction(database);
-    private static UIAction removeProductAction = new RemoveProductsUIAction(database);
-    private static UIAction getAllProductAction = new GetAllProductsUIAction(database);
+    private static AddProductService addProductService = new AddProductService(database);
+
+    private static GetAllProductsService getAllProductsService = new GetAllProductsService(database);
+
+    private static RemoveProductsService removeProductsService = new RemoveProductsService(database);
+    private static UIAction addProductAction = new AddProductsUIAction(addProductService);
+    private static UIAction removeProductAction = new RemoveProductsUIAction(removeProductsService);
+    private static UIAction getAllProductAction = new GetAllProductsUIAction(getAllProductsService);
     private static UIAction exitProductsAction = new ExitProductsUiAction();
 
 
@@ -13,13 +18,13 @@ public class Inventory {
         while (true) {
             printMenu();
             int selectedNumber = usersChoice();
-            executeMenu(database, selectedNumber);
+            executeMenu(selectedNumber);
 
         }
 
     }
 
-    private static void executeMenu(Database database, int selectedNumber) {
+    private static void executeMenu(int selectedNumber) {
         switch (selectedNumber) {
             case 1: {
                 addProductAction.execute();

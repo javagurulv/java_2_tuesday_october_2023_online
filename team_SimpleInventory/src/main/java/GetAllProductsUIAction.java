@@ -1,15 +1,19 @@
 public class GetAllProductsUIAction implements UIAction {
 
 
-    private Database database;
+    private GetAllProductsService getAllProductsService;
 
 
-    public GetAllProductsUIAction(Database database){
-        this.database = database;
+    public GetAllProductsUIAction(GetAllProductsService getAllProductsService) {
+        this.getAllProductsService = getAllProductsService;
+
     }
+
     @Override
     public void execute() {
+
             System.out.println("PRODUCT LIST");
-            database.getAllProducts().forEach(System.out::println);
+            getAllProductsService.execute().forEach(System.out::println);
+
     }
 }

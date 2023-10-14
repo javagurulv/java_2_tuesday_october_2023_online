@@ -2,10 +2,10 @@ import java.util.Scanner;
 
 public class RemoveProductsUIAction implements UIAction {
 
-    private Database database;
+    private RemoveProductsService removeProductsService;
 
-    public RemoveProductsUIAction(Database database){
-        this.database = database;
+    public RemoveProductsUIAction(RemoveProductsService removeProductsService){
+        this.removeProductsService = removeProductsService;
     }
 
 
@@ -15,8 +15,7 @@ public class RemoveProductsUIAction implements UIAction {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product ID");
         Long productId = Long.parseLong(scanner.nextLine());
-        database.remove(productId);
+        removeProductsService.execute(productId);
         System.out.println("Product has been removed");
-
     }
 }
