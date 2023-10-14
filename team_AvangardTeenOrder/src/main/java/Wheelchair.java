@@ -1,11 +1,9 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class Wheelchair {
     UserSizes userSizes;
-    ComponentDatabase componentDatabase;
-    UserData userData;
+    ComponentList componentList;
 
      private int seatWidth;
      private int seatDepth;
@@ -14,9 +12,7 @@ public class Wheelchair {
      Map<Category,Component> components;
      private int priceWheelchair;
 
-    private String nameSurname;
-    private String phoneNumber;
-    private String address;
+
 
 
     public Wheelchair(int seatWidth, int seatDepth, int footrestLength, int bachHeight, Map<Category, Component> components) {
@@ -28,8 +24,13 @@ public class Wheelchair {
         this.priceWheelchair = 177700;
     }
 
-    public void AddComponents(Category category, Component component) {
-components.put(category,component);
+    public void addComponents(String userChoose, ComponentList componentList) {
+        List<Component> components1 = componentList.getAllComponents();
+        for (Component component : components1) {
+            if (component.getMarking().equals(userChoose)) {
+                components.put(component.getCategory(),component);
+            }
+        }
     }
 
     public int getSeatWidth() {
