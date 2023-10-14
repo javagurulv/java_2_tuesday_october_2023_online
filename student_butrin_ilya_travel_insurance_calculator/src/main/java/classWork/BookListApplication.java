@@ -1,6 +1,6 @@
-package lv.javaguru.travel.insurance;
+package classWork;
+import classWork.consoleUI.*;
 
-import lv.javaguru.travel.insurance.consoleUI.*;
 
 import java.util.Scanner;
 
