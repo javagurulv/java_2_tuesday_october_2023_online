@@ -2,17 +2,29 @@ import java.util.Objects;
 
 public class Product {
 
+    private long productId;
+    private String productName;
+    private int productCount;
+    private double productPrice;
 
-    public String productName;
-    public int productCount;
-    public double productPrice;
 
 
-    public Product(String productName, int productCount, double productPrice){
-        this.productCount=productCount;
-        this.productName=productName;
-        this.productPrice=productPrice;
+    public Product(String productName, int productCount, double productPrice) {
+        this.productCount = productCount;
+        this.productName = productName;
+        this.productPrice = productPrice;
+    }
 
+    public Long getId() {
+        return productId;
+    }
+
+    public void setId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
     }
 
     public String getProductName() {

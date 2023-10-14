@@ -12,7 +12,7 @@ import java.util.List;
             this.database = database;
         }
 
-        public List<Client> execute() {
+        public List<Client> getAllClients() {
             return database.getAllClients();
         }
     }
