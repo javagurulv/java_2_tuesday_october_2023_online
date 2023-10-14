@@ -10,7 +10,6 @@ public class Inventory {
 
 
     public static void main(String[] args) {
-        Database database = new InMemoryDatabase();
         while (true) {
             printMenu();
             int selectedNumber = usersChoice();
