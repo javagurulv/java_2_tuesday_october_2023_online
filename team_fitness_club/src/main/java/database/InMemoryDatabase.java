@@ -2,6 +2,7 @@ package database;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import domain.Client;
 
 public class InMemoryDatabase implements Database {
@@ -23,7 +24,6 @@ public class InMemoryDatabase implements Database {
         return clients;
     }
 
-    public void saveClient(List<Client> clients){
-
+    public void saveClient(List<Client> clients) {
     }
 }

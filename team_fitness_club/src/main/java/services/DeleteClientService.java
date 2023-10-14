@@ -2,11 +2,11 @@ package services;
 import database.*;
 import domain.*;
 
-public class RemoveClientService {
+public class DeleteClientService {
 
     private Database database;
 
-    public  RemoveClientService(Database database) {
+    public DeleteClientService(Database database) {
         this.database = database;
     }
 

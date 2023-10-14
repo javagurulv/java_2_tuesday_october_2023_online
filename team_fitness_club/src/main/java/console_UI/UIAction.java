@@ -1,6 +1,6 @@
 package console_UI;
 
-public interface UIAction {
+public interface 	UIAction {
 
 	void execute();
 	
