@@ -19,7 +19,7 @@ public class ComponentList {
             new Component(Category.ARMREST, "ME 01", "Боковые панели алюминиевые, прямые", 0),
             new Component(Category.ARMREST, "ME 02", "Боковые панели пластиковые, загнутые", 3800),
             new Component(Category.ARMREST, "ME 05", "Боковые панели c подлокотниками", 11800),
-            new Component(Category.ARMREST, "ME 02", "Боковые панели с ассимететричными подлокотниками", 22700));
+            new Component(Category.ARMREST, "ME 06", "Боковые панели с ассимететричными подлокотниками", 22700));
 
     public List<Component> getAllComponents() {
         return allComponents;

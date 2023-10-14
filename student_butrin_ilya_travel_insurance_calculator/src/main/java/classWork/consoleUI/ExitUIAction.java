@@ -1,4 +1,4 @@
-package lv.javaguru.travel.insurance.consoleUI;
+package classWork.consoleUI;
 
 public class ExitUIAction implements UIAction {
     @Override

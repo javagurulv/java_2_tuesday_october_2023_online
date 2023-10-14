@@ -1,4 +1,4 @@
-package lv.javaguru.travel.insurance;
+package classWork;
 
 import java.util.ArrayList;
 import java.util.List;
