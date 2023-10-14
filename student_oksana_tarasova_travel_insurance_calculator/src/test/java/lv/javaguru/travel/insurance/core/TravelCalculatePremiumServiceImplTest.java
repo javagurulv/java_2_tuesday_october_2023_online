@@ -46,7 +46,6 @@ class TravelCalculatePremiumServiceImplTest {
 
     @Test
     public void getDateFrom() throws ParseException {
-
         Date dateFrom1 = response.getAgreementDateFrom();
         assertEquals(new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2000"), dateFrom1);
     }

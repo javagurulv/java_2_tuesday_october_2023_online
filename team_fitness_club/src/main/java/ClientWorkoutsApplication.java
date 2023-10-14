@@ -1,114 +1,118 @@
-import java.util.ArrayList;
-import java.util.List;
+import console_UI.ExitUIAction;
+import console_UI.UIAction;
+import database.*;
+import domain.Workouts;
+import services.*;
 import java.util.Scanner;
 
 public class ClientWorkoutsApplication {
+    public static Database database = new InFileDatabase();
+
+    private static UIAction exitUIAction = new ExitUIAction();
+
     public static void main(String[] args) {
-        List<Client> clients = new ArrayList<>();
         while (true) {
-            System.out.println("");
-            System.out.println("Program menu:");
-            System.out.println("1. Add client to list");
-            System.out.println("2. Delete client from list");
-            System.out.println("3. Show all clients in the list");
-            System.out.println("4. Change client workout");
-            System.out.println("5. Exit");
-
-            System.out.println("");
-
-            System.out.println("Enter menu item number to execute: ");
-            Scanner scanner = new Scanner(System.in);
-            int userChoice = Integer.parseInt(scanner.nextLine());
-            int id = !clients.isEmpty() ? clients.get(clients.size() - 1).getId() + 1 : 1;
-            switch (userChoice) {
-                case 1 -> {
-                    System.out.println("Enter client first name: ");
-                    String clientFirstName = formattedName(scanner.nextLine());
-                    System.out.println("Enter client last name: ");
-                    String clientLastName = formattedName(scanner.nextLine());
-                    System.out.println("Enter client personal code: ");
-                    String clientPersonalCode = scanner.nextLine();
-                    System.out.println("Choose client workout.");
-                    System.out.println("1. GYM");
-                    System.out.println("2. Swimming Pool");
-                    System.out.println("3. Group Classes");
-                    Workouts clientWorkout = getWorkout(Integer.parseInt(scanner.nextLine()));
-                    Client client = new Client(clientFirstName, clientLastName, clientPersonalCode, clientWorkout);
-                    client.setId(id);
-                    clients.add(client);
-                    System.out.println("New client was added to list.");
-                    break;
-                }
-                case 2 -> {
-                    System.out.println("Enter client first name: ");
-                    String clientFirstName = scanner.nextLine();
-                    System.out.println("Enter client last name: ");
-                    String clientLastName = scanner.nextLine();
-                    System.out.println("Enter client personal code: ");
-                    String clientPersonalCode = scanner.nextLine();
-                    Client client = new Client(clientFirstName, clientLastName, clientPersonalCode);
-                    clients.remove(client);
-                    System.out.println("Client was removed from list. ");
-                    break;
-                }
-                case 3 -> {
-                    System.out.println("Clients list: ");
-                    for (Client client : clients) {
-                        System.out.println(client);
-                    }
-                    System.out.println("Client list end.");
-                    break;
-                }
-                case 4 -> {
-                    System.out.println("Change client workout: ");
-                    System.out.println("Enter client first name: ");
-                    String clientFirstName = scanner.nextLine();
-                    System.out.println("Enter client last name: ");
-                    String clientLastName = scanner.nextLine();
-                    System.out.println("Enter client personal code: ");
-                    String clientPersonalCode = scanner.nextLine();
-                    Client changeClientWorkout = new Client(clientFirstName, clientLastName, clientPersonalCode);
-                    System.out.println("Choose new workout.");
-                    System.out.println("1. GYM");
-                    System.out.println("2. Swimming Pool");
-                    System.out.println("3. Group Classes");
-
-                    for (Client client : clients) {
-                        if (client.equals(changeClientWorkout)) {
-                            client.setWorkouts(getWorkout(Integer.parseInt(scanner.nextLine())));
-                            break;
-                        }
-                    }
-                    break;
-                }
-                case 5 -> {
-                    System.out.println("All the best");
-                    System.exit(0);
-                }
+            printProgramMenu();
+            int userChoiceMenuNumber = getMenuNumber();
+            executeSelectedMenuItem(userChoiceMenuNumber);
             }
         }
+
+
+    public static void printProgramMenu() {
+        System.out.println("");
+        System.out.println("Program menu:");
+        System.out.println("1. Add client to list");
+        System.out.println("2. Delete client from list");
+        System.out.println("3. Show all clients in the list");
+        System.out.println("4. Change client workout");
+        System.out.println("5. Exit");
+        System.out.println("");
     }
+
+    public static int getMenuNumber() {
+        System.out.println("Enter menu item number to execute: ");
+        Scanner scanner = new Scanner(System.in);
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    public static void executeSelectedMenuItem(int menuNumber) {
+        switch (menuNumber) {
+            case 1 -> addNewClientToList(database);
+            case 2 -> removeClientFromList(database);
+            case 3 -> printClientList(database);
+            case 4 -> changeClientWorkout(database);
+            case 5 -> exitFromProgram();
+        }
+    }
+
+    private static void exitFromProgram() {
+        System.out.println("Goodbye!");
+        System.exit(0);
+    }
+
+    private static void changeClientWorkout(Database database) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Change client workout: ");
+        System.out.println("Enter client first name: ");
+        String clientFirstName = scanner.nextLine();
+        System.out.println("Enter client last name: ");
+        String clientLastName = scanner.nextLine();
+        System.out.println("Enter client personal code: ");
+        String clientPersonalCode = scanner.nextLine();
+        System.out.println("Choose new workout.");
+        System.out.println("1. GYM");
+        System.out.println("2. Swimming Pool");
+        System.out.println("3. Group Classes");
+        GetWorkoutService getWorkoutService = new GetWorkoutService();
+        Workouts newWorkout = getWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
+        ChangeClientWorkoutService changeClientWorkoutService = new ChangeClientWorkoutService(database);
+        changeClientWorkoutService.changeClientWorkout(clientFirstName, clientLastName, clientPersonalCode, newWorkout);
+        System.out.println("Client workout has been changed.");
+    }
+
+    private static void printClientList(Database database) {
+        System.out.println("Clients list: ");
+        GetAllClientsService getAllClientsService = new GetAllClientsService(database);
+        getAllClientsService.execute().forEach(System.out::println);
+        System.out.println("Client list end.");
+    }
+
+    private static void removeClientFromList(Database database) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter client first name: ");
+        String clientFirstName = scanner.nextLine();
+        System.out.println("Enter client last name: ");
+        String clientLastName = scanner.nextLine();
+        System.out.println("Enter client personal code: ");
+        String clientPersonalCode = scanner.nextLine();
+        RemoveClientService removeClientService = new RemoveClientService(database);
+        removeClientService.removeClient(clientFirstName, clientLastName, clientPersonalCode);
+        System.out.println("Client was removed from list. ");
+    }
+
+    private static void addNewClientToList(Database database) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter client first name: ");
+        String clientFirstName = formattedName(scanner.nextLine());
+        System.out.println("Enter client last name: ");
+        String clientLastName = formattedName(scanner.nextLine());
+        System.out.println("Enter client personal code: ");
+        String clientPersonalCode = scanner.nextLine();
+        System.out.println("Choose client workout.");
+        System.out.println("1. GYM");
+        System.out.println("2. Swimming Pool");
+        System.out.println("3. Group Classes");
+        GetWorkoutService getWorkoutService = new GetWorkoutService();
+        Workouts clientWorkout = getWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
+        AddClientService addClientService = new AddClientService(database);
+        addClientService.addClient(clientFirstName, clientLastName, clientPersonalCode, clientWorkout);
+        System.out.println("New client was added to list.");
+    }
+
 
     public static String formattedName(String name) {
         return name.toLowerCase().substring(0, 1).toUpperCase().concat(name.substring(1));
     }
 
-    public static Workouts getWorkout(int id) {
-        Workouts selectedWorkout = null;
-        switch (id) {
-            case 1 -> {
-                selectedWorkout = Workouts.GYM;
-            }
-            case 2 -> {
-                selectedWorkout = Workouts.SWIMMING_POOL;
-            }
-            case 3 -> {
-                selectedWorkout = Workouts.GROUP_CLASSES;
-            }
-            default -> {
-                System.out.println("No such workout option");
-            }
-        }
-        return selectedWorkout;
-    }
 }
