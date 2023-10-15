@@ -4,10 +4,24 @@ import java.util.Scanner;
 
 public class StorageApplication {
 
+    private static int getUserMenuChoice() {
+        System.out.println("Enter menu item number to execute ");
+        Scanner scanner = new Scanner(System.in);
+        return Integer.parseInt(scanner.nextLine());
+    }
 
     public static void main(String[] args) {
+        Database database = new InMemoryDatabase();
 
-        List<Product> products = new ArrayList<>();
+        AddProductService addProductService = new AddProductService(database);
+        DeleteProductService deleteProductService = new DeleteProductService(database);
+        GetAllProductsService getAllProductService = new GetAllProductsService(database);
+
+        AddProductUIAction addProductUIAction = new AddProductUIAction(addProductService);
+        DeleteProductUIAction deleteProductUIAction = new DeleteProductUIAction(deleteProductService);
+        PrintAllProductsUIAction printAllProductsUIAction = new PrintAllProductsUIAction(getAllProductService);
+        ExitProgramUIAction exitProgramUIAction = new ExitProgramUIAction();
+
 
         while (true) {
             printMenu();
@@ -16,69 +30,30 @@ public class StorageApplication {
 
             switch (userChoice) {
                 case 1: {
-                    addNewProductToList(products);
+                    addProductUIAction.execute();
                     break;
                 }
                 case 2: {
-                    removeProductFromList(products);
+                    deleteProductUIAction.execute();
                     break;
                 }
                 case 3: {
-                    printProductList(products);
+                    printAllProductsUIAction.execute();
                     break;
                 }
                 case 4: {
-                    exitFromProgram();
+                    exitProgramUIAction.execute();
                 }
             }
         }
     }
 
-    private static int getUserMenuChoice() {
-        System.out.println("Enter menu item number to execute ");
-        Scanner scanner = new Scanner(System.in);
-        return Integer.parseInt(scanner.nextLine());
-    }
-    private static void exitFromProgram() {
-        System.out.println("Exit!");
-        System.exit(0);
-    }
-
-    private static void printProductList(List<Product> products) {
-        System.out.println("All product list: ");
-        for (Product product : products) {
-            System.out.println(product);
-        }
-    }
-
-    private static void removeProductFromList(List<Product> products) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter product name: ");
-        String productName = scanner.nextLine();
-        System.out.println("Enter product ID Number: ");
-        String productIDNumber = scanner.nextLine();
-        Product product = new Product(productName, productIDNumber);
-        products.remove(product);
-        System.out.println("Product was removed from the list: ");
-    }
-
-    private static void addNewProductToList(List<Product> products) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter product name: ");
-        String productName = scanner.nextLine();
-        System.out.println("Enter product ID Number: ");
-        String productIDNumber = scanner.nextLine();
-        Product product = new Product(productName, productIDNumber);
-        products.add(product);
-        System.out.println("Product was added to the list: ");
-    }
-
     private static void printMenu() {
         System.out.println("Menu: ");
-        System.out.println("1. Add product to list: ");
-        System.out.println("2. Remove product from list: ");
-        System.out.println("3. Display all products in the list: ");
-        System.out.println("4. Exit from program");
+        System.out.println("1.Add product to list: ");
+        System.out.println("2.Remove product from list: ");
+        System.out.println("3.Display all products in the list: ");
+        System.out.println("4.Exit from program");
 
         System.out.println("");
     }

@@ -2,48 +2,48 @@ import java.util.Objects;
 
 public class Product {
 
-    private String name;
-    private String IDnumber;
+    private String productName;
+    private Long productID;
 
-    public Product(String name, String IDnumber) {
-        this.name = name;
-        this.IDnumber = IDnumber;
+    public Product(String productName, Long productID) {
+        this.productName = productName;
+        this.productID = productID;
     }
 
-    public String getName() {
-        return name;
-    }
-    public String getIDnumber() {
-        return IDnumber;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public void setIDnumber(String IDnumber) {
-        this.IDnumber = IDnumber;
+    public Long getProductID() {
+        return productID;
+    }
+
+    public void setProductID(Long productID) {
+        this.productID = productID;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Product product)) return false;
-        return Objects.equals(getName(), product.getName()) && Objects.equals(getIDnumber(), product.getIDnumber());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getName(), getIDnumber());
+        return Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getProductID(), product.getProductID());
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "name='" + name + '\'' +
-                ", IDnumber='" + IDnumber + '\'' +
+                "productName='" + productName + '\'' +
+                ", productID='" + productID + '\'' +
                 '}';
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getProductName(), getProductID());
+    }
 }
 
