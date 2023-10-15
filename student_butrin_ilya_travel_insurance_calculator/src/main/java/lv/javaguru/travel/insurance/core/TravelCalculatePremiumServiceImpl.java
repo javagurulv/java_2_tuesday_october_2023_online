@@ -6,10 +6,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
+TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse();
 
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
-        return new TravelCalculatePremiumResponse();
+        response.setPersonFirstName(request.getPersonFirstName());
+        response.setPersonLastName(request.getPersonLastName());
+        response.setAgreementDateTo(request.getAgreementDateTo());
+        response.setAgreementDateFrom(request.getAgreementDateFrom());
+
+        var betweenDate = new DateTimeService().returnBetweenDate(response.getAgreementDateFrom(), response.getAgreementDateTo());
+        return response;
+
     }
 
 }

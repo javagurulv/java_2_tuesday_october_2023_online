@@ -1,7 +1,7 @@
-package lv.javaguru.travel.insurance.consoleUI;
+package classWork.consoleUI;
 
-import lv.javaguru.travel.insurance.Database;
-import lv.javaguru.travel.insurance.InMemoryDatabaseImpl;
+import classWork.Database;
+import classWork.InMemoryDatabaseImpl;
 
 import java.util.Scanner;
 
