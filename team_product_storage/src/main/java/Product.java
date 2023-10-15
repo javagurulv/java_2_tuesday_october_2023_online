@@ -1,6 +1,7 @@
 import java.util.Objects;
 
 public class Product {
+
     private String name;
     private String IDnumber;
 
@@ -43,4 +44,6 @@ public class Product {
                 ", IDnumber='" + IDnumber + '\'' +
                 '}';
     }
+
 }
+
