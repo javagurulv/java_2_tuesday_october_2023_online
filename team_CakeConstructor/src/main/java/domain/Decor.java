@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.Objects;
 
 public class Decor {
@@ -10,7 +12,7 @@ public class Decor {
 
     @Override
     public String toString() {
-        return "Decor{" +
+        return "domain.Decor{" +
                 "decorId=" + decorId +
                 ", typeOfDecor='" + typeOfDecor + '\'' +
                 ", allergens='" + allergens + '\'' +

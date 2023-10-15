@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.Objects;
 
 public class Filling {
@@ -10,7 +12,7 @@ public class Filling {
 
     @Override
     public String toString() {
-        return "Filling{" +
+        return "domain.Filling{" +
                 "fillingId=" + fillingId +
                 ", typeOfFilling='" + typeOfFilling + '\'' +
                 ", allergens='" + allergens + '\'' +

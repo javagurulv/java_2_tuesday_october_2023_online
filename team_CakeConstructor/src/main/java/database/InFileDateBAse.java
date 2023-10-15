@@ -1,13 +1,17 @@
+package database;
+
+import domain.Cake;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InFileDateBAse implements DateBaseIf{
+public class InFileDateBAse implements DateBaseIf {
 
     private String file;
 
     public InFileDateBAse () {
-        this.file = "./cake";
+        this.file = "database/cake";
     }
 
     @Override

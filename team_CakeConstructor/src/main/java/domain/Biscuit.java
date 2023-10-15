@@ -1,8 +1,10 @@
+package domain;
+
 import java.util.Objects;
 
-public class Shell {
-    private int shellId;
-    private String typeOfShell;
+public class Biscuit {
+    private int biscuitId;
+    private String typeOfBiscuit;
     private String allergens;
     private int weight;
     private int price;
@@ -10,35 +12,39 @@ public class Shell {
 
     @Override
     public String toString() {
-        return "Shell{" +
-                "shellId=" + shellId +
-                ", typeOfShell='" + typeOfShell + '\'' +
+        return "domain.Biscuit{" +
+                "biscuitId=" + biscuitId +
+                ", typeOfBiscuit='" + typeOfBiscuit + '\'' +
                 ", allergens='" + allergens + '\'' +
                 ", weight=" + weight +
                 ", price=" + price +
                 '}';
     }
 
-    public Shell(int shellId, String typeOfShell, String allergens, int weight, int price) {
-        this.shellId = shellId;
-        this.typeOfShell = typeOfShell;
+
+    public Biscuit(int biscuitId, String typeOfBiscuit, String allergens, int weight, int price) {
+        this.biscuitId = biscuitId;
+        this.typeOfBiscuit = typeOfBiscuit;
         this.allergens = allergens;
         this.weight = weight;
         this.price = price;
-    }
-    public int getShellId() {
-        return shellId;
+
     }
 
-    public void setShellId(int shellId) {
-        this.shellId = shellId;
-    }
-    public String getTypeOfShell() {
-        return typeOfShell;
+    public int getBiscuitId() {
+        return biscuitId;
     }
 
-    public void setTypeOfShell(String typeOfShell) {
-        this.typeOfShell = typeOfShell;
+    public void setBiscuitId(int biscuitId) {
+        this.biscuitId = biscuitId;
+    }
+
+    public String getTypeOfBiscuit() {
+        return typeOfBiscuit;
+    }
+
+    public void setTypeOfBiscuit(String typeOfBiscuit) {
+        this.typeOfBiscuit = typeOfBiscuit;
     }
 
     public String getAllergens() {
@@ -69,13 +75,13 @@ public class Shell {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Shell shell = (Shell) o;
-        return shellId == shell.shellId && weight == shell.weight && price == shell.price && Objects.equals(typeOfShell, shell.typeOfShell) && Objects.equals(allergens, shell.allergens);
+        Biscuit biscuit = (Biscuit) o;
+        return biscuitId == biscuit.biscuitId && weight == biscuit.weight && price == biscuit.price && Objects.equals(typeOfBiscuit, biscuit.typeOfBiscuit) && Objects.equals(allergens, biscuit.allergens);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(shellId, typeOfShell, allergens, weight, price);
+        return Objects.hash(biscuitId, typeOfBiscuit, allergens, weight, price);
     }
 
 }

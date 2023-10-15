@@ -1,4 +1,5 @@
-import java.util.List;
+package domain;
+
 import java.util.Objects;
 
 public class Cake {
@@ -13,7 +14,7 @@ public class Cake {
 
     @Override
     public String toString() {
-        return "Cake{" +
+        return "domain.Cake{" +
                 "biscuit='" + biscuit + '\'' +
                 ", filling='" + filling + '\'' +
                 ", shell='" + shell + '\'' +
