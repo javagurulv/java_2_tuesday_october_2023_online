@@ -198,7 +198,7 @@ public class ListOfIngridients {
         int decorId = scan.nextInt();
         return findDecor(decors,decorId);
     }
-    public List<Cake> createCake ( int clientId){
+    public Cake createCake ( int clientId){
         List<Biscuit> biscuits = createListOfBiscuit();
         List<Filling> fillings = createListOfFilling();
         List<Shell> shells = createListOfShell();
@@ -219,7 +219,7 @@ public class ListOfIngridients {
 
         Cake cake1 = new Cake(biscuit,filling,shell,decor,clientId,price);
 
-        return cakes;
+        return cake1;
     }
 }
 

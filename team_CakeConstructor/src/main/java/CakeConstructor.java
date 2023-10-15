@@ -41,10 +41,8 @@ public class CakeConstructor {
     public  static  void createCake(DateBaseIf dateBase){
         System.out.println("Please, enter your client ID!");
         int clientId = scan.nextInt();
-        List<Cake> cakes = list.createCake(clientId);
-        for (Cake cake : cakes) {
-            dateBase.add(cake);
-        }
+        Cake cake = list.createCake(clientId);
+        dateBase.add(cake);
     }
     public static void printMenu(){
         System.out.println("Welcome to cake constructor!");
@@ -65,7 +63,7 @@ public class CakeConstructor {
         List<Cake> cakes = dataBase.getAllCake();
         for (Cake cake : cakes) {
             if (clientId == cake.getClientId()) {
-                System.out.println(cake.toString());
+                System.out.println(cake);
             }
         }
     }
