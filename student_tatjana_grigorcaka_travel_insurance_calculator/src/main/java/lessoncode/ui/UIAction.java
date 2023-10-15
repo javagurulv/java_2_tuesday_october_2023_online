@@ -1,4 +1,4 @@
-package lv.javaguru.travel.insurance.ui;
+package lessoncode.ui;
 
 public interface UIAction {
 

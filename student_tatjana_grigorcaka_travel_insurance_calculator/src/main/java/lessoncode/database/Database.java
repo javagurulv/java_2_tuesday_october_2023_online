@@ -1,6 +1,6 @@
-package lv.javaguru.travel.insurance.database;
+package lessoncode.database;
 
-import lv.javaguru.travel.insurance.domain.Book;
+import lessoncode.domain.Book;
 
 import java.util.List;
 

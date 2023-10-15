@@ -1,7 +1,7 @@
-package lv.javaguru.travel.insurance.ui;
+package lessoncode.ui;
 
-import lv.javaguru.travel.insurance.domain.Book;
-import lv.javaguru.travel.insurance.services.GetAllBooksService;
+import lessoncode.domain.Book;
+import lessoncode.services.GetAllBooksService;
 
 public class PrintAllBooksUIAction implements UIAction {
 
