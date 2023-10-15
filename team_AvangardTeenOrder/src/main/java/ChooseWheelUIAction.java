@@ -11,7 +11,9 @@ public class ChooseWheelUIAction implements UIAction{
     public void execute(Wheelchair wheelchair) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Выберите тип и размер передних колес коляски" + "\n Введите марку выбранных колес");
-        System.out.println(componentList.allWheels());
+        for(Component component : componentList.allWheels()) {
+            System.out.println(component);
+        }
         String wheelChoose = scanner.nextLine();
         wheelchair.addComponents(wheelChoose, componentList);
     }

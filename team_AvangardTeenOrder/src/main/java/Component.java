@@ -13,7 +13,7 @@ public class Component {
         this.price = price;
     }
 
-      public void setCategory(Category category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -47,12 +47,14 @@ public class Component {
 
     @Override
     public String toString() {
-        return "Component{" +
-                "marking='" + marking + '\'' +
-                ", information='" + information + '\'' +
-                ", price=" + price +
-                '}';
+        return
+                " " + category +
+                        ", " + marking + '\'' +
+                        ", " + information + '\'' +
+                        ", " + price +
+                        ' ';
     }
+
 
     @Override
     public boolean equals(Object o) {

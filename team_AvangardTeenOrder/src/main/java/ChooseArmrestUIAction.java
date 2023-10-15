@@ -13,7 +13,9 @@ public class ChooseArmrestUIAction implements UIAction{
     public void execute(Wheelchair wheelchair) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("На последок выберем подлокотники" + "\n Введите марку выбранного подлокотника");
-        System.out.println(componentList.allArmrest());
+        for (Component component : componentList.allArmrest()) {
+            System.out.println(component);
+        }
         String armrestChoose = scanner.nextLine();
         wheelchair.addComponents(armrestChoose, componentList);
     }

@@ -14,7 +14,9 @@ public class ChooseBreaksUIAction implements UIAction{
     public void execute(Wheelchair wheelchair) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Теперь определимся с тормозами" + "\n Введите марку выбранных тормозов");
-        System.out.println(componentList.allBrakes());
+        for (Component component : componentList.allBrakes()) {
+            System.out.println(component);
+        }
         String breaksChoose = scanner.nextLine();
         wheelchair.addComponents(breaksChoose, componentList);
     }
