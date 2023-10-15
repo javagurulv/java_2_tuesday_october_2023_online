@@ -1,3 +1,7 @@
+package ui;
+
+import domain.Product;
+import services.GetAllProductsService;
 
 public class PrintAllProductsUIAction {
 

@@ -1,3 +1,8 @@
+package services;
+
+import database.Database;
+import domain.Product;
+
 public class AddProductService {
 
     private Database database;

@@ -1,3 +1,8 @@
+package database;
+
+import database.Database;
+import domain.Product;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,10 +1,14 @@
+package ui;
+
+import services.DeleteProductService;
+
 import java.util.Scanner;
 
-public class AddProductUIAction {
+public class DeleteProductUIAction {
 
-    private AddProductService service;
+    private DeleteProductService service;
 
-    public AddProductUIAction(AddProductService service) {
+    public DeleteProductUIAction(DeleteProductService service) {
         this.service = service;
     }
 
@@ -15,8 +19,9 @@ public class AddProductUIAction {
         System.out.println("Enter product ID: ");
         Long productID = scanner.nextLong();
 
-        service.addProduct(productName, productID);
+        service.deleteProduct(productName, productID);
 
-        System.out.println("Product was added to the list: ");
+        System.out.println("domain.Product was removed from the list: ");
+
     }
 }

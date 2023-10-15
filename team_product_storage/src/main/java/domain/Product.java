@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.Objects;
 
 public class Product {
@@ -18,12 +20,13 @@ public class Product {
         this.productName = productName;
     }
 
-    public Long getProductID() {
-        return productID;
-    }
 
     public void setProductID(Long productID) {
         this.productID = productID;
+    }
+
+    public Long getProductID() {
+        return productID;
     }
 
     @Override
@@ -35,7 +38,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "domain.Product{" +
                 "productName='" + productName + '\'' +
                 ", productID='" + productID + '\'' +
                 '}';

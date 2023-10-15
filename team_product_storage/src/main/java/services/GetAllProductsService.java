@@ -1,3 +1,8 @@
+package services;
+
+import database.Database;
+import domain.Product;
+
 import java.util.List;
 
 public class GetAllProductsService {
