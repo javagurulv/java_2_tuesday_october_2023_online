@@ -7,10 +7,10 @@ import domain.Client;
 
 public class InFileDatabase implements Database {
 
-    private String filename;
+    private final String filename;
 
     public InFileDatabase() {
-        this.filename = "./ClientsFile";
+        this.filename = ".\\team_fitness_club\\src\\main\\java\\database\\ClientsFile";
     }
 
     public void addClient(Client client) {
@@ -23,6 +23,7 @@ public class InFileDatabase implements Database {
     public void removeClient(Client client) {
         List<Client> clients = getAllClients();
         clients.remove(client);
+        updateClientIds(clients);
         saveClient(clients);
     }
 
@@ -51,6 +52,12 @@ public class InFileDatabase implements Database {
         } else {
             long maxId = clients.stream().mapToLong(Client::getId).max().orElse(0L);
             return maxId + 1;
+        }
+    }
+
+    private void updateClientIds(List<Client> clients) {
+        for (int i = 0; i < clients.size(); i++) {
+            clients.get(i).setId((long) (i + 1));
         }
     }
 }
