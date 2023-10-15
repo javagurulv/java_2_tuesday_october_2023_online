@@ -198,12 +198,12 @@ public class ListOfIngridients {
         int decorId = scan.nextInt();
         return findDecor(decors,decorId);
     }
-    public List<Cake> createCake (int clientId){
+    public List<Cake> createCake ( int clientId){
         List<Biscuit> biscuits = createListOfBiscuit();
         List<Filling> fillings = createListOfFilling();
         List<Shell> shells = createListOfShell();
         List<Decor> decors = createListOfDecor();
-        List<Cake> cakeConstructor = new ArrayList<>();
+        List<Cake> cakes = new ArrayList<>();
 
         String biscuit = biscuit(biscuits);
         int price = priceBiscuit(biscuits, biscuit);
@@ -218,9 +218,8 @@ public class ListOfIngridients {
         price = priceDecor(decors, decor) + price;
 
         Cake cake1 = new Cake(biscuit,filling,shell,decor,clientId,price);
-        cakeConstructor.add(cake1);
 
-        return cakeConstructor;
+        return cakes;
     }
 }
 

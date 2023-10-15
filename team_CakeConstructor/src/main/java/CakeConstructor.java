@@ -2,27 +2,32 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.Callable;
 
 public class CakeConstructor {
     static Scanner scan = new Scanner(System.in);
     static ListOfIngridients list = new ListOfIngridients();
-    public static void main(String[] args) {
 
-        List<Cake> cakeConstructor = new ArrayList<>();
+    public static void main(String[] args) {
+        DateBaseIf dataBase = new DataBase();
 
         while (true) {
-
             printMenu();
-            int userChoice = getUserMenuChoice();
+            int getUserMenuChoice = getUserMenuChoice();
+            executeSelectedMenuItem(dataBase, getUserMenuChoice);
+        }
+    }
 
-            switch (userChoice) {
+        public static void executeSelectedMenuItem(DateBaseIf dataBase, int getUSerMenuChoice) {
+
+            switch (getUSerMenuChoice) {
                 case 1: {
-                    cakeConstructor = createCake();
+                    createCake(dataBase);
                     break;
                 }
 
                 case 2: {
-                    printOrderForClientId(cakeConstructor);
+                    printOrderForClientId(dataBase);
                     break;
                 }
                 case 3: {
@@ -31,15 +36,15 @@ public class CakeConstructor {
 
             }
         }
-    }
 
 
-    public  static  List<Cake> createCake(){
-        List<Cake> cake = new ArrayList<>();
+    public  static  void createCake(DateBaseIf dateBase){
         System.out.println("Please, enter your client ID!");
         int clientId = scan.nextInt();
-        cake = list.createCake(clientId);
-        return cake;
+        List<Cake> cakes = list.createCake(clientId);
+        for (Cake cake : cakes) {
+            dateBase.add(cake);
+        }
     }
     public static void printMenu(){
         System.out.println("Welcome to cake constructor!");
@@ -54,20 +59,21 @@ public class CakeConstructor {
         return userChoice;
     }
 
-    public static void printOrderForClientId(List<Cake> cakeConstructor){
+    public static void printOrderForClientId(DateBaseIf dataBase) {
         System.out.println("Please enter your client ID!");
         int clientId = scan.nextInt();
-        for (Cake cake : cakeConstructor) {
+        List<Cake> cakes = dataBase.getAllCake();
+        for (Cake cake : cakes) {
             if (clientId == cake.getClientId()) {
-                System.out.println(cake);
+                System.out.println(cake.toString());
             }
         }
-        System.out.println("  ");
     }
 
     public static void printEndOfApp(){
         System.out.println("Thank you for being with us!");
         System.exit(0);
     }
+
 
 }
