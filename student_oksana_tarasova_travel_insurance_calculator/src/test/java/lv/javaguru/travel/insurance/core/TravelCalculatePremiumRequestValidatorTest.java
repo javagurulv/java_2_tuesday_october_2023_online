@@ -130,4 +130,16 @@ class TravelCalculatePremiumRequestValidatorTest {
 
     }
 
+    @Test
+    void validateDateFromIsLessDateTo() throws ParseException {
+        Date dateFrom = new SimpleDateFormat("dd/MM/yyyy").parse("16/05/2000");
+        Date dateTo = new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2000");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
+                "Ivan", "Ivanov", dateFrom, dateTo);
+        List<ValidationError> validFirstName = validator.validate(request);
+        ValidationError expected = (new ValidationError("agreementDateFrom", "Must be less than the agreementDateTo!"));
+        assertThat(validFirstName).contains(expected);
+
+    }
+
 }
