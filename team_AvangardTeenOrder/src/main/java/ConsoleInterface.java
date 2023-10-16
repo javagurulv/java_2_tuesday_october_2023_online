@@ -19,12 +19,22 @@ ConsoleInterface {
         UserSizes size = new UserSizes(0, 0, 0, 0);
         UserData userData = new UserData("","","");
 
+        AddPelwisWidthService addPelwisWidthService = new AddPelwisWidthService(size);
+        AddThighLengthService addThighLengthService = new AddThighLengthService(size);
+        AddBackLengthService addBackLengthService = new AddBackLengthService(size);
+        AddShinLengthService addShinLengthService = new AddShinLengthService(size);
+        CheckDataService checkDataService = new CheckDataService(size);
         AddNameSurnameService addNameSurnameService = new AddNameSurnameService(userData);
         AddPhoneNumberService addPhoneNumberService = new AddPhoneNumberService(userData);
         AddUserAddressService addUserAddressService = new AddUserAddressService(userData);
         ShowPersonalDateToCheckService showPersonalDateToCheckService = new ShowPersonalDateToCheckService(userData);
 
 
+        AddPelwisWidthUIAction addPelwicWidthUIAction = new AddPelwisWidthUIAction(addPelwisWidthService);
+        AddThighLengthUIAction addThighLengthUIAction = new AddThighLengthUIAction(addThighLengthService);
+        AddBackLengthUIAction addBackLengthUIAction = new AddBackLengthUIAction(addBackLengthService);
+        AddShinLengthUIAction addShinLengthUIAction = new AddShinLengthUIAction(addShinLengthService);
+        CheckDataUIAction checkDataUIAction = new CheckDataUIAction(checkDataService);
         AddNameSurnameUIAction addNameSurnameUIAction = new AddNameSurnameUIAction(addNameSurnameService);
         AddPhoneNumberUIAction addPhoneNumberUIAction = new AddPhoneNumberUIAction(addPhoneNumberService);
         AddUserAddressUIAction addUserAddressUIAction = new AddUserAddressUIAction(addUserAddressService);
@@ -37,11 +47,16 @@ ConsoleInterface {
             int choose = userSelection(scan);
             switch (choose) {
                 case (1):
-                    pelwicWidth(scan, size);
-                    thighLength(scan, size);
-                    backLength(scan, size);
-                    shinLength(scan, size);
-                    checkData(size);
+                //    pelwicWidth(scan, size);
+                    addPelwicWidthUIAction.execute(addPelwisWidthService);
+                 //   thighLength(scan, size);
+                    addThighLengthUIAction.execute(addThighLengthService);
+                  //  backLength(scan, size);
+                    addBackLengthUIAction.execute(addBackLengthService);
+                   // shinLength(scan, size);
+                    addShinLengthUIAction.execute(addShinLengthService);
+                  //  checkData(size);
+                    checkDataUIAction.execute(checkDataService);
                     sayOk(scan, "Данные сохранены");
                     break;
                 case (2):
@@ -63,7 +78,8 @@ ConsoleInterface {
                     }
                     break;
                 case (3):
-                    checkData(size);
+                 //   checkData(size);
+                    checkDataUIAction.execute(checkDataService);
                     sayOk(scan,"");
                     break;
 
@@ -138,7 +154,7 @@ ConsoleInterface {
         String ok = scan.next();
         if (ok.equals("ok")) System.out.println(message);
     }
-
+/*
     private static void checkData(UserSizes size) {
         System.out.println("Ваши параметры: ");
         System.out.println("ширина таза:  " + size.getPelvisWidth());
@@ -170,7 +186,7 @@ ConsoleInterface {
         System.out.println("введите ширину таза пользователя");
         int pelwicWidth = userSelection(scan);
         size.setPelvisWidth(pelwicWidth);
-    }
+    } */
 
     private static int userSelection(Scanner scan) {
         int choose = scan.nextInt();
