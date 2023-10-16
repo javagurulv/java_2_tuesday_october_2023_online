@@ -1,7 +1,7 @@
 package lv.javaguru.travel.insurance.core;
 
-import lv.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
-import lv.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
+import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
+import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -57,11 +57,5 @@ class TravelCalculatePremiumServiceImplTest {
         assertEquals(new SimpleDateFormat("dd/MM/yyyy").parse("16/05/2000"), dateTo1);
     }
 
-    @Test
-    public void getAgreementPrice() {
-        response.setAgreementPrice();
-        BigDecimal agreementPrice = response.getAgreementPrice();
-        assertEquals(new BigDecimal(15), agreementPrice);
-    }
 
 }

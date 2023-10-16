@@ -1,20 +1,36 @@
 package lv.javaguru.travel.insurance.core;
 
-import lv.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
-import lv.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
+import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
+import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumResponse;
+import lv.javaguru.travel.insurance.dto.ValidationError;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Component
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
 
+    @Autowired private DateTimeService dateTimeService;
+    @Autowired private TravelCalculatePremiumRequestValidator validator;
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
-        TravelCalculatePremiumResponse calculatePremiumResponse = new TravelCalculatePremiumResponse();
-        calculatePremiumResponse.setPersonFirstName(request.getPersonFirstName());
-        calculatePremiumResponse.setPersonLastName(request.getPersonLastName());
-        calculatePremiumResponse.setAgreementDateFrom(request.getAgreementDateFrom());
-        calculatePremiumResponse.setAgreementDateTo(request.getAgreementDateTo());
-        return calculatePremiumResponse;
+        List<ValidationError> errors = validator.validate(request);
+        if (!errors.isEmpty()) {
+            return new TravelCalculatePremiumResponse(errors);
+        }
+
+        TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse();
+        response.setPersonFirstName(request.getPersonFirstName());
+        response.setPersonLastName(request.getPersonLastName());
+        response.setAgreementDateFrom(request.getAgreementDateFrom());
+        response.setAgreementDateTo(request.getAgreementDateTo());
+
+
+       var daysBetween = dateTimeService.getDaysBetween(request.getAgreementDateFrom(), request.getAgreementDateTo());
+        response.setAgreementPrice(new BigDecimal(daysBetween));
+        return response;
     }
 
 }
