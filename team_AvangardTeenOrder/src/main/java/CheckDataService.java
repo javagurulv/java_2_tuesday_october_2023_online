@@ -1,4 +1,3 @@
-
 public class CheckDataService {
   private UserSizes size;
 
