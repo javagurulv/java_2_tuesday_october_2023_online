@@ -11,8 +11,8 @@ public class Client implements Serializable {
     private Workouts workouts;
 
 
-    public Client(String name, String lastName, String personalCode, Workouts workouts) {
-        this.firstName = name;
+    public Client(String firstName, String lastName, String personalCode, Workouts workouts) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.personalCode = personalCode;
         this.workouts = workouts;

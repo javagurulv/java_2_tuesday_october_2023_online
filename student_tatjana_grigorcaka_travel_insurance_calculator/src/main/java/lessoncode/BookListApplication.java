@@ -1,14 +1,14 @@
-package lv.javaguru.travel.insurance;
+package lessoncode;
 
-import lv.javaguru.travel.insurance.database.Database;
-import lv.javaguru.travel.insurance.database.InMemoryDatabase;
-import lv.javaguru.travel.insurance.services.AddBookService;
-import lv.javaguru.travel.insurance.services.DeleteBookService;
-import lv.javaguru.travel.insurance.services.GetAllBooksService;
-import lv.javaguru.travel.insurance.ui.AddBookUIAction;
-import lv.javaguru.travel.insurance.ui.DeleteBookUIAction;
-import lv.javaguru.travel.insurance.ui.PrintAllBooksUIAction;
-import lv.javaguru.travel.insurance.ui.ProgramExitUIAction;
+import lessoncode.database.Database;
+import lessoncode.database.InMemoryDatabase;
+import lessoncode.services.AddBookService;
+import lessoncode.services.DeleteBookService;
+import lessoncode.services.GetAllBooksService;
+import lessoncode.ui.AddBookUIAction;
+import lessoncode.ui.DeleteBookUIAction;
+import lessoncode.ui.PrintAllBooksUIAction;
+import lessoncode.ui.ProgramExitUIAction;
 
 import java.util.Scanner;
 

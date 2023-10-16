@@ -1,4 +1,4 @@
-package lv.javaguru.travel.insurance.domain;
+package lessoncode.domain;
 
 import java.util.Objects;
 

@@ -1,6 +1,6 @@
-package lv.javaguru.travel.insurance.ui;
+package lessoncode.ui;
 
-import lv.javaguru.travel.insurance.services.AddBookService;
+import lessoncode.services.AddBookService;
 
 import java.util.Scanner;
 
