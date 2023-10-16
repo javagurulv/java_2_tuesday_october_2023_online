@@ -18,6 +18,20 @@ ConsoleInterface {
         Wheelchair wheelchair = new Wheelchair(0, 0, 0, 0, new HashMap<>());
         UserSizes size = new UserSizes(0, 0, 0, 0);
         UserData userData = new UserData("","","");
+
+        AddNameSurnameService addNameSurnameService = new AddNameSurnameService(userData);
+        AddPhoneNumberService addPhoneNumberService = new AddPhoneNumberService(userData);
+        AddUserAddressService addUserAddressService = new AddUserAddressService(userData);
+        ShowPersonalDateToCheckService showPersonalDateToCheckService = new ShowPersonalDateToCheckService(userData);
+
+
+        AddNameSurnameUIAction addNameSurnameUIAction = new AddNameSurnameUIAction(addNameSurnameService);
+        AddPhoneNumberUIAction addPhoneNumberUIAction = new AddPhoneNumberUIAction(addPhoneNumberService);
+        AddUserAddressUIAction addUserAddressUIAction = new AddUserAddressUIAction(addUserAddressService);
+        ShowPersonalDateToCheckUIAction showPersonalDateToCheckUIAction = new ShowPersonalDateToCheckUIAction(showPersonalDateToCheckService);
+        ProgramExitUIAction programExitUIAction = new ProgramExitUIAction();
+
+
         while (true) {
             showMenu();
             int choose = userSelection(scan);
@@ -72,34 +86,17 @@ ConsoleInterface {
                     showAllPrice.execute(wheelchair);
                     break;
                 case (7):
-                    addPersonalDate(userData);
-                    showPersonalDateToCheck(userData);
-                    System.exit(0);
+                    addNameSurnameUIAction.execute(addNameSurnameService);
+                    addPhoneNumberUIAction.execute(addPhoneNumberService);
+                    addUserAddressUIAction.execute(addUserAddressService);
+                    showPersonalDateToCheckUIAction.execute(showPersonalDateToCheckService);
+                    programExitUIAction.execute();
+
 
             }
         }
     }
 
-    private static void showPersonalDateToCheck(UserData userData) {
-        System.out.println("проверьте введенные данные: ");
-        System.out.println("Имя, Фамилия:  " + userData.getNameSurname());
-        System.out.println("номер телефона: " + userData.getPhoneNumber());
-        System.out.println("фактический адрес проживания: " + userData.getUserAddress());
-        System.out.println("Gооd Bye");
-    }
-
-    private static void addPersonalDate(UserData userData) {
-        Scanner scan2 = new Scanner(System.in);
-        System.out.println("введите Имя, Фамилия");
-        String nameSurname = scan2.nextLine();
-        userData.setNameSurname(nameSurname);
-        System.out.println("введите номер телефона");
-        String phoneNumber = scan2.nextLine();
-        userData.setPhoneNumber(phoneNumber);
-        System.out.println("введите фактический адрес проживания");
-        String userAddress = scan2.nextLine();
-        userData.setUserAddress(userAddress);
-    }
 
     private static void adjustShinLength(Scanner scan, UserSizes size) {
         System.out.println("введите новое значение длины голени");
