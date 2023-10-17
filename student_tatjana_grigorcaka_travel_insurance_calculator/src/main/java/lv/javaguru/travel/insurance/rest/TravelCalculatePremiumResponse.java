@@ -46,4 +46,11 @@ public class TravelCalculatePremiumResponse {
         this.agreementDateTo = agreementDateTo;
     }
 
+    public BigDecimal getAgreementPrice() {
+        return agreementPrice;
+    }
+
+    public void setAgreementPrice(BigDecimal agreementPrice) {
+        this.agreementPrice = agreementPrice;
+    }
 }
