@@ -1,6 +1,6 @@
 public class AddBackLengthService {
 
-    private UserSizes size;
+    public UserSizes size;
 
     public AddBackLengthService(UserSizes size) {
         this.size = size;
