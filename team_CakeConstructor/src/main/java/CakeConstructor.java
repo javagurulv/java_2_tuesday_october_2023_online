@@ -5,17 +5,18 @@ import consoole_ui.GetAllCakesForClientUIAction;
 import consoole_ui.UIAction;
 import database.DataBase;
 import database.DateBaseIf;
-import domain.Cake;
-import domain.ListOfIngridients;
+import services.AddCakeService;
+import services.GetCakesForClientService;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class CakeConstructor {
 
     private static DataBase dataBase = new DataBase();
-    private static UIAction addCake = new AddCakeUIAction(dataBase);
-    private static UIAction getCakeForClient = new GetAllCakesForClientUIAction(dataBase);
+    private static AddCakeService addCakeService = new AddCakeService(dataBase);
+    private static GetCakesForClientService getCakesForClientService = new GetCakesForClientService(dataBase);
+    private static UIAction addCake = new AddCakeUIAction(addCakeService);
+    private static UIAction getCakeForClient = new GetAllCakesForClientUIAction(getCakesForClientService);
     private static UIAction exit = new ExitUIAction();
 
 
@@ -27,10 +28,6 @@ public class CakeConstructor {
             executeSelectedMenuItem(dataBase, getUserMenuChoice);
         }
     }
-
-
-
-
 
 
     public static void executeSelectedMenuItem(DateBaseIf dataBase, int getUSerMenuChoice) {
