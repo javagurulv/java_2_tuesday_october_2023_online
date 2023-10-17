@@ -94,10 +94,10 @@ class TravelCalculatePremiumRequestValidatorTest {
 
     @Test
     void validatorDateFromIsNull() throws ParseException {
-
-        Date dateTo = new SimpleDateFormat("dd/MM/yyyy").parse("16/05/2000");
+        Date dateFrom = null;
+        Date dateTo = new SimpleDateFormat("DD/mm/YYYY").parse("16/05/2000");
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
-                "Ivan", "Ivanov", null,
+                "Ivan", "Ivanov", dateFrom,
                 dateTo);
         List<ValidationError> validList = validator.validate(request);
         assertThat(validList).contains(new ValidationError("agreementDateFrom", "Must not be empty!"));
@@ -106,11 +106,11 @@ class TravelCalculatePremiumRequestValidatorTest {
 
     @Test
     void validatorDateToIsNull() throws ParseException {
-        Date dateFrom = new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2000");
-
+        Date dateFrom = new SimpleDateFormat("DD/MM/YYYY").parse("01/05/2000");
+        Date dateTo = null;
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
                 "Ivan", "Ivanov", dateFrom,
-                null);
+                dateTo);
         List<ValidationError> validList = validator.validate(request);
         assertThat(validList).contains(new ValidationError("agreementDateTo", "Must not be empty!"));
 
@@ -118,6 +118,7 @@ class TravelCalculatePremiumRequestValidatorTest {
 
     @Test
     void validatorAllNamesAndAllDateIsNull() throws ParseException {
+
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
                 null, null, null,
                 null);
