@@ -1,12 +1,7 @@
-package consoole_ui;
+package lv.javaguru.java2.cakeConstructor.consoole_ui;
 
-import database.DataBase;
-import domain.Cake;
-import domain.ListOfIngridients;
-import services.AddCakeService;
+import lv.javaguru.java2.cakeConstructor.services.AddCakeService;
 
-import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 public class AddCakeUIAction implements UIAction {

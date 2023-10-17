@@ -1,12 +1,13 @@
+package lv.javaguru.java2.cakeConstructor;
 
-import consoole_ui.AddCakeUIAction;
-import consoole_ui.ExitUIAction;
-import consoole_ui.GetAllCakesForClientUIAction;
-import consoole_ui.UIAction;
-import database.DataBase;
-import database.DateBaseIf;
-import services.AddCakeService;
-import services.GetCakesForClientService;
+import lv.javaguru.java2.cakeConstructor.consoole_ui.AddCakeUIAction;
+import lv.javaguru.java2.cakeConstructor.consoole_ui.ExitUIAction;
+import lv.javaguru.java2.cakeConstructor.consoole_ui.GetAllCakesForClientUIAction;
+import lv.javaguru.java2.cakeConstructor.consoole_ui.UIAction;
+import lv.javaguru.java2.cakeConstructor.database.DataBase;
+import lv.javaguru.java2.cakeConstructor.database.DateBaseIf;
+import lv.javaguru.java2.cakeConstructor.services.AddCakeService;
+import lv.javaguru.java2.cakeConstructor.services.GetCakesForClientService;
 
 import java.util.Scanner;
 

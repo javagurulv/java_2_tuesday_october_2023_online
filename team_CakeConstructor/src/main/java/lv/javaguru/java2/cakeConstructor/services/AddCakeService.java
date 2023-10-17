@@ -1,8 +1,8 @@
-package services;
+package lv.javaguru.java2.cakeConstructor.services;
 
-import database.DataBase;
-import domain.Cake;
-import domain.ListOfIngridients;
+import lv.javaguru.java2.cakeConstructor.database.DataBase;
+import lv.javaguru.java2.cakeConstructor.domain.Cake;
+import lv.javaguru.java2.cakeConstructor.domain.ListOfIngridients;
 
 public class AddCakeService {
 

@@ -1,6 +1,6 @@
-package consoole_ui;
+package lv.javaguru.java2.cakeConstructor.consoole_ui;
 
-import services.GetCakesForClientService;
+import lv.javaguru.java2.cakeConstructor.services.GetCakesForClientService;
 
 import java.util.Scanner;
 

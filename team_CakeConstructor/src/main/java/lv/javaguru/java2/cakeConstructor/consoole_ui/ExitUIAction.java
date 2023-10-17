@@ -1,4 +1,4 @@
-package consoole_ui;
+package lv.javaguru.java2.cakeConstructor.consoole_ui;
 
 public class ExitUIAction implements  UIAction {
 

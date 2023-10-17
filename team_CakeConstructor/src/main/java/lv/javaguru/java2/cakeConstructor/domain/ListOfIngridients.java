@@ -1,6 +1,6 @@
-package domain;
+package lv.javaguru.java2.cakeConstructor.domain;
 
-import domain.*;
+
 
 import java.util.ArrayList;
 import java.util.List;

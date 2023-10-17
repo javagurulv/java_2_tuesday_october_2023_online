@@ -1,6 +1,6 @@
-package database;
+package lv.javaguru.java2.cakeConstructor.database;
 
-import domain.Cake;
+import lv.javaguru.java2.cakeConstructor.domain.Cake;
 
 import java.util.ArrayList;
 import java.util.List;
