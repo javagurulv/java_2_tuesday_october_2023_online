@@ -1,3 +1,7 @@
+package lv.simpleInventory.services;
+
+import lv.simpleInventory.database.Database;
+
 public class RemoveProductsService {
     private Database database;
 

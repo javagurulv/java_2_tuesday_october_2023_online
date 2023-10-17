@@ -1,3 +1,12 @@
+package lv.simpleInventory;
+
+import lv.simpleInventory.console_UI.*;
+import lv.simpleInventory.database.Database;
+import lv.simpleInventory.database.InMemoryDatabase;
+import lv.simpleInventory.services.AddProductService;
+import lv.simpleInventory.services.GetAllProductsService;
+import lv.simpleInventory.services.RemoveProductsService;
+
 import java.util.Scanner;
 
 public class Inventory {

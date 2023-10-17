@@ -1,3 +1,8 @@
+package lv.simpleInventory.services;
+
+import lv.simpleInventory.Product;
+import lv.simpleInventory.database.Database;
+
 public class AddProductService {
 
 

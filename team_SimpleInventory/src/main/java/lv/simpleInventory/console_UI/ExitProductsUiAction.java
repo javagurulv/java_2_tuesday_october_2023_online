@@ -1,3 +1,5 @@
+package lv.simpleInventory.console_UI;
+
 public class ExitProductsUiAction implements UIAction {
     @Override
     public void execute() {

@@ -1,3 +1,7 @@
+package lv.simpleInventory.console_UI;
+
+import lv.simpleInventory.services.GetAllProductsService;
+
 public class GetAllProductsUIAction implements UIAction {
 
 

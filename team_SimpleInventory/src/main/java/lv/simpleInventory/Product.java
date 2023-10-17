@@ -1,3 +1,5 @@
+package lv.simpleInventory;
+
 import java.util.Objects;
 
 public class Product {

@@ -1,3 +1,7 @@
+package lv.simpleInventory.console_UI;
+
+import lv.simpleInventory.services.AddProductService;
+
 import java.util.Scanner;
 
 public class AddProductsUIAction implements UIAction {

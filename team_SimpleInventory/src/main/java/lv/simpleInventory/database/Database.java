@@ -1,3 +1,7 @@
+package lv.simpleInventory.database;
+
+import lv.simpleInventory.Product;
+
 import java.util.List;
 
 public interface Database {

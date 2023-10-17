@@ -1,3 +1,7 @@
+package lv.simpleInventory.console_UI;
+
+import lv.simpleInventory.services.RemoveProductsService;
+
 import java.util.Scanner;
 
 public class RemoveProductsUIAction implements UIAction {
