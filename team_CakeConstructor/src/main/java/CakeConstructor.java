@@ -1,4 +1,6 @@
 
+import consoole_ui.AddCakeUIAction;
+import consoole_ui.UIAction;
 import database.DataBase;
 import database.DateBaseIf;
 import domain.Cake;
@@ -8,11 +10,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CakeConstructor {
-    static Scanner scan = new Scanner(System.in);
+
+    private static DataBase dataBase = new DataBase();
+    private  static UIAction addCake = new AddCakeUIAction(dataBase);
     static ListOfIngridients list = new ListOfIngridients();
+    static  Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        DateBaseIf dataBase = new DataBase();
 
         while (true) {
             printMenu();
@@ -25,7 +29,7 @@ public class CakeConstructor {
 
             switch (getUSerMenuChoice) {
                 case 1: {
-                    createCake(dataBase);
+                    addCake.execute();
                     break;
                 }
 
