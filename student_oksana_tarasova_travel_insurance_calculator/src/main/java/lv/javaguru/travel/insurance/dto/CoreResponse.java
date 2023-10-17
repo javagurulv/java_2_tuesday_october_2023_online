@@ -1,6 +1,7 @@
 package lv.javaguru.travel.insurance.dto;
 
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@Component
 public class CoreResponse {
 
     private List<ValidationError> errors;
