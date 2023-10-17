@@ -1,5 +1,7 @@
 
 import consoole_ui.AddCakeUIAction;
+import consoole_ui.ExitUIAction;
+import consoole_ui.GetAllCakesForClientUIAction;
 import consoole_ui.UIAction;
 import database.DataBase;
 import database.DateBaseIf;
@@ -12,9 +14,10 @@ import java.util.Scanner;
 public class CakeConstructor {
 
     private static DataBase dataBase = new DataBase();
-    private  static UIAction addCake = new AddCakeUIAction(dataBase);
-    static ListOfIngridients list = new ListOfIngridients();
-    static  Scanner scan = new Scanner(System.in);
+    private static UIAction addCake = new AddCakeUIAction(dataBase);
+    private static UIAction getCakeForClient = new GetAllCakesForClientUIAction(dataBase);
+    private static UIAction exit = new ExitUIAction();
+
 
     public static void main(String[] args) {
 
@@ -25,32 +28,31 @@ public class CakeConstructor {
         }
     }
 
-        public static void executeSelectedMenuItem(DateBaseIf dataBase, int getUSerMenuChoice) {
 
-            switch (getUSerMenuChoice) {
-                case 1: {
-                    addCake.execute();
-                    break;
-                }
 
-                case 2: {
-                    printOrderForClientId(dataBase);
-                    break;
-                }
-                case 3: {
-                    printEndOfApp();
-                }
 
+
+
+    public static void executeSelectedMenuItem(DateBaseIf dataBase, int getUSerMenuChoice) {
+
+        switch (getUSerMenuChoice) {
+            case 1: {
+                addCake.execute();
+                break;
+            }
+
+            case 2: {
+                getCakeForClient.execute();
+                break;
+            }
+            case 3: {
+                exit.execute();
             }
         }
-
-
-    public  static  void createCake(DateBaseIf dateBase){
-        System.out.println("Please, enter your client ID!");
-        int clientId = scan.nextInt();
-        Cake cake = list.createCake(clientId);
-        dateBase.add(cake);
     }
+
+
+
     public static void printMenu(){
         System.out.println("Welcome to cake constructor!");
         System.out.println("Press 1 - create a cake");
@@ -59,26 +61,8 @@ public class CakeConstructor {
     }
 
     public static int getUserMenuChoice(){
-
+        Scanner scan = new Scanner(System.in);
         int userChoice = scan.nextInt();
         return userChoice;
     }
-
-    public static void printOrderForClientId(DateBaseIf dataBase) {
-        System.out.println("Please enter your client ID!");
-        int clientId = scan.nextInt();
-        List<Cake> cakes = dataBase.getAllCake();
-        for (Cake cake : cakes) {
-            if (clientId == cake.getClientId()) {
-                System.out.println(cake);
-            }
-        }
-    }
-
-    public static void printEndOfApp(){
-        System.out.println("Thank you for being with us!");
-        System.exit(0);
-    }
-
-
 }
