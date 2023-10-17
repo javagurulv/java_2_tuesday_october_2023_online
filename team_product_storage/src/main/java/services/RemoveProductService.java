@@ -3,17 +3,17 @@ package services;
 import database.Database;
 import domain.Product;
 
-public class DeleteProductService {
+public class RemoveProductService {
 
     private Database database;
 
-    public DeleteProductService(Database database) {
+    public RemoveProductService(Database database) {
         this.database = database;
     }
 
-    public void deleteProduct(String productName, Long productID) {
+    public void execute(String productName, Long productID) {
         Product product = new Product(productName, productID);
-        database.deleteProduct(product);
+        database.removeProduct(product);
     }
 
 

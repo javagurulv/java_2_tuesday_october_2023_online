@@ -7,7 +7,7 @@ import java.util.List;
 public interface Database {
     void addProduct(Product product);
 
-    void deleteProduct (Product product);
+    void removeProduct (Product product);
 
     List<Product> getAllProducts ();
     }

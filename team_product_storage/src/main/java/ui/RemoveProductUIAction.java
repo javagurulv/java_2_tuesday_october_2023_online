@@ -1,17 +1,18 @@
 package ui;
 
-import services.DeleteProductService;
+import services.RemoveProductService;
 
 import java.util.Scanner;
 
-public class DeleteProductUIAction {
+public class RemoveProductUIAction implements UIAction{
 
-    private DeleteProductService service;
+    private RemoveProductService removeProductService;
 
-    public DeleteProductUIAction(DeleteProductService service) {
-        this.service = service;
+    public RemoveProductUIAction(RemoveProductService deleteProductService) {
+        this.removeProductService = deleteProductService;
     }
 
+    @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product name: ");
@@ -19,7 +20,7 @@ public class DeleteProductUIAction {
         System.out.println("Enter product ID: ");
         Long productID = scanner.nextLong();
 
-        service.deleteProduct(productName, productID);
+        removeProductService.execute(productName, productID);
 
         System.out.println("domain.Product was removed from the list: ");
 

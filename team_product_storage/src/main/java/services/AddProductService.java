@@ -11,10 +11,9 @@ public class AddProductService {
         this.database = database;
     }
 
-    public void addProduct(String productName, Long productID) {
+    public void execute(String productName, Long productID) {
         Product product = new Product(productName, productID);
         database.addProduct(product);
     }
-
 
 }
