@@ -2,7 +2,7 @@ package avangardTeen;
 
 import avangardTeen.domain.UserData;
 
-public class testAPP {
+public class TestAPP {
     public static void main(String[] args) {
         UserSizes userSize1 = new UserSizes(31,31,40, 34);
         UserData userData1 = new UserData("Maikle Konnely", "1234567", "Riga, Rigas1-1");
