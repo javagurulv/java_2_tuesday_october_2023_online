@@ -16,7 +16,9 @@ public class BookListApplication {
 
     static Database database = new InMemoryDatabase();
 
-    static AddBookService addBookService = new AddBookService(database);
+    private static AddBookRequestValidator validator = new AddBookRequestValidator(database);
+
+    static AddBookService addBookService = new AddBookService(database, validator);
     static DeleteBookService deleteBookService = new DeleteBookService(database);
     static GetAllBooksService getAllBooksService = new GetAllBooksService(database);
 
