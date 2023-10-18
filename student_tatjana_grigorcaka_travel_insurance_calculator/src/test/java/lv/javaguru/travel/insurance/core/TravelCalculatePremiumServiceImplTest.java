@@ -3,6 +3,10 @@ package lv.javaguru.travel.insurance.core;
 import lv.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,17 +15,18 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(MockitoExtension.class)
 class TravelCalculatePremiumServiceImplTest {
     String pattern = "MM-dd-yyyy";
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
-
-    private TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl();
-    private TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("John", "Smith", simpleDateFormat.parse("01-05-2024"), simpleDateFormat.parse("01-15-2024"));
+    @Mock private DateTimeService dateTimeService;
+    @InjectMocks
+    private TravelCalculatePremiumServiceImpl service;
+    private TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("John", "Smith",
+            createDate("05.01.2024"),
+            createDate("15.01.2024"));
     private TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse();
-
-    TravelCalculatePremiumServiceImplTest() throws ParseException {
-    }
 
     @Test
     public void testCalculatePremium() throws ParseException {
@@ -64,4 +69,13 @@ class TravelCalculatePremiumServiceImplTest {
         Date result = response.getAgreementDateTo();
         assertEquals(result, simpleDateFormat.parse("01-15-2024"));
     }
+
+    private Date createDate(String dateStr) {
+        try {
+            return new SimpleDateFormat("dd.MM.yyyy").parse(dateStr);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
