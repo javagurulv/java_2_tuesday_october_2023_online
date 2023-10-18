@@ -16,8 +16,7 @@ public class Decor {
         return "Decor{" +
                 "DecorId=" + decorId +
                 ", Decor='" + typeOfDecor + '\'' +
-                ", Allergens='" + allergens + '\'' +
-                ", Colour='" + colourOfDecor + '\'' +
+                ", Allergens='" + allergens +
                 '}';
     }
 

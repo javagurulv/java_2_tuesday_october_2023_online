@@ -1,0 +1,13 @@
+ shells_CODE.01 = "cream"
+ shells_CODE.02 = "cream-cheese", "milk", 100, 5));
+ shells_CODE.03 = "cream-cheese with raspberry", "milk, raspberry", 100, 5));
+ shells_CODE.04 = "cream-cheese with mango", "milk, mango", 100, 5));
+ shells_CODE.05 = "cream-cheese with raspberry-strawberry", "milk, raspberry,strawberry", 100, 5));
+ shells_CODE.06 = "ganache with milk chocolate", "milk, chocolate", 100, 5));
+ shells_CODE.07 = "ganache with dark chocolate", "milk, chocolate", 100, 5));
+ shells_CODE.08 = "ganache with liqueur ", "milk, chocolate", 100, 5));
+ shells_CODE.09 = "strawberry mousse ", "milk, strawberry", 100, 5));
+ shells_CODE.10 = "raspberry mousse", "milk, raspberry", 100, 5));
+ shells_CODE.11 = "champagne mousse", "milk", 100, 5));
+ shells_CODE.12 = "chocolate mousse", "milk, chocolate", 100, 5));
+ shells_CODE.13 = "mascarpone mousse", "milk", 100, 5));
