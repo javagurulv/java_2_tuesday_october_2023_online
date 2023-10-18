@@ -19,10 +19,7 @@ import static org.mockito.Mockito.when;
 class TravelCalculatePremiumRequestValidatorTest {
     private TravelCalculatePremiumRequestValidator requestValidator = new TravelCalculatePremiumRequestValidator();
 
-    TravelCalculatePremiumRequestValidatorTest() throws ParseException {
-    }
-    private DateTimeService dateTimeService;
-    SimpleDateFormat dates = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat dates = new SimpleDateFormat("dd.MM.yyyy");
 
 
     @Test
@@ -132,7 +129,7 @@ class TravelCalculatePremiumRequestValidatorTest {
     }
 
     @Test
-    void shouldReturnErrorWhenAgreementDateFromIAfterThanDateTo() throws ParseException {
+    void shouldReturnErrorWhenAgreementDateFromIsAfterThanDateTo() throws ParseException {
         Date date1 = dates.parse("02.11.2023");
         Date date2 = dates.parse("01.11.2023");
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
@@ -147,7 +144,7 @@ class TravelCalculatePremiumRequestValidatorTest {
         assertEquals(errors.get(0).getMessage(), "Must be less then agreementDateTo!");
     }
     @Test
-    void shouldReturnErrorWhenAgreementDateFromBeEqualDateTo() throws ParseException {
+    void shouldReturnErrorWhenAgreementDateFromIsEqualDateTo() throws ParseException {
         Date date1 = dates.parse("01.11.2023");
         Date date2 = dates.parse("01.11.2023");
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
