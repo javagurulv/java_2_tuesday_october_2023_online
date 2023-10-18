@@ -27,7 +27,7 @@ public class ShowAllPricesServise {
     }
     public void showComponentPrice() {
         for (Map.Entry<Category, Component> component : client.getWheelchair().getComponents().entrySet()) {
-            if (component.getValue().getPrice() != 0) ;
+            if (component.getValue().getPrice() > 0)
             System.out.println(component.getKey() + ": " + component.getValue().getInformation() + " цена: " + component.getValue().getPrice());
 
         }
