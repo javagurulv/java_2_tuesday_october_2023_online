@@ -1,7 +1,10 @@
 package lv.javaguru.java2.cakeConstructor.services;
 
-import lv.javaguru.java2.cakeConstructor.database.DataBase;
-import lv.javaguru.java2.cakeConstructor.domain.Cake;
+
+import lv.javaguru.java2.cakeConstructor.core.database.DataBase;
+import lv.javaguru.java2.cakeConstructor.core.domain.Cake;
+import lv.javaguru.java2.cakeConstructor.core.request.GetAllCakesForClientRequest;
+import lv.javaguru.java2.cakeConstructor.core.responses.GetAllCakesForClientResponse;
 
 import java.util.List;
 
@@ -11,12 +14,8 @@ public class GetCakesForClientService {
         this.dataBase=dataBase;
     }
 
-    public void execute(int clientId){
+    public GetAllCakesForClientResponse execute(GetAllCakesForClientRequest request){
         List<Cake> cakes = dataBase.getAllCake();
-        for (Cake cake : cakes) {
-            if (clientId == cake.getClientId()) {
-                System.out.println(cake);
-            }
-        }
+        return new GetAllCakesForClientResponse(cakes);
     }
 }

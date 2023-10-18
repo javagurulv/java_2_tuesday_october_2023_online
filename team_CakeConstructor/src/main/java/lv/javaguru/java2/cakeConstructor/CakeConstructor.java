@@ -6,8 +6,8 @@ import lv.javaguru.java2.cakeConstructor.consoole_ui.GetAllCakesForClientUIActio
 import lv.javaguru.java2.cakeConstructor.consoole_ui.UIAction;
 import lv.javaguru.java2.cakeConstructor.core.database.DataBase;
 import lv.javaguru.java2.cakeConstructor.core.database.DateBaseIf;
-import lv.javaguru.java2.cakeConstructor.core.services.AddCakeService;
-import lv.javaguru.java2.cakeConstructor.core.services.GetCakesForClientService;
+import lv.javaguru.java2.cakeConstructor.services.AddCakeService;
+import lv.javaguru.java2.cakeConstructor.services.GetCakesForClientService;
 
 import java.util.Scanner;
 

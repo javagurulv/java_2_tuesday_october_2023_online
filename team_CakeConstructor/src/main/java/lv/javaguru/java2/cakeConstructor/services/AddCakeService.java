@@ -1,8 +1,11 @@
 package lv.javaguru.java2.cakeConstructor.services;
 
-import lv.javaguru.java2.cakeConstructor.database.DataBase;
-import lv.javaguru.java2.cakeConstructor.domain.Cake;
-import lv.javaguru.java2.cakeConstructor.domain.ListOfIngridients;
+
+import lv.javaguru.java2.cakeConstructor.core.database.DataBase;
+import lv.javaguru.java2.cakeConstructor.core.domain.Cake;
+import lv.javaguru.java2.cakeConstructor.core.domain.ListOfIngridients;
+import lv.javaguru.java2.cakeConstructor.core.request.AddCakeRequest;
+import lv.javaguru.java2.cakeConstructor.core.responses.AddCakeResponse;
 
 public class AddCakeService {
 
@@ -12,8 +15,9 @@ public class AddCakeService {
         this.dataBase=dataBase;
     }
 
-    public void execute(int clientId){
-        Cake cake = list.createCake(clientId);
+    public AddCakeResponse execute(AddCakeRequest request){
+        Cake cake = list.createCake(request.getClientId());
         dataBase.add(cake);
+        return new AddCakeResponse(cake);
     }
 }
