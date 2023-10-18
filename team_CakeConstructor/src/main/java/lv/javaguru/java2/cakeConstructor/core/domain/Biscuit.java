@@ -12,12 +12,10 @@ public class Biscuit {
 
     @Override
     public String toString() {
-        return "domain.Biscuit{" +
-                "biscuitId=" + biscuitId +
-                ", typeOfBiscuit='" + typeOfBiscuit + '\'' +
-                ", allergens='" + allergens + '\'' +
-                ", weight=" + weight +
-                ", price=" + price +
+        return "Biscuit{" +
+                "BiscuitId=" + biscuitId +
+                ", Biscuit='" + typeOfBiscuit + '\'' +
+                ", Allergens='" + allergens + '\'' +
                 '}';
     }
 

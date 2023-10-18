@@ -10,14 +10,14 @@ public class Decor {
     private String colourOfDecor;
     private int price;
 
+
     @Override
     public String toString() {
-        return "domain.Decor{" +
-                "decorId=" + decorId +
-                ", typeOfDecor='" + typeOfDecor + '\'' +
-                ", allergens='" + allergens + '\'' +
-                ", colourOfDecor='" + colourOfDecor + '\'' +
-                ", price=" + price +
+        return "Decor{" +
+                "DecorId=" + decorId +
+                ", Decor='" + typeOfDecor + '\'' +
+                ", Allergens='" + allergens + '\'' +
+                ", Colour='" + colourOfDecor + '\'' +
                 '}';
     }
 

@@ -12,12 +12,10 @@ public class Filling {
 
     @Override
     public String toString() {
-        return "domain.Filling{" +
-                "fillingId=" + fillingId +
-                ", typeOfFilling='" + typeOfFilling + '\'' +
-                ", allergens='" + allergens + '\'' +
-                ", weight=" + weight +
-                ", price=" + price +
+        return " Filling{" +
+                " FillingId=" + fillingId +
+                ", Filling='" + typeOfFilling + '\'' +
+                ", Allergens='" + allergens +
                 '}';
     }
 

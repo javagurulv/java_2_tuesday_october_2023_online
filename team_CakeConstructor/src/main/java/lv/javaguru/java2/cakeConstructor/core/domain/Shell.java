@@ -12,12 +12,10 @@ public class Shell {
 
     @Override
     public String toString() {
-        return "domain.Shell{" +
-                "shellId=" + shellId +
-                ", typeOfShell='" + typeOfShell + '\'' +
-                ", allergens='" + allergens + '\'' +
-                ", weight=" + weight +
-                ", price=" + price +
+        return " Shell{" +
+                " ShellId=" + shellId +
+                ", Shell='" + typeOfShell + '\'' +
+                ", Allergens='" + allergens +
                 '}';
     }
 

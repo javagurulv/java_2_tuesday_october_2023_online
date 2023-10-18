@@ -202,12 +202,12 @@ public class ListOfIngridients {
         int decorId = scan.nextInt();
         return findDecor(decors,decorId);
     }
-    public Cake createCake ( int clientId){
+    public Cake createCake (int clientId){
         List<Biscuit> biscuits = createListOfBiscuit();
         List<Filling> fillings = createListOfFilling();
         List<Shell> shells = createListOfShell();
         List<Decor> decors = createListOfDecor();
-        List<Cake> cakes = new ArrayList<>();
+
 
         String biscuit = biscuit(biscuits);
         int price = priceBiscuit(biscuits, biscuit);

@@ -14,7 +14,7 @@ public class Cake {
 
     @Override
     public String toString() {
-        return "domain.Cake{" +
+        return "Cake{" +
                 "biscuit='" + biscuit + '\'' +
                 ", filling='" + filling + '\'' +
                 ", shell='" + shell + '\'' +
