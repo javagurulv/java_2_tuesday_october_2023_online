@@ -1,10 +1,10 @@
 import database.Database;
 import database.InMemoryDatabase;
 import services.AddProductService;
-import services.DeleteProductService;
+import services.RemoveProductService;
 import services.GetAllProductsService;
 import ui.AddProductUIAction;
-import ui.DeleteProductUIAction;
+import ui.RemoveProductUIAction;
 import ui.ExitProgramUIAction;
 import ui.PrintAllProductsUIAction;
 
@@ -12,47 +12,22 @@ import java.util.Scanner;
 
 public class StorageApplication {
 
-    private static int getUserMenuChoice() {
-        System.out.println("Enter menu item number to execute ");
-        Scanner scanner = new Scanner(System.in);
-        return Integer.parseInt(scanner.nextLine());
-    }
+    static Database database = new InMemoryDatabase();
+
+    static AddProductService addProductService = new AddProductService(database);
+    static RemoveProductService removeProductService = new RemoveProductService(database);
+    static GetAllProductsService getAllProductService = new GetAllProductsService(database);
+
+    static AddProductUIAction addProductUIAction = new AddProductUIAction(addProductService);
+    static RemoveProductUIAction removeProductUIAction = new RemoveProductUIAction(removeProductService);
+    static PrintAllProductsUIAction printAllProductsUIAction = new PrintAllProductsUIAction(getAllProductService);
+    static ExitProgramUIAction exitProgramUIAction = new ExitProgramUIAction();
 
     public static void main(String[] args) {
-        Database database = new InMemoryDatabase();
-
-        AddProductService addProductService = new AddProductService(database);
-        DeleteProductService deleteProductService = new DeleteProductService(database);
-        GetAllProductsService getAllProductService = new GetAllProductsService(database);
-
-        AddProductUIAction addProductUIAction = new AddProductUIAction(addProductService);
-        DeleteProductUIAction deleteProductUIAction = new DeleteProductUIAction(deleteProductService);
-        PrintAllProductsUIAction printAllProductsUIAction = new PrintAllProductsUIAction(getAllProductService);
-        ExitProgramUIAction exitProgramUIAction = new ExitProgramUIAction();
-
-
-        while (true) {
+            while (true) {
             printMenu();
-
             int userChoice = getUserMenuChoice();
-
-            switch (userChoice) {
-                case 1: {
-                    addProductUIAction.execute();
-                    break;
-                }
-                case 2: {
-                    deleteProductUIAction.execute();
-                    break;
-                }
-                case 3: {
-                    printAllProductsUIAction.execute();
-                    break;
-                }
-                case 4: {
-                    exitProgramUIAction.execute();
-                }
-            }
+            executeMenu(userChoice);
         }
     }
 
@@ -65,4 +40,32 @@ public class StorageApplication {
 
         System.out.println("");
     }
+
+    private static int getUserMenuChoice() {
+        System.out.println("Enter menu item number to execute ");
+        Scanner scanner = new Scanner(System.in);
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    private static void executeMenu(int userChoice) {
+        switch (userChoice) {
+            case 1: {
+                addProductUIAction.execute();
+                break;
+            }
+            case 2: {
+                removeProductUIAction.execute();
+                break;
+            }
+            case 3: {
+                printAllProductsUIAction.execute();
+                break;
+            }
+            case 4: {
+                exitProgramUIAction.execute();
+            }
+        }
+    }
+
+
 }

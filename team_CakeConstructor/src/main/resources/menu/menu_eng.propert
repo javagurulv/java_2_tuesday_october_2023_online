@@ -1,0 +1,4 @@
+menu_code00 = "Welcome to cake constructor!"
+menu_code01 = "Press 1 - create a cake"
+menu_code02 = "Press 2 - check order"
+menu_code03 = "Press 3 - exit"

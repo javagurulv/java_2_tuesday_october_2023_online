@@ -3,17 +3,18 @@ package ui;
 import domain.Product;
 import services.GetAllProductsService;
 
-public class PrintAllProductsUIAction {
+public class PrintAllProductsUIAction implements UIAction {
 
-    private GetAllProductsService service;
+    private GetAllProductsService getAllProductsService;
 
-    public PrintAllProductsUIAction(GetAllProductsService service) {
-        this.service = service;
+    public PrintAllProductsUIAction(GetAllProductsService getAllProductsService) {
+        this.getAllProductsService = getAllProductsService;
     }
 
+    @Override
     public void execute() {
         System.out.println("All product list: ");
-        for (Product product : service.getAllProducts()) {
+        for (Product product : getAllProductsService.execute()) {
             System.out.println(product);
         }
     }

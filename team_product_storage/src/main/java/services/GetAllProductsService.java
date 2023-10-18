@@ -13,7 +13,7 @@ public class GetAllProductsService {
         this.database = database;
     }
 
-    public List<Product> getAllProducts() {
+    public List<Product> execute() {
         return database.getAllProducts();
     }
 }
