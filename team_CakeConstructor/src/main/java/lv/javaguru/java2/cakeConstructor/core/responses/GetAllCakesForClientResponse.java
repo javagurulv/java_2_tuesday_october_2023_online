@@ -1,19 +1,19 @@
 package lv.javaguru.java2.cakeConstructor.core.responses;
 
 import lv.javaguru.java2.cakeConstructor.core.domain.Cake;
-import lv.javaguru.java2.cakeConstructor.core.services.GetCakesForClientService;
+
+import java.util.List;
 
 public class GetAllCakesForClientResponse {
 
-    private Cake cake;
+    private List<Cake> cakes;
 
-    public Cake getCake() {
-        return cake;
+
+    public GetAllCakesForClientResponse(List<Cake> cakes) {
+        this.cakes = cakes;
     }
 
-    public GetAllCakesForClientResponse (Cake cake){
-        this.cake = cake;
+    public List<Cake> getCakes() {
+        return cakes;
     }
-
-
 }
