@@ -14,22 +14,29 @@ import java.util.Scanner;
 
 public class BookListApplication {
 
+    static Database database = new InMemoryDatabase();
+
+    static AddBookService addBookService = new AddBookService(database);
+    static DeleteBookService deleteBookService = new DeleteBookService(database);
+    static GetAllBooksService getAllBooksService = new GetAllBooksService(database);
+
+    static AddBookUIAction addBookUIAction = new AddBookUIAction(addBookService);
+    static DeleteBookUIAction deleteBookUIAction = new DeleteBookUIAction(deleteBookService);
+    static PrintAllBooksUIAction printAllBooksUIAction = new PrintAllBooksUIAction(getAllBooksService);
+    static ProgramExitUIAction programExitUIAction = new ProgramExitUIAction();
+
     public static void main(String[] args) {
 
-    Database database = new InMemoryDatabase();
-
-    AddBookService addBookService = new AddBookService(database);
-    DeleteBookService deleteBookService = new DeleteBookService(database);
-    GetAllBooksService getAllBooksService = new GetAllBooksService(database);
-
-    AddBookUIAction addBookUIAction = new AddBookUIAction(addBookService);
-    DeleteBookUIAction deleteBookUIAction = new DeleteBookUIAction(deleteBookService);
-    PrintAllBooksUIAction printAllBooksUIAction = new PrintAllBooksUIAction(getAllBooksService);
-    ProgramExitUIAction programExitUIAction = new ProgramExitUIAction();
 
     while (true) {
         printMenu();
         int userChoice = getUserMenuChoice();
+
+        executeSelectedMenuItime(userChoice);
+    }
+}
+
+    private static void executeSelectedMenuItime(int userChoice) {
         switch(userChoice) {
             case 1: {
                 addBookUIAction.execute();
@@ -49,9 +56,8 @@ public class BookListApplication {
             }
         }
     }
-}
 
-        private static int getUserMenuChoice() {
+    private static int getUserMenuChoice() {
             System.out.println("Enter menu item number to execute ");
             Scanner scanner = new Scanner(System.in);
             return Integer.parseInt(scanner.nextLine());

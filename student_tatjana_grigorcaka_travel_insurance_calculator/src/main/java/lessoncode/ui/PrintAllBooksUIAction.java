@@ -5,15 +5,16 @@ import lessoncode.services.GetAllBooksService;
 
 public class PrintAllBooksUIAction implements UIAction {
 
-    private GetAllBooksService service;
+    private GetAllBooksService getAllBooksService;
 
-    public PrintAllBooksUIAction(GetAllBooksService service) {
-        this.service = service;
+    public PrintAllBooksUIAction(GetAllBooksService getAllBooksService) {
+        this.getAllBooksService = getAllBooksService;
     }
 
+    @Override
     public void execute() {
         System.out.println("Book list: ");
-        for (Book book : service.getAllBooks()) {
+        for (Book book : getAllBooksService.execute()) {
             System.out.println(book);
         }
         System.out.println("Book list end.");

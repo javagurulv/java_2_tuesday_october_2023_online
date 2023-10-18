@@ -6,12 +6,13 @@ import java.util.Scanner;
 
 public class DeleteBookUIAction implements UIAction {
 
-    private DeleteBookService service;
+    private DeleteBookService deleteBookService;
 
-    public DeleteBookUIAction(DeleteBookService service) {
-        this.service = service;
+    public DeleteBookUIAction(DeleteBookService deleteBookService) {
+        this.deleteBookService = deleteBookService;
     }
 
+    @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter book title: ");
@@ -20,7 +21,7 @@ public class DeleteBookUIAction implements UIAction {
         String bookAuthor = scanner.nextLine();
 
 
-        service.deleteBook(bookTitle, bookAuthor);
+        deleteBookService.execute(bookTitle, bookAuthor);
 
         System.out.println("Your book was deleted from the list: ");
 

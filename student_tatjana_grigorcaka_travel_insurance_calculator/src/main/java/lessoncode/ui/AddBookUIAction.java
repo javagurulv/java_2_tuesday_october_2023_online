@@ -6,12 +6,13 @@ import java.util.Scanner;
 
 public class AddBookUIAction  implements UIAction {
 
-    private AddBookService service;
+    private AddBookService addBookService;
 
-    public AddBookUIAction(AddBookService service) {
-        this.service = service;
+    public AddBookUIAction(AddBookService addBookService) {
+        this.addBookService = addBookService;
     }
 
+    @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter book title: ");
@@ -19,7 +20,7 @@ public class AddBookUIAction  implements UIAction {
         System.out.println("Enter book author: ");
         String bookAuthor = scanner.nextLine();
 
-        service.addBook(bookTitle, bookAuthor);
+        addBookService.execute(bookTitle, bookAuthor);
 
         System.out.println("Your book was added to the list: ");
     }

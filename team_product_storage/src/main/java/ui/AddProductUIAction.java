@@ -4,14 +4,15 @@ import services.AddProductService;
 
 import java.util.Scanner;
 
-public class AddProductUIAction {
+public class AddProductUIAction implements UIAction{
 
-    private AddProductService service;
+    private AddProductService addProductService;
 
-    public AddProductUIAction(AddProductService service) {
-        this.service = service;
+    public AddProductUIAction(AddProductService addProductService) {
+        this.addProductService = addProductService;
     }
 
+    @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product name: ");
@@ -19,7 +20,7 @@ public class AddProductUIAction {
         System.out.println("Enter product ID: ");
         Long productID = scanner.nextLong();
 
-        service.addProduct(productName, productID);
+        addProductService.execute(productName, productID);
 
         System.out.println("domain.Product was added to the list: ");
     }

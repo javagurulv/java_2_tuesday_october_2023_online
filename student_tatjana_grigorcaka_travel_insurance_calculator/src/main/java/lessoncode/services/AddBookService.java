@@ -11,7 +11,7 @@ public class AddBookService {
         this.database = database;
     }
 
-        public void addBook(String title, String author) {
+        public void execute(String title, String author) {
         Book book = new Book(title, author);
         database.addBook(book);
     }
