@@ -1,6 +1,8 @@
 package lv.javaguru.java2.cakeConstructor.consoole_ui;
 
-import lv.javaguru.java2.cakeConstructor.services.AddCakeService;
+import lv.javaguru.java2.cakeConstructor.core.request.AddCakeRequest;
+import lv.javaguru.java2.cakeConstructor.core.responses.AddCakeResponse;
+import lv.javaguru.java2.cakeConstructor.core.services.AddCakeService;
 
 import java.util.Scanner;
 
@@ -17,7 +19,9 @@ public class AddCakeUIAction implements UIAction {
         Scanner scan = new Scanner(System.in);
         System.out.println("Please, enter your client ID!");
         int clientId = scan.nextInt();
-        addCakeService.execute(clientId);
-        System.out.println("Your book was added to list!");
+        AddCakeRequest request = new AddCakeRequest(clientId);
+        AddCakeResponse response = addCakeService.execute(request);
+        response.getNewCake().toString();
+
     }
 }

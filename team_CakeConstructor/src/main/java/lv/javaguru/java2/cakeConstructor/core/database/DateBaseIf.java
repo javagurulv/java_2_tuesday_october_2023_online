@@ -1,6 +1,6 @@
-package lv.javaguru.java2.cakeConstructor.database;
+package lv.javaguru.java2.cakeConstructor.core.database;
 
-import lv.javaguru.java2.cakeConstructor.domain.Cake;
+import lv.javaguru.java2.cakeConstructor.core.domain.Cake;
 
 import java.util.List;
 
