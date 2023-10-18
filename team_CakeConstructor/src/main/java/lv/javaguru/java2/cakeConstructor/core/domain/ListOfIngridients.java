@@ -1,4 +1,4 @@
-package lv.javaguru.java2.cakeConstructor.domain;
+package lv.javaguru.java2.cakeConstructor.core.domain;
 
 
 

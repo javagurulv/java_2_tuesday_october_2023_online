@@ -4,10 +4,10 @@ import lv.javaguru.java2.cakeConstructor.consoole_ui.AddCakeUIAction;
 import lv.javaguru.java2.cakeConstructor.consoole_ui.ExitUIAction;
 import lv.javaguru.java2.cakeConstructor.consoole_ui.GetAllCakesForClientUIAction;
 import lv.javaguru.java2.cakeConstructor.consoole_ui.UIAction;
-import lv.javaguru.java2.cakeConstructor.database.DataBase;
-import lv.javaguru.java2.cakeConstructor.database.DateBaseIf;
-import lv.javaguru.java2.cakeConstructor.services.AddCakeService;
-import lv.javaguru.java2.cakeConstructor.services.GetCakesForClientService;
+import lv.javaguru.java2.cakeConstructor.core.database.DataBase;
+import lv.javaguru.java2.cakeConstructor.core.database.DateBaseIf;
+import lv.javaguru.java2.cakeConstructor.core.services.AddCakeService;
+import lv.javaguru.java2.cakeConstructor.core.services.GetCakesForClientService;
 
 import java.util.Scanner;
 
@@ -30,6 +30,18 @@ public class CakeConstructor {
         }
     }
 
+    public static void printMenu(){
+        System.out.println("Welcome to cake constructor!");
+        System.out.println("Press 1 - create a cake");
+        System.out.println("Press 2 - check order ");
+        System.out.println("Press 3 - exit");
+    }
+
+    public static int getUserMenuChoice(){
+        Scanner scan = new Scanner(System.in);
+        int userChoice = scan.nextInt();
+        return userChoice;
+    }
 
     public static void executeSelectedMenuItem(DateBaseIf dataBase, int getUSerMenuChoice) {
 
@@ -47,20 +59,5 @@ public class CakeConstructor {
                 exit.execute();
             }
         }
-    }
-
-
-
-    public static void printMenu(){
-        System.out.println("Welcome to cake constructor!");
-        System.out.println("Press 1 - create a cake");
-        System.out.println("Press 2 - check order ");
-        System.out.println("Press 3 - exit");
-    }
-
-    public static int getUserMenuChoice(){
-        Scanner scan = new Scanner(System.in);
-        int userChoice = scan.nextInt();
-        return userChoice;
     }
 }

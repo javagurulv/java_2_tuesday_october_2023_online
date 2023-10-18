@@ -1,6 +1,6 @@
-package lv.javaguru.java2.cakeConstructor.database;
+package lv.javaguru.java2.cakeConstructor.core.database;
 
-import lv.javaguru.java2.cakeConstructor.domain.Cake;
+import lv.javaguru.java2.cakeConstructor.core.domain.Cake;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class InFileDateBAse implements DateBaseIf {
     private String file;
 
     public InFileDateBAse () {
-        this.file = "lv/javaguru/java2/cakeConstructor/database/cake";
+        this.file = "lv/javaguru/java2/cakeConstructor/core/database/cake";
     }
 
     @Override
