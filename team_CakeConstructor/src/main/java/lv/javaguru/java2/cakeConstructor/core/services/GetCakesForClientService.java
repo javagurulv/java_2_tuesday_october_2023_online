@@ -5,7 +5,6 @@ import lv.javaguru.java2.cakeConstructor.core.domain.Cake;
 import lv.javaguru.java2.cakeConstructor.core.request.GetAllCakesForClientRequest;
 import lv.javaguru.java2.cakeConstructor.core.responses.GetAllCakesForClientResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GetCakesForClientService {
@@ -20,9 +19,8 @@ public class GetCakesForClientService {
         for (Cake cake : cakes) {
             if (request.getClientId() == cake.getClientId()) {
                 cake1=cake;
-                System.out.println(cake.toString());
             }
         }
-        return new GetAllCakesForClientResponse(cake1);
+        return new GetAllCakesForClientResponse(cakes);
     }
 }

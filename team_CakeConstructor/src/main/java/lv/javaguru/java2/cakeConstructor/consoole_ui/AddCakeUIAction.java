@@ -2,7 +2,8 @@ package lv.javaguru.java2.cakeConstructor.consoole_ui;
 
 import lv.javaguru.java2.cakeConstructor.core.request.AddCakeRequest;
 import lv.javaguru.java2.cakeConstructor.core.responses.AddCakeResponse;
-import lv.javaguru.java2.cakeConstructor.services.AddCakeService;
+import lv.javaguru.java2.cakeConstructor.core.services.AddCakeService;
+
 
 import java.util.Scanner;
 

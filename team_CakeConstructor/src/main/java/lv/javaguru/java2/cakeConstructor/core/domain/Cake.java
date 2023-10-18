@@ -1,8 +1,9 @@
 package lv.javaguru.java2.cakeConstructor.core.domain;
 
+import java.util.List;
 import java.util.Objects;
 
-public class Cake {
+public class Cake  {
 
     private String biscuit;
     private String filling;
