@@ -3,8 +3,7 @@ import fitness_club.database.Database;
 import fitness_club.domain.Client;
 import fitness_club.domain.Workouts;
 import fitness_club.requests.ChangeWorkoutRequest;
-import fitness_club.requests.ClientAndWorkoutRequest;
-import fitness_club.responses.ClientAndWorkoutResponse;
+import fitness_club.responses.AddClientResponse;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class ChangeClientWorkoutService {
         }
     }
 
-    public ClientAndWorkoutResponse execute(ChangeWorkoutRequest request) {
+    public AddClientResponse execute(ChangeWorkoutRequest request) {
         Client clientToChangeWorkout = new Client(request.getPersonalCode());
         List<Client> clients = database.getAllClients();
         for (Client client: clients) {
@@ -38,6 +37,6 @@ public class ChangeClientWorkoutService {
                 break;
             }
         }
-        return new ClientAndWorkoutResponse(clientToChangeWorkout);
+        return new AddClientResponse(clientToChangeWorkout);
     }
 }

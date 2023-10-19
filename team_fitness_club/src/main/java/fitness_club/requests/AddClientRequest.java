@@ -3,7 +3,7 @@ package fitness_club.requests;
 import fitness_club.domain.ClientAgeGroups;
 import fitness_club.domain.Workouts;
 
-public class ClientAndWorkoutRequest {
+public class AddClientRequest {
 
     private String firstName;
     private String lastName;
@@ -11,7 +11,7 @@ public class ClientAndWorkoutRequest {
     private ClientAgeGroups clientAgeGroup;
     private Workouts workout;
 
-    public ClientAndWorkoutRequest(String firstName, String lastName, String personalCode, ClientAgeGroups clientAgeGroup, Workouts workout) {
+    public AddClientRequest(String firstName, String lastName, String personalCode, ClientAgeGroups clientAgeGroup, Workouts workout) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.personalCode = personalCode;

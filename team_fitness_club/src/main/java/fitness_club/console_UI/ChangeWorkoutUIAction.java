@@ -2,7 +2,7 @@ package fitness_club.console_UI;
 
 import fitness_club.domain.Workouts;
 import fitness_club.requests.ChangeWorkoutRequest;
-import fitness_club.responses.ClientAndWorkoutResponse;
+import fitness_club.responses.AddClientResponse;
 import fitness_club.services.ChangeClientWorkoutService;
 import fitness_club.services.GetWorkoutService;
 
@@ -28,7 +28,7 @@ public class ChangeWorkoutUIAction implements UIAction {
         Workouts newWorkout = GetWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
 
         ChangeWorkoutRequest request = new ChangeWorkoutRequest(clientPersonalCode, newWorkout);
-        ClientAndWorkoutResponse response = service.execute(request);
+        AddClientResponse response = service.execute(request);
 
         System.out.println("Client workout has been changed.");
     }

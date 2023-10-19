@@ -2,8 +2,6 @@ package fitness_club.services;
 import fitness_club.database.Database;
 import fitness_club.domain.Client;
 import fitness_club.domain.ClientAgeGroups;
-import fitness_club.requests.ClientAndWorkoutRequest;
-import fitness_club.responses.ClientAndWorkoutResponse;
 
 import java.util.List;
 

@@ -14,12 +14,21 @@ public class DeleteClientUIAction implements UIAction {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-               System.out.println("Enter client personal code: ");
+        System.out.println("Enter client personal code: ");
         String clientPersonalCode = scanner.nextLine();
-
+        DeleteClientRequest request = new DeleteClientRequest(clientPersonalCode);
+        DeleteClientResponse response = service.removeClient(request);
         service.removeClient(clientPersonalCode);
 
-        System.out.println("Client was removed from list. ");
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+        } else {
+            if (response.isClientRemoved) {
+                System.out.println("Client was removed from  list.");
+            } else {
+                System.out.println("Client was removed from  list.");
+            }
+        }
     }
 }
 

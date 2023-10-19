@@ -2,8 +2,8 @@ package fitness_club.console_UI;
 
 import fitness_club.domain.ClientAgeGroups;
 import fitness_club.domain.Workouts;
-import fitness_club.requests.ClientAndWorkoutRequest;
-import fitness_club.responses.ClientAndWorkoutResponse;
+import fitness_club.requests.AddClientRequest;
+import fitness_club.responses.AddClientResponse;
 import fitness_club.services.AddClientService;
 import fitness_club.services.GetClientAgeGroupService;
 import fitness_club.services.GetWorkoutService;
@@ -43,9 +43,15 @@ public class AddClientUIAction implements UIAction {
         GetWorkoutService getWorkoutService = new GetWorkoutService();
         Workouts clientWorkout = getWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
 
-        ClientAndWorkoutRequest request = new ClientAndWorkoutRequest(clientFirstName, clientLastName, clientPersonalCode, clientAgeGroups, clientWorkout);
-        ClientAndWorkoutResponse response = service.execute(request);
-
-        System.out.println("New client was added to list.");
+        AddClientRequest request = new AddClientRequest(clientFirstName, clientLastName, clientPersonalCode, clientAgeGroups, clientWorkout);
+        AddClientResponse response = service.execute(request);
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError ->
+                    System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage())
+            );
+        } else {
+            System.out.println("New client id was: " + response.getNewClient().getId());
+            System.out.println("Your client was added to list.");
+        }
     }
 }
