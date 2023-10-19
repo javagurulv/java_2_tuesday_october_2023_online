@@ -2,9 +2,14 @@ package lv.javaguru.java2.cakeConstructor.core.responses;
 
 import lv.javaguru.java2.cakeConstructor.core.domain.Cake;
 
-public class AddCakeResponse {
+import java.util.List;
+
+public class AddCakeResponse extends CoreResponse {
 
     private Cake newCake;
+    public AddCakeResponse (List<CoreError> error){
+        super(error);
+    }
 
     public AddCakeResponse (Cake newCake){
         this.newCake = newCake;

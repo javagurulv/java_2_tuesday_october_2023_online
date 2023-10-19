@@ -7,6 +7,7 @@ import lv.javaguru.java2.cakeConstructor.consoole_ui.UIAction;
 import lv.javaguru.java2.cakeConstructor.core.database.DataBase;
 import lv.javaguru.java2.cakeConstructor.core.database.DateBaseIf;
 import lv.javaguru.java2.cakeConstructor.core.services.AddCakeService;
+import lv.javaguru.java2.cakeConstructor.core.services.AddCakeValidator;
 import lv.javaguru.java2.cakeConstructor.core.services.GetCakesForClientService;
 
 
@@ -15,7 +16,8 @@ import java.util.Scanner;
 public class CakeConstructor {
 
     private static DataBase dataBase = new DataBase();
-    private static AddCakeService addCakeService = new AddCakeService(dataBase);
+    private static AddCakeValidator validator = new AddCakeValidator();
+    private static AddCakeService addCakeService = new AddCakeService(dataBase,validator);
     private static GetCakesForClientService getCakesForClientService = new GetCakesForClientService(dataBase);
     private static UIAction addCake = new AddCakeUIAction(addCakeService);
     private static UIAction getCakeForClient = new GetAllCakesForClientUIAction(getCakesForClientService);
