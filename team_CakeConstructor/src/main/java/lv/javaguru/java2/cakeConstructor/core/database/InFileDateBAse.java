@@ -23,8 +23,8 @@ public class InFileDateBAse implements DateBaseIf {
     }
 
     @Override
-    public List<Cake> getCakesForClient(int clientId) {
-        return getCakesForClient(clientId);
+    public List<Cake> getCakesForClient(String clientLogin) {
+        return getCakesForClient(clientLogin);
     }
 
     public List<Cake> getAllCake() {

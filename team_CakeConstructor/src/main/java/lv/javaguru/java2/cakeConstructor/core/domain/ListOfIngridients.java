@@ -221,7 +221,7 @@ public class ListOfIngridients {
         int decorId = scan.nextInt();
         return findDecor(decors,decorId);
     }
-    public Cake createCake (int clientId){
+    public Cake createCake (String clientLogin){
         List<Biscuit> biscuits = createListOfBiscuit();
         List<Filling> fillings = createListOfFilling();
         List<Shell> shells = createListOfShell();
@@ -240,7 +240,7 @@ public class ListOfIngridients {
         String decor = decor(decors);
         price = priceDecor(decors, decor) + price;
 
-        Cake cake1 = new Cake(biscuit,filling,shell,decor,clientId,price);
+        Cake cake1 = new Cake(biscuit,filling,shell,decor,clientLogin,price);
 
         return cake1;
     }

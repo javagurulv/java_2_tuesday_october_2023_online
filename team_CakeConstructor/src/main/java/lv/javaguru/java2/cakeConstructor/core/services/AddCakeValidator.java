@@ -16,8 +16,7 @@ public class AddCakeValidator {
     }
 
     private Optional<CoreError> validateClientId (AddCakeRequest request){
-        Integer clientId = request.getClientId();
-       return  ( clientId == null )
+       return  ( request.getClientLogin() == null || request.getClientLogin().isEmpty())
                 ? Optional.of(new CoreError("Client id", "Must not be empty!"))
                 : Optional.empty();
 
