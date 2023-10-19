@@ -1,4 +1,4 @@
-package domain;
+package fitness_club.domain;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -79,7 +79,7 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "domain.Client{" +
+        return "fitness_club.domain.Client{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

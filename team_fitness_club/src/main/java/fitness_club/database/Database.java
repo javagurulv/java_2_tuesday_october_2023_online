@@ -1,6 +1,6 @@
-package database;
+package fitness_club.database;
 
-import domain.Client;
+import fitness_club.domain.Client;
 
 import java.util.List;
 

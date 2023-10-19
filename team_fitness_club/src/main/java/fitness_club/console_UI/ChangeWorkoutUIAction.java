@@ -1,8 +1,8 @@
-package console_UI;
+package fitness_club.console_UI;
 
-import domain.Workouts;
-import services.ChangeClientWorkoutService;
-import services.GetWorkoutService;
+import fitness_club.domain.Workouts;
+import fitness_club.services.ChangeClientWorkoutService;
+import fitness_club.services.GetWorkoutService;
 
 import java.util.Scanner;
 

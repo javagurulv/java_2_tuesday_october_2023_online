@@ -1,6 +1,7 @@
-package services;
-import database.*;
-import domain.*;
+package fitness_club.services;
+import fitness_club.database.Database;
+import fitness_club.domain.Client;
+
 import java.util.List;
 
 
