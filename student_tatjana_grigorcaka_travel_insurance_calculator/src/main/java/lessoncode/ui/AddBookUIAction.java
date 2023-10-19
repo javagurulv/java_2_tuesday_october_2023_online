@@ -1,5 +1,8 @@
 package lessoncode.ui;
 
+import lessoncode.AddBookRequest;
+import lessoncode.AddBookResponse;
+import lessoncode.BusinessError;
 import lessoncode.services.AddBookService;
 
 import java.util.Scanner;
@@ -19,10 +22,15 @@ public class AddBookUIAction  implements UIAction {
         String bookTitle = scanner.nextLine();
         System.out.println("Enter book author: ");
         String bookAuthor = scanner.nextLine();
-
-        addBookService.execute(bookTitle, bookAuthor);
-
-        System.out.println("Your book was added to the list: ");
+        AddBookRequest request = new AddBookRequest(bookAuthor, bookTitle);
+        AddBookResponse response = addBookService.execute(request);
+        if (response.containsErrors()) {
+            for (BusinessError error : response.getErrors()) {
+                System.out.println("Error: " + error.getErrorCode() + " " + error.getErrorMessage());
+            }
+        } else {
+            System.out.println("Your book was added to the list: ");
+        }
     }
 }
 
