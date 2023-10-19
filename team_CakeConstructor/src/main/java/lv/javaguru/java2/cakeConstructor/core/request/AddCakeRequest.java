@@ -4,13 +4,13 @@ import lv.javaguru.java2.cakeConstructor.core.domain.Cake;
 
 public class AddCakeRequest {
 
-    private int clientId;
+    private String clientLogin;
 
-    public AddCakeRequest (int clientId){
-        this.clientId = clientId;
+    public AddCakeRequest (String clientLogin){
+        this.clientLogin = clientLogin;
     }
 
-    public int getClientId() {
-        return clientId;
+    public String getClientLogin() {
+        return clientLogin;
     }
 }

@@ -9,7 +9,7 @@ public interface DateBaseIf {
 
     void add(Cake cake1);
 
-    List<Cake> getCakesForClient(int clientId);
+    List<Cake> getCakesForClient(String clientLogin);
 
     List<Cake> getAllCake();
     void saveCake(List<Cake> cakes);
