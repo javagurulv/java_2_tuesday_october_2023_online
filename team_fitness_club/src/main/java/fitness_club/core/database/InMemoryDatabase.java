@@ -1,9 +1,9 @@
-package fitness_club.database;
+package fitness_club.core.database;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fitness_club.domain.Client;
+import fitness_club.core.domain.Client;
 
 public class InMemoryDatabase implements Database {
 

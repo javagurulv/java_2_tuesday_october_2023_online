@@ -1,6 +1,6 @@
 package fitness_club.console_UI;
 
-import fitness_club.services.DeleteClientService;
+import fitness_club.core.services.DeleteClientService;
 
 import java.util.Scanner;
 

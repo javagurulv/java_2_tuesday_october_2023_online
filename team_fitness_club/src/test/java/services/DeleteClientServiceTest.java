@@ -1,10 +1,10 @@
 package services;
 
-import fitness_club.database.InMemoryDatabase;
-import fitness_club.domain.Client;
-import fitness_club.domain.Workouts;
-import fitness_club.services.AddClientService;
-import fitness_club.services.DeleteClientService;
+import fitness_club.core.database.InMemoryDatabase;
+import fitness_club.core.domain.Client;
+import fitness_club.core.domain.Workouts;
+import fitness_club.core.services.AddClientService;
+import fitness_club.core.services.DeleteClientService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

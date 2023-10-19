@@ -1,8 +1,10 @@
 package fitness_club.console_UI;
 
-import fitness_club.domain.Workouts;
-import fitness_club.services.AddClientService;
-import fitness_club.services.GetWorkoutService;
+import fitness_club.core.domain.Workouts;
+import fitness_club.core.requests.ClientAndWorkoutRequest;
+import fitness_club.core.responses.ClientAndWorkoutResponse;
+import fitness_club.core.services.AddClientService;
+import fitness_club.core.services.GetWorkoutService;
 
 import java.util.Scanner;
 
@@ -32,8 +34,8 @@ public class AddClientUIAction implements UIAction {
         System.out.println("3. Group Classes");
         GetWorkoutService getWorkoutService = new GetWorkoutService();
         Workouts clientWorkout = getWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
-
-        service.addClient(clientFirstName, clientLastName, clientPersonalCode, clientWorkout);
+        ClientAndWorkoutRequest request = new ClientAndWorkoutRequest(clientFirstName, clientLastName, clientPersonalCode, clientWorkout);
+        ClientAndWorkoutResponse response = service.execute(request);
 
         System.out.println("New client was added to list.");
     }
