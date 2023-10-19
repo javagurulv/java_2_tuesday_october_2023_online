@@ -18,11 +18,11 @@ public class GetAllCakesForClientUIAction implements UIAction{
     public void execute() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Please enter your client ID!");
-        int clientId = scan.nextInt();
-        GetAllCakesForClientRequest request = new GetAllCakesForClientRequest(clientId);
+        String clientLogin = scan.nextLine();
+        GetAllCakesForClientRequest request = new GetAllCakesForClientRequest(clientLogin);
         GetAllCakesForClientResponse response = getCakesForClientService.execute(request);
         for (Cake cake : response.getCakes()) {
-            if (request.getClientId() == cake.getClientId()) {
+            if (request.getClientLogin().equals(cake.getClientLogin())) {
                 System.out.println(cake);
             }
         }

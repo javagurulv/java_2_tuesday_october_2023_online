@@ -9,7 +9,7 @@ public class Cake  {
     private String filling;
     private String shell;
     private String decor;
-    private int clientId;
+    private String clientLogin;
     private int price;
 
 
@@ -20,18 +20,18 @@ public class Cake  {
                 ", filling='" + filling + '\'' +
                 ", shell='" + shell + '\'' +
                 ", decor='" + decor + '\'' +
-                ", clientId=" + clientId +
+                ", client=" + clientLogin +
                 ", price=" + price +
                 '}';
     }
 
-    public Cake (String biscuit, String filling, String shell, String decor, int clientId, int price){
+    public Cake (String biscuit, String filling, String shell, String decor, String clientLogin, int price){
         this.biscuit=biscuit;
         this.filling=filling;
         this.shell = shell;
         this.decor = decor;
         this.price=price;
-        this.clientId = clientId;
+        this.clientLogin = clientLogin;
 
     }
 
@@ -67,12 +67,12 @@ public class Cake  {
         this.decor = decor;
     }
 
-    public int getClientId() {
-        return clientId;
+    public String getClientLogin() {
+        return clientLogin;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
+    public void setClientId(String clientLogin) {
+        this.clientLogin = clientLogin;
     }
 
     public int getPrice() {
@@ -88,12 +88,12 @@ public class Cake  {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cake cake = (Cake) o;
-        return clientId == cake.clientId && price == cake.price && Objects.equals(biscuit, cake.biscuit) && Objects.equals(filling, cake.filling) && Objects.equals(shell, cake.shell) && Objects.equals(decor, cake.decor);
+        return clientLogin == cake.clientLogin && price == cake.price && Objects.equals(biscuit, cake.biscuit) && Objects.equals(filling, cake.filling) && Objects.equals(shell, cake.shell) && Objects.equals(decor, cake.decor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(biscuit, filling, shell, decor, clientId, price);
+        return Objects.hash(biscuit, filling, shell, decor, clientLogin, price);
     }
 
 

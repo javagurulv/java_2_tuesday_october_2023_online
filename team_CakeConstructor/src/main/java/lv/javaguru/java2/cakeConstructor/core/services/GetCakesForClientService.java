@@ -17,7 +17,7 @@ public class GetCakesForClientService {
         List<Cake> cakes = dataBase.getAllCake();
         Cake cake1 = null;
         for (Cake cake : cakes) {
-            if (request.getClientId() == cake.getClientId()) {
+            if (request.getClientLogin() == cake.getClientLogin()) {
                 cake1=cake;
             }
         }
