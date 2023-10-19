@@ -1,8 +1,9 @@
 package services;
 
-import database.InMemoryDatabase;
-import domain.Client;
-import domain.Workouts;
+import fitness_club.database.InMemoryDatabase;
+import fitness_club.domain.Client;
+import fitness_club.domain.Workouts;
+import fitness_club.services.AddClientService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

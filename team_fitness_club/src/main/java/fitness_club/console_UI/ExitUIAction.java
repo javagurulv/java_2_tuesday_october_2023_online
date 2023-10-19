@@ -1,4 +1,4 @@
-package console_UI;
+package fitness_club.console_UI;
 
 public class ExitUIAction implements UIAction {
 

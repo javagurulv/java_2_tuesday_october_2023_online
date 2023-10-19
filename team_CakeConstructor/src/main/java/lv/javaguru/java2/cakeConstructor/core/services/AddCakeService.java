@@ -24,7 +24,7 @@ public class AddCakeService {
         if (!errors.isEmpty()){
             return new AddCakeResponse(errors);
         }
-        Cake cake = list.createCake(request.getClientId());
+        Cake cake = list.createCake(request.getClientLogin());
         dataBase.add(cake);
         return new AddCakeResponse(cake);
     }

@@ -1,17 +1,17 @@
 package services;
 
-import database.InMemoryDatabase;
-import domain.Client;
-import domain.Workouts;
+import fitness_club.database.InMemoryDatabase;
+import fitness_club.domain.Client;
+import fitness_club.domain.Workouts;
+import fitness_club.services.AddClientService;
+import fitness_club.services.DeleteClientService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteClientServiceTest {
     private AddClientService addClient;
     private InMemoryDatabase inMemoryDatabase;
-    private  DeleteClientService deleteClient;
+    private DeleteClientService deleteClient;
 
     @Test
     void removeClient() {

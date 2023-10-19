@@ -12,15 +12,15 @@ public class DataBase implements DateBaseIf {
 
     @Override
     public void add(Cake cake) {
-        cake.setClientId(cake.getClientId());
+        cake.setClientId(cake.getClientLogin());
         cakes.add(cake);
     }
 
     @Override
-    public List<Cake> getCakesForClient(int clientId) {
+    public List<Cake> getCakesForClient(String clientLogin) {
         List<Cake> cakeForClientId = new ArrayList<>();
         for (Cake cake : cakes) {
-            if (clientId == cake.getClientId()) {
+            if (clientLogin == cake.getClientLogin()) {
                 cakeForClientId.add(cake);
             }
         }

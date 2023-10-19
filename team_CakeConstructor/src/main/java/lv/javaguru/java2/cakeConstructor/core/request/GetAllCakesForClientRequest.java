@@ -2,13 +2,13 @@ package lv.javaguru.java2.cakeConstructor.core.request;
 
 public class GetAllCakesForClientRequest {
 
-    private int clientId;
+    private String clientLogin;
 
 
-    public GetAllCakesForClientRequest (int clientId){
-        this.clientId = clientId;
+    public GetAllCakesForClientRequest (String clientLogin){
+        this.clientLogin = clientLogin;
     }
-    public int getClientId() {
-        return clientId;
+    public String getClientLogin() {
+        return clientLogin;
     }
 }

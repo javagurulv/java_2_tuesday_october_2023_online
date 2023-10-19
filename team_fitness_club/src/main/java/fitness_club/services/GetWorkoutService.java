@@ -1,5 +1,5 @@
-package services;
-import domain.Workouts;
+package fitness_club.services;
+import fitness_club.domain.Workouts;
 
 public class GetWorkoutService {
 
