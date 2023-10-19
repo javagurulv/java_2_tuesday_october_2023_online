@@ -15,8 +15,10 @@ public class AddClientService {
 
     private AddClientValidator validator;
 
-    public AddClientService(AddClientValidator validator) {
+    public AddClientService(Database database,
+                            AddClientValidator validator) {
         this.validator = validator;
+        this.database = database;
     }
 
     public AddClientResponse execute(AddClientRequest request) {

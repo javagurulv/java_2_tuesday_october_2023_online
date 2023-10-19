@@ -1,14 +1,16 @@
 package fitness_club.console_UI;
 
+import fitness_club.requests.DeleteClientRequest;
+import fitness_club.responses.DeleteClientResponse;
 import fitness_club.services.DeleteClientService;
 
 import java.util.Scanner;
 
 public class DeleteClientUIAction implements UIAction {
-    private DeleteClientService service;
+    private DeleteClientService deleteClientService;
 
-    public DeleteClientUIAction(DeleteClientService service) {
-        this.service = service;
+    public DeleteClientUIAction(DeleteClientService deleteClientService) {
+        this.deleteClientService = deleteClientService;
     }
 
     @Override
@@ -17,13 +19,13 @@ public class DeleteClientUIAction implements UIAction {
         System.out.println("Enter client personal code: ");
         String clientPersonalCode = scanner.nextLine();
         DeleteClientRequest request = new DeleteClientRequest(clientPersonalCode);
-        DeleteClientResponse response = service.removeClient(request);
-        service.removeClient(clientPersonalCode);
+        DeleteClientResponse response = deleteClientService.execute(request);
+        deleteClientService.execute(request);
 
-        if (response.hasErrors()) {
+        if (response.containsErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
         } else {
-            if (response.isClientRemoved) {
+            if (response.isClientDeleted()) {
                 System.out.println("Client was removed from  list.");
             } else {
                 System.out.println("Client was removed from  list.");
