@@ -3,23 +3,24 @@ package fitness_club;
 import fitness_club.console_UI.*;
 import fitness_club.database.Database;
 import fitness_club.database.InFileDatabase;
-import fitness_club.services.AddClientService;
-import fitness_club.services.ChangeClientWorkoutService;
-import fitness_club.services.DeleteClientService;
-import fitness_club.services.GetAllClientsService;
+import fitness_club.database.InMemoryDatabase;
+import fitness_club.services.*;
+
 import java.util.Scanner;
 
 public class ClientWorkoutsApplication {
     public static void main(String[] args) {
-        Database database = new InFileDatabase();
+        Database database = new InMemoryDatabase();
         AddClientService addClientService = new AddClientService(database);
         DeleteClientService deleteClientService = new DeleteClientService(database);
         GetAllClientsService getAllClientsService = new GetAllClientsService(database);
+        ChangeClientAgeGroupService changeClientAgeGroupService = new ChangeClientAgeGroupService(database);
         ChangeClientWorkoutService changeClientWorkoutService = new ChangeClientWorkoutService(database);
 
         AddClientUIAction addClientUIAction = new AddClientUIAction(addClientService);
         DeleteClientUIAction deleteClientUIAction = new DeleteClientUIAction(deleteClientService);
         GetAllClientsUIAction getAllClientsUIAction = new GetAllClientsUIAction(getAllClientsService);
+        ChangeClientAgeGrpoupUIAction changeClientAgeGrpoupUIAction = new ChangeClientAgeGrpoupUIAction(changeClientAgeGroupService);
         ChangeWorkoutUIAction changeWorkoutUIAction = new ChangeWorkoutUIAction(changeClientWorkoutService);
         ExitUIAction exitUIAction = new ExitUIAction();
 
@@ -41,6 +42,9 @@ public class ClientWorkoutsApplication {
                     changeWorkoutUIAction.execute();
                     break;
                 case 5:
+                    changeClientAgeGrpoupUIAction.execute();
+                    break;
+                case 6:
                     exitUIAction.execute();
             }
         }
@@ -53,7 +57,8 @@ public class ClientWorkoutsApplication {
         System.out.println("2. Delete client from list");
         System.out.println("3. Show all clients in the list");
         System.out.println("4. Change client workout");
-        System.out.println("5. Exit");
+        System.out.println("5. Change client age group");
+        System.out.println("6. Exit");
         System.out.println("");
     }
 

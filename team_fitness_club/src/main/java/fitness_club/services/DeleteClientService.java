@@ -10,9 +10,8 @@ public class DeleteClientService {
         this.database = database;
     }
 
-    public void removeClient(String firstName, String lastName, String personalCode) {
-        Client client = new Client(firstName, lastName, personalCode);
-        database.removeClient(client);
+    public void removeClient(String personalCode) {
+              database.removeClient(personalCode);
     }
 }
 

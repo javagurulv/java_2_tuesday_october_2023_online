@@ -1,7 +1,9 @@
 package fitness_club.console_UI;
 
+import fitness_club.domain.ClientAgeGroups;
 import fitness_club.domain.Workouts;
 import fitness_club.services.AddClientService;
+import fitness_club.services.GetClientAgeGroupService;
 import fitness_club.services.GetWorkoutService;
 
 import java.util.Scanner;
@@ -26,6 +28,12 @@ public class AddClientUIAction implements UIAction {
                 toUpperCase().concat(clientLastName.substring(1)) : clientLastName;
         System.out.println("Enter client personal code: ");
         String clientPersonalCode = scanner.nextLine();
+        System.out.println("Choose client age group: ");
+        System.out.println("1. Child");
+        System.out.println("2. Adult");
+        System.out.println("3. Senior");
+        GetClientAgeGroupService getClientAgeGroupService = new GetClientAgeGroupService();
+        ClientAgeGroups clientAgeGroups = getClientAgeGroupService.getClientAgeGroup(Integer.parseInt(scanner.nextLine()));
         System.out.println("Choose client workout.");
         System.out.println("1. GYM");
         System.out.println("2. Swimming Pool");
@@ -33,7 +41,7 @@ public class AddClientUIAction implements UIAction {
         GetWorkoutService getWorkoutService = new GetWorkoutService();
         Workouts clientWorkout = getWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
 
-        service.addClient(clientFirstName, clientLastName, clientPersonalCode, clientWorkout);
+        service.addClient(clientFirstName, clientLastName, clientPersonalCode, clientAgeGroups, clientWorkout);
 
         System.out.println("New client was added to list.");
     }

@@ -17,10 +17,6 @@ public class ChangeWorkoutUIAction implements UIAction {
     public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Change client workout: ");
-        System.out.println("Enter client first name: ");
-        String clientFirstName = scanner.nextLine();
-        System.out.println("Enter client last name: ");
-        String clientLastName = scanner.nextLine();
         System.out.println("Enter client personal code: ");
         String clientPersonalCode = scanner.nextLine();
         System.out.println("Choose new workout.");
@@ -30,7 +26,7 @@ public class ChangeWorkoutUIAction implements UIAction {
         GetWorkoutService getWorkoutService = new GetWorkoutService();
         Workouts newWorkout = getWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
 
-        service.changeClientWorkout(clientFirstName, clientLastName, clientPersonalCode, newWorkout);
+        service.changeClientWorkout(clientPersonalCode, newWorkout);
 
         System.out.println("Client workout has been changed.");
     }
