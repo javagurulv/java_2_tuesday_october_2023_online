@@ -1,6 +1,6 @@
-package fitness_club.core.database;
+package fitness_club.database;
 
-import fitness_club.core.domain.Client;
+import fitness_club.domain.Client;
 
 import java.util.List;
 

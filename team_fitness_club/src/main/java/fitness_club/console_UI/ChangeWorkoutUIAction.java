@@ -1,6 +1,8 @@
 package fitness_club.console_UI;
 
 import fitness_club.domain.Workouts;
+import fitness_club.requests.ChangeWorkoutRequest;
+import fitness_club.responses.ClientAndWorkoutResponse;
 import fitness_club.services.ChangeClientWorkoutService;
 import fitness_club.services.GetWorkoutService;
 
@@ -23,10 +25,10 @@ public class ChangeWorkoutUIAction implements UIAction {
         System.out.println("1. GYM");
         System.out.println("2. Swimming Pool");
         System.out.println("3. Group Classes");
-        GetWorkoutService getWorkoutService = new GetWorkoutService();
-        Workouts newWorkout = getWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
+        Workouts newWorkout = GetWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
 
-        service.changeClientWorkout(clientPersonalCode, newWorkout);
+        ChangeWorkoutRequest request = new ChangeWorkoutRequest(clientPersonalCode, newWorkout);
+        ClientAndWorkoutResponse response = service.execute(request);
 
         System.out.println("Client workout has been changed.");
     }

@@ -1,6 +1,6 @@
-package fitness_club.core.responses;
+package fitness_club.responses;
 
-import fitness_club.core.domain.Client;
+import fitness_club.domain.Client;
 
 public class ClientAndWorkoutResponse {
 

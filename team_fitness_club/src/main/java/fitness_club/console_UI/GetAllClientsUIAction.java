@@ -1,7 +1,7 @@
 package fitness_club.console_UI;
 
-import fitness_club.core.domain.Client;
-import fitness_club.core.services.GetAllClientsService;
+import fitness_club.domain.Client;
+import fitness_club.services.GetAllClientsService;
 
 public class GetAllClientsUIAction implements UIAction {
     private GetAllClientsService service;

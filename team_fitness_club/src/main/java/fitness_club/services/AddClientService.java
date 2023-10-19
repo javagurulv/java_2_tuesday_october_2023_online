@@ -4,6 +4,8 @@ import fitness_club.database.Database;
 import fitness_club.domain.Client;
 import fitness_club.domain.ClientAgeGroups;
 import fitness_club.domain.Workouts;
+import fitness_club.requests.ClientAndWorkoutRequest;
+import fitness_club.responses.ClientAndWorkoutResponse;
 
 public class AddClientService {
 
@@ -13,8 +15,9 @@ public class AddClientService {
         this.database = database;
     }
 
-    public void addClient(String firstName,String lastName, String personalCode, ClientAgeGroups clientAgeGroup, Workouts workout) {
-        Client client = new Client(firstName, lastName, personalCode, clientAgeGroup, workout);
+    public ClientAndWorkoutResponse execute(ClientAndWorkoutRequest request) {
+        Client client = new Client(request.getFirstName(), request.getLastName(), request.getPersonalCode(), request.getClientAgeGroup(), request.getWorkout());
         database.addClient(client);
+        return new ClientAndWorkoutResponse(client);
     }
 }

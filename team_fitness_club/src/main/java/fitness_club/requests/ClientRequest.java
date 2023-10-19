@@ -1,4 +1,4 @@
-package fitness_club.core.requests;
+package fitness_club.requests;
 
 public class ClientRequest {
 

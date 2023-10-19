@@ -1,4 +1,4 @@
-package fitness_club.core.domain;
+package fitness_club.domain;
 
 public enum Workouts {
     GYM,
