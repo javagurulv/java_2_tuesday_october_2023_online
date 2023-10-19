@@ -15,7 +15,5 @@ public class CoreResponse {
     public List<CoreError> getErrors() {
         return errors;
     }
-    public boolean hasErrors() {
-        return true;
-    }
+    public boolean hasErrors() { return errors != null && !errors.isEmpty(); }
 }
