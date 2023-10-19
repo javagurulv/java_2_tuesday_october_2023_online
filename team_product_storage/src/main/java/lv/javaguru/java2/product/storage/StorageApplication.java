@@ -1,12 +1,14 @@
-import database.Database;
-import database.InMemoryDatabase;
-import services.AddProductService;
-import services.RemoveProductService;
-import services.GetAllProductsService;
-import ui.AddProductUIAction;
-import ui.RemoveProductUIAction;
-import ui.ExitProgramUIAction;
-import ui.PrintAllProductsUIAction;
+package lv.javaguru.java2.product.storage;
+
+import lv.javaguru.java2.product.storage.core.database.Database;
+import lv.javaguru.java2.product.storage.core.database.InMemoryDatabase;
+import lv.javaguru.java2.product.storage.core.services.AddProductService;
+import lv.javaguru.java2.product.storage.core.services.RemoveProductService;
+import lv.javaguru.java2.product.storage.core.services.GetAllProductsService;
+import lv.javaguru.java2.product.storage.ui.AddProductUIAction;
+import lv.javaguru.java2.product.storage.ui.RemoveProductUIAction;
+import lv.javaguru.java2.product.storage.ui.ExitProgramUIAction;
+import lv.javaguru.java2.product.storage.ui.PrintAllProductsUIAction;
 
 import java.util.Scanner;
 

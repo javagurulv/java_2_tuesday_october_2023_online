@@ -1,6 +1,4 @@
-package ui;
-
-import java.util.Scanner;
+package lv.javaguru.java2.product.storage.ui;
 
 public class ExitProgramUIAction implements UIAction{
 
