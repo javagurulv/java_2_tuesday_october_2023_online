@@ -1,5 +1,7 @@
 package fitness_club.services;
 import fitness_club.database.Database;
+import fitness_club.requests.DeleteClientRequest;
+import fitness_club.responses.DeleteClientResponse;
 
 public class DeleteClientService {
 
@@ -9,8 +11,9 @@ public class DeleteClientService {
         this.database = database;
     }
 
-    public void removeClient(String personalCode) {
-              database.removeClient(personalCode);
+    public DeleteClientResponse execute(DeleteClientRequest request) {
+        database.removeClient(request.getClientPersonalCodeToDelete());
+        return new DeleteClientResponse(true);
     }
 }
 
