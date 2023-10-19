@@ -1,7 +1,12 @@
-import console_UI.*;
-import database.*;
-import services.*;
+package fitness_club;
 
+import fitness_club.console_UI.*;
+import fitness_club.database.Database;
+import fitness_club.database.InFileDatabase;
+import fitness_club.services.AddClientService;
+import fitness_club.services.ChangeClientWorkoutService;
+import fitness_club.services.DeleteClientService;
+import fitness_club.services.GetAllClientsService;
 import java.util.Scanner;
 
 public class ClientWorkoutsApplication {
