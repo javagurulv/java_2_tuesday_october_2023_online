@@ -137,11 +137,12 @@ public class ListOfIngridients {
         return price;
     }
 
-    public String findBiscuit (List<Biscuit>biscuits, int biscuitId){
-        String biscuit=" ";
-        for (Biscuit biscuit1:biscuits){
-            if (biscuit1.getBiscuitId()==biscuitId){
+    public String findBiscuit(List<Biscuit> biscuits, int biscuitId) {
+        String biscuit = null;
+        for (Biscuit biscuit1 : biscuits) {
+            if (biscuit1.getBiscuitId() == biscuitId) {
                 biscuit = biscuit1.getTypeOfBiscuit();
+                break;
             }
         }
         return biscuit;
@@ -174,13 +175,31 @@ public class ListOfIngridients {
         return decor;
     }
 
-    public String biscuit (List<Biscuit>biscuits){
+    public String biscuit(List<Biscuit> biscuits) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Choose a biscuit!");
-        printListOfBiscuit(biscuits);
-        int biscuitId = scan.nextInt();
-        return findBiscuit(biscuits,biscuitId);
+        String chosenBiscuit = null;
+
+        while (chosenBiscuit == null) {
+            try {
+                System.out.println("Choose a biscuit! Please enter a biscuit ID.");
+                printListOfBiscuit(biscuits);
+                int biscuitId = scan.nextInt();
+                scan.nextLine();
+
+                chosenBiscuit = findBiscuit(biscuits, biscuitId);
+
+                if (chosenBiscuit == null) {
+                    System.out.println("Invalid biscuit ID. Please choose a valid biscuit ID.");
+                }
+            } catch (java.util.InputMismatchException exception) {
+                System.out.println("Invalid input. Please enter a valid biscuit ID.");
+                scan.nextLine();
+            }
+        }
+
+        return chosenBiscuit;
     }
+
     public String filling (List <Filling> fillings){
         Scanner scan = new Scanner(System.in);
         System.out.println("Choose a filling!");
