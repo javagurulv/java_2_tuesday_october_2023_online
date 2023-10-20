@@ -297,7 +297,9 @@ public class ListOfIngridients {
         String decor = decor(decors);
         price = priceDecor(decors, decor) + price;
 
-        Cake cake1 = new Cake(biscuit,filling,shell,decor,clientId,price);
+        // PLEASE FIX
+        //Cake cake1 = new Cake(biscuit,filling,shell,decor,clientId,price);
+        Cake cake1 = null;
 
         return cake1;
     }
