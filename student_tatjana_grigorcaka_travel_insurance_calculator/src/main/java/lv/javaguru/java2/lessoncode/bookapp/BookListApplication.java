@@ -6,7 +6,6 @@ import lv.javaguru.java2.lessoncode.bookapp.core.services.AddBookService;
 import lv.javaguru.java2.lessoncode.bookapp.core.services.AddBookValidator;
 import lv.javaguru.java2.lessoncode.bookapp.core.services.DeleteBookService;
 import lv.javaguru.java2.lessoncode.bookapp.core.services.GetAllBooksService;
-import lv.javaguru.java2.lessoncode.bookapp.services.*;
 import lv.javaguru.java2.lessoncode.bookapp.console_ui.AddBookUIAction;
 import lv.javaguru.java2.lessoncode.bookapp.console_ui.DeleteBookUIAction;
 import lv.javaguru.java2.lessoncode.bookapp.console_ui.PrintAllBooksUIAction;
