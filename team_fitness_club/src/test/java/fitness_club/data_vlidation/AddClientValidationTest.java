@@ -29,7 +29,7 @@ class AddClientValidationTest {
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
             assertEquals(errors.get(0).getField(), "firstName");
-            assertEquals(errors.get(0).getMessage(), "Field first name must not be empty!");
+            assertEquals(errors.get(0).getMessage(), "Field first name must not be empty or contain symbols or numbers!");
         }
     }
 
@@ -46,7 +46,7 @@ class AddClientValidationTest {
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
             assertEquals(errors.get(0).getField(), "firstName");
-            assertEquals(errors.get(0).getMessage(), "Field first name must not be empty!");
+            assertEquals(errors.get(0).getMessage(), "Field first name must not be empty or contain symbols or numbers!");
         }
     }
 
@@ -63,7 +63,7 @@ class AddClientValidationTest {
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
             assertEquals(errors.get(0).getField(), "lastName");
-            assertEquals(errors.get(0).getMessage(), "Field last name must not be empty!");
+            assertEquals(errors.get(0).getMessage(), "Field last name must not be empty or contain symbols or numbers!");
         }
     }
 
@@ -80,7 +80,7 @@ class AddClientValidationTest {
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
             assertEquals(errors.get(0).getField(), "lastName");
-            assertEquals(errors.get(0).getMessage(), "Field last name must not be empty!");
+            assertEquals(errors.get(0).getMessage(), "Field last name must not be empty or contain symbols or numbers!");
         }
     }
 
@@ -115,6 +115,66 @@ class AddClientValidationTest {
             assertEquals(errors.size(), 1);
             assertEquals(errors.get(0).getField(), "personalCode");
             assertEquals(errors.get(0).getMessage(), "Field personal code must not be empty!");
+        }
+    }
+    @Test
+    void shouldReturnErrorWhenClientFirstNameIsNumbers() {
+        AddClientRequest request = mock(AddClientRequest.class);
+        {
+            when(request.getFirstName()).thenReturn("6");
+            when(request.getLastName()).thenReturn("lastName");
+            when(request.getPersonalCode()).thenReturn("personalCode");
+            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
+            when(request.getWorkout()).thenReturn(workout);
+            List<CoreError> errors = requestValidator.validate(request);
+            assertEquals(errors.size(), 1);
+            assertEquals(errors.get(0).getField(), "firstName");
+            assertEquals(errors.get(0).getMessage(), "Field first name must not be empty or contain symbols or numbers!");
+        }
+    }
+    @Test
+    void shouldReturnErrorWhenClientFirstNameIsSymbol() {
+        AddClientRequest request = mock(AddClientRequest.class);
+        {
+            when(request.getFirstName()).thenReturn("!");
+            when(request.getLastName()).thenReturn("lastName");
+            when(request.getPersonalCode()).thenReturn("personalCode");
+            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
+            when(request.getWorkout()).thenReturn(workout);
+            List<CoreError> errors = requestValidator.validate(request);
+            assertEquals(errors.size(), 1);
+            assertEquals(errors.get(0).getField(), "firstName");
+            assertEquals(errors.get(0).getMessage(), "Field first name must not be empty or contain symbols or numbers!");
+        }
+    }
+    @Test
+    void shouldReturnErrorWhenClientLastNameIsNumbers() {
+        AddClientRequest request = mock(AddClientRequest.class);
+        {
+            when(request.getFirstName()).thenReturn("firstName");
+            when(request.getLastName()).thenReturn("777");
+            when(request.getPersonalCode()).thenReturn("personalCode");
+            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
+            when(request.getWorkout()).thenReturn(workout);
+            List<CoreError> errors = requestValidator.validate(request);
+            assertEquals(errors.size(), 1);
+            assertEquals(errors.get(0).getField(), "lastName");
+            assertEquals(errors.get(0).getMessage(), "Field last name must not be empty or contain symbols or numbers!");
+        }
+    }
+    @Test
+    void shouldReturnErrorWhenClientLastNameIsSymbol() {
+        AddClientRequest request = mock(AddClientRequest.class);
+        {
+            when(request.getFirstName()).thenReturn("firstName");
+            when(request.getLastName()).thenReturn(",");
+            when(request.getPersonalCode()).thenReturn("personalCode");
+            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
+            when(request.getWorkout()).thenReturn(workout);
+            List<CoreError> errors = requestValidator.validate(request);
+            assertEquals(errors.size(), 1);
+            assertEquals(errors.get(0).getField(), "lastName");
+            assertEquals(errors.get(0).getMessage(), "Field last name must not be empty or contain symbols or numbers!");
         }
     }
 

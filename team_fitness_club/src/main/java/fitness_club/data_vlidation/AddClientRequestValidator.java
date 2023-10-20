@@ -16,15 +16,17 @@ public class AddClientRequestValidator {
     }
 
     private Optional<CoreError> validateFirstName(AddClientRequest request) {
-        return request.getFirstName() == null || request.getFirstName().isEmpty()
-                ? Optional.of(new CoreError("firstName", "Field first name must not be empty!"))
+        return request.getFirstName() == null || request.getFirstName().isEmpty() || !request.getFirstName().matches("[a-zA-Z]+")
+                ? Optional.of(new CoreError("firstName", "Field first name must not be empty or contain symbols or numbers!"))
                 : Optional.empty();
     }
+
     private Optional<CoreError> validateLastName(AddClientRequest request) {
-        return request.getLastName() == null || request.getLastName().isEmpty()
-                ? Optional.of(new CoreError("lastName", "Field last name must not be empty!"))
+        return request.getLastName() == null || request.getLastName().isEmpty() || !request.getLastName().matches("[a-zA-Z]+")
+                ? Optional.of(new CoreError("lastName", "Field last name must not be empty or contain symbols or numbers!"))
                 : Optional.empty();
     }
+
     private Optional<CoreError> validatePersonalCode(AddClientRequest request) {
         return request.getPersonalCode() == null || request.getPersonalCode().isEmpty()
                 ? Optional.of(new CoreError("personalCode", "Field personal code must not be empty!"))
