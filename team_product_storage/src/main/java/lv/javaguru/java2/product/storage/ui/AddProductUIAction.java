@@ -21,7 +21,14 @@ public class AddProductUIAction implements UIAction {
         String productName = scanner.nextLine();
         AddProductRequest request = new AddProductRequest(productName);
         AddProductResponse response = addProductService.execute(request);
-        System.out.println("New product id was: " + response.getNewProduct().getId());
-        System.out.println("Your product was added to list.");
+
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError ->
+                    System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage())
+            );
+        } else {
+            System.out.println("New product id was: " + response.getNewProduct().getId());
+            System.out.println("Your product was added to list.");
+        }
     }
 }

@@ -4,7 +4,7 @@ import lv.javaguru.java2.product.storage.core.domain.Product;
 
 import java.util.List;
 
-public class GetAllProductsResponse {
+public class GetAllProductsResponse extends CoreResponse{
 
     private List<Product> products;
 
