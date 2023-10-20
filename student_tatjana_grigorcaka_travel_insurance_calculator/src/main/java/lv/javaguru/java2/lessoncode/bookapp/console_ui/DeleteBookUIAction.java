@@ -1,8 +1,8 @@
-package lv.javaguru.java2.lessoncode.bookapp.ui;
+package lv.javaguru.java2.lessoncode.bookapp.console_ui;
 
-import lv.javaguru.java2.lessoncode.bookapp.requests.RemoveBookRequest;
-import lv.javaguru.java2.lessoncode.bookapp.responses.RemoveBookResponse;
-import lv.javaguru.java2.lessoncode.bookapp.services.DeleteBookService;
+import lv.javaguru.java2.lessoncode.bookapp.core.requests.RemoveBookRequest;
+import lv.javaguru.java2.lessoncode.bookapp.core.responses.RemoveBookResponse;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.DeleteBookService;
 
 import java.util.Scanner;
 

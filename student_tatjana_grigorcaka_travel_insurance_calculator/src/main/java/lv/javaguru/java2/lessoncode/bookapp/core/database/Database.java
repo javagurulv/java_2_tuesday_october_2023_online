@@ -1,6 +1,6 @@
-package lv.javaguru.java2.lessoncode.bookapp.database;
+package lv.javaguru.java2.lessoncode.bookapp.core.database;
 
-import lv.javaguru.java2.lessoncode.bookapp.domain.Book;
+import lv.javaguru.java2.lessoncode.bookapp.core.domain.Book;
 
 import java.util.List;
 import java.util.Optional;

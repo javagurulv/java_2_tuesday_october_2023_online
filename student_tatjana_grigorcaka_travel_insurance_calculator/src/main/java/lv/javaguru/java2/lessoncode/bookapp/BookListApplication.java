@@ -1,12 +1,16 @@
 package lv.javaguru.java2.lessoncode.bookapp;
 
-import lv.javaguru.java2.lessoncode.bookapp.database.Database;
-import lv.javaguru.java2.lessoncode.bookapp.database.InMemoryDatabase;
+import lv.javaguru.java2.lessoncode.bookapp.core.database.Database;
+import lv.javaguru.java2.lessoncode.bookapp.core.database.InMemoryDatabase;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.AddBookService;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.AddBookValidator;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.DeleteBookService;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.GetAllBooksService;
 import lv.javaguru.java2.lessoncode.bookapp.services.*;
-import lv.javaguru.java2.lessoncode.bookapp.ui.AddBookUIAction;
-import lv.javaguru.java2.lessoncode.bookapp.ui.DeleteBookUIAction;
-import lv.javaguru.java2.lessoncode.bookapp.ui.PrintAllBooksUIAction;
-import lv.javaguru.java2.lessoncode.bookapp.ui.ProgramExitUIAction;
+import lv.javaguru.java2.lessoncode.bookapp.console_ui.AddBookUIAction;
+import lv.javaguru.java2.lessoncode.bookapp.console_ui.DeleteBookUIAction;
+import lv.javaguru.java2.lessoncode.bookapp.console_ui.PrintAllBooksUIAction;
+import lv.javaguru.java2.lessoncode.bookapp.console_ui.ProgramExitUIAction;
 
 import java.util.Scanner;
 

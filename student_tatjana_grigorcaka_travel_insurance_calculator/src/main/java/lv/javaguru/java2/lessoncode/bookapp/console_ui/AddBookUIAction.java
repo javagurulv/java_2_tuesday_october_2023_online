@@ -1,9 +1,9 @@
-package lv.javaguru.java2.lessoncode.bookapp.ui;
+package lv.javaguru.java2.lessoncode.bookapp.console_ui;
 
-import lv.javaguru.java2.lessoncode.bookapp.requests.AddBookRequest;
-import lv.javaguru.java2.lessoncode.bookapp.responses.AddBookResponse;
-import lv.javaguru.java2.lessoncode.bookapp.responses.CoreError;
-import lv.javaguru.java2.lessoncode.bookapp.services.AddBookService;
+import lv.javaguru.java2.lessoncode.bookapp.core.requests.AddBookRequest;
+import lv.javaguru.java2.lessoncode.bookapp.core.responses.AddBookResponse;
+import lv.javaguru.java2.lessoncode.bookapp.core.responses.CoreError;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.AddBookService;
 
 import java.util.Scanner;
 

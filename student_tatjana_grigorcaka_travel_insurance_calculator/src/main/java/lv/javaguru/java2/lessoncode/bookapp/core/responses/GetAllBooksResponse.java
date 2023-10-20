@@ -1,6 +1,6 @@
-package lv.javaguru.java2.lessoncode.bookapp.responses;
+package lv.javaguru.java2.lessoncode.bookapp.core.responses;
 
-import lv.javaguru.java2.lessoncode.bookapp.domain.Book;
+import lv.javaguru.java2.lessoncode.bookapp.core.domain.Book;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package lv.javaguru.java2.lessoncode.bookapp.requests;
+package lv.javaguru.java2.lessoncode.bookapp.core.requests;
 
 public class RemoveBookRequest {
 

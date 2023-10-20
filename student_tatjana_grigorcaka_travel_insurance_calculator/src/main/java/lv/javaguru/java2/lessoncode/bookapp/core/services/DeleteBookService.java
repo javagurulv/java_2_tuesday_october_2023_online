@@ -1,9 +1,9 @@
-package lv.javaguru.java2.lessoncode.bookapp.services;
+package lv.javaguru.java2.lessoncode.bookapp.core.services;
 
-import lv.javaguru.java2.lessoncode.bookapp.database.Database;
-import lv.javaguru.java2.lessoncode.bookapp.requests.RemoveBookRequest;
-import lv.javaguru.java2.lessoncode.bookapp.responses.CoreError;
-import lv.javaguru.java2.lessoncode.bookapp.responses.RemoveBookResponse;
+import lv.javaguru.java2.lessoncode.bookapp.core.database.Database;
+import lv.javaguru.java2.lessoncode.bookapp.core.requests.RemoveBookRequest;
+import lv.javaguru.java2.lessoncode.bookapp.core.responses.CoreError;
+import lv.javaguru.java2.lessoncode.bookapp.core.responses.RemoveBookResponse;
 
 
 import java.util.ArrayList;

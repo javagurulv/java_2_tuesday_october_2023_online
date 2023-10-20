@@ -1,4 +1,4 @@
-package lv.javaguru.java2.lessoncode.bookapp.domain;
+package lv.javaguru.java2.lessoncode.bookapp.core.domain;
 
 import java.util.Objects;
 

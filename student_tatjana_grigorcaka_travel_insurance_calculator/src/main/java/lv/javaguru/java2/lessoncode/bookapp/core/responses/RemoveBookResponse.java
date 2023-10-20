@@ -1,4 +1,4 @@
-package lv.javaguru.java2.lessoncode.bookapp.responses;
+package lv.javaguru.java2.lessoncode.bookapp.core.responses;
 
 import java.util.List;
 

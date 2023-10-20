@@ -1,9 +1,8 @@
-package lv.javaguru.java2.lessoncode.bookapp.ui;
+package lv.javaguru.java2.lessoncode.bookapp.console_ui;
 
-import lv.javaguru.java2.lessoncode.bookapp.domain.Book;
-import lv.javaguru.java2.lessoncode.bookapp.requests.GetAllBooksRequest;
-import lv.javaguru.java2.lessoncode.bookapp.responses.GetAllBooksResponse;
-import lv.javaguru.java2.lessoncode.bookapp.services.GetAllBooksService;
+import lv.javaguru.java2.lessoncode.bookapp.core.requests.GetAllBooksRequest;
+import lv.javaguru.java2.lessoncode.bookapp.core.responses.GetAllBooksResponse;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.GetAllBooksService;
 
 public class PrintAllBooksUIAction implements UIAction {
 
