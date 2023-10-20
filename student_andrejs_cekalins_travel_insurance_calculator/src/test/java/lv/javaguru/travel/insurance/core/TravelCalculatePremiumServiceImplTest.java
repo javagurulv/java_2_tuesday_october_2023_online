@@ -20,11 +20,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@Disabled("PLEASE FIX BEFORE COMMIT IT AGAIN")
+
 @ExtendWith(MockitoExtension.class)
 class TravelCalculatePremiumServiceImplTest {
     @Mock
     private TravelCalculatePremiumRequestValidator requestValidator;
+    @Mock
+    private TravelPremiumUnderwriting travelPremiumUnderwriting;
     @Mock
     private DateTimeService dateTimeService;
 
@@ -94,14 +96,14 @@ class TravelCalculatePremiumServiceImplTest {
     @Test
     void shouldReturnResponseWithCorrectAgreementPrice() throws ParseException {
         Date dateFrom = dates.parse("01.10.2023");
-        Date dateTo = dates.parse("02.10.2023");
+        Date dateTo = dates.parse("05.10.2023");
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(dateFrom);
         when(request.getAgreementDateTo()).thenReturn(dateTo);
         when(requestValidator.validate(request)).thenReturn(List.of());
-        when(dateTimeService.getDaysBetween(request.getAgreementDateFrom(),request.getAgreementDateTo())).thenReturn(1L);
+        when(travelPremiumUnderwriting.calculatePremium(request)).thenReturn(new BigDecimal(4L));
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
-        assertEquals(response.getAgreementPrice(), new BigDecimal(1));
+        assertEquals(response.getAgreementPrice(), new BigDecimal(4));
     }
     private List<ValidationError> buildValidationErrorList() {
         return List.of(new ValidationError("field", "errorMessage!"));
