@@ -4,11 +4,11 @@ import lv.javaguru.java2.cakeConstructor.consoole_ui.AddCakeUIAction;
 import lv.javaguru.java2.cakeConstructor.consoole_ui.ExitUIAction;
 import lv.javaguru.java2.cakeConstructor.consoole_ui.GetAllCakesForClientUIAction;
 import lv.javaguru.java2.cakeConstructor.consoole_ui.UIAction;
-import lv.javaguru.java2.cakeConstructor.core.database.DataBase;
-import lv.javaguru.java2.cakeConstructor.core.database.DateBaseIf;
-import lv.javaguru.java2.cakeConstructor.core.services.AddCakeService;
-import lv.javaguru.java2.cakeConstructor.core.services.AddCakeValidator;
-import lv.javaguru.java2.cakeConstructor.core.services.GetCakesForClientService;
+import lv.javaguru.java2.cakeConstructor.core.cake.database.DataBase;
+import lv.javaguru.java2.cakeConstructor.core.cake.database.DateBaseIf;
+import lv.javaguru.java2.cakeConstructor.core.cake.services.AddCakeService;
+import lv.javaguru.java2.cakeConstructor.core.cake.services.AddCakeValidator;
+import lv.javaguru.java2.cakeConstructor.core.cake.services.GetCakesForClientService;
 
 
 import java.util.Scanner;

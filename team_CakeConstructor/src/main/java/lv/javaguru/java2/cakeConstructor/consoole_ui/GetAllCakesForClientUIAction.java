@@ -1,9 +1,9 @@
 package lv.javaguru.java2.cakeConstructor.consoole_ui;
 
-import lv.javaguru.java2.cakeConstructor.core.domain.Cake;
-import lv.javaguru.java2.cakeConstructor.core.request.GetAllCakesForClientRequest;
-import lv.javaguru.java2.cakeConstructor.core.responses.GetAllCakesForClientResponse;
-import lv.javaguru.java2.cakeConstructor.core.services.GetCakesForClientService;
+import lv.javaguru.java2.cakeConstructor.core.cake.domain.Cake;
+import lv.javaguru.java2.cakeConstructor.core.cake.request.GetAllCakesForClientRequest;
+import lv.javaguru.java2.cakeConstructor.core.cake.responses.GetAllCakesForClientResponse;
+import lv.javaguru.java2.cakeConstructor.core.cake.services.GetCakesForClientService;
 
 import java.util.Scanner;
 
