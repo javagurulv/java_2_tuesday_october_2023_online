@@ -1,6 +1,6 @@
 package fitness_club.services;
 
-import fitness_club.data_vlidation.AddClientValidator;
+import fitness_club.data_vlidation.AddClientRequestValidator;
 import fitness_club.data_vlidation.CoreError;
 import fitness_club.database.Database;
 import fitness_club.domain.Client;
@@ -13,10 +13,10 @@ public class AddClientService {
 
     private Database database;
 
-    private AddClientValidator validator;
+    private AddClientRequestValidator validator;
 
     public AddClientService(Database database,
-                            AddClientValidator validator) {
+                            AddClientRequestValidator validator) {
         this.validator = validator;
         this.database = database;
     }

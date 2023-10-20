@@ -2,7 +2,7 @@ package fitness_club.services;
 import fitness_club.database.Database;
 import fitness_club.domain.Client;
 import fitness_club.domain.Workouts;
-import fitness_club.requests.ChangeWorkoutRequest;
+import fitness_club.requests.ChangeClientWorkoutsRequest;
 import fitness_club.responses.AddClientResponse;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class ChangeClientWorkoutService {
         }
     }
 
-    public AddClientResponse execute(ChangeWorkoutRequest request) {
+    public AddClientResponse execute(ChangeClientWorkoutsRequest request) {
         Client clientToChangeWorkout = new Client(request.getPersonalCode());
         List<Client> clients = database.getAllClients();
         for (Client client: clients) {

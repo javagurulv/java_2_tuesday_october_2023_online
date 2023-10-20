@@ -2,7 +2,7 @@ package fitness_club.requests;
 
 import fitness_club.domain.Workouts;
 
-public class ChangeWorkoutRequest {
+public class ChangeClientWorkoutsRequest {
 
     private String personalCode;
     private Workouts workout;
@@ -15,7 +15,7 @@ public class ChangeWorkoutRequest {
         return workout;
     }
 
-    public ChangeWorkoutRequest(String personalCode, Workouts workout) {
+    public ChangeClientWorkoutsRequest(String personalCode, Workouts workout) {
         this.personalCode = personalCode;
         this.workout = workout;
     }

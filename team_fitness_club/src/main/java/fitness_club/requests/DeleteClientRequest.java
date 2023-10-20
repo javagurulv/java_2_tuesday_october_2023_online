@@ -2,9 +2,13 @@ package fitness_club.requests;
 
 public class DeleteClientRequest {
 
-    String ClientPersonalCodeToDelete;
+    private String personalCode;;
 
-    public DeleteClientRequest(String ClientPersonalCodeToDelete) { this.ClientPersonalCodeToDelete = ClientPersonalCodeToDelete; }
+    public DeleteClientRequest(String personalCode) {
+        this.personalCode = personalCode;
+    }
 
-    public String getClientPersonalCodeToDelete() { return ClientPersonalCodeToDelete; }
+    public String getPersonalCode() {
+        return personalCode;
+    }
 }

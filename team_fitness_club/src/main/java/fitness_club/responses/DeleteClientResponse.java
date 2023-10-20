@@ -1,5 +1,7 @@
 package fitness_club.responses;
 
+import fitness_club.data_vlidation.CoreError;
+
 import java.util.List;
 
 public class DeleteClientResponse {
