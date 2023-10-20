@@ -1,15 +1,15 @@
-package lessoncode.database;
+package lv.javaguru.java2.lessoncode.bookapp.database;
 
-import lessoncode.domain.Book;
+import lv.javaguru.java2.lessoncode.bookapp.domain.Book;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface Database {
 
-    void addBook(Book book);
+    void save(Book book);
 
-    void deleteBook(Book book);
+    boolean deleteById(Long id);
 
     List<Book> getAllBooks();
 
