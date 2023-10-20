@@ -13,4 +13,9 @@ public abstract class CoreResponse {
     public List<BusinessError> getErrors() {
         return errors;
     }
+
+    public boolean containsErrors() {
+        return this.errors != null && !this.errors.isEmpty();
+    }
+
 }

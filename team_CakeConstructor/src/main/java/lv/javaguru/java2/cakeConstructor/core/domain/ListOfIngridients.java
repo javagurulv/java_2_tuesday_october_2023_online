@@ -137,71 +137,147 @@ public class ListOfIngridients {
         return price;
     }
 
-    public String findBiscuit (List<Biscuit>biscuits, int biscuitId){
-        String biscuit=" ";
-        for (Biscuit biscuit1:biscuits){
-            if (biscuit1.getBiscuitId()==biscuitId){
+    public String findBiscuit(List<Biscuit> biscuits, int biscuitId) {
+        String biscuit = null;
+        for (Biscuit biscuit1 : biscuits) {
+            if (biscuit1.getBiscuitId() == biscuitId) {
                 biscuit = biscuit1.getTypeOfBiscuit();
+                break;
             }
         }
         return biscuit;
     }
     public String findFilling (List<Filling> fillings, int fillingId){
-        String filling=" ";
+        String filling=null;
         for (Filling filling1:fillings){
             if (filling1.getFillingId()==fillingId){
                 filling = filling1.getTypeOfFilling();
+                break;
             }
         }
         return filling;
     }
     public String findShell (List<Shell> shells, int shellId){
-        String shell =" ";
+        String shell =null;
         for (Shell shell1:shells){
             if (shell1.getShellId()==shellId){
                 shell=shell1.getTypeOfShell();
+                break;
             }
         }
         return shell;
     }
     public String findDecor (List<Decor> decors, int decorId){
-        String decor =" ";
+        String decor =null;
         for (Decor decor1: decors){
             if (decor1.getDecorId()==decorId){
                 decor= decor1.getTypeOfDecor();
+                break;
             }
         }
         return decor;
     }
 
-    public String biscuit (List<Biscuit>biscuits){
+    public String biscuit(List<Biscuit> biscuits) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Choose a biscuit!");
-        printListOfBiscuit(biscuits);
-        int biscuitId = scan.nextInt();
-        return findBiscuit(biscuits,biscuitId);
+        String chosenBiscuit = null;
+
+        while (chosenBiscuit == null) {
+            try {
+                System.out.println("Choose a biscuit! Please enter a biscuit ID.");
+                printListOfBiscuit(biscuits);
+                int biscuitId = scan.nextInt();
+                scan.nextLine();
+
+                chosenBiscuit = findBiscuit(biscuits, biscuitId);
+
+                if (chosenBiscuit == null) {
+                    System.out.println("Invalid biscuit ID. Please choose a valid biscuit ID.");
+                }
+            } catch (java.util.InputMismatchException exception) {
+                System.out.println("Invalid input. Please enter a valid biscuit ID.");
+                scan.nextLine();
+            }
+        }
+
+        return chosenBiscuit;
     }
-    public String filling (List <Filling> fillings){
+
+    public String filling(List<Filling> fillings) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Choose a filling!");
-        printListOfFilling(fillings);
-        int fillingId = scan.nextInt();
-        return findFilling(fillings, fillingId);
+        String choseniFlling = null;
+
+        while (choseniFlling == null) {
+            try {
+                System.out.println("Choose a fillings! Please enter a fillings ID.");
+                printListOfFilling(fillings);
+                int fillingsid = scan.nextInt();
+                scan.nextLine();
+
+                choseniFlling = findFilling(fillings, fillingsid);
+
+                if (choseniFlling == null) {
+                    System.out.println("Invalid fillings ID. Please choose a valid biscuit ID.");
+                }
+            } catch (java.util.InputMismatchException exception) {
+                System.out.println("Invalid input. Please enter a valid fillings ID.");
+                scan.nextLine();
+            }
+        }
+
+        return choseniFlling;
     }
-    public String shell (List<Shell>shells){
+
+    public String shell(List<Shell> shells) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Choose a shell!");
-        printListOfShell(shells);
-        int shellId= scan.nextInt();
-        return findShell(shells,shellId);
+        String choseniShell = null;
+
+        while (choseniShell== null) {
+            try {
+                System.out.println("Choose a fillings! Please enter a fillings ID.");
+                printListOfShell(shells);
+                int shellsid = scan.nextInt();
+                scan.nextLine();
+
+                choseniShell = findShell(shells, shellsid);
+
+                if (choseniShell == null) {
+                    System.out.println("Invalid fillings ID. Please choose a valid biscuit ID.");
+                }
+            } catch (java.util.InputMismatchException exception) {
+                System.out.println("Invalid input. Please enter a valid fillings ID.");
+                scan.nextLine();
+            }
+        }
+
+        return choseniShell;
     }
-    public String decor (List <Decor> decors){
+
+    public String decor(List<Decor> decors) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Choose a decor!");
-        printListOfDecor(decors);
-        int decorId = scan.nextInt();
-        return findDecor(decors,decorId);
+        String choseniDecor = null;
+
+        while (choseniDecor== null) {
+            try {
+                System.out.println("Choose a fillings! Please enter a fillings ID.");
+                printListOfDecor(decors);
+                int shellsid = scan.nextInt();
+                scan.nextLine();
+
+                choseniDecor = findDecor(   decors, shellsid);
+
+                if (choseniDecor == null) {
+                    System.out.println("Invalid fillings ID. Please choose a valid biscuit ID.");
+                }
+            } catch (java.util.InputMismatchException exception) {
+                System.out.println("Invalid input. Please enter a valid fillings ID.");
+                scan.nextLine();
+            }
+        }
+
+        return choseniDecor;
     }
+
     public Cake createCake (int clientId){
         List<Biscuit> biscuits = createListOfBiscuit();
         List<Filling> fillings = createListOfFilling();
@@ -221,7 +297,9 @@ public class ListOfIngridients {
         String decor = decor(decors);
         price = priceDecor(decors, decor) + price;
 
-        Cake cake1 = new Cake(biscuit,filling,shell,decor,clientId,price);
+        // PLEASE FIX
+        //Cake cake1 = new Cake(biscuit,filling,shell,decor,clientId,price);
+        Cake cake1 = null;
 
         return cake1;
     }
