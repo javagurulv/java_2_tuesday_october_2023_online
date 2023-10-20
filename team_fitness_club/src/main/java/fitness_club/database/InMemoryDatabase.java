@@ -16,8 +16,11 @@ public class InMemoryDatabase implements Database {
         clients.add(client);
     }
 
-    public void removeClient(Client client) {
-        clients.remove(client);
+    public void removeClient(String personalCode) {
+        clients.stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst()
+                .ifPresent(client -> clients.remove(client));
     }
 
     public List<Client> getAllClients() {

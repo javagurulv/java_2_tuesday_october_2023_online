@@ -8,13 +8,14 @@ public class Client implements Serializable {
     private String firstName;
     private String lastName;
     private String personalCode;
+    private ClientAgeGroups clientAgeGroup;
     private Workouts workouts;
 
-
-    public Client(String firstName, String lastName, String personalCode, Workouts workouts) {
+    public Client(String firstName, String lastName, String personalCode, ClientAgeGroups clientAgeGroup, Workouts workouts) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.personalCode = personalCode;
+        this.clientAgeGroup = clientAgeGroup;
         this.workouts = workouts;
     }
 
@@ -22,6 +23,10 @@ public class Client implements Serializable {
         this.firstName = name;
         this.lastName = lastName;
         this.personalCode = personalCode;
+    }
+
+    public Client(String personalCode) {this.personalCode = personalCode;
+
     }
 
     public void setId(Long id) {
@@ -64,26 +69,35 @@ public class Client implements Serializable {
         return personalCode;
     }
 
+    public ClientAgeGroups getClientAgeGroup() {
+        return clientAgeGroup;
+    }
+
+    public void setClientAgeGroup(ClientAgeGroups clientAgeGroup) {
+        this.clientAgeGroup = clientAgeGroup;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return Objects.equals(firstName, client.firstName) && Objects.equals(lastName, client.lastName) && Objects.equals(personalCode, client.personalCode);
+        return Objects.equals(firstName, client.firstName) && Objects.equals(lastName, client.lastName) && Objects.equals(personalCode, client.personalCode) && clientAgeGroup == client.clientAgeGroup && workouts == client.workouts;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, personalCode, workouts);
+        return Objects.hash(firstName, lastName, personalCode, clientAgeGroup, workouts);
     }
 
     @Override
     public String toString() {
-        return "fitness_club.domain.Client{" +
+        return "Client{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", personalCode='" + personalCode + '\'' +
+                ", clientAgeGroup=" + clientAgeGroup +
                 ", workouts=" + workouts +
                 '}';
     }
