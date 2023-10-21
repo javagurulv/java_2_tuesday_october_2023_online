@@ -1,6 +1,8 @@
-package lv.javaguru.java2.cakeConstructor.core.domain;
+package lv.javaguru.java2.cakeConstructor.core.cake.domain;
 
 
+
+import lv.javaguru.java2.cakeConstructor.core.cake.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -278,7 +280,7 @@ public class ListOfIngridients {
         return choseniDecor;
     }
 
-    public Cake createCake (int clientId){
+    public Cake createCake (String clientId){
         List<Biscuit> biscuits = createListOfBiscuit();
         List<Filling> fillings = createListOfFilling();
         List<Shell> shells = createListOfShell();

@@ -1,5 +1,4 @@
 package lv.javaguru.java2.cakeConstructor.core.cake.services;
-
 import lv.javaguru.java2.cakeConstructor.core.cake.database.DataBase;
 import lv.javaguru.java2.cakeConstructor.core.cake.domain.Cake;
 import lv.javaguru.java2.cakeConstructor.core.cake.responses.CoreError;
@@ -24,10 +23,7 @@ public class AddCakeService {
         if (!errors.isEmpty()){
             return new AddCakeResponse(errors);
         }
-        //PLEASE FIX IT
-        //Cake cake = list.createCake(request.getClientLogin());
-        Cake cake = null;
-
+        Cake cake = list.createCake(request.getClientLogin());
         dataBase.add(cake);
         return new AddCakeResponse(cake);
     }
