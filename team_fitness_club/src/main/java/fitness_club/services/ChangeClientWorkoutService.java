@@ -1,4 +1,5 @@
 package fitness_club.services;
+
 import fitness_club.database.Database;
 import fitness_club.domain.Client;
 import fitness_club.domain.Workouts;
@@ -18,7 +19,7 @@ public class ChangeClientWorkoutService {
     public void changeClientWorkout(String personalCode, Workouts workout) {
         Client clientToChangeWorkout = new Client(personalCode);
         List<Client> clients = database.getAllClients();
-        for (Client client: clients) {
+        for (Client client : clients) {
             if (client.equals(clientToChangeWorkout)) {
                 client.setWorkouts(workout);
                 database.saveClient(clients);
@@ -30,13 +31,10 @@ public class ChangeClientWorkoutService {
     public AddClientResponse execute(ChangeClientWorkoutsRequest request) {
         Client clientToChangeWorkout = new Client(request.getPersonalCode());
         List<Client> clients = database.getAllClients();
-        for (Client client: clients) {
-            if (client.equals(clientToChangeWorkout)) {
-                client.setWorkouts(request.getWorkout());
-                database.saveClient(clients);
-                break;
-            }
-        }
+        clients.stream()
+                .filter(client -> client.getPersonalCode().equals(request.getPersonalCode()))
+                .findFirst()
+                .ifPresent(client -> client.setWorkouts(request.getWorkout()));
         return new AddClientResponse(clientToChangeWorkout);
     }
 }
