@@ -27,7 +27,7 @@ public class AddUserUIConsole implements UIConsoleUsers {
         System.out.println("Please enter your email !");
         String userEmail = scan.nextLine();
         User user = new User(userLogin,userPassword,userName,userSurname,userEmail);
-        userDataBase.saveUser(user);
+        userDataBase.addUser(user);
         System.out.println("Welcome " + user.getUserName());
         return new User(user.getUserLogin(), user.getUserPassword());
     }

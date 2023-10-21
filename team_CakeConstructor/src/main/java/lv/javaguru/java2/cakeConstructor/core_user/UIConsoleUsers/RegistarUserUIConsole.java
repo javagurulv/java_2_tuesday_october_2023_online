@@ -29,7 +29,7 @@ public class RegistarUserUIConsole implements UIConsoleUsers {
         List<User> users = dataBase.getAllUsers();
         boolean isUser = false;
         for (User user : users){
-            if (newUser.getUserLogin()==user.getUserLogin() && newUser.getUserPassword() ==user.getUserPassword()){
+            if (newUser.getUserLogin().equals(user.getUserLogin()) && newUser.getUserPassword().equals(user.getUserPassword())){
                 isUser=true;
             } else {
                 System.out.println("Please check your login and password!");

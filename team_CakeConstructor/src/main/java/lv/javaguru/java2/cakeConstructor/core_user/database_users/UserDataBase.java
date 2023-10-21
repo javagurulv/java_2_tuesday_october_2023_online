@@ -16,8 +16,7 @@ public class UserDataBase implements UserUIDataBase {
     }
 
     @Override
-    public void saveUser(User user) {
-        users.add(user);
+    public void saveUser(List<User> users) {
 
     }
 

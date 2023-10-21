@@ -1,8 +1,9 @@
 package lv.javaguru.java2.cakeConstructor.core.cake.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Cake  {
+public class Cake  implements Serializable {
 
     private String biscuit;
     private String filling;

@@ -1,6 +1,7 @@
 package lv.javaguru.java2.cakeConstructor.core.cake.services;
 
 import lv.javaguru.java2.cakeConstructor.core.cake.database.DataBase;
+import lv.javaguru.java2.cakeConstructor.core.cake.database.DateBaseIf;
 import lv.javaguru.java2.cakeConstructor.core.cake.domain.Cake;
 import lv.javaguru.java2.cakeConstructor.core.cake.request.GetAllCakesForClientRequest;
 import lv.javaguru.java2.cakeConstructor.core.cake.responses.GetAllCakesForClientResponse;
@@ -8,8 +9,8 @@ import lv.javaguru.java2.cakeConstructor.core.cake.responses.GetAllCakesForClien
 import java.util.List;
 
 public class GetCakesForClientService {
-    private DataBase dataBase;
-    public GetCakesForClientService (DataBase dataBase){
+    private DateBaseIf dataBase;
+    public GetCakesForClientService (DateBaseIf dataBase){
         this.dataBase=dataBase;
     }
 

@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InFileDateBAse implements DateBaseIf {
+    private List<Cake> cakes = new ArrayList<>();
 
     private String file;
 
     public InFileDateBAse () {
-        this.file = "lv/javaguru/java2/cakeConstructor/core/cake/database/cake";
+        this.file = "C:\\Users\\ArchAtalar\\javaLab\\java_2_tuesday_october_2023_online\\team_CakeConstructor\\src\\main\\java\\lv\\javaguru\\java2\\cakeConstructor\\core\\cake\\database\\cake";
     }
 
     @Override

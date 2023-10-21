@@ -1,5 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.core.cake.services;
 import lv.javaguru.java2.cakeConstructor.core.cake.database.DataBase;
+import lv.javaguru.java2.cakeConstructor.core.cake.database.DateBaseIf;
 import lv.javaguru.java2.cakeConstructor.core.cake.domain.Cake;
 import lv.javaguru.java2.cakeConstructor.core.cake.responses.CoreError;
 import lv.javaguru.java2.cakeConstructor.core.cake.domain.ListOfIngridients;
@@ -10,10 +11,10 @@ import java.util.List;
 
 public class AddCakeService {
 
-    private DataBase dataBase;
+    private DateBaseIf dataBase;
     private AddCakeValidator validator;
     private ListOfIngridients list = new ListOfIngridients();
-    public AddCakeService (DataBase dataBase, AddCakeValidator validator){
+    public AddCakeService (DateBaseIf dataBase, AddCakeValidator validator){
         this.dataBase=dataBase;
         this.validator = validator;
     }

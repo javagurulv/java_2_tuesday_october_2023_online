@@ -8,19 +8,25 @@ import java.util.List;
 
 public class InFileUsersData implements UserUIDataBase {
 
+    private List<User> users = new ArrayList<>();
     private String file;
     public InFileUsersData(){
-        this.file= "lv/javaguru/java2/cakeConstructor/core_user/database_users/user_data";
+       this.file = "C:\\Users\\ArchAtalar\\javaLab\\java_2_tuesday_october_2023_online\\team_CakeConstructor\\src\\main\\java\\lv\\javaguru\\java2\\cakeConstructor\\core_user\\database_users\\user_database";
     }
     @Override
     public void addUser(User user) {
         List <User> users = getAllUsers();
         users.add(user);
-        saveUser(user);
+        saveUser(users);
     }
 
     @Override
-    public void saveUser(User user) {
+    public void saveUser(List<User> user) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+            oos.writeObject(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
