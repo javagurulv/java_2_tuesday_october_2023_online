@@ -1,23 +1,23 @@
-package lessoncode;
+package lv.javaguru.java2.lessoncode.bookapp;
 
-import lessoncode.database.Database;
-import lessoncode.database.InMemoryDatabase;
-import lessoncode.services.AddBookService;
-import lessoncode.services.DeleteBookService;
-import lessoncode.services.GetAllBooksService;
-import lessoncode.ui.AddBookUIAction;
-import lessoncode.ui.DeleteBookUIAction;
-import lessoncode.ui.PrintAllBooksUIAction;
-import lessoncode.ui.ProgramExitUIAction;
+import lv.javaguru.java2.lessoncode.bookapp.core.database.Database;
+import lv.javaguru.java2.lessoncode.bookapp.core.database.InMemoryDatabase;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.AddBookService;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.AddBookValidator;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.DeleteBookService;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.GetAllBooksService;
+import lv.javaguru.java2.lessoncode.bookapp.console_ui.AddBookUIAction;
+import lv.javaguru.java2.lessoncode.bookapp.console_ui.DeleteBookUIAction;
+import lv.javaguru.java2.lessoncode.bookapp.console_ui.PrintAllBooksUIAction;
+import lv.javaguru.java2.lessoncode.bookapp.console_ui.ProgramExitUIAction;
 
 import java.util.Scanner;
 
-public class BookListApplication {
+    public class BookListApplication {
 
     static Database database = new InMemoryDatabase();
 
-    private static AddBookRequestValidator validator = new AddBookRequestValidator(database);
-
+    private static AddBookValidator validator = new AddBookValidator(database);
     static AddBookService addBookService = new AddBookService(database, validator);
     static DeleteBookService deleteBookService = new DeleteBookService(database);
     static GetAllBooksService getAllBooksService = new GetAllBooksService(database);
@@ -28,17 +28,15 @@ public class BookListApplication {
     static ProgramExitUIAction programExitUIAction = new ProgramExitUIAction();
 
     public static void main(String[] args) {
-
-
     while (true) {
         printMenu();
         int userChoice = getUserMenuChoice();
 
-        executeSelectedMenuItime(userChoice);
+        executeSelectedMenuItem(userChoice);
     }
 }
 
-    private static void executeSelectedMenuItime(int userChoice) {
+    private static void executeSelectedMenuItem(int userChoice) {
         switch(userChoice) {
             case 1: {
                 addBookUIAction.execute();

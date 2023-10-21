@@ -1,16 +1,20 @@
-package lessoncode;
+package lv.javaguru.java2.lessoncode.bookapp.core.responses;
+
 
 import java.util.List;
 
 public abstract class CoreResponse {
 
-    private List<BusinessError> errors;
+    private List<CoreError> errors;
 
-    public CoreResponse(List<BusinessError> errors) {
+    public CoreResponse() {
+    }
+
+    public CoreResponse(List<CoreError> errors) {
         this.errors = errors;
     }
 
-    public List<BusinessError> getErrors() {
+    public List<CoreError> getErrors() {
         return errors;
     }
 

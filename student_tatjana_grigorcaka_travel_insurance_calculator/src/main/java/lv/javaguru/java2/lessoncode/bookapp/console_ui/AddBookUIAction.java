@@ -1,9 +1,9 @@
-package lessoncode.ui;
+package lv.javaguru.java2.lessoncode.bookapp.console_ui;
 
-import lessoncode.AddBookRequest;
-import lessoncode.AddBookResponse;
-import lessoncode.BusinessError;
-import lessoncode.services.AddBookService;
+import lv.javaguru.java2.lessoncode.bookapp.core.requests.AddBookRequest;
+import lv.javaguru.java2.lessoncode.bookapp.core.responses.AddBookResponse;
+import lv.javaguru.java2.lessoncode.bookapp.core.responses.CoreError;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.AddBookService;
 
 import java.util.Scanner;
 
@@ -24,11 +24,13 @@ public class AddBookUIAction  implements UIAction {
         String bookAuthor = scanner.nextLine();
         AddBookRequest request = new AddBookRequest(bookAuthor, bookTitle);
         AddBookResponse response = addBookService.execute(request);
+
         if (response.containsErrors()) {
-            for (BusinessError error : response.getErrors()) {
+            for (CoreError error : response.getErrors()) {
                 System.out.println("Error: " + error.getErrorCode() + " " + error.getErrorMessage());
             }
         } else {
+            System.out.println("New book id was: " + response.getNewBook().getId());
             System.out.println("Your book was added to the list: ");
         }
     }
