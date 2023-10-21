@@ -27,10 +27,7 @@ class TravelCalculatePremiumServiceImplTest {
     private TravelCalculatePremiumRequestValidator requestValidator;
     @Mock
     private TravelPremiumUnderwriting travelPremiumUnderwriting;
-    @Mock
-    private DateTimeService dateTimeService;
-
-    SimpleDateFormat dates = new SimpleDateFormat("dd.MM.yyyy");
+     SimpleDateFormat dates = new SimpleDateFormat("dd.MM.yyyy");
     @InjectMocks
     private TravelCalculatePremiumServiceImpl service;
 
