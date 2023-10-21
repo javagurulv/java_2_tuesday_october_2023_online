@@ -1,17 +1,19 @@
 package fitness_club.console_UI;
 
 import fitness_club.domain.ClientAgeGroups;
+import fitness_club.requests.ChangeClientAgeGroupRequest;
+import fitness_club.responses.AddClientResponse;
 import fitness_club.services.ChangeClientAgeGroupService;
 import fitness_club.services.GetClientAgeGroupService;
 
 
 import java.util.Scanner;
 
-public class ChangeClientAgeGrpoupUIAction implements UIAction {
-    private ChangeClientAgeGroupService service;
+public class ChangeClientAgeGroupUIAction implements UIAction {
+    private ChangeClientAgeGroupService changeClientAgeGroupService;
 
-    public ChangeClientAgeGrpoupUIAction(ChangeClientAgeGroupService service) {
-        this.service = service;
+    public ChangeClientAgeGroupUIAction(ChangeClientAgeGroupService changeClientAgeGroupService) {
+        this.changeClientAgeGroupService = changeClientAgeGroupService;
     }
 
     @Override
@@ -27,8 +29,8 @@ public class ChangeClientAgeGrpoupUIAction implements UIAction {
         GetClientAgeGroupService getClientAgeGroupService = new GetClientAgeGroupService();
         ClientAgeGroups newClientAgeGroups = getClientAgeGroupService.getClientAgeGroup(Integer.parseInt(scanner.nextLine()));
 
-
-        service.changeClientAgeGroup(clientPersonalCode,newClientAgeGroups);
+        ChangeClientAgeGroupRequest request = new ChangeClientAgeGroupRequest(clientPersonalCode, newClientAgeGroups);
+        AddClientResponse response = changeClientAgeGroupService.execute(request);
 
         System.out.println("Client age group has been changed.");
     }

@@ -6,6 +6,7 @@ import fitness_club.domain.Client;
 import fitness_club.domain.ClientAgeGroups;
 import fitness_club.domain.Workouts;
 import fitness_club.requests.AddClientRequest;
+import fitness_club.requests.ChangeClientAgeGroupRequest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -25,7 +26,8 @@ class ChangeClientAgeGroupServiceTest {
         AddClientRequest addClientRequest = new AddClientRequest("Aaa", "Bbb", "12-12", ClientAgeGroups.ADULT, Workouts.GYM);
         addClient.execute(addClientRequest);
         Client client = new Client("Aaa", "Bbb", "12-12", ClientAgeGroups.SENIOR, Workouts.GYM);
-        changeClientAgeGroupService.changeClientAgeGroup("12-12", ClientAgeGroups.SENIOR);
+        ChangeClientAgeGroupRequest changeClientAgeGroupRequest = new ChangeClientAgeGroupRequest("12-12", ClientAgeGroups.SENIOR);
+        changeClientAgeGroupService.execute(changeClientAgeGroupRequest);
         assertTrue(inMemoryDatabase.getAllClients().contains(client));
     }
 }
