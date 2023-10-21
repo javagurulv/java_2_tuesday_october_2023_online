@@ -2,6 +2,7 @@ package fitness_club;
 
 import fitness_club.console_UI.*;
 import fitness_club.data_vlidation.AddClientRequestValidator;
+import fitness_club.data_vlidation.DeleteClientRequestValidator;
 import fitness_club.database.Database;
 import fitness_club.database.InMemoryDatabase;
 import fitness_club.services.*;
@@ -13,7 +14,8 @@ public class ClientWorkoutsApplication {
         Database database = new InMemoryDatabase();
         AddClientRequestValidator addClientValidator = new AddClientRequestValidator();
         AddClientService addClientService = new AddClientService(database, addClientValidator);
-        DeleteClientService deleteClientService = new DeleteClientService(database);
+        DeleteClientRequestValidator deleteClientRequestValidator = new DeleteClientRequestValidator();
+        DeleteClientService deleteClientService = new DeleteClientService(database, deleteClientRequestValidator);
         GetAllClientsService getAllClientsService = new GetAllClientsService(database);
         ChangeClientAgeGroupService changeClientAgeGroupService = new ChangeClientAgeGroupService(database);
         ChangeClientWorkoutService changeClientWorkoutService = new ChangeClientWorkoutService(database);
