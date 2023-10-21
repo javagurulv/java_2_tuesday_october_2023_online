@@ -13,8 +13,7 @@ import java.util.List;
 public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
     @Autowired
     private TravelCalculatePremiumRequestValidator requestValidator;
-    @Autowired
-    private DateTimeService dateTimeService;
+
     @Autowired
     private TravelPremiumUnderwriting premiumUnderwriting;
 
