@@ -30,6 +30,6 @@ public class ChangeClientAgeGrpoupUIAction implements UIAction {
 
         service.changeClientAgeGroup(clientPersonalCode,newClientAgeGroups);
 
-        System.out.println("Client workout has been changed.");
+        System.out.println("Client age group has been changed.");
     }
 }

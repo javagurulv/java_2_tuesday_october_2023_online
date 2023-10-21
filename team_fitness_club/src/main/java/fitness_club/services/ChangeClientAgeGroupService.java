@@ -1,4 +1,5 @@
 package fitness_club.services;
+
 import fitness_club.database.Database;
 import fitness_club.domain.Client;
 import fitness_club.domain.ClientAgeGroups;
@@ -14,14 +15,10 @@ public class ChangeClientAgeGroupService {
     }
 
     public void changeClientAgeGroup(String personalCode, ClientAgeGroups clientAgeGroups) {
-        Client clientToChangeWorkout = new Client(personalCode);
         List<Client> clients = database.getAllClients();
-        for (Client client: clients) {
-            if (client.equals(clientToChangeWorkout)) {
-                client.setClientAgeGroup(clientAgeGroups);
-                database.saveClient(clients);
-                break;
-            }
-        }
+        clients.stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst()
+                .ifPresent(client -> client.setClientAgeGroup(clientAgeGroups));
     }
 }
