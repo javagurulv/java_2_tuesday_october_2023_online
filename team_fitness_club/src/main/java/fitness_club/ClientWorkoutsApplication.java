@@ -23,7 +23,7 @@ public class ClientWorkoutsApplication {
         AddClientUIAction addClientUIAction = new AddClientUIAction(addClientService);
         DeleteClientUIAction deleteClientUIAction = new DeleteClientUIAction(deleteClientService);
         GetAllClientsUIAction getAllClientsUIAction = new GetAllClientsUIAction(getAllClientsService);
-        ChangeClientAgeGrpoupUIAction changeClientAgeGrpoupUIAction = new ChangeClientAgeGrpoupUIAction(changeClientAgeGroupService);
+        ChangeClientAgeGroupUIAction changeClientAgeGroupUIAction = new ChangeClientAgeGroupUIAction(changeClientAgeGroupService);
         ChangeWorkoutUIAction changeWorkoutUIAction = new ChangeWorkoutUIAction(changeClientWorkoutService);
         ExitUIAction exitUIAction = new ExitUIAction();
 
@@ -45,7 +45,7 @@ public class ClientWorkoutsApplication {
                     changeWorkoutUIAction.execute();
                     break;
                 case 5:
-                    changeClientAgeGrpoupUIAction.execute();
+                    changeClientAgeGroupUIAction.execute();
                     break;
                 case 6:
                     exitUIAction.execute();
