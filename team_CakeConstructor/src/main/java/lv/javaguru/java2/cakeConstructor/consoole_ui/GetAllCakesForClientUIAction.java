@@ -15,10 +15,8 @@ public class GetAllCakesForClientUIAction implements UIAction{
 
 
     @Override
-    public void execute() {
+    public void execute(String clientLogin) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter your client ID!");
-        String clientLogin = scan.nextLine();
         GetAllCakesForClientRequest request = new GetAllCakesForClientRequest(clientLogin);
         GetAllCakesForClientResponse response = getCakesForClientService.execute(request);
         for (Cake cake : response.getCakes()) {

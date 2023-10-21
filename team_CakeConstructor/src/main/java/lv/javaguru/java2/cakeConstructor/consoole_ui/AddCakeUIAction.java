@@ -16,10 +16,8 @@ public class AddCakeUIAction implements UIAction {
     }
 
     @Override
-    public void execute() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Please, enter your client ID!");
-        String clientLogin = scan.nextLine();
+    public void execute(String clientLogin) {
+
         AddCakeRequest request = new AddCakeRequest(clientLogin);
         AddCakeResponse response = addCakeService.execute(request);
         response.getNewCake().toString();

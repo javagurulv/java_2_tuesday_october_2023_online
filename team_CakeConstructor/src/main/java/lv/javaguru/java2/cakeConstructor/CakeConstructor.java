@@ -9,6 +9,9 @@ import lv.javaguru.java2.cakeConstructor.core.cake.database.DateBaseIf;
 import lv.javaguru.java2.cakeConstructor.core.cake.services.AddCakeService;
 import lv.javaguru.java2.cakeConstructor.core.cake.services.AddCakeValidator;
 import lv.javaguru.java2.cakeConstructor.core.cake.services.GetCakesForClientService;
+import lv.javaguru.java2.cakeConstructor.core_user.SystemUserLogin;
+import lv.javaguru.java2.cakeConstructor.core_user.UserLoginSystem;
+import lv.javaguru.java2.cakeConstructor.core_user.user_domain.User;
 
 
 import java.util.Scanner;
@@ -22,16 +25,21 @@ public class CakeConstructor {
     private static UIAction addCake = new AddCakeUIAction(addCakeService);
     private static UIAction getCakeForClient = new GetAllCakesForClientUIAction(getCakesForClientService);
     private static UIAction exit = new ExitUIAction();
+    private static SystemUserLogin systemLogin = new UserLoginSystem();
 
 
     public static void main(String[] args) {
 
+        User user = systemLogin.login();
+
         while (true) {
             printMenu();
             int getUserMenuChoice = getUserMenuChoice();
-            executeSelectedMenuItem(dataBase, getUserMenuChoice);
+            executeSelectedMenuItem(dataBase, getUserMenuChoice,user.getUserLogin());
         }
     }
+
+
 
     public static void printMenu(){
         System.out.println("Welcome to cake constructor!");
@@ -46,20 +54,20 @@ public class CakeConstructor {
         return userChoice;
     }
 
-    public static void executeSelectedMenuItem(DateBaseIf dataBase, int getUSerMenuChoice) {
+    public static void executeSelectedMenuItem(DateBaseIf dataBase, int getUSerMenuChoice,String userLogin) {
 
         switch (getUSerMenuChoice) {
             case 1: {
-                addCake.execute();
+                addCake.execute(userLogin);
                 break;
             }
 
             case 2: {
-                getCakeForClient.execute();
+                getCakeForClient.execute(userLogin);
                 break;
             }
             case 3: {
-                exit.execute();
+                exit.execute(userLogin);
             }
         }
     }

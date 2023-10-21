@@ -1,6 +1,7 @@
 package lv.javaguru.java2.cakeConstructor.core_user;
 
 import lv.javaguru.java2.cakeConstructor.core_user.UIConsoleUsers.AddUserUIConsole;
+import lv.javaguru.java2.cakeConstructor.core_user.UIConsoleUsers.RegistarUserUIConsole;
 import lv.javaguru.java2.cakeConstructor.core_user.UIConsoleUsers.UIConsoleUsers;
 import lv.javaguru.java2.cakeConstructor.core_user.database_users.UserDataBase;
 import lv.javaguru.java2.cakeConstructor.core_user.database_users.UserUIDataBase;
@@ -8,18 +9,16 @@ import lv.javaguru.java2.cakeConstructor.core_user.user_domain.User;
 
 import java.util.Scanner;
 
-public class userApp {
+public class UserLoginSystem implements SystemUserLogin {
     private static UserUIDataBase dataBase = new UserDataBase();
     private static UIConsoleUsers addUser = new AddUserUIConsole(dataBase);
+    private static UIConsoleUsers register = new RegistarUserUIConsole(dataBase);
 
-    public static void main(String[] args) {
-        while(true){
+    public User login() {
             printEntrance();
             int userChoice = getUserChoice();
             User user = registUserLogin(userChoice);
-            System.out.println(user);
-
-        }
+            return user;
     }
     private static void printEntrance() {
         System.out.println();
@@ -35,17 +34,11 @@ public class userApp {
     }
     private static User  registUserLogin(int userChoice){
         User user = null;
-        switch (userChoice){
-            case 1: {
-                User user1 = new User("dd","ss");
-                user=user1;
-                break;
-
-            }
-            case 2: {
+         if (userChoice == 2){
                 user = addUser.registr();
-            }
-        }
+            } else {
+                user = register.registr();
+         }
         return user;
     }
 }
