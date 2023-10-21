@@ -20,9 +20,9 @@ public class InFileDatabase implements Database {
         saveClient(clients);
     }
 
-    public void removeClient(Client client) {
+    public void removeClient(String personalCode) {
         List<Client> clients = getAllClients();
-        clients.remove(client);
+        clients.remove(personalCode);
         updateClientIds(clients);
         saveClient(clients);
     }

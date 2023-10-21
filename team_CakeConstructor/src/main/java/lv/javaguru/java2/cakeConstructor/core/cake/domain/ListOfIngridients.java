@@ -1,4 +1,4 @@
-package lv.javaguru.java2.cakeConstructor.core.cake.domain;
+package lv.javaguru.java2.cakeConstructor.core.domain;
 
 
 
@@ -278,7 +278,7 @@ public class ListOfIngridients {
         return choseniDecor;
     }
 
-    public Cake createCake (String clientLogin){
+    public Cake createCake (int clientId){
         List<Biscuit> biscuits = createListOfBiscuit();
         List<Filling> fillings = createListOfFilling();
         List<Shell> shells = createListOfShell();
@@ -297,7 +297,7 @@ public class ListOfIngridients {
         String decor = decor(decors);
         price = priceDecor(decors, decor) + price;
 
-        Cake cake1 = new Cake(biscuit,filling,shell,decor,clientLogin,price);
+        Cake cake1 = new Cake(biscuit,filling,shell,decor,clientId,price);
 
         return cake1;
     }

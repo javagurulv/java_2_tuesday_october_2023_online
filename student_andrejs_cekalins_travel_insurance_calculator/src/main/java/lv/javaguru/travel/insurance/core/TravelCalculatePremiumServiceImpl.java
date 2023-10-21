@@ -13,31 +13,29 @@ import java.util.List;
 public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
     @Autowired
     private TravelCalculatePremiumRequestValidator requestValidator;
+
     @Autowired
-    private DateTimeService dateTimeService;
+    private TravelPremiumUnderwriting premiumUnderwriting;
 
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
         List<ValidationError> errors = requestValidator.validate(request);
-        return (!errors.isEmpty())
-                ? buildResponse(errors)
-                : buildResponse(request);
+        return (errors.isEmpty())
+                ? buildResponse(request, premiumUnderwriting.calculatePremium(request))
+                : buildResponse(errors);
     }
 
     private static TravelCalculatePremiumResponse buildResponse(List<ValidationError> errors) {
         return new TravelCalculatePremiumResponse(errors);
     }
 
-    private TravelCalculatePremiumResponse buildResponse(TravelCalculatePremiumRequest request) {
+    private TravelCalculatePremiumResponse buildResponse(TravelCalculatePremiumRequest request, BigDecimal premium) {
         TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse();
         response.setPersonFirstName(request.getPersonFirstName());
         response.setPersonLastName(request.getPersonLastName());
         response.setAgreementDateFrom(request.getAgreementDateFrom());
         response.setAgreementDateTo(request.getAgreementDateTo());
-
-        var daysBetween = dateTimeService.getDaysBetween(request.getAgreementDateFrom(), request.getAgreementDateTo());
-        response.setAgreementPrice(new BigDecimal(daysBetween));
-
+        response.setAgreementPrice(premium);
         return response;
     }
 }

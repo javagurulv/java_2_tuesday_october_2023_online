@@ -3,6 +3,7 @@ package lv.javaguru.java2.product.storage;
 import lv.javaguru.java2.product.storage.core.database.Database;
 import lv.javaguru.java2.product.storage.core.database.InMemoryDatabase;
 import lv.javaguru.java2.product.storage.core.services.AddProductService;
+import lv.javaguru.java2.product.storage.core.services.AddProductValidator;
 import lv.javaguru.java2.product.storage.core.services.RemoveProductService;
 import lv.javaguru.java2.product.storage.core.services.GetAllProductsService;
 import lv.javaguru.java2.product.storage.ui.AddProductUIAction;
@@ -16,7 +17,9 @@ public class StorageApplication {
 
     static Database database = new InMemoryDatabase();
 
-    static AddProductService addProductService = new AddProductService(database);
+    static AddProductValidator addProductValidator = new AddProductValidator();
+
+    static AddProductService addProductService = new AddProductService(database, addProductValidator);
     static RemoveProductService removeProductService = new RemoveProductService(database);
     static GetAllProductsService getAllProductService = new GetAllProductsService(database);
 
@@ -35,10 +38,10 @@ public class StorageApplication {
 
     private static void printMenu() {
         System.out.println("Menu: ");
-        System.out.println("1.Add product to list: ");
-        System.out.println("2.Remove product from list: ");
-        System.out.println("3.Display all products in the list: ");
-        System.out.println("4.Exit from program");
+        System.out.println("Press 1: Add product to list: ");
+        System.out.println("Press 2: Remove product from list: ");
+        System.out.println("Press 3: Display all products in the list: ");
+        System.out.println("Press 4: Exit from program.");
 
         System.out.println("");
     }
