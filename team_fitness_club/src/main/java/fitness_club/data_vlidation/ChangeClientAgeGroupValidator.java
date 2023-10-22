@@ -1,6 +1,6 @@
 package fitness_club.data_vlidation;
 
-import fitness_club.requests.ChangeClientAgeGroupRequest;
+import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

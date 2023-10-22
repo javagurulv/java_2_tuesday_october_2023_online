@@ -1,4 +1,4 @@
-package fitness_club.responses;
+package fitness_club.core.responses;
 
 import fitness_club.data_vlidation.CoreError;
 

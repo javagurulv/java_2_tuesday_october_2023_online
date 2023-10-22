@@ -1,12 +1,14 @@
 package fitness_club.services;
 
 import fitness_club.data_vlidation.AddClientRequestValidator;
-import fitness_club.database.InMemoryDatabase;
-import fitness_club.domain.Client;
-import fitness_club.domain.ClientAgeGroups;
-import fitness_club.domain.Workouts;
-import fitness_club.requests.AddClientRequest;
-import fitness_club.requests.ChangeClientAgeGroupRequest;
+import fitness_club.core.database.InMemoryDatabase;
+import fitness_club.core.domain.Client;
+import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.domain.Workouts;
+import fitness_club.core.requests.AddClientRequest;
+import fitness_club.core.requests.ChangeClientAgeGroupRequest;
+import fitness_club.core.services.AddClientService;
+import fitness_club.core.services.ChangeClientAgeGroupService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

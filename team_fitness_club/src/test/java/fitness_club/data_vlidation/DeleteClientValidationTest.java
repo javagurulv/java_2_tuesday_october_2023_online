@@ -1,6 +1,6 @@
 package fitness_club.data_vlidation;
 
-import fitness_club.requests.DeleteClientRequest;
+import fitness_club.core.requests.DeleteClientRequest;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;

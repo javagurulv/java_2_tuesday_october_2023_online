@@ -1,8 +1,8 @@
 package fitness_club.data_vlidation;
 
-import fitness_club.domain.ClientAgeGroups;
-import fitness_club.domain.Workouts;
-import fitness_club.requests.AddClientRequest;
+import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.domain.Workouts;
+import fitness_club.core.requests.AddClientRequest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

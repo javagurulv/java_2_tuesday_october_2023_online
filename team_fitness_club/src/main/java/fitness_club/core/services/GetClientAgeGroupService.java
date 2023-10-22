@@ -1,6 +1,6 @@
-package fitness_club.services;
+package fitness_club.core.services;
 
-import fitness_club.domain.ClientAgeGroups;
+import fitness_club.core.domain.ClientAgeGroups;
 
 public class GetClientAgeGroupService {
     public static ClientAgeGroups getClientAgeGroup(int id) {

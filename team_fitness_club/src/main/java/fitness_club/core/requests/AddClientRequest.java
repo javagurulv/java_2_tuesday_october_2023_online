@@ -1,7 +1,7 @@
-package fitness_club.requests;
+package fitness_club.core.requests;
 
-import fitness_club.domain.ClientAgeGroups;
-import fitness_club.domain.Workouts;
+import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.domain.Workouts;
 
 public class AddClientRequest {
 

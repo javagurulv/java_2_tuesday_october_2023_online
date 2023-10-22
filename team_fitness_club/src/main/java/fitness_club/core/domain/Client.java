@@ -1,4 +1,4 @@
-package fitness_club.domain;
+package fitness_club.core.domain;
 
 import java.io.Serializable;
 import java.util.Objects;

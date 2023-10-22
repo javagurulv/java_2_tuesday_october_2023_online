@@ -1,10 +1,10 @@
-package fitness_club.services;
+package fitness_club.core.services;
 
-import fitness_club.database.Database;
-import fitness_club.domain.Client;
-import fitness_club.domain.ClientAgeGroups;
-import fitness_club.requests.ChangeClientAgeGroupRequest;
-import fitness_club.responses.AddClientResponse;
+import fitness_club.core.database.Database;
+import fitness_club.core.domain.Client;
+import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.requests.ChangeClientAgeGroupRequest;
+import fitness_club.core.responses.AddClientResponse;
 
 import java.util.List;
 
@@ -14,14 +14,6 @@ public class ChangeClientAgeGroupService {
 
     public ChangeClientAgeGroupService(Database database) {
         this.database = database;
-    }
-
-    public void changeClientAgeGroup(String personalCode, ClientAgeGroups clientAgeGroups) {
-        List<Client> clients = database.getAllClients();
-        clients.stream()
-                .filter(client -> client.getPersonalCode().equals(personalCode))
-                .findFirst()
-                .ifPresent(client -> client.setClientAgeGroup(clientAgeGroups));
     }
 
     public AddClientResponse execute(ChangeClientAgeGroupRequest request) {

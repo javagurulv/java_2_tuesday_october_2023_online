@@ -1,12 +1,12 @@
 package fitness_club.console_UI;
 
-import fitness_club.domain.ClientAgeGroups;
-import fitness_club.domain.Workouts;
-import fitness_club.requests.AddClientRequest;
-import fitness_club.responses.AddClientResponse;
-import fitness_club.services.AddClientService;
-import fitness_club.services.GetClientAgeGroupService;
-import fitness_club.services.GetWorkoutService;
+import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.domain.Workouts;
+import fitness_club.core.requests.AddClientRequest;
+import fitness_club.core.responses.AddClientResponse;
+import fitness_club.core.services.AddClientService;
+import fitness_club.core.services.GetClientAgeGroupService;
+import fitness_club.core.services.GetWorkoutService;
 
 import java.util.Scanner;
 
@@ -34,14 +34,12 @@ public class AddClientUIAction implements UIAction {
         System.out.println("1. Child");
         System.out.println("2. Adult");
         System.out.println("3. Senior");
-        GetClientAgeGroupService getClientAgeGroupService = new GetClientAgeGroupService();
-        ClientAgeGroups clientAgeGroups = getClientAgeGroupService.getClientAgeGroup(Integer.parseInt(scanner.nextLine()));
+        ClientAgeGroups clientAgeGroups = GetClientAgeGroupService.getClientAgeGroup(Integer.parseInt(scanner.nextLine()));
         System.out.println("Choose client workout.");
         System.out.println("1. GYM");
         System.out.println("2. Swimming Pool");
         System.out.println("3. Group Classes");
-        GetWorkoutService getWorkoutService = new GetWorkoutService();
-        Workouts clientWorkout = getWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
+        Workouts clientWorkout = GetWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
 
         AddClientRequest request = new AddClientRequest(clientFirstName, clientLastName, clientPersonalCode, clientAgeGroups, clientWorkout);
         AddClientResponse response = service.execute(request);

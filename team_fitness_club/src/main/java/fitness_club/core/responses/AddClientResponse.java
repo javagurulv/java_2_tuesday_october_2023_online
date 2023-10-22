@@ -1,8 +1,8 @@
-package fitness_club.responses;
+package fitness_club.core.responses;
 
 import fitness_club.data_vlidation.CoreError;
 import fitness_club.data_vlidation.CoreResponse;
-import fitness_club.domain.Client;
+import fitness_club.core.domain.Client;
 
 import java.util.List;
 

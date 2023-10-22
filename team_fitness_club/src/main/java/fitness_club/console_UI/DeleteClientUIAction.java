@@ -1,8 +1,8 @@
 package fitness_club.console_UI;
 
-import fitness_club.requests.DeleteClientRequest;
-import fitness_club.responses.DeleteClientResponse;
-import fitness_club.services.DeleteClientService;
+import fitness_club.core.requests.DeleteClientRequest;
+import fitness_club.core.responses.DeleteClientResponse;
+import fitness_club.core.services.DeleteClientService;
 
 import java.util.Scanner;
 

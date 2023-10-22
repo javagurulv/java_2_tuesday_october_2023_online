@@ -1,10 +1,9 @@
-package fitness_club.services;
+package fitness_club.core.services;
 
-import fitness_club.database.Database;
-import fitness_club.domain.Client;
-import fitness_club.domain.Workouts;
-import fitness_club.requests.ChangeClientWorkoutsRequest;
-import fitness_club.responses.AddClientResponse;
+import fitness_club.core.database.Database;
+import fitness_club.core.domain.Client;
+import fitness_club.core.requests.ChangeClientWorkoutsRequest;
+import fitness_club.core.responses.AddClientResponse;
 
 import java.util.List;
 
@@ -14,18 +13,6 @@ public class ChangeClientWorkoutService {
 
     public ChangeClientWorkoutService(Database database) {
         this.database = database;
-    }
-
-    public void changeClientWorkout(String personalCode, Workouts workout) {
-        Client clientToChangeWorkout = new Client(personalCode);
-        List<Client> clients = database.getAllClients();
-        for (Client client : clients) {
-            if (client.equals(clientToChangeWorkout)) {
-                client.setWorkouts(workout);
-                database.saveClient(clients);
-                break;
-            }
-        }
     }
 
     public AddClientResponse execute(ChangeClientWorkoutsRequest request) {
