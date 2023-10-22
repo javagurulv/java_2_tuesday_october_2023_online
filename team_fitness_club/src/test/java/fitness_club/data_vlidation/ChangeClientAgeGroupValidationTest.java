@@ -1,6 +1,6 @@
 package fitness_club.data_vlidation;
 
-import fitness_club.requests.ChangeClientAgeGroupRequest;
+import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

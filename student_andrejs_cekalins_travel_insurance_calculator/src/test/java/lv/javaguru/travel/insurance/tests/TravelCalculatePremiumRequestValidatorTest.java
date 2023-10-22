@@ -1,6 +1,5 @@
 package lv.javaguru.travel.insurance.tests;
 
-import lv.javaguru.travel.insurance.core.DateTimeService;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidator;
 import lv.javaguru.travel.insurance.dto.ValidationError;

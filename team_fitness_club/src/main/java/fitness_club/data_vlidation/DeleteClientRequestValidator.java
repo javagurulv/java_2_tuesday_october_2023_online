@@ -1,7 +1,6 @@
 package fitness_club.data_vlidation;
 
-import fitness_club.requests.AddClientRequest;
-import fitness_club.requests.DeleteClientRequest;
+import fitness_club.core.requests.DeleteClientRequest;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -13,15 +13,14 @@ import java.util.List;
 public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
     @Autowired
     private TravelCalculatePremiumRequestValidator requestValidator;
-    @Autowired
-    private DateTimeService dateTimeService;
+
     @Autowired
     private TravelPremiumUnderwriting premiumUnderwriting;
 
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
         List<ValidationError> errors = requestValidator.validate(request);
-        return (!errors.isEmpty())
+        return (errors.isEmpty())
                 ? buildResponse(request, premiumUnderwriting.calculatePremium(request))
                 : buildResponse(errors);
     }

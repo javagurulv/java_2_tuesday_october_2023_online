@@ -1,52 +1,49 @@
 package fitness_club;
 
 import fitness_club.console_UI.*;
+import fitness_club.core.database.Database;
+import fitness_club.core.database.InMemoryDatabase;
+import fitness_club.core.services.*;
 import fitness_club.data_vlidation.AddClientRequestValidator;
-import fitness_club.database.Database;
-import fitness_club.database.InMemoryDatabase;
-import fitness_club.services.*;
+import fitness_club.data_vlidation.ChangeClientAgeGroupValidator;
+import fitness_club.data_vlidation.ChangeClientWorkoutsValidator;
+import fitness_club.data_vlidation.DeleteClientRequestValidator;
 
 import java.util.Scanner;
 
 public class ClientWorkoutsApplication {
-    public static void main(String[] args) {
-        Database database = new InMemoryDatabase();
-        AddClientRequestValidator addClientValidator = new AddClientRequestValidator();
-        AddClientService addClientService = new AddClientService(database, addClientValidator);
-        DeleteClientService deleteClientService = new DeleteClientService(database);
-        GetAllClientsService getAllClientsService = new GetAllClientsService(database);
-        ChangeClientAgeGroupService changeClientAgeGroupService = new ChangeClientAgeGroupService(database);
-        ChangeClientWorkoutService changeClientWorkoutService = new ChangeClientWorkoutService(database);
+    private static Database database = new InMemoryDatabase();
 
-        AddClientUIAction addClientUIAction = new AddClientUIAction(addClientService);
-        DeleteClientUIAction deleteClientUIAction = new DeleteClientUIAction(deleteClientService);
-        GetAllClientsUIAction getAllClientsUIAction = new GetAllClientsUIAction(getAllClientsService);
-        ChangeClientAgeGrpoupUIAction changeClientAgeGrpoupUIAction = new ChangeClientAgeGrpoupUIAction(changeClientAgeGroupService);
-        ChangeWorkoutUIAction changeWorkoutUIAction = new ChangeWorkoutUIAction(changeClientWorkoutService);
-        ExitUIAction exitUIAction = new ExitUIAction();
+    private static AddClientRequestValidator addClientValidator = new AddClientRequestValidator();
+    private static DeleteClientRequestValidator deleteClientRequestValidator = new DeleteClientRequestValidator();
+    private static ChangeClientAgeGroupValidator changeClientAgeGroupValidator = new ChangeClientAgeGroupValidator();
+    private static ChangeClientWorkoutsValidator changeClientWorkoutsValidator = new ChangeClientWorkoutsValidator();
+
+    private static AddClientService addClientService = new AddClientService(database, addClientValidator);
+    private static DeleteClientService deleteClientService = new DeleteClientService(database, deleteClientRequestValidator);
+    private static GetAllClientsService getAllClientsService = new GetAllClientsService(database);
+    private static ChangeClientAgeGroupService changeClientAgeGroupService = new ChangeClientAgeGroupService(database, changeClientAgeGroupValidator);
+    private static ChangeClientWorkoutService changeClientWorkoutService = new ChangeClientWorkoutService(database, changeClientWorkoutsValidator);
+
+    private static UIAction addClientUIAction = new AddClientUIAction(addClientService);
+    private static UIAction deleteClientUIAction = new DeleteClientUIAction(deleteClientService);
+    private static UIAction getAllClientsUIAction = new GetAllClientsUIAction(getAllClientsService);
+    private static UIAction changeClientAgeGroupUIAction = new ChangeClientAgeGroupUIAction(changeClientAgeGroupService);
+    private static UIAction changeWorkoutUIAction = new ChangeWorkoutUIAction(changeClientWorkoutService);
+    private static UIAction exitUIAction = new ExitUIAction();
+
+    public static void main(String[] args) {
 
         while (true) {
             printProgramMenu();
             int userChoiceMenuNumber = getMenuNumber();
             switch (userChoiceMenuNumber) {
-                case 1: {
-                    addClientUIAction.execute();
-                    break;
-                }
-                case 2:
-                    deleteClientUIAction.execute();
-                    break;
-                case 3:
-                    getAllClientsUIAction.execute();
-                    break;
-                case 4:
-                    changeWorkoutUIAction.execute();
-                    break;
-                case 5:
-                    changeClientAgeGrpoupUIAction.execute();
-                    break;
-                case 6:
-                    exitUIAction.execute();
+                case 1 -> addClientUIAction.execute();
+                case 2 -> deleteClientUIAction.execute();
+                case 3 -> getAllClientsUIAction.execute();
+                case 4 -> changeWorkoutUIAction.execute();
+                case 5 -> changeClientAgeGroupUIAction.execute();
+                case 6 -> exitUIAction.execute();
             }
         }
     }

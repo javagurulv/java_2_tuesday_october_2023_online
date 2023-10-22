@@ -1,6 +1,6 @@
 package fitness_club.data_vlidation;
 
-import fitness_club.requests.ChangeClientWorkoutsRequest;
+import fitness_club.core.requests.ChangeClientWorkoutsRequest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

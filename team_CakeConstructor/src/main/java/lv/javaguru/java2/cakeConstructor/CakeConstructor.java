@@ -4,34 +4,42 @@ import lv.javaguru.java2.cakeConstructor.consoole_ui.AddCakeUIAction;
 import lv.javaguru.java2.cakeConstructor.consoole_ui.ExitUIAction;
 import lv.javaguru.java2.cakeConstructor.consoole_ui.GetAllCakesForClientUIAction;
 import lv.javaguru.java2.cakeConstructor.consoole_ui.UIAction;
-import lv.javaguru.java2.cakeConstructor.core.database.DataBase;
-import lv.javaguru.java2.cakeConstructor.core.database.DateBaseIf;
-import lv.javaguru.java2.cakeConstructor.core.services.AddCakeService;
-import lv.javaguru.java2.cakeConstructor.core.services.AddCakeValidator;
-import lv.javaguru.java2.cakeConstructor.core.services.GetCakesForClientService;
+import lv.javaguru.java2.cakeConstructor.core.cake.database.DateBaseIf;
+import lv.javaguru.java2.cakeConstructor.core.cake.database.InFileDateBAse;
+import lv.javaguru.java2.cakeConstructor.core.cake.services.AddCakeService;
+import lv.javaguru.java2.cakeConstructor.core.cake.services.AddCakeValidator;
+import lv.javaguru.java2.cakeConstructor.core.cake.services.GetCakesForClientService;
+import lv.javaguru.java2.cakeConstructor.core_user.SystemUserLogin;
+import lv.javaguru.java2.cakeConstructor.core_user.UserLoginSystem;
+import lv.javaguru.java2.cakeConstructor.core_user.user_domain.User;
 
 
 import java.util.Scanner;
 
 public class CakeConstructor {
 
-    private static DataBase dataBase = new DataBase();
+    private static DateBaseIf dataBase = new InFileDateBAse();
     private static AddCakeValidator validator = new AddCakeValidator();
     private static AddCakeService addCakeService = new AddCakeService(dataBase,validator);
     private static GetCakesForClientService getCakesForClientService = new GetCakesForClientService(dataBase);
     private static UIAction addCake = new AddCakeUIAction(addCakeService);
     private static UIAction getCakeForClient = new GetAllCakesForClientUIAction(getCakesForClientService);
     private static UIAction exit = new ExitUIAction();
+    private static SystemUserLogin systemLogin = new UserLoginSystem();
 
 
     public static void main(String[] args) {
 
+        User user = systemLogin.login();
+
         while (true) {
             printMenu();
             int getUserMenuChoice = getUserMenuChoice();
-            executeSelectedMenuItem(dataBase, getUserMenuChoice);
+            executeSelectedMenuItem(dataBase, getUserMenuChoice,user.getUserLogin());
         }
     }
+
+
 
     public static void printMenu(){
         System.out.println("Welcome to cake constructor!");
@@ -46,20 +54,20 @@ public class CakeConstructor {
         return userChoice;
     }
 
-    public static void executeSelectedMenuItem(DateBaseIf dataBase, int getUSerMenuChoice) {
+    public static void executeSelectedMenuItem(DateBaseIf dataBase, int getUSerMenuChoice,String userLogin) {
 
         switch (getUSerMenuChoice) {
             case 1: {
-                addCake.execute();
+                addCake.execute(userLogin);
                 break;
             }
 
             case 2: {
-                getCakeForClient.execute();
+                getCakeForClient.execute(userLogin);
                 break;
             }
             case 3: {
-                exit.execute();
+                exit.execute(userLogin);
             }
         }
     }

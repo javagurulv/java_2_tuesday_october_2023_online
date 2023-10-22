@@ -1,8 +1,8 @@
 package fitness_club.console_UI;
 
-import fitness_club.requests.DeleteClientRequest;
-import fitness_club.responses.DeleteClientResponse;
-import fitness_club.services.DeleteClientService;
+import fitness_club.core.requests.DeleteClientRequest;
+import fitness_club.core.responses.DeleteClientResponse;
+import fitness_club.core.services.DeleteClientService;
 
 import java.util.Scanner;
 
@@ -25,11 +25,7 @@ public class DeleteClientUIAction implements UIAction {
         if (response.containsErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
         } else {
-            if (response.isClientDeleted()) {
                 System.out.println("Client was removed from  list.");
-            } else {
-                System.out.println("Client was removed from  list.");
-            }
         }
     }
 }

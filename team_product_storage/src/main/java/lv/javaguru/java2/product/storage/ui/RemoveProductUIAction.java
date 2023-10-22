@@ -21,10 +21,14 @@ public class RemoveProductUIAction implements UIAction {
         Long productId = Long.parseLong(scanner.nextLine());
         RemoveProductRequest request = new RemoveProductRequest(productId);
         RemoveProductResponse response = removeProductService.execute(request);
-        if (response.isProductRemoved()) {
-            System.out.println("Your product was removed from list.");
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
         } else {
-            System.out.println("Your product not removed from list.");
+            if (response.isProductRemoved()) {
+                System.out.println("Your product was removed from list.");
+            } else {
+                System.out.println("Your product not removed from list. Please enter valid id!");
+            }
         }
     }
 }
