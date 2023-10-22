@@ -9,6 +9,7 @@ import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.ChangeClientAgeGroupService;
+import fitness_club.data_vlidation.ChangeClientAgeGroupValidator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,7 +25,7 @@ class ChangeClientAgeGroupServiceTest {
     void changeClientAgeGroupTest() {
         inMemoryDatabase = new InMemoryDatabase();
         addClient = new AddClientService(inMemoryDatabase, new AddClientRequestValidator());
-        changeClientAgeGroupService = new ChangeClientAgeGroupService(inMemoryDatabase);
+        changeClientAgeGroupService = new ChangeClientAgeGroupService(inMemoryDatabase, new ChangeClientAgeGroupValidator());
         AddClientRequest addClientRequest = new AddClientRequest("Aaa", "Bbb", "12-12", ClientAgeGroups.ADULT, Workouts.GYM);
         addClient.execute(addClientRequest);
         Client client = new Client("Aaa", "Bbb", "12-12", ClientAgeGroups.SENIOR, Workouts.GYM);

@@ -3,7 +3,7 @@ package fitness_club.console_UI;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
-import fitness_club.core.responses.AddClientResponse;
+import fitness_club.core.responses.ClientResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.GetClientAgeGroupService;
 import fitness_club.core.services.GetWorkoutService;
@@ -42,7 +42,7 @@ public class AddClientUIAction implements UIAction {
         Workouts clientWorkout = GetWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
 
         AddClientRequest request = new AddClientRequest(clientFirstName, clientLastName, clientPersonalCode, clientAgeGroups, clientWorkout);
-        AddClientResponse response = service.execute(request);
+        ClientResponse response = service.execute(request);
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->
                     System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage())

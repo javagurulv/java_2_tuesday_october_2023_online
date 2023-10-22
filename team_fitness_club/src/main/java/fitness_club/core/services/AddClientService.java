@@ -3,7 +3,7 @@ package fitness_club.core.services;
 import fitness_club.core.database.Database;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
-import fitness_club.core.responses.AddClientResponse;
+import fitness_club.core.responses.ClientResponse;
 import fitness_club.data_vlidation.AddClientRequestValidator;
 import fitness_club.data_vlidation.CoreError;
 
@@ -21,18 +21,18 @@ public class AddClientService {
         this.database = database;
     }
 
-    public AddClientResponse execute(AddClientRequest request) {
+    public ClientResponse execute(AddClientRequest request) {
         List<CoreError> errors = validator.validate(request);
         return errors.isEmpty()
                 ? addNewClient(request)
                 : buildErrorResponse(errors);
     }
 
-    private AddClientResponse buildErrorResponse(List<CoreError> errors) {
-        return new AddClientResponse(errors);
+    private ClientResponse buildErrorResponse(List<CoreError> errors) {
+        return new ClientResponse(errors);
     }
 
-    private AddClientResponse addNewClient(AddClientRequest request) {
+    private ClientResponse addNewClient(AddClientRequest request) {
         Client client = new Client(
                 request.getFirstName(),
                 request.getLastName(),
@@ -40,7 +40,7 @@ public class AddClientService {
                 request.getClientAgeGroup(),
                 request.getWorkout());
         database.addClient(client);
-        return new AddClientResponse(client);
+        return new ClientResponse(client);
     }
 
 }

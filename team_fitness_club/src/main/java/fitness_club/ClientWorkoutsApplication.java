@@ -5,6 +5,8 @@ import fitness_club.core.database.Database;
 import fitness_club.core.database.InMemoryDatabase;
 import fitness_club.core.services.*;
 import fitness_club.data_vlidation.AddClientRequestValidator;
+import fitness_club.data_vlidation.ChangeClientAgeGroupValidator;
+import fitness_club.data_vlidation.ChangeClientWorkoutsValidator;
 import fitness_club.data_vlidation.DeleteClientRequestValidator;
 
 import java.util.Scanner;
@@ -14,12 +16,14 @@ public class ClientWorkoutsApplication {
 
     private static AddClientRequestValidator addClientValidator = new AddClientRequestValidator();
     private static DeleteClientRequestValidator deleteClientRequestValidator = new DeleteClientRequestValidator();
+    private static ChangeClientAgeGroupValidator changeClientAgeGroupValidator = new ChangeClientAgeGroupValidator();
+    private static ChangeClientWorkoutsValidator changeClientWorkoutsValidator = new ChangeClientWorkoutsValidator();
 
     private static AddClientService addClientService = new AddClientService(database, addClientValidator);
     private static DeleteClientService deleteClientService = new DeleteClientService(database, deleteClientRequestValidator);
     private static GetAllClientsService getAllClientsService = new GetAllClientsService(database);
-    private static ChangeClientAgeGroupService changeClientAgeGroupService = new ChangeClientAgeGroupService(database);
-    private static ChangeClientWorkoutService changeClientWorkoutService = new ChangeClientWorkoutService(database);
+    private static ChangeClientAgeGroupService changeClientAgeGroupService = new ChangeClientAgeGroupService(database, changeClientAgeGroupValidator);
+    private static ChangeClientWorkoutService changeClientWorkoutService = new ChangeClientWorkoutService(database, changeClientWorkoutsValidator);
 
     private static UIAction addClientUIAction = new AddClientUIAction(addClientService);
     private static UIAction deleteClientUIAction = new DeleteClientUIAction(deleteClientService);

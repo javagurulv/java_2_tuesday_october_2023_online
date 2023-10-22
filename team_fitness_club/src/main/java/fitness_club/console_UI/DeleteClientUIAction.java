@@ -25,11 +25,7 @@ public class DeleteClientUIAction implements UIAction {
         if (response.containsErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
         } else {
-            if (response.isClientDeleted()) {
                 System.out.println("Client was removed from  list.");
-            } else {
-                System.out.println("Client was removed from  list.");
-            }
         }
     }
 }
