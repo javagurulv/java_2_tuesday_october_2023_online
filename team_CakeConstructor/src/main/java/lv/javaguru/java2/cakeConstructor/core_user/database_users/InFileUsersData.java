@@ -11,7 +11,7 @@ public class InFileUsersData implements UserUIDataBase {
     private List<User> users = new ArrayList<>();
     private String file;
     public InFileUsersData(){
-       this.file = "/databases/user_database";
+       this.file = "databases/user_database";
     }
     @Override
     public void addUser(User user) {
@@ -22,7 +22,9 @@ public class InFileUsersData implements UserUIDataBase {
 
     @Override
     public void saveUser(List<User> user) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        String absolutePath = classLoader.getResource(file).getFile();
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(absolutePath))) {
             oos.writeObject(user);
         } catch (IOException e) {
             e.printStackTrace();
@@ -32,7 +34,9 @@ public class InFileUsersData implements UserUIDataBase {
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        String absolutePath = classLoader.getResource(file).getFile();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(absolutePath))) {
             users = (List<User>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
