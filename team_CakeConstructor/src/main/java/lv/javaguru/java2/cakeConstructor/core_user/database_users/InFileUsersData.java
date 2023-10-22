@@ -11,7 +11,7 @@ public class InFileUsersData implements UserUIDataBase {
     private List<User> users = new ArrayList<>();
     private String file;
     public InFileUsersData(){
-       this.file = "C:\\Users\\ArchAtalar\\javaLab\\java_2_tuesday_october_2023_online\\team_CakeConstructor\\src\\main\\java\\lv\\javaguru\\java2\\cakeConstructor\\core_user\\database_users\\user_database";
+       this.file = "/databases/user_database";
     }
     @Override
     public void addUser(User user) {
