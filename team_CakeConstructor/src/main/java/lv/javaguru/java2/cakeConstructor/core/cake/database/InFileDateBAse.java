@@ -28,8 +28,7 @@ public class InFileDateBAse implements DateBaseIf {
     }
 
     public List<Cake> getAllCake() {
-        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        String absolutePath = classLoader.getResource(file).getFile();
+        String absolutePath = "C:\\Users\\ArchAtalar\\javaLab\\java_2_tuesday_october_2023_online\\team_CakeConstructor\\src\\main\\resources\\databases\\cake";
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(absolutePath))) {
             cakes = (List<Cake>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
@@ -39,8 +38,7 @@ public class InFileDateBAse implements DateBaseIf {
     }
 
     public void saveCake() {
-        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        String absolutePath = classLoader.getResource(file).getFile();
+        String absolutePath = "C:\\Users\\ArchAtalar\\javaLab\\java_2_tuesday_october_2023_online\\team_CakeConstructor\\src\\main\\resources\\databases\\cake";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(absolutePath))){
             oos.writeObject(cakes);
         } catch (IOException e) {
