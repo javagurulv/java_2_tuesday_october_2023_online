@@ -5,5 +5,6 @@ import java.util.List;
 public interface Database {
     List<Book>  getBooks();
     void addBook(Book book);
-    void deleteBook(Long id);
+    boolean deleteBook(Long id);
+    boolean repeatBook(String title, String author);
 }

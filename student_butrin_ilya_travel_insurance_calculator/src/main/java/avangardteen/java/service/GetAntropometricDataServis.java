@@ -10,16 +10,16 @@ public class GetAntropometricDataServis {
         this.client = client;
     }
 
-    public  int getPelvis () {return client.getWheelchair().getUserData().getUserSizes().getPelvisWidth();
+    public  int getPelvis () {return client.getUserSizes().getPelvisWidth();
     }
     public  int getShinLength (){
-        return client.getWheelchair().getUserData().getUserSizes().getShinLength();
+        return client.getUserSizes().getShinLength();
     }
     public  int getBackLength (){
-        return client.getWheelchair().getUserData().getUserSizes().getBackHeight();
+        return client.getUserSizes().getBackHeight();
     }
     public  int getThighLength (){
-        return client.getWheelchair().getUserData().getUserSizes().getThighLength();
+        return client.getUserSizes().getThighLength();
     }
 }
 

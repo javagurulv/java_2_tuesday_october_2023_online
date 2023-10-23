@@ -1,26 +1,21 @@
 package classWork.consoleUI;
 
 
-import classWork.Database;
-import classWork.Book;
-import classWork.InMemoryDatabaseImpl;
-
-import java.util.List;
+import classWork.core.response.GetAllBookResponce;
+import classWork.core.service.GetAllBookService;
 
 public class GetAllBooksUIAction implements UIAction {
-    Database data = new InMemoryDatabaseImpl();
 
-    public GetAllBooksUIAction(Database data) {
-        this.data = data;
+    public GetAllBooksUIAction(GetAllBookService service) {
+        this.service = service;
     }
+
+    GetAllBookService service;
 
     @Override
     public void execute() {
-        List<Book> books = data.getBooks();
-        for (Book bookFromList : books)
-            System.out.println(bookFromList.getId() +
-                    ". " + bookFromList.getAuthor() +
-                    "  " + bookFromList.getTitle());
+        GetAllBookResponce responce = service.execute();
+
     }
 }
 

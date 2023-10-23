@@ -1,15 +1,14 @@
 package avangardteen.java.UIAction;
 
-import avangardteen.java.Wheelchair;
-import avangardteen.java.service.ChangenAtropologDateServis;
-import avangardteen.java.service.ChooseAntropometricDataServis;
+import avangardteen.java.service.AddAtropologDateServis;
 
 import java.util.Scanner;
 
 public class ChangenAtropologDateUIAAction implements UIAction{
-    static ChangenAtropologDateServis servis;
+    static AddAtropologDateServis servis;
 
-    public ChangenAtropologDateUIAAction(ChangenAtropologDateServis servis) {
+    public ChangenAtropologDateUIAAction(
+            AddAtropologDateServis servis) {
         this.servis = servis;
     }
 
