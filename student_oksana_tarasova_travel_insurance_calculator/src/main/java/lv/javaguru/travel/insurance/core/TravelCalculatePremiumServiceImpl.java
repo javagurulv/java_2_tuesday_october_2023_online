@@ -16,37 +16,33 @@ import java.util.Optional;
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
 
     @Autowired
-    private DateTimeService dateTimeService;
+    private DateTimeService dateTimeService = new DateTimeService();
     @Autowired
-    private TravelCalculatePremiumRequestValidator validator;
-    @Autowired
-    private CoreResponse coreResponse;
+    private TravelCalculatePremiumRequestValidator validator = new TravelCalculatePremiumRequestValidator();
+
 
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
+        List<ValidationError> errors = validator.validate(request);
+        return (errors.isEmpty())
+                ? getResponse(request)
+                : new TravelCalculatePremiumResponse(errors);
+
+    }
+
+    private TravelCalculatePremiumResponse getResponse(TravelCalculatePremiumRequest request) {
         TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse();
 
-        response.setAgreementPrice(new BigDecimal(daysBetween(request)));
         response.setPersonFirstName(request.getPersonFirstName());
         response.setPersonLastName(request.getPersonLastName());
         response.setAgreementDateFrom(request.getAgreementDateFrom());
         response.setAgreementDateTo(request.getAgreementDateTo());
         response.setAgreementPrice(new BigDecimal(daysBetween(request)));
-        response.setErrors(validateList(request));
-
-
         return response;
     }
 
-    private  List<ValidationError> validateList(TravelCalculatePremiumRequest request) {
-        List<ValidationError> errors = validator.validate(request);
-        coreResponse.setErrors(errors);
-        return (coreResponse.hasErrors())
-                ? coreResponse.getErrors()
-                : new ArrayList<>();
-    }
 
-    private long daysBetween (TravelCalculatePremiumRequest request) {
+    private long daysBetween(TravelCalculatePremiumRequest request) {
         var daysBetween = dateTimeService.getDaysBetween(request.getAgreementDateFrom(), request.getAgreementDateTo());
         return daysBetween;
     }

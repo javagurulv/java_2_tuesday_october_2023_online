@@ -38,6 +38,7 @@ public class ChangeClientAgeGroupService {
                 .filter(client -> client.getPersonalCode().equals(request.getPersonalCode()))
                 .findFirst()
                 .ifPresent(client -> client.setClientAgeGroup(request.getClientAgeGroup()));
+        database.saveClient(clients);
         return new ClientResponse(clientToChangeAgeGroup);
     }
 }

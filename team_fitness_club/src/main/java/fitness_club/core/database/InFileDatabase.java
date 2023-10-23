@@ -3,6 +3,8 @@ package fitness_club.core.database;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import fitness_club.core.domain.Client;
 
 public class InFileDatabase implements Database {
@@ -10,7 +12,7 @@ public class InFileDatabase implements Database {
     private final String filename;
 
     public InFileDatabase() {
-        this.filename = ".\\team_fitness_club\\src\\main\\java\\database\\ClientsFile";
+        this.filename = ".\\team_fitness_club\\src\\main\\java\\fitness_club\\core\\database\\ClientsFile.bin";
     }
 
     public void addClient(Client client) {
@@ -22,9 +24,14 @@ public class InFileDatabase implements Database {
 
     public void removeClient(String personalCode) {
         List<Client> clients = getAllClients();
-        clients.remove(personalCode);
-        updateClientIds(clients);
-        saveClient(clients);
+        Optional<Client> clientToRemove = clients.stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst();
+        if (clientToRemove.isPresent()) {
+            clients.remove(clientToRemove.get());
+            updateClientIds(clients);
+            saveClient(clients);
+        }
     }
 
 

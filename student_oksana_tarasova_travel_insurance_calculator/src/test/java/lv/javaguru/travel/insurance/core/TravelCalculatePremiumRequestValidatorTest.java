@@ -140,7 +140,6 @@ class TravelCalculatePremiumRequestValidatorTest {
         List<ValidationError> validFirstName = validator.validate(request);
         ValidationError expected = (new ValidationError("agreementDateFrom", "Must be less than the agreementDateTo!"));
         assertThat(validFirstName).contains(expected);
-
     }
 
 }

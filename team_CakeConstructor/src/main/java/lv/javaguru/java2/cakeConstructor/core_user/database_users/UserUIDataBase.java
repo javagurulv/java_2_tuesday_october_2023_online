@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface UserUIDataBase {
     void addUser(User user);
-    void saveUser(List<User>users);
-     List<User> getAllUsers();
+
+    void saveUser();
+
+    List<User> getAllUsers();
 
 }

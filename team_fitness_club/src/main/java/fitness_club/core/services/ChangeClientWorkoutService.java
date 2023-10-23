@@ -38,6 +38,7 @@ public class ChangeClientWorkoutService {
                 .filter(client -> client.getPersonalCode().equals(request.getPersonalCode()))
                 .findFirst()
                 .ifPresent(client -> client.setWorkouts(request.getWorkout()));
+        database.saveClient(clients);
         return new ClientResponse(clientToChangeWorkout);
     }
 }

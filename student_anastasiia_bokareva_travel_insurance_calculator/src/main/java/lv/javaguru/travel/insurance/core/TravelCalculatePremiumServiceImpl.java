@@ -2,9 +2,8 @@ package lv.javaguru.travel.insurance.core;
 
 import lv.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
-import org.springframework.stereotype.Component;
 
-@Component
+
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
 
     @Override
@@ -14,8 +13,6 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
         response.setPersonLastName(request.getPersonLastName());
         response.setAgreementDateFrom(request.getAgreementDateFrom());
         response.setAgreementDateTo(request.getAgreementDateTo());
-        response.setAgreementPriceFRomTo(request.getAgreementDateFrom(),request.getAgreementDateTo());
-
         return response;
     }
 

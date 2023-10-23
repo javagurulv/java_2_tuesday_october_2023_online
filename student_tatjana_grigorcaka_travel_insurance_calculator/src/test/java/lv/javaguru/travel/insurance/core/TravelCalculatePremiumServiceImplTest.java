@@ -1,7 +1,7 @@
 package lv.javaguru.travel.insurance.core;
 
-import lv.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
-import lv.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
+import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
+import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,6 +21,7 @@ class TravelCalculatePremiumServiceImplTest {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
     @Mock private DateTimeService dateTimeService;
+    @Mock private TravelCalculatePremiumRequestValidator requestValidator;
     @InjectMocks
     private TravelCalculatePremiumServiceImpl service;
     private TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("John", "Smith",

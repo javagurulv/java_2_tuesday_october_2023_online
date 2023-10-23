@@ -25,24 +25,28 @@ public class RegistarUserUIConsole implements UIConsoleUsers {
 
     }
 
-    private boolean check (User newUser){
+
+    private boolean check(User newUser) {
         List<User> users = dataBase.getAllUsers();
         boolean isUser = false;
-        for (User user : users){
-            if (newUser.getUserLogin().equals(user.getUserLogin()) && newUser.getUserPassword().equals(user.getUserPassword())){
-                isUser=true;
-            } else {
-                System.out.println("Please check your login and password!");
+        for (User user : users) {
+            if (newUser.getUserLogin().equals(user.getUserLogin()) && newUser.getUserPassword().equals(user.getUserPassword())) {
+                isUser = true;
+                break;
             }
+        }
+        if (isUser==false) {
+            System.out.println("Please check your login and password!");
         }
         return isUser;
     }
 
+
     private User allowedLogin (String userLogin, String userPassword){
         User user = new User(userLogin,userPassword);
         User userAllow = null;
-        boolean check = check(user);
-        if (check == true){
+        boolean checkUser = check(user);
+        if (checkUser == true){
             userAllow = user;
         }
         return userAllow;
