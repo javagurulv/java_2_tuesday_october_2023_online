@@ -31,11 +31,12 @@ public class CakeConstructor {
     public static void main(String[] args) {
 
         User user = systemLogin.login();
-
-        while (true) {
-            printMenu();
-            int getUserMenuChoice = getUserMenuChoice();
-            executeSelectedMenuItem(dataBase, getUserMenuChoice,user.getUserLogin());
+        if (user != null) {
+            while (true) {
+                printMenu();
+                int getUserMenuChoice = getUserMenuChoice();
+                executeSelectedMenuItem(dataBase, getUserMenuChoice, user.getUserLogin());
+            }
         }
     }
 
