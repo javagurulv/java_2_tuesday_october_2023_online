@@ -9,6 +9,7 @@ import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.requests.DeleteClientRequest;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.DeleteClientService;
+import fitness_club.data_vlidation.DeleteClientRequestValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +22,7 @@ class DeleteClientServiceTest {
     void removeClient() {
         inMemoryDatabase =  new InMemoryDatabase();
         addClient = new AddClientService(inMemoryDatabase, new AddClientRequestValidator());
+        deleteClient = new DeleteClientService(inMemoryDatabase, new DeleteClientRequestValidator());
         AddClientRequest addFirstClientRequest = new AddClientRequest("Aaa", "Bbb", "12-12", ClientAgeGroups.SENIOR, Workouts.GYM);
         AddClientRequest addSecondClientRequest = new AddClientRequest("Ccc", "Ddd", "12-13", ClientAgeGroups.SENIOR, Workouts.GYM);
         DeleteClientRequest deleteSecondClientRequest = new DeleteClientRequest("12-13");

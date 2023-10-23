@@ -11,19 +11,19 @@ public class InFileUsersData implements UserUIDataBase {
     private List<User> users = new ArrayList<>();
     private String file;
     public InFileUsersData(){
-       this.file = "C:\\Users\\ArchAtalar\\javaLab\\java_2_tuesday_october_2023_online\\team_CakeConstructor\\src\\main\\java\\lv\\javaguru\\java2\\cakeConstructor\\core_user\\database_users\\user_database";
+       this.file = "databases/user_database";
     }
     @Override
     public void addUser(User user) {
-        List <User> users = getAllUsers();
         users.add(user);
-        saveUser(users);
+        saveUser();
     }
 
     @Override
-    public void saveUser(List<User> user) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
-            oos.writeObject(user);
+    public void saveUser() {
+        String absolutePath = "C:\\Users\\ArchAtalar\\javaLab\\java_2_tuesday_october_2023_online\\team_CakeConstructor\\src\\main\\resources\\databases\\user_database";
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(absolutePath))) {
+            oos.writeObject(users);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,8 +31,8 @@ public class InFileUsersData implements UserUIDataBase {
 
     @Override
     public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+        String absolutePath = "C:\\Users\\ArchAtalar\\javaLab\\java_2_tuesday_october_2023_online\\team_CakeConstructor\\src\\main\\resources\\databases\\user_database";
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(absolutePath))) {
             users = (List<User>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

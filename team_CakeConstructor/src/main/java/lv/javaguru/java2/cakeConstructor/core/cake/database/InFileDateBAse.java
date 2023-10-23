@@ -12,14 +12,13 @@ public class InFileDateBAse implements DateBaseIf {
     private String file;
 
     public InFileDateBAse () {
-        this.file = "C:\\Users\\ArchAtalar\\javaLab\\java_2_tuesday_october_2023_online\\team_CakeConstructor\\src\\main\\java\\lv\\javaguru\\java2\\cakeConstructor\\core\\cake\\database\\cake";
+        this.file = "databases/cake";
     }
 
     @Override
     public void add(Cake cake1) {
-        List<Cake> cakes = getAllCake();
         cakes.add(cake1);
-        saveCake(cakes);
+        saveCake();
 
     }
 
@@ -29,20 +28,22 @@ public class InFileDateBAse implements DateBaseIf {
     }
 
     public List<Cake> getAllCake() {
-        List<Cake> cake = new ArrayList<>();
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            cake = (List<Cake>) ois.readObject();
+        String absolutePath = "C:\\Users\\ArchAtalar\\javaLab\\java_2_tuesday_october_2023_online\\team_CakeConstructor\\src\\main\\resources\\databases\\cake";
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(absolutePath))) {
+            cakes = (List<Cake>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return cake;
+        return cakes;
     }
 
-    public void saveCake(List<Cake> cakes) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+    public void saveCake() {
+        String absolutePath = "C:\\Users\\ArchAtalar\\javaLab\\java_2_tuesday_october_2023_online\\team_CakeConstructor\\src\\main\\resources\\databases\\cake";
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(absolutePath))){
             oos.writeObject(cakes);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
+
