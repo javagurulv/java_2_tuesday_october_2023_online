@@ -12,5 +12,5 @@ public interface DateBaseIf {
     List<Cake> getCakesForClient(String clientLogin);
 
     List<Cake> getAllCake();
-    void saveCake(List<Cake> cakes);
+    void saveCake();
 }

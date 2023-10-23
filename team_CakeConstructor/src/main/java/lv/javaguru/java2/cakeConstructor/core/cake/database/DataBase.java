@@ -34,6 +34,6 @@ public class DataBase implements DateBaseIf {
     }
 
     @Override
-    public void saveCake(List<Cake> cakes) {
+    public void saveCake() {
     }
 }

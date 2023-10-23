@@ -12,14 +12,13 @@ public class InFileDateBAse implements DateBaseIf {
     private String file;
 
     public InFileDateBAse () {
-        this.file = "/databases/cake";
+        this.file = "databases/cake";
     }
 
     @Override
     public void add(Cake cake1) {
-        List<Cake> cakes = getAllCake();
         cakes.add(cake1);
-        saveCake(cakes);
+        saveCake();
 
     }
 
@@ -29,20 +28,24 @@ public class InFileDateBAse implements DateBaseIf {
     }
 
     public List<Cake> getAllCake() {
-        List<Cake> cake = new ArrayList<>();
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            cake = (List<Cake>) ois.readObject();
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        String absolutePath = classLoader.getResource(file).getFile();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(absolutePath))) {
+            cakes = (List<Cake>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return cake;
+        return cakes;
     }
 
-    public void saveCake(List<Cake> cakes) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+    public void saveCake() {
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        String absolutePath = classLoader.getResource(file).getFile();
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(absolutePath))){
             oos.writeObject(cakes);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
+
