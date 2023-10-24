@@ -4,6 +4,7 @@ import lv.javaguru.java2.cakeConstructor.consoole_ui.AddCakeUIAction;
 import lv.javaguru.java2.cakeConstructor.consoole_ui.ExitUIAction;
 import lv.javaguru.java2.cakeConstructor.consoole_ui.GetAllCakesForClientUIAction;
 import lv.javaguru.java2.cakeConstructor.consoole_ui.UIAction;
+import lv.javaguru.java2.cakeConstructor.core.cake.database.DataBase;
 import lv.javaguru.java2.cakeConstructor.core.cake.database.DateBaseIf;
 import lv.javaguru.java2.cakeConstructor.core.cake.database.InFileDateBAse;
 import lv.javaguru.java2.cakeConstructor.core.cake.services.AddCakeService;
@@ -18,7 +19,7 @@ import java.util.Scanner;
 
 public class CakeConstructor {
 
-    private static DateBaseIf dataBase = new InFileDateBAse();
+    private static DateBaseIf dataBase = new DataBase();
     private static AddCakeValidator validator = new AddCakeValidator();
     private static AddCakeService addCakeService = new AddCakeService(dataBase,validator);
     private static GetCakesForClientService getCakesForClientService = new GetCakesForClientService(dataBase);
