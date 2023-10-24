@@ -1,10 +1,11 @@
 package fitness_club.core.responses;
 
 import fitness_club.data_vlidation.CoreError;
+import fitness_club.data_vlidation.CoreResponse;
 
 import java.util.List;
 
-public class DeleteClientResponse {
+public class DeleteClientResponse extends CoreResponse {
 
     private boolean ClientDeleted;
     private List<CoreError> errors;
