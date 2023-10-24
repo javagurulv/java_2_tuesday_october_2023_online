@@ -1,7 +1,10 @@
 package avangardteen.java.service;
 
 import avangardteen.java.Client;
+import avangardteen.java.UserSizes;
 import avangardteen.java.Wheelchair;
+import avangardteen.java.request.ShowDataSizeRequest;
+import avangardteen.java.responce.ShowDataSizeResponse;
 
 public class GetAntropometricDataServis {
      Client client;
@@ -10,16 +13,9 @@ public class GetAntropometricDataServis {
         this.client = client;
     }
 
-    public  int getPelvis () {return client.getUserSizes().getPelvisWidth();
-    }
-    public  int getShinLength (){
-        return client.getUserSizes().getShinLength();
-    }
-    public  int getBackLength (){
-        return client.getUserSizes().getBackHeight();
-    }
-    public  int getThighLength (){
-        return client.getUserSizes().getThighLength();
+    public ShowDataSizeResponse response (ShowDataSizeRequest request){
+        UserSizes size = client.getUserSizes();
+        return new ShowDataSizeResponse(size);
     }
 }
 

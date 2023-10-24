@@ -1,6 +1,8 @@
 package fitness_club.data_vlidation;
 
+import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
+import fitness_club.core.database.InFileDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,8 @@ public class AddClientRequestValidator {
         List<CoreError> errors = new ArrayList<>();
         validateFirstName(request).ifPresent(errors::add);
         validateLastName(request).ifPresent(errors::add);
-        validatePersonalCode(request).ifPresent(errors::add);
+        validatePersonalCodeNotEmpty(request).ifPresent(errors::add);
+        validatePersonalCodeNotDuplicate(request).ifPresent(errors::add);
         return errors;
     }
 
@@ -27,9 +30,20 @@ public class AddClientRequestValidator {
                 : Optional.empty();
     }
 
-    private Optional<CoreError> validatePersonalCode(AddClientRequest request) {
+    private Optional<CoreError> validatePersonalCodeNotEmpty(AddClientRequest request) {
         return request.getPersonalCode() == null || request.getPersonalCode().isEmpty()
                 ? Optional.of(new CoreError("personalCode", "Field personal code must not be empty!"))
+                : Optional.empty();
+    }
+
+    private Optional<CoreError> validatePersonalCodeNotDuplicate(AddClientRequest request) {
+        InFileDatabase database = new InFileDatabase();
+        List<Client> clients = database.getAllClients();
+        Optional<Client> clientToCheckPersonalCode = clients.stream()
+                .filter(client -> client.getPersonalCode().equals(request.getPersonalCode()))
+                .findFirst();
+        return clientToCheckPersonalCode.isPresent()
+                ? Optional.of(new CoreError("clientDuplicate", "Field must not be duplicated! Client with such personal code is already in database!"))
                 : Optional.empty();
     }
 }
