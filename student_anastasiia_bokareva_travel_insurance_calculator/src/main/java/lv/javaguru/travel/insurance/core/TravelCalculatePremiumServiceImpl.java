@@ -6,6 +6,7 @@ import lv.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
 
+
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
         TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse();
