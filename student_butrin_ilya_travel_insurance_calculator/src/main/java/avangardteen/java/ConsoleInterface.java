@@ -6,17 +6,19 @@ import avangardteen.java.UIAction.UIAction;
 import avangardteen.java.data.DataComponents;
 import avangardteen.java.data.DataUsers;
 import avangardteen.java.service.*;
+import avangardteen.java.service.valigation.AddAntropologDateValigation;
 
 import java.util.Scanner;
 public class
 ConsoleInterface {
     static Client client = new Client(new Wheelchair(),
                                 new UserSizes());
+    private static AddAntropologDateValigation addAntropologDateValigation = new AddAntropologDateValigation();
     private static DataUsers data = new DataUsers();
     private static DataComponents dataComponents = new DataComponents();
     private static AddUserDataServis addUserDataServis = new AddUserDataServis(client, data);
     private static ChooseWheelChairComponentsServis chooseWheelChairComponentsServis = new ChooseWheelChairComponentsServis(dataComponents,client);
-    private static ChooseAntropometricDataServis chooseAntropometricDataServis = new ChooseAntropometricDataServis(client);
+    private static AddAtropologDateServis addAntropometricDataServis = new AddAtropologDateServis(client,addAntropologDateValigation);
     private static GetAntropometricDataServis getAntropometricDataServis = new GetAntropometricDataServis(client);
     private static ChangeComponentServise changeComponentServise = new ChangeComponentServise(dataComponents,client);
     private static UIAction changeComponent = new ChangeComponentUIAction(changeComponentServise);
@@ -27,9 +29,9 @@ ConsoleInterface {
     private static UIAction chooseWheelchairComponens = new ChooseWheelchairComponensUIAction(chooseWheelChairComponentsServis);
     public static UIAction addPersonalData = new AddPersonalDateIUAction(addUserDataServis);
     public static UIAction showDataSize = new ShowDataSizeUIActive(getAntropometricDataServis);
-    public static ChooseAnthropometricDataIUActiv chooseAnthropometricDataIUActiv = new ChooseAnthropometricDataIUActiv(chooseAntropometricDataServis);
-    public static ChangenAtropologDateServis changenAtropologDateServis = new ChangenAtropologDateServis(client);
-    public static ChangenAtropologDateUIAAction changenAtropologDateUIAAction = new ChangenAtropologDateUIAAction(changenAtropologDateServis);
+    public static AddAnthropometricDataIUActiv addAnthropometricDataIUActiv = new AddAnthropometricDataIUActiv(addAntropometricDataServis);
+    public static ChooseAntropometricDataServis changenAtropologDateServis = new ChooseAntropometricDataServis(client);
+    public static ChangenAtropologDateUIAAction changenAtropologDateUIAAction = new ChangenAtropologDateUIAAction(addAntropometricDataServis);
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         while (true) {
@@ -37,7 +39,7 @@ ConsoleInterface {
             int choose  = scan.nextInt();
             switch (choose) {
                 case (1):
-                    chooseAnthropometricDataIUActiv.execute(client.getWheelchair());
+                    addAnthropometricDataIUActiv.execute();
                     break;
                 case (2):
                     System.out.println("какой из параметров хотите поменять?");

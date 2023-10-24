@@ -1,14 +1,21 @@
 package classWork;
 import classWork.consoleUI.*;
+import classWork.core.service.AddBookService;
+import classWork.core.service.valigators.AddBookValidator;
+import classWork.core.service.GetAllBookService;
+import classWork.core.service.RemoveBookService;
+import classWork.core.service.valigators.RemoveBookValidators;
 
 
 import java.util.Scanner;
 
 public class BookListApplication {
     Database data = new InMemoryDatabaseImpl();
-    UIAction addBook = new AddBookUIAction(data);
-    UIAction removeBook = new RemoveBookUIAction(data);
-    UIAction getbook = new GetAllBooksUIAction(data);
+    AddBookValidator addBookValidator = new AddBookValidator(data);
+   RemoveBookValidators removeBookValidator = new RemoveBookValidators();
+    UIAction addBook = new AddBookUIAction(new AddBookService(data, addBookValidator));
+    UIAction removeBook = new RemoveBookUIAction(new RemoveBookService(data, removeBookValidator));
+    UIAction getbook = new GetAllBooksUIAction(new GetAllBookService(data));
     UIAction exit = new ExitUIAction();
     public static void main(String[] args) {
 

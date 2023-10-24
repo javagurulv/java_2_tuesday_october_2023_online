@@ -22,7 +22,6 @@ ChangeComponentServise changeComponentServise;
     public void execute() {
         System.out.println("какой из параметров вы хотите изменить?");
         changeComponentServise.showAllComponent();
-
         System.out.println("Выбор параметра:");
         changeComponentServise.chooseNewComponent();
     }

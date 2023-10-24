@@ -2,6 +2,7 @@ package fitness_club;
 
 import fitness_club.console_UI.*;
 import fitness_club.core.database.Database;
+import fitness_club.core.database.InFileDatabase;
 import fitness_club.core.database.InMemoryDatabase;
 import fitness_club.core.services.*;
 import fitness_club.data_vlidation.AddClientRequestValidator;
@@ -12,7 +13,7 @@ import fitness_club.data_vlidation.DeleteClientRequestValidator;
 import java.util.Scanner;
 
 public class ClientWorkoutsApplication {
-    private static Database database = new InMemoryDatabase();
+    private static Database database = new InFileDatabase();
 
     private static AddClientRequestValidator addClientValidator = new AddClientRequestValidator();
     private static DeleteClientRequestValidator deleteClientRequestValidator = new DeleteClientRequestValidator();

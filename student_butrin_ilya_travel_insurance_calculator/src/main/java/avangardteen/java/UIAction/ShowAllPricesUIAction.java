@@ -19,6 +19,7 @@ public class ShowAllPricesUIAction implements UIAction{
         System.out.println("Общая стоимость кресло-коляски Aвангард Teen: ");
         System.out.println("Базовая цена:  " + servise.getBasePrice());
         System.out.println("Цена платных компонентов: " + servise.GetComponentPrice());
+        servise.showComponentPrice();
         System.out.println("Общая стоимость: " + servise.allPrice());
     }
 }

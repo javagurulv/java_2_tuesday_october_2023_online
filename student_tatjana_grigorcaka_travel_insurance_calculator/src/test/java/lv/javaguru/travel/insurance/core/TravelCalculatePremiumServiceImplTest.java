@@ -21,6 +21,7 @@ class TravelCalculatePremiumServiceImplTest {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
     @Mock private DateTimeService dateTimeService;
+    @Mock private TravelCalculatePremiumRequestValidator requestValidator;
     @InjectMocks
     private TravelCalculatePremiumServiceImpl service;
     private TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("John", "Smith",
