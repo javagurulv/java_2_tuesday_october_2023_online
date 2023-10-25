@@ -6,7 +6,8 @@ import avangardteen.java.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataComponents {
+public class
+DataComponents {
 
     List<Component> allComponents = List.of(
             new Component(Category.BRAKE, "MH 01", "На уровне колен пользователя, стандарт", 0),
@@ -23,12 +24,12 @@ public class DataComponents {
             new Component(Category.ARMREST, "ME 02", "Боковые панели пластиковые, загнутые", 3800),
             new Component(Category.ARMREST, "ME 05", "Боковые панели c подлокотниками", 11800),
             new Component(Category.ARMREST, "ME 06", "Боковые панели с ассимететричными подлокотниками", 22700),
-            new Component(Category.BACK_WHEEL, "ME 06", "Боковые панели с ассимететричными подлокотниками", 22700),
-            new Component(Category.BACK_WHEEL, "ME 06", "Боковые панели с ассимететричными подлокотниками", 22700),
-            new Component(Category.BACK_WHEEL, "ME 06", "Боковые панели с ассимететричными подлокотниками", 22700),
-            new Component(Category.BACK_WHEEL, "ME 06", "Боковые панели с ассимететричными подлокотниками", 22700),
-            new Component(Category.BACK_WHEEL, "ME 06", "Боковые панели с ассимететричными подлокотниками", 22700),
-            new Component(Category.BACK_WHEEL, "ME 06", "Боковые панели с ассимететричными подлокотниками", 22700));
+            new Component(Category.BACK_WHEEL, "ME 0 ", "Боковые панели с ассимететричными подлокотниками", 22700),
+            new Component(Category.BACK_WHEEL, "ME 0 ", "Боковые панели с ассимететричными подлокотниками", 22700),
+            new Component(Category.BACK_WHEEL, "ME 0 ", "Боковые панели с ассимететричными подлокотниками", 22700),
+            new Component(Category.BACK_WHEEL, "ME 0 ", "Боковые панели с ассимететричными подлокотниками", 22700),
+            new Component(Category.BACK_WHEEL, "ME 0 ", "Боковые панели с ассимететричными подлокотниками", 22700),
+            new Component(Category.BACK_WHEEL, "ME 0 ", "Боковые панели с ассимететричными подлокотниками", 22700));
 
     public List<Component> getAllComponents() {
         return allComponents;
