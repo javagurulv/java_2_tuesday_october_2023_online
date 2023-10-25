@@ -26,13 +26,55 @@ public class TravelCalculatePremiumControllerTest {
     private ObjectMapper mapper = new ObjectMapper();
 
     @Test
-    public void simpleRestControllerTest() throws Exception {
+    public void successRequest() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest.json",
-                "rest/TravelCalculatePremiumResponse.json"
+                "rest/TravelCalculatePremiumRequest_success.json",
+                "rest/TravelCalculatePremiumResponse_success.json"
         );
     }
 
+    @Test
+    public void firstNameNotProvided() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_firstName_not_provided.json",
+                "rest/TravelCalculatePremiumResponse_firstName_not_provided.json"
+        );
+    }
+    @Test
+    public void lastNameNotProvided() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_lastName_not_provided.json",
+                "rest/TravelCalculatePremiumResponse_lastName_not_provided.json"
+        );
+    }
+    @Test
+    public void allFieldsNotProvided() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_allFields_not_provided.json",
+                "rest/TravelCalculatePremiumResponse_allFields_not_provided.json"
+        );
+    }
+    @Test
+    public void dateFromNotProvided() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_dateFrom_not_provided.json",
+                "rest/TravelCalculatePremiumResponse_dateFrom_not_provided.json"
+        );
+    }
+    @Test
+    public void dateToNotProvided() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_dateTo_not_provided.json",
+                "rest/TravelCalculatePremiumResponse_dateTo_not_provided.json"
+        );
+    }
+    @Test
+    public void agreementDateToLessThenAgreementDateFrom() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_dateTo_less_then_dateFrom.json",
+                "rest/TravelCalculatePremiumResponse_dateTo_less_then_dateFrom.json"
+        );
+    }
     private void executeAndCompare(String jsonRequestFilePath,
                                    String jsonResponseFilePath) throws Exception {
         String jsonRequest = jsonFileReader.readJsonFromFile(jsonRequestFilePath);
