@@ -1,13 +1,13 @@
 package lv.avangardteen.core.request;
 
 public class ShowOrderRequest {
-    long id;
+    int id;
 
-    public ShowOrderRequest(long id) {
+    public ShowOrderRequest(int id) {
         this.id = id;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 }

@@ -9,20 +9,23 @@ import java.util.Scanner;
 public class OrderApplication {
 
     private static DataOrders dataOrders = new DataOrders();
-    private static OrderCalculateServiceImpl serviceOrder = new OrderCalculateServiceImpl(dataOrders);
-    private static OrderIUAction orderIUAction = new OrderIUAction(serviceOrder);
+    private static ClientOrderValidator orderValidator = new ClientOrderValidator();
     private static ChangePersonalDateValidator dateValidator = new ChangePersonalDateValidator();
-    private static ChangePersonalDateService service = new ChangePersonalDateService(dataOrders, dateValidator);
-    private static ChangePersonalDateUIAction dateUIAction = new ChangePersonalDateUIAction(service);
     private static ChangePersonalSizeValidator sizeValidator = new ChangePersonalSizeValidator();
-    private static ChangePersonalSizeService sizeService = new ChangePersonalSizeService(dataOrders, sizeValidator);
-    private static ChangePersonalSizeUIAction sizeUIAction = new ChangePersonalSizeUIAction(sizeService);
     private static ChooseComponentValidator componentValidator = new ChooseComponentValidator();
+
+    private static ClientService serviceOrder = new ClientService(dataOrders, orderValidator);
+    private static ChangePersonalDateService service = new ChangePersonalDateService(dataOrders, dateValidator);
+    private static ChangePersonalSizeService sizeService = new ChangePersonalSizeService(dataOrders, sizeValidator);
     private static ChangeComponentService componentService1 = new ChangeComponentService(dataOrders, componentValidator);
-    private static ChangeComponentsUIAction componentsUIAction = new ChangeComponentsUIAction(componentService1);
     private static ShowOrderService orderService = new ShowOrderService(dataOrders);
-    private static ShowOrderUIAction showOrderUIAction = new ShowOrderUIAction(orderService);
-    private static ShowMenuUIAction menuUIAction = new ShowMenuUIAction();
+
+    private static UIAction orderIUAction = new OrderUIAction(serviceOrder);
+    private static UIAction dateUIAction = new ChangePersonalDateUIAction(service);
+    private static UIAction sizeUIAction = new ChangePersonalSizeUIAction(sizeService);
+    private static UIAction componentsUIAction = new ChangeComponentsUIAction(componentService1);
+    private static UIAction showOrderUIAction = new ShowOrderUIAction(orderService);
+    private static UIAction menuUIAction = new ShowMenuUIAction();
 
     public static void main(String[] args) {
 

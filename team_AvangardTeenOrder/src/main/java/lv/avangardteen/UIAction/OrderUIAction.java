@@ -1,24 +1,22 @@
 package lv.avangardteen.UIAction;
 
 import lv.avangardteen.core.request.ClientRequest;
-import lv.avangardteen.core.service.OrderCalculateServiceImpl;
+import lv.avangardteen.core.service.ClientService;
 import lv.avangardteen.data.DataComponents;
 
 import java.util.Scanner;
 
-public class OrderIUAction implements UIAction {
+public class OrderUIAction implements UIAction {
     DataComponents dataComponents = new DataComponents();
-    OrderCalculateServiceImpl service;
-    public OrderIUAction( OrderCalculateServiceImpl service) {
+    ClientService service;
+    public OrderUIAction(ClientService service) {
 
         this.service = service;
     }
 
     @Override
     public void execute() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("ВВедите персональный номер ID");
-        long id = scan.nextLong();
+
         Scanner scan1 = new Scanner(System.in);
         System.out.println("введите Имя и Фамилию");
         String nameSurname = scan1.nextLine();
@@ -49,7 +47,7 @@ public class OrderIUAction implements UIAction {
         System.out.println(dataComponents.allArmrest().toString());
         System.out.println("Введите марку выбранных подлокотников");
         String armrestChoose = scanner.nextLine();
-        ClientRequest request = new ClientRequest(id, nameSurname, phoneNumber, userAddress,
+        ClientRequest request = new ClientRequest(nameSurname, phoneNumber, userAddress,
         shinLength, backLength, thighLength, pelvisWidth,
         wheelFrom, wheelBack, brakeChoose, armrestChoose);
         service.execute(request);

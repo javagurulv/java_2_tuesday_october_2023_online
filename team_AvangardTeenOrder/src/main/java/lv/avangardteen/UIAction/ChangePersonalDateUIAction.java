@@ -16,9 +16,9 @@ ChangePersonalDateService service;
 
     @Override
     public void execute() {
-        System.out.println("Введите персональный код ID и заполните личные данные");
+        System.out.println("Введите номер заказа");
         Scanner scanner = new Scanner(System.in);
-        long id = scanner.nextLong();
+        int id = scanner.nextInt();
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите Имя и Фамилию");
         String nameSurname = scan.nextLine();

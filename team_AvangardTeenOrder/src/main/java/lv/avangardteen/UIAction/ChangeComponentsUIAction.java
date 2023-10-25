@@ -19,9 +19,9 @@ public class ChangeComponentsUIAction implements UIAction {
 
     @Override
     public void execute() {
-        System.out.println("Введите персональный код ID");
+        System.out.println("Введите номер заказа");
         Scanner scanner = new Scanner(System.in);
-        long id = scanner.nextLong();
+        int id = scanner.nextInt();
         System.out.println(dataComponents.allFrontWheels().toString());
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите маркировку тип и размер передних колес коляски");

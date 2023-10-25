@@ -3,7 +3,7 @@ package lv.avangardteen;
 import java.util.Objects;
 
 public class Client {
-    private long id;
+
     String nameSurname;
     String phoneNumber;
     String userAddress;
@@ -20,13 +20,6 @@ public class Client {
         this.priseOrder = priseOrder;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getNameSurname() {
         return nameSurname;
@@ -78,12 +71,10 @@ public class Client {
     }
 
 
-
-
     @Override
     public String toString() {
         return "Ваш заказ:" + '\n' +
-                "id=" + id + '\n' +
+
                 " Имя, Фамилия: " + nameSurname + '\n' +
                 " номер телефона: " + phoneNumber + '\n' +
                 " адрес: " + userAddress + '\n' +
@@ -99,11 +90,11 @@ public class Client {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return id == client.id && Double.compare(client.priseOrder, priseOrder) == 0 && Objects.equals(nameSurname, client.nameSurname) && Objects.equals(phoneNumber, client.phoneNumber) && Objects.equals(userAddress, client.userAddress) && Objects.equals(userSizes, client.userSizes) && Objects.equals(wheelchair, client.wheelchair) && Objects.equals(wheelchairComponents, client.wheelchairComponents);
+        return Double.compare(client.priseOrder, priseOrder) == 0 && Objects.equals(nameSurname, client.nameSurname) && Objects.equals(phoneNumber, client.phoneNumber) && Objects.equals(userAddress, client.userAddress) && Objects.equals(userSizes, client.userSizes) && Objects.equals(wheelchair, client.wheelchair) && Objects.equals(wheelchairComponents, client.wheelchairComponents);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nameSurname, phoneNumber, userAddress, userSizes, wheelchair, wheelchairComponents, priseOrder);
+        return Objects.hash(nameSurname, phoneNumber, userAddress, userSizes, wheelchair, wheelchairComponents, priseOrder);
     }
 }

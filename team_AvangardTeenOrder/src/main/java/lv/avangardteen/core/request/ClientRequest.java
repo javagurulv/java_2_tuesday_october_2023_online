@@ -2,7 +2,7 @@ package lv.avangardteen.core.request;
 
 
 public class ClientRequest {
-    private long id;
+
     String nameSurname;
     String phoneNumber;
     String userAddress;
@@ -15,12 +15,12 @@ public class ClientRequest {
     String brakeChoose;
     String armrestChoose;
 
-    public ClientRequest(long id, String nameSurname,
+    public ClientRequest(String nameSurname,
                          String phoneNumber, String userAddress,
                          int shinLength, int backLength, int thighLength,
                          int pelvisWidth, String wheelFront, String wheelBack,
                          String brakeChoose, String armrestChoose) {
-        this.id = id;
+
         this.nameSurname = nameSurname;
         this.phoneNumber = phoneNumber;
         this.userAddress = userAddress;
@@ -34,9 +34,6 @@ public class ClientRequest {
         this.armrestChoose = armrestChoose;
     }
 
-    public long getId() {
-        return id;
-    }
 
     public String getNameSurname() {
         return nameSurname;

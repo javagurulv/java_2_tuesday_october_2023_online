@@ -1,13 +1,13 @@
 package lv.avangardteen.core.request;
 
 public class ChangeComponentRequest {
-    long id;
+    int id;
     String wheelFrontChoose;
     String wheelBackChoose;
     String brakeChoose;
     String armrestChoose;
 
-    public ChangeComponentRequest(long id, String wheelFrontChoose,
+    public ChangeComponentRequest(int id, String wheelFrontChoose,
                                   String wheelBackChoose, String brakeChoose, String armrestChoose) {
         this.id = id;
         this.wheelFrontChoose = wheelFrontChoose;
@@ -16,7 +16,7 @@ public class ChangeComponentRequest {
         this.armrestChoose = armrestChoose;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

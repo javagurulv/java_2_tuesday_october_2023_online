@@ -8,26 +8,25 @@ import java.util.Objects;
 
 public class DataOrders {
     List<Client> clients = new ArrayList<>();
-
+    int id = 0;
 
     public List<Client> getClients() {
 
         return clients;
     }
-    public void addUser (Client user){
 
+    public int getId() {
+        return id;
+    }
+
+    public void addUser(Client user) {
+        id++;
         clients.add(user);
     }
 
-    public Client getClient(long id) {
+    public Client getClient(int id) {
         List<Client> clients = getClients();
-        Client user = null;
-        for (Client client : clients) {
-            if(client.getId() == id) {
-                user = client;
-            }
-        }
-        return user;
+        return clients.get(id-1);
     }
 
     @Override

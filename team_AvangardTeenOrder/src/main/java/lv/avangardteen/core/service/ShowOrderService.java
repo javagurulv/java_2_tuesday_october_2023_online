@@ -15,7 +15,6 @@ public class ShowOrderService {
 
     public ShowOrderResponse execute(ShowOrderRequest request) {
         Client client = dataOrders.getClient(request.getId());
-        System.out.println(client.toString());
         return new ShowOrderResponse(client);
     }
 }

@@ -15,9 +15,9 @@ ChangePersonalSizeService service;
 
     @Override
     public void execute() {
-        System.out.println("Введите персональный код ID и заполните антропометрические данные");
+        System.out.println("Введите номер заказа");
         Scanner scanner = new Scanner(System.in);
-        long id = scanner.nextLong();
+        int id = scanner.nextInt();
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите новое значение ширины таза");
         int pelvisWidth = scan.nextInt();

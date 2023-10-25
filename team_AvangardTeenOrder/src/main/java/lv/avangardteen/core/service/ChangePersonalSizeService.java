@@ -21,10 +21,10 @@ public class ChangePersonalSizeService {
         this.validator = validator;
     }
 
-    public ChangePersonalDateResponse execute(ChangePersonalSizeRequest request) {
+    public ChangePersonalSizeResponse execute(ChangePersonalSizeRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
-            return new ChangePersonalDateResponse(errors);
+            return new ChangePersonalSizeResponse(errors);
         }
         Client client = dataOrders.getClient(request.getId());
         ChangePersonalSizeResponse response = new ChangePersonalSizeResponse(client);
@@ -39,7 +39,7 @@ public class ChangePersonalSizeService {
                 request.getShinLength(),
                 request.getThighLength())));
 
-        return new ChangePersonalDateResponse(client);
+        return new ChangePersonalSizeResponse(client);
 
     }
 }

@@ -1,6 +1,8 @@
 package lv.avangardteen.UIAction;
 
-public class ShowMenuUIAction {
+public class ShowMenuUIAction implements UIAction{
+
+    @Override
     public void execute() {
         System.out.println("Заказ на инвалидное кресло Avangard Teen");
         System.out.println("Выберите пункт из меню");

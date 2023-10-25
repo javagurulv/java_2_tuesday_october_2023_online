@@ -1,12 +1,12 @@
 package lv.avangardteen.core.request;
 
 public class ChangePersonalDateRequest {
-    private long id;
+    private int id;
     private String nameSurname;
     private String phoneNumber;
     private String userAddress;
 
-    public ChangePersonalDateRequest(long id, String nameSurname, String phoneNumber, String userAddress) {
+    public ChangePersonalDateRequest(int id, String nameSurname, String phoneNumber, String userAddress) {
         this.id = id;
         this.nameSurname = nameSurname;
         this.phoneNumber = phoneNumber;
@@ -14,7 +14,7 @@ public class ChangePersonalDateRequest {
     }
 
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
