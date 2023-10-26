@@ -8,6 +8,7 @@ import fitness_club.data_vlidation.CoreError;
 import fitness_club.data_vlidation.SearchClientRequestValidator;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchClientService {
     private Database database;
@@ -21,9 +22,18 @@ public class SearchClientService {
 
     public SearchClientResponse execute(SearchClientRequest request) {
         List<CoreError> errors = validator.validate(request);
+
         if (!errors.isEmpty()) {
             return new SearchClientResponse(null, errors);
         }
+
+        List<Client> foundClients = search(request);
+        foundClients = paging(foundClients, request);
+
+        return new SearchClientResponse(foundClients, null);
+    }
+
+    List<Client> search(SearchClientRequest request) {
         List<Client> foundClients = null;
         if (request.isFirstNameProvided() && !request.isLastNameProvided()) {
             foundClients = database.findByFirstName(request.getFirstName());
@@ -34,7 +44,19 @@ public class SearchClientService {
         if (request.isFirstNameProvided() && request.isLastNameProvided()) {
             foundClients = database.findByFirstNameAndLastName(request.getFirstName(), request.getLastName());
         }
-        return new SearchClientResponse(foundClients, null);
+        return foundClients;
+    }
+
+    List<Client> paging(List<Client> clients, SearchClientRequest request) {
+        if (request.getPaging() != null) {
+            int skip = (request.getPaging().getPageNumber() - 1) * request.getPaging().getPageSize();
+            return clients.stream()
+                    .skip(request.getPaging().getPageNumber())
+                    .limit(request.getPaging().getPageSize())
+                    .collect(Collectors.toList());
+        } else {
+            return clients;
+        }
     }
 }
 
