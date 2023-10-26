@@ -75,6 +75,20 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_dateTo_less_then_dateFrom.json"
         );
     }
+    @Test
+    public void agreementDateFromInThePast() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_dateFrom_In_The_Past.json",
+                "rest/TravelCalculatePremiumResponse_dateFrom_In_The_Past.json"
+        );
+    }
+    @Test
+    public void agreementDateToInThePast() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_dateTo_In_The_Past.json",
+                "rest/TravelCalculatePremiumResponse_dateTo_In_The_Past.json"
+        );
+    }
     private void executeAndCompare(String jsonRequestFilePath,
                                    String jsonResponseFilePath) throws Exception {
         String jsonRequest = jsonFileReader.readJsonFromFile(jsonRequestFilePath);
