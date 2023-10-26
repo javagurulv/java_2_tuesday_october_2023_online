@@ -1,9 +1,12 @@
 package avangardteen.java.UIAction;
 
+import avangardteen.java.Component;
 import avangardteen.java.data.DataComponents;
-import avangardteen.java.Wheelchair;
+import avangardteen.java.request.ChooseWheelchairComponensRequest;
+import avangardteen.java.responce.ChooseWheelchairComponensResponce;
 import avangardteen.java.service.ChooseWheelChairComponentsServis;
 
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -14,46 +17,46 @@ public class ChooseWheelchairComponensUIAction implements UIAction {
         this.servis = servis;
     }
 
-    DataComponents data = new DataComponents();
+    DataComponents armrestList = new DataComponents();
 
     @Override
     public void execute() {
+        Scanner scanner = new Scanner(System.in);
         addFrontWheels();
+        int choosefrontWheels = scanner.nextInt();
         addBreaks();
+        int chooseBreaks = scanner.nextInt();
         addArmrest();
+        int chooseArmrest = scanner.nextInt();
+        ChooseWheelchairComponensRequest request = new ChooseWheelchairComponensRequest(chooseArmrest,choosefrontWheels,chooseBreaks);
+        ChooseWheelchairComponensResponce responce = servis.addAllComponent(request);
     }
 
     private void addFrontWheels() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Выберите тип и размер передних колес коляски");
-        for (int i = 0; i < data.allWheels().size(); i++) {
-            System.out.println(i + 1 + ". " + data.allWheels().get(i).getInformation()
-                    + ". Цена: " + data.allWheels().get(i).getPrice());
+        List<Component> frontWheelList = servis.getAllFrontWheels();
+        for (int i = 0; i <  frontWheelList.size(); i++) {
+            System.out.println(i + 1 + ". " + frontWheelList.get(i).getInformation()
+                    + ". Цена: " + frontWheelList.get(i).getPrice());
         }
-        int choose = scanner.nextInt();
-        servis.addWheels(choose);
     }
 
     private void addArmrest() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("На последок выберем подлокотники");
-        for (int i = 0; i < data.allArmest().size(); i++) {
-            System.out.println(i + 1 + ". " + data.allArmest().get(i).getInformation()
-                    + ". Цена: " + data.allArmest().get(i).getPrice());
+        List<Component> armrestList = servis.getAllArmest();
+        for (int i = 0; i < armrestList.size(); i++) {
+            System.out.println(i + 1 + ". " + armrestList.get(i).getInformation()
+                    + ". Цена: " + armrestList.get(i).getPrice());
         }
-        int choose = scanner.nextInt();
-        servis.addArmest(choose);
     }
 
     private void addBreaks() {
-        Scanner scanner = new Scanner(System.in);
+        List<Component> breaksList = servis.getAllBrakes();
         System.out.println("Теперь определимся с тормозами" + "\n Введите марку выбранных тормозов");
-        for (int i = 0; i < data.allBrakes().size(); i++) {
-            System.out.println(i + 1 + ". " + data.allBrakes().get(i).getInformation()
-                    + ". Цена: " + data.allBrakes().get(i).getPrice());
+        for (int i = 0; i < breaksList.size(); i++) {
+            System.out.println(i + 1 + ". " + breaksList.get(i).getInformation()
+                    + ". Цена: " + breaksList.get(i).getPrice());
         }
-        int choose = scanner.nextInt();
-        servis.addBreaks(choose);
     }
 }
 
