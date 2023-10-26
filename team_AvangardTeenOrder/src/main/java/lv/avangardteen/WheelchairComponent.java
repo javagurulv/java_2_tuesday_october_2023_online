@@ -18,10 +18,11 @@ public class WheelchairComponent {
     }
 
 
-    public void addComponents(String userChoose) {
+
+    public void addComponents(int index) {
         List<Component> componentList = dataComponents.getAllComponents();
         for (Component component : componentList) {
-            if (component.getMarking().equals(userChoose)) {
+            if (component.getIndex() == index) {
                 components.put(component.getCategory(), component);
             }
         }

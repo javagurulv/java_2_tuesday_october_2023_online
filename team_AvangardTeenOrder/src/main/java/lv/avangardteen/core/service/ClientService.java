@@ -44,16 +44,15 @@ public class ClientService {
                 request.getShinLength(),
                 request.getThighLength())));
 
-        WheelchairComponent wheelchairComponent = new WheelchairComponent();
-        wheelchairComponent.addComponents(request.getWheelFront());
-        wheelchairComponent.addComponents(request.getWheelBack());
-        wheelchairComponent.addComponents(request.getArmrestChoose());
-        wheelchairComponent.addComponents(request.getBrakeChoose());
+        clientResponse.getClient().setWheelchairComponents(new WheelchairComponent());
+        clientResponse.getClient().getWheelchairComponents().addComponents(request.getIndexWheelFront());
+        clientResponse.getClient().getWheelchairComponents().addComponents(request.getIndexWheelBack());
+        clientResponse.getClient().getWheelchairComponents().addComponents(request.getIndexBrakeChoose());
+        clientResponse.getClient().getWheelchairComponents().addComponents(request.getIndexArmrestChoose());
 
-        clientResponse.getClient().setWheelchairComponents(wheelchairComponent);
+        clientResponse.getClient().setPriseOrder(clientResponse.getClient().getWheelchairComponents().getPriceComponent()
+                + clientResponse.getClient().getWheelchair().getPriceWheelchair());
 
-
-        clientResponse.getClient().setPriseOrder(wheelchairComponent.getPriceComponent() + clientResponse.getClient().getWheelchair().getPriceWheelchair());
         dataOrders.addUser(clientResponse.getClient());
         System.out.println("Ваш номер заказа" + dataOrders.getId());
 

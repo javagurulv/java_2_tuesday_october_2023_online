@@ -13,12 +13,15 @@ public class OrderApplication {
     private static ChangePersonalDateValidator dateValidator = new ChangePersonalDateValidator();
     private static ChangePersonalSizeValidator sizeValidator = new ChangePersonalSizeValidator();
     private static ChooseComponentValidator componentValidator = new ChooseComponentValidator();
+    private static ShowOrderValidator showOrderValidator = new ShowOrderValidator();
+    private static IdOrderValidator idOrderValidator = new IdOrderValidator();
 
     private static ClientService serviceOrder = new ClientService(dataOrders, orderValidator);
     private static ChangePersonalDateService service = new ChangePersonalDateService(dataOrders, dateValidator);
     private static ChangePersonalSizeService sizeService = new ChangePersonalSizeService(dataOrders, sizeValidator);
     private static ChangeComponentService componentService1 = new ChangeComponentService(dataOrders, componentValidator);
-    private static ShowOrderService orderService = new ShowOrderService(dataOrders);
+    private static ShowOrderService orderService = new ShowOrderService(dataOrders, showOrderValidator);
+    private static DeleteOrderService deleteOrderService = new DeleteOrderService(dataOrders, idOrderValidator);
 
     private static UIAction orderIUAction = new OrderUIAction(serviceOrder);
     private static UIAction dateUIAction = new ChangePersonalDateUIAction(service);
@@ -26,6 +29,7 @@ public class OrderApplication {
     private static UIAction componentsUIAction = new ChangeComponentsUIAction(componentService1);
     private static UIAction showOrderUIAction = new ShowOrderUIAction(orderService);
     private static UIAction menuUIAction = new ShowMenuUIAction();
+    private  static UIAction deleteOrder = new DeleteOrderUIAction(deleteOrderService);
 
     public static void main(String[] args) {
 
@@ -49,7 +53,9 @@ public class OrderApplication {
                 case (5):
                     componentsUIAction.execute();
                     break;
-                case (6):
+                case(6) :
+                    deleteOrder.execute();
+                case (7):
                     System.exit(0);
             }
         }

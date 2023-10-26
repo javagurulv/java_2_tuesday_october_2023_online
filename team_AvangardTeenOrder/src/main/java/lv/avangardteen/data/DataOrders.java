@@ -24,6 +24,11 @@ public class DataOrders {
         clients.add(user);
     }
 
+    public Client deleteUser(int id) {
+        List<Client> clients = getClients();
+        return clients.remove(id-1);
+    }
+
     public Client getClient(int id) {
         List<Client> clients = getClients();
         return clients.get(id-1);

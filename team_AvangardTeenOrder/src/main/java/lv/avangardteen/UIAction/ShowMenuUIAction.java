@@ -11,6 +11,7 @@ public class ShowMenuUIAction implements UIAction{
         System.out.println("3. Внести изменения в личные данные");
         System.out.println("4. Внести изменения в антропометрические данные");
         System.out.println("5. Внести изменения в выборе компонентов");
-        System.out.println("6. Одобрить заказ и выйти");
+        System.out.println("6. Удалить заказ");
+        System.out.println("7. Сохранить заказ и выйти");
     }
 }

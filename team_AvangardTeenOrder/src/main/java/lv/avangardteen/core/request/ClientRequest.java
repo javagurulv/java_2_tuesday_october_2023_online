@@ -4,23 +4,22 @@ package lv.avangardteen.core.request;
 public class ClientRequest {
 
     String nameSurname;
-    String phoneNumber;
+    int phoneNumber;
     String userAddress;
     int shinLength;
     int backLength;
     int thighLength;
     int pelvisWidth;
-    String wheelFront;
-    String wheelBack;
-    String brakeChoose;
-    String armrestChoose;
+    int indexWheelFront;
+    int indexWheelBack;
+    int indexBrakeChoose;
+    int indexArmrestChoose;
 
-    public ClientRequest(String nameSurname,
-                         String phoneNumber, String userAddress,
-                         int shinLength, int backLength, int thighLength,
-                         int pelvisWidth, String wheelFront, String wheelBack,
-                         String brakeChoose, String armrestChoose) {
 
+    public ClientRequest(String nameSurname, int phoneNumber,
+                         String userAddress, int shinLength, int backLength,
+                         int thighLength, int pelvisWidth, int indexWheelFront,
+                         int indexWheelBack, int indexBrakeChoose, int indexArmrestChoose) {
         this.nameSurname = nameSurname;
         this.phoneNumber = phoneNumber;
         this.userAddress = userAddress;
@@ -28,18 +27,17 @@ public class ClientRequest {
         this.backLength = backLength;
         this.thighLength = thighLength;
         this.pelvisWidth = pelvisWidth;
-        this.wheelFront = wheelFront;
-        this.wheelBack = wheelBack;
-        this.brakeChoose = brakeChoose;
-        this.armrestChoose = armrestChoose;
+        this.indexWheelFront = indexWheelFront;
+        this.indexWheelBack = indexWheelBack;
+        this.indexBrakeChoose = indexBrakeChoose;
+        this.indexArmrestChoose = indexArmrestChoose;
     }
-
 
     public String getNameSurname() {
         return nameSurname;
     }
 
-    public String getPhoneNumber() {
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -63,19 +61,19 @@ public class ClientRequest {
         return pelvisWidth;
     }
 
-    public String getWheelFront() {
-        return wheelFront;
+    public int getIndexWheelFront() {
+        return indexWheelFront;
     }
 
-    public String getWheelBack() {
-        return wheelBack;
+    public int getIndexWheelBack() {
+        return indexWheelBack;
     }
 
-    public String getBrakeChoose() {
-        return brakeChoose;
+    public int getIndexBrakeChoose() {
+        return indexBrakeChoose;
     }
 
-    public String getArmrestChoose() {
-        return armrestChoose;
+    public int getIndexArmrestChoose() {
+        return indexArmrestChoose;
     }
 }

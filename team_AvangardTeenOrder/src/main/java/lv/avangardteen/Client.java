@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Client {
 
     String nameSurname;
-    String phoneNumber;
+    int phoneNumber;
     String userAddress;
     UserSizes userSizes;
     Wheelchair wheelchair = new Wheelchair(userSizes);
@@ -29,11 +29,11 @@ public class Client {
         this.nameSurname = nameSurname;
     }
 
-    public String getPhoneNumber() {
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

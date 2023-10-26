@@ -25,19 +25,20 @@ public class ChangeComponentsUIAction implements UIAction {
         System.out.println(dataComponents.allFrontWheels().toString());
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите маркировку тип и размер передних колес коляски");
-        String wheelFront = scan.nextLine();
+        int wheelFront = scan.nextInt();
         System.out.println(dataComponents.allBackWheels().toString());
         System.out.println("Введите маркировку тип и размер задних колес коляски");
-        String wheelBack = scan.nextLine();
+        int wheelBack = scan.nextInt();
         System.out.println(dataComponents.allBrakes().toString());
         System.out.println("Введите марку выбранных тормозов");
-        String brake = scan.nextLine();
+        int brake = scan.nextInt();
         System.out.println(dataComponents.allArmrest().toString());
         System.out.println("Введите марку выбранных подлокотников");
-        String armrest = scan.nextLine();
+        int armrest = scan.nextInt();
         ChangeComponentRequest request = new ChangeComponentRequest(id, wheelFront, wheelBack,
                 brake, armrest);
         service.execute(request);
+
 
     }
 }

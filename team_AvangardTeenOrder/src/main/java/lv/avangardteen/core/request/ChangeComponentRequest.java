@@ -2,13 +2,14 @@ package lv.avangardteen.core.request;
 
 public class ChangeComponentRequest {
     int id;
-    String wheelFrontChoose;
-    String wheelBackChoose;
-    String brakeChoose;
-    String armrestChoose;
+    int wheelFrontChoose;
+    int wheelBackChoose;
+    int brakeChoose;
+    int armrestChoose;
 
-    public ChangeComponentRequest(int id, String wheelFrontChoose,
-                                  String wheelBackChoose, String brakeChoose, String armrestChoose) {
+    public ChangeComponentRequest(int id, int wheelFrontChoose,
+                                  int wheelBackChoose, int brakeChoose,
+                                  int armrestChoose) {
         this.id = id;
         this.wheelFrontChoose = wheelFrontChoose;
         this.wheelBackChoose = wheelBackChoose;
@@ -20,19 +21,19 @@ public class ChangeComponentRequest {
         return id;
     }
 
-    public String getWheelFrontChoose() {
+    public int getWheelFrontChoose() {
         return wheelFrontChoose;
     }
 
-    public String getWheelBackChoose() {
+    public int getWheelBackChoose() {
         return wheelBackChoose;
     }
 
-    public String getBrakeChoose() {
+    public int getBrakeChoose() {
         return brakeChoose;
     }
 
-    public String getArmrestChoose() {
+    public int getArmrestChoose() {
         return armrestChoose;
     }
 }

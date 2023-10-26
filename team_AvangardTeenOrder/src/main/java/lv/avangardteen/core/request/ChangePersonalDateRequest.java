@@ -3,10 +3,10 @@ package lv.avangardteen.core.request;
 public class ChangePersonalDateRequest {
     private int id;
     private String nameSurname;
-    private String phoneNumber;
+    int  phoneNumber;
     private String userAddress;
 
-    public ChangePersonalDateRequest(int id, String nameSurname, String phoneNumber, String userAddress) {
+    public ChangePersonalDateRequest(int id, String nameSurname, int phoneNumber, String userAddress) {
         this.id = id;
         this.nameSurname = nameSurname;
         this.phoneNumber = phoneNumber;
@@ -23,7 +23,7 @@ public class ChangePersonalDateRequest {
         return nameSurname;
     }
 
-    public String getPhoneNumber() {
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 

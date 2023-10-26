@@ -23,7 +23,7 @@ ChangePersonalDateService service;
         System.out.println("Введите Имя и Фамилию");
         String nameSurname = scan.nextLine();
         System.out.println("Введите номер телефона");
-        String phoneNumber = scan.nextLine();
+        int phoneNumber = scanner.nextInt();
         System.out.println("Введите свой адрес");
         String address = scan.nextLine();
        ChangePersonalDateRequest request = new ChangePersonalDateRequest(id, nameSurname, phoneNumber, address);

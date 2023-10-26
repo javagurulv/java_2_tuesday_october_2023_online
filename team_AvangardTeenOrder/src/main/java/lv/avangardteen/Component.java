@@ -4,18 +4,28 @@ import java.util.Objects;
 
 public class Component {
     private Category category;
+    private int index;
     private String marking;
     private String information;
     private double price;
 
-    public Component(Category category, String marking, String information, double price) {
+    public Component(Category category, int index, String marking, String information, double price) {
         this.category = category;
+        this.index = index;
         this.marking = marking;
         this.information = information;
         this.price = price;
     }
 
-      public void setCategory(Category category) {
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -49,7 +59,8 @@ public class Component {
 
     @Override
     public String toString() {
-        return "" + " марка компонента - '" + marking + '\'' +
+        return  " индекс =" + index +
+                ", марка компонента - '" + marking + '\'' +
                 ", характеристика:'" + information + '\'' +
                 ", цена=" + price +
                 '}' + '\n';
@@ -60,11 +71,11 @@ public class Component {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Component component = (Component) o;
-        return Double.compare(component.price, price) == 0 && category == component.category && Objects.equals(marking, component.marking) && Objects.equals(information, component.information);
+        return index == component.index && Double.compare(component.price, price) == 0 && category == component.category && Objects.equals(marking, component.marking) && Objects.equals(information, component.information);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(category, marking, information, price);
+        return Objects.hash(category, index, marking, information, price);
     }
 }

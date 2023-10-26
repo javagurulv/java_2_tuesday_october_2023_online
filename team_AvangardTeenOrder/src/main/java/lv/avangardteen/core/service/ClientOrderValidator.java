@@ -25,7 +25,7 @@ public class ClientOrderValidator {
         validateBackHeight(request).ifPresent(errors::add);
         validateThighLength(request).ifPresent(errors::add);
 
-        validateMarkingBackWheel(request).ifPresent(errors::add);
+      /*  validateMarkingBackWheel(request).ifPresent(errors::add);
         validateMarkingBackWheel(request).ifPresent(errors::add);
         validateMarkingArmrest(request).ifPresent(errors::add);
         validateMarkingBrake(request).ifPresent(errors::add);
@@ -35,7 +35,7 @@ public class ClientOrderValidator {
         validateNotMarkingArmrest(request).ifPresent(errors::add);
         validateNotMarkingBrake(request).ifPresent(errors::add);
 
-        validateMapComponent(request).ifPresent(errors::add);
+        validateMapComponent(request).ifPresent(errors::add);*/
 
         return errors;
 
@@ -48,7 +48,7 @@ public class ClientOrderValidator {
     }
 
     private Optional<CoreError> validatePhoneNumber(ClientRequest request) {
-        return (request.getPhoneNumber() == null || request.getPhoneNumber().isEmpty())
+        return (request.getPhoneNumber() == 0)
                 ? Optional.of((new CoreError("phoneNumber", "Must not be empty")))
                 : Optional.empty();
     }
@@ -83,7 +83,7 @@ public class ClientOrderValidator {
                 ? Optional.of((new CoreError("shinLength", "Must not be empty")))
                 : Optional.empty();
     }
-
+/*
     private Optional<CoreError> validateMarkingBackWheel(ClientRequest request) {
         return (request.getWheelBack() == null || request.getWheelBack().isEmpty())
                 ? Optional.of(new CoreError("markingWheelBack", "Must not be empty!"))
@@ -173,5 +173,5 @@ public class ClientOrderValidator {
                 ? Optional.of(new CoreError("KeyMap", "All components must be selected!"))
                 : Optional.empty();
 
-    }
+    }*/
 }

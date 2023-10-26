@@ -4,19 +4,16 @@ import lv.avangardteen.Client;
 
 import java.util.List;
 
-
-public class ShowOrderResponse extends CoreResponse {
-
+public class DeleteOrderResponse extends CoreResponse {
     Client client;
 
-    public ShowOrderResponse(List<CoreError> errors) {
-        super(errors);
+    public DeleteOrderResponse(List<CoreError> errors) {
+       super(errors);
     }
 
-    public ShowOrderResponse(Client client) {
+    public DeleteOrderResponse(Client client) {
         this.client = client;
     }
-
 
     public Client getClient() {
         return client;
