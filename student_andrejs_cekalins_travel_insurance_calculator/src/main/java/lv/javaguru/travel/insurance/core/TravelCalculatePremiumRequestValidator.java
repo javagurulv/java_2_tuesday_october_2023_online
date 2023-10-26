@@ -3,7 +3,7 @@ package lv.javaguru.travel.insurance.core;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 
-import lv.javaguru.travel.insurance.validations.TravelRequestValidation;
+import lv.javaguru.travel.insurance.core.validations.TravelRequestValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

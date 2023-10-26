@@ -1,4 +1,4 @@
-package lv.javaguru.travel.insurance.tests;
+package lv.javaguru.travel.insurance.core;
 
 import lv.javaguru.travel.insurance.core.DateTimeService;
 import org.junit.jupiter.api.Test;

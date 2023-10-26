@@ -1,9 +1,9 @@
-package lv.javaguru.travel.insurance.tests;
+package lv.javaguru.travel.insurance.core;
 
 import lv.javaguru.travel.insurance.core.TravelCalculatePremiumRequestValidator;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.ValidationError;
-import lv.javaguru.travel.insurance.validations.TravelRequestValidation;
+import lv.javaguru.travel.insurance.core.validations.TravelRequestValidation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
