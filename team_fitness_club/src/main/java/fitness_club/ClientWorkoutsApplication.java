@@ -5,10 +5,7 @@ import fitness_club.core.database.Database;
 import fitness_club.core.database.InFileDatabase;
 import fitness_club.core.database.InMemoryDatabase;
 import fitness_club.core.services.*;
-import fitness_club.data_vlidation.AddClientRequestValidator;
-import fitness_club.data_vlidation.ChangeClientAgeGroupValidator;
-import fitness_club.data_vlidation.ChangeClientWorkoutsValidator;
-import fitness_club.data_vlidation.DeleteClientRequestValidator;
+import fitness_club.data_vlidation.*;
 
 import java.util.Scanner;
 
@@ -19,18 +16,21 @@ public class ClientWorkoutsApplication {
     private static DeleteClientRequestValidator deleteClientRequestValidator = new DeleteClientRequestValidator();
     private static ChangeClientAgeGroupValidator changeClientAgeGroupValidator = new ChangeClientAgeGroupValidator();
     private static ChangeClientWorkoutsValidator changeClientWorkoutsValidator = new ChangeClientWorkoutsValidator();
+    private static SearchClientRequestValidator searchClientRequestValidator= new SearchClientRequestValidator();
 
     private static AddClientService addClientService = new AddClientService(database, addClientValidator);
     private static DeleteClientService deleteClientService = new DeleteClientService(database, deleteClientRequestValidator);
     private static GetAllClientsService getAllClientsService = new GetAllClientsService(database);
     private static ChangeClientAgeGroupService changeClientAgeGroupService = new ChangeClientAgeGroupService(database, changeClientAgeGroupValidator);
     private static ChangeClientWorkoutService changeClientWorkoutService = new ChangeClientWorkoutService(database, changeClientWorkoutsValidator);
+    private static SearchClientService searchClientService = new SearchClientService(database, searchClientRequestValidator);
 
     private static UIAction addClientUIAction = new AddClientUIAction(addClientService);
     private static UIAction deleteClientUIAction = new DeleteClientUIAction(deleteClientService);
     private static UIAction getAllClientsUIAction = new GetAllClientsUIAction(getAllClientsService);
     private static UIAction changeClientAgeGroupUIAction = new ChangeClientAgeGroupUIAction(changeClientAgeGroupService);
     private static UIAction changeWorkoutUIAction = new ChangeWorkoutUIAction(changeClientWorkoutService);
+    private static UIAction searchClientUIAction = new SearchClientUIAction(searchClientService);
     private static UIAction exitUIAction = new ExitUIAction();
 
     public static void main(String[] args) {
@@ -44,7 +44,8 @@ public class ClientWorkoutsApplication {
                 case 3 -> getAllClientsUIAction.execute();
                 case 4 -> changeWorkoutUIAction.execute();
                 case 5 -> changeClientAgeGroupUIAction.execute();
-                case 6 -> exitUIAction.execute();
+                case 6 -> searchClientUIAction.execute();
+                case 7 -> exitUIAction.execute();
             }
         }
     }
@@ -57,7 +58,8 @@ public class ClientWorkoutsApplication {
         System.out.println("3. Show all clients in the list");
         System.out.println("4. Change client workout");
         System.out.println("5. Change client age group");
-        System.out.println("6. Exit");
+        System.out.println("6. Search clients in database");
+        System.out.println("7. Exit");
         System.out.println("");
     }
 

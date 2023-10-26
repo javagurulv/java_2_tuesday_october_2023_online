@@ -43,7 +43,7 @@ public class AddClientRequestValidator {
                 .filter(client -> client.getPersonalCode().equals(request.getPersonalCode()))
                 .findFirst();
         return clientToCheckPersonalCode.isPresent()
-                ? Optional.of(new CoreError("clientDuplicate", "Field must not be duplicated! Client with such personal code is already in database!"))
+                ? Optional.of(new CoreError("personalCode", "Field must not be duplicated! Client with such personal code is already in database!"))
                 : Optional.empty();
     }
 }
