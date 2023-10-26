@@ -23,8 +23,10 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class TravelCalculatePremiumServiceImplTest {
 
-    @Mock private DateTimeService dateTimeService;
+
     @Mock private TravelCalculatePremiumRequestValidator requestValidator;
+
+    @Mock private TravelPremiumUnderwriting premiumUnderwriting;
     @InjectMocks
     private TravelCalculatePremiumServiceImpl service;
 
@@ -104,7 +106,7 @@ class TravelCalculatePremiumServiceImplTest {
         when(request.getAgreementDateFrom()).thenReturn(createDate("05.01.2024"));
         when(request.getAgreementDateTo()).thenReturn(createDate("15.01.2024"));
         when(requestValidator.validate(request)).thenReturn(List.of());
-        when(dateTimeService.getDaysBetween(request.getAgreementDateFrom(), request.getAgreementDateTo())).thenReturn(10L);
+        when(premiumUnderwriting.calculatePremium(request)).thenReturn(new BigDecimal(10));
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         BigDecimal result = response.getAgreementPrice();
         assertEquals(result, new BigDecimal(10));
