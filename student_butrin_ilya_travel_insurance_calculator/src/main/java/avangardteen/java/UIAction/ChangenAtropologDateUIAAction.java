@@ -1,63 +1,51 @@
 package avangardteen.java.UIAction;
 
+import avangardteen.java.CoreError;
+import avangardteen.java.request.ChangeAntropologDateRequest;
+import avangardteen.java.responce.ChangeAntropologDateResponce;
 import avangardteen.java.service.AddAtropologDateServis;
+import avangardteen.java.service.ChangeAntropometricDataService;
 
+import java.util.List;
 import java.util.Scanner;
 
-public class ChangenAtropologDateUIAAction implements UIAction{
-    static AddAtropologDateServis servis;
+public class ChangenAtropologDateUIAAction implements UIAction {
+    static ChangeAntropometricDataService servis;
 
     public ChangenAtropologDateUIAAction(
-            AddAtropologDateServis servis) {
+            ChangeAntropometricDataService servis) {
         this.servis = servis;
     }
 
     static Scanner scan = new Scanner(System.in);
+
     @Override
     public void execute() {
 
-        int choose = scan.nextInt();
+        int choose = Integer.parseInt(scan.nextLine());
         switch (choose) {
             case (1):
-                adjustpelwicWidth();
+                System.out.println("введите новое значение ширины таза");
                 break;
             case (2):
-                adjustThighLength();
+                System.out.println("введите новое значение длины бедра");
                 break;
             case (3):
-                adjustBackLength();
+                System.out.println("введите новое значение длины спины до нижнего края лопатки");
                 break;
             case (4):
-                adjustShinLength();
+                System.out.println("введите новое значение длины голени");
                 break;
         }
-    }
-    public static void adjustShinLength ()  {
-        System.out.println("введите новое значение длины голени");
-        int newShinLength = scan.nextInt();
-        servis.setShinLength(newShinLength);
-        System.out.println("Новое значение сохранено");
-    }
+        String meaning = scan.nextLine();
+        ChangeAntropologDateRequest request = new ChangeAntropologDateRequest(choose, meaning);
 
-    public static void adjustBackLength() {
-        System.out.println("введите новое значение длины спины до нижнего края лопатки");
-        int newBackLength = scan.nextInt();
-        servis.setBackLength(newBackLength);
-        System.out.println("Новое значение сохранено");
-    }
+        ChangeAntropologDateResponce responce = servis.responce(request);
+        if (responce.hasErrors()) {
+            List<CoreError> errors = responce.getErrorList();
+            for (CoreError error : errors) {
+                System.err.println(error.getLocation() + ": " + error.getMessage());}}
+                System.out.println("Новое значение сохранено");
 
-    public static void adjustThighLength() {
-        System.out.println("введите новое значение длины бедра");
-        int newThighLength = scan.nextInt();
-        servis.setThighLength(newThighLength);
-        System.out.println("Новое значение сохранено");
     }
-
-    public static void adjustpelwicWidth() {
-        System.out.println("введите новое значение ширины таза");
-        int newPelwicWidth = scan.nextInt();
-        servis.setPelvis(newPelwicWidth);
-        System.out.println("Новое значение сохранено");
-    }
-
 }
