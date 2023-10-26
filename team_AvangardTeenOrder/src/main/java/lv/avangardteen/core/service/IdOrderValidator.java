@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class IdOrderValidator {
-    DataOrders dataOrders;
+
 
     public List<CoreError> validate(DeleteOrderRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -20,9 +20,8 @@ public class IdOrderValidator {
     }
 
     public Optional<CoreError> getUser(DeleteOrderRequest request) {
-        Client client  = dataOrders.getClient(request.getId());
-        return (client == null)
-        ? Optional.of(new CoreError("idOrder", "There is no order with this number"))
+        return (request.getId() <= 0)
+        ? Optional.of(new CoreError("idOrder", "Must not be empty!"))
         : Optional.empty();
     }
 

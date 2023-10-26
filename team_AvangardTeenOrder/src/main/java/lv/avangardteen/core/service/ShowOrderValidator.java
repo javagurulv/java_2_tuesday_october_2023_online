@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class ShowOrderValidator {
 
-    DataOrders dataOrders;
+
     public List<CoreError> validate(ShowOrderRequest request) {
         List<CoreError> errors = new ArrayList<>();
         getUser(request).ifPresent(errors::add);
@@ -20,8 +20,8 @@ public class ShowOrderValidator {
     }
 
     public Optional<CoreError> getUser(ShowOrderRequest request) {
-        Client client  = dataOrders.getClient(request.getId());
-        return (client == null)
+
+        return (request.getId() == 0)
                 ? Optional.of(new CoreError("idOrder", "There is no order with this number"))
                 : Optional.empty();
     }

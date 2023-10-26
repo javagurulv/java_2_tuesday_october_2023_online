@@ -44,6 +44,8 @@ public class ClientService {
                 request.getShinLength(),
                 request.getThighLength())));
 
+
+
         clientResponse.getClient().setWheelchairComponents(new WheelchairComponent());
         clientResponse.getClient().getWheelchairComponents().addComponents(request.getIndexWheelFront());
         clientResponse.getClient().getWheelchairComponents().addComponents(request.getIndexWheelBack());

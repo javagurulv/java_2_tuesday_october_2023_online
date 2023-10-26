@@ -1,6 +1,7 @@
 package lv.avangardteen.core.service;
 
 import lv.avangardteen.Client;
+import lv.avangardteen.WheelchairComponent;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
@@ -25,11 +26,13 @@ public class ChangeComponentService {
         Client client = dataOrders.getClient(request.getId());
         ChangeComponentResponse response = new ChangeComponentResponse(client);
 
-        response.getClient().getWheelchairComponents().addComponents(request.getWheelFrontChoose());
-        response.getClient().getWheelchairComponents().addComponents(request.getWheelBackChoose());
-        response.getClient().getWheelchairComponents().addComponents(request.getBrakeChoose());
-        response.getClient().getWheelchairComponents().addComponents(request.getArmrestChoose());
+        WheelchairComponent components = response.getClient().getWheelchairComponents();
 
+        components.addComponents(request.getWheelFrontChoose());
+        components.addComponents(request.getWheelBackChoose());
+        components.addComponents(request.getBrakeChoose());
+        components.addComponents(request.getArmrestChoose());
+        response.getClient().setWheelchairComponents(components);
         double priceComponent = response.getClient().getWheelchairComponents().getPriceComponent();
         double priseWheelchair = response.getClient().getWheelchair().getPriceWheelchair();
         response.getClient().setPriseOrder(priseWheelchair + priceComponent);
