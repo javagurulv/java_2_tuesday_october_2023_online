@@ -1,0 +1,15 @@
+dependencies {
+
+	implementation('org.springframework.boot:spring-boot-starter-web:2.7.5') {
+		exclude (group: 'ch.qos.logback', module: 'logback-classic')
+	}
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test:2.7.5') {
+		exclude (group: 'ch.qos.logback', module: 'logback-classic')
+	}
+
+	test {
+		useJUnitPlatform()
+	}
+
+}

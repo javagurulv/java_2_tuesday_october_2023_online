@@ -2,8 +2,10 @@ package fitness_club.core.database;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import fitness_club.core.domain.Client;
+import fitness_club.core.requests.SearchClientRequest;
 
 public class InMemoryDatabase implements Database {
 
@@ -29,4 +31,28 @@ public class InMemoryDatabase implements Database {
 
     public void saveClient(List<Client> clients) {
     }
+
+    @Override
+    public List<Client> findByFirstName(String firstName) {
+        return getAllClients().stream()
+                .filter(client -> client.getFirstName().equals(firstName))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Client> findByLastName(String lastName) {
+        return getAllClients().stream()
+                .filter(client -> client.getLastName().equals(lastName))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Client> findByFirstNameAndLastName(String firstName, String lastName) {
+        return getAllClients().stream()
+                .filter(client -> client.getFirstName().equals(firstName))
+                .filter(client -> client.getLastName().equals(lastName))
+                .collect(Collectors.toList());
+    }
+
+
 }

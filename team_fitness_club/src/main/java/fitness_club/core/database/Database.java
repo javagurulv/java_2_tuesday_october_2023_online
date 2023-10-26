@@ -13,4 +13,11 @@ public interface Database {
 
     void saveClient(List<Client> clients);
 
+    List<Client> findByFirstName(String firsName);
+
+    List<Client> findByLastName(String lastName);
+
+    List<Client> findByFirstNameAndLastName(String firstName, String lastName);
+
+
 }

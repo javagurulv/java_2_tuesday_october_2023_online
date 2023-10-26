@@ -4,8 +4,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import fitness_club.core.domain.Client;
+import fitness_club.core.requests.SearchClientRequest;
+import fitness_club.core.responses.SearchClientResponse;
 
 public class InFileDatabase implements Database {
 
@@ -67,4 +70,27 @@ public class InFileDatabase implements Database {
             clients.get(i).setId((long) (i + 1));
         }
     }
+    @Override
+    public List<Client> findByFirstName(String firstName) {
+        return getAllClients().stream()
+                .filter(client -> client.getFirstName().equals(firstName))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Client> findByLastName(String lastName) {
+        return getAllClients().stream()
+                .filter(client -> client.getLastName().equals(lastName))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Client> findByFirstNameAndLastName(String firstName, String lastName) {
+        return getAllClients().stream()
+                .filter(client -> client.getFirstName().equals(firstName))
+                .filter(client -> client.getLastName().equals(lastName))
+                .collect(Collectors.toList());
+    }
+
+
 }
