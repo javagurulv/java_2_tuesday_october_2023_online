@@ -5,9 +5,17 @@ public class SearchBooksRequest {
     private String title;
     private String author;
 
+    private Ordering ordering;
+
     public SearchBooksRequest(String title, String author) {
         this.title = title;
         this.author = author;
+    }
+
+    public SearchBooksRequest(String title, String author, Ordering ordering) {
+        this.title = title;
+        this.author = author;
+        this.ordering = ordering;
     }
 
     public String getTitle() {
@@ -26,5 +34,7 @@ public class SearchBooksRequest {
         return this.author != null && !this.author.isEmpty();
     }
 
-
+    public Ordering getOrdering() {
+        return ordering;
+    }
 }

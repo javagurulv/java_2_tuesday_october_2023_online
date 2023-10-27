@@ -2,11 +2,15 @@ package lv.javaguru.java2.lessoncode.bookapp.core.services;
 
 import lv.javaguru.java2.lessoncode.bookapp.core.database.Database;
 import lv.javaguru.java2.lessoncode.bookapp.core.domain.Book;
+import lv.javaguru.java2.lessoncode.bookapp.core.requests.Ordering;
 import lv.javaguru.java2.lessoncode.bookapp.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.lessoncode.bookapp.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.bookapp.core.responses.SearchBooksResponse;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchBooksService {
 
@@ -24,7 +28,28 @@ public class SearchBooksService {
             return new SearchBooksResponse(null, errors);
         }
 
-        List<Book> books = null;
+        List<Book> books = search(request);
+        books = order(books, request.getOrdering());
+
+        return new SearchBooksResponse(books, null);
+    }
+
+    private List<Book> order (List < Book > books, Ordering ordering){
+        if (ordering != null) {
+            Comparator<Book> comparator = ordering.getOrderBy().equals("title")
+                    ? Comparator.comparing(Book::getTitle)
+                    : Comparator.comparing(Book::getAuthor);
+            if (ordering.getOrderDirection().equals("DESCENDING")) {
+                comparator = comparator.reversed();
+            }
+            return books.stream().sorted(comparator).collect(Collectors.toList());
+        } else {
+            return books;
+        }
+    }
+
+    private List<Book> search(SearchBooksRequest request) {
+        List<Book> books = new ArrayList<>();
         if (request.isTitleProvided() && !request.isAuthorProvided()) {
             books = database.findByTitle(request.getTitle());
         }
@@ -34,8 +59,7 @@ public class SearchBooksService {
         if (request.isTitleProvided() && request.isAuthorProvided()) {
             books = database.findByTitleAndAuthor(request.getTitle(), request.getAuthor());
         }
-
-        return new SearchBooksResponse(books, null);
+        return books;
     }
 
 }
