@@ -13,5 +13,11 @@ public interface Database {
 
     List<Book> getAllBooks();
 
+    List<Book> findByTitle(String title);
+
+    List<Book> findByAuthor(String author);
+
+    List<Book> findByTitleAndAuthor(String title, String author);
+
     Optional<Book> findBookByTitleAndAuthor(String author, String title);
 }
