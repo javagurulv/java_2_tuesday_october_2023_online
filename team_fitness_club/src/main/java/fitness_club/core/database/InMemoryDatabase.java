@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import fitness_club.core.domain.Client;
-import fitness_club.core.requests.SearchClientRequest;
 
 public class InMemoryDatabase implements Database {
 
