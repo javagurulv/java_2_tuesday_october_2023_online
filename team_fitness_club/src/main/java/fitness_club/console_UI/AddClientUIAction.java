@@ -45,7 +45,7 @@ public class AddClientUIAction implements UIAction {
         ClientResponse response = service.execute(request);
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->
-                    System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage())
+                    System.out.println("Oshibka: " + coreError.getField() + " " + coreError.getMessage())
             );
         } else {
             System.out.println("New client id was: " + response.getNewClient().getId());

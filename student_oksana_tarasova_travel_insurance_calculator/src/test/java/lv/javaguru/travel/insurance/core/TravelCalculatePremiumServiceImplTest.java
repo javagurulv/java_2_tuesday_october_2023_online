@@ -19,6 +19,7 @@ class TravelCalculatePremiumServiceImplTest {
 
     TravelCalculatePremiumServiceImpl serviceImpl = new TravelCalculatePremiumServiceImpl();
     TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse();
+
     TravelCalculatePremiumRequestValidator validator = new TravelCalculatePremiumRequestValidator();
 
 
