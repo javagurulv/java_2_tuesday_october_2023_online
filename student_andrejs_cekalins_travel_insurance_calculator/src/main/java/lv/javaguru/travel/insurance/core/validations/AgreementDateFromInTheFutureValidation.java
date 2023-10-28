@@ -1,4 +1,4 @@
-package lv.javaguru.travel.insurance.validations;
+package lv.javaguru.travel.insurance.core.validations;
 
 import lv.javaguru.travel.insurance.core.DateTimeService;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
@@ -8,17 +8,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.Optional;
-
 @Component
-public class AgreementDateToInTheFutureValidation implements TravelRequestValidation {
+public class AgreementDateFromInTheFutureValidation implements TravelRequestValidation {
     @Autowired
     private DateTimeService dateTimeService;
 
     public Optional<ValidationError> execute(TravelCalculatePremiumRequest request) {
-        Date dateTo = request.getAgreementDateTo();
+        Date dateFrom = request.getAgreementDateFrom();
         Date currentDateTime = dateTimeService.getCurrentDateTime();
-        return (dateTo != null && dateTo.before(currentDateTime))
-                ? Optional.of(new ValidationError("agreementDateTo", "Must be in the future!"))
+        return (dateFrom != null && dateFrom.before(currentDateTime))
+                ? Optional.of(new ValidationError("agreementDateFrom", "Must be in the future!"))
                 : Optional.empty();
     }
 }

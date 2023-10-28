@@ -1,5 +1,6 @@
 package fitness_club.data_vlidation;
 
+import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 
@@ -12,6 +13,12 @@ public class SearchClientRequestValidator {
     public List<CoreError> validate(SearchClientRequest request) {
         List<CoreError> errors = new ArrayList<>();
         errors.addAll(validateSearchFields(request));
+        if (request.getOrdering() != null) {
+            validateOrderBy(request.getOrdering()).ifPresent(errors::add);
+            validateOrderDirection(request.getOrdering()).ifPresent(errors::add);
+            validateMandatoryOrderBy(request.getOrdering()).ifPresent(errors::add);
+            validateMandatoryOrderDirection(request.getOrdering()).ifPresent(errors::add);
+        }
         if (request.getPaging() != null) {
             validatePageNumberIsNotEmpty(request.getPaging()).ifPresent(errors::add);
             validatePageSizeIsNotEmpty(request.getPaging()).ifPresent(errors::add);
@@ -28,6 +35,31 @@ public class SearchClientRequestValidator {
             errors.add(new CoreError("lastName", "Must not be empty!"));
         }
         return errors;
+    }
+    private Optional<CoreError> validateOrderBy(Ordering ordering) {
+        return (ordering.getOrderBy() != null
+                && !(ordering.getOrderBy().equals("firstName") || ordering.getOrderBy().equals("lastName")))
+                ? Optional.of(new CoreError("orderBy", "Must contain 'firstName' or 'lastName' only!"))
+                : Optional.empty();
+    }
+
+    private Optional<CoreError> validateOrderDirection(Ordering ordering) {
+        return (ordering.getOrderDirection() != null
+                && !(ordering.getOrderDirection().equals("ASCENDING") || ordering.getOrderDirection().equals("DESCENDING")))
+                ? Optional.of(new CoreError("orderDirection", "Must contain 'ASCENDING' or 'DESCENDING' only!"))
+                : Optional.empty();
+    }
+
+    private Optional<CoreError> validateMandatoryOrderBy(Ordering ordering) {
+        return (ordering.getOrderDirection() != null && ordering.getOrderBy() == null)
+                ? Optional.of(new CoreError("orderBy", "Must not be empty!"))
+                : Optional.empty();
+    }
+
+    private Optional<CoreError> validateMandatoryOrderDirection(Ordering ordering) {
+        return (ordering.getOrderBy() != null && ordering.getOrderDirection() == null)
+                ? Optional.of(new CoreError("orderDirection", "Must not be empty!"))
+                : Optional.empty();
     }
 
     private Optional<CoreError> validatePageNumberIsNotEmpty(Paging paging) {
@@ -59,4 +91,5 @@ public class SearchClientRequestValidator {
     private boolean isEmpty(String str) {
         return str == null || str.isEmpty();
     }
+
 }

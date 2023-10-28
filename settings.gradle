@@ -38,16 +38,6 @@ include 'teacher:travel_insurance_calculator:step_17'
 include 'teacher:travel_insurance_calculator:step_18'
 include 'teacher:travel_insurance_calculator:step_19'
 include 'teacher:travel_insurance_calculator:step_20'
-include 'teacher:travel_insurance_calculator:step_21'
-include 'teacher:travel_insurance_calculator:step_22'
-include 'teacher:travel_insurance_calculator:step_23'
-include 'teacher:travel_insurance_calculator:step_24'
-include 'teacher:travel_insurance_calculator:step_25'
-include 'teacher:travel_insurance_calculator:step_26'
-include 'teacher:travel_insurance_calculator:step_27'
-include 'teacher:travel_insurance_calculator:step_28'
-include 'teacher:travel_insurance_calculator:step_29'
-include 'teacher:travel_insurance_calculator:step_30'
 
 
 include 'student_anastasiia_bokareva_travel_insurance_calculator'
@@ -56,7 +46,6 @@ include 'student_butrin_ilya_travel_insurance_calculator'
 include 'student_dainis_fjodorovs_travel_insurance_calculator'
 include 'student_oksana_tarasova_travel_insurance_calculator'
 include 'student_tatjana_grigorcaka_travel_insurance_calculator'
-include 'student_andrejs_sidenko_travel_insurance_calculator'
 
 
 include 'team_fitness_club'
@@ -65,5 +54,3 @@ include 'team_AvangardTeenOrder'
 include 'team_CakeConstructor'
 include 'team_SimpleInventory'
 include 'team_product_storage'
-
-

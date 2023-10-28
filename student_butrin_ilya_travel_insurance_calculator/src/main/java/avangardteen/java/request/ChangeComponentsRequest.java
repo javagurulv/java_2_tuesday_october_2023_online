@@ -9,6 +9,11 @@ public class ChangeComponentsRequest {
         this.newChoose = newChoose;
     }
 
+    public ChangeComponentsRequest(int cathegory) {
+        this.cathegory = cathegory;
+    }
+
+
     public int getCathegory() {
         return cathegory;
     }

@@ -28,6 +28,7 @@ public class InFileDateBAse implements DateBaseIf {
     }
 
     public List<Cake> getAllCake() {
+        // каждый должен забить свой путь к файлу
         String absolutePath = "C:\\Users\\ArchAtalar\\javaLab\\java_2_tuesday_october_2023_online\\team_CakeConstructor\\src\\main\\resources\\databases\\cake";
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(absolutePath))) {
             cakes = (List<Cake>) ois.readObject();
@@ -38,6 +39,7 @@ public class InFileDateBAse implements DateBaseIf {
     }
 
     public void saveCake() {
+        // каждый должен забить свой путь к файлу
         String absolutePath = "C:\\Users\\ArchAtalar\\javaLab\\java_2_tuesday_october_2023_online\\team_CakeConstructor\\src\\main\\resources\\databases\\cake";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(absolutePath))){
             oos.writeObject(cakes);

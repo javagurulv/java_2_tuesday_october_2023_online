@@ -1,5 +1,6 @@
 package fitness_club.data_vlidation;
 
+import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import org.junit.jupiter.api.Test;
@@ -42,6 +43,46 @@ class SearchClientRequestValidationTest {
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
         assertEquals(errors.get(1).getField(), "lastName");
         assertEquals(errors.get(1).getMessage(), "Must not be empty!");
+    }
+
+    @Test
+    public void shouldReturnErrorWhenOrderDirectionAreEmpty() {
+        Ordering ordering = new Ordering("firstName", null);
+        SearchClientRequest request = new SearchClientRequest("firstName ", "lastName", ordering);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getField(), "orderDirection");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
+    }
+
+    @Test
+    public void shouldReturnErrorWhenOrderByAreEmpty() {
+        Ordering ordering = new Ordering(null, "ASCENDING");
+        SearchClientRequest request = new SearchClientRequest("firstName", "lastName", ordering);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getField(), "orderBy");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
+    }
+
+    @Test
+    public void shouldReturnErrorWhenOrderByContainNotValidValue() {
+        Ordering ordering = new Ordering("notValidValue", "ASCENDING");
+        SearchClientRequest request = new SearchClientRequest("firstName", "lastName", ordering);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getField(), "orderBy");
+        assertEquals(errors.get(0).getMessage(), "Must contain 'firstName' or 'lastName' only!");
+    }
+
+    @Test
+    public void shouldReturnErrorWhenOrderDirectionContainNotValidValue() {
+        Ordering ordering = new Ordering("firstName", "notValidValue");
+        SearchClientRequest request = new SearchClientRequest("firstName", "lastName", ordering);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getField(), "orderDirection");
+        assertEquals(errors.get(0).getMessage(), "Must contain 'ASCENDING' or 'DESCENDING' only!");
     }
 
     @Test
