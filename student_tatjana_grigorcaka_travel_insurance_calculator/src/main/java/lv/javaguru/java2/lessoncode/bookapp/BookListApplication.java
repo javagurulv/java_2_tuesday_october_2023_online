@@ -1,31 +1,34 @@
 package lv.javaguru.java2.lessoncode.bookapp;
 
+import lv.javaguru.java2.lessoncode.bookapp.console_ui.*;
 import lv.javaguru.java2.lessoncode.bookapp.core.database.Database;
 import lv.javaguru.java2.lessoncode.bookapp.core.database.InMemoryDatabase;
 import lv.javaguru.java2.lessoncode.bookapp.core.services.AddBookService;
-import lv.javaguru.java2.lessoncode.bookapp.core.services.AddBookValidator;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.SearchBooksService;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.AddBookRequestValidator;
+import lv.javaguru.java2.lessoncode.bookapp.core.services.SearchBooksRequestValidator;
 import lv.javaguru.java2.lessoncode.bookapp.core.services.DeleteBookService;
 import lv.javaguru.java2.lessoncode.bookapp.core.services.GetAllBooksService;
-import lv.javaguru.java2.lessoncode.bookapp.console_ui.AddBookUIAction;
-import lv.javaguru.java2.lessoncode.bookapp.console_ui.DeleteBookUIAction;
-import lv.javaguru.java2.lessoncode.bookapp.console_ui.PrintAllBooksUIAction;
-import lv.javaguru.java2.lessoncode.bookapp.console_ui.ProgramExitUIAction;
 
 import java.util.Scanner;
 
     public class BookListApplication {
 
-    static Database database = new InMemoryDatabase();
+    private static Database database = new InMemoryDatabase();
 
-    private static AddBookValidator validator = new AddBookValidator(database);
-    static AddBookService addBookService = new AddBookService(database, validator);
-    static DeleteBookService deleteBookService = new DeleteBookService(database);
-    static GetAllBooksService getAllBooksService = new GetAllBooksService(database);
+    private static AddBookRequestValidator addBookRequestvalidator = new AddBookRequestValidator(database);
 
-    static AddBookUIAction addBookUIAction = new AddBookUIAction(addBookService);
-    static DeleteBookUIAction deleteBookUIAction = new DeleteBookUIAction(deleteBookService);
-    static PrintAllBooksUIAction printAllBooksUIAction = new PrintAllBooksUIAction(getAllBooksService);
-    static ProgramExitUIAction programExitUIAction = new ProgramExitUIAction();
+    private static SearchBooksRequestValidator searchBooksRequestValidator = new SearchBooksRequestValidator();
+    private static AddBookService addBookService = new AddBookService(database, addBookRequestvalidator);
+    private static DeleteBookService deleteBookService = new DeleteBookService(database);
+    private static GetAllBooksService getAllBooksService = new GetAllBooksService(database);
+    private static SearchBooksService searchBooksService = new SearchBooksService(database, searchBooksRequestValidator);
+
+    private static AddBookUIAction addBookUIAction = new AddBookUIAction(addBookService);
+    private static DeleteBookUIAction deleteBookUIAction = new DeleteBookUIAction(deleteBookService);
+    private static PrintAllBooksUIAction printAllBooksUIAction = new PrintAllBooksUIAction(getAllBooksService);
+    private static ProgramExitUIAction programExitUIAction = new ProgramExitUIAction();
+    private static SearchBooksUIAction searchBooksUIAction = new SearchBooksUIAction(searchBooksService);
 
     public static void main(String[] args) {
     while (true) {
@@ -51,6 +54,10 @@ import java.util.Scanner;
                 break;
             }
             case 4: {
+                searchBooksUIAction.execute();
+                break;
+            }
+            case 5: {
                 programExitUIAction.execute();
 
             }
@@ -65,10 +72,11 @@ import java.util.Scanner;
 
         private static void printMenu() {
             System.out.println("Program menu: ");
-            System.out.println("Add book to list: ");
-            System.out.println("Delete book from list: ");
-            System.out.println("Show all books in the list: ");
-            System.out.println("Exit");
+            System.out.println("1. Add book to list: ");
+            System.out.println("2. Delete book from list: ");
+            System.out.println("3. Show all books in the list: ");
+            System.out.println("4. Search books");
+            System.out.println("5. Exit");
 
             System.out.println("");
         }
