@@ -17,6 +17,9 @@ public class BookListApplication {
     UIAction removeBook = new RemoveBookUIAction(new RemoveBookService(data, removeBookValidator));
     UIAction getbook = new GetAllBooksUIAction(new GetAllBookService(data));
     UIAction exit = new ExitUIAction();
+    SearchBookValigator searchBookValigator = new SearchBookValigator();
+    SearchBooksService searchBooksService = new SearchBooksService(searchBookValigator,data);
+    UIAction searchBook = new SearchBookUIAction(searchBooksService);
     public static void main(String[] args) {
 
         BookListApplication bookListApplication = new BookListApplication();
@@ -30,7 +33,8 @@ public class BookListApplication {
             System.out.println("1. добавить книгу в список");
             System.out.println("2. удалить книгу из списка,");
             System.out.println("3. распечатка списка книг на консоль");
-            System.out.println("4. выйти из программы");}
+            System.out.println("4. поиск книг по автору и/или названию");
+            System.out.println("5. выйти из программы");}
         public static int selectСategory (){
         Scanner scanner = new Scanner(System.in);
         int choose = scanner.nextInt();
@@ -49,6 +53,9 @@ public class BookListApplication {
                     getbook.execute();
                     break;
                 case (4):
+                    searchBook.execute();
+                    break;
+                case (5):
                     exit.execute();
 
             }

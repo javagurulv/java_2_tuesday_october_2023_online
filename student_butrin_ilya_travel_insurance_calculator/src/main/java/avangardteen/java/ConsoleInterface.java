@@ -1,6 +1,4 @@
 package avangardteen.java;
-
-
 import avangardteen.java.UIAction.*;
 import avangardteen.java.UIAction.UIAction;
 import avangardteen.java.data.DataComponents;
