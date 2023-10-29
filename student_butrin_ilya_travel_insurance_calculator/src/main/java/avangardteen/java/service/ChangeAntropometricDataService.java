@@ -19,7 +19,7 @@ public class ChangeAntropometricDataService {
         this.user = user;
     }
 
-    public ChangeAntropologDateResponce responce(ChangeAntropologDateRequest request) {
+    public ChangeAntropologDateResponce response(ChangeAntropologDateRequest request) {
         List<CoreError> errorList = new ArrayList<>();
         errorList = validator.errorlist(request);
         if(!errorList.isEmpty())
