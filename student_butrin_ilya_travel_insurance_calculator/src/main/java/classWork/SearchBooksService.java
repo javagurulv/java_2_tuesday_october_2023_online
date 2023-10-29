@@ -2,14 +2,13 @@ package classWork;
 
 import classWork.core.CoreError;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SearchBooksService {
-    SearchBookValigator valigator;
+    SearchBookValidator valigator;
     Database data;
 
-    public SearchBooksService(SearchBookValigator valigator, Database data) {
+    public SearchBooksService(SearchBookValidator valigator, Database data) {
         this.valigator = valigator;
         this.data = data;
     }

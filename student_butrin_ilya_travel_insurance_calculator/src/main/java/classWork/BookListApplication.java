@@ -17,8 +17,8 @@ public class BookListApplication {
     UIAction removeBook = new RemoveBookUIAction(new RemoveBookService(data, removeBookValidator));
     UIAction getbook = new GetAllBooksUIAction(new GetAllBookService(data));
     UIAction exit = new ExitUIAction();
-    SearchBookValigator searchBookValigator = new SearchBookValigator();
-    SearchBooksService searchBooksService = new SearchBooksService(searchBookValigator,data);
+    SearchBookValidator searchBookValidator = new SearchBookValidator();
+    SearchBooksService searchBooksService = new SearchBooksService(searchBookValidator,data);
     UIAction searchBook = new SearchBookUIAction(searchBooksService);
     public static void main(String[] args) {
 

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class SearchBookValigator {
+public class SearchBookValidator {
     public List<CoreError> errorList(SearchBooksRequest request) {
 
         List<CoreError> errorList = new ArrayList<>();
