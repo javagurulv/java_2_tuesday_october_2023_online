@@ -2,14 +2,13 @@ package avangardteen.java.service.valigation;
 
 import avangardteen.java.CoreError;
 import avangardteen.java.request.ChangeAntropologDateRequest;
-import avangardteen.java.request.ChangeAntropologDateRequest;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 
-public class ChangeAntropologDateValigation {
+public class ChangeAntropologDateValidation {
 
     public  List<CoreError> errorlist (ChangeAntropologDateRequest request) {
         List<CoreError> errorList = new ArrayList<>();

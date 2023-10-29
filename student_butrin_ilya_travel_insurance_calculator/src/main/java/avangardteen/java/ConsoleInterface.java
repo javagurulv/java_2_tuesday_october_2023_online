@@ -5,7 +5,7 @@ import avangardteen.java.data.DataComponents;
 import avangardteen.java.data.DataUsers;
 import avangardteen.java.service.*;
 import avangardteen.java.service.valigation.AddAntropologDateValigation;
-import avangardteen.java.service.valigation.ChangeAntropologDateValigation;
+import avangardteen.java.service.valigation.ChangeAntropologDateValidation;
 
 import java.util.Scanner;
 public class
@@ -29,8 +29,8 @@ ConsoleInterface {
     public static UIAction addPersonalData = new AddPersonalDateIUAction(addUserDataServis);
     public static UIAction showDataSize = new ShowDataSizeUIActive(getAntropometricDataServis);
     public static AddAnthropometricDataIUActiv addAnthropometricDataIUActiv = new AddAnthropometricDataIUActiv(addAntropometricDataServis);
-    public static ChangeAntropologDateValigation changeAntropologDateValigation = new ChangeAntropologDateValigation();
-    public static ChangeAntropometricDataService changeAntropometricDataService = new ChangeAntropometricDataService(changeAntropologDateValigation, client);
+    public static ChangeAntropologDateValidation changeAntropologDateValidation = new ChangeAntropologDateValidation();
+    public static ChangeAntropometricDataService changeAntropometricDataService = new ChangeAntropometricDataService(changeAntropologDateValidation, client);
     public static ChangenAtropologDateUIAAction changenAtropologDateUIAAction = new ChangenAtropologDateUIAAction(changeAntropometricDataService);
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
