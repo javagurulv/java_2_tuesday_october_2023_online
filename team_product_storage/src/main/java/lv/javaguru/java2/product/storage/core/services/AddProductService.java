@@ -11,10 +11,10 @@ import java.util.List;
 public class AddProductService {
 
     private Database database;
-    private AddProductValidator validator;
+    private AddProductRequestValidator validator;
 
     public AddProductService(Database database,
-                             AddProductValidator validator) {
+                             AddProductRequestValidator validator) {
         this.database = database;
         this.validator = validator;
     }
@@ -25,7 +25,7 @@ public class AddProductService {
             return new AddProductResponse(errors);
         }
 
-        Product product = new Product(request.getProductName());
+        Product product = new Product(request.getProductName(), request.getProductBrand(), request.getProductModel());
         database.save(product);
         return new AddProductResponse(product);
     }

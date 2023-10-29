@@ -5,6 +5,7 @@ import lv.javaguru.java2.product.storage.core.domain.Product;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class InMemoryDatabase implements Database {
     private Long nextId = 1L;
@@ -32,6 +33,36 @@ public class InMemoryDatabase implements Database {
     @Override
     public List<Product> getAllProducts() {
         return products;
+    }
+
+
+    @Override
+    public List<Product> findByProductName(String productName) {
+        return products.stream()
+                .filter(product -> product.getProductName().equals(productName))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Product> findByProductBrand(String productBrand) {
+        return products.stream()
+                .filter(product -> product.getProductBrand().equals(productBrand))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Product> findByProductModel(String productModel) {
+        return products.stream()
+                .filter(product -> product.getProductModel().equals(productModel))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Product> findByProductBrandAndProductModel(String productBrand, String productModel) {
+        return products.stream()
+                .filter(product -> product.getProductBrand().equals(productBrand))
+                .filter(product -> product.getProductModel().equals(productModel))
+                .collect(Collectors.toList());
     }
 
 }

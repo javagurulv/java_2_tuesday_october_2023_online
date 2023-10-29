@@ -1,32 +1,29 @@
 package lv.javaguru.java2.product.storage;
 
+import lv.javaguru.java2.product.storage.console_ui.*;
 import lv.javaguru.java2.product.storage.core.database.Database;
 import lv.javaguru.java2.product.storage.core.database.InMemoryDatabase;
-import lv.javaguru.java2.product.storage.core.services.AddProductService;
-import lv.javaguru.java2.product.storage.core.services.AddProductValidator;
-import lv.javaguru.java2.product.storage.core.services.RemoveProductService;
-import lv.javaguru.java2.product.storage.core.services.GetAllProductsService;
-import lv.javaguru.java2.product.storage.ui.AddProductUIAction;
-import lv.javaguru.java2.product.storage.ui.RemoveProductUIAction;
-import lv.javaguru.java2.product.storage.ui.ExitProgramUIAction;
-import lv.javaguru.java2.product.storage.ui.PrintAllProductsUIAction;
+import lv.javaguru.java2.product.storage.core.services.*;
 
 import java.util.Scanner;
 
 public class StorageApplication {
 
-    static Database database = new InMemoryDatabase();
+    private static Database database = new InMemoryDatabase();
 
-    static AddProductValidator addProductValidator = new AddProductValidator();
+    private static AddProductRequestValidator addProductValidator = new AddProductRequestValidator();
 
-    static AddProductService addProductService = new AddProductService(database, addProductValidator);
-    static RemoveProductService removeProductService = new RemoveProductService(database);
-    static GetAllProductsService getAllProductService = new GetAllProductsService(database);
+    private static SearchProductsRequestValidator searchProductsRequestValidator = new SearchProductsRequestValidator();
+    private static AddProductService addProductService = new AddProductService(database, addProductValidator);
+    private static RemoveProductService removeProductService = new RemoveProductService(database);
+    private static GetAllProductsService getAllProductService = new GetAllProductsService(database);
+    private static SearchProductsService searchProductsService = new SearchProductsService(database, searchProductsRequestValidator);
 
-    static AddProductUIAction addProductUIAction = new AddProductUIAction(addProductService);
-    static RemoveProductUIAction removeProductUIAction = new RemoveProductUIAction(removeProductService);
-    static PrintAllProductsUIAction printAllProductsUIAction = new PrintAllProductsUIAction(getAllProductService);
-    static ExitProgramUIAction exitProgramUIAction = new ExitProgramUIAction();
+    private static UIAction addProductUIAction = new AddProductUIAction(addProductService);
+    private static UIAction removeProductUIAction = new RemoveProductUIAction(removeProductService);
+    private static UIAction printAllProductsUIAction = new PrintAllProductsUIAction(getAllProductService);
+    private static UIAction exitProgramUIAction = new ExitProgramUIAction();
+    private static UIAction searchProductsUIAction = new SearchProductsUIAction(searchProductsService);
 
     public static void main(String[] args) {
             while (true) {
@@ -41,6 +38,7 @@ public class StorageApplication {
         System.out.println("Press 1: Add product to list: ");
         System.out.println("Press 2: Remove product from list: ");
         System.out.println("Press 3: Display all products in the list: ");
+        System.out.println("Press 4. Search products");
         System.out.println("Press 4: Exit from program.");
 
         System.out.println("");
@@ -67,6 +65,10 @@ public class StorageApplication {
                 break;
             }
             case 4: {
+                searchProductsUIAction.execute();
+                break;
+            }
+            case 5: {
                 exitProgramUIAction.execute();
             }
         }
