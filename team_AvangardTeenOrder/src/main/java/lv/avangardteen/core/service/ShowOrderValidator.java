@@ -20,10 +20,10 @@ public class ShowOrderValidator {
     }
 
     public Optional<CoreError> getUser(ShowOrderRequest request) {
-
-        return (request.getId() == 0)
-                ? Optional.of(new CoreError("idOrder", "There is no order with this number"))
+        return (request.getId() <= 0)
+                ? Optional.of(new CoreError("ShowOrderID", "There is no order with this number"))
                 : Optional.empty();
     }
+
 
 }

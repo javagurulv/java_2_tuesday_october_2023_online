@@ -3,7 +3,6 @@ package lv.avangardteen.core.service;
 import lv.avangardteen.Client;
 import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.core.responce.DeleteOrderResponse;
 import lv.avangardteen.core.responce.ShowOrderResponse;
 import lv.avangardteen.data.DataOrders;
 
@@ -26,6 +25,10 @@ public class ShowOrderService {
         }
 
         Client client = dataOrders.getClient(request.getId());
-        return new ShowOrderResponse(client);
+        ShowOrderResponse response =  new ShowOrderResponse(client);
+        return new ShowOrderResponse(dataOrders.getClient(request.getId()));
+
+      //  return new ShowOrderResponse(dataOrders.getClient(toString()));
+
     }
 }

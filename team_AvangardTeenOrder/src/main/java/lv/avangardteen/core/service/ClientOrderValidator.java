@@ -43,7 +43,7 @@ public class ClientOrderValidator {
 
     private Optional<CoreError> validateNameSurname(ClientRequest request) {
         return (request.getNameSurname() == null || request.getNameSurname().isEmpty())
-                ? Optional.of((new CoreError("nameSurname", "Must not be empty")))
+                ? Optional.of((new CoreError("nameSurname", "Must not be empty!")))
                 : Optional.empty();
     }
 
