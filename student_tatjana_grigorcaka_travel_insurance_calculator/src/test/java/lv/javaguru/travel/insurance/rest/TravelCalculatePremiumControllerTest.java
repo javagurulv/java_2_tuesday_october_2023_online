@@ -25,6 +25,7 @@ public class TravelCalculatePremiumControllerTest {
 
     @Autowired private JsonFileReader jsonFileReader;
 
+
     @Test
     public void successfulRequest() throws Exception {
         executeAndCompare(
