@@ -83,17 +83,16 @@ class ChangePersonalDateValidatorTest {
         ChangePersonalDateRequest request = new ChangePersonalDateRequest(0, "Ivan Ivanov", 22222222,
                 "Lesnaja 67");
         List<CoreError> validList = validator.validate(request);
-        assertEquals(validList, List.of(new CoreError("idClient", "Must not be empty!")));
+        assertEquals(validList, List.of(new CoreError("idClient", "Must not be zero!")));
 
     }
 
     @Test
     public void testPhone() {
-        ChangePersonalDateRequest request = new ChangePersonalDateRequest(44444, "Ivan",
-                0,
+        ChangePersonalDateRequest request = new ChangePersonalDateRequest(44444, "Ivan", 0,
                 "Lesnaja 67");
         List<CoreError> validList = validator.validate(request);
-        assertEquals(validList, List.of(new CoreError("phoneNumber", "Must contain only numbers!")));
+        assertEquals(validList, List.of(new CoreError("phoneNumber", "Must not be zero!")));
 
     }
 

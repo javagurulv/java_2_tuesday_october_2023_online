@@ -29,8 +29,11 @@ public class DeleteOrderService {
             }
 
         Client client = dataOrders.getClient(request.getId());
-        DeleteOrderResponse response = new DeleteOrderResponse(client);
+            if(client.getNameSurname().equals(request.getSurname())) {
+                dataOrders.deleteUser(request.getId());
+            }
+
         System.out.println("Ваш заказ удален");
-        return new DeleteOrderResponse(dataOrders.deleteUser(request.getId()));
+        return new DeleteOrderResponse();
     }
 }

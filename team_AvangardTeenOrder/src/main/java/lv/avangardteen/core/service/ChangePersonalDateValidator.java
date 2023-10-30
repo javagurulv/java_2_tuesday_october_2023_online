@@ -21,7 +21,7 @@ public class ChangePersonalDateValidator {
 
     private Optional<CoreError> validateId(ChangePersonalDateRequest request) {
         return (request.getId() <= 0)
-                ? Optional.of(new CoreError("idClient", "Must not be empty!"))
+                ? Optional.of(new CoreError("idClient", "Must not be zero!"))
                 : Optional.empty();
     }
 
@@ -33,7 +33,7 @@ public class ChangePersonalDateValidator {
 
     private Optional<CoreError> validatePhoneNumber(ChangePersonalDateRequest request) {
         return (request.getPhoneNumber() == 0)
-                ? Optional.of(new CoreError("phoneNumber", "Must contain only numbers!"))
+                ? Optional.of(new CoreError("phoneNumber", "Must not be zero!"))
                 : Optional.empty();
     }
 
