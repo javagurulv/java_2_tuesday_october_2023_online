@@ -74,6 +74,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumRequest_dateTo_less_then_dateFrom.json",
                 "rest/TravelCalculatePremiumResponse_dateTo_less_then_dateFrom.json"
         );
+
     }
     @Test
     public void agreementDateFromInThePast() throws Exception {
