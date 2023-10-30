@@ -12,7 +12,7 @@ import static org.mockito.Mockito.when;
 
 class ShowOrderValidatorTest {
 
-private ShowOrderValidator validator = new ShowOrderValidator();
+private final ShowOrderValidator validator = new ShowOrderValidator();
 
     @Test
     public void getUserTest() {
@@ -23,6 +23,4 @@ private ShowOrderValidator validator = new ShowOrderValidator();
         assertEquals(validList.get(0).getField(), "ShowOrderID");
         assertEquals(validList.get(0).getMessage(),"There is no order with this number");
     }
-
-
 }
