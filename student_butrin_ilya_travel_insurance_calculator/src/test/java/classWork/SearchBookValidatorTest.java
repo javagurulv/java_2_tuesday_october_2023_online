@@ -21,7 +21,7 @@ class SearchBookValidatorTest {
         List<CoreError> real = new SearchBookValidator().errorList(request2);
        String mess = real.get(0).getField();
         assertEquals(real.size(),1);
-        assertEquals(mess, "Автор и название");
+        assertEquals(mess, " ");
     }
 
    */
