@@ -3,6 +3,10 @@ package lv.javaguru.java2.cakeConstructor.core.cake.request;
 public class SearchUserRequest {
     private String login;
     private String userName;
+    public SearchUserRequest(String login, String userName){
+        this.login=login;
+        this.userName=userName;
+    }
 
 
     public String getLogin() {

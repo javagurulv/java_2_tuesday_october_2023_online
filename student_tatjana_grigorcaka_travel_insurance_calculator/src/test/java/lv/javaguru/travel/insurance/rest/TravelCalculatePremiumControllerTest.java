@@ -19,13 +19,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-class TravelCalculatePremiumControllerTest {
+public class TravelCalculatePremiumControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+    @Autowired private MockMvc mockMvc;
 
-    @Autowired
-    private JsonFileReader jsonFileReader;
+    @Autowired private JsonFileReader jsonFileReader;
+
 
     @Test
     public void successfulRequest() throws Exception {
