@@ -1,6 +1,7 @@
 package lv.javaguru.java2.lessoncode.bookapp.console_ui;
 
 import lv.javaguru.java2.lessoncode.bookapp.core.requests.Ordering;
+import lv.javaguru.java2.lessoncode.bookapp.core.requests.Paging;
 import lv.javaguru.java2.lessoncode.bookapp.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.lessoncode.bookapp.core.responses.SearchBooksResponse;
 import lv.javaguru.java2.lessoncode.bookapp.core.services.SearchBooksService;
@@ -30,7 +31,13 @@ public class SearchBooksUIAction implements UIAction{
         String orderDirection = scanner.nextLine();
         Ordering ordering = new Ordering(orderBy, orderDirection);
 
-        SearchBooksRequest request = new SearchBooksRequest(title, author);
+        System.out.println("Enter pageNumber: ");
+        Integer pageNumber = Integer.parseInt(scanner.nextLine());
+        System.out.println("Enter pageSize: ");
+        Integer pageSize = Integer.parseInt(scanner.nextLine());
+        Paging paging = new Paging(pageNumber, pageSize);
+
+        SearchBooksRequest request = new SearchBooksRequest(title, author, ordering, paging);
         SearchBooksResponse response = searchBooksService.execute(request);
 
         if (response.containsErrors()) {

@@ -1,4 +1,4 @@
-package lv.javaguru.java2.product.storage.ui;
+package lv.javaguru.java2.product.storage.console_ui;
 
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.AddProductResponse;
@@ -19,7 +19,11 @@ public class AddProductUIAction implements UIAction {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product name: ");
         String productName = scanner.nextLine();
-        AddProductRequest request = new AddProductRequest(productName);
+        System.out.println("Enter product brand: ");
+        String productBrand = scanner.nextLine();
+        System.out.println("Enter product model: ");
+        String productModel = scanner.nextLine();
+        AddProductRequest request = new AddProductRequest(productName, productBrand, productModel);
         AddProductResponse response = addProductService.execute(request);
 
         if (response.hasErrors()) {

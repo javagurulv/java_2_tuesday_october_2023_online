@@ -1,6 +1,7 @@
 package lv.javaguru.java2.lessoncode.bookapp.core.services;
 
 import lv.javaguru.java2.lessoncode.bookapp.core.requests.Ordering;
+import lv.javaguru.java2.lessoncode.bookapp.core.requests.Paging;
 import lv.javaguru.java2.lessoncode.bookapp.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.lessoncode.bookapp.core.responses.CoreError;
 import org.junit.jupiter.api.Test;
@@ -85,5 +86,46 @@ class SearchBooksRequestValidatorTest {
         assertEquals(errors.get(0).getErrorCode(), "orderDirection");
         assertEquals(errors.get(0).getErrorMessage(), "Must contain 'ASCENDING' or 'DESCENDING' only!");
     }
+
+    @Test
+    public void shouldReturnErrorWhenPageNumberContainNotValidValue() {
+        Paging paging = new Paging(0, 1);
+        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", paging);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getErrorCode(), "pageNumber");
+        assertEquals(errors.get(0).getErrorMessage(), "Must be greater than 0!");
+    }
+
+    @Test
+    public void shouldReturnErrorWhenPageSizeContainNotValidValue() {
+        Paging paging = new Paging(1, 0);
+        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", paging);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getErrorCode(), "pageSize");
+        assertEquals(errors.get(0).getErrorMessage(), "Must be greater than 0!");
+    }
+
+    @Test
+    public void shouldReturnErrorWhenPageNumberAreEmpty() {
+        Paging paging = new Paging(null, 1);
+        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", paging);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getErrorCode(), "pageNumber");
+        assertEquals(errors.get(0).getErrorMessage(), "Must not be empty!");
+    }
+
+    @Test
+    public void shouldReturnErrorWhenPageSizeAreEmpty() {
+        Paging paging = new Paging(1, null);
+        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", paging);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getErrorCode(), "pageSize");
+        assertEquals(errors.get(0).getErrorMessage(), "Must not be empty!");
+    }
+
 
 }
