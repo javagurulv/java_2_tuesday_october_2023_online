@@ -1,5 +1,6 @@
-package lv.javaguru.travel.insurance.core;
+package lv.javaguru.travel.insurance.core.validations;
 
+import lv.javaguru.travel.insurance.core.validations.TravelCalculatePremiumRequestValidatorImpl;
 import lv.javaguru.travel.insurance.core.validations.TravelRequestValidation;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.ValidationError;
@@ -18,10 +19,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class TravelCalculatePremiumRequestValidatorTest {
+public class TravelCalculatePremiumRequestValidatorImplTest {
 
     @InjectMocks
-    private TravelCalculatePremiumRequestValidator requestValidator;
+    private TravelCalculatePremiumRequestValidatorImpl requestValidator;
 
     @Test
     public void shouldNotReturnErrors() {
