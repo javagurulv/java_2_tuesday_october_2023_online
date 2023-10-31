@@ -14,6 +14,7 @@ public class User {
     private String userEMail;
     private  String userAdress;
     private String userDeliveryChoice;
+    private int statusOfClient;
 
 
     @Override
@@ -31,6 +32,8 @@ public class User {
                 '}';
     }
 
+
+
     public User (String userLogin, String password, String userName, String userSurname, Date dateOfBirthDay,
                  int userPhone, String userEMail, String userAdress, String userDeliveryChoice){
         this.userLogin =userLogin;
@@ -42,18 +45,28 @@ public class User {
         this.userEMail=userEMail;
         this.userAdress=userAdress;
         this.userDeliveryChoice=userDeliveryChoice;
+        this.statusOfClient =1;
     }
+
+    public int getStatusOfClient() {
+        return statusOfClient;
+    }
+
+    public void setStatusOfClient(int statusOfClient) {
+        this.statusOfClient = statusOfClient;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userPhone == user.userPhone && Objects.equals(userLogin, user.userLogin) && Objects.equals(password, user.password) && Objects.equals(userName, user.userName) && Objects.equals(userSurname, user.userSurname) && Objects.equals(dateOfBirthDay, user.dateOfBirthDay) && Objects.equals(userEMail, user.userEMail) && Objects.equals(userAdress, user.userAdress) && Objects.equals(userDeliveryChoice, user.userDeliveryChoice);
+        return userPhone == user.userPhone && statusOfClient == user.statusOfClient && Objects.equals(userLogin, user.userLogin) && Objects.equals(password, user.password) && Objects.equals(userName, user.userName) && Objects.equals(userSurname, user.userSurname) && Objects.equals(dateOfBirthDay, user.dateOfBirthDay) && Objects.equals(userEMail, user.userEMail) && Objects.equals(userAdress, user.userAdress) && Objects.equals(userDeliveryChoice, user.userDeliveryChoice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userLogin, password, userName, userSurname, dateOfBirthDay, userPhone, userEMail, userAdress, userDeliveryChoice);
+        return Objects.hash(userLogin, password, userName, userSurname, dateOfBirthDay, userPhone, userEMail, userAdress, userDeliveryChoice, statusOfClient);
     }
     public String getUserLogin() {
         return userLogin;

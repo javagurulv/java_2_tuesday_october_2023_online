@@ -1,5 +1,6 @@
 package lv.javaguru.java2.createCake.core.cake.domain.ingridients.objects;
 
+import lv.javaguru.java2.createCake.core.cake.domain.ingridients.objects.database.ListOfIngridients;
 import lv.javaguru.java2.createCake.core.cake.domain.ingridients.parts_of_cake.biscuits.Biscuits;
 import lv.javaguru.java2.createCake.core.cake.domain.ingridients.parts_of_cake.biscuits.WorkWithBiscuits;
 import lv.javaguru.java2.createCake.core.cake.domain.ingridients.parts_of_cake.decors.Decors;
@@ -22,7 +23,7 @@ public class CreateCakeProcess {
     private WorkWithShells s = new WorkWithShells();
     private WorkWithDecors d = new WorkWithDecors();
 
-    public Cake createCakeForNotRegistrate(User user){
+    public Cake createCakeForRegistrate(User user){
         List<Biscuits> biscuits = list.createListOfBiscuit();
         List<Fillings> fillings = list.createListOfFilling();
         List<Shells> shells = list.createListOfShell();

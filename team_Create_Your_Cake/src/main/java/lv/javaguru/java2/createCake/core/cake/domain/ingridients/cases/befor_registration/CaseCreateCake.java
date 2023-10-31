@@ -19,10 +19,7 @@ public class CaseCreateCake {
 
     }
     public static void createCakeforRegistrateUser(User user){
-
         Cake cake = process.createCakeForNotRegistrate(user.getUserLogin());
-
-
     }
 
 

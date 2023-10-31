@@ -1,4 +1,4 @@
-package lv.javaguru.java2.createCake.core.cake.domain.ingridients.objects;
+package lv.javaguru.java2.createCake.core.cake.domain.ingridients.objects.database;
 
 import lv.javaguru.java2.createCake.core.cake.domain.ingridients.parts_of_cake.biscuits.Biscuits;
 import lv.javaguru.java2.createCake.core.cake.domain.ingridients.parts_of_cake.decors.Decors;
