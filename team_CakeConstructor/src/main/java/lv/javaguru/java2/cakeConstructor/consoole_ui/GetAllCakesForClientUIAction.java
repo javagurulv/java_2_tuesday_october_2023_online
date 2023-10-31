@@ -26,4 +26,9 @@ public class GetAllCakesForClientUIAction implements UIAction{
         }
 
     }
+
+    @Override
+    public void execute() {
+
+    }
 }

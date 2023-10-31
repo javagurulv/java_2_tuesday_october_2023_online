@@ -2,10 +2,18 @@ package lv.javaguru.java2.cakeConstructor.consoole_ui;
 
 import lv.javaguru.java2.cakeConstructor.core.cake.request.SearchUserRequest;
 import lv.javaguru.java2.cakeConstructor.core.cake.responses.SearchUserResponse;
+import lv.javaguru.java2.cakeConstructor.core.cake.services.SearchUserService;
 
 import java.util.Scanner;
 
 public class SearchUsersUIAction  implements  UIAction {
+
+    private SearchUserService searchUserService;
+
+    public SearchUsersUIAction(SearchUserService searchUserService) {
+        this.searchUserService = searchUserService;
+    }
+
     @Override
     public void execute(String clientLogin) {
 
@@ -20,7 +28,7 @@ public class SearchUsersUIAction  implements  UIAction {
         String userName = scanner.nextLine();
 
         SearchUserRequest request = new SearchUserRequest (login,userName);
-        SearchUserResponse response = SearchUserService.execute(request);
+        SearchUserResponse response = searchUserService.execute(request);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
