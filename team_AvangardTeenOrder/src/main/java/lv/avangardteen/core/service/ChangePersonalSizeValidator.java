@@ -2,18 +2,27 @@ package lv.avangardteen.core.service;
 
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
+import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.data.Database;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class ChangePersonalSizeValidator {
-    DataOrders dataOrders = new DataOrders();
+
+    private Database database;
+
+
+    public ChangePersonalSizeValidator(Database database) {
+        this.database = database;
+    }
+
     public List<CoreError> validate(ChangePersonalSizeRequest request) {
         List<CoreError> errors = new ArrayList<>();
-        validateId(request).ifPresent(errors::add);
+        clientNotFound(request).ifPresent(errors::add);
         validatePelvisWidth(request).ifPresent(errors::add);
         validateThighLength(request).ifPresent(errors::add);
         validateBackHeight(request).ifPresent(errors::add);
@@ -22,10 +31,11 @@ public class ChangePersonalSizeValidator {
 
     }
 
-    private Optional<CoreError> validateId(ChangePersonalSizeRequest request) {
-        return (request.getId() <= 0)
-                ? Optional.of((new CoreError("idClient", "Must not be empty!")))
+    public Optional<CoreError> clientNotFound(ChangePersonalSizeRequest request) {
+        return (database.getClient(request.getId()) == null)
+                ? Optional.of(new CoreError("idClient", "Order with this id not found!"))
                 : Optional.empty();
+
     }
 
 

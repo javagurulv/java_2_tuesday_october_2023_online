@@ -25,14 +25,14 @@ public class DeleteOrderService {
 
     public DeleteOrderResponse execute(DeleteOrderRequest request) {
         List<CoreError> errors = validator.validate(request);
-            if (!errors.isEmpty()) {
-                return new DeleteOrderResponse(errors);
-            }
+        return (!errors.isEmpty())
+                ? new DeleteOrderResponse(errors)
+                : getDeleteOrderResponse(request);
 
+    }
 
-                database.deleteUser(request.getId());
-
-
+    private DeleteOrderResponse getDeleteOrderResponse(DeleteOrderRequest request) {
+        database.deleteUser(request.getId());
         System.out.println("Ваш заказ удален");
         return new DeleteOrderResponse();
     }

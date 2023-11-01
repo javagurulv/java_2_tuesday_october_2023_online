@@ -10,7 +10,7 @@ import java.util.*;
 
 public class ClientOrderValidator {
 
-    DataComponents dataComponents = new DataComponents();
+
 
     public List<CoreError> validate(ClientRequest request) {
         List<CoreError> errors = new ArrayList<>();
