@@ -1,6 +1,6 @@
 <configuration>
 
-    <property name="LOGS" value="./logs" />
+    <property name="LOGS" value="./logs"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -26,8 +26,8 @@
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="CONSOLE" />
-        <appender-ref ref="FILE_APPENDER" />
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE_APPENDER"/>
     </root>
 
 </configuration>
