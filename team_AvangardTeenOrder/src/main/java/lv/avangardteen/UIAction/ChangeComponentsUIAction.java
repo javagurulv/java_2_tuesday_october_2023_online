@@ -1,6 +1,7 @@
 package lv.avangardteen.UIAction;
 
 import lv.avangardteen.core.request.ChangeComponentRequest;
+import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.service.ChangeComponentService;
 import lv.avangardteen.data.DataComponents;
 import lv.avangardteen.data.DataOrders;
@@ -37,7 +38,13 @@ public class ChangeComponentsUIAction implements UIAction {
         int armrest = scan.nextInt();
         ChangeComponentRequest request = new ChangeComponentRequest(id, wheelFront, wheelBack,
                 brake, armrest);
-        service.execute(request);
+        ChangeComponentResponse response = service.execute(request);
+
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError ->
+                    System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+        }
+
 
 
     }
