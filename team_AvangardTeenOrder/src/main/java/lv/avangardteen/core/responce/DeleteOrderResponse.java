@@ -22,4 +22,6 @@ public class DeleteOrderResponse extends CoreResponse {
     public void setClient(Client client) {
         this.client = client;
     }
+
+
 }

@@ -18,4 +18,11 @@ abstract class CoreResponse {
     public boolean hasErrors() {
         return errors != null && !errors.isEmpty();
     }
+
+    @Override
+    public String toString() {
+        return "CoreResponse{" +
+                "errors=" + errors +
+                '}';
+    }
 }

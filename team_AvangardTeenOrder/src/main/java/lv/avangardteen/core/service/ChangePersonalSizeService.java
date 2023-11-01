@@ -24,9 +24,13 @@ public class ChangePersonalSizeService {
 
     public ChangePersonalSizeResponse execute(ChangePersonalSizeRequest request) {
         List<CoreError> errors = validator.validate(request);
-        if (!errors.isEmpty()) {
-            return new ChangePersonalSizeResponse(errors);
-        }
+        return (!errors.isEmpty())
+                ? new ChangePersonalSizeResponse(errors)
+                : getChangePersonalSizeResponse(request);
+
+    }
+
+    private ChangePersonalSizeResponse getChangePersonalSizeResponse(ChangePersonalSizeRequest request) {
         Client client = database.getClient(request.getId());
         ChangePersonalSizeResponse response = new ChangePersonalSizeResponse(client);
 
@@ -39,8 +43,7 @@ public class ChangePersonalSizeService {
                 request.getPelvisWidth(),
                 request.getShinLength(),
                 request.getThighLength())));
-
+        System.out.println("Ваши данные сохранены.");
         return new ChangePersonalSizeResponse(client);
-
     }
 }

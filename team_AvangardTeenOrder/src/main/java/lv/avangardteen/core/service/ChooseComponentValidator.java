@@ -11,7 +11,7 @@ import java.util.*;
 
 public class ChooseComponentValidator {
 
-    DataOrders dataOrders = new DataOrders();
+
     DataComponents dataComponents = new DataComponents();
 
     public List<CoreError> validate(ChangeComponentRequest request) {
