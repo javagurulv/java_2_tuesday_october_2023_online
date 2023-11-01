@@ -1,13 +1,17 @@
 package lv.avangardteen.core.service;
 
+import lv.avangardteen.Client;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.CoreError;
+import lv.avangardteen.data.DataOrders;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class ChangePersonalDateValidator {
+
+    DataOrders dataOrders = new DataOrders();
 
     public List<CoreError> validate(ChangePersonalDateRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -24,6 +28,7 @@ public class ChangePersonalDateValidator {
                 ? Optional.of(new CoreError("idClient", "Must not be zero!"))
                 : Optional.empty();
     }
+
 
     private Optional<CoreError> validateNameSurname(ChangePersonalDateRequest request) {
         return (request.getNameSurname() == null || request.getNameSurname().isEmpty())

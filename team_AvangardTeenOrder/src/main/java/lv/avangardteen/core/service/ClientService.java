@@ -56,7 +56,7 @@ public class ClientService {
                 + clientResponse.getClient().getWheelchair().getPriceWheelchair());
 
         dataOrders.addUser(clientResponse.getClient());
-        System.out.println("Ваш номер заказа" + dataOrders.getId());
+        System.out.println("Ваш номер заказа" + clientResponse.getClient().getId());
 
         return new ClientResponse(clientResponse.getClient()) ;
     }

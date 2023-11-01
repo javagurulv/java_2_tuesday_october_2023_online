@@ -3,7 +3,7 @@ package lv.avangardteen;
 import java.util.Objects;
 
 public class Client {
-
+long id;
     String nameSurname;
     int phoneNumber;
     String userAddress;
@@ -11,6 +11,14 @@ public class Client {
     Wheelchair wheelchair = new Wheelchair(userSizes);
     WheelchairComponent wheelchairComponents;
     double priseOrder;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public double getPriseOrder() {
         return priseOrder;

@@ -9,7 +9,7 @@ import lv.avangardteen.data.DataOrders;
 import java.util.List;
 
 public class ChangePersonalDateService {
-    DataOrders dataOrders;
+    private DataOrders dataOrders;
 
     private ChangePersonalDateValidator validator;
 

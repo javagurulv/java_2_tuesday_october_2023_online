@@ -5,33 +5,42 @@ import lv.avangardteen.Client;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class DataOrders {
+    private Long nextId = 1L;
     List<Client> clients = new ArrayList<>();
-    int id = 0;
+
 
     public List<Client> getClients() {
 
         return clients;
     }
 
-    public int getId() {
-        return id;
+
+    public void addUser(Client client) {
+        client.setId(nextId);
+        nextId++;
+        clients.add(client);
     }
 
-    public void addUser(Client user) {
-        id++;
-        clients.add(user);
+    public void deleteUser(long id) {
+        clients.stream()
+                .filter(client -> client.getId() == id)
+                .findFirst()
+                .ifPresent(client -> clients.remove(client));
     }
 
-    public Client deleteUser(int id) {
-        List<Client> clients = getClients();
-        return clients.remove(id-1);
-    }
+    public Client getClient(long id) {
+        List<Client> clientList = getClients();
+        Client clientSearch = null;
+        for (Client client : clientList) {
+            if (client.getId() == id) {
+                clientSearch = client;
+            }
+        }
+        return clientSearch;
 
-    public Client getClient(int id) {
-        List<Client> clients = getClients();
-        return clients.get(id-1);
     }
 
     @Override

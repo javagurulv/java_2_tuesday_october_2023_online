@@ -20,10 +20,7 @@ public class DeleteOrderUIAction implements UIAction{
         System.out.println("Введите номер заказа");
         Scanner scanner = new Scanner(System.in);
         int id = scanner.nextInt();
-        System.out.println("Введите Имя и Фамилию");
-        Scanner scan = new Scanner(System.in);
-        String surname = scan.nextLine();
-        DeleteOrderRequest request = new DeleteOrderRequest(id, surname);
+        DeleteOrderRequest request = new DeleteOrderRequest(id);
         service.execute(request);
 
     }

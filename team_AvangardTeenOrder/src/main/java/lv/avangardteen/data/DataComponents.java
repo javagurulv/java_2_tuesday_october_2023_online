@@ -54,7 +54,7 @@ public class DataComponents {
         return index;
     }
 
-    public Set<String> getAllBackWheelMarking() {
+    public Set<String> getAllBackWheelIndex() {
         List<Component> components = getAllComponents();
         Set<String> marking = new HashSet<>();
         for (Component component : components) {
@@ -65,7 +65,7 @@ public class DataComponents {
         return marking;
     }
 
-    public Set<String> getAllBrakeMarking() {
+    public Set<String> getAllBrakeIndex() {
         List<Component> components = getAllComponents();
         Set<String> marking = new HashSet<>();
         for (Component component : components) {
@@ -76,7 +76,7 @@ public class DataComponents {
         return marking;
     }
 
-    public Set<String> getAllArmrestMarking() {
+    public Set<String> getAllArmrestIndex() {
         List<Component> components = getAllComponents();
         Set<String> marking = new HashSet<>();
         for (Component component : components) {
