@@ -4,25 +4,24 @@ import avangardteen.java.Client;
 import avangardteen.java.CoreError;
 import avangardteen.java.request.ChangeAntropologDateRequest;
 import avangardteen.java.responce.ChangeAntropologDateResponce;
-import avangardteen.java.service.valigation.ChangeAntropologDateValigation;
+import avangardteen.java.service.valigation.ChangeAntropologDateValidation;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ChangeAntropometricDataService {
     static Client user;
-    ChangeAntropologDateValigation valigator;
+    ChangeAntropologDateValidation validator;
 
-    public ChangeAntropometricDataService(ChangeAntropologDateValigation valigator, Client user) {
-        this.valigator = valigator;
+    public ChangeAntropometricDataService(ChangeAntropologDateValidation validator, Client user) {
+        this.validator = validator;
         this.user = user;
     }
 
-    public ChangeAntropologDateResponce responce(ChangeAntropologDateRequest request) {
+    public ChangeAntropologDateResponce response(ChangeAntropologDateRequest request) {
         List<CoreError> errorList = new ArrayList<>();
-        errorList = valigator.errorlist(request);
+        errorList = validator.errorlist(request);
         if(!errorList.isEmpty())
             return new ChangeAntropologDateResponce(errorList);
         switch (request.getNewChoose()) {

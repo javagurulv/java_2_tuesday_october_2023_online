@@ -41,6 +41,36 @@ public class InMemoryDatabaseImpl implements Database {
     }
 
     @Override
+    public List<Book> searchByAuthor(String author) {
+       List<Book> AllBooks = getBooks();
+       List<Book> SearchedBooks = new ArrayList<>();
+       for (Book book:AllBooks)
+           if (book.getAuthor().equals(author))
+               SearchedBooks.add(book);
+        return SearchedBooks;
+    }
+
+    @Override
+    public List<Book> searchByTitle(String title) {
+        List<Book> AllBooks = getBooks();
+        List<Book> SearchedBooks = new ArrayList<>();
+        for (Book book:AllBooks)
+            if (book.getTitle().equals(title))
+                SearchedBooks.add(book);
+        return SearchedBooks;
+    }
+
+    @Override
+    public List<Book> searchByAithorandTitle(String author, String title) {
+        List<Book> AllBooks = getBooks();
+        List<Book> SearchedBooks = new ArrayList<>();
+        for (Book book:AllBooks)
+            if (book.getAuthor().equals(author))
+                SearchedBooks.add(book);
+        return SearchedBooks;
+    }
+
+    @Override
     public String toString() {
         return "DataBook{" +
                 "books=" + books +

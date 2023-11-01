@@ -1,0 +1,38 @@
+package lv.javaguru.java2.product.storage.console_ui;
+
+import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
+import lv.javaguru.java2.product.storage.core.responses.AddProductResponse;
+import lv.javaguru.java2.product.storage.core.services.AddProductService;
+
+import java.util.Scanner;
+
+public class AddProductUIAction implements UIAction {
+
+    private AddProductService addProductService;
+
+    public AddProductUIAction(AddProductService addProductService) {
+        this.addProductService = addProductService;
+    }
+
+    @Override
+    public void execute() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter product name: ");
+        String productName = scanner.nextLine();
+        System.out.println("Enter product brand: ");
+        String productBrand = scanner.nextLine();
+        System.out.println("Enter product model: ");
+        String productModel = scanner.nextLine();
+        AddProductRequest request = new AddProductRequest(productName, productBrand, productModel);
+        AddProductResponse response = addProductService.execute(request);
+
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError ->
+                    System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage())
+            );
+        } else {
+            System.out.println("New product id was: " + response.getNewProduct().getId());
+            System.out.println("Your product was added to list.");
+        }
+    }
+}

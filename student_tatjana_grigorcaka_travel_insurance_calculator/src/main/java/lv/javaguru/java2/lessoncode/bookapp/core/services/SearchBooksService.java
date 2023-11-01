@@ -3,6 +3,7 @@ package lv.javaguru.java2.lessoncode.bookapp.core.services;
 import lv.javaguru.java2.lessoncode.bookapp.core.database.Database;
 import lv.javaguru.java2.lessoncode.bookapp.core.domain.Book;
 import lv.javaguru.java2.lessoncode.bookapp.core.requests.Ordering;
+import lv.javaguru.java2.lessoncode.bookapp.core.requests.Paging;
 import lv.javaguru.java2.lessoncode.bookapp.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.lessoncode.bookapp.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.bookapp.core.responses.SearchBooksResponse;
@@ -30,6 +31,7 @@ public class SearchBooksService {
 
         List<Book> books = search(request);
         books = order(books, request.getOrdering());
+        books = paging(books, request.getPaging());
 
         return new SearchBooksResponse(books, null);
     }
@@ -60,6 +62,18 @@ public class SearchBooksService {
             books = database.findByTitleAndAuthor(request.getTitle(), request.getAuthor());
         }
         return books;
+    }
+
+    private List<Book> paging(List<Book> books, Paging paging) {
+        if (paging != null) {
+            int skip = (paging.getPageNumber() - 1) * paging.getPageSize();
+            return books.stream()
+                    .skip(skip)
+                    .limit(paging.getPageSize())
+                    .collect(Collectors.toList());
+        } else {
+            return books;
+        }
     }
 
 }
