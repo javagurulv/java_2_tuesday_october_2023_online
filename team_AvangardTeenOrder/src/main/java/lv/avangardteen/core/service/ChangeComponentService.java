@@ -12,8 +12,8 @@ import lv.avangardteen.data.Database;
 import java.util.List;
 
 public class ChangeComponentService {
-    Database database;
-    DataComponents dataComponents = new DataComponents();
+    private Database database;
+    private DataComponents dataComponents = new DataComponents();
     private ChooseComponentValidator validator;
 
     public ChangeComponentService(Database database, ChooseComponentValidator validator) {
@@ -23,10 +23,13 @@ public class ChangeComponentService {
 
     public ChangeComponentResponse execute(ChangeComponentRequest request) {
         List<CoreError> errors = validator.validate(request);
-        if (!errors.isEmpty()) {
-            return new ChangeComponentResponse(errors);
-        }
+        return  (!errors.isEmpty())
+            ? new ChangeComponentResponse(errors)
+            : getResponse(request);
 
+    }
+
+    private ChangeComponentResponse getResponse(ChangeComponentRequest request) {
         Client client = database.getClient(request.getId());
 
         WheelchairComponent component = new WheelchairComponent();
@@ -43,6 +46,5 @@ public class ChangeComponentService {
 
 
         return new ChangeComponentResponse(client);
-
     }
 }

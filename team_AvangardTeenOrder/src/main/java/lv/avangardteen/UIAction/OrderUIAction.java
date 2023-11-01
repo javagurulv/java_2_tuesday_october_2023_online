@@ -1,6 +1,7 @@
 package lv.avangardteen.UIAction;
 
 import lv.avangardteen.core.request.ClientRequest;
+import lv.avangardteen.core.responce.ClientResponse;
 import lv.avangardteen.core.service.ClientService;
 import lv.avangardteen.data.DataComponents;
 
@@ -51,7 +52,14 @@ public class OrderUIAction implements UIAction {
         ClientRequest request = new ClientRequest(nameSurname, phoneNumber, userAddress,
                 shinLength, backLength, thighLength, pelvisWidth,
                 wheelFrom, wheelBack, brakeChoose, armrestChoose);
-        service.execute(request);
+        ClientResponse response = service.execute(request);
+
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError ->
+                    System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+        } else {
+            System.out.println(response.getClient().toString());
+        }
 
     }
 }

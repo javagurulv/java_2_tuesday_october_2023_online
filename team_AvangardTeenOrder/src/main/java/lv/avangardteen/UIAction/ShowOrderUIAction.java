@@ -1,7 +1,7 @@
 package lv.avangardteen.UIAction;
 
-import lv.avangardteen.Client;
 import lv.avangardteen.core.request.ShowOrderRequest;
+import lv.avangardteen.core.responce.ShowOrderResponse;
 import lv.avangardteen.core.service.ShowOrderService;
 
 import java.util.Scanner;
@@ -19,8 +19,13 @@ public class ShowOrderUIAction implements UIAction {
         Scanner scanner = new Scanner(System.in);
         int id = scanner.nextInt();
         ShowOrderRequest orderRequest = new ShowOrderRequest(id);
-        Client client = service.execute(orderRequest).getClient();
-        System.out.println(client.toString());
+        ShowOrderResponse response = service.execute(orderRequest);
+
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError ->
+                    System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+        }
+        System.out.println(response.getClient().toString());
     }
 }
 

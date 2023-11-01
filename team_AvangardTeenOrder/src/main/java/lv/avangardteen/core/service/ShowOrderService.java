@@ -22,10 +22,12 @@ public class ShowOrderService {
 
     public ShowOrderResponse execute(ShowOrderRequest request) {
         List<CoreError> errors = validator.validate(request);
-        if (!errors.isEmpty()) {
-            return new ShowOrderResponse(errors);
-        }
+        return (!errors.isEmpty())
+                ? new ShowOrderResponse(errors)
+                : getShowOrderResponse(request);
+    }
 
+    private ShowOrderResponse getShowOrderResponse(ShowOrderRequest request) {
         Client client = database.getClient(request.getId());
         return new ShowOrderResponse(client);
     }
