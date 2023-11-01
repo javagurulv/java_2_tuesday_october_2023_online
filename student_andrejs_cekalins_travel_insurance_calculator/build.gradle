@@ -14,6 +14,8 @@ dependencies {
 
     testImplementation('org.hamcrest:hamcrest:2.2')
 
+    implementation("com.google.guava:guava:24.0-jre")
+
     test {
         useJUnitPlatform()
     }
