@@ -1,66 +1,42 @@
 package lv.avangardteen.core.service;
 
+import lv.avangardteen.Category;
+import lv.avangardteen.Component;
 import lv.avangardteen.core.request.ChangeComponentRequest;
-import lv.avangardteen.core.request.ChangePersonalDateRequest;
+
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.data.DataComponents;
-import lv.avangardteen.data.DataOrders;
+
+import lv.avangardteen.data.Database;
 
 
 import java.util.*;
 
 public class ChooseComponentValidator {
 
+    private Database database;
+    private DataComponents dataComponents = new DataComponents();
 
-    DataComponents dataComponents = new DataComponents();
+    public ChooseComponentValidator(Database database) {
+        this.database = database;
+    }
 
     public List<CoreError> validate(ChangeComponentRequest request) {
         List<CoreError> errors = new ArrayList<>();
-        validateId(request).ifPresent(errors::add);
-        validateMarkingBackWheel(request).ifPresent(errors::add);
-        validateMarkingFrontWheel(request).ifPresent(errors::add);
-        validateMarkingBrake(request).ifPresent(errors::add);
-        validateMarkingArmrest(request).ifPresent(errors::add);
+        clientNotFound(request).ifPresent(errors::add);
         indexFrontWheelIsAbsent(request).ifPresent(errors::add);
         indexBackWheelIsAbsent(request).ifPresent(errors::add);
         indexBrakeIsAbsent(request).ifPresent(errors::add);
         indexArmrestIsAbsent(request).ifPresent(errors::add);
-
+        validateMapComponent(request).ifPresent(errors::add);
         return errors;
     }
 
-    private Optional<CoreError> validateId(ChangeComponentRequest request) {
-        return (request.getId() <= 0)
-                ? Optional.of(new CoreError("idClient", "Must not be zero!"))
+    public Optional<CoreError> clientNotFound(ChangeComponentRequest request) {
+        return (database.getClient(request.getId()) == null)
+                ? Optional.of(new CoreError("idClient", "Order with this id not found!"))
                 : Optional.empty();
-    }
 
-
-
-    private Optional<CoreError> validateMarkingBackWheel(ChangeComponentRequest request) {
-        return (request.getWheelBackChoose() <= 0)
-                ? Optional.of(new CoreError("indexBackWheel", "Must not be empty!"))
-                : Optional.empty();
-    }
-
-    private Optional<CoreError> validateMarkingFrontWheel(ChangeComponentRequest request) {
-        return (request.getWheelFrontChoose() <= 0)
-                ? Optional.of(new CoreError("indexFrontWheel", "Must not be empty!"))
-                : Optional.empty();
-    }
-
-
-    private Optional<CoreError> validateMarkingBrake(ChangeComponentRequest request) {
-        return (request.getBrakeChoose() == 0)
-                ? Optional.of(new CoreError("indexBrake", "Must not be empty!"))
-                : Optional.empty();
-    }
-
-
-    private Optional<CoreError> validateMarkingArmrest(ChangeComponentRequest request) {
-        return (request.getArmrestChoose() <= 0)
-                ? Optional.of(new CoreError("indexArmrest", "Must not be empty!"))
-                : Optional.empty();
     }
 
     private Optional<CoreError> indexFrontWheelIsAbsent(ChangeComponentRequest request) {
@@ -120,6 +96,21 @@ public class ChooseComponentValidator {
                 ? Optional.of((new CoreError("indexArmrest", "This index is absent!")))
                 : Optional.empty();
 
+    }
+
+    private Optional<CoreError> validateMapComponent(ChangeComponentRequest request) {
+        Component component = dataComponents.getComponent(request.getWheelFrontChoose());
+        Component component1 = dataComponents.getComponent(request.getWheelBackChoose());
+        Component component2 = dataComponents.getComponent(request.getBrakeChoose());
+        Component component3 = dataComponents.getComponent(request.getArmrestChoose());
+        Map<Category, Component> componentMap = new HashMap<>();
+        componentMap.put(component.getCategory(), component);
+        componentMap.put(component1.getCategory(), component1);
+        componentMap.put(component2.getCategory(), component2);
+        componentMap.put(component3.getCategory(), component3);
+        return (componentMap.size() < 4)
+                ? Optional.of(new CoreError("KeyMap", "All components must be selected!"))
+                : Optional.empty();
 
     }
 }

@@ -25,11 +25,12 @@ public class ClientService {
 
     public ClientResponse execute(ClientRequest request) {
         List<CoreError> errors = validator.validate(request);
-        if(!errors.isEmpty()) {
-            new ClientResponse(errors);
-        }
+        return (!errors.isEmpty())
+                ? new ClientResponse(errors)
+                : getClientResponse(request);
+    }
 
-
+    private ClientResponse getClientResponse(ClientRequest request) {
         ClientResponse clientResponse = new ClientResponse(new Client());
         clientResponse.getClient().setNameSurname(request.getNameSurname());
         clientResponse.getClient().setUserAddress(request.getUserAddress());
@@ -46,7 +47,6 @@ public class ClientService {
                 request.getThighLength())));
 
 
-
         clientResponse.getClient().setWheelchairComponents(new WheelchairComponent());
         clientResponse.getClient().getWheelchairComponents().addComponents(request.getIndexWheelFront());
         clientResponse.getClient().getWheelchairComponents().addComponents(request.getIndexWheelBack());
@@ -59,6 +59,6 @@ public class ClientService {
         database.addUser(clientResponse.getClient());
         System.out.println("Ваш номер заказа" + clientResponse.getClient().getId());
 
-        return new ClientResponse(clientResponse.getClient()) ;
+        return new ClientResponse(clientResponse.getClient());
     }
 }
