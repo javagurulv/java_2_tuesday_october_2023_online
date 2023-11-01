@@ -8,16 +8,17 @@ import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.ClientResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.data.Database;
 
 import java.util.List;
 
 
 public class ClientService {
-    private DataOrders dataOrders;
+    private Database database;
     private ClientOrderValidator validator;
 
-    public ClientService(DataOrders dataOrders, ClientOrderValidator validator) {
-        this.dataOrders = dataOrders;
+    public ClientService(Database database, ClientOrderValidator validator) {
+        this.database = database;
         this.validator = validator;
     }
 
@@ -55,7 +56,7 @@ public class ClientService {
         clientResponse.getClient().setPriseOrder(clientResponse.getClient().getWheelchairComponents().getPriceComponent()
                 + clientResponse.getClient().getWheelchair().getPriceWheelchair());
 
-        dataOrders.addUser(clientResponse.getClient());
+        database.addUser(clientResponse.getClient());
         System.out.println("Ваш номер заказа" + clientResponse.getClient().getId());
 
         return new ClientResponse(clientResponse.getClient()) ;

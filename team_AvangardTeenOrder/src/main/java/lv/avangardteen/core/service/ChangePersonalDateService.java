@@ -5,16 +5,17 @@ import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.data.Database;
 
 import java.util.List;
 
 public class ChangePersonalDateService {
-    private DataOrders dataOrders;
+    private Database database;
 
     private ChangePersonalDateValidator validator;
 
-    public ChangePersonalDateService(DataOrders dataOrders, ChangePersonalDateValidator validator) {
-        this.dataOrders = dataOrders;
+    public ChangePersonalDateService(Database database, ChangePersonalDateValidator validator) {
+        this.database = database;
         this.validator = validator;
     }
 
@@ -23,7 +24,7 @@ public class ChangePersonalDateService {
         if (!errors.isEmpty()) {
             return new ChangePersonalDateResponse(errors);
         }
-        Client client = dataOrders.getClient(request.getId());
+        Client client = database.getClient(request.getId());
         ChangePersonalDateResponse response = new ChangePersonalDateResponse(client);
 
         response.getClient().setNameSurname(request.getNameSurname());

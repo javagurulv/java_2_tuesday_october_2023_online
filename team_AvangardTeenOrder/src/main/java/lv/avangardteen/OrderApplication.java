@@ -3,12 +3,13 @@ package lv.avangardteen;
 import lv.avangardteen.UIAction.*;
 import lv.avangardteen.core.service.*;
 import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.data.Database;
 
 import java.util.Scanner;
 
 public class OrderApplication {
 
-    private static DataOrders dataOrders = new DataOrders();
+    private static Database database = new DataOrders();
     private static ClientOrderValidator orderValidator = new ClientOrderValidator();
     private static ChangePersonalDateValidator dateValidator = new ChangePersonalDateValidator();
     private static ChangePersonalSizeValidator sizeValidator = new ChangePersonalSizeValidator();
@@ -16,12 +17,12 @@ public class OrderApplication {
     private static ShowOrderValidator showOrderValidator = new ShowOrderValidator();
     private static IdOrderValidator idOrderValidator = new IdOrderValidator();
 
-    private static ClientService serviceOrder = new ClientService(dataOrders, orderValidator);
-    private static ChangePersonalDateService service = new ChangePersonalDateService(dataOrders, dateValidator);
-    private static ChangePersonalSizeService sizeService = new ChangePersonalSizeService(dataOrders, sizeValidator);
-    private static ChangeComponentService componentService1 = new ChangeComponentService(dataOrders, componentValidator);
-    private static ShowOrderService orderService = new ShowOrderService(dataOrders, showOrderValidator);
-    private static DeleteOrderService deleteOrderService = new DeleteOrderService(dataOrders, idOrderValidator);
+    private static ClientService serviceOrder = new ClientService(database, orderValidator);
+    private static ChangePersonalDateService service = new ChangePersonalDateService(database, dateValidator);
+    private static ChangePersonalSizeService sizeService = new ChangePersonalSizeService(database, sizeValidator);
+    private static ChangeComponentService componentService1 = new ChangeComponentService(database, componentValidator);
+    private static ShowOrderService orderService = new ShowOrderService(database, showOrderValidator);
+    private static DeleteOrderService deleteOrderService = new DeleteOrderService(database, idOrderValidator);
 
     private static UIAction orderIUAction = new OrderUIAction(serviceOrder);
     private static UIAction dateUIAction = new ChangePersonalDateUIAction(service);

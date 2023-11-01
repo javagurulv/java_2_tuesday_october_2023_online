@@ -7,23 +7,24 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class DataOrders {
+public class DataOrders implements Database {
     private Long nextId = 1L;
     List<Client> clients = new ArrayList<>();
 
-
+    @Override
     public List<Client> getClients() {
 
         return clients;
     }
 
-
+    @Override
     public void addUser(Client client) {
         client.setId(nextId);
         nextId++;
         clients.add(client);
     }
 
+    @Override
     public void deleteUser(long id) {
         clients.stream()
                 .filter(client -> client.getId() == id)
@@ -31,6 +32,7 @@ public class DataOrders {
                 .ifPresent(client -> clients.remove(client));
     }
 
+    @Override
     public Client getClient(long id) {
         List<Client> clientList = getClients();
         Client clientSearch = null;

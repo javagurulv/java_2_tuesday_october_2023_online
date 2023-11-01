@@ -9,16 +9,17 @@ import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.DeleteOrderResponse;
 
 import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.data.Database;
 
 import java.util.List;
 
 public class DeleteOrderService {
-    DataOrders dataOrders;
-    IdOrderValidator validator;
+    private Database database;
+    private IdOrderValidator validator;
 
-    public DeleteOrderService(DataOrders dataOrders, IdOrderValidator validator) {
+    public DeleteOrderService(Database database, IdOrderValidator validator) {
 
-        this.dataOrders = dataOrders;
+        this.database = database;
         this.validator = validator;
     }
 
@@ -29,7 +30,7 @@ public class DeleteOrderService {
             }
 
 
-                dataOrders.deleteUser(request.getId());
+                database.deleteUser(request.getId());
 
 
         System.out.println("Ваш заказ удален");
