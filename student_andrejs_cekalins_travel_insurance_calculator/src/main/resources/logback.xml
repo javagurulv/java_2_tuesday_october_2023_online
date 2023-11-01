@@ -50,5 +50,8 @@
     <logger name="lv.javaguru.travel.insurance.rest.TravelCalculatePremiumRequestLogger" level="INFO">
         <appender-ref ref="REQUEST_RESPONSE_FILE_APPENDER"/>
     </logger>
+    <logger name="lv.javaguru.travel.insurance.rest.TravelCalculatePremiumResponseLogger" level="INFO">
+        <appender-ref ref="REQUEST_RESPONSE_FILE_APPENDER" />
+    </logger>
 
 </configuration>
