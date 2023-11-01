@@ -7,16 +7,17 @@ import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.data.DataComponents;
 import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.data.Database;
 
 import java.util.List;
 
 public class ChangeComponentService {
-    DataOrders dataOrders;
+    Database database;
     DataComponents dataComponents = new DataComponents();
     private ChooseComponentValidator validator;
 
-    public ChangeComponentService(DataOrders dataOrders, ChooseComponentValidator validator) {
-        this.dataOrders = dataOrders;
+    public ChangeComponentService(Database database, ChooseComponentValidator validator) {
+        this.database = database;
         this.validator = validator;
     }
 
@@ -26,7 +27,7 @@ public class ChangeComponentService {
             return new ChangeComponentResponse(errors);
         }
 
-        Client client = dataOrders.getClient(request.getId());
+        Client client = database.getClient(request.getId());
 
         WheelchairComponent component = new WheelchairComponent();
 

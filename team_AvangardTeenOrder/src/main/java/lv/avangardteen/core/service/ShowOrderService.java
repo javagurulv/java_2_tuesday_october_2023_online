@@ -6,16 +6,17 @@ import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.DeleteOrderResponse;
 import lv.avangardteen.core.responce.ShowOrderResponse;
 import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.data.Database;
 
 import java.util.List;
 
 
 public class ShowOrderService {
-    DataOrders dataOrders;
-    ShowOrderValidator validator;
+    private Database database;
+    private ShowOrderValidator validator;
 
-    public ShowOrderService(DataOrders dataOrders, ShowOrderValidator validator) {
-        this.dataOrders = dataOrders;
+    public ShowOrderService(Database database, ShowOrderValidator validator) {
+        this.database = database;
         this.validator = validator;
     }
 
@@ -25,7 +26,7 @@ public class ShowOrderService {
             return new ShowOrderResponse(errors);
         }
 
-        Client client = dataOrders.getClient(request.getId());
+        Client client = database.getClient(request.getId());
         return new ShowOrderResponse(client);
     }
 }

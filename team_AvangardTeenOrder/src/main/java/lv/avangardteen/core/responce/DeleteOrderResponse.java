@@ -11,8 +11,8 @@ public class DeleteOrderResponse extends CoreResponse {
        super(errors);
     }
 
-    public DeleteOrderResponse(Client client) {
-        this.client = client;
+    public DeleteOrderResponse() {
+
     }
 
     public Client getClient() {
