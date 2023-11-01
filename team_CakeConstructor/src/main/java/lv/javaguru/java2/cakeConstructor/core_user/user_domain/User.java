@@ -32,13 +32,13 @@ public class User implements Serializable {
         this.userName=userName;
         this.userSurname =userSurname;
         this.userEmail=userEmail;
-        this.status=1;
+        this.status=0;
     }
 
     public User (String userLogin,String userPassword){
         this.userLogin=userLogin;
         this.userPassword=userPassword;
-        this.status=1;
+        this.status=0;
     }
 
     @Override

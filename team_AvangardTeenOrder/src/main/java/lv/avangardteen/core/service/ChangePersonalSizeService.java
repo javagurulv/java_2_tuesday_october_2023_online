@@ -8,16 +8,17 @@ import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.data.Database;
 
 import java.util.List;
 
 public class ChangePersonalSizeService {
-    DataOrders dataOrders;
+    Database database;
 
     private ChangePersonalSizeValidator validator;
 
-    public ChangePersonalSizeService(DataOrders dataOrders, ChangePersonalSizeValidator validator) {
-        this.dataOrders = dataOrders;
+    public ChangePersonalSizeService(Database database, ChangePersonalSizeValidator validator) {
+        this.database = database;
         this.validator = validator;
     }
 
@@ -26,7 +27,7 @@ public class ChangePersonalSizeService {
         if (!errors.isEmpty()) {
             return new ChangePersonalSizeResponse(errors);
         }
-        Client client = dataOrders.getClient(request.getId());
+        Client client = database.getClient(request.getId());
         ChangePersonalSizeResponse response = new ChangePersonalSizeResponse(client);
 
         response.getClient().getUserSizes().setPelvisWidth(request.getPelvisWidth());

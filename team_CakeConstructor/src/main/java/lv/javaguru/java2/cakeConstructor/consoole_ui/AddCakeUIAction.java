@@ -23,4 +23,9 @@ public class AddCakeUIAction implements UIAction {
         response.getNewCake().toString();
 
     }
+
+    @Override
+    public void execute() {
+
+    }
 }

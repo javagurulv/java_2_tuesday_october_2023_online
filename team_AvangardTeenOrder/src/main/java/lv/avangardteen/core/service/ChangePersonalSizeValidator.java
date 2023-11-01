@@ -1,13 +1,16 @@
 package lv.avangardteen.core.service;
 
+import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.responce.CoreError;
+import lv.avangardteen.data.DataOrders;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class ChangePersonalSizeValidator {
+    DataOrders dataOrders = new DataOrders();
     public List<CoreError> validate(ChangePersonalSizeRequest request) {
         List<CoreError> errors = new ArrayList<>();
         validateId(request).ifPresent(errors::add);
@@ -24,6 +27,7 @@ public class ChangePersonalSizeValidator {
                 ? Optional.of((new CoreError("idClient", "Must not be empty!")))
                 : Optional.empty();
     }
+
 
     private Optional<CoreError> validatePelvisWidth(ChangePersonalSizeRequest request) {
         return (request.getPelvisWidth() <= 0)
