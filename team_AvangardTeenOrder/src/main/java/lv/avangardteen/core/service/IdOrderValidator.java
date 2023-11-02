@@ -19,6 +19,7 @@ public class IdOrderValidator {
     public List<CoreError> validate(DeleteOrderRequest request) {
         List<CoreError> errors = new ArrayList<>();
         clientNotFound(request).ifPresent(errors::add);
+
         return errors;
     }
 

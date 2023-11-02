@@ -43,7 +43,7 @@ public class ChangePersonalSizeService {
                 request.getPelvisWidth(),
                 request.getShinLength(),
                 request.getThighLength())));
-        System.out.println("Ваши данные сохранены.");
+
         return new ChangePersonalSizeResponse(client);
     }
 }

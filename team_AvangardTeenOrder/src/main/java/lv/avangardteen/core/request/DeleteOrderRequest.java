@@ -1,15 +1,15 @@
 package lv.avangardteen.core.request;
 
 public class DeleteOrderRequest {
-    int id;
+    Long id;
 
 
-    public DeleteOrderRequest(int id) {
+    public DeleteOrderRequest(Long id) {
         this.id = id;
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

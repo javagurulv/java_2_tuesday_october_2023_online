@@ -20,7 +20,7 @@ class ChooseComponentValidatorTest {
     public  void clientNotFound() {
         Database database = Mockito.mock(Database.class);
         DataComponents dataComponents = Mockito.mock(DataComponents.class);
-        ChangeComponentRequest request = new ChangeComponentRequest(1, 11, 21, 31, 41);
+        ChangeComponentRequest request = new ChangeComponentRequest(1L, 11, 21, 31, 41);
         Mockito.when(database.getClient(request.getId())).thenReturn(null);
         Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
         validator = new ChooseComponentValidator(database, dataComponents);
@@ -37,7 +37,7 @@ class ChooseComponentValidatorTest {
     public  void indexFrontWheelIsAbsent() {
         Database database = Mockito.mock(Database.class);
         DataComponents dataComponents = Mockito.mock(DataComponents.class);
-        ChangeComponentRequest request = new ChangeComponentRequest(1, 13, 21, 31, 41);
+        ChangeComponentRequest request = new ChangeComponentRequest(1L, null, 21, 31, 41);
        Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
        Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
         validator = new ChooseComponentValidator(database, dataComponents);
@@ -49,11 +49,13 @@ class ChooseComponentValidatorTest {
 
     }
 
+
+
     @Test
     public  void indexBackWheelIsAbsent() {
         Database database = Mockito.mock(Database.class);
         DataComponents dataComponents = Mockito.mock(DataComponents.class);
-        ChangeComponentRequest request = new ChangeComponentRequest(1, 12, 25, 31, 41);
+        ChangeComponentRequest request = new ChangeComponentRequest(1L, 12, 25, 31, 41);
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
         Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
         validator = new ChooseComponentValidator(database, dataComponents);
@@ -69,7 +71,7 @@ class ChooseComponentValidatorTest {
     public  void indexBrakeAndArmrestIsAbsent() {
         Database database = Mockito.mock(Database.class);
         DataComponents dataComponents = Mockito.mock(DataComponents.class);
-        ChangeComponentRequest request = new ChangeComponentRequest(1, 12, 22, 34, 44);
+        ChangeComponentRequest request = new ChangeComponentRequest(1L, 12, 22, 34, 44);
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
         Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
         validator = new ChooseComponentValidator(database, dataComponents);

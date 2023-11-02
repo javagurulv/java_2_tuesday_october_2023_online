@@ -34,7 +34,7 @@ public class ChangePersonalDateService {
         response.getClient().setNameSurname(request.getNameSurname());
         response.getClient().setPhoneNumber(request.getPhoneNumber());
         response.getClient().setUserAddress(request.getUserAddress());
-        System.out.println("Ваши данные сохранены.");
+
         return new ChangePersonalDateResponse(client);
     }
 }

@@ -38,7 +38,7 @@ public class ChooseComponentValidator {
 
     private Optional<CoreError> indexFrontWheelIsAbsent(ChangeComponentRequest request) {
         List<Integer> allIndex = dataComponents.getAllIndex();
-        int indexFrontWheel = 1000;
+        Integer indexFrontWheel = 1000;
         for (Integer index : allIndex) {
             if (index == request.getWheelFrontChoose()) {
                 indexFrontWheel = index;
@@ -49,6 +49,12 @@ public class ChooseComponentValidator {
                 : Optional.empty();
 
 
+    }
+
+    private Optional<CoreError> indexFrontWheelIsNull(ChangeComponentRequest request) {
+        return (request.getWheelFrontChoose() == null || request.getWheelFrontChoose() <=0)
+                ? Optional.of(new CoreError("indexFrontWheel", "This index is absent!"))
+                : Optional.empty();
     }
 
     private Optional<CoreError> indexBackWheelIsAbsent(ChangeComponentRequest request) {

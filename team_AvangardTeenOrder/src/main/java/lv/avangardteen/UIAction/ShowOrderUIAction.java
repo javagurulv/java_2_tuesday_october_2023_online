@@ -17,7 +17,7 @@ public class ShowOrderUIAction implements UIAction {
     public void execute() {
         System.out.println("Введите номер заказа");
         Scanner scanner = new Scanner(System.in);
-        int id = scanner.nextInt();
+        long id = scanner.nextLong();
         ShowOrderRequest orderRequest = new ShowOrderRequest(id);
         ShowOrderResponse response = service.execute(orderRequest);
 

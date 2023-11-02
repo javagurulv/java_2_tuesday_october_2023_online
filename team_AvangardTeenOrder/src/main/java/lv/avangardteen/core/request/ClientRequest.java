@@ -4,22 +4,22 @@ package lv.avangardteen.core.request;
 public class ClientRequest {
 
     String nameSurname;
-    int phoneNumber;
+    Integer phoneNumber;
     String userAddress;
-    int shinLength;
-    int backLength;
-    int thighLength;
-    int pelvisWidth;
-    int indexWheelFront;
-    int indexWheelBack;
-    int indexBrakeChoose;
-    int indexArmrestChoose;
+    Integer shinLength;
+    Integer backLength;
+    Integer thighLength;
+    Integer pelvisWidth;
+    Integer indexWheelFront;
+    Integer indexWheelBack;
+    Integer indexBrakeChoose;
+    Integer indexArmrestChoose;
 
 
-    public ClientRequest(String nameSurname, int phoneNumber,
-                         String userAddress, int shinLength, int backLength,
-                         int thighLength, int pelvisWidth, int indexWheelFront,
-                         int indexWheelBack, int indexBrakeChoose, int indexArmrestChoose) {
+    public ClientRequest(String nameSurname, Integer phoneNumber,
+                         String userAddress, Integer shinLength, Integer backLength,
+                         Integer thighLength, Integer pelvisWidth, Integer indexWheelFront,
+                         Integer indexWheelBack, Integer indexBrakeChoose, Integer indexArmrestChoose) {
         this.nameSurname = nameSurname;
         this.phoneNumber = phoneNumber;
         this.userAddress = userAddress;
@@ -37,7 +37,7 @@ public class ClientRequest {
         return nameSurname;
     }
 
-    public int getPhoneNumber() {
+    public Integer getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -45,35 +45,35 @@ public class ClientRequest {
         return userAddress;
     }
 
-    public int getShinLength() {
+    public Integer getShinLength() {
         return shinLength;
     }
 
-    public int getBackLength() {
+    public Integer getBackLength() {
         return backLength;
     }
 
-    public int getThighLength() {
+    public Integer getThighLength() {
         return thighLength;
     }
 
-    public int getPelvisWidth() {
+    public Integer getPelvisWidth() {
         return pelvisWidth;
     }
 
-    public int getIndexWheelFront() {
+    public Integer getIndexWheelFront() {
         return indexWheelFront;
     }
 
-    public int getIndexWheelBack() {
+    public Integer getIndexWheelBack() {
         return indexWheelBack;
     }
 
-    public int getIndexBrakeChoose() {
+    public Integer getIndexBrakeChoose() {
         return indexBrakeChoose;
     }
 
-    public int getIndexArmrestChoose() {
+    public Integer getIndexArmrestChoose() {
         return indexArmrestChoose;
     }
 }

@@ -19,19 +19,19 @@ public class ChangePersonalSizeUIAction implements UIAction {
     public void execute() {
         System.out.println("Введите номер заказа");
         Scanner scanner = new Scanner(System.in);
-        int id = scanner.nextInt();
+        long id = scanner.nextLong();
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите новое значение ширины таза");
-        int pelvisWidth = scan.nextInt();
+        Integer pelvisWidth = scan.nextInt();
 
         System.out.println("Введите новое значение длины бедра");
-        int thighLength = scan.nextInt();
+        Integer thighLength = scan.nextInt();
 
         System.out.println("Введите новое значение высоты спины");
-        int backHeight = scan.nextInt();
+        Integer backHeight = scan.nextInt();
 
         System.out.println("Введите новое значение длины голени");
-        int shinLength = scanner.nextInt();
+        Integer shinLength = scanner.nextInt();
         ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(id, pelvisWidth, thighLength,
                 backHeight, shinLength);
         ChangePersonalSizeResponse response = service.execute(request);

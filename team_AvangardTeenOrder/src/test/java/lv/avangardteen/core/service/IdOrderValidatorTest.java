@@ -4,6 +4,7 @@ import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.data.Database;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.List;
 
@@ -20,8 +21,8 @@ class IdOrderValidatorTest {
     public void getUserTest() {
         database = mock(Database.class);
         DeleteOrderRequest request = mock(DeleteOrderRequest.class);
+        Mockito.when(database.getClient(request.getId())).thenReturn(null);
         validator = new IdOrderValidator(database);
-        when(request.getId()).thenReturn(0);
         List<CoreError> validList = validator.validate(request);
         assertEquals(validList.size(), 1);
         assertEquals(validList.get(0).getField(), "idClient");
