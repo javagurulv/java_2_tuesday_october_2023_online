@@ -20,7 +20,7 @@ class DeleteOrderServiceMockitaTest {
     private IdOrderValidator validator;
     @Test
     public void DeleteOrderWithError(){
-        DeleteOrderRequest notValideRequest = new DeleteOrderRequest(1);
+        DeleteOrderRequest notValideRequest = new DeleteOrderRequest(1L);
         database = Mockito.mock(Database.class);
         validator = Mockito.mock(IdOrderValidator.class);
         Mockito.when(validator.validate(notValideRequest)).thenReturn(
@@ -32,7 +32,7 @@ class DeleteOrderServiceMockitaTest {
 
     @Test
     public void DeleteOrderWithoutError(){
-        DeleteOrderRequest request = new DeleteOrderRequest(1);
+        DeleteOrderRequest request = new DeleteOrderRequest(1L);
         database = Mockito.mock(Database.class);
         validator = Mockito.mock(IdOrderValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(List.of());

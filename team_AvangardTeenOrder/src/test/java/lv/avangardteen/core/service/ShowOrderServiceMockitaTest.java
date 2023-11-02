@@ -19,7 +19,7 @@ class ShowOrderServiceMockitaTest {
 
     @Test
     public void ShowOrderWithError(){
-        ShowOrderRequest notValidRequest = new ShowOrderRequest(1);
+        ShowOrderRequest notValidRequest = new ShowOrderRequest(1L);
         database = Mockito.mock(Database.class);
         validator = Mockito.mock(ShowOrderValidator.class);
         Mockito.when(validator.validate(notValidRequest)).thenReturn(List.of(
@@ -31,7 +31,7 @@ class ShowOrderServiceMockitaTest {
 
     @Test
     public void ShowOrderWithoutError(){
-        ShowOrderRequest request = new ShowOrderRequest(1);
+        ShowOrderRequest request = new ShowOrderRequest(1L);
         database = Mockito.mock(Database.class);
         validator = Mockito.mock(ShowOrderValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(List.of());

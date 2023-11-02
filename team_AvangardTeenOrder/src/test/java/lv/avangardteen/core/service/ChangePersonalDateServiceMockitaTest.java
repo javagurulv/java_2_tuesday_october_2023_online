@@ -21,7 +21,7 @@ class ChangePersonalDateServiceMockitaTest {
 
     @Test
     public void ChangePersonalDateWithError () {
-        ChangePersonalDateRequest notValideRequest = new ChangePersonalDateRequest(0,"Name",123245,"Riga");
+        ChangePersonalDateRequest notValideRequest = new ChangePersonalDateRequest(1L,"Name",123245,"Riga");
         validator = Mockito.mock(ChangePersonalDateValidator.class);
         Mockito.when(validator.validate(notValideRequest)).thenReturn(
                 List.of(new CoreError("Change Persona Date", "Incorrect personal date!")));
@@ -33,7 +33,7 @@ class ChangePersonalDateServiceMockitaTest {
     @Test
     public void ChangePersonalDateWithoutError () {
         database = Mockito.mock(Database.class);
-        ChangePersonalDateRequest request = new ChangePersonalDateRequest(0,"Name",123245,"Riga");
+        ChangePersonalDateRequest request = new ChangePersonalDateRequest(1L,"Name",123245,"Riga");
         validator = Mockito.mock(ChangePersonalDateValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(List.of());
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
