@@ -22,7 +22,7 @@ class ChangeComponentServiceMockTest {
     @Test
     public void ChangeComponentExecuteWithError() {
         ChangeComponentRequest notValideRequest = new ChangeComponentRequest(
-                0, 11,12,13,14);
+                0L, 11,12,13,14);
         validator = Mockito.mock(ChooseComponentValidator.class);
         Mockito.when(validator.validate(notValideRequest)).thenReturn(
                 List.of(new CoreError("Change Component", "Incorrect component chose!")));
@@ -36,7 +36,7 @@ class ChangeComponentServiceMockTest {
         database = Mockito.mock(Database.class);
         validator = Mockito.mock(ChooseComponentValidator.class);
         ChangeComponentRequest request = new ChangeComponentRequest(
-                1, 11, 12, 13, 14);
+                1L, 11, 12, 13, 14);
         Mockito.when(validator.validate(request)).thenReturn(List.of());
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
         service = new ChangeComponentService(database, validator);
