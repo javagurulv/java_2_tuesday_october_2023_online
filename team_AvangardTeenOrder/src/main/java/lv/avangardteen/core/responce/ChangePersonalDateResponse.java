@@ -6,7 +6,7 @@ import lv.avangardteen.Client;
 import java.util.List;
 
 public class ChangePersonalDateResponse extends CoreResponse {
-   Client client;
+   private Client client;
 
     public ChangePersonalDateResponse(List<CoreError> errors) {
         super(errors);

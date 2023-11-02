@@ -24,8 +24,9 @@ public class ShowOrderUIAction implements UIAction {
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->
                     System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+        } else {
+            System.out.println(response.getClient().toString());
         }
-        System.out.println(response.getClient().toString());
     }
 }
 

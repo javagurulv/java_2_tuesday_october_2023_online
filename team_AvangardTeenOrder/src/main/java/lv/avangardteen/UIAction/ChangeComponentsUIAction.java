@@ -43,9 +43,10 @@ public class ChangeComponentsUIAction implements UIAction {
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->
                     System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+            System.out.println("Ваш выбор не сохранен");
+        } else {
+            System.out.println("Ваш выбор сохранен");
         }
-
-
 
     }
 }

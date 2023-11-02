@@ -57,6 +57,7 @@ public class OrderUIAction implements UIAction {
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->
                     System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+            System.out.println("Вы не заполнили заказ полностью. Будьте внимательны!");
         } else {
             System.out.println(response.getClient().toString());
         }

@@ -32,8 +32,7 @@ public class DeleteOrderService {
     }
 
     private DeleteOrderResponse getDeleteOrderResponse(DeleteOrderRequest request) {
-        database.deleteUser(request.getId());
-        System.out.println("Ваш заказ удален");
-        return new DeleteOrderResponse();
+       boolean isOrderRemove = database.deleteUser(request.getId());
+       return new DeleteOrderResponse(isOrderRemove);
     }
 }

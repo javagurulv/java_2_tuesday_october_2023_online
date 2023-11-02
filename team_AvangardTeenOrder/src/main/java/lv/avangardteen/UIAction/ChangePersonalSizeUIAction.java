@@ -1,14 +1,16 @@
 package lv.avangardteen.UIAction;
 
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
+import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.service.ChangePersonalSizeService;
 import lv.avangardteen.data.DataOrders;
 
 import java.util.Scanner;
 
 public class ChangePersonalSizeUIAction implements UIAction {
-DataOrders dataOrders;
-ChangePersonalSizeService service;
+    DataOrders dataOrders;
+    ChangePersonalSizeService service;
+
     public ChangePersonalSizeUIAction(ChangePersonalSizeService service) {
         this.service = service;
     }
@@ -32,10 +34,13 @@ ChangePersonalSizeService service;
         int shinLength = scanner.nextInt();
         ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(id, pelvisWidth, thighLength,
                 backHeight, shinLength);
-        service.execute(request);
+        ChangePersonalSizeResponse response = service.execute(request);
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError ->
+                    System.out.println(("ErrorInputs: " + coreError.getField() + " " + coreError.getMessage())));
+            System.out.println("Ваш выбор не сохранен");
+        } else {
+            System.out.println("Ваши данные сохранены");
+        }
     }
 }
-   /* public int pelvisWidth; //ширина таза
-    public int thighLength; //длинна бедра
-    public int backHeight; //высота спины
-    public int shinLength; //длинна голени*/

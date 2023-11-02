@@ -2,7 +2,6 @@ package lv.avangardteen.core.service;
 
 import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.data.DataComponents;
 import lv.avangardteen.data.Database;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -10,8 +9,6 @@ import org.mockito.Mockito;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class ShowOrderValidatorTest {
 
