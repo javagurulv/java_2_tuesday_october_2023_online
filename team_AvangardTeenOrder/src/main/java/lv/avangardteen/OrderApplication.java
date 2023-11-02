@@ -2,6 +2,7 @@ package lv.avangardteen;
 
 import lv.avangardteen.UIAction.*;
 import lv.avangardteen.core.service.*;
+import lv.avangardteen.data.DataComponents;
 import lv.avangardteen.data.DataOrders;
 import lv.avangardteen.data.Database;
 
@@ -10,12 +11,13 @@ import java.util.Scanner;
 public class OrderApplication {
 
     private static Database database = new DataOrders();
-    private static ClientOrderValidator orderValidator = new ClientOrderValidator();
-    private static ChangePersonalDateValidator dateValidator = new ChangePersonalDateValidator();
-    private static ChangePersonalSizeValidator sizeValidator = new ChangePersonalSizeValidator();
-    private static ChooseComponentValidator componentValidator = new ChooseComponentValidator();
-    private static ShowOrderValidator showOrderValidator = new ShowOrderValidator();
-    private static IdOrderValidator idOrderValidator = new IdOrderValidator();
+    private static DataComponents dataComponents = new DataComponents();
+    private static ClientOrderValidator orderValidator = new ClientOrderValidator(database, dataComponents);
+    private static ChangePersonalDateValidator dateValidator = new ChangePersonalDateValidator(database);
+    private static ChangePersonalSizeValidator sizeValidator = new ChangePersonalSizeValidator(database);
+    private static ChooseComponentValidator componentValidator = new ChooseComponentValidator(database, dataComponents);
+    private static ShowOrderValidator showOrderValidator = new ShowOrderValidator(database);
+    private static IdOrderValidator idOrderValidator = new IdOrderValidator(database);
 
     private static ClientService serviceOrder = new ClientService(database, orderValidator);
     private static ChangePersonalDateService service = new ChangePersonalDateService(database, dateValidator);

@@ -21,17 +21,20 @@ public class ChangePersonalDateService {
 
     public ChangePersonalDateResponse execute(ChangePersonalDateRequest request) {
         List<CoreError> errors = validator.validate(request);
-        if (!errors.isEmpty()) {
-            return new ChangePersonalDateResponse(errors);
-        }
+        return (!errors.isEmpty())
+                ? new ChangePersonalDateResponse(errors)
+                : getResponse(request);
+
+    }
+
+    private ChangePersonalDateResponse getResponse(ChangePersonalDateRequest request) {
         Client client = database.getClient(request.getId());
         ChangePersonalDateResponse response = new ChangePersonalDateResponse(client);
 
         response.getClient().setNameSurname(request.getNameSurname());
         response.getClient().setPhoneNumber(request.getPhoneNumber());
         response.getClient().setUserAddress(request.getUserAddress());
-
+        System.out.println("Ваши данные сохранены.");
         return new ChangePersonalDateResponse(client);
-
     }
 }
