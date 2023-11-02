@@ -1,12 +1,8 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.Category;
-import lv.avangardteen.Component;
 import lv.avangardteen.core.request.ChangeComponentRequest;
-
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.data.DataComponents;
-
 import lv.avangardteen.data.Database;
 
 
@@ -29,7 +25,7 @@ public class ChooseComponentValidator {
         indexBackWheelIsAbsent(request).ifPresent(errors::add);
         indexBrakeIsAbsent(request).ifPresent(errors::add);
         indexArmrestIsAbsent(request).ifPresent(errors::add);
-      //  validateMapComponent(request).ifPresent(errors::add);
+
         return errors;
     }
 
