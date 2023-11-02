@@ -8,9 +8,9 @@ import java.util.List;
 public class AddCakeResponse {
 
     private Cake newCake;
-    public AddCakeResponse (List<CoreError> error){
+    public AddCakeResponse (List<CoreError> error) {
         super();
-    } //!!!
+    }
 
     public AddCakeResponse (Cake newCake){
         this.newCake=newCake;
