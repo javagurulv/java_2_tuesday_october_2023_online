@@ -16,8 +16,9 @@ public class ClientOrderValidator {
 private Database database;
 private DataComponents dataComponents = new DataComponents();
 
-    public ClientOrderValidator(Database database) {
+    public ClientOrderValidator(Database database, DataComponents dataComponents) {
         this.database = database;
+        this.dataComponents = dataComponents;
     }
 
     public List<CoreError> validate(ClientRequest request) {
@@ -34,7 +35,7 @@ private DataComponents dataComponents = new DataComponents();
         indexBackWheelIsAbsent(request).ifPresent(errors::add);
         indexBrakeIsAbsent(request).ifPresent(errors::add);
         indexArmrestIsAbsent(request).ifPresent(errors::add);
-        validateMapComponent(request).ifPresent(errors::add);
+
 
         return errors;
 
@@ -141,19 +142,4 @@ private DataComponents dataComponents = new DataComponents();
 
     }
 
-    private Optional<CoreError> validateMapComponent(ClientRequest request) {
-        Component component = dataComponents.getComponent(request.getIndexWheelFront());
-        Component component1 = dataComponents.getComponent(request.getIndexWheelBack());
-        Component component2 = dataComponents.getComponent(request.getIndexBrakeChoose());
-        Component component3 = dataComponents.getComponent(request.getIndexArmrestChoose());
-        Map<Category, Component> componentMap = new HashMap<>();
-        componentMap.put(component.getCategory(), component);
-        componentMap.put(component1.getCategory(), component1);
-        componentMap.put(component2.getCategory(), component2);
-        componentMap.put(component3.getCategory(), component3);
-        return (componentMap.size() < 4)
-                ? Optional.of(new CoreError("KeyMap", "All components must be selected!"))
-                : Optional.empty();
-
-    }
 }

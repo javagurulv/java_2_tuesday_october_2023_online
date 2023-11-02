@@ -15,10 +15,11 @@ import java.util.*;
 public class ChooseComponentValidator {
 
     private Database database;
-    private DataComponents dataComponents = new DataComponents();
+    private DataComponents dataComponents;
 
-    public ChooseComponentValidator(Database database) {
+    public ChooseComponentValidator(Database database, DataComponents dataComponents) {
         this.database = database;
+        this.dataComponents = dataComponents;
     }
 
     public List<CoreError> validate(ChangeComponentRequest request) {
@@ -28,7 +29,7 @@ public class ChooseComponentValidator {
         indexBackWheelIsAbsent(request).ifPresent(errors::add);
         indexBrakeIsAbsent(request).ifPresent(errors::add);
         indexArmrestIsAbsent(request).ifPresent(errors::add);
-        validateMapComponent(request).ifPresent(errors::add);
+      //  validateMapComponent(request).ifPresent(errors::add);
         return errors;
     }
 
@@ -41,7 +42,7 @@ public class ChooseComponentValidator {
 
     private Optional<CoreError> indexFrontWheelIsAbsent(ChangeComponentRequest request) {
         List<Integer> allIndex = dataComponents.getAllIndex();
-        int indexFrontWheel = 0;
+        int indexFrontWheel = 1000;
         for (Integer index : allIndex) {
             if (index == request.getWheelFrontChoose()) {
                 indexFrontWheel = index;
@@ -56,7 +57,7 @@ public class ChooseComponentValidator {
 
     private Optional<CoreError> indexBackWheelIsAbsent(ChangeComponentRequest request) {
         List<Integer> allIndex = dataComponents.getAllIndex();
-        int indexFrontWheel = 0;
+        int indexFrontWheel = 1000;
         for (Integer index : allIndex) {
             if (index == request.getWheelBackChoose()) {
                 indexFrontWheel = index;
@@ -71,7 +72,7 @@ public class ChooseComponentValidator {
 
     private Optional<CoreError> indexBrakeIsAbsent(ChangeComponentRequest request) {
         List<Integer> allIndex = dataComponents.getAllIndex();
-        int indexFrontWheel = 0;
+        int indexFrontWheel = 1000;
         for (Integer index : allIndex) {
             if (index == request.getBrakeChoose()) {
                 indexFrontWheel = index;
@@ -86,7 +87,7 @@ public class ChooseComponentValidator {
 
     private Optional<CoreError> indexArmrestIsAbsent(ChangeComponentRequest request) {
         List<Integer> allIndex = dataComponents.getAllIndex();
-        int indexFrontWheel = 0;
+        int indexFrontWheel = 1000;
         for (Integer index : allIndex) {
             if (index == request.getArmrestChoose()) {
                 indexFrontWheel = index;
@@ -98,19 +99,5 @@ public class ChooseComponentValidator {
 
     }
 
-    private Optional<CoreError> validateMapComponent(ChangeComponentRequest request) {
-        Component component = dataComponents.getComponent(request.getWheelFrontChoose());
-        Component component1 = dataComponents.getComponent(request.getWheelBackChoose());
-        Component component2 = dataComponents.getComponent(request.getBrakeChoose());
-        Component component3 = dataComponents.getComponent(request.getArmrestChoose());
-        Map<Category, Component> componentMap = new HashMap<>();
-        componentMap.put(component.getCategory(), component);
-        componentMap.put(component1.getCategory(), component1);
-        componentMap.put(component2.getCategory(), component2);
-        componentMap.put(component3.getCategory(), component3);
-        return (componentMap.size() < 4)
-                ? Optional.of(new CoreError("KeyMap", "All components must be selected!"))
-                : Optional.empty();
 
-    }
 }
