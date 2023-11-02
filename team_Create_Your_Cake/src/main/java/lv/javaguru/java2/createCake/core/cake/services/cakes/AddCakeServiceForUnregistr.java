@@ -13,7 +13,7 @@ import java.util.List;
 public class AddCakeServiceForUnregistr {
     private UIDatabaseCakes databaseCakes;
     private AddCakeValidation validation;
-    private CreateCakeProcess process ;
+    private CreateCakeProcess process = new CreateCakeProcess() ;
 
 
     public AddCakeServiceForUnregistr(UIDatabaseCakes databaseCakes, AddCakeValidation validation){
