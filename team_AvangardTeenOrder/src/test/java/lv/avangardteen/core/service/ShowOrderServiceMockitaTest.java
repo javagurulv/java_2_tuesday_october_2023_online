@@ -19,13 +19,13 @@ class ShowOrderServiceMockitaTest {
 
     @Test
     public void ShowOrderWithError(){
-        ShowOrderRequest notValidRequest = new ShowOrderRequest(1L);
+        ShowOrderRequest notValidationRequest = new ShowOrderRequest(1L);
         database = Mockito.mock(Database.class);
         validator = Mockito.mock(ShowOrderValidator.class);
-        Mockito.when(validator.validate(notValidRequest)).thenReturn(List.of(
+        Mockito.when(validator.validate(notValidationRequest)).thenReturn(List.of(
                 new CoreError("Show Order", "Incorrect ID number!")));
         service = new ShowOrderService(database,validator);
-        ShowOrderResponse response = service.execute(notValidRequest);
+        ShowOrderResponse response = service.execute(notValidationRequest);
         assertTrue(response.hasErrors());
     }
 
@@ -38,6 +38,7 @@ class ShowOrderServiceMockitaTest {
         service = new ShowOrderService(database,validator);
         ShowOrderResponse response = service.execute(request);
         assertFalse(response.hasErrors());
+        Mockito.verify(database).getClient(request.getId());
     }
 
 }

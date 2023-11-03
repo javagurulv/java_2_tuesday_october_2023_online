@@ -2,12 +2,12 @@ package lv.avangardteen;
 
 public class
 UserSizes {
-    public int pelvisWidth; //ширина таза
-    public int thighLength; //длинна бедра
-    public int backHeight; //высота спины
-    public int shinLength; //длинна голени
+    public Integer pelvisWidth; //ширина таза
+    public Integer thighLength; //длинна бедра
+    public Integer backHeight; //высота спины
+    public Integer shinLength; //длинна голени
 
-    public UserSizes(int pelvisWidth, int thighLength, int backHeight, int shinLength) {
+    public UserSizes(Integer pelvisWidth, Integer thighLength, Integer backHeight, Integer shinLength) {
         this.pelvisWidth = pelvisWidth;
         this.thighLength = thighLength;
         this.backHeight = backHeight;
@@ -15,7 +15,7 @@ UserSizes {
     }
 
     //ширина сиденья
-    public int findSeatWidth() {
+    public Integer findSeatWidth() {
         int seatWidth = pelvisWidth + 4;
         if (seatWidth <= 22) {
             seatWidth = 22;
@@ -45,7 +45,7 @@ UserSizes {
     }
 
     //глубина сиденья
-    public int findSeatDepth() {
+    public Integer findSeatDepth() {
         int seatDepth = thighLength - 2;
         if (seatDepth <= 24) {
             seatDepth = 24;
@@ -78,7 +78,7 @@ UserSizes {
     }
 
     //длинна подножки
-    public int findFootrestLength() {
+    public Integer findFootrestLength() {
         int footrestLength = shinLength;
         if (shinLength <= 40) {
             footrestLength = 40;
@@ -93,7 +93,7 @@ UserSizes {
 
     }
 
-    public int getPelvisWidth() {
+    public Integer getPelvisWidth() {
         return pelvisWidth;
     }
 
@@ -101,7 +101,7 @@ UserSizes {
         this.pelvisWidth = pelvisWidth;
     }
 
-    public int getThighLength() {
+    public Integer getThighLength() {
         return thighLength;
     }
 
@@ -109,7 +109,7 @@ UserSizes {
         this.thighLength = thighLength;
     }
 
-    public int getBackHeight() {
+    public Integer getBackHeight() {
         return backHeight;
     }
 
@@ -117,7 +117,7 @@ UserSizes {
         this.backHeight = backHeight;
     }
 
-    public int getShinLength() {
+    public Integer getShinLength() {
         return shinLength;
     }
 

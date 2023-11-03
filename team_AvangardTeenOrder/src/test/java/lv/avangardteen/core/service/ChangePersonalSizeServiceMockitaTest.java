@@ -1,5 +1,7 @@
 package lv.avangardteen.core.service;
 
+import lv.avangardteen.Client;
+import lv.avangardteen.UserSizes;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.responce.CoreError;
@@ -9,6 +11,7 @@ import org.mockito.Mockito;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ChangePersonalSizeServiceMockitaTest {
@@ -17,27 +20,30 @@ class ChangePersonalSizeServiceMockitaTest {
     private Database database;
     private ChangePersonalSizeValidator validator;
 
+
     @Test
-    public void ChangePersonalSizeServiceWithError(){
-        ChangePersonalSizeRequest notValideRequest = new ChangePersonalSizeRequest(1L,22,33,44,45);
+    public void ChangePersonalSizeServiceWithError() {
+        database = Mockito.mock(Database.class);
+        ChangePersonalSizeRequest notValidationRequest = new ChangePersonalSizeRequest(1L, 22, 33, 44, 45);
         validator = Mockito.mock(ChangePersonalSizeValidator.class);
-        Mockito.when(validator.validate(notValideRequest)).thenReturn(
+        Mockito.when(validator.validate(notValidationRequest)).thenReturn(
                 List.of(new CoreError("Change Persona Size", "Incorrect personal sizes !")));
-        service = new ChangePersonalSizeService(null,validator);
-        ChangePersonalSizeResponse response = service.execute(notValideRequest);
+        service = new ChangePersonalSizeService(null, validator);
+        ChangePersonalSizeResponse response = service.execute(notValidationRequest);
         assertTrue(response.hasErrors());
     }
-/*
+
     @Test
-    public void ChangePersonalDateWithoutError () {
+    public void ChangePersonalDateWithoutError() {
         database = Mockito.mock(Database.class);
-        ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(1L,22,33,44,45);
+        ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(1L, 22, 33, 44, 45);
         validator = Mockito.mock(ChangePersonalSizeValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(List.of());
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
-        service = new ChangePersonalSizeService(database,validator);
+        service = new ChangePersonalSizeService(database, validator);
         ChangePersonalSizeResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-    } */
+
+    }
 
 }

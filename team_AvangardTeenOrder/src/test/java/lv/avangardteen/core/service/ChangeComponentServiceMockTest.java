@@ -21,13 +21,13 @@ class ChangeComponentServiceMockTest {
 
     @Test
     public void ChangeComponentExecuteWithError() {
-        ChangeComponentRequest notValideRequest = new ChangeComponentRequest(
+        ChangeComponentRequest notValidationRequest = new ChangeComponentRequest(
                 0L, 11,12,13,14);
         validator = Mockito.mock(ChooseComponentValidator.class);
-        Mockito.when(validator.validate(notValideRequest)).thenReturn(
+        Mockito.when(validator.validate(notValidationRequest)).thenReturn(
                 List.of(new CoreError("Change Component", "Incorrect component chose!")));
         service = new ChangeComponentService(null,validator);
-        ChangeComponentResponse response = service.execute(notValideRequest);
+        ChangeComponentResponse response = service.execute(notValidationRequest);
         assertTrue(response.hasErrors());
     }
 
@@ -42,6 +42,7 @@ class ChangeComponentServiceMockTest {
         service = new ChangeComponentService(database, validator);
         ChangeComponentResponse response = service.execute(request);
         assertFalse(response.hasErrors());
+
 
         // nado li proverjatj logiku dobavlenija componentov i obrazovanija ceni?
     }

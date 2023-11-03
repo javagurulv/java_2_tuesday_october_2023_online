@@ -5,6 +5,7 @@ import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.service.ChangePersonalDateService;
 import lv.avangardteen.data.DataOrders;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ChangePersonalDateUIAction implements UIAction {
@@ -17,7 +18,8 @@ public class ChangePersonalDateUIAction implements UIAction {
 
     @Override
     public void execute() {
-        System.out.println("Введите номер заказа");
+        try {
+            System.out.println("Введите номер заказа");
         Scanner scanner = new Scanner(System.in);
         long id = scanner.nextLong();
         Scanner scan = new Scanner(System.in);
@@ -35,6 +37,9 @@ public class ChangePersonalDateUIAction implements UIAction {
             System.out.println("Ваш выбор не сохранен");
         } else {
             System.out.println("Ваши данные сохранены");
+        }
+        } catch (InputMismatchException e) {
+            System.out.println("Must input only digits!");
         }
     }
 }

@@ -21,12 +21,12 @@ class ChangePersonalDateServiceMockitaTest {
 
     @Test
     public void ChangePersonalDateWithError () {
-        ChangePersonalDateRequest notValideRequest = new ChangePersonalDateRequest(1L,"Name",123245,"Riga");
+        ChangePersonalDateRequest notValidationRequest = new ChangePersonalDateRequest(1L,"Name",123245,"Riga");
         validator = Mockito.mock(ChangePersonalDateValidator.class);
-        Mockito.when(validator.validate(notValideRequest)).thenReturn(
+        Mockito.when(validator.validate(notValidationRequest)).thenReturn(
                 List.of(new CoreError("Change Persona Date", "Incorrect personal date!")));
         service = new ChangePersonalDateService(null,validator);
-        ChangePersonalDateResponse response = service.execute(notValideRequest);
+        ChangePersonalDateResponse response = service.execute(notValidationRequest);
         assertTrue(response.hasErrors());
     }
 
@@ -40,8 +40,6 @@ class ChangePersonalDateServiceMockitaTest {
         service = new ChangePersonalDateService(database,validator);
         ChangePersonalDateResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-
-        /// nado li proverjatj logiku zapisi dannih klienta
 
 
     }

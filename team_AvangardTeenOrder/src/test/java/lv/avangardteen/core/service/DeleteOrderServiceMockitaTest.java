@@ -20,13 +20,13 @@ class DeleteOrderServiceMockitaTest {
     private IdOrderValidator validator;
     @Test
     public void DeleteOrderWithError(){
-        DeleteOrderRequest notValideRequest = new DeleteOrderRequest(1L);
+        DeleteOrderRequest notValidationRequest = new DeleteOrderRequest(1L);
         database = Mockito.mock(Database.class);
         validator = Mockito.mock(IdOrderValidator.class);
-        Mockito.when(validator.validate(notValideRequest)).thenReturn(
+        Mockito.when(validator.validate(notValidationRequest)).thenReturn(
                 List.of(new CoreError("Delete Order", "Incorrect ID number!")));
         service = new DeleteOrderService(database,validator);
-        DeleteOrderResponse response = service.execute(notValideRequest);
+        DeleteOrderResponse response = service.execute(notValidationRequest);
         assertTrue(response.hasErrors());
     }
 
@@ -40,6 +40,8 @@ class DeleteOrderServiceMockitaTest {
         service = new DeleteOrderService(database,validator);
         DeleteOrderResponse response = service.execute(request);
         assertFalse(response.hasErrors());
+        Mockito.verify(database).deleteUser(request.getId());
+
     }
 
 }

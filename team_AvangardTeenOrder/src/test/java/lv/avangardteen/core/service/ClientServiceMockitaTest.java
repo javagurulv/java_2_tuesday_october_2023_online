@@ -20,16 +20,16 @@ class ClientServiceMockitaTest {
 
     @Test
     public void ClientServiceWithError(){
-        ClientRequest notValidRequest = new ClientRequest(
+        ClientRequest notValidationRequest = new ClientRequest(
                 "Name", 12345, "Riga",
                 11,22,33, 11,
                 17,31,21,41);
         database = Mockito.mock(Database.class);
         validator = Mockito.mock(ClientOrderValidator.class);
-        Mockito.when(validator.validate(notValidRequest)).thenReturn(List.of(
+        Mockito.when(validator.validate(notValidationRequest)).thenReturn(List.of(
                 new CoreError("Client service", "Incorrect Clients request data!")));
         service = new ClientService(database,validator);
-        ClientResponse response = service.execute(notValidRequest);
+        ClientResponse response = service.execute(notValidationRequest);
         assertTrue(response.hasErrors());
 
     }

@@ -6,6 +6,7 @@ import lv.avangardteen.core.service.ChangeComponentService;
 import lv.avangardteen.data.DataComponents;
 import lv.avangardteen.data.DataOrders;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ChangeComponentsUIAction implements UIAction {
@@ -20,6 +21,9 @@ public class ChangeComponentsUIAction implements UIAction {
 
     @Override
     public void execute() {
+        try {
+
+
         System.out.println("Введите номер заказа");
         Scanner scanner = new Scanner(System.in);
         long id = scanner.nextLong();
@@ -46,6 +50,9 @@ public class ChangeComponentsUIAction implements UIAction {
             System.out.println("Ваш выбор не сохранен");
         } else {
             System.out.println("Ваш выбор сохранен");
+        }
+        } catch (InputMismatchException e) {
+            System.out.println("Must input only digits!");
         }
 
     }
