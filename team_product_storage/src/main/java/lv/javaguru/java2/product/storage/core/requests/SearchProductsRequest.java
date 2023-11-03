@@ -1,7 +1,6 @@
 package lv.javaguru.java2.product.storage.core.requests;
 
 public class SearchProductsRequest {
-
     private String productBrand;
 
     private String productModel;
@@ -42,7 +41,6 @@ public class SearchProductsRequest {
         return productModel;
     }
 
-
     public boolean isProductBrandProvided() {
         return this.productBrand != null && !this.productBrand.isEmpty();
     }
@@ -58,5 +56,7 @@ public class SearchProductsRequest {
     public Paging getPaging() {
         return paging;
     }
+
+
 }
 

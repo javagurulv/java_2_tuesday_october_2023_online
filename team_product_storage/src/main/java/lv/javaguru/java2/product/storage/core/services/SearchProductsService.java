@@ -7,6 +7,7 @@ import lv.javaguru.java2.product.storage.core.requests.Paging;
 import lv.javaguru.java2.product.storage.core.requests.SearchProductsRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 import lv.javaguru.java2.product.storage.core.responses.SearchProductsResponse;
+import lv.javaguru.java2.product.storage.core.services.validators.SearchProductsRequestValidator;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -51,18 +52,17 @@ public class SearchProductsService {
         }
     }
 
-    private List<Product> search(SearchProductsRequest request){
+    private List<Product> search(SearchProductsRequest request) {
         List<Product> products = new ArrayList<>();
         if (request.isProductBrandProvided() && !request.isProductModelProvided()) {
             products = database.findByProductBrand(request.getProductBrand());
         }
         if (!request.isProductBrandProvided() && request.isProductModelProvided()) {
-            products = database.findByProductBrand(request.getProductBrand());
+            products = database.findByProductModel(request.getProductModel());
         }
         if (request.isProductBrandProvided() && request.isProductModelProvided()) {
             products = database.findByProductBrandAndProductModel(request.getProductBrand(), request.getProductModel());
         }
-
         return products;
     }
 
@@ -74,7 +74,9 @@ public class SearchProductsService {
                     .limit(paging.getPageSize())
                     .collect(Collectors.toList());
         } else {
+            System.out.println("paging test");
             return products;
+
         }
     }
 }

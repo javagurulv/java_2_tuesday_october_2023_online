@@ -5,6 +5,7 @@ import lv.javaguru.java2.product.storage.core.domain.Product;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.AddProductResponse;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
+import lv.javaguru.java2.product.storage.core.services.validators.AddProductRequestValidator;
 
 import java.util.List;
 
