@@ -1,50 +1,43 @@
 package lv.avangardteen.core.service.validate;
 
-import lv.avangardteen.Client;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
-import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.data.DataOrders;
-import lv.avangardteen.data.Database;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 public class ChangePersonalDateValidator {
 
-private ClientIdValidator clientIdValidator;
+    private ClientIdValidator clientIdValidator;
+    private PersonalDateValidation personalDateValidation;
 
-    public ChangePersonalDateValidator(ClientIdValidator clientIdValidator) {
+    public ChangePersonalDateValidator(ClientIdValidator clientIdValidator,
+                                       PersonalDateValidation personalDateValidation) {
         this.clientIdValidator = clientIdValidator;
+        this.personalDateValidation = personalDateValidation;
     }
 
     public List<CoreError> validate(ChangePersonalDateRequest request) {
-        List<CoreError> errors = clientIdValidator.validate(request.getId());
-        validateNameSurname(request).ifPresent(errors::add);
-        validatePhoneNumber(request).ifPresent(errors::add);
-        validateUserAddress(request).ifPresent(errors::add);
+        List<CoreError> errors = new ArrayList<>();
+        validateIdClient(request, errors);
+        validatePersonalDate(request, errors);
         return errors;
 
     }
 
-    private Optional<CoreError> validateNameSurname(ChangePersonalDateRequest request) {
-        return (request.getNameSurname() == null || request.getNameSurname().isEmpty())
-                ? Optional.of((new CoreError("nameSurname", "Must not be empty!")))
-                : Optional.empty();
+    private void validateIdClient(ChangePersonalDateRequest request, List<CoreError> errors) {
+        errors.addAll(clientIdValidator.validate(request.getId()));
     }
 
-    private Optional<CoreError> validatePhoneNumber(ChangePersonalDateRequest request) {
-        return (request.getPhoneNumber() == null || request.getPhoneNumber() <= 0)
-                ? Optional.of(new CoreError("phoneNumber", "Must not be zero!"))
-                : Optional.empty();
+    private void validatePersonalDate(ChangePersonalDateRequest request, List<CoreError> errors) {
+        String surname = request.getNameSurname();
+        Integer phone = request.getPhoneNumber();
+        String address = request.getUserAddress();
+        errors.addAll(personalDateValidation
+                .validate(surname, phone, address));
+
     }
-
-
-    private Optional<CoreError> validateUserAddress(ChangePersonalDateRequest request) {
-        return (request.getUserAddress() == null || request.getUserAddress().isEmpty())
-                ? Optional.of((new CoreError("userAddress", "Must not be empty!")))
-                : Optional.empty();
-    }
-
 }
+
+

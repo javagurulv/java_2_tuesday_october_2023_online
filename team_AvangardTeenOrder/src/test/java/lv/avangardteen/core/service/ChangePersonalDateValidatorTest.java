@@ -1,63 +1,73 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.Client;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChangePersonalDateValidator;
 import lv.avangardteen.core.service.validate.ClientIdValidator;
+import lv.avangardteen.core.service.validate.PersonalDateValidation;
 import lv.avangardteen.data.Database;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
 
 class ChangePersonalDateValidatorTest {
+    private Database database;
     private ClientIdValidator idValidator;
+    private PersonalDateValidation personalDateValidation;
     private ChangePersonalDateValidator validator;
 
+    @BeforeEach
+    public void init() {
+        database = Mockito.mock(Database.class);
+        idValidator = Mockito.mock(ClientIdValidator.class);
+        personalDateValidation = Mockito.mock(PersonalDateValidation.class);
+        validator = new ChangePersonalDateValidator(idValidator, personalDateValidation);
+    }
+
     @Test
-    public void clientNotFound() {
-        Database database = Mockito.mock(Database.class);
-        idValidator = new ClientIdValidator(database);
-        ChangePersonalDateRequest request = new ChangePersonalDateRequest(1L,
+    public void shouldNotReturnErrorsWhenIdValidatorReturnNoErrors() {
+        ChangePersonalDateRequest request = new ChangePersonalDateRequest(2l,
                 "Ivanov", 3343534, "Lesnaja, 22");
-        validator = new ChangePersonalDateValidator(idValidator);
-        Mockito.when(database.getClient(request.getId())).thenReturn(null);
-        List<CoreError> validList = validator.validate(request);
-        assertEquals(validList.size(), 1);
-        assertEquals(validList.get(0).getField(), "idClient");
-        assertEquals(validList.get(0).getMessage(), "Order with this id not found!");
+        when(idValidator.validate(request.getId())).thenReturn(List.of());
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 0);
     }
 
     @Test
-    public void addressIsEmpty() {
-        Database database = Mockito.mock(Database.class);
-        idValidator = new ClientIdValidator(database);
-        ChangePersonalDateRequest request = new ChangePersonalDateRequest(1L,
-                "Ivanov", 3343534, "");
-        Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
-        validator = new ChangePersonalDateValidator(idValidator);
-        List<CoreError> validList = validator.validate(request);
-        assertEquals(validList.size(), 1);
-        assertEquals(validList.get(0).getField(), "userAddress");
-        assertEquals(validList.get(0).getMessage(), "Must not be empty!");
+    public void shouldReturnErrorsWhenIdValidatorReturnErrors() {
+        ChangePersonalDateRequest request = new ChangePersonalDateRequest(2l,
+                "Ivanov", 3343534, "Lesnaja, 22");
+        when(idValidator.validate(request.getId())).thenReturn(List.of(
+                new CoreError("errors", "message")));
+
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
     }
 
     @Test
-    public void surnameAndPhoneIsEmpty() {
-        Database database = Mockito.mock(Database.class);
-        idValidator = new ClientIdValidator(database);
-        ChangePersonalDateRequest request = new ChangePersonalDateRequest(1L,
-                "", null, "Lesnaja, 22");
-        Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
-        validator = new ChangePersonalDateValidator(idValidator);
-        List<CoreError> validList = validator.validate(request);
-        assertEquals(validList.size(), 2);
-        assertEquals(validList.get(0).getField(), "nameSurname");
-        assertEquals(validList.get(0).getMessage(), "Must not be empty!");
-        assertEquals(validList.get(1).getField(), "phoneNumber");
-        assertEquals(validList.get(1).getMessage(), "Must not be zero!");
+    public void shouldNotReturnErrorsWhenPersonalDateReturnNoErrors() {
+        ChangePersonalDateRequest request = new ChangePersonalDateRequest(2l,
+                "Ivanov", 3343534, "Lesnaja, 22");
+        when(personalDateValidation.validate(request.getNameSurname(),
+                request.getPhoneNumber(), request.getUserAddress())).thenReturn(List.of());
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 0);
+    }
+
+    @Test
+    public void shouldReturnErrorsWhenPersonalDateReturnErrors() {
+        ChangePersonalDateRequest request = new ChangePersonalDateRequest(2l,
+                "Ivanov", 3343534, "Lesnaja, 22");
+        when(personalDateValidation.validate(request.getNameSurname(),
+                request.getPhoneNumber(), request.getUserAddress())).thenReturn(List.of(
+                new CoreError("errors", "message")));
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
     }
 }

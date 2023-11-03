@@ -14,8 +14,9 @@ public class OrderApplication {
     private static Database database = new DataOrders();
     private static DataComponents dataComponents = new DataComponents();
     private static ClientIdValidator idValidator = new ClientIdValidator(database);
+    private static PersonalDateValidation personalDateValidation = new PersonalDateValidation();
     private static ClientOrderValidator orderValidator = new ClientOrderValidator(database, dataComponents);
-    private static ChangePersonalDateValidator dateValidator = new ChangePersonalDateValidator(idValidator);
+    private static ChangePersonalDateValidator dateValidator = new ChangePersonalDateValidator(idValidator, personalDateValidation);
     private static ChangePersonalSizeValidator sizeValidator = new ChangePersonalSizeValidator(idValidator);
     private static ChooseComponentValidator componentValidator = new ChooseComponentValidator(idValidator, dataComponents);
     private static ShowOrderValidator showOrderValidator = new ShowOrderValidator(idValidator);

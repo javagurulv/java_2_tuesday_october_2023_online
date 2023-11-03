@@ -1,12 +1,11 @@
 package lv.avangardteen.core.service.validate;
 
-import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.data.Database;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 public class ClientIdValidator {
     private Database database;

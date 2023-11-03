@@ -1,11 +1,11 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.Client;
+
 import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ClientIdValidator;
 import lv.avangardteen.core.service.validate.ShowOrderValidator;
-import lv.avangardteen.data.Database;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -17,27 +17,27 @@ class ShowOrderValidatorTest {
     private ClientIdValidator idValidator;
     private ShowOrderValidator validator;
 
-    @Test
-    public void clientIsAbsent() {
-        Database database = Mockito.mock(Database.class);
-        idValidator = new ClientIdValidator(database);
-        ShowOrderRequest request = new ShowOrderRequest(5l);
-        Mockito.when(database.getClient(request.getId())).thenReturn(null);
+    @BeforeEach
+    public void init() {
+        idValidator = Mockito.mock(ClientIdValidator.class);
         validator = new ShowOrderValidator(idValidator);
-        List<CoreError> validList = validator.validate(request);
-        assertEquals(validList, List.of(new CoreError("idClient", "Order with this id not found!")));
-
     }
 
     @Test
-    public void clientIsFound() {
-        Database database = Mockito.mock(Database.class);
-        idValidator = new ClientIdValidator(database);
-        ShowOrderRequest request = new ShowOrderRequest(5l);
-        Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
-        validator = new ShowOrderValidator(idValidator);
-        List<CoreError> validList = validator.validate(request);
-        assertEquals(validList, List.of());
-
+    public void notErrors() {
+        ShowOrderRequest request = new ShowOrderRequest(1L);
+        Mockito.when(idValidator.validate(request.getId())).thenReturn(List.of());
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 0);
     }
+
+    @Test
+    public void isErrors() {
+        ShowOrderRequest request = new ShowOrderRequest(1L);
+        Mockito.when(idValidator.validate(request.getId())).thenReturn(List.of(
+                new CoreError("errors", "message")));
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+    }
+
 }
