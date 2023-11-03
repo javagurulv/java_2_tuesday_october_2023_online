@@ -4,6 +4,7 @@ import lv.avangardteen.Client;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChangePersonalDateValidator;
+import lv.avangardteen.core.service.validate.ClientIdValidator;
 import lv.avangardteen.data.Database;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -13,15 +14,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ChangePersonalDateValidatorTest {
-
+    private ClientIdValidator idValidator;
     private ChangePersonalDateValidator validator;
 
     @Test
     public void clientNotFound() {
         Database database = Mockito.mock(Database.class);
+        idValidator = new ClientIdValidator(database);
         ChangePersonalDateRequest request = new ChangePersonalDateRequest(1L,
                 "Ivanov", 3343534, "Lesnaja, 22");
-        validator = new ChangePersonalDateValidator(database);
+        validator = new ChangePersonalDateValidator(idValidator);
         Mockito.when(database.getClient(request.getId())).thenReturn(null);
         List<CoreError> validList = validator.validate(request);
         assertEquals(validList.size(), 1);
@@ -32,10 +34,11 @@ class ChangePersonalDateValidatorTest {
     @Test
     public void addressIsEmpty() {
         Database database = Mockito.mock(Database.class);
+        idValidator = new ClientIdValidator(database);
         ChangePersonalDateRequest request = new ChangePersonalDateRequest(1L,
                 "Ivanov", 3343534, "");
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
-        validator = new ChangePersonalDateValidator(database);
+        validator = new ChangePersonalDateValidator(idValidator);
         List<CoreError> validList = validator.validate(request);
         assertEquals(validList.size(), 1);
         assertEquals(validList.get(0).getField(), "userAddress");
@@ -45,10 +48,11 @@ class ChangePersonalDateValidatorTest {
     @Test
     public void surnameAndPhoneIsEmpty() {
         Database database = Mockito.mock(Database.class);
+        idValidator = new ClientIdValidator(database);
         ChangePersonalDateRequest request = new ChangePersonalDateRequest(1L,
                 "", null, "Lesnaja, 22");
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
-        validator = new ChangePersonalDateValidator(database);
+        validator = new ChangePersonalDateValidator(idValidator);
         List<CoreError> validList = validator.validate(request);
         assertEquals(validList.size(), 2);
         assertEquals(validList.get(0).getField(), "nameSurname");

@@ -13,16 +13,15 @@ import java.util.Optional;
 
 public class ChangePersonalSizeValidator {
 
-    private Database database;
+    private ClientIdValidator idValidator;
 
-
-    public ChangePersonalSizeValidator(Database database) {
-        this.database = database;
+    public ChangePersonalSizeValidator(ClientIdValidator idValidator) {
+        this.idValidator = idValidator;
     }
 
     public List<CoreError> validate(ChangePersonalSizeRequest request) {
-        List<CoreError> errors = new ArrayList<>();
-        clientNotFound(request).ifPresent(errors::add);
+        List<CoreError> errors = idValidator.validate(request.getId());
+
         validatePelvisWidth(request).ifPresent(errors::add);
         validateThighLength(request).ifPresent(errors::add);
         validateBackHeight(request).ifPresent(errors::add);
@@ -30,14 +29,6 @@ public class ChangePersonalSizeValidator {
         return errors;
 
     }
-
-    public Optional<CoreError> clientNotFound(ChangePersonalSizeRequest request) {
-        return (database.getClient(request.getId()) == null)
-                ? Optional.of(new CoreError("idClient", "Order with this id not found!"))
-                : Optional.empty();
-
-    }
-
 
     private Optional<CoreError> validatePelvisWidth(ChangePersonalSizeRequest request) {
         return (request.getPelvisWidth() == null || request.getPelvisWidth() <= 0)

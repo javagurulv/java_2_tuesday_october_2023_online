@@ -13,12 +13,13 @@ public class OrderApplication {
 
     private static Database database = new DataOrders();
     private static DataComponents dataComponents = new DataComponents();
+    private static ClientIdValidator idValidator = new ClientIdValidator(database);
     private static ClientOrderValidator orderValidator = new ClientOrderValidator(database, dataComponents);
-    private static ChangePersonalDateValidator dateValidator = new ChangePersonalDateValidator(database);
-    private static ChangePersonalSizeValidator sizeValidator = new ChangePersonalSizeValidator(database);
-    private static ChooseComponentValidator componentValidator = new ChooseComponentValidator(database, dataComponents);
-    private static ShowOrderValidator showOrderValidator = new ShowOrderValidator(database);
-    private static IdOrderValidator idOrderValidator = new IdOrderValidator(database);
+    private static ChangePersonalDateValidator dateValidator = new ChangePersonalDateValidator(idValidator);
+    private static ChangePersonalSizeValidator sizeValidator = new ChangePersonalSizeValidator(idValidator);
+    private static ChooseComponentValidator componentValidator = new ChooseComponentValidator(idValidator, dataComponents);
+    private static ShowOrderValidator showOrderValidator = new ShowOrderValidator(idValidator);
+    private static IdOrderValidator idOrderValidator = new IdOrderValidator(idValidator);
 
     private static ClientService serviceOrder = new ClientService(database, orderValidator);
     private static ChangePersonalDateService service = new ChangePersonalDateService(database, dateValidator);
@@ -33,7 +34,7 @@ public class OrderApplication {
     private static UIAction componentsUIAction = new ChangeComponentsUIAction(componentService1);
     private static UIAction showOrderUIAction = new ShowOrderUIAction(orderService);
     private static UIAction menuUIAction = new ShowMenuUIAction();
-    private  static UIAction deleteOrder = new DeleteOrderUIAction(deleteOrderService);
+    private static UIAction deleteOrder = new DeleteOrderUIAction(deleteOrderService);
 
     public static void main(String[] args) {
 
@@ -57,7 +58,7 @@ public class OrderApplication {
                 case (5):
                     componentsUIAction.execute();
                     break;
-                case(6) :
+                case (6):
                     deleteOrder.execute();
                 case (7):
                     System.exit(0);

@@ -13,29 +13,20 @@ import java.util.Optional;
 
 public class ChangePersonalDateValidator {
 
-private Database database;
+private ClientIdValidator clientIdValidator;
 
-    public ChangePersonalDateValidator(Database database) {
-        this.database = database;
+    public ChangePersonalDateValidator(ClientIdValidator clientIdValidator) {
+        this.clientIdValidator = clientIdValidator;
     }
 
     public List<CoreError> validate(ChangePersonalDateRequest request) {
-        List<CoreError> errors = new ArrayList<>();
-        clientNotFound(request).ifPresent(errors::add);
+        List<CoreError> errors = clientIdValidator.validate(request.getId());
         validateNameSurname(request).ifPresent(errors::add);
         validatePhoneNumber(request).ifPresent(errors::add);
         validateUserAddress(request).ifPresent(errors::add);
         return errors;
 
     }
-
-    public Optional<CoreError> clientNotFound(ChangePersonalDateRequest request) {
-        return (database.getClient(request.getId()) == null)
-                ? Optional.of(new CoreError("idClient", "Order with this id not found!"))
-                : Optional.empty();
-
-    }
-
 
     private Optional<CoreError> validateNameSurname(ChangePersonalDateRequest request) {
         return (request.getNameSurname() == null || request.getNameSurname().isEmpty())

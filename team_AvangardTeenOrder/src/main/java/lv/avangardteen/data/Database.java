@@ -8,8 +8,8 @@ public interface Database {
 
     List<Client> getClients();
     void addUser(Client client);
-    boolean deleteUser(long id);
-    Client getClient(long id);
+    boolean deleteUser(Long id);
+    Client getClient(Long id);
     List<Client> findBySurname(String surname);
     List<Client> findBySurnameAndAddress(String surname, String address);
 }

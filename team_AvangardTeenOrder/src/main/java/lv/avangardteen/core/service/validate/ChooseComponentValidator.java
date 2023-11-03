@@ -10,30 +10,23 @@ import java.util.*;
 
 public class ChooseComponentValidator {
 
-    private Database database;
+    private ClientIdValidator idValidator;
     private DataComponents dataComponents;
 
-    public ChooseComponentValidator(Database database, DataComponents dataComponents) {
-        this.database = database;
+    public ChooseComponentValidator(ClientIdValidator idValidator, DataComponents dataComponents) {
+        this.idValidator = idValidator;
         this.dataComponents = dataComponents;
     }
 
     public List<CoreError> validate(ChangeComponentRequest request) {
-        List<CoreError> errors = new ArrayList<>();
-        clientNotFound(request).ifPresent(errors::add);
+        List<CoreError> errors = idValidator.validate(request.getId());
+
         indexFrontWheelIsAbsent(request).ifPresent(errors::add);
         indexBackWheelIsAbsent(request).ifPresent(errors::add);
         indexBrakeIsAbsent(request).ifPresent(errors::add);
         indexArmrestIsAbsent(request).ifPresent(errors::add);
 
         return errors;
-    }
-
-    public Optional<CoreError> clientNotFound(ChangeComponentRequest request) {
-        return (database.getClient(request.getId()) == null)
-                ? Optional.of(new CoreError("idClient", "Order with this id not found!"))
-                : Optional.empty();
-
     }
 
     private Optional<CoreError> indexFrontWheelIsAbsent(ChangeComponentRequest request) {
