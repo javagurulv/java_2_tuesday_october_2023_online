@@ -4,16 +4,16 @@ import lv.avangardteen.Client;
 import lv.avangardteen.UserSizes;
 import lv.avangardteen.Wheelchair;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
-import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.core.service.validate.ChangePersonalSizeValidator;
 import lv.avangardteen.data.Database;
 
 import java.util.List;
 
 public class ChangePersonalSizeService {
-    Database database;
+    private Database database;
+    private UserSizes userSizes;
 
     private ChangePersonalSizeValidator validator;
 
@@ -32,18 +32,17 @@ public class ChangePersonalSizeService {
 
     private ChangePersonalSizeResponse getChangePersonalSizeResponse(ChangePersonalSizeRequest request) {
         Client client = database.getClient(request.getId());
-        ChangePersonalSizeResponse response = new ChangePersonalSizeResponse(client);
 
-        response.getClient().getUserSizes().setPelvisWidth(request.getPelvisWidth());
-        response.getClient().getUserSizes().setThighLength(request.getThighLength());
-        response.getClient().getUserSizes().setBackHeight(request.getBackHeight());
-        response.getClient().getUserSizes().setShinLength(request.getShinLength());
 
-        response.getClient().setWheelchair(new Wheelchair(new UserSizes(request.getBackHeight(),
+        client.setUserSizes(new UserSizes(request.getBackHeight(),
+                request.getPelvisWidth(),
+                request.getShinLength(),
+                request.getThighLength()));
+        client.setWheelchair(new Wheelchair(new UserSizes(request.getBackHeight(),
                 request.getPelvisWidth(),
                 request.getShinLength(),
                 request.getThighLength())));
-        System.out.println("Ваши данные сохранены.");
+
         return new ChangePersonalSizeResponse(client);
     }
 }

@@ -1,4 +1,4 @@
-package lv.avangardteen.core.service;
+package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.Category;
 import lv.avangardteen.Component;
@@ -48,7 +48,7 @@ private DataComponents dataComponents = new DataComponents();
     }
 
     private Optional<CoreError> validatePhoneNumber(ClientRequest request) {
-        return (request.getPhoneNumber() <= 0)
+        return (request.getPhoneNumber() == null || request.getPhoneNumber() <= 0)
                 ? Optional.of((new CoreError("phoneNumber", "Must not be empty")))
                 : Optional.empty();
     }
@@ -60,25 +60,25 @@ private DataComponents dataComponents = new DataComponents();
     }
 
     private Optional<CoreError> validatePelvisWidth(ClientRequest  request) {
-        return (request.getPelvisWidth() <= 0)
+        return (request.getPelvisWidth() == null || request.getPelvisWidth() <= 0)
                 ? Optional.of((new CoreError("pelvisWidth", "Must not be empty!")))
                 : Optional.empty();
     }
 
     private Optional<CoreError> validateThighLength(ClientRequest  request) {
-        return (request.getThighLength() <= 0)
+        return (request.getThighLength() == null || request.getThighLength() <= 0)
                 ? Optional.of((new CoreError("thighLength", "Must not be empty!")))
                 : Optional.empty();
     }
 
     private Optional<CoreError> validateBackHeight(ClientRequest  request) {
-        return (request.getBackLength() <= 0)
+        return (request.getBackLength() == null || request.getBackLength() <= 0)
                 ? Optional.of((new CoreError("backHeight", "Must not be empty!")))
                 : Optional.empty();
     }
 
     private Optional<CoreError> validateShinLength(ClientRequest  request) {
-        return (request.getShinLength() <= 0)
+        return (request.getShinLength() == null || request.getShinLength() <= 0)
                 ? Optional.of((new CoreError("shinLength", "Must not be empty!")))
                 : Optional.empty();
     }

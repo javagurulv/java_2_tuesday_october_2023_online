@@ -8,12 +8,14 @@ import java.util.List;
 
 public class AdminList {
 
-    public List<User> listOfAdmin() {
+    public static List<User> listOfAdmin() {
         List<User> admins = new ArrayList<>();
-        admins.add(new User("anastasiia@cake.com", "Ichiu_201294",
+        User admin = new User("anastasiia@cake.com", "Ichiu_201294",
                 "Anastasiia", "Bokareva",
                 new Date(1994, 20, 12), 22375569,
-                "ichiu.rain011@gmail.com", "Latvia", " "));
+                "ichiu.rain011@gmail.com", "Latvia", " ");
+        admin.setStatusOfClient(0);
+        admins.add(admin);
         return admins;
     }
 }

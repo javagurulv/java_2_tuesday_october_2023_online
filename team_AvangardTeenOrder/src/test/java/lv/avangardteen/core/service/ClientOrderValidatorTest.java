@@ -1,9 +1,8 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.Client;
-import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.CoreError;
+import lv.avangardteen.core.service.validate.ClientOrderValidator;
 import lv.avangardteen.data.DataComponents;
 import lv.avangardteen.data.Database;
 import org.junit.jupiter.api.Test;
@@ -139,7 +138,7 @@ class ClientOrderValidatorTest {
         DataComponents dataComponents = Mockito.mock(DataComponents.class);
         ClientRequest request = new ClientRequest("Ivanov", 12, "Lesnaja, 22",
                 33, 33, 33, 33,
-                11, 21, 34, 44);
+                11, 21, 34, 45);
         Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
         validator = new ClientOrderValidator(database, dataComponents);
         List<CoreError> errors = validator.validate(request);

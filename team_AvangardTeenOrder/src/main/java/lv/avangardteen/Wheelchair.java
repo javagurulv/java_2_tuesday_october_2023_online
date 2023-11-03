@@ -2,10 +2,10 @@ package lv.avangardteen;
 
 public class Wheelchair {
     private UserSizes userSizes;
-    int seatWidth;
-    int seatDepth;
-    int footrestLength;
-    int bachHeight;
+    Integer seatWidth;
+    Integer seatDepth;
+    Integer footrestLength;
+    Integer bachHeight;
 
      double priceWheelchair = 177000.0;
 
@@ -13,42 +13,42 @@ public class Wheelchair {
         this.userSizes = userSizes;
     }
 
-    public int getSeatWidth() {
+    public Integer getSeatWidth() {
 
         return this.seatWidth = setSeatWidth();
     }
 
-    public int setSeatWidth() {
+    public Integer setSeatWidth() {
 
         return this.seatWidth = userSizes.findSeatWidth();
     }
 
-    public int getSeatDepth() {
+    public Integer getSeatDepth() {
 
         return this.seatDepth = setSeatDepth();
     }
 
-    public int setSeatDepth() {
+    public Integer setSeatDepth() {
 
         return  this.seatDepth = userSizes.findSeatDepth();
     }
 
-    public int getFootrestLength() {
+    public Integer getFootrestLength() {
 
         return this.footrestLength = setFootrestLength(userSizes);
     }
-    public int setFootrestLength(UserSizes userSizes) {
+    public Integer setFootrestLength(UserSizes userSizes) {
 
         return this.footrestLength = userSizes.findFootrestLength();
 
     }
 
-    public int getBachHeight() {
+    public Integer getBachHeight() {
 
         return this.bachHeight = setBachHeight(userSizes);
     }
 
-    public int setBachHeight(UserSizes userSizes) {
+    public Integer setBachHeight(UserSizes userSizes) {
 
         return this.bachHeight = userSizes.getBackHeight();
     }

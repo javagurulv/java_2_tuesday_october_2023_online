@@ -1,4 +1,4 @@
-package lv.avangardteen.core.service;
+package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
@@ -40,25 +40,25 @@ public class ChangePersonalSizeValidator {
 
 
     private Optional<CoreError> validatePelvisWidth(ChangePersonalSizeRequest request) {
-        return (request.getPelvisWidth() <= 0)
+        return (request.getPelvisWidth() == null || request.getPelvisWidth() <= 0)
                 ? Optional.of((new CoreError("pelvisWidth", "Must not be empty!")))
                 : Optional.empty();
     }
 
     private Optional<CoreError> validateThighLength(ChangePersonalSizeRequest request) {
-        return (request.getThighLength() <= 0)
+        return (request.getThighLength() == null || request.getThighLength() <= 0)
                 ? Optional.of((new CoreError("thighLength", "Must not be empty!")))
                 : Optional.empty();
     }
 
     private Optional<CoreError> validateBackHeight(ChangePersonalSizeRequest request) {
-        return (request.getBackHeight() <= 0)
+        return (request.getBackHeight() == null || request.getBackHeight() <= 0)
                 ? Optional.of((new CoreError("backHeight", "Must not be empty!")))
                 : Optional.empty();
     }
 
     private Optional<CoreError> validateShinLength(ChangePersonalSizeRequest request) {
-        return (request.getShinLength() <= 0)
+        return (request.getShinLength() == null || request.getShinLength() <= 0)
                 ? Optional.of((new CoreError("shinLength", "Must not be empty!")))
                 : Optional.empty();
     }

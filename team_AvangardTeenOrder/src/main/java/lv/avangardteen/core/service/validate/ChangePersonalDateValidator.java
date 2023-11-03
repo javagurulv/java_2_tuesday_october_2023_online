@@ -1,4 +1,4 @@
-package lv.avangardteen.core.service;
+package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.Client;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
@@ -44,10 +44,11 @@ private Database database;
     }
 
     private Optional<CoreError> validatePhoneNumber(ChangePersonalDateRequest request) {
-        return (request.getPhoneNumber() <= 0)
+        return (request.getPhoneNumber() == null || request.getPhoneNumber() <= 0)
                 ? Optional.of(new CoreError("phoneNumber", "Must not be zero!"))
                 : Optional.empty();
     }
+
 
     private Optional<CoreError> validateUserAddress(ChangePersonalDateRequest request) {
         return (request.getUserAddress() == null || request.getUserAddress().isEmpty())

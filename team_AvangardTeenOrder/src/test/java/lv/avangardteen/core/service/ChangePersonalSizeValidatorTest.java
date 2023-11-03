@@ -3,6 +3,7 @@ package lv.avangardteen.core.service;
 import lv.avangardteen.Client;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.responce.CoreError;
+import lv.avangardteen.core.service.validate.ChangePersonalSizeValidator;
 import lv.avangardteen.data.Database;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -18,7 +19,7 @@ class ChangePersonalSizeValidatorTest {
     @Test
     public void clientNotFound() {
         Database database = Mockito.mock(Database.class);
-        ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(1,
+        ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(1L,
                 44, 44, 44, 44);
         validator = new ChangePersonalSizeValidator(database);
         Mockito.when(database.getClient(request.getId())).thenReturn(null);
@@ -31,7 +32,7 @@ class ChangePersonalSizeValidatorTest {
     @Test
     public void allSizeIsZero() {
         Database database = Mockito.mock(Database.class);
-        ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(1,
+        ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(1L,
                 0, 0, 0, 0);
         validator = new ChangePersonalSizeValidator(database);
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
