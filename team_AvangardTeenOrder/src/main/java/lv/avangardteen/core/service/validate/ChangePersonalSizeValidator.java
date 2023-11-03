@@ -1,57 +1,39 @@
 package lv.avangardteen.core.service.validate;
 
-import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
-import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.data.DataOrders;
-import lv.avangardteen.data.Database;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class ChangePersonalSizeValidator {
 
     private ClientIdValidator idValidator;
+    private PersonalSizeValidator sizeValidation;
 
-    public ChangePersonalSizeValidator(ClientIdValidator idValidator) {
+    public ChangePersonalSizeValidator(ClientIdValidator idValidator,
+                                       PersonalSizeValidator sizeValidation) {
         this.idValidator = idValidator;
+        this.sizeValidation = sizeValidation;
     }
 
     public List<CoreError> validate(ChangePersonalSizeRequest request) {
-        List<CoreError> errors = idValidator.validate(request.getId());
+        List<CoreError> errors = new ArrayList<>();
+        validateIdClient(request, errors);
+        validatePersonSize(request, errors);
 
-        validatePelvisWidth(request).ifPresent(errors::add);
-        validateThighLength(request).ifPresent(errors::add);
-        validateBackHeight(request).ifPresent(errors::add);
-        validateShinLength(request).ifPresent(errors::add);
         return errors;
 
     }
 
-    private Optional<CoreError> validatePelvisWidth(ChangePersonalSizeRequest request) {
-        return (request.getPelvisWidth() == null || request.getPelvisWidth() <= 0)
-                ? Optional.of((new CoreError("pelvisWidth", "Must not be empty!")))
-                : Optional.empty();
+    private void validateIdClient(ChangePersonalSizeRequest request, List<CoreError> errors) {
+        errors.addAll(idValidator.validate(request.getId()));
     }
 
-    private Optional<CoreError> validateThighLength(ChangePersonalSizeRequest request) {
-        return (request.getThighLength() == null || request.getThighLength() <= 0)
-                ? Optional.of((new CoreError("thighLength", "Must not be empty!")))
-                : Optional.empty();
+    private void validatePersonSize(ChangePersonalSizeRequest request, List<CoreError> errors) {
+        errors.addAll(sizeValidation.validate(request.getPelvisWidth(),
+                request.getThighLength(), request.getBackHeight(), request.getShinLength()));
     }
 
-    private Optional<CoreError> validateBackHeight(ChangePersonalSizeRequest request) {
-        return (request.getBackHeight() == null || request.getBackHeight() <= 0)
-                ? Optional.of((new CoreError("backHeight", "Must not be empty!")))
-                : Optional.empty();
-    }
-
-    private Optional<CoreError> validateShinLength(ChangePersonalSizeRequest request) {
-        return (request.getShinLength() == null || request.getShinLength() <= 0)
-                ? Optional.of((new CoreError("shinLength", "Must not be empty!")))
-                : Optional.empty();
-    }
 }
 

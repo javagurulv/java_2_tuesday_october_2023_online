@@ -17,14 +17,14 @@ import static org.mockito.Mockito.when;
 
 
 class ChangePersonalDateValidatorTest {
-    private Database database;
+
     private ClientIdValidator idValidator;
     private PersonalDateValidation personalDateValidation;
     private ChangePersonalDateValidator validator;
 
     @BeforeEach
     public void init() {
-        database = Mockito.mock(Database.class);
+
         idValidator = Mockito.mock(ClientIdValidator.class);
         personalDateValidation = Mockito.mock(PersonalDateValidation.class);
         validator = new ChangePersonalDateValidator(idValidator, personalDateValidation);

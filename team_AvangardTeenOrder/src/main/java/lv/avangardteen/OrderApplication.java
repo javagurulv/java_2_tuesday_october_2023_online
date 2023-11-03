@@ -15,17 +15,19 @@ public class OrderApplication {
     private static DataComponents dataComponents = new DataComponents();
     private static ClientIdValidator idValidator = new ClientIdValidator(database);
     private static PersonalDateValidation personalDateValidation = new PersonalDateValidation();
+    private static PersonalSizeValidator personalSizeValidator = new PersonalSizeValidator();
+    private static ComponentValidator componentValidator = new ComponentValidator(dataComponents);
     private static ClientOrderValidator orderValidator = new ClientOrderValidator(database, dataComponents);
     private static ChangePersonalDateValidator dateValidator = new ChangePersonalDateValidator(idValidator, personalDateValidation);
-    private static ChangePersonalSizeValidator sizeValidator = new ChangePersonalSizeValidator(idValidator);
-    private static ChooseComponentValidator componentValidator = new ChooseComponentValidator(idValidator, dataComponents);
+    private static ChangePersonalSizeValidator sizeValidator = new ChangePersonalSizeValidator(idValidator, personalSizeValidator);
+    private static ChooseComponentValidator chooseComponentValidator = new ChooseComponentValidator(idValidator, componentValidator);
     private static ShowOrderValidator showOrderValidator = new ShowOrderValidator(idValidator);
     private static IdOrderValidator idOrderValidator = new IdOrderValidator(idValidator);
 
     private static ClientService serviceOrder = new ClientService(database, orderValidator);
     private static ChangePersonalDateService service = new ChangePersonalDateService(database, dateValidator);
     private static ChangePersonalSizeService sizeService = new ChangePersonalSizeService(database, sizeValidator);
-    private static ChangeComponentService componentService1 = new ChangeComponentService(database, componentValidator);
+    private static ChangeComponentService componentService1 = new ChangeComponentService(database, chooseComponentValidator);
     private static ShowOrderService orderService = new ShowOrderService(database, showOrderValidator);
     private static DeleteOrderService deleteOrderService = new DeleteOrderService(database, idOrderValidator);
 
