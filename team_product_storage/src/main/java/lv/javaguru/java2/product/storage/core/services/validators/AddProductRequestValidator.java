@@ -1,4 +1,4 @@
-package lv.javaguru.java2.product.storage.core.services;
+package lv.javaguru.java2.product.storage.core.services.validators;
 
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
@@ -20,19 +20,19 @@ public class AddProductRequestValidator {
 
     private Optional<CoreError> validateProductName(AddProductRequest request) {
         return (request.getProductName() == null || request.getProductName().isEmpty())
-                ? Optional.of(new CoreError("Product name", "Must not be empty!"))
+                ? Optional.of(new CoreError("productName", "Must not be empty!"))
                 : Optional.empty();
     }
 
     private Optional<CoreError> validateProductBrand(AddProductRequest request) {
         return (request.getProductBrand() == null || request.getProductBrand().isEmpty())
-                ? Optional.of(new CoreError("Product brand", "Must not be empty!"))
+                ? Optional.of(new CoreError("productBrand", "Must not be empty!"))
                 : Optional.empty();
     }
 
     private Optional<CoreError> validateProductModel(AddProductRequest request) {
         return (request.getProductModel() == null || request.getProductModel().isEmpty())
-                ? Optional.of(new CoreError("Product model", "Must not be empty!"))
+                ? Optional.of(new CoreError("productModel", "Must not be empty!"))
                 : Optional.empty();
     }
 }

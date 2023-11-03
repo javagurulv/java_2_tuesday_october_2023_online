@@ -1,9 +1,10 @@
-package lv.javaguru.java2.product.storage.core.services;
+package lv.javaguru.java2.product.storage.core.services.validators;
 
 import lv.javaguru.java2.product.storage.core.requests.Ordering;
 import lv.javaguru.java2.product.storage.core.requests.Paging;
 import lv.javaguru.java2.product.storage.core.requests.SearchProductsRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
+import lv.javaguru.java2.product.storage.core.services.validators.SearchProductsRequestValidator;
 import org.junit.Test;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class SearchProductsRequestValidatorTest {
 
     private SearchProductsRequestValidator validator = new SearchProductsRequestValidator();
+
 
     @Test
     public void shouldNotReturnErrorsWhenProductBrandIsProvided() {
@@ -120,7 +122,7 @@ public class SearchProductsRequestValidatorTest {
     @Test
     public void shouldReturnErrorWhenPageSizeAreEmpty() {
         Paging paging = new Paging(1, null);
-        SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", paging);
+        SearchProductsRequest request = new SearchProductsRequest ("Apple", "iPhone 15", paging);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "pageSize");
