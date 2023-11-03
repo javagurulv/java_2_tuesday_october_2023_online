@@ -2,6 +2,7 @@ package lv.avangardteen.core.service;
 
 import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
+import lv.avangardteen.core.service.validate.IdOrderValidator;
 import lv.avangardteen.data.Database;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -10,7 +11,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class IdOrderValidatorTest {
     private Database database;

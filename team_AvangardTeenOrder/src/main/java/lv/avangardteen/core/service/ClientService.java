@@ -7,7 +7,7 @@ import lv.avangardteen.WheelchairComponent;
 import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.ClientResponse;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.core.service.validate.ClientOrderValidator;
 import lv.avangardteen.data.Database;
 
 import java.util.List;

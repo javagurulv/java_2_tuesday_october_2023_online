@@ -4,6 +4,7 @@ import lv.avangardteen.Client;
 import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.DeleteOrderResponse;
+import lv.avangardteen.core.service.validate.IdOrderValidator;
 import lv.avangardteen.data.Database;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

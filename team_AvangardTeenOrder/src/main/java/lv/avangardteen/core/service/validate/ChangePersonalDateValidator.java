@@ -1,4 +1,4 @@
-package lv.avangardteen.core.service;
+package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.Client;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;

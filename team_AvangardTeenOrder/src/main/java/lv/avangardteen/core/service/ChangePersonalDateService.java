@@ -4,7 +4,7 @@ import lv.avangardteen.Client;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.core.service.validate.ChangePersonalDateValidator;
 import lv.avangardteen.data.Database;
 
 import java.util.List;

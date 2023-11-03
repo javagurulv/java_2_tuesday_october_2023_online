@@ -1,14 +1,11 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.Client;
-import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.request.DeleteOrderRequest;
 
-import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.DeleteOrderResponse;
 
-import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.core.service.validate.IdOrderValidator;
 import lv.avangardteen.data.Database;
 
 import java.util.List;

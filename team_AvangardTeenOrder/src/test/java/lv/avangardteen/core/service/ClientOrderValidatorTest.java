@@ -1,9 +1,8 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.Client;
-import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.CoreError;
+import lv.avangardteen.core.service.validate.ClientOrderValidator;
 import lv.avangardteen.data.DataComponents;
 import lv.avangardteen.data.Database;
 import org.junit.jupiter.api.Test;

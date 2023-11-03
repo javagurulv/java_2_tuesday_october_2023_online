@@ -1,10 +1,10 @@
 package lv.avangardteen.core.service;
 
 import lv.avangardteen.Client;
-import lv.avangardteen.UserSizes;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.responce.CoreError;
+import lv.avangardteen.core.service.validate.ChangePersonalSizeValidator;
 import lv.avangardteen.data.Database;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

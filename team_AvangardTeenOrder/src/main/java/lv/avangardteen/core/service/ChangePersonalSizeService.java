@@ -4,10 +4,9 @@ import lv.avangardteen.Client;
 import lv.avangardteen.UserSizes;
 import lv.avangardteen.Wheelchair;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
-import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.core.service.validate.ChangePersonalSizeValidator;
 import lv.avangardteen.data.Database;
 
 import java.util.List;
