@@ -6,15 +6,15 @@ import fitness_club.core.domain.Client;
 
 import java.util.List;
 
-public class ClientResponse extends CoreResponse {
+public class AddClientResponse extends CoreResponse {
 
     private Client newClient;
 
-    public ClientResponse(List<CoreError> errors) {
+    public AddClientResponse(List<CoreError> errors) {
         super(errors);
     }
 
-    public ClientResponse(Client newClient) {
+    public AddClientResponse(Client newClient) {
         this.newClient = newClient;
     }
 
