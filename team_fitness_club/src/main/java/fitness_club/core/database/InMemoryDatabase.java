@@ -2,6 +2,7 @@ package fitness_club.core.database;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import fitness_club.core.domain.Client;
@@ -17,11 +18,16 @@ public class InMemoryDatabase implements Database {
         clients.add(client);
     }
 
-    public void removeClient(String personalCode) {
-        clients.stream()
+    public boolean deleteClientByPersonalCode(String personalCode) {
+        boolean isClientDeleted = false;
+        Optional<Client> clientToDeleteOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
-                .findFirst()
-                .ifPresent(client -> clients.remove(client));
+                .findFirst();
+        if (clientToDeleteOpt.isPresent()) {
+            Client clientToRemove = clientToDeleteOpt.get();
+           isClientDeleted = clients.remove(clientToRemove);
+        }
+        return isClientDeleted;
     }
 
     public List<Client> getAllClients() {

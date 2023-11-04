@@ -1,40 +1,31 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.Database;
-import fitness_club.core.requests.DeleteClientRequest;
-import fitness_club.core.responses.DeleteClientResponse;
+import fitness_club.core.requests.RemoveClientRequest;
+import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.data_vlidation.CoreError;
-import fitness_club.data_vlidation.DeleteClientRequestValidator;
+import fitness_club.data_vlidation.RemoveClientRequestValidator;
 
 import java.util.List;
 
 public class DeleteClientService {
 
     private Database database;
-    private DeleteClientRequestValidator validator;
+    private RemoveClientRequestValidator validator;
 
     public DeleteClientService(Database database,
-                               DeleteClientRequestValidator validator) {
+                               RemoveClientRequestValidator validator) {
         this.validator = validator;
         this.database = database;
     }
 
-    public DeleteClientResponse execute(DeleteClientRequest request) {
-
+    public RemoveClientResponse execute(RemoveClientRequest request) {
         List<CoreError> errors = validator.validate(request);
-
-        return errors.isEmpty()
-                ? deleteClientLogic(request)
-                : buildErrorResponse(errors);
-    }
-
-    private DeleteClientResponse buildErrorResponse(List<CoreError> errors) {
-        return new DeleteClientResponse(errors);
-    }
-
-    private DeleteClientResponse deleteClientLogic(DeleteClientRequest request) {
-        database.removeClient(request.getPersonalCode());
-        return new DeleteClientResponse();
+        if (!errors.isEmpty()) {
+            return new RemoveClientResponse(errors);
+        }
+        boolean isClientRemoved = database.deleteClientByPersonalCode(request.getPersonalCode());
+        return new RemoveClientResponse(isClientRemoved);
     }
 }
 

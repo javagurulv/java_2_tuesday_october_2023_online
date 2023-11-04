@@ -1,18 +1,18 @@
 package fitness_club.data_vlidation;
 
-import fitness_club.core.requests.DeleteClientRequest;
+import fitness_club.core.requests.RemoveClientRequest;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class DeleteClientValidationTest {
-    private DeleteClientRequestValidator requestValidator = new DeleteClientRequestValidator();
+class RemoveClientValidationTest {
+    private RemoveClientRequestValidator requestValidator = new RemoveClientRequestValidator();
 
     @Test
     void shouldReturnErrorWhenClientPersonalCodeIsNull() {
-        DeleteClientRequest request = mock(DeleteClientRequest.class);
+        RemoveClientRequest request = mock(RemoveClientRequest.class);
         {
             when(request.getPersonalCode()).thenReturn(null);
             List<CoreError> errors = requestValidator.validate(request);
@@ -25,7 +25,7 @@ class DeleteClientValidationTest {
 
     @Test
     void shouldReturnErrorWhenClientPersonaCodeIsEmpty() {
-        DeleteClientRequest request = mock(DeleteClientRequest.class);
+        RemoveClientRequest request = mock(RemoveClientRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("");
             List<CoreError> errors = requestValidator.validate(request);
@@ -38,7 +38,7 @@ class DeleteClientValidationTest {
 
     @Test
     void shouldNotReturnErrorWhenPersonalCodeIsPresent() {
-        DeleteClientRequest request = mock(DeleteClientRequest.class);
+        RemoveClientRequest request = mock(RemoveClientRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("personalCode");
             List<CoreError> errors = requestValidator.validate(request);

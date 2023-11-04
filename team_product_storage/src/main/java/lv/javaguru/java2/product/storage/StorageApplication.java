@@ -4,9 +4,7 @@ import lv.javaguru.java2.product.storage.console_ui.*;
 import lv.javaguru.java2.product.storage.core.database.Database;
 import lv.javaguru.java2.product.storage.core.database.InMemoryDatabase;
 import lv.javaguru.java2.product.storage.core.services.*;
-import lv.javaguru.java2.product.storage.core.services.validators.AddProductRequestValidator;
-import lv.javaguru.java2.product.storage.core.services.validators.RemoveProductRequestValidator;
-import lv.javaguru.java2.product.storage.core.services.validators.SearchProductsRequestValidator;
+import lv.javaguru.java2.product.storage.core.services.validators.*;
 
 import java.util.Scanner;
 
@@ -18,7 +16,12 @@ public class StorageApplication {
 
     private static RemoveProductRequestValidator removeProductRequestValidator = new RemoveProductRequestValidator();
 
-    private static SearchProductsRequestValidator searchProductsRequestValidator = new SearchProductsRequestValidator();
+    private static SearchProductsRequestFieldValidator searchProductsRequestFieldValidator = new SearchProductsRequestFieldValidator();
+    private static OrderingValidator orderingValidator = new OrderingValidator();
+    private static PagingValidator pagingValidator = new PagingValidator();
+    private static SearchProductsRequestValidator searchProductsRequestValidator = new SearchProductsRequestValidator(
+            searchProductsRequestFieldValidator, orderingValidator, pagingValidator
+    );
     private static AddProductService addProductService = new AddProductService(database, addProductRequestValidator);
     private static RemoveProductService removeProductService = new RemoveProductService(database, removeProductRequestValidator);
     private static GetAllProductsService getAllProductService = new GetAllProductsService(database);

@@ -1,15 +1,15 @@
 package fitness_club.console_UI;
 
-import fitness_club.core.requests.DeleteClientRequest;
-import fitness_club.core.responses.DeleteClientResponse;
+import fitness_club.core.requests.RemoveClientRequest;
+import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.services.DeleteClientService;
 
 import java.util.Scanner;
 
-public class DeleteClientUIAction implements UIAction {
+public class RemoveClientUIAction implements UIAction {
     private DeleteClientService deleteClientService;
 
-    public DeleteClientUIAction(DeleteClientService deleteClientService) {
+    public RemoveClientUIAction(DeleteClientService deleteClientService) {
         this.deleteClientService = deleteClientService;
     }
 
@@ -18,14 +18,18 @@ public class DeleteClientUIAction implements UIAction {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter client personal code: ");
         String clientPersonalCode = scanner.nextLine();
-        DeleteClientRequest request = new DeleteClientRequest(clientPersonalCode);
-        DeleteClientResponse response = deleteClientService.execute(request);
+        RemoveClientRequest request = new RemoveClientRequest(clientPersonalCode);
+        RemoveClientResponse response = deleteClientService.execute(request);
         deleteClientService.execute(request);
 
-        if (response.containsErrors()) {
+        if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
         } else {
-                System.out.println("Client was removed from  list.");
+            if (response.isClientRemoved()) {
+                System.out.println("Client was removed from list.");
+            } else {
+                System.out.println("Client was not removed from list.");
+            }
         }
     }
 }

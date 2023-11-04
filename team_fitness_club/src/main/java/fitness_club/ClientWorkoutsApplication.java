@@ -3,7 +3,6 @@ package fitness_club;
 import fitness_club.console_UI.*;
 import fitness_club.core.database.Database;
 import fitness_club.core.database.InFileDatabase;
-import fitness_club.core.database.InMemoryDatabase;
 import fitness_club.core.services.*;
 import fitness_club.data_vlidation.*;
 
@@ -13,7 +12,7 @@ public class ClientWorkoutsApplication {
     private static Database database = new InFileDatabase();
 
     private static AddClientRequestValidator addClientValidator = new AddClientRequestValidator();
-    private static DeleteClientRequestValidator deleteClientRequestValidator = new DeleteClientRequestValidator();
+    private static RemoveClientRequestValidator deleteClientRequestValidator = new RemoveClientRequestValidator();
     private static ChangeClientAgeGroupValidator changeClientAgeGroupValidator = new ChangeClientAgeGroupValidator();
     private static ChangeClientWorkoutsValidator changeClientWorkoutsValidator = new ChangeClientWorkoutsValidator();
     private static SearchClientRequestValidator searchClientRequestValidator= new SearchClientRequestValidator();
@@ -26,7 +25,7 @@ public class ClientWorkoutsApplication {
     private static SearchClientService searchClientService = new SearchClientService(database, searchClientRequestValidator);
 
     private static UIAction addClientUIAction = new AddClientUIAction(addClientService);
-    private static UIAction deleteClientUIAction = new DeleteClientUIAction(deleteClientService);
+    private static UIAction deleteClientUIAction = new RemoveClientUIAction(deleteClientService);
     private static UIAction getAllClientsUIAction = new GetAllClientsUIAction(getAllClientsService);
     private static UIAction changeClientAgeGroupUIAction = new ChangeClientAgeGroupUIAction(changeClientAgeGroupService);
     private static UIAction changeWorkoutUIAction = new ChangeWorkoutUIAction(changeClientWorkoutService);

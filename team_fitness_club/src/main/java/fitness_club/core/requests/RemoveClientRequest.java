@@ -1,10 +1,10 @@
 package fitness_club.core.requests;
 
-public class DeleteClientRequest {
+public class RemoveClientRequest {
 
     private String personalCode;
 
-    public DeleteClientRequest(String personalCode) {
+    public RemoveClientRequest(String personalCode) {
         this.personalCode = personalCode;
     }
 
