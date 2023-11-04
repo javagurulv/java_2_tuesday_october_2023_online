@@ -8,6 +8,8 @@ dependencies {
 		exclude (group: 'ch.qos.logback', module: 'logback-classic')
 	}
 
+	implementation('com.fasterxml.jackson.core:jackson-core:2.14.2')
+
 	test {
 		useJUnitPlatform()
 	}

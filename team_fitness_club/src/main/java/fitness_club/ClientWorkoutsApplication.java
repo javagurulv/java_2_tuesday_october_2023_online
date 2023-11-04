@@ -15,7 +15,10 @@ public class ClientWorkoutsApplication {
     private static RemoveClientRequestValidator deleteClientRequestValidator = new RemoveClientRequestValidator();
     private static ChangeClientAgeGroupValidator changeClientAgeGroupValidator = new ChangeClientAgeGroupValidator();
     private static ChangeClientWorkoutsValidator changeClientWorkoutsValidator = new ChangeClientWorkoutsValidator();
-    private static SearchClientRequestValidator searchClientRequestValidator= new SearchClientRequestValidator();
+    private static SearchClientRequestFieldValidator fieldValidator = new SearchClientRequestFieldValidator();
+    private static OrderingValidator orderingValidator = new OrderingValidator();
+    private static PagingValidator pagingValidator = new PagingValidator();
+    private static SearchClientRequestValidator searchClientRequestValidator= new SearchClientRequestValidator(fieldValidator, orderingValidator, pagingValidator);
 
     private static AddClientService addClientService = new AddClientService(database, addClientValidator);
     private static DeleteClientService deleteClientService = new DeleteClientService(database, deleteClientRequestValidator);

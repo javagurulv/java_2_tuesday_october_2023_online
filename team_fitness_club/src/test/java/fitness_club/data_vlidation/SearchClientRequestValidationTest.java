@@ -11,7 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SearchClientRequestValidationTest {
 
-    SearchClientRequestValidator validator = new SearchClientRequestValidator();
+    SearchClientRequestFieldValidator fieldValidator = new SearchClientRequestFieldValidator();
+    OrderingValidator orderingValidator = new OrderingValidator();
+    PagingValidator pagingValidator = new PagingValidator();
+
+    SearchClientRequestValidator validator = new SearchClientRequestValidator(fieldValidator, orderingValidator, pagingValidator);
 
     @Test
     public void shouldNotReturnErrorsWhenFirstNameIsProvided() {
