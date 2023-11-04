@@ -1,6 +1,7 @@
 package lv.avangardteen;
 
 import lv.avangardteen.UIAction.*;
+import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.service.*;
 import lv.avangardteen.core.service.validate.*;
 import lv.avangardteen.data.DataComponents;
@@ -10,64 +11,76 @@ import lv.avangardteen.data.Database;
 import java.util.Scanner;
 
 public class OrderApplication {
+    private static ApplicationContext applicationContext = new ApplicationContext();
 
-    private static Database database = new DataOrders();
-    private static DataComponents dataComponents = new DataComponents();
-    private static ClientIdValidator idValidator = new ClientIdValidator(database);
-    private static PersonalDateValidation personalDateValidation = new PersonalDateValidation();
-    private static PersonalSizeValidator personalSizeValidator = new PersonalSizeValidator();
-    private static ComponentValidator componentValidator = new ComponentValidator(dataComponents);
-    private static ClientOrderValidator orderValidator = new ClientOrderValidator(personalDateValidation, personalSizeValidator, componentValidator);
-    private static ChangePersonalDateValidator dateValidator = new ChangePersonalDateValidator(idValidator, personalDateValidation);
-    private static ChangePersonalSizeValidator sizeValidator = new ChangePersonalSizeValidator(idValidator, personalSizeValidator);
-    private static ChooseComponentValidator chooseComponentValidator = new ChooseComponentValidator(idValidator, componentValidator);
-    private static ShowOrderValidator showOrderValidator = new ShowOrderValidator(idValidator);
-    private static IdOrderValidator idOrderValidator = new IdOrderValidator(idValidator);
-
-    private static ClientService serviceOrder = new ClientService(database, orderValidator);
-    private static ChangePersonalDateService service = new ChangePersonalDateService(database, dateValidator);
-    private static ChangePersonalSizeService sizeService = new ChangePersonalSizeService(database, sizeValidator);
-    private static ChangeComponentService componentService1 = new ChangeComponentService(database, chooseComponentValidator);
-    private static ShowOrderService orderService = new ShowOrderService(database, showOrderValidator);
-    private static DeleteOrderService deleteOrderService = new DeleteOrderService(database, idOrderValidator);
-
-    private static UIAction orderIUAction = new OrderUIAction(serviceOrder);
-    private static UIAction dateUIAction = new ChangePersonalDateUIAction(service);
-    private static UIAction sizeUIAction = new ChangePersonalSizeUIAction(sizeService);
-    private static UIAction componentsUIAction = new ChangeComponentsUIAction(componentService1);
-    private static UIAction showOrderUIAction = new ShowOrderUIAction(orderService);
-    private static UIAction menuUIAction = new ShowMenuUIAction();
-    private static UIAction deleteOrder = new DeleteOrderUIAction(deleteOrderService);
 
     public static void main(String[] args) {
 
-        Scanner scan = new Scanner(System.in);
         while (true) {
-            menuUIAction.execute();
-            int choose = scan.nextInt();
-            switch (choose) {
-                case (1):
-                    orderIUAction.execute();
-                    break;
-                case (2):
-                    showOrderUIAction.execute();
-                    break;
-                case (3):
-                    dateUIAction.execute();
-                    break;
-                case (4):
-                    sizeUIAction.execute();
-                    break;
-                case (5):
-                    componentsUIAction.execute();
-                    break;
-                case (6):
-                    deleteOrder.execute();
-                case (7):
-                    System.exit(0);
-            }
+            printProgramMenu();
+            int menuNumber = getMenuNumberFromUser();
+            executeSelectedMenuItem(menuNumber);
         }
     }
 
+    private static int getMenuNumberFromUser() {
+        System.out.println("Enter menu item number to execute:");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
+    }
+
+    private static void printProgramMenu() {
+        System.out.println();
+        System.out.println("Заказ на инвалидное кресло Avangard Teen");
+        System.out.println("1. Оформить бланк заказа");
+        System.out.println("2. Просмотреть бланк заказа");
+        System.out.println("3. Внести изменения в личные данные");
+        System.out.println("4. Внести изменения в антропометрические данные");
+        System.out.println("5. Внести изменения в выборе компонентов");
+        System.out.println("6. Удалить заказ");
+        System.out.println("7. Согласиться с выбором и выйти из меню");
+        System.out.println();
+    }
+
+    private static void executeSelectedMenuItem(int selectedMenu) {
+
+        switch (selectedMenu) {
+            case (1): {
+                OrderUIAction uiAction = applicationContext.getBean(OrderUIAction.class);
+                uiAction.execute();
+                break;
+            }
+            case (2): {
+                ShowOrderUIAction uiAction = applicationContext.getBean(ShowOrderUIAction.class);
+                uiAction.execute();
+                break;
+            }
+            case (3): {
+                ChangePersonalDateUIAction uiAction = applicationContext.getBean(ChangePersonalDateUIAction.class);
+                uiAction.execute();
+                break;
+            }
+            case (4): {
+                ChangePersonalSizeUIAction uiAction = applicationContext.getBean(ChangePersonalSizeUIAction.class);
+                uiAction.execute();
+                break;
+            }
+            case (5): {
+                ChangeComponentsUIAction uiAction = applicationContext.getBean(ChangeComponentsUIAction.class);
+                uiAction.execute();
+                break;
+            }
+            case (6): {
+                DeleteOrderUIAction uiAction = applicationContext.getBean(DeleteOrderUIAction.class);
+                uiAction.execute();
+                break;
+            }
+            case (7): {
+                ExitUIAction uiAction = applicationContext.getBean(ExitUIAction.class);
+                uiAction.execute();
+                break;
+            }
+        }
+    }
 }
 
