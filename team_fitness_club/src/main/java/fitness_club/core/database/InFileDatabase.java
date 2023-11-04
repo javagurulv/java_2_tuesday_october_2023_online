@@ -34,11 +34,14 @@ public class InFileDatabase implements Database {
         if (clientToDeleteOpt.isPresent()) {
             Client clientToRemove = clientToDeleteOpt.get();
             isClientDeleted = clients.remove(clientToRemove);
+            updateClientIds(clients);
+            saveClient(clients);
         }
         return isClientDeleted;
     }
 
     public List<Client> getAllClients() {
+        loadClientsFromFile();
         return clients;
     }
 
@@ -85,6 +88,16 @@ public class InFileDatabase implements Database {
                 .filter(client -> client.getFirstName().equals(firstName))
                 .filter(client -> client.getLastName().equals(lastName))
                 .collect(Collectors.toList());
+    }
+
+    private void loadClientsFromFile() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+            List<Client> loadedClients = (List<Client>) ois.readObject();
+            clients.clear();
+            clients.addAll(loadedClients);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 
