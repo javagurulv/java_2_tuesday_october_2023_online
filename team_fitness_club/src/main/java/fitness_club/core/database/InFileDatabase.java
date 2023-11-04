@@ -13,6 +13,7 @@ import fitness_club.core.responses.SearchClientResponse;
 public class InFileDatabase implements Database {
 
     private final String filename;
+    private List<Client> clients = new ArrayList<>();
 
     public InFileDatabase() {
         this.filename = ".\\team_fitness_club\\src\\main\\java\\fitness_club\\core\\database\\ClientsFile.bin";
@@ -25,26 +26,19 @@ public class InFileDatabase implements Database {
         saveClient(clients);
     }
 
-    public void removeClient(String personalCode) {
-        List<Client> clients = getAllClients();
-        Optional<Client> clientToRemove = clients.stream()
+    public boolean deleteClientByPersonalCode(String personalCode) {
+        boolean isClientDeleted = false;
+        Optional<Client> clientToDeleteOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
                 .findFirst();
-        if (clientToRemove.isPresent()) {
-            clients.remove(clientToRemove.get());
-            updateClientIds(clients);
-            saveClient(clients);
+        if (clientToDeleteOpt.isPresent()) {
+            Client clientToRemove = clientToDeleteOpt.get();
+            isClientDeleted = clients.remove(clientToRemove);
         }
+        return isClientDeleted;
     }
 
-
     public List<Client> getAllClients() {
-        List<Client> clients = new ArrayList<>();
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
-            clients = (List<Client>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
         return clients;
     }
 
@@ -70,6 +64,7 @@ public class InFileDatabase implements Database {
             clients.get(i).setId((long) (i + 1));
         }
     }
+
     @Override
     public List<Client> findByFirstName(String firstName) {
         return getAllClients().stream()

@@ -7,7 +7,7 @@ import java.util.List;
 public interface Database {
     void addClient(Client client);
 
-    void removeClient(String personalCode);
+    boolean deleteClientByPersonalCode(String personalCode);
 
     List<Client> getAllClients();
 
