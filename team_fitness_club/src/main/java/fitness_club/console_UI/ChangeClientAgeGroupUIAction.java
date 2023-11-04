@@ -3,6 +3,7 @@ package fitness_club.console_UI;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import fitness_club.core.responses.AddClientResponse;
+import fitness_club.core.responses.ChangeClientAgeGroupResponse;
 import fitness_club.core.services.ChangeClientAgeGroupService;
 import fitness_club.core.services.GetClientAgeGroupService;
 
@@ -29,7 +30,7 @@ public class ChangeClientAgeGroupUIAction implements UIAction {
         ClientAgeGroups newClientAgeGroups = GetClientAgeGroupService.getClientAgeGroup(Integer.parseInt(scanner.nextLine()));
 
         ChangeClientAgeGroupRequest request = new ChangeClientAgeGroupRequest(clientPersonalCode, newClientAgeGroups);
-        AddClientResponse response = changeClientAgeGroupService.execute(request);
+        ChangeClientAgeGroupResponse response = changeClientAgeGroupService.execute(request);
 
         System.out.println("Client age group has been changed.");
     }

@@ -1,6 +1,7 @@
 package fitness_club.core.database;
 
 import fitness_club.core.domain.Client;
+import fitness_club.core.domain.ClientAgeGroups;
 
 import java.util.List;
 
@@ -10,6 +11,8 @@ public interface Database {
     boolean deleteClientByPersonalCode(String personalCode);
 
     List<Client> getAllClients();
+
+    boolean clientAgeGroupChangedByPersonalCode(String personalCode);
 
     void saveClient(List<Client> clients);
 

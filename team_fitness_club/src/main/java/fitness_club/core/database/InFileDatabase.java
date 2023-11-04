@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import fitness_club.core.domain.Client;
+import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
 
@@ -40,6 +41,20 @@ public class InFileDatabase implements Database {
 
     public List<Client> getAllClients() {
         return clients;
+    }
+
+    @Override
+    public boolean clientAgeGroupChangedByPersonalCode(String personalCode) {
+        boolean isClientAgeGroupChanged = false;
+        Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst();
+        if (clientToChangeAgeGroupOpt.isPresent()) {
+            Client clientToChangeAgeGroup = clientToChangeAgeGroupOpt.get();
+            isClientAgeGroupChanged = clients.add(clientToChangeAgeGroup);
+        }
+
+        return isClientAgeGroupChanged;
     }
 
     public void saveClient(List<Client> clients) {

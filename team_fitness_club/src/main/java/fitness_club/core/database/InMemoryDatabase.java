@@ -34,6 +34,19 @@ public class InMemoryDatabase implements Database {
         return clients;
     }
 
+    @Override
+    public boolean clientAgeGroupChangedByPersonalCode(String personalCode) {
+        boolean isClientAgeGroupChanged = false;
+        Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst();
+        if (clientToChangeAgeGroupOpt.isPresent()) {
+            Client clientToChangeAgeGroup = clientToChangeAgeGroupOpt.get();
+            isClientAgeGroupChanged = clients.add(clientToChangeAgeGroup);
+        }
+        return isClientAgeGroupChanged;
+    }
+
     public void saveClient(List<Client> clients) {
     }
 
