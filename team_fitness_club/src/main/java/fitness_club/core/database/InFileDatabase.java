@@ -36,7 +36,6 @@ public class InFileDatabase implements Database {
             Client clientToRemove = clientToDeleteOpt.get();
             isClientDeleted = clients.remove(clientToRemove);
             updateClientIds(clients);
-            saveClient(clients);
         }
         return isClientDeleted;
     }
@@ -55,6 +54,7 @@ public class InFileDatabase implements Database {
         if (clientToChangeAgeGroupOpt.isPresent()) {
             Client clientToChangeAgeGroup = clientToChangeAgeGroupOpt.get();
             isClientAgeGroupChanged = clients.add(clientToChangeAgeGroup);
+            updateClientIds(clients);
         }
 
         return isClientAgeGroupChanged;

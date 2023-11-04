@@ -26,6 +26,8 @@ public class InMemoryDatabase implements Database {
         if (clientToDeleteOpt.isPresent()) {
             Client clientToRemove = clientToDeleteOpt.get();
            isClientDeleted = clients.remove(clientToRemove);
+            updateClientIds(clients);
+            saveClient(clients);
         }
         return isClientDeleted;
     }
@@ -43,6 +45,8 @@ public class InMemoryDatabase implements Database {
         if (clientToChangeAgeGroupOpt.isPresent()) {
             Client clientToChangeAgeGroup = clientToChangeAgeGroupOpt.get();
             isClientAgeGroupChanged = clients.add(clientToChangeAgeGroup);
+            updateClientIds(clients);
+            saveClient(clients);
         }
         return isClientAgeGroupChanged;
     }
@@ -71,6 +75,10 @@ public class InMemoryDatabase implements Database {
                 .filter(client -> client.getLastName().equals(lastName))
                 .collect(Collectors.toList());
     }
-
+    private void updateClientIds(List<Client> clients) {
+        for (int i = 0; i < clients.size(); i++) {
+            clients.get(i).setId((long) (i + 1));
+        }
+    }
 
 }
