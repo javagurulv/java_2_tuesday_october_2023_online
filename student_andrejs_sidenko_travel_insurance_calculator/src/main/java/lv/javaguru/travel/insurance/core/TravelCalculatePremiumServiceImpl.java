@@ -1,5 +1,6 @@
 package lv.javaguru.travel.insurance.core;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumResponse;
 import lv.javaguru.travel.insurance.dto.ValidationError;
