@@ -1,89 +1,68 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.Client;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChooseComponentValidator;
-import lv.avangardteen.data.DataComponents;
-import lv.avangardteen.data.Database;
+import lv.avangardteen.core.service.validate.ClientIdValidator;
+import lv.avangardteen.core.service.validate.ComponentValidator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 class ChooseComponentValidatorTest {
-
+    private ClientIdValidator idValidator;
+    private ComponentValidator componentValidator;
     private ChooseComponentValidator validator;
 
-    @Test
-    public  void clientNotFound() {
-        Database database = Mockito.mock(Database.class);
-        DataComponents dataComponents = Mockito.mock(DataComponents.class);
-        ChangeComponentRequest request = new ChangeComponentRequest(1L, 11, 21, 31, 41);
-        Mockito.when(database.getClient(request.getId())).thenReturn(null);
-        Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
-        validator = new ChooseComponentValidator(database, dataComponents);
-        List<CoreError> errors = validator.validate(request);
-        assertFalse(errors.isEmpty());
-        assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "idClient");
-        assertEquals(errors.get(0).getMessage(), "Order with this id not found!");
-
-    }
-
-
-    @Test
-    public  void indexFrontWheelIsAbsent() {
-        Database database = Mockito.mock(Database.class);
-        DataComponents dataComponents = Mockito.mock(DataComponents.class);
-        ChangeComponentRequest request = new ChangeComponentRequest(1L, null, 21, 31, 41);
-       Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
-       Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
-        validator = new ChooseComponentValidator(database, dataComponents);
-        List<CoreError> errors = validator.validate(request);
-        assertFalse(errors.isEmpty());
-        assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "indexFrontWheel");
-        assertEquals(errors.get(0).getMessage(), "This index is absent!");
-
-    }
-
-
-
-    @Test
-    public  void indexBackWheelIsAbsent() {
-        Database database = Mockito.mock(Database.class);
-        DataComponents dataComponents = Mockito.mock(DataComponents.class);
-        ChangeComponentRequest request = new ChangeComponentRequest(1L, 12, 25, 31, 41);
-        Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
-        Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
-        validator = new ChooseComponentValidator(database, dataComponents);
-        List<CoreError> errors = validator.validate(request);
-        assertFalse(errors.isEmpty());
-        assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "indexBackWheel");
-        assertEquals(errors.get(0).getMessage(), "This index is absent!");
-
+    @BeforeEach
+    public void init() {
+        idValidator = Mockito.mock(ClientIdValidator.class);
+        componentValidator = Mockito.mock(ComponentValidator.class);
+        validator = new ChooseComponentValidator(idValidator, componentValidator);
     }
 
     @Test
-    public  void indexBrakeAndArmrestIsAbsent() {
-        Database database = Mockito.mock(Database.class);
-        DataComponents dataComponents = Mockito.mock(DataComponents.class);
-        ChangeComponentRequest request = new ChangeComponentRequest(1L, 12, 22, 34, 44);
-        Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
-        Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
-        validator = new ChooseComponentValidator(database, dataComponents);
+    public void shouldNotReturnErrorsWhenIdValidatorReturnNoErrors() {
+        ChangeComponentRequest request = new ChangeComponentRequest(2l,
+                11, 21, 31, 41);
+        when(idValidator.validate(request.getId())).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
-        assertFalse(errors.isEmpty());
-        assertEquals(errors.size(), 2);
-        assertEquals(errors.get(0).getField(), "indexBrake");
-        assertEquals(errors.get(0).getMessage(), "This index is absent!");
-        assertEquals(errors.get(1).getField(), "indexArmrest");
-        assertEquals(errors.get(1).getMessage(), "This index is absent!");
+        assertEquals(errors.size(), 0);
+    }
 
+    @Test
+    public void shouldReturnErrorsWhenIdValidatorReturnErrors() {
+        ChangeComponentRequest request = new ChangeComponentRequest(2l,
+                11, 21, 31, 41);
+        when(idValidator.validate(request.getId())).thenReturn(List.of(new CoreError("errors", "message")));
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+    }
+
+    @Test
+    public void shouldNotReturnErrorsWhenComponentValidatorReturnNoErrors() {
+        ChangeComponentRequest request = new ChangeComponentRequest(2l,
+                11, 21, 31, 41);
+        when(componentValidator.validate(request.getWheelFrontChoose(),
+                request.getWheelBackChoose(), request.getBrakeChoose(), request.getArmrestChoose())).thenReturn(List.of());
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 0);
+    }
+
+    @Test
+    public void shouldReturnErrorsWhenComponentValidatorReturnErrors() {
+        ChangeComponentRequest request = new ChangeComponentRequest(2l,
+                11, 21, 31, 41);
+        when(componentValidator.validate(request.getWheelFrontChoose(),
+                request.getWheelBackChoose(), request.getBrakeChoose(), request.getArmrestChoose()))
+                .thenReturn(List.of(new CoreError("errors", "message")));
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
     }
 
 }

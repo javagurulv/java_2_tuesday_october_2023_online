@@ -31,12 +31,13 @@ public class DeleteOrderUIAction implements UIAction{
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->
-                    System.out.println("ErrorInputs: " + coreError.getField() + " " + coreError.getMessage()));
+                    System.out.println("ErrorInput: " + coreError.getField() + " " + coreError.getMessage()));
         }
         if (response.isOrderRemoved()) {
             System.out.println("Ваш заказ удален.");
         } else {
             System.out.println("Ваш заказ не удален");
+
         }
         } catch (InputMismatchException e) {
             System.out.println("Must input only digits!");

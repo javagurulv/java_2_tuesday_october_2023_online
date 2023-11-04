@@ -13,23 +13,15 @@ import java.util.Optional;
 
 public class ShowOrderValidator {
 
-    private Database database;
+    private ClientIdValidator idValidator;
 
-    public ShowOrderValidator(Database database) {
-        this.database = database;
+    public ShowOrderValidator(ClientIdValidator idValidator) {
+        this.idValidator = idValidator;
     }
 
     public List<CoreError> validate(ShowOrderRequest request) {
-        List<CoreError> errors = new ArrayList<>();
-        clientNotFound(request).ifPresent(errors::add);
+        List<CoreError> errors = idValidator.validate(request.getId());
         return errors;
-    }
-
-    public Optional<CoreError> clientNotFound(ShowOrderRequest request) {
-        return (database.getClient(request.getId()) == null)
-                ? Optional.of(new CoreError("idClient", "Order with this id not found!"))
-                : Optional.empty();
-
     }
 
 }

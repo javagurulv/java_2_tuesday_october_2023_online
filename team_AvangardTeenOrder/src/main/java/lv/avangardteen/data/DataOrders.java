@@ -26,7 +26,7 @@ public class DataOrders implements Database {
     }
 
     @Override
-    public boolean deleteUser(long id) {
+    public boolean deleteUser(Long id) {
         boolean isClientDelete = false;
         Optional<Client> clientToDelete = clients.stream()
                 .filter(client -> client.getId() == id)
@@ -40,7 +40,7 @@ public class DataOrders implements Database {
     }
 
     @Override
-    public Client getClient(long id) {
+    public Client getClient(Long id) {
         List<Client> clientList = getClients();
         Client clientSearch = null;
         for (Client client : clientList) {

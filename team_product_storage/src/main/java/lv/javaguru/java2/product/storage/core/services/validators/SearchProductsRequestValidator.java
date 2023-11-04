@@ -1,4 +1,4 @@
-package lv.javaguru.java2.product.storage.core.services;
+package lv.javaguru.java2.product.storage.core.services.validators;
 
 import lv.javaguru.java2.product.storage.core.requests.Ordering;
 import lv.javaguru.java2.product.storage.core.requests.Paging;
