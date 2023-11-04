@@ -25,11 +25,12 @@ public class InMemoryDatabase implements Database {
                 .findFirst();
         if (clientToDeleteOpt.isPresent()) {
             Client clientToRemove = clientToDeleteOpt.get();
-           isClientDeleted = clients.remove(clientToRemove);
+            isClientDeleted = clients.remove(clientToRemove);
             updateClientIds(clients);
             saveClient(clients);
         }
         return isClientDeleted;
+
     }
 
     public List<Client> getAllClients() {

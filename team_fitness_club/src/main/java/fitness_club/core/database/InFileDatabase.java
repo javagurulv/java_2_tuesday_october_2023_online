@@ -12,7 +12,7 @@ import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
 
 public class InFileDatabase implements Database {
-
+    private ClientAgeGroups ageGroups;
     private final String filename;
     private List<Client> clients = new ArrayList<>();
 
@@ -36,8 +36,10 @@ public class InFileDatabase implements Database {
             Client clientToRemove = clientToDeleteOpt.get();
             isClientDeleted = clients.remove(clientToRemove);
             updateClientIds(clients);
+            saveClient(clients);
         }
         return isClientDeleted;
+
     }
 
     public List<Client> getAllClients() {
@@ -55,6 +57,7 @@ public class InFileDatabase implements Database {
             Client clientToChangeAgeGroup = clientToChangeAgeGroupOpt.get();
             isClientAgeGroupChanged = clients.add(clientToChangeAgeGroup);
             updateClientIds(clients);
+            saveClient(clients);
         }
 
         return isClientAgeGroupChanged;
