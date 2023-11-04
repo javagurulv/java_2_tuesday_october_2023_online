@@ -1,4 +1,4 @@
-package fitness_club.services;
+package fitness_club.core.services;
 
 import fitness_club.core.database.Database;
 import fitness_club.core.responses.AddClientResponse;

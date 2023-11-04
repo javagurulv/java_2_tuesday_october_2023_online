@@ -7,7 +7,7 @@ import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
 import fitness_club.data_vlidation.SearchClientRequestValidator;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -23,7 +23,7 @@ import static org.junit.Assert.assertFalse;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SearchClientServiceTest {
-   /* @Mock
+  /* @Mock
     private Database database;
     @Mock
     private SearchClientRequestValidator validator;
@@ -133,6 +133,5 @@ public class SearchClientServiceTest {
         assertEquals(response.getFoundClients().get(0).getLastName(), "Bananov");
     }
 
-    */
-
+   */
 }
