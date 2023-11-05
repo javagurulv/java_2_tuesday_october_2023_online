@@ -1,6 +1,5 @@
 package lv.javaguru.travel.insurance.core;
 
-import lv.javaguru.travel.insurance.dto.CoreResponse;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumResponse;
 import lv.javaguru.travel.insurance.dto.ValidationError;
@@ -8,19 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
 
     @Autowired
-    private DateTimeService dateTimeService = new DateTimeService();
+    private DateTimeService dateTimeService;
     @Autowired
-    private TravelCalculatePremiumRequestValidator validator = new TravelCalculatePremiumRequestValidator();
+    private TravelCalculatePremiumRequestValidator validator;
     @Autowired
-    private UnderwritingPrice underwritingPrice = new UnderwritingPrice();
+    private UnderwritingPrice underwritingPrice;
 
 
     @Override
@@ -39,7 +36,7 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
         response.setPersonLastName(request.getPersonLastName());
         response.setAgreementDateFrom(request.getAgreementDateFrom());
         response.setAgreementDateTo(request.getAgreementDateTo());
-        response.setAgreementPrice(new BigDecimal(underwritingPrice.daysBetween(request)));
+        response.setAgreementPrice(underwritingPrice.calculateDaysBetween(request));
         return response;
     }
 

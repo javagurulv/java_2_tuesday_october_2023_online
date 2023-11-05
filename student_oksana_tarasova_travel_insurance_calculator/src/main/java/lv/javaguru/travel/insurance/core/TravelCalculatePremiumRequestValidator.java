@@ -2,6 +2,7 @@ package lv.javaguru.travel.insurance.core;
 
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Component
 public class TravelCalculatePremiumRequestValidator {
+    @Autowired private DateTimeService dateTimeService;
 
     public List<ValidationError> validate(TravelCalculatePremiumRequest request) {
         List<ValidationError> errors = new ArrayList<>();
@@ -55,5 +57,7 @@ public class TravelCalculatePremiumRequestValidator {
                 ? Optional.of(new ValidationError("agreementDateFrom", "Must be less than the agreementDateTo!"))
                 : Optional.empty();
     }
+
+
 }
 

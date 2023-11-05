@@ -104,6 +104,8 @@ class TravelCalculatePremiumRequestValidatorTest {
 
     }
 
+
+
     @Test
     void validatorDateToIsNull() throws ParseException {
         Date dateFrom = new SimpleDateFormat("DD/MM/YYYY").parse("01/05/2000");
