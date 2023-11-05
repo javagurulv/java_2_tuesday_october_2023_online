@@ -27,7 +27,7 @@ class TravelCalculatePremiumControllerTest {
     private MockMvc mockMvc;
 
     @Autowired private JsonFileReader jsonFileReader;
-    private ObjectMapper mapper = new ObjectMapper();
+
 
     @Test
     public void simpleRestControllerTest() throws Exception {
@@ -116,6 +116,7 @@ class TravelCalculatePremiumControllerTest {
 
         String jsonResponse = jsonFileReader.readJsonFromFile(jsonResponseFilePath);
 
+        ObjectMapper mapper = new ObjectMapper();
         assertEquals(mapper.readTree(responseBodyContent), mapper.readTree(jsonResponse));
     }
 

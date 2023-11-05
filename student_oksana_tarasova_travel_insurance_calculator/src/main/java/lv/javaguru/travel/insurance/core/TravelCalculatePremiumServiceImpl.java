@@ -13,8 +13,6 @@ import java.util.List;
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
 
     @Autowired
-    private DateTimeService dateTimeService;
-    @Autowired
     private TravelCalculatePremiumRequestValidator validator;
     @Autowired
     private UnderwritingPrice underwritingPrice;
@@ -24,19 +22,19 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
         List<ValidationError> errors = validator.validate(request);
         return (errors.isEmpty())
-                ? getResponse(request)
+                ? getResponse(request, underwritingPrice.calculateDaysBetween(request))
                 : new TravelCalculatePremiumResponse(errors);
 
     }
 
-    private TravelCalculatePremiumResponse getResponse(TravelCalculatePremiumRequest request) {
+    private TravelCalculatePremiumResponse getResponse(TravelCalculatePremiumRequest request, BigDecimal premium) {
         TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse();
 
         response.setPersonFirstName(request.getPersonFirstName());
         response.setPersonLastName(request.getPersonLastName());
         response.setAgreementDateFrom(request.getAgreementDateFrom());
         response.setAgreementDateTo(request.getAgreementDateTo());
-        response.setAgreementPrice(underwritingPrice.calculateDaysBetween(request));
+        response.setAgreementPrice(premium);
         return response;
     }
 
