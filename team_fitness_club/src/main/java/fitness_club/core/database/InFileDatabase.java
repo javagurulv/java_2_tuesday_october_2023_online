@@ -49,6 +49,7 @@ public class InFileDatabase implements Database {
 
     @Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup ) {
+        loadClientsFromFile();
         Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
                 .findFirst();
