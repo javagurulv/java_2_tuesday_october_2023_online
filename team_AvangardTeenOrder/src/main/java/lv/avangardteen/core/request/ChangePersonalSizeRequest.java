@@ -5,7 +5,7 @@ public class ChangePersonalSizeRequest {
     public Integer pelvisWidth; //ширина таза
     public Integer thighLength; //длинна бедра
     public Integer backHeight; //высота спины
-    public Integer shinLength;
+    public Integer shinLength; //длинна голени
 
     public ChangePersonalSizeRequest(Long id, Integer pelvisWidth, Integer thighLength, Integer backHeight, Integer shinLength) {
         this.id = id;

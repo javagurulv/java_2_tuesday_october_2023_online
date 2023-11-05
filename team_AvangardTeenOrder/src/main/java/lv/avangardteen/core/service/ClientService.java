@@ -36,15 +36,15 @@ public class ClientService {
         clientResponse.getClient().setUserAddress(request.getUserAddress());
         clientResponse.getClient().setPhoneNumber(request.getPhoneNumber());
 
-        clientResponse.getClient().setUserSizes(new UserSizes(request.getBackLength(),
-                request.getPelvisWidth(),
-                request.getShinLength(),
-                request.getThighLength()));
+        clientResponse.getClient().setUserSizes(new UserSizes(request.getPelvisWidth(),
+                request.getThighLength(),
+                request.getBackHeight(),
+                request.getShinLength()));
 
-        clientResponse.getClient().setWheelchair(new Wheelchair(new UserSizes(request.getBackLength(),
-                request.getPelvisWidth(),
-                request.getShinLength(),
-                request.getThighLength())));
+        clientResponse.getClient().setWheelchair(new Wheelchair(new UserSizes(request.getPelvisWidth(),
+                request.getThighLength(),
+                request.getBackHeight(),
+                request.getShinLength())));
 
 
         clientResponse.getClient().setWheelchairComponents(new WheelchairComponent());
