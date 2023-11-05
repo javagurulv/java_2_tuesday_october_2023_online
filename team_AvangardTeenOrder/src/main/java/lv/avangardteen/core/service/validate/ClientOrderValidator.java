@@ -40,7 +40,7 @@ private ComponentValidator componentValidator;
 
     private void validatePersonSize(ClientRequest request, List<CoreError> errors) {
         errors.addAll(personalSizeValidator.validate(request.getPelvisWidth(),
-                request.getThighLength(), request.getBackLength(), request.getShinLength()));
+                request.getThighLength(), request.getBackHeight(), request.getShinLength()));
     }
 
     private void validateComponent(ClientRequest request, List<CoreError> errors) {

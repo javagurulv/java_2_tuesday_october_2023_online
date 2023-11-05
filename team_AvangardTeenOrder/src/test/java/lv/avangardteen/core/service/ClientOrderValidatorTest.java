@@ -60,7 +60,7 @@ class ClientOrderValidatorTest {
                 1234, "Lesnaja", 33,33,33,33,
                 11, 21, 31, 41);
         when(personalSizeValidator.validate(request.getPelvisWidth(),
-                request.getThighLength(), request.getBackLength(),
+                request.getThighLength(), request.getBackHeight(),
                 request.getShinLength())).thenReturn(List.of(new CoreError("errors", "message")));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
@@ -73,7 +73,7 @@ class ClientOrderValidatorTest {
                 1234, "Lesnaja", 33,33,33,33,
                 11, 21, 31, 41);
         when(personalSizeValidator.validate(request.getPelvisWidth(),
-                request.getThighLength(), request.getBackLength(),
+                request.getThighLength(), request.getBackHeight(),
                 request.getShinLength())).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);

@@ -7,7 +7,7 @@ public class ClientRequest {
     Integer phoneNumber;
     String userAddress;
     Integer shinLength;
-    Integer backLength;
+    Integer backHeight;
     Integer thighLength;
     Integer pelvisWidth;
     Integer indexWheelFront;
@@ -17,14 +17,14 @@ public class ClientRequest {
 
 
     public ClientRequest(String nameSurname, Integer phoneNumber,
-                         String userAddress, Integer shinLength, Integer backLength,
+                         String userAddress, Integer shinLength, Integer backHeight,
                          Integer thighLength, Integer pelvisWidth, Integer indexWheelFront,
                          Integer indexWheelBack, Integer indexBrakeChoose, Integer indexArmrestChoose) {
         this.nameSurname = nameSurname;
         this.phoneNumber = phoneNumber;
         this.userAddress = userAddress;
         this.shinLength = shinLength;
-        this.backLength = backLength;
+        this.backHeight = backHeight;
         this.thighLength = thighLength;
         this.pelvisWidth = pelvisWidth;
         this.indexWheelFront = indexWheelFront;
@@ -49,8 +49,8 @@ public class ClientRequest {
         return shinLength;
     }
 
-    public Integer getBackLength() {
-        return backLength;
+    public Integer getBackHeight() {
+        return backHeight;
     }
 
     public Integer getThighLength() {
