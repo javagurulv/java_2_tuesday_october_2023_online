@@ -109,8 +109,6 @@ class TravelCalculatePremiumServiceImplTest {
         assertEquals(response.getAgreementPrice(), new BigDecimal(20));
     }
 
-
-
     private Date createDate(String dateStr) {
         try {
             return new SimpleDateFormat("dd.MM.yyyy").parse(dateStr);
@@ -118,123 +116,6 @@ class TravelCalculatePremiumServiceImplTest {
             throw new RuntimeException(e);
         }
     }
-
-/*
-
-
-    @Test
-    public void getDateFrom() throws ParseException {
-        Date dateFrom = new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2000");
-        Date dateTo = new SimpleDateFormat("dd/MM/yyyy").parse("16/05/2000");
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
-                "Ivan", "Ivanov", dateFrom,
-                dateTo);
-        validator.validate(request);
-        response = serviceImpl.calculatePremium(request);
-        Date dateFrom1 = response.getAgreementDateFrom();
-        assertEquals(new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2000"), dateFrom1);
-    }
-
-    @Test
-    public void getDateTo() throws ParseException {
-        Date dateFrom = new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2000");
-        Date dateTo = new SimpleDateFormat("dd/MM/yyyy").parse("16/05/2000");
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
-                "Ivan", "Ivanov", dateFrom,
-                dateTo);
-        validator.validate(request);
-        response = serviceImpl.calculatePremium(request);
-        Date dateTo1 = response.getAgreementDateTo();
-        assertEquals(new SimpleDateFormat("dd/MM/yyyy").parse("16/05/2000"), dateTo1);
-    }
-
-
-
-    @Test
-    public void getErrorLastName() throws ParseException {
-        Date dateFrom = new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2000");
-        Date dateTo = new SimpleDateFormat("dd/MM/yyyy").parse("16/05/2000");
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
-                "Ivan", "", dateFrom,
-                dateTo);
-        validator.validate(request);
-        response = serviceImpl.calculatePremium(request);
-        assertThat(response.getErrors()).contains(new ValidationError("personLastName", "Must not be empty!"));
-    }
-
-    @Test
-    public void getErrorsFirstAndLastName() throws ParseException {
-        Date dateFrom = new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2000");
-        Date dateTo = new SimpleDateFormat("dd/MM/yyyy").parse("16/05/2000");
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
-                "", "", dateFrom,
-                dateTo);
-        validator.validate(request);
-        response = serviceImpl.calculatePremium(request);
-        assertThat(response.getErrors()).hasSize(2);
-        assertThat(response.getErrors()).contains(new ValidationError("personFirstName", "Must not be empty!"));
-        assertThat(response.getErrors()).contains(new ValidationError("personLastName", "Must not be empty!"));
-    }
-
-    @Test
-    public void getErrorsFirstAndLastNameAndDateFrom() throws ParseException {
-        Date dateFrom = null;
-        Date dateTo = new SimpleDateFormat("dd/MM/yyyy").parse("16/05/2000");
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
-                "", "", dateFrom,
-                dateTo);
-        validator.validate(request);
-        response = serviceImpl.calculatePremium(request);
-        assertThat(response.getErrors()).hasSize(3);
-        assertThat(response.getErrors()).contains(new ValidationError("personFirstName", "Must not be empty!"));
-        assertThat(response.getErrors()).contains(new ValidationError("personLastName", "Must not be empty!"));
-        assertThat(response.getErrors()).contains(new ValidationError("agreementDateFrom", "Must not be empty!"));
-    }
-    @Test
-    public void getErrorsFirstAndLastNameAndDateFromAndDateTo() throws ParseException {
-        Date dateFrom = null;
-        Date dateTo = null;
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
-                "", "", dateFrom,
-                dateTo);
-        validator.validate(request);
-        response = serviceImpl.calculatePremium(request);
-        assertThat(response.getErrors()).hasSize(4);
-        assertThat(response.getErrors()).contains(new ValidationError("personFirstName", "Must not be empty!"));
-        assertThat(response.getErrors()).contains(new ValidationError("personLastName", "Must not be empty!"));
-        assertThat(response.getErrors()).contains(new ValidationError("agreementDateFrom", "Must not be empty!"));
-        assertThat(response.getErrors()).contains(new ValidationError("agreementDateTo", "Must not be empty!"));
-    }
-
-    @Test
-    public void getErrorDateFromIsLessDateTo() throws ParseException {
-        Date dateFrom = new SimpleDateFormat("dd/MM/yyyy").parse("16/05/2000");
-        Date dateTo = new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2000");
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
-                "Ivan", "Ivanov", dateFrom,
-                dateTo);
-        validator.validate(request);
-        response = serviceImpl.calculatePremium(request);
-        assertThat(response.getErrors()).hasSize(1);
-        assertThat(response.getErrors()).contains(new ValidationError("agreementDateFrom", "Must be less than the agreementDateTo!"));
-    }
-
-    @Test
-
-    public void getAgreementPrice() throws ParseException {
-        Date dateFrom = new SimpleDateFormat("dd/MM/yyyy").parse("01/05/2000");
-        Date dateTo = new SimpleDateFormat("dd/MM/yyyy").parse("16/05/2000");
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest(
-                "Ivan", "Ivanov", dateFrom,
-                dateTo);
-        validator.validate(request);
-        response = serviceImpl.calculatePremium(request);
-        BigDecimal betweenDays = response.getAgreementPrice();
-        assertEquals(betweenDays, new BigDecimal(15));
-
-
-
-    }*/
 
 }
 

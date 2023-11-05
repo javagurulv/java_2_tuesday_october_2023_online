@@ -85,6 +85,22 @@ class TravelCalculatePremiumControllerTest {
         );
     }
 
+    @Test
+    public void dateFromNotInFutureControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_dateFromNotInFuture.json",
+                "rest/TravelCalculatePremiumResponse_dateFromNotInFuture.json"
+        );
+    }
+
+    @Test
+    public void dateToNotInFutureControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_dateToNotInFuture.json",
+                "rest/TravelCalculatePremiumResponse_dateToNotInFuture.json"
+        );
+    }
+
 
     private void executeAndCompare(String jsonRequestFilePath,
                                    String jsonResponseFilePath) throws Exception {

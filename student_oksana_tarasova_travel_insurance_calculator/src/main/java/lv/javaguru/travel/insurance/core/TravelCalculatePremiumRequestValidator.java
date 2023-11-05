@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @Component
 public class TravelCalculatePremiumRequestValidator {
+
     @Autowired private DateTimeService dateTimeService;
 
     public List<ValidationError> validate(TravelCalculatePremiumRequest request) {
@@ -22,6 +23,8 @@ public class TravelCalculatePremiumRequestValidator {
         validateDateFrom(request).ifPresent(errors::add);
         validateDateTo(request).ifPresent(errors::add);
         validateDateFromIsLessDateTo(request).ifPresent(errors::add);
+        validationDateFromInFuture(request).ifPresent(errors::add);
+        validationDateToInFuture(request).ifPresent(errors::add);
         return errors;
     }
 
@@ -55,6 +58,22 @@ public class TravelCalculatePremiumRequestValidator {
         return (dateFrom != null && dateTo != null
                 && (dateFrom.equals(dateTo) || dateFrom.after(dateTo)))
                 ? Optional.of(new ValidationError("agreementDateFrom", "Must be less than the agreementDateTo!"))
+                : Optional.empty();
+    }
+
+    public Optional<ValidationError> validationDateFromInFuture(TravelCalculatePremiumRequest request) {
+        Date dateFrom = request.getAgreementDateFrom();
+        Date currentDateTime = dateTimeService.getCurrentDateTime();
+        return (dateFrom != null && dateFrom.before(currentDateTime))
+                ? Optional.of(new ValidationError("agreementDateFrom", "Must be in the future!"))
+                : Optional.empty();
+    }
+
+    public Optional<ValidationError> validationDateToInFuture(TravelCalculatePremiumRequest request) {
+        Date dateTo = request.getAgreementDateTo();
+        Date currentDateTime = dateTimeService.getCurrentDateTime();
+        return (dateTo != null && dateTo.before(currentDateTime))
+                ? Optional.of(new ValidationError("agreementDateTo", "Must be in the future!"))
                 : Optional.empty();
     }
 
