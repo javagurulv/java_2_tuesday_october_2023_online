@@ -1,13 +1,18 @@
 package fitness_club.data_vlidation;
 
 import fitness_club.core.database.Database;
+import fitness_club.core.database.InFileDatabase;
+import fitness_club.core.database.InMemoryDatabase;
 import fitness_club.core.domain.Client;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
@@ -15,13 +20,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 class AddClientValidationTest {
-
-    private Database database;
-    private AddClientRequestValidator validator = new AddClientRequestValidator(null) ;
+    @Mock
+    private Database database = new InFileDatabase();
+    @Mock
     private ClientAgeGroups clientAgeGroup;
+    @Mock
     private Workouts workout;
-/*
+    @InjectMocks
+    private AddClientRequestValidator validator = new AddClientRequestValidator(database);
+
     @Test
     void shouldReturnErrorWhenClientFirstNameIsNull() {
         AddClientRequest request = mock(AddClientRequest.class);
@@ -201,8 +210,4 @@ class AddClientValidationTest {
             assertTrue(errors.isEmpty());
         }
     }
-
- */
-
-
 }
