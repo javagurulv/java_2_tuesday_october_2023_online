@@ -1,4 +1,4 @@
-package fitness_club.services;
+package fitness_club.core.services;
 
 import fitness_club.core.database.Database;
 import fitness_club.core.database.InMemoryDatabase;
@@ -18,71 +18,45 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 
 @RunWith(MockitoJUnitRunner.class)
 public class GetAllClientsServiceTest {
-   /* @Mock
+   @Mock
     private Database database;
     @InjectMocks
     private GetAllClientsService service;
 
     @Test
     public void shouldGetClientsFromDb() {
-        database = new FakeDatabase();
+
         List<Client> clients = List.of(new Client("Andrey", "Pupkin",
                 "12-12", ClientAgeGroups.ADULT, Workouts.GYM));
+        database = mock(Database.class);
         Mockito.when(database.getAllClients()).thenReturn(clients);
         GetAllClientsRequest request = new GetAllClientsRequest();
+        service = new GetAllClientsService(database);
         GetAllClientsResponse response = service.execute(request);
-        assertFalse(response.hasErrors());
         assertEquals(response.getClients().size(), 1);
         assertEquals(response.getClients().get(0).getPersonalCode(), "12-12");
     }
+    @Test
+    public void shouldNotGetClientsFromDb() {
 
-    */
-}
-
-class FakeDatabase implements Database {
-
-    @Override
-    public void addClient(Client client) {
-
-    }
-
-    @Override
-    public boolean deleteClientByPersonalCode(String personalCode) {
-        return false;
-    }
-
-    @Override
-    public List<Client> getAllClients() {
-        return List.of(new Client("Andrey", "Pupkin",
-                "12-12", ClientAgeGroups.ADULT, Workouts.GYM));
-    }
-
-    @Override
-    public void saveClient(List<Client> clients) {
-
-    }
-
-    @Override
-    public List<Client> findByFirstName(String firsName) {
-        return null;
-    }
-
-    @Override
-    public List<Client> findByLastName(String lastName) {
-        return null;
-    }
-
-    @Override
-    public List<Client> findByFirstNameAndLastName(String firstName, String lastName) {
-        return null;
+        List<Client> clients = List.of(new Client("Andrey", "Pupkin",
+                "12-13", ClientAgeGroups.ADULT, Workouts.GYM));
+        database = mock(Database.class);
+        Mockito.when(database.getAllClients()).thenReturn(clients);
+        GetAllClientsRequest request = new GetAllClientsRequest();
+        service = new GetAllClientsService(database);
+        GetAllClientsResponse response = service.execute(request);
+        assertEquals(response.getClients().size(), 1);
+        assertNotEquals(response.getClients().get(0).getPersonalCode(), "12-12");
     }
 }
+
     /*@Test
     void getAllClientsFromDb() {
         inMemoryDatabase =  new InMemoryDatabase();

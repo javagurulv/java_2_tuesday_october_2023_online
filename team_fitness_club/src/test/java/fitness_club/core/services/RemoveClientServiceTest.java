@@ -1,12 +1,12 @@
-package fitness_club.services;
+package fitness_club.core.services;
 
 import fitness_club.core.database.Database;
 import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.requests.RemoveClientRequest;
-import fitness_club.core.services.DeleteClientService;
+
 import fitness_club.data_vlidation.RemoveClientRequestValidator;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -14,13 +14,15 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 
 
 @RunWith(MockitoJUnitRunner.class)
 public class RemoveClientServiceTest {
-   /* @Mock
+    @Mock
     private Database database;
     @Mock
     private RemoveClientRequestValidator validator;
@@ -29,17 +31,16 @@ public class RemoveClientServiceTest {
 
     @Test
     void shouldDeleteClientWithPersonaCodeFromDatabase() {
-        //validator = mock(RemoveClientRequestValidator.class);
-        // database= mock(Database.class);
-        Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        Mockito.when(database.deleteClientByPersonalCode("12-12")).thenReturn(true);
         RemoveClientRequest request = new RemoveClientRequest("12-12");
+        validator=mock(RemoveClientRequestValidator.class);
+        Mockito.when(validator.validate(request)).thenReturn(List.of());
+        database = mock(Database.class);
+        Mockito.when(database.deleteClientByPersonalCode("12-12")).thenReturn(true);
+        service = new DeleteClientService(database,validator);
         RemoveClientResponse response = service.execute(request);
         Assert.assertFalse(response.hasErrors());
         Assert.assertTrue(response.isClientRemoved());
     }
-
-    */
 }
    /* @Test
     void removeClient() {

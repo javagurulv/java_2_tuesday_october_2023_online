@@ -25,13 +25,31 @@ public class InMemoryDatabase implements Database {
                 .findFirst();
         if (clientToDeleteOpt.isPresent()) {
             Client clientToRemove = clientToDeleteOpt.get();
-           isClientDeleted = clients.remove(clientToRemove);
+            isClientDeleted = clients.remove(clientToRemove);
+            updateClientIds(clients);
+            saveClient(clients);
         }
         return isClientDeleted;
+
     }
 
     public List<Client> getAllClients() {
         return clients;
+    }
+
+    @Override
+    public boolean clientAgeGroupChangedByPersonalCode(String personalCode) {
+        boolean isClientAgeGroupChanged = false;
+        Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst();
+        if (clientToChangeAgeGroupOpt.isPresent()) {
+            Client clientToChangeAgeGroup = clientToChangeAgeGroupOpt.get();
+            isClientAgeGroupChanged = clients.add(clientToChangeAgeGroup);
+            updateClientIds(clients);
+            saveClient(clients);
+        }
+        return isClientAgeGroupChanged;
     }
 
     public void saveClient(List<Client> clients) {
@@ -59,5 +77,17 @@ public class InMemoryDatabase implements Database {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Client> findByPersonalCode(String personalCode) {
+        return getAllClients().stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .collect(Collectors.toList());
+    }
+
+    private void updateClientIds(List<Client> clients) {
+        for (int i = 0; i < clients.size(); i++) {
+            clients.get(i).setId((long) (i + 1));
+        }
+    }
 
 }

@@ -7,11 +7,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import fitness_club.core.domain.Client;
+import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
 
 public class InFileDatabase implements Database {
-
+    private ClientAgeGroups ageGroups;
     private final String filename;
     private List<Client> clients = new ArrayList<>();
 
@@ -34,12 +35,32 @@ public class InFileDatabase implements Database {
         if (clientToDeleteOpt.isPresent()) {
             Client clientToRemove = clientToDeleteOpt.get();
             isClientDeleted = clients.remove(clientToRemove);
+            updateClientIds(clients);
+            saveClient(clients);
         }
         return isClientDeleted;
+
     }
 
     public List<Client> getAllClients() {
+        loadClientsFromFile();
         return clients;
+    }
+
+    @Override
+    public boolean clientAgeGroupChangedByPersonalCode(String personalCode) {
+        boolean isClientAgeGroupChanged = false;
+        Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst();
+        if (clientToChangeAgeGroupOpt.isPresent()) {
+            Client clientToChangeAgeGroup = clientToChangeAgeGroupOpt.get();
+            isClientAgeGroupChanged = clients.add(clientToChangeAgeGroup);
+            updateClientIds(clients);
+            saveClient(clients);
+        }
+
+        return isClientAgeGroupChanged;
     }
 
     public void saveClient(List<Client> clients) {
@@ -85,6 +106,22 @@ public class InFileDatabase implements Database {
                 .filter(client -> client.getFirstName().equals(firstName))
                 .filter(client -> client.getLastName().equals(lastName))
                 .collect(Collectors.toList());
+    }
+    @Override
+    public List<Client> findByPersonalCode(String personalCode) {
+        return getAllClients().stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .collect(Collectors.toList());
+    }
+
+    private void loadClientsFromFile() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+            List<Client> loadedClients = (List<Client>) ois.readObject();
+            clients.clear();
+            clients.addAll(loadedClients);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 

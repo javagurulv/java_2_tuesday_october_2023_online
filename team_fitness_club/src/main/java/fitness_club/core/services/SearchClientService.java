@@ -61,6 +61,9 @@ public class SearchClientService {
         if (request.isFirstNameProvided() && request.isLastNameProvided()) {
             foundClients = database.findByFirstNameAndLastName(request.getFirstName(), request.getLastName());
         }
+        if (request.isPersonalCodeProvided()) {
+            foundClients = database.findByPersonalCode(request.getPersonaCode());
+        }
         return foundClients;
     }
 
