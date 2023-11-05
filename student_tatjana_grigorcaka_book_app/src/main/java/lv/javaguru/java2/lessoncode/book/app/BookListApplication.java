@@ -1,27 +1,36 @@
 package lv.javaguru.java2.lessoncode.book.app;
 
 import lv.javaguru.java2.lessoncode.book.app.console_ui.*;
-import lv.javaguru.java2.lessoncode.book.app.core.services.validators.AddBookRequestValidator;
-import lv.javaguru.java2.lessoncode.book.app.core.services.validators.SearchBooksRequestValidator;
 import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
-import lv.javaguru.java2.lessoncode.book.app.core.database.InMemoryDatabase;
+import lv.javaguru.java2.lessoncode.book.app.core.database.InMemoryDatabaseImpl;
 import lv.javaguru.java2.lessoncode.book.app.core.services.AddBookService;
 import lv.javaguru.java2.lessoncode.book.app.core.services.GetAllBooksService;
 import lv.javaguru.java2.lessoncode.book.app.core.services.RemoveBookService;
 import lv.javaguru.java2.lessoncode.book.app.core.services.SearchBooksService;
+import lv.javaguru.java2.lessoncode.book.app.core.services.validators.OrderingValidator;
+import lv.javaguru.java2.lessoncode.book.app.core.services.validators.PagingValidator;
+import lv.javaguru.java2.lessoncode.book.app.core.services.validators.AddBookRequestValidator;
+import lv.javaguru.java2.lessoncode.book.app.core.services.validators.SearchBooksRequestFieldValidator;
+import lv.javaguru.java2.lessoncode.book.app.core.services.validators.SearchBooksRequestValidator;
 import lv.javaguru.java2.lessoncode.book.app.core.services.validators.RemoveBookRequestValidator;
 
 import java.util.Scanner;
 
     public class BookListApplication {
 
-    private static Database database = new InMemoryDatabase();
+    private static Database database = new InMemoryDatabaseImpl();
 
     private static AddBookRequestValidator addBookRequestvalidator = new AddBookRequestValidator();
 
     private static RemoveBookRequestValidator removeBookRequestValidator = new RemoveBookRequestValidator();
 
-    private static SearchBooksRequestValidator searchBooksRequestValidator = new SearchBooksRequestValidator();
+    private static SearchBooksRequestFieldValidator searchBooksRequestFieldValidator = new SearchBooksRequestFieldValidator();
+
+    private static OrderingValidator orderingValidator = new OrderingValidator();
+    private static PagingValidator pagingValidator = new PagingValidator();
+    private static SearchBooksRequestValidator searchBooksRequestValidator = new SearchBooksRequestValidator(
+                searchBooksRequestFieldValidator, orderingValidator, pagingValidator
+        );
     private static AddBookService addBookService = new AddBookService(database, addBookRequestvalidator);
     private static RemoveBookService removeBookService = new RemoveBookService(database, removeBookRequestValidator);
     private static GetAllBooksService getAllBooksService = new GetAllBooksService(database);

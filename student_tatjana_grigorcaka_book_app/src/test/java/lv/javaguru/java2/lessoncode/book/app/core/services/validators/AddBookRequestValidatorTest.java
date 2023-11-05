@@ -17,7 +17,7 @@ public class AddBookRequestValidatorTest {
 
     @Test
     public void shouldReturnErrorWhenTitleIsNull() {
-        AddBookRequest request = new AddBookRequest(null, "Author");
+        AddBookRequest request = new AddBookRequest(null, "Antoine de Saint-Exupery");
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "title");
@@ -26,7 +26,7 @@ public class AddBookRequestValidatorTest {
 
     @Test
     public void shouldReturnErrorWhenAuthorIsNull() {
-        AddBookRequest request = new AddBookRequest("Title", null);
+        AddBookRequest request = new AddBookRequest("The Little Prince", null);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "author");
@@ -42,7 +42,7 @@ public class AddBookRequestValidatorTest {
 
     @Test
     public void shouldSuccess() {
-        AddBookRequest request = new AddBookRequest("Title", "Author");
+        AddBookRequest request = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery");
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
