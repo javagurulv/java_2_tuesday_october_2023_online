@@ -15,7 +15,7 @@ public class ApplicationContext {
 
     public ApplicationContext() {
         beans.put(Database.class, new InFileDatabase());
-        beans.put(AddClientRequestValidator.class, new AddClientRequestValidator());
+        beans.put(AddClientRequestValidator.class, new AddClientRequestValidator(null));
         beans.put(RemoveClientRequestValidator.class, new RemoveClientRequestValidator());
         beans.put(ChangeClientAgeGroupValidator.class, new ChangeClientAgeGroupValidator());
         beans.put(ChangeClientWorkoutsValidator.class, new ChangeClientWorkoutsValidator());

@@ -107,6 +107,12 @@ public class InFileDatabase implements Database {
                 .filter(client -> client.getLastName().equals(lastName))
                 .collect(Collectors.toList());
     }
+    @Override
+    public List<Client> findByPersonalCode(String personalCode) {
+        return getAllClients().stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .collect(Collectors.toList());
+    }
 
     private void loadClientsFromFile() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {

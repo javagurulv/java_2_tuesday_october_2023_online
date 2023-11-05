@@ -22,5 +22,7 @@ public interface Database {
 
     List<Client> findByFirstNameAndLastName(String firstName, String lastName);
 
+    List<Client> findByPersonalCode(String personalCode);
+
 
 }

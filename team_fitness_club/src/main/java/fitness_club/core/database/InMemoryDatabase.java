@@ -76,6 +76,14 @@ public class InMemoryDatabase implements Database {
                 .filter(client -> client.getLastName().equals(lastName))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Client> findByPersonalCode(String personalCode) {
+        return getAllClients().stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .collect(Collectors.toList());
+    }
+
     private void updateClientIds(List<Client> clients) {
         for (int i = 0; i < clients.size(); i++) {
             clients.get(i).setId((long) (i + 1));
