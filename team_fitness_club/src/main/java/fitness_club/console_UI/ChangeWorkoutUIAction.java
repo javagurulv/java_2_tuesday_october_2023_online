@@ -3,6 +3,7 @@ package fitness_club.console_UI;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.ChangeClientWorkoutsRequest;
 import fitness_club.core.responses.AddClientResponse;
+import fitness_club.core.responses.ChangeClientWorkoutsResponse;
 import fitness_club.core.services.ChangeClientWorkoutService;
 import fitness_club.core.services.GetWorkoutService;
 
@@ -28,9 +29,15 @@ public class ChangeWorkoutUIAction implements UIAction {
         Workouts newWorkout = GetWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
 
         ChangeClientWorkoutsRequest request = new ChangeClientWorkoutsRequest(clientPersonalCode, newWorkout);
-        AddClientResponse response = service.execute(request);
-
-
-        System.out.println("Client workout has been changed.");
+        ChangeClientWorkoutsResponse response = service.execute(request);
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError -> System.out.println("Alarm: " + coreError.getField() + " " + coreError.getMessage()));
+        } else {
+            if (response.isClientWorkoutsChanged()) {
+                System.out.println("Client workout was changed.");
+            } else {
+                System.out.println("Client workout was not changed.");
+            }
+        }
     }
 }

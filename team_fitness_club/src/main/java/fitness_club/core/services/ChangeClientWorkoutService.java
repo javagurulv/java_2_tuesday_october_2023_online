@@ -1,9 +1,8 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.Database;
-import fitness_club.core.domain.Client;
 import fitness_club.core.requests.ChangeClientWorkoutsRequest;
-import fitness_club.core.responses.AddClientResponse;
+import fitness_club.core.responses.ChangeClientWorkoutsResponse;
 import fitness_club.data_vlidation.ChangeClientWorkoutsValidator;
 import fitness_club.data_vlidation.CoreError;
 
@@ -20,25 +19,12 @@ public class ChangeClientWorkoutService {
         this.validator = validator;
     }
 
-    public AddClientResponse execute(ChangeClientWorkoutsRequest request) {
+    public ChangeClientWorkoutsResponse execute(ChangeClientWorkoutsRequest request) {
         List<CoreError> errors = validator.validate(request);
-        return errors.isEmpty()
-                ? changeClientWorkoutsLogic(request)
-                : buildErrorsResponse(errors);
-    }
-
-    private AddClientResponse buildErrorsResponse(List<CoreError> errors){
-        return new AddClientResponse(errors);
-    }
-
-    private AddClientResponse changeClientWorkoutsLogic(ChangeClientWorkoutsRequest request){
-        Client clientToChangeWorkout = new Client(request.getPersonalCode());
-        List<Client> clients = database.getAllClients();
-        clients.stream()
-                .filter(client -> client.getPersonalCode().equals(request.getPersonalCode()))
-                .findFirst()
-                .ifPresent(client -> client.setWorkouts(request.getWorkout()));
-        database.saveClient(clients);
-        return new AddClientResponse(clientToChangeWorkout);
+        if (!errors.isEmpty()) {
+            return new ChangeClientWorkoutsResponse(errors);
+        }
+        boolean isClientWorkoutChanged= database.clientWorkoutsChangedByPersonalCode(request.getPersonalCode(), request.getWorkout());
+        return new ChangeClientWorkoutsResponse(isClientWorkoutChanged);
     }
 }

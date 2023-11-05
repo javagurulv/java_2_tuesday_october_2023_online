@@ -5,7 +5,6 @@ import fitness_club.core.domain.Client;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
-import fitness_club.core.services.AddClientService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -20,10 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AddClientRequestValidatorDuplicateTest {
     @Mock
     private Database database;
-    @Mock
-    private AddClientRequestValidator validator;
     @InjectMocks
-    private AddClientService service;
+    private AddClientRequestValidator validator;
+
 
     @Test
     void shouldNotReturnErrorWhenDuplicateFound() {
@@ -56,6 +54,11 @@ public class AddClientRequestValidatorDuplicateTest {
 
         @Override
         public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
+            return false;
+        }
+
+        @Override
+        public boolean clientWorkoutsChangedByPersonalCode(String personalCode, Workouts newWorkout) {
             return false;
         }
 

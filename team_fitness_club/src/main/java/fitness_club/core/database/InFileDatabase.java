@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import fitness_club.core.domain.Client;
 import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
 
@@ -48,7 +49,7 @@ public class InFileDatabase implements Database {
     }
 
     @Override
-    public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup ) {
+    public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         loadClientsFromFile();
         Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
@@ -59,8 +60,26 @@ public class InFileDatabase implements Database {
             updateClientIds(clients);
             saveClient(clients);
             return true;
+        } else {
+            return false;
         }
-        else {return false;}
+    }
+
+    @Override
+    public boolean clientWorkoutsChangedByPersonalCode(String personalCode, Workouts newWorkout) {
+        loadClientsFromFile();
+        Optional<Client> clientToChangeWorkoutOpt = clients.stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst();
+        if (clientToChangeWorkoutOpt.isPresent()) {
+            Client clientToChangeWorkout = clientToChangeWorkoutOpt.get();
+            clientToChangeWorkout.setWorkouts(newWorkout);
+            updateClientIds(clients);
+            saveClient(clients);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void saveClient(List<Client> clients) {
@@ -107,6 +126,7 @@ public class InFileDatabase implements Database {
                 .filter(client -> client.getLastName().equals(lastName))
                 .collect(Collectors.toList());
     }
+
     @Override
     public List<Client> findByPersonalCode(String personalCode) {
         return getAllClients().stream()

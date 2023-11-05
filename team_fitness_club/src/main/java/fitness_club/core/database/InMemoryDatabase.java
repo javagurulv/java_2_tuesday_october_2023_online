@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import fitness_club.core.domain.Client;
 import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.domain.Workouts;
 
 public class InMemoryDatabase implements Database {
 
@@ -49,8 +50,25 @@ public class InMemoryDatabase implements Database {
             updateClientIds(clients);
             saveClient(clients);
             return true;
+        } else {
+            return false;
         }
-        else {return false;}
+    }
+
+    @Override
+    public boolean clientWorkoutsChangedByPersonalCode(String personalCode, Workouts newWorkout) {
+        Optional<Client> clientToChangeWorkoutOpt = clients.stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst();
+        if (clientToChangeWorkoutOpt.isPresent()) {
+            Client clientToChangeWorkout = clientToChangeWorkoutOpt.get();
+            clientToChangeWorkout.setWorkouts(newWorkout);
+            updateClientIds(clients);
+            saveClient(clients);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void saveClient(List<Client> clients) {
