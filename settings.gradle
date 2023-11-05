@@ -66,6 +66,7 @@ include 'student_butrin_ilya_travel_insurance_calculator'
 include 'student_dainis_fjodorovs_travel_insurance_calculator'
 include 'student_oksana_tarasova_travel_insurance_calculator'
 include 'student_tatjana_grigorcaka_travel_insurance_calculator'
+include 'student_tatjana_grigorcaka_book_app'
 include 'student_andrejs_sidenko_travel_insurance_calculator'
 
 
