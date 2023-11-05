@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import fitness_club.core.domain.Client;
+import fitness_club.core.domain.ClientAgeGroups;
 
 public class InMemoryDatabase implements Database {
 
@@ -38,18 +39,18 @@ public class InMemoryDatabase implements Database {
     }
 
     @Override
-    public boolean clientAgeGroupChangedByPersonalCode(String personalCode) {
-        boolean isClientAgeGroupChanged = false;
+    public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
                 .findFirst();
         if (clientToChangeAgeGroupOpt.isPresent()) {
             Client clientToChangeAgeGroup = clientToChangeAgeGroupOpt.get();
-            isClientAgeGroupChanged = clients.add(clientToChangeAgeGroup);
+            clientToChangeAgeGroup.setClientAgeGroup(newAgeGroup);
             updateClientIds(clients);
             saveClient(clients);
+            return true;
         }
-        return isClientAgeGroupChanged;
+        else {return false;}
     }
 
     public void saveClient(List<Client> clients) {

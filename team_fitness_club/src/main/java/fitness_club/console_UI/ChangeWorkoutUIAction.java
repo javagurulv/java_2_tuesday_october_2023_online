@@ -30,6 +30,7 @@ public class ChangeWorkoutUIAction implements UIAction {
         ChangeClientWorkoutsRequest request = new ChangeClientWorkoutsRequest(clientPersonalCode, newWorkout);
         AddClientResponse response = service.execute(request);
 
+
         System.out.println("Client workout has been changed.");
     }
 }

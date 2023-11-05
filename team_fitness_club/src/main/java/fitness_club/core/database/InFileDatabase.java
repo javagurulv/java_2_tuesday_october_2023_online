@@ -48,19 +48,19 @@ public class InFileDatabase implements Database {
     }
 
     @Override
-    public boolean clientAgeGroupChangedByPersonalCode(String personalCode) {
-        boolean isClientAgeGroupChanged = false;
+    public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup ) {
+        loadClientsFromFile();
         Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
                 .findFirst();
         if (clientToChangeAgeGroupOpt.isPresent()) {
             Client clientToChangeAgeGroup = clientToChangeAgeGroupOpt.get();
-            isClientAgeGroupChanged = clients.add(clientToChangeAgeGroup);
+            clientToChangeAgeGroup.setClientAgeGroup(newAgeGroup);
             updateClientIds(clients);
             saveClient(clients);
+            return true;
         }
-
-        return isClientAgeGroupChanged;
+        else {return false;}
     }
 
     public void saveClient(List<Client> clients) {

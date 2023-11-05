@@ -55,7 +55,7 @@ public class AddClientRequestValidatorDuplicateTest {
         }
 
         @Override
-        public boolean clientAgeGroupChangedByPersonalCode(String personalCode) {
+        public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
             return false;
         }
 

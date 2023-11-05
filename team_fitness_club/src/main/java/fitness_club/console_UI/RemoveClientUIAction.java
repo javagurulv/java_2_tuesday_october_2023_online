@@ -23,7 +23,7 @@ public class RemoveClientUIAction implements UIAction {
         deleteClientService.execute(request);
 
         if (response.hasErrors()) {
-            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+            response.getErrors().forEach(coreError -> System.out.println("Alarm: " + coreError.getField() + " " + coreError.getMessage()));
         } else {
             if (response.isClientRemoved()) {
                 System.out.println("Client was removed from list.");

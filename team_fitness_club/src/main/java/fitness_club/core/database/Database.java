@@ -12,7 +12,7 @@ public interface Database {
 
     List<Client> getAllClients();
 
-    boolean clientAgeGroupChangedByPersonalCode(String personalCode);
+    boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup);
 
     void saveClient(List<Client> clients);
 
