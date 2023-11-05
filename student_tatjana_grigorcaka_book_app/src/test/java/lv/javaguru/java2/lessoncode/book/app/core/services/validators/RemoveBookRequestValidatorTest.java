@@ -1,4 +1,4 @@
-package lv.javaguru.java2.lessoncode.app.core.services.validators;
+package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
 import lv.javaguru.java2.lessoncode.book.app.core.requests.RemoveBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;

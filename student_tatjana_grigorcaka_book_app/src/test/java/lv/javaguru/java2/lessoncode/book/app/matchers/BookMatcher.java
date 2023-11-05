@@ -1,4 +1,4 @@
-package lv.javaguru.java2.lessoncode.app.matchers;
+package lv.javaguru.java2.lessoncode.book.app.matchers;
 
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import org.mockito.ArgumentMatcher;
