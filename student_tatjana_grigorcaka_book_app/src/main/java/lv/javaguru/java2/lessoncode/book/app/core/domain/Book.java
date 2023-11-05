@@ -1,5 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.core.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Book {
@@ -8,6 +9,19 @@ public class Book {
     private String title;
     private String author;
     private Long id;
+
+    private List<Page> pages;
+
+    public List<Page> getPages() {
+        return pages;
+    }
+
+    public void setPages(List<Page> pages) {
+        this.pages = pages;
+    }
+
+    public Book() {
+    }
 
     public Book(String title, String author) {
         this.title = title;

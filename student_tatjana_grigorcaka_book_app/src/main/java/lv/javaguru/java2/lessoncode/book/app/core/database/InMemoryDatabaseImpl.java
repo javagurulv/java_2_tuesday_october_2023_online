@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class InMemoryDatabase implements Database {
+public class InMemoryDatabaseImpl implements Database {
 
     private Long nextId = 1L;
     private List<Book> books = new ArrayList<>();
