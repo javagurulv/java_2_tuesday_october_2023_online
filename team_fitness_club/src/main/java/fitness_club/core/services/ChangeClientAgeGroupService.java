@@ -24,7 +24,7 @@ public class ChangeClientAgeGroupService {
         if (!errors.isEmpty()) {
             return new ChangeClientAgeGroupResponse(errors);
         }
-        boolean isClientAgeGroupChanged = database.clientAgeGroupChangedByPersonalCode(request.getPersonalCode());
+        boolean isClientAgeGroupChanged = database.clientAgeGroupChangedByPersonalCode(request.getPersonalCode(), request.getClientAgeGroup());
         return new ChangeClientAgeGroupResponse(isClientAgeGroupChanged);
     }
 }

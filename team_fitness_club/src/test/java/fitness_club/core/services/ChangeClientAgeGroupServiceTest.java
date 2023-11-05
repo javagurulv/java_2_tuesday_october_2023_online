@@ -38,7 +38,7 @@ public class ChangeClientAgeGroupServiceTest {
         validator = mock(ChangeClientAgeGroupValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(List.of());
         database = mock(Database.class);
-        Mockito.when(database.clientAgeGroupChangedByPersonalCode("1-2")).thenReturn(true);
+        Mockito.when(database.clientAgeGroupChangedByPersonalCode("1-2", ClientAgeGroups.ADULT)).thenReturn(true);
         service = new ChangeClientAgeGroupService(database, validator);
         ChangeClientAgeGroupResponse response = service.execute(request);
         Assert.assertFalse(response.hasErrors());

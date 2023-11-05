@@ -32,6 +32,14 @@ public class ChangeClientAgeGroupUIAction implements UIAction {
         ChangeClientAgeGroupRequest request = new ChangeClientAgeGroupRequest(clientPersonalCode, newClientAgeGroups);
         ChangeClientAgeGroupResponse response = changeClientAgeGroupService.execute(request);
 
-        System.out.println("Client age group has been changed.");
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError -> System.out.println("Alarm: " + coreError.getField() + " " + coreError.getMessage()));
+        } else {
+            if (response.isClientAgeGroupChanged()) {
+                System.out.println("Client age group was changed.");
+            } else {
+                System.out.println("Client age group was not changed.");
+            }
+        }
     }
 }
