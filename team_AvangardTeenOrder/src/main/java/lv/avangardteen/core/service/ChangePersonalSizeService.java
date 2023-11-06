@@ -34,14 +34,14 @@ public class ChangePersonalSizeService {
         Client client = database.getClient(request.getId());
 
 
-        client.setUserSizes(new UserSizes(request.getBackHeight(),
-                request.getPelvisWidth(),
-                request.getShinLength(),
-                request.getThighLength()));
-        client.setWheelchair(new Wheelchair(new UserSizes(request.getBackHeight(),
-                request.getPelvisWidth(),
-                request.getShinLength(),
-                request.getThighLength())));
+        client.setUserSizes(new UserSizes(request.getPelvisWidth(),
+                request.getThighLength(),
+                request.getBackHeight(),
+                request.getShinLength()));
+        client.setWheelchair(new Wheelchair(new UserSizes(request.getPelvisWidth(),
+                request.getThighLength(),
+                request.getBackHeight(),
+                request.getShinLength())));
 
         return new ChangePersonalSizeResponse(client);
     }

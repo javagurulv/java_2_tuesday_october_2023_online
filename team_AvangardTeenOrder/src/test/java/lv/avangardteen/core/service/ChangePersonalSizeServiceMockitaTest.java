@@ -34,7 +34,7 @@ class ChangePersonalSizeServiceMockitaTest {
     }
 
     @Test
-    public void ChangePersonalDateWithoutError() {
+    public void ChangePersonalSizeWithoutError() {
         database = Mockito.mock(Database.class);
         ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(1L, 22, 33, 44, 45);
         validator = Mockito.mock(ChangePersonalSizeValidator.class);
