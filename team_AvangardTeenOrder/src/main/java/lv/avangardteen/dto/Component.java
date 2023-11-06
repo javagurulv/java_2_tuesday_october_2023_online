@@ -1,4 +1,4 @@
-package lv.avangardteen;
+package lv.avangardteen.dto;
 
 import java.util.Objects;
 

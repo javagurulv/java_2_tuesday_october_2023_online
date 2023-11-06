@@ -1,6 +1,6 @@
 package lv.avangardteen.data;
 
-import lv.avangardteen.Client;
+import lv.avangardteen.dto.Client;
 
 import java.util.ArrayList;
 import java.util.List;

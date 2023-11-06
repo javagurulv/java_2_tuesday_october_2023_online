@@ -1,6 +1,6 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.Client;
+import lv.avangardteen.dto.Client;
 import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.DeleteOrderResponse;

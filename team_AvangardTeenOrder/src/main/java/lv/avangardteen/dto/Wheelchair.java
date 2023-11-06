@@ -1,4 +1,6 @@
-package lv.avangardteen;
+package lv.avangardteen.dto;
+
+import lv.avangardteen.dto.UserSizes;
 
 public class Wheelchair {
     private UserSizes userSizes;

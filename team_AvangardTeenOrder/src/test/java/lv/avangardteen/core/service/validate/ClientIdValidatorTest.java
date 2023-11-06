@@ -1,6 +1,6 @@
 package lv.avangardteen.core.service.validate;
 
-import lv.avangardteen.Client;
+import lv.avangardteen.dto.Client;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.data.Database;
 import org.junit.jupiter.api.Test;

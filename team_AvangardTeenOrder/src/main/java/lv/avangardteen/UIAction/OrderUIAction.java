@@ -62,6 +62,7 @@ public class OrderUIAction implements UIAction {
                         System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
                 System.out.println("Вы не заполнили заказ полностью. Будьте внимательны!");
             } else {
+                System.out.println("Ваш номер заказа " + response.getClient().getId());
                 System.out.println(response.getClient().toString());
             }
         } catch (InputMismatchException e) {

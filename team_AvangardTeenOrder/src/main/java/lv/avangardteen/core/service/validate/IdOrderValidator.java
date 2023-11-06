@@ -1,13 +1,9 @@
 package lv.avangardteen.core.service.validate;
 
-import lv.avangardteen.Client;
 import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.data.Database;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class IdOrderValidator {
 

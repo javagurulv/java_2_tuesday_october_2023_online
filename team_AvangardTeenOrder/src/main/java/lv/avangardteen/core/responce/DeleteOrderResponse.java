@@ -1,7 +1,5 @@
 package lv.avangardteen.core.responce;
 
-import lv.avangardteen.Client;
-
 import java.util.List;
 
 public class DeleteOrderResponse extends CoreResponse {

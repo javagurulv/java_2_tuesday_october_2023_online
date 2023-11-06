@@ -1,6 +1,6 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.Client;
+import lv.avangardteen.dto.Client;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.responce.CoreError;

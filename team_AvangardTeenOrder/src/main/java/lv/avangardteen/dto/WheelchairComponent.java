@@ -1,4 +1,4 @@
-package lv.avangardteen;
+package lv.avangardteen.dto;
 
 import lv.avangardteen.data.DataComponents;
 

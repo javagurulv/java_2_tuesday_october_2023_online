@@ -1,7 +1,7 @@
 package lv.avangardteen.data;
 
-import lv.avangardteen.Category;
-import lv.avangardteen.Component;
+import lv.avangardteen.dto.Category;
+import lv.avangardteen.dto.Component;
 
 import java.util.*;
 

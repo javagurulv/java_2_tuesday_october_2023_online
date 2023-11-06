@@ -1,4 +1,4 @@
-package lv.avangardteen;
+package lv.avangardteen.dto;
 
 public enum Category {
 

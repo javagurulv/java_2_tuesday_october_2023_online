@@ -1,8 +1,6 @@
 package lv.avangardteen.UIAction;
 
-import lv.avangardteen.Client;
 import lv.avangardteen.core.request.DeleteOrderRequest;
-import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.DeleteOrderResponse;
 import lv.avangardteen.core.service.DeleteOrderService;
 
