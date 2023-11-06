@@ -1,5 +1,6 @@
 package fitness_club.data_vlidation;
 
+import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +18,7 @@ class ChangeClientAgeGroupValidationTest {
         ChangeClientAgeGroupRequest request = mock(ChangeClientAgeGroupRequest.class);
         {
             when(request.getPersonalCode()).thenReturn(null);
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.CHILD);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -30,6 +32,7 @@ class ChangeClientAgeGroupValidationTest {
         ChangeClientAgeGroupRequest request = mock(ChangeClientAgeGroupRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("");
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.CHILD);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -43,6 +46,7 @@ class ChangeClientAgeGroupValidationTest {
         ChangeClientAgeGroupRequest request = mock(ChangeClientAgeGroupRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("personalCode");
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.CHILD);
             List<CoreError> errors = requestValidator.validate(request);
             assertTrue(errors.isEmpty());
         }

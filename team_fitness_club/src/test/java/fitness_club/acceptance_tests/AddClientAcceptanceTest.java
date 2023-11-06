@@ -36,8 +36,9 @@ public class AddClientAcceptanceTest {
     public void shouldReturnErrorForPersonalCode() {
         AddClientRequest addClientRequest = new AddClientRequest("test", "test2", "", ClientAgeGroups.ADULT, Workouts.GYM);
         AddClientResponse response = getAddClientService().execute(addClientRequest);
-        assertEquals(response.getErrors().get(0).getField(), "personalCode");
-        assertEquals(response.getErrors().get(0).getMessage(), "Field personal code must not be empty!");
+        assertEquals(response.getErrors().size(), 2);
+        assertEquals(response.getErrors().get(1).getField(), "personalCode");
+        assertEquals(response.getErrors().get(1).getMessage(), "Field personal code must not be empty!");
     }
 
     @Test

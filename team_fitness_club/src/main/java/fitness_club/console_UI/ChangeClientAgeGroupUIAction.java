@@ -27,7 +27,14 @@ public class ChangeClientAgeGroupUIAction implements UIAction {
         System.out.println("1. Child");
         System.out.println("2. Adult");
         System.out.println("3. Senior");
-        ClientAgeGroups newClientAgeGroups = GetClientAgeGroupService.getClientAgeGroup(Integer.parseInt(scanner.nextLine()));
+        ClientAgeGroups newClientAgeGroups = null;
+        try {
+            String input = scanner.nextLine().trim();
+            if (!input.isEmpty()) {
+                newClientAgeGroups = GetClientAgeGroupService.getClientAgeGroup(Integer.parseInt(input));
+            }
+        } catch (NumberFormatException e) {
+        }
 
         ChangeClientAgeGroupRequest request = new ChangeClientAgeGroupRequest(clientPersonalCode, newClientAgeGroups);
         ChangeClientAgeGroupResponse response = changeClientAgeGroupService.execute(request);

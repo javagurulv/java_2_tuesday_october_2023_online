@@ -5,6 +5,7 @@ import fitness_club.core.requests.ChangeClientWorkoutsRequest;
 import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.responses.ChangeClientWorkoutsResponse;
 import fitness_club.core.services.ChangeClientWorkoutService;
+import fitness_club.core.services.GetClientAgeGroupService;
 import fitness_club.core.services.GetWorkoutService;
 
 import java.util.Scanner;
@@ -26,7 +27,14 @@ public class ChangeWorkoutUIAction implements UIAction {
         System.out.println("1. GYM");
         System.out.println("2. Swimming Pool");
         System.out.println("3. Group Classes");
-        Workouts newWorkout = GetWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
+        Workouts newWorkout = null;
+        try {
+            String input = scanner.nextLine().trim();
+            if (!input.isEmpty()) {
+                newWorkout = GetWorkoutService.getWorkout(Integer.parseInt(input));
+            }
+        } catch (NumberFormatException e) {
+        }
 
         ChangeClientWorkoutsRequest request = new ChangeClientWorkoutsRequest(clientPersonalCode, newWorkout);
         ChangeClientWorkoutsResponse response = service.execute(request);
