@@ -1,5 +1,6 @@
 package lv.javaguru.travel.insurance.core;
 
+import lv.javaguru.travel.insurance.core.validations.TravelCalculatePremiumRequestValidator;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumResponse;
 import lv.javaguru.travel.insurance.dto.ValidationError;
@@ -22,7 +23,7 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
         List<ValidationError> errors = validator.validate(request);
         return (errors.isEmpty())
-                ? getResponse(request, underwritingPrice.calculateDaysBetween(request))
+                ? getResponse(request, underwritingPrice.calculatePremium(request))
                 : new TravelCalculatePremiumResponse(errors);
 
     }

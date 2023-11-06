@@ -1,5 +1,6 @@
 package lv.javaguru.travel.insurance.core;
 
+import lv.javaguru.travel.insurance.core.validations.TravelCalculatePremiumRequestValidator;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumResponse;
 import lv.javaguru.travel.insurance.dto.ValidationError;
@@ -104,7 +105,7 @@ class TravelCalculatePremiumServiceImplTest {
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.04.2023"));
         when(request.getAgreementDateFrom()).thenReturn(createDate("21.04.2023"));
         when(validator.validate(request)).thenReturn(List.of());
-        when(underwritingPrice.calculateDaysBetween(request)).thenReturn(new BigDecimal(20));
+        when(underwritingPrice.calculatePremium(request)).thenReturn(new BigDecimal(20));
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(response.getAgreementPrice(), new BigDecimal(20));
     }

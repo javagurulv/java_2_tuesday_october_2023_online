@@ -13,7 +13,7 @@ public class UnderwritingPrice {
     private DateTimeService dateTimeService;
 
 
-    BigDecimal calculateDaysBetween(TravelCalculatePremiumRequest request) {
+    BigDecimal calculatePremium(TravelCalculatePremiumRequest request) {
         var daysBetween = dateTimeService.getDaysBetween(request.getAgreementDateFrom(), request.getAgreementDateTo());
         return new BigDecimal(daysBetween);
     }
