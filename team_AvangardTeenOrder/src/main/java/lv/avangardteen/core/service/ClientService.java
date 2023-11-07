@@ -36,15 +36,15 @@ public class ClientService {
         clientResponse.getClient().setUserAddress(request.getUserAddress());
         clientResponse.getClient().setPhoneNumber(request.getPhoneNumber());
 
-        clientResponse.getClient().setUserSizes(new UserSizes(request.getPelvisWidth(),
-                request.getThighLength(),
-                request.getBackHeight(),
-                request.getShinLength()));
 
-        clientResponse.getClient().setWheelchair(new Wheelchair(new UserSizes(request.getPelvisWidth(),
-                request.getThighLength(),
-                request.getBackHeight(),
-                request.getShinLength())));
+        UserSizes userSizes = new UserSizes();
+        userSizes.setPelvisWidth(request.getPelvisWidth());
+        userSizes.setThighLength(request.getThighLength());
+        userSizes.setBackHeight(request.getBackHeight());
+        userSizes.setShinLength(request.getShinLength());
+        clientResponse.getClient().setUserSizes(userSizes);
+
+        clientResponse.getClient().setWheelchair(buildWheelchair(userSizes));
 
 
         clientResponse.getClient().setWheelchairComponents(new WheelchairComponent());
@@ -59,5 +59,10 @@ public class ClientService {
         database.addUser(clientResponse.getClient());
 
         return new ClientResponse(clientResponse.getClient());
+    }
+
+    private static Wheelchair buildWheelchair(UserSizes userSizes) {
+        CalculateDimensionsWheelchair calculateDimensionsWheelchair = new CalculateDimensionsWheelchair(userSizes, new Wheelchair());
+        return calculateDimensionsWheelchair.setDimensions(userSizes);
     }
 }
