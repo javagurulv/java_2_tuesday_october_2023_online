@@ -32,17 +32,19 @@ public class ChangePersonalSizeService {
 
     private ChangePersonalSizeResponse getChangePersonalSizeResponse(ChangePersonalSizeRequest request) {
         Client client = database.getClient(request.getId());
-
-
-        client.setUserSizes(new UserSizes(request.getPelvisWidth(),
-                request.getThighLength(),
-                request.getBackHeight(),
-                request.getShinLength()));
-        client.setWheelchair(new Wheelchair(new UserSizes(request.getPelvisWidth(),
-                request.getThighLength(),
-                request.getBackHeight(),
-                request.getShinLength())));
+        UserSizes userSizes = new UserSizes();
+        userSizes.setPelvisWidth(request.getPelvisWidth());
+        userSizes.setThighLength(request.getThighLength());
+        userSizes.setBackHeight(request.getBackHeight());
+        userSizes.setShinLength(request.getShinLength());
+        client.setUserSizes(userSizes);
+        client.setWheelchair(buildWheelchair(userSizes));
 
         return new ChangePersonalSizeResponse(client);
+    }
+
+    private static Wheelchair buildWheelchair(UserSizes userSizes) {
+        CalculateDimensionsWheelchair calculateDimensionsWheelchair = new CalculateDimensionsWheelchair(userSizes, new Wheelchair());
+        return calculateDimensionsWheelchair.setDimensions(userSizes);
     }
 }

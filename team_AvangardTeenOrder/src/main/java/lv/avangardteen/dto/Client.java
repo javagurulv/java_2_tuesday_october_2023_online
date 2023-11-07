@@ -3,16 +3,16 @@ package lv.avangardteen.dto;
 import java.util.Objects;
 
 public class Client {
-long id;
+    Long id;
     String nameSurname;
-    int phoneNumber;
+    Integer phoneNumber;
     String userAddress;
     UserSizes userSizes;
-    Wheelchair wheelchair = new Wheelchair(userSizes);
+    Wheelchair wheelchair = new Wheelchair();
     WheelchairComponent wheelchairComponents;
     double priseOrder;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -37,7 +37,7 @@ long id;
         this.nameSurname = nameSurname;
     }
 
-    public int getPhoneNumber() {
+    public Integer getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -77,7 +77,6 @@ long id;
     public void setWheelchairComponents(WheelchairComponent wheelchairComponent) {
         this.wheelchairComponents = wheelchairComponent;
     }
-
 
     @Override
     public String toString() {

@@ -3,57 +3,46 @@ package lv.avangardteen.dto;
 import lv.avangardteen.dto.UserSizes;
 
 public class Wheelchair {
-    private UserSizes userSizes;
+
     Integer seatWidth;
     Integer seatDepth;
     Integer footrestLength;
     Integer bachHeight;
 
-     double priceWheelchair = 177000.0;
-
-    public Wheelchair(UserSizes userSizes) {
-        this.userSizes = userSizes;
-    }
+    double priceWheelchair = 177000.0;
 
     public Integer getSeatWidth() {
-
-        return this.seatWidth = setSeatWidth();
+        return seatWidth;
     }
 
-    public Integer setSeatWidth() {
-
-        return this.seatWidth = userSizes.findSeatWidth();
+    public void setSeatWidth(Integer seatWidth) {
+        this.seatWidth = seatWidth;
     }
 
     public Integer getSeatDepth() {
-
-        return this.seatDepth = setSeatDepth();
+        return seatDepth;
     }
 
-    public Integer setSeatDepth() {
-
-        return  this.seatDepth = userSizes.findSeatDepth();
+    public void setSeatDepth(Integer seatDepth) {
+        this.seatDepth = seatDepth;
     }
 
     public Integer getFootrestLength() {
-
-        return this.footrestLength = setFootrestLength(userSizes);
+        return footrestLength;
     }
-    public Integer setFootrestLength(UserSizes userSizes) {
 
-        return this.footrestLength = userSizes.findFootrestLength();
-
+    public void setFootrestLength(Integer footrestLength) {
+        this.footrestLength = footrestLength;
     }
 
     public Integer getBachHeight() {
-
-        return this.bachHeight = setBachHeight(userSizes);
+        return bachHeight;
     }
 
-    public Integer setBachHeight(UserSizes userSizes) {
-
-        return this.bachHeight = userSizes.getBackHeight();
+    public void setBachHeight(Integer bachHeight) {
+        this.bachHeight = bachHeight;
     }
+
     public double getPriceWheelchair() {
         return priceWheelchair;
     }
