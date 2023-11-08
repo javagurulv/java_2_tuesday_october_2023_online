@@ -17,6 +17,8 @@ include 'teacher:lesson_5_testing_with_junit_and_mockito:step_2_refactoring'
 include 'teacher:lesson_5_testing_with_junit_and_mockito:step_3_application_context'
 include 'teacher:lesson_5_testing_with_junit_and_mockito:step_4_acceptance_tests'
 
+include 'teacher:lesson_6_dependency_injection_inversion_of_control:step_1_dependency_injection'
+
 
 include 'teacher:travel_insurance_calculator:step_1'
 include 'teacher:travel_insurance_calculator:step_2'
