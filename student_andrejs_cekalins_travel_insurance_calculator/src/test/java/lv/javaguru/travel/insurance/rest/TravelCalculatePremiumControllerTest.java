@@ -34,18 +34,31 @@ public class TravelCalculatePremiumControllerTest {
     }
 
     @Test
-    public void firstNameNotProvided() throws Exception {
+    public void personFirstNameIsEmpty() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_firstName_not_provided.json",
-                "rest/TravelCalculatePremiumResponse_firstName_not_provided.json"
+                "rest/TravelCalculatePremiumRequest_firstName_is_empty.json",
+                "rest/TravelCalculatePremiumResponse_firstName_is_empty.json"
         );
     }
-
     @Test
-    public void lastNameNotProvided() throws Exception {
+    public void personFirstNameIsNull() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_lastName_not_provided.json",
-                "rest/TravelCalculatePremiumResponse_lastName_not_provided.json"
+                "rest/TravelCalculatePremiumRequest_FirstName_is_null.json",
+                "rest/TravelCalculatePremiumResponse_FirstName_is_null.json"
+        );
+    }
+    @Test
+    public void lastNameIsEmpty() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_lastName_is_empty.json",
+                "rest/TravelCalculatePremiumResponse_lastName_is_empty.json"
+        );
+    }
+    @Test
+    public void lastNameIsNull() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_lastName_is_null.json",
+                "rest/TravelCalculatePremiumResponse_lastName_is_null.json"
         );
     }
 
@@ -99,10 +112,17 @@ public class TravelCalculatePremiumControllerTest {
     }
 
     @Test
-    public void emptySelectedRiskValidation() throws Exception {
+    public void selectedRiskValidationEmpty() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_empty_selected_risk.json",
-                "rest/TravelCalculatePremiumResponse_empty_selected_risk.json"
+                "rest/TravelCalculatePremiumRequest_selected_risk_empty.json",
+                "rest/TravelCalculatePremiumResponse_selected_risk_empty.json"
+        );
+    }
+    @Test
+    public void selectedRiskValidationNull() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_selected_risk_null.json",
+                "rest/TravelCalculatePremiumResponse_selected_risk_null.json"
         );
     }
 

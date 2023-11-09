@@ -48,8 +48,8 @@ class TravelCalculatePremiumServiceImplTest {
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "field");
-        assertEquals(errors.get(0).getMessage(), "errorMessage!");
+        assertEquals(errors.get(0).getErrorCode(), "field");
+        assertEquals(errors.get(0).getDescription(), "errorMessage!");
     }
 
     @Test
