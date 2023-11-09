@@ -20,12 +20,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class TravelCalculatePremiumControllerTest {
-    @Autowired private MockMvc mockMvc;
+    @Autowired
+    private MockMvc mockMvc;
 
-    @Autowired private JsonFileReader jsonFileReader;
+    @Autowired
+    private JsonFileReader jsonFileReader;
     private ObjectMapper mapper = new ObjectMapper();
 
-   /* @Test
+    @Test
     public void successRequest() throws Exception {
         executeAndCompare(
                 "rest/TravelCalculatePremiumRequest_success.json",
@@ -40,6 +42,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_firstName_not_provided.json"
         );
     }
+
     @Test
     public void lastNameNotProvided() throws Exception {
         executeAndCompare(
@@ -47,6 +50,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_lastName_not_provided.json"
         );
     }
+
     @Test
     public void allFieldsNotProvided() throws Exception {
         executeAndCompare(
@@ -54,6 +58,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_allFields_not_provided.json"
         );
     }
+
     @Test
     public void dateFromNotProvided() throws Exception {
         executeAndCompare(
@@ -61,6 +66,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_dateFrom_not_provided.json"
         );
     }
+
     @Test
     public void dateToNotProvided() throws Exception {
         executeAndCompare(
@@ -68,6 +74,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_dateTo_not_provided.json"
         );
     }
+
     @Test
     public void agreementDateToLessThenAgreementDateFrom() throws Exception {
         executeAndCompare(
@@ -76,6 +83,7 @@ public class TravelCalculatePremiumControllerTest {
         );
 
     }
+
     @Test
     public void agreementDateFromInThePast() throws Exception {
         executeAndCompare(
@@ -83,6 +91,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_dateFrom_In_The_Past.json"
         );
     }
+
     @Test
     public void agreementDateToInThePast() throws Exception {
         executeAndCompare(
@@ -90,6 +99,15 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_dateTo_In_The_Past.json"
         );
     }
+
+    @Test
+    public void emptySelectedRiskValidation() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_empty_selected_risk.json",
+                "rest/TravelCalculatePremiumResponse_empty_selected_risk.json"
+        );
+    }
+
     private void executeAndCompare(String jsonRequestFilePath,
                                    String jsonResponseFilePath) throws Exception {
         String jsonRequest = jsonFileReader.readJsonFromFile(jsonRequestFilePath);
@@ -107,5 +125,4 @@ public class TravelCalculatePremiumControllerTest {
         assertEquals(mapper.readTree(responseBodyContent), mapper.readTree(jsonResponse));
     }
 
-    */
 }
