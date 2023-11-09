@@ -9,11 +9,11 @@
       "message": "Must not be empty!"
     },
     {
-      "field": "selectedRisk",
+      "field": "personFirstName",
       "message": "Must not be empty!"
     },
     {
-      "field": "personFirstName",
+      "field": "selectedRisk",
       "message": "Must not be empty!"
     },
     {
