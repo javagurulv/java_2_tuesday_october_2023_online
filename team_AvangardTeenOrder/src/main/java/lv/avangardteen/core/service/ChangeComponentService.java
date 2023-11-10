@@ -16,6 +16,7 @@ public class ChangeComponentService {
     private DataComponents dataComponents;
     private ChooseComponentValidator validator;
 
+
     public ChangeComponentService(Database database, DataComponents dataComponents, ChooseComponentValidator validator) {
         this.database = database;
         this.dataComponents = dataComponents;
