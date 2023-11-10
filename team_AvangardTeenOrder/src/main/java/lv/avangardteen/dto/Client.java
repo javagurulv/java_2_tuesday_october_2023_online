@@ -1,5 +1,7 @@
 package lv.avangardteen.dto;
 
+import lv.avangardteen.core.service.WheelchairComponent;
+
 import java.util.Objects;
 
 public class Client {

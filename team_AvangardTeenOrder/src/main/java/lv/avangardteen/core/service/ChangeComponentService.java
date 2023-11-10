@@ -1,7 +1,6 @@
 package lv.avangardteen.core.service;
 
 import lv.avangardteen.dto.Client;
-import lv.avangardteen.dto.WheelchairComponent;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;

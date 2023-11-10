@@ -1,6 +1,8 @@
-package lv.avangardteen.dto;
+package lv.avangardteen.core.service;
 
 import lv.avangardteen.data.DataComponents;
+import lv.avangardteen.dto.Category;
+import lv.avangardteen.dto.Component;
 
 import java.util.HashMap;
 import java.util.List;

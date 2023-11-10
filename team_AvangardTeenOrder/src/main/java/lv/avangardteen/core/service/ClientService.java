@@ -3,7 +3,6 @@ package lv.avangardteen.core.service;
 import lv.avangardteen.dto.Client;
 import lv.avangardteen.dto.UserSizes;
 import lv.avangardteen.dto.Wheelchair;
-import lv.avangardteen.dto.WheelchairComponent;
 import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.ClientResponse;
 import lv.avangardteen.core.responce.CoreError;

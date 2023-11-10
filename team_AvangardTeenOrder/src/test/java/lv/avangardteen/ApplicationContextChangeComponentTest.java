@@ -9,7 +9,7 @@ import lv.avangardteen.core.service.ClientService;
 import lv.avangardteen.dto.Category;
 import lv.avangardteen.dto.Client;
 import lv.avangardteen.dto.Component;
-import lv.avangardteen.dto.WheelchairComponent;
+import lv.avangardteen.core.service.WheelchairComponent;
 import org.junit.jupiter.api.Test;
 
 
