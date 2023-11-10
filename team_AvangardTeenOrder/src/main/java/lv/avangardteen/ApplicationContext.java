@@ -53,6 +53,7 @@ public class ApplicationContext {
                 getBean(ChangePersonalSizeValidator.class)));
         beans.put(ChangeComponentService.class, new ChangeComponentService(
                 getBean(Database.class),
+                getBean(DataComponents.class),
                 getBean(ChooseComponentValidator.class)));
         beans.put(ShowOrderService.class, new ShowOrderService(
                 getBean(Database.class),

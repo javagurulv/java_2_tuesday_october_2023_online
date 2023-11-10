@@ -13,11 +13,12 @@ import java.util.List;
 
 public class ChangeComponentService {
     private Database database;
-    private DataComponents dataComponents = new DataComponents();
+    private DataComponents dataComponents;
     private ChooseComponentValidator validator;
 
-    public ChangeComponentService(Database database, ChooseComponentValidator validator) {
+    public ChangeComponentService(Database database, DataComponents dataComponents, ChooseComponentValidator validator) {
         this.database = database;
+        this.dataComponents = dataComponents;
         this.validator = validator;
     }
 

@@ -1,5 +1,6 @@
 package lv.avangardteen.core.service;
 
+import lv.avangardteen.data.DataComponents;
 import lv.avangardteen.dto.Client;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ChangeComponentServiceMockTest {
 
     private Database database;
+    private DataComponents dataComponents;
     private ChooseComponentValidator validator;
     private ChangeComponentService service;
 
@@ -27,7 +29,7 @@ class ChangeComponentServiceMockTest {
         validator = Mockito.mock(ChooseComponentValidator.class);
         Mockito.when(validator.validate(notValidationRequest)).thenReturn(
                 List.of(new CoreError("Change Component", "Incorrect component chose!")));
-        service = new ChangeComponentService(null,validator);
+        service = new ChangeComponentService(null, dataComponents, validator);
         ChangeComponentResponse response = service.execute(notValidationRequest);
         assertTrue(response.hasErrors());
     }
@@ -40,7 +42,7 @@ class ChangeComponentServiceMockTest {
                 1L, 11, 12, 13, 14);
         Mockito.when(validator.validate(request)).thenReturn(List.of());
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
-        service = new ChangeComponentService(database, validator);
+        service = new ChangeComponentService(database, dataComponents, validator);
         ChangeComponentResponse response = service.execute(request);
         assertFalse(response.hasErrors());
 
