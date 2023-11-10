@@ -1,11 +1,12 @@
 package lv.avangardteen.data;
 
-import lv.avangardteen.Client;
+import lv.avangardteen.dto.Client;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class DataOrders implements Database {
     private Long nextId = 1L;
@@ -25,15 +26,21 @@ public class DataOrders implements Database {
     }
 
     @Override
-    public void deleteUser(long id) {
-        clients.stream()
+    public boolean deleteUser(Long id) {
+        boolean isClientDelete = false;
+        Optional<Client> clientToDelete = clients.stream()
                 .filter(client -> client.getId() == id)
-                .findFirst()
-                .ifPresent(client -> clients.remove(client));
+                .findFirst();
+               if(clientToDelete.isPresent()) {
+               Client clientToRemove = clientToDelete.get();
+               isClientDelete = clients.remove(clientToRemove);
+               }
+               return isClientDelete;
+
     }
 
     @Override
-    public Client getClient(long id) {
+    public Client getClient(Long id) {
         List<Client> clientList = getClients();
         Client clientSearch = null;
         for (Client client : clientList) {
@@ -43,6 +50,23 @@ public class DataOrders implements Database {
         }
         return clientSearch;
 
+    }
+
+    @Override
+    public List<Client> findBySurname(String surname) {
+        return getClients().stream()
+                .filter(client -> client.getNameSurname().equals(surname))
+                .collect(Collectors.toList());
+
+
+    }
+
+    @Override
+    public List<Client> findBySurnameAndAddress(String surname, String address) {
+        return getClients().stream()
+                .filter(client -> client.getNameSurname().equals(surname))
+                .filter(client -> client.getUserAddress().equals(address))
+                .collect(Collectors.toList());
     }
 
     @Override

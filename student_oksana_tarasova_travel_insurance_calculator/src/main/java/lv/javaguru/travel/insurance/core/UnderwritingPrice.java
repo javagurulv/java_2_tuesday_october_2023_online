@@ -1,16 +1,20 @@
 package lv.javaguru.travel.insurance.core;
 
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
 
 @Component
 public class UnderwritingPrice {
 
-DateTimeService dateTimeService = new DateTimeService();
+    @Autowired
+    private DateTimeService dateTimeService;
 
 
-    public long daysBetween(TravelCalculatePremiumRequest request) {
+    BigDecimal calculatePremium(TravelCalculatePremiumRequest request) {
         var daysBetween = dateTimeService.getDaysBetween(request.getAgreementDateFrom(), request.getAgreementDateTo());
-        return daysBetween;
+        return new BigDecimal(daysBetween);
     }
 }

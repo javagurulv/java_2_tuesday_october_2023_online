@@ -1,12 +1,12 @@
 package lv.avangardteen.core.responce;
 
 
-import lv.avangardteen.Client;
+import lv.avangardteen.dto.Client;
 
 import java.util.List;
 
 public class ChangePersonalDateResponse extends CoreResponse {
-   Client client;
+   private Client client;
 
     public ChangePersonalDateResponse(List<CoreError> errors) {
         super(errors);

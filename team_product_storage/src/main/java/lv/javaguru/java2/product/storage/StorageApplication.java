@@ -4,6 +4,7 @@ import lv.javaguru.java2.product.storage.console_ui.*;
 import lv.javaguru.java2.product.storage.core.database.Database;
 import lv.javaguru.java2.product.storage.core.database.InMemoryDatabase;
 import lv.javaguru.java2.product.storage.core.services.*;
+import lv.javaguru.java2.product.storage.core.services.validators.*;
 
 import java.util.Scanner;
 
@@ -11,11 +12,18 @@ public class StorageApplication {
 
     private static Database database = new InMemoryDatabase();
 
-    private static AddProductRequestValidator addProductValidator = new AddProductRequestValidator();
+    private static AddProductRequestValidator addProductRequestValidator = new AddProductRequestValidator();
 
-    private static SearchProductsRequestValidator searchProductsRequestValidator = new SearchProductsRequestValidator();
-    private static AddProductService addProductService = new AddProductService(database, addProductValidator);
-    private static RemoveProductService removeProductService = new RemoveProductService(database);
+    private static RemoveProductRequestValidator removeProductRequestValidator = new RemoveProductRequestValidator();
+
+    private static SearchProductsRequestFieldValidator searchProductsRequestFieldValidator = new SearchProductsRequestFieldValidator();
+    private static OrderingValidator orderingValidator = new OrderingValidator();
+    private static PagingValidator pagingValidator = new PagingValidator();
+    private static SearchProductsRequestValidator searchProductsRequestValidator = new SearchProductsRequestValidator(
+            searchProductsRequestFieldValidator, orderingValidator, pagingValidator
+    );
+    private static AddProductService addProductService = new AddProductService(database, addProductRequestValidator);
+    private static RemoveProductService removeProductService = new RemoveProductService(database, removeProductRequestValidator);
     private static GetAllProductsService getAllProductService = new GetAllProductsService(database);
     private static SearchProductsService searchProductsService = new SearchProductsService(database, searchProductsRequestValidator);
 

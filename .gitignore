@@ -1,12 +1,13 @@
 #java specific
 *.class
 *.jar
+*.log
 
 ### Gradle ###
 .gradle
-/build/
-/logs/
-/out/
+**/build/
+**/logs/
+**/out/
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###

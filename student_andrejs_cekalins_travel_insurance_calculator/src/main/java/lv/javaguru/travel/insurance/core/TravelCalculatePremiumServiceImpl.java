@@ -26,7 +26,7 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
                 : buildResponse(errors);
     }
 
-    private static TravelCalculatePremiumResponse buildResponse(List<ValidationError> errors) {
+    private TravelCalculatePremiumResponse buildResponse(List<ValidationError> errors) {
         return new TravelCalculatePremiumResponse(errors);
     }
 

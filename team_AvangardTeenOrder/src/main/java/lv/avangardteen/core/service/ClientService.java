@@ -1,13 +1,13 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.Client;
-import lv.avangardteen.UserSizes;
-import lv.avangardteen.Wheelchair;
-import lv.avangardteen.WheelchairComponent;
+import lv.avangardteen.dto.Client;
+import lv.avangardteen.dto.UserSizes;
+import lv.avangardteen.dto.Wheelchair;
+import lv.avangardteen.dto.WheelchairComponent;
 import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.ClientResponse;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.core.service.validate.ClientOrderValidator;
 import lv.avangardteen.data.Database;
 
 import java.util.List;
@@ -36,15 +36,15 @@ public class ClientService {
         clientResponse.getClient().setUserAddress(request.getUserAddress());
         clientResponse.getClient().setPhoneNumber(request.getPhoneNumber());
 
-        clientResponse.getClient().setUserSizes(new UserSizes(request.getBackLength(),
-                request.getPelvisWidth(),
-                request.getShinLength(),
-                request.getThighLength()));
 
-        clientResponse.getClient().setWheelchair(new Wheelchair(new UserSizes(request.getBackLength(),
-                request.getPelvisWidth(),
-                request.getShinLength(),
-                request.getThighLength())));
+        UserSizes userSizes = new UserSizes();
+        userSizes.setPelvisWidth(request.getPelvisWidth());
+        userSizes.setThighLength(request.getThighLength());
+        userSizes.setBackHeight(request.getBackHeight());
+        userSizes.setShinLength(request.getShinLength());
+        clientResponse.getClient().setUserSizes(userSizes);
+
+        clientResponse.getClient().setWheelchair(buildWheelchair(userSizes));
 
 
         clientResponse.getClient().setWheelchairComponents(new WheelchairComponent());
@@ -57,8 +57,12 @@ public class ClientService {
                 + clientResponse.getClient().getWheelchair().getPriceWheelchair());
 
         database.addUser(clientResponse.getClient());
-        System.out.println("Ваш номер заказа" + clientResponse.getClient().getId());
 
         return new ClientResponse(clientResponse.getClient());
+    }
+
+    private static Wheelchair buildWheelchair(UserSizes userSizes) {
+        CalculateDimensionsWheelchair calculateDimensionsWheelchair = new CalculateDimensionsWheelchair(userSizes, new Wheelchair());
+        return calculateDimensionsWheelchair.setDimensions(userSizes);
     }
 }

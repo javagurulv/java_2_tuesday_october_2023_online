@@ -2,7 +2,8 @@ package fitness_club.console_UI;
 
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.requests.ChangeClientAgeGroupRequest;
-import fitness_club.core.responses.ClientResponse;
+import fitness_club.core.responses.AddClientResponse;
+import fitness_club.core.responses.ChangeClientAgeGroupResponse;
 import fitness_club.core.services.ChangeClientAgeGroupService;
 import fitness_club.core.services.GetClientAgeGroupService;
 
@@ -26,11 +27,26 @@ public class ChangeClientAgeGroupUIAction implements UIAction {
         System.out.println("1. Child");
         System.out.println("2. Adult");
         System.out.println("3. Senior");
-        ClientAgeGroups newClientAgeGroups = GetClientAgeGroupService.getClientAgeGroup(Integer.parseInt(scanner.nextLine()));
+        ClientAgeGroups newClientAgeGroups = null;
+        try {
+            String input = scanner.nextLine().trim();
+            if (!input.isEmpty()) {
+                newClientAgeGroups = GetClientAgeGroupService.getClientAgeGroup(Integer.parseInt(input));
+            }
+        } catch (NumberFormatException e) {
+        }
 
         ChangeClientAgeGroupRequest request = new ChangeClientAgeGroupRequest(clientPersonalCode, newClientAgeGroups);
-        ClientResponse response = changeClientAgeGroupService.execute(request);
+        ChangeClientAgeGroupResponse response = changeClientAgeGroupService.execute(request);
 
-        System.out.println("Client age group has been changed.");
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError -> System.out.println("Alarm: " + coreError.getField() + " " + coreError.getMessage()));
+        } else {
+            if (response.isClientAgeGroupChanged()) {
+                System.out.println("Client age group was changed.");
+            } else {
+                System.out.println("Client age group was not changed.");
+            }
+        }
     }
 }

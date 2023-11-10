@@ -1,27 +1,22 @@
 package lv.avangardteen.core.responce;
 
-import lv.avangardteen.Client;
-
 import java.util.List;
 
 public class DeleteOrderResponse extends CoreResponse {
-    Client client;
+
+    private boolean removeOrder;
 
     public DeleteOrderResponse(List<CoreError> errors) {
        super(errors);
     }
 
-    public DeleteOrderResponse() {
+    public DeleteOrderResponse(boolean removeOrder) {
+        this.removeOrder = removeOrder;
 
     }
 
-    public Client getClient() {
-        return client;
+    public boolean isOrderRemoved() {
+        return removeOrder;
     }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
 
 }

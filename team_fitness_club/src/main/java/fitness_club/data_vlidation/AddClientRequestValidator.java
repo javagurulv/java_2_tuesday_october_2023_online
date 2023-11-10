@@ -1,5 +1,6 @@
 package fitness_club.data_vlidation;
 
+import fitness_club.core.database.Database;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.database.InFileDatabase;
@@ -9,6 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 public class AddClientRequestValidator {
+    private Database database;
+
+    public AddClientRequestValidator(Database database) {
+        this.database = database;
+    }
+
     public List<CoreError> validate(AddClientRequest request) {
         List<CoreError> errors = new ArrayList<>();
         validateFirstName(request).ifPresent(errors::add);
@@ -37,12 +44,8 @@ public class AddClientRequestValidator {
     }
 
     private Optional<CoreError> validatePersonalCodeNotDuplicate(AddClientRequest request) {
-        InFileDatabase database = new InFileDatabase();
-        List<Client> clients = database.getAllClients();
-        Optional<Client> clientToCheckPersonalCode = clients.stream()
-                .filter(client -> client.getPersonalCode().equals(request.getPersonalCode()))
-                .findFirst();
-        return clientToCheckPersonalCode.isPresent()
+        List<Client> clients = database.findByPersonalCode(request.getPersonalCode());
+        return (!clients.isEmpty())
                 ? Optional.of(new CoreError("uniqueClient", "Field must not be duplicated! Client with such personal code is already in database!"))
                 : Optional.empty();
     }

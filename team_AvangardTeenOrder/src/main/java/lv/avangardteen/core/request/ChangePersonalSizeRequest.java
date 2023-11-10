@@ -1,13 +1,13 @@
 package lv.avangardteen.core.request;
 
 public class ChangePersonalSizeRequest {
-    public int id;
-    public int pelvisWidth; //ширина таза
-    public int thighLength; //длинна бедра
-    public int backHeight; //высота спины
-    public int shinLength;
+    public Long id;
+    public Integer pelvisWidth; //ширина таза
+    public Integer thighLength; //длинна бедра
+    public Integer backHeight; //высота спины
+    public Integer shinLength; //длинна голени
 
-    public ChangePersonalSizeRequest(int id, int pelvisWidth, int thighLength, int backHeight, int shinLength) {
+    public ChangePersonalSizeRequest(Long id, Integer pelvisWidth, Integer thighLength, Integer backHeight, Integer shinLength) {
         this.id = id;
         this.pelvisWidth = pelvisWidth;
         this.thighLength = thighLength;
@@ -16,23 +16,23 @@ public class ChangePersonalSizeRequest {
     }
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public int getPelvisWidth() {
+    public Integer getPelvisWidth() {
         return pelvisWidth;
     }
 
-    public int getThighLength() {
+    public Integer getThighLength() {
         return thighLength;
     }
 
-    public int getBackHeight() {
+    public Integer getBackHeight() {
         return backHeight;
     }
 
-    public int getShinLength() {
+    public Integer getShinLength() {
         return shinLength;
     }
 }

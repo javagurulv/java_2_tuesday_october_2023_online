@@ -1,6 +1,6 @@
 package lv.javaguru.travel.insurance.core;
 
-import lv.javaguru.travel.insurance.dto.CoreResponse;
+import lv.javaguru.travel.insurance.core.validations.TravelCalculatePremiumRequestValidator;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumResponse;
 import lv.javaguru.travel.insurance.dto.ValidationError;
@@ -8,38 +8,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
 
     @Autowired
-    private DateTimeService dateTimeService = new DateTimeService();
+    private TravelCalculatePremiumRequestValidator validator;
     @Autowired
-    private TravelCalculatePremiumRequestValidator validator = new TravelCalculatePremiumRequestValidator();
-    @Autowired
-    private UnderwritingPrice underwritingPrice = new UnderwritingPrice();
+    private UnderwritingPrice underwritingPrice;
 
 
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
         List<ValidationError> errors = validator.validate(request);
         return (errors.isEmpty())
-                ? getResponse(request)
+                ? getResponse(request, underwritingPrice.calculatePremium(request))
                 : new TravelCalculatePremiumResponse(errors);
 
     }
 
-    private TravelCalculatePremiumResponse getResponse(TravelCalculatePremiumRequest request) {
+    private TravelCalculatePremiumResponse getResponse(TravelCalculatePremiumRequest request, BigDecimal premium) {
         TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse();
 
         response.setPersonFirstName(request.getPersonFirstName());
         response.setPersonLastName(request.getPersonLastName());
         response.setAgreementDateFrom(request.getAgreementDateFrom());
         response.setAgreementDateTo(request.getAgreementDateTo());
-        response.setAgreementPrice(new BigDecimal(underwritingPrice.daysBetween(request)));
+        response.setAgreementPrice(premium);
         return response;
     }
 

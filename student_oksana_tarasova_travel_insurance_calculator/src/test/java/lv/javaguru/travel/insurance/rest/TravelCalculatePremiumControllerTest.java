@@ -1,5 +1,6 @@
 package lv.javaguru.travel.insurance.rest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,25 +26,99 @@ class TravelCalculatePremiumControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired private JsonFileReader jsonFileReader;
+
+
     @Test
     public void simpleRestControllerTest() throws Exception {
-        mockMvc.perform(post("/insurance/travel/")
-                        .content("{" +
-                                "\"personFirstName\" : \"Vasja\",\n" +
-                                "\"personLastName\" : \"Pupkin\",\n" +
-                                "\"agreementDateFrom\" : \"2021-05-25\",\n" +
-                                "\"agreementDateTo\" : \"2021-05-29\"\n" +
-                                "}")
-                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("personFirstName", is("Vasja")))
-                .andExpect(jsonPath("personLastName", is("Pupkin")))
-                .andExpect(jsonPath("agreementDateFrom", is("2021-05-25")))
-                .andExpect(jsonPath("agreementDateTo", is("2021-05-29")))
-                .andExpect(jsonPath("agreementPrice", is(4)))
-                .andReturn();
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest.json",
+                "rest/TravelCalculatePremiumResponse.json"
+        );
     }
 
+    @Test
+    public void firstNameIsNullControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_firstNameIsNull.json",
+                "rest/TravelCalculatePremiumResponse_firstNameIsNull.json"
+        );
+    }
+
+    @Test
+    public void lastNameIsNullControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_lastNameIsNull.json",
+                "rest/TravelCalculatePremiumResponse_lastNameIsNull.json"
+        );
+    }
+
+    @Test
+    public void dateFromIsNullControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_dateFromIsNull.json",
+                "rest/TravelCalculatePremiumResponse_dateFromIsNull.json"
+        );
+    }
+
+    @Test
+    public void dateToIsNullControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_dateToIsNull.json",
+                "rest/TravelCalculatePremiumResponse_dateToIsNull.json"
+        );
+    }
+
+    @Test
+    public void dateToLessDateFromControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_dateToLessDateFrom.json",
+                "rest/TravelCalculatePremiumResponse_dateToLessDateFrom.json"
+        );
+    }
+
+    @Test
+    public void allFieldsIsNullControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_allFieldsIsNull.json",
+                "rest/TravelCalculatePremiumResponse_allFieldsIsNull.json"
+        );
+    }
+
+    @Test
+    public void dateFromNotInFutureControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_dateFromNotInFuture.json",
+                "rest/TravelCalculatePremiumResponse_dateFromNotInFuture.json"
+        );
+    }
+
+    @Test
+    public void dateToNotInFutureControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_dateToNotInFuture.json",
+                "rest/TravelCalculatePremiumResponse_dateToNotInFuture.json"
+        );
+    }
+
+
+    private void executeAndCompare(String jsonRequestFilePath,
+                                   String jsonResponseFilePath) throws Exception {
+        String jsonRequest = jsonFileReader.readJsonFromFile(jsonRequestFilePath);
+
+        MvcResult result = mockMvc.perform(post("/insurance/travel/")
+                        .content(jsonRequest)
+                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String responseBodyContent = result.getResponse().getContentAsString();
+
+        String jsonResponse = jsonFileReader.readJsonFromFile(jsonResponseFilePath);
+
+        ObjectMapper mapper = new ObjectMapper();
+        assertEquals(mapper.readTree(responseBodyContent), mapper.readTree(jsonResponse));
+    }
 
 
 }

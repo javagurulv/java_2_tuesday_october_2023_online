@@ -1,6 +1,5 @@
 package lv.javaguru.travel.insurance.rest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,18 +11,19 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static uk.org.webcompere.modelassert.json.JsonAssertions.assertJson;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class TravelCalculatePremiumControllerTest {
-    @Autowired private MockMvc mockMvc;
+    @Autowired
+    private MockMvc mockMvc;
 
-    @Autowired private JsonFileReader jsonFileReader;
-    private ObjectMapper mapper = new ObjectMapper();
+    @Autowired
+    private JsonFileReader jsonFileReader;
 
     @Test
     public void successRequest() throws Exception {
@@ -34,19 +34,34 @@ public class TravelCalculatePremiumControllerTest {
     }
 
     @Test
-    public void firstNameNotProvided() throws Exception {
+    public void personFirstNameIsEmpty() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_firstName_not_provided.json",
-                "rest/TravelCalculatePremiumResponse_firstName_not_provided.json"
+                "rest/TravelCalculatePremiumRequest_firstName_is_empty.json",
+                "rest/TravelCalculatePremiumResponse_firstName_is_empty.json"
         );
     }
     @Test
-    public void lastNameNotProvided() throws Exception {
+    public void personFirstNameIsNull() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_lastName_not_provided.json",
-                "rest/TravelCalculatePremiumResponse_lastName_not_provided.json"
+                "rest/TravelCalculatePremiumRequest_FirstName_is_null.json",
+                "rest/TravelCalculatePremiumResponse_FirstName_is_null.json"
         );
     }
+    @Test
+    public void lastNameIsEmpty() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_lastName_is_empty.json",
+                "rest/TravelCalculatePremiumResponse_lastName_is_empty.json"
+        );
+    }
+    @Test
+    public void lastNameIsNull() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_lastName_is_null.json",
+                "rest/TravelCalculatePremiumResponse_lastName_is_null.json"
+        );
+    }
+
     @Test
     public void allFieldsNotProvided() throws Exception {
         executeAndCompare(
@@ -54,6 +69,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_allFields_not_provided.json"
         );
     }
+
     @Test
     public void dateFromNotProvided() throws Exception {
         executeAndCompare(
@@ -61,6 +77,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_dateFrom_not_provided.json"
         );
     }
+
     @Test
     public void dateToNotProvided() throws Exception {
         executeAndCompare(
@@ -68,6 +85,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_dateTo_not_provided.json"
         );
     }
+
     @Test
     public void agreementDateToLessThenAgreementDateFrom() throws Exception {
         executeAndCompare(
@@ -76,6 +94,7 @@ public class TravelCalculatePremiumControllerTest {
         );
 
     }
+
     @Test
     public void agreementDateFromInThePast() throws Exception {
         executeAndCompare(
@@ -83,6 +102,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_dateFrom_In_The_Past.json"
         );
     }
+
     @Test
     public void agreementDateToInThePast() throws Exception {
         executeAndCompare(
@@ -90,6 +110,22 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_dateTo_In_The_Past.json"
         );
     }
+
+    @Test
+    public void selectedRiskValidationEmpty() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_selected_risk_empty.json",
+                "rest/TravelCalculatePremiumResponse_selected_risk_empty.json"
+        );
+    }
+    @Test
+    public void selectedRiskValidationNull() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_selected_risk_null.json",
+                "rest/TravelCalculatePremiumResponse_selected_risk_null.json"
+        );
+    }
+
     private void executeAndCompare(String jsonRequestFilePath,
                                    String jsonResponseFilePath) throws Exception {
         String jsonRequest = jsonFileReader.readJsonFromFile(jsonRequestFilePath);
@@ -104,6 +140,11 @@ public class TravelCalculatePremiumControllerTest {
 
         String jsonResponse = jsonFileReader.readJsonFromFile(jsonResponseFilePath);
 
-        assertEquals(mapper.readTree(responseBodyContent), mapper.readTree(jsonResponse));
+        assertJson(responseBodyContent)
+                .where()
+                .keysInAnyOrder()
+                .arrayInAnyOrder()
+                .isEqualTo(jsonResponse);
     }
+
 }

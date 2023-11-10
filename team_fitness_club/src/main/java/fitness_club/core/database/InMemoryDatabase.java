@@ -2,9 +2,12 @@ package fitness_club.core.database;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import fitness_club.core.domain.Client;
+import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.domain.Workouts;
 
 public class InMemoryDatabase implements Database {
 
@@ -17,15 +20,55 @@ public class InMemoryDatabase implements Database {
         clients.add(client);
     }
 
-    public void removeClient(String personalCode) {
-        clients.stream()
+    public boolean deleteClientByPersonalCode(String personalCode) {
+        boolean isClientDeleted = false;
+        Optional<Client> clientToDeleteOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
-                .findFirst()
-                .ifPresent(client -> clients.remove(client));
+                .findFirst();
+        if (clientToDeleteOpt.isPresent()) {
+            Client clientToRemove = clientToDeleteOpt.get();
+            isClientDeleted = clients.remove(clientToRemove);
+            updateClientIds(clients);
+            saveClient(clients);
+        }
+        return isClientDeleted;
+
     }
 
     public List<Client> getAllClients() {
         return clients;
+    }
+
+    @Override
+    public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
+        Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst();
+        if (clientToChangeAgeGroupOpt.isPresent()) {
+            Client clientToChangeAgeGroup = clientToChangeAgeGroupOpt.get();
+            clientToChangeAgeGroup.setClientAgeGroup(newAgeGroup);
+            updateClientIds(clients);
+            saveClient(clients);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean clientWorkoutsChangedByPersonalCode(String personalCode, Workouts newWorkout) {
+        Optional<Client> clientToChangeWorkoutOpt = clients.stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst();
+        if (clientToChangeWorkoutOpt.isPresent()) {
+            Client clientToChangeWorkout = clientToChangeWorkoutOpt.get();
+            clientToChangeWorkout.setWorkouts(newWorkout);
+            updateClientIds(clients);
+            saveClient(clients);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void saveClient(List<Client> clients) {
@@ -53,5 +96,17 @@ public class InMemoryDatabase implements Database {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Client> findByPersonalCode(String personalCode) {
+        return getAllClients().stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .collect(Collectors.toList());
+    }
+
+    private void updateClientIds(List<Client> clients) {
+        for (int i = 0; i < clients.size(); i++) {
+            clients.get(i).setId((long) (i + 1));
+        }
+    }
 
 }

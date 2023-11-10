@@ -1,9 +1,14 @@
 package lv.javaguru.travel.insurance.core.validations;
 
+import lv.javaguru.travel.insurance.core.ErrorCodeUnit;
 import lv.javaguru.travel.insurance.core.validations.AgreementDateLessThanDateToValidation;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,20 +18,23 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
+@ExtendWith(MockitoExtension.class)
 class AgreementDateLessThanDateToValidationTest {
+@Mock
+private ErrorCodeUnit errorCodeUnit;
 
-    private AgreementDateLessThanDateToValidation validation = new AgreementDateLessThanDateToValidation() ;
-
+@InjectMocks
+    private AgreementDateLessThanDateToValidation validation;
     @Test
     public void shouldReturnErrorWhenDateFromIsAfterDateTo() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("02.11.2023"));
         when(request.getAgreementDateTo()).thenReturn(createDate("01.11.2023"));
+        when(errorCodeUnit.getErrorDescription("ERROR_CODE_5")).thenReturn("Field agreementDateFrom must be less than agreementDateTo!");
         Optional<ValidationError> errorOpt = validation.execute(request);
         assertTrue(errorOpt.isPresent());
-        assertEquals(errorOpt.get().getField(), "agreementDateFrom");
-        assertEquals(errorOpt.get().getMessage(), "Must be less then agreementDateTo!");
+        assertEquals(errorOpt.get().getErrorCode(), "ERROR_CODE_5");
+        assertEquals(errorOpt.get().getDescription(), "Field agreementDateFrom must be less than agreementDateTo!");
     }
 
     @Test
@@ -34,10 +42,11 @@ class AgreementDateLessThanDateToValidationTest {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.11.2023"));
         when(request.getAgreementDateTo()).thenReturn(createDate("01.11.2023"));
+        when(errorCodeUnit.getErrorDescription("ERROR_CODE_5")).thenReturn("Field agreementDateFrom must be less than agreementDateTo!");
         Optional<ValidationError> errorOpt = validation.execute(request);
         assertTrue(errorOpt.isPresent());
-        assertEquals(errorOpt.get().getField(), "agreementDateFrom");
-        assertEquals(errorOpt.get().getMessage(), "Must be less then agreementDateTo!");
+        assertEquals(errorOpt.get().getErrorCode(), "ERROR_CODE_5");
+        assertEquals(errorOpt.get().getDescription(), "Field agreementDateFrom must be less than agreementDateTo!");
     }
 
     @Test

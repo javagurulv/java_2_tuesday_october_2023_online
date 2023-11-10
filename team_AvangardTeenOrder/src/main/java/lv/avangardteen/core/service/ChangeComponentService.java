@@ -1,12 +1,12 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.Client;
-import lv.avangardteen.WheelchairComponent;
+import lv.avangardteen.dto.Client;
+import lv.avangardteen.dto.WheelchairComponent;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
+import lv.avangardteen.core.service.validate.ChooseComponentValidator;
 import lv.avangardteen.data.DataComponents;
-import lv.avangardteen.data.DataOrders;
 import lv.avangardteen.data.Database;
 
 import java.util.List;
