@@ -12,39 +12,28 @@ import java.util.List;
 
 public class ChangeComponentService {
     private Database database;
-    private DataComponents dataComponents;
     private ChooseComponentValidator validator;
 
-
-    public ChangeComponentService(Database database, DataComponents dataComponents, ChooseComponentValidator validator) {
+    public ChangeComponentService(Database database,
+                                  ChooseComponentValidator validator) {
         this.database = database;
-        this.dataComponents = dataComponents;
         this.validator = validator;
     }
 
     public ChangeComponentResponse execute(ChangeComponentRequest request) {
         List<CoreError> errors = validator.validate(request);
-        return  (!errors.isEmpty())
-            ? new ChangeComponentResponse(errors)
-            : getResponse(request);
+        return (!errors.isEmpty())
+                ? new ChangeComponentResponse(errors)
+                : getResponse(request);
 
     }
 
     private ChangeComponentResponse getResponse(ChangeComponentRequest request) {
         Client client = database.getClient(request.getId());
 
-        WheelchairComponent component = new WheelchairComponent();
+        client.setWheelchairComponents(request.getWheelchairComponent());
 
-        component.addComponents(request.getWheelFrontChoose());
-        component.addComponents(request.getWheelBackChoose());
-        component.addComponents(request.getArmrestChoose());
-        component.addComponents(request.getBrakeChoose());
-        client.setWheelchairComponents(component);
-
-        double priceComponent = client.getWheelchairComponents().getPriceComponent();
-        double priseWheelchair = client.getWheelchair().getPriceWheelchair();
-        client.setPriseOrder(priseWheelchair + priceComponent);
-
+        client.setPriseOrder(client.getWheelchairComponents().countPriceOrder());
 
         return new ChangeComponentResponse(client);
     }

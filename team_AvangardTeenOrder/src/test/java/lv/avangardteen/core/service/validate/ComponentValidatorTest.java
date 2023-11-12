@@ -1,6 +1,7 @@
 package lv.avangardteen.core.service.validate;
 
 
+import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.data.DataComponents;
 import org.junit.jupiter.api.Test;
@@ -17,10 +18,9 @@ class ComponentValidatorTest {
 
     @Test
     public void wheelFrontChooseIsAbsent() {
-        DataComponents dataComponents = Mockito.mock(DataComponents.class);
-        Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
-        validator = new ComponentValidator(dataComponents);
-        List<CoreError> errors = validator.validate(null, 21, 31, 41);
+        ChangeComponentRequest request = new ChangeComponentRequest(2l, 0, 21, 31, 41);
+        validator = new ComponentValidator();
+        List<CoreError> errors = validator.validate(request.getWheelchairComponent());
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "indexFrontWheel");
@@ -29,10 +29,9 @@ class ComponentValidatorTest {
 
     @Test
     public void indexBackWheelIsAbsent() {
-        DataComponents dataComponents = Mockito.mock(DataComponents.class);
-        Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
-        validator = new ComponentValidator(dataComponents);
-        List<CoreError> errors = validator.validate(11, 0, 31, 41);
+        ChangeComponentRequest request = new ChangeComponentRequest(2l, 11, 0, 31, 41);
+        validator = new ComponentValidator();
+        List<CoreError> errors = validator.validate(request.getWheelchairComponent());
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "indexBackWheel");
@@ -42,11 +41,9 @@ class ComponentValidatorTest {
 
     @Test
     public void indexBrakeIsAbsent() {
-
-        DataComponents dataComponents = Mockito.mock(DataComponents.class);
-        Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
-        validator = new ComponentValidator(dataComponents);
-        List<CoreError> errors = validator.validate(11, 21, 35, 41);
+        ChangeComponentRequest request = new ChangeComponentRequest(2l, 11, 21, 0, 41);
+        validator = new ComponentValidator();
+        List<CoreError> errors = validator.validate(request.getWheelchairComponent());
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "indexBrake");
@@ -57,10 +54,9 @@ class ComponentValidatorTest {
 
     @Test
     public void indexArmrestIsAbsent() {
-        DataComponents dataComponents = Mockito.mock(DataComponents.class);
-        Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
-        validator = new ComponentValidator(dataComponents);
-        List<CoreError> errors = validator.validate(11, 21, 31, 43);
+        ChangeComponentRequest request = new ChangeComponentRequest(2l, 11, 21, 31, null);
+        validator = new ComponentValidator();
+        List<CoreError> errors = validator.validate(request.getWheelchairComponent());
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "indexArmrest");
@@ -70,11 +66,9 @@ class ComponentValidatorTest {
 
     @Test
     public void indexBrakeAndArmrestIsAbsent() {
-
-        DataComponents dataComponents = Mockito.mock(DataComponents.class);
-        Mockito.when(dataComponents.getAllIndex()).thenReturn(List.of(11, 12, 21, 22, 31, 32, 41, 42));
-        validator = new ComponentValidator(dataComponents);
-        List<CoreError> errors = validator.validate(11, 21, null, 0);
+        ChangeComponentRequest request = new ChangeComponentRequest(2l, 11, 22, 138, 141);
+        validator = new ComponentValidator();
+        List<CoreError> errors = validator.validate(request.getWheelchairComponent());
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 2);
         assertEquals(errors.get(0).getField(), "indexBrake");

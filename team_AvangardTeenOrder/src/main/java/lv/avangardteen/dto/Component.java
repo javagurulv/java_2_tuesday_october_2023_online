@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class Component {
     private Category category;
-    private int index;
+    private Integer index;
     private String marking;
     private String information;
     private double price;
 
-    public Component(Category category, int index, String marking, String information, double price) {
+    public Component(Category category, Integer index, String marking, String information, double price) {
         this.category = category;
         this.index = index;
         this.marking = marking;
@@ -17,7 +17,7 @@ public class Component {
         this.price = price;
     }
 
-    public int getIndex() {
+    public Integer getIndex() {
         return index;
     }
 

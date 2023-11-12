@@ -6,11 +6,14 @@ public class UserSizes {
     public Integer backHeight; //высота спины
     public Integer shinLength; //длина голени
 
+
+    //ширина сиденья
+
     public Integer getPelvisWidth() {
         return pelvisWidth;
     }
 
-    public void setPelvisWidth(int pelvisWidth) {
+    public void setPelvisWidth(Integer pelvisWidth) {
         this.pelvisWidth = pelvisWidth;
     }
 
@@ -18,7 +21,7 @@ public class UserSizes {
         return thighLength;
     }
 
-    public void setThighLength(int thighLength) {
+    public void setThighLength(Integer thighLength) {
         this.thighLength = thighLength;
     }
 
@@ -26,7 +29,7 @@ public class UserSizes {
         return backHeight;
     }
 
-    public void setBackHeight(int backHeight) {
+    public void setBackHeight(Integer backHeight) {
         this.backHeight = backHeight;
     }
 
@@ -34,7 +37,7 @@ public class UserSizes {
         return shinLength;
     }
 
-    public void setShinLength(int shinLength) {
+    public void setShinLength(Integer shinLength) {
         this.shinLength = shinLength;
     }
 

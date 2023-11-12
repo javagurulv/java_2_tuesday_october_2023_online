@@ -1,85 +1,70 @@
 package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.responce.CoreError;
+import lv.avangardteen.core.service.WheelchairComponent;
 import lv.avangardteen.data.DataComponents;
+import lv.avangardteen.dto.Category;
+import lv.avangardteen.dto.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class ComponentValidator {
-   private DataComponents dataComponents;
 
-    public ComponentValidator(DataComponents dataComponents) {
-        this.dataComponents = dataComponents;
-    }
-
-    public List<CoreError> validate(Integer wheelFrontChoose, Integer wheelBackChoose,
-                                    Integer brakeChoose, Integer armrestChoose) {
+    public List<CoreError> validate(WheelchairComponent wheelchairComponent) {
         List<CoreError> errors = new ArrayList<>();
-        if (indexWheelFrontIsAbsent(wheelFrontChoose)) {
+        if (indexWheelFrontIsAbsent(wheelchairComponent)) {
             errors.add(new CoreError("indexFrontWheel", "This index is absent!"));
         }
-        if (indexBackWheelIsAbsent(wheelBackChoose)) {
+        if (indexBackWheelIsAbsent(wheelchairComponent)) {
             errors.add(new CoreError("indexBackWheel", "This index is absent!"));
-
         }
-        if (indexBrakeIsAbsent(brakeChoose)) {
+        if (indexBrakeIsAbsent(wheelchairComponent)) {
             errors.add(new CoreError("indexBrake", "This index is absent!"));
         }
-        if (indexArmrestIsAbsent(armrestChoose)) {
+        if (indexArmrestIsAbsent(wheelchairComponent)) {
             errors.add(new CoreError("indexArmrest", "This index is absent!"));
         }
         return errors;
     }
 
-    private boolean indexWheelFrontIsAbsent(Integer  wheelFrontChoose) {
-        List<Integer> allIndex = dataComponents.getAllIndex();
-        Integer indexFrontWheel = 1000;
-        for (Integer index : allIndex) {
-            if (index ==  wheelFrontChoose) {
-                indexFrontWheel = index;
-            }
-        }
-        return ( wheelFrontChoose != indexFrontWheel);
+    private boolean indexWheelFrontIsAbsent(WheelchairComponent wheelchairComponent) {
 
+        Map<Category, Component> componentMap = wheelchairComponent.getComponents();
+        Component componentWheelFront = componentMap.get(Category.FRONT_WHEEL);
+        if (componentWheelFront != null) {
+            return false;
+        }
+        return true;
     }
 
-    private boolean indexBackWheelIsAbsent(Integer wheelBackChoose) {
-        List<Integer> allIndex = dataComponents.getAllIndex();
-        Integer indexFrontWheel = 1000;
-        for (Integer index : allIndex) {
-            if (index == wheelBackChoose) {
-                indexFrontWheel = index;
-            }
+    private boolean indexBackWheelIsAbsent(WheelchairComponent wheelchairComponent) {
+        Map<Category, Component> componentMap = wheelchairComponent.getComponents();
+        Component componentWheelBack = componentMap.get(Category.BACK_WHEEL);
+        if (componentWheelBack != null) {
+            return false;
         }
-        return (wheelBackChoose != indexFrontWheel);
-
+        return true;
     }
 
-    private boolean indexBrakeIsAbsent(Integer backHeight) {
-        List<Integer> allIndex = dataComponents.getAllIndex();
-        Integer indexFrontWheel = 1000;
-        for (Integer index : allIndex) {
-            if (index == backHeight) {
-                indexFrontWheel = index;
-            }
+    private boolean indexBrakeIsAbsent(WheelchairComponent wheelchairComponent) {
+        Map<Category, Component> componentMap = wheelchairComponent.getComponents();
+        Component componentBrake = componentMap.get(Category.BRAKE);
+        if (componentBrake != null) {
+            return false;
         }
-        return (backHeight != indexFrontWheel);
-
-
+        return true;
     }
 
-    private boolean indexArmrestIsAbsent(Integer armrestChoose) {
-        List<Integer> allIndex = dataComponents.getAllIndex();
-        Integer indexFrontWheel = 1000;
-        for (Integer index : allIndex) {
-            if (index == armrestChoose) {
-                indexFrontWheel = index;
-            }
+    private boolean indexArmrestIsAbsent(WheelchairComponent wheelchairComponent) {
+        Map<Category, Component> componentMap = wheelchairComponent.getComponents();
+        Component componentArmrest = componentMap.get(Category.ARMREST);
+        if (componentArmrest != null) {
+            return false;
         }
-        return (armrestChoose != indexFrontWheel);
-
+        return true;
     }
 
 }

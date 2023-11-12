@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ChangeComponentServiceMockTest {
 
     private Database database;
-    private DataComponents dataComponents;
     private ChooseComponentValidator validator;
     private ChangeComponentService service;
 
@@ -29,7 +28,7 @@ class ChangeComponentServiceMockTest {
         validator = Mockito.mock(ChooseComponentValidator.class);
         Mockito.when(validator.validate(notValidationRequest)).thenReturn(
                 List.of(new CoreError("Change Component", "Incorrect component chose!")));
-        service = new ChangeComponentService(null, dataComponents, validator);
+        service = new ChangeComponentService(null, validator);
         ChangeComponentResponse response = service.execute(notValidationRequest);
         assertTrue(response.hasErrors());
     }
@@ -37,12 +36,13 @@ class ChangeComponentServiceMockTest {
     @Test
     public void ChangeComponentWithoutError() {
         database = Mockito.mock(Database.class);
+
         validator = Mockito.mock(ChooseComponentValidator.class);
         ChangeComponentRequest request = new ChangeComponentRequest(
                 1L, 11, 12, 13, 14);
         Mockito.when(validator.validate(request)).thenReturn(List.of());
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
-        service = new ChangeComponentService(database, dataComponents, validator);
+        service = new ChangeComponentService(database,validator);
         ChangeComponentResponse response = service.execute(request);
         assertFalse(response.hasErrors());
 

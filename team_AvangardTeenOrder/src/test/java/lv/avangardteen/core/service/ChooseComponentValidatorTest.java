@@ -48,8 +48,7 @@ class ChooseComponentValidatorTest {
     public void shouldNotReturnErrorsWhenComponentValidatorReturnNoErrors() {
         ChangeComponentRequest request = new ChangeComponentRequest(2l,
                 11, 21, 31, 41);
-        when(componentValidator.validate(request.getWheelFrontChoose(),
-                request.getWheelBackChoose(), request.getBrakeChoose(), request.getArmrestChoose())).thenReturn(List.of());
+        when(componentValidator.validate(request.getWheelchairComponent())).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
@@ -58,8 +57,7 @@ class ChooseComponentValidatorTest {
     public void shouldReturnErrorsWhenComponentValidatorReturnErrors() {
         ChangeComponentRequest request = new ChangeComponentRequest(2l,
                 11, 21, 31, 41);
-        when(componentValidator.validate(request.getWheelFrontChoose(),
-                request.getWheelBackChoose(), request.getBrakeChoose(), request.getArmrestChoose()))
+        when(componentValidator.validate(request.getWheelchairComponent()))
                 .thenReturn(List.of(new CoreError("errors", "message")));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);

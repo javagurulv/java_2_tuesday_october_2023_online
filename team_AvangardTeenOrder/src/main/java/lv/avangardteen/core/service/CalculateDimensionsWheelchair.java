@@ -5,26 +5,20 @@ import lv.avangardteen.dto.Wheelchair;
 
 public class CalculateDimensionsWheelchair {
 
-
     private UserSizes userSizes;
 
-    private Wheelchair wheelchair;
-
-    public CalculateDimensionsWheelchair(UserSizes userSizes, Wheelchair wheelchair) {
-        this.userSizes = userSizes;
-        this.wheelchair = wheelchair;
-    }
+    private Wheelchair wheelchair = new Wheelchair();
 
     public Wheelchair setDimensions(UserSizes userSizes) {
-        wheelchair.setSeatWidth(findSeatWidth(userSizes.getPelvisWidth()));
-        wheelchair.setSeatDepth(findSeatDepth(userSizes.getThighLength()));
-        wheelchair.setFootrestLength(findFootrestLength(userSizes.getShinLength()));
+        wheelchair.setSeatWidth(findSeatWidth(userSizes));
+        wheelchair.setSeatDepth(findSeatDepth(userSizes));
+        wheelchair.setFootrestLength(findFootrestLength(userSizes));
         wheelchair.setBachHeight(userSizes.getBackHeight());
         return wheelchair;
     }
 
-    private Integer findSeatWidth(Integer pelvisWidth) {
-        int seatWidth = pelvisWidth + 4;
+    private Integer findSeatWidth(UserSizes userSizes) {
+        int seatWidth = userSizes.getPelvisWidth() + 4;
         if (seatWidth <= 22) {
             seatWidth = 22;
         }
@@ -53,8 +47,8 @@ public class CalculateDimensionsWheelchair {
     }
 
     //глубина сиденья
-    private Integer findSeatDepth(Integer thighLength) {
-        int seatDepth = thighLength - 2;
+    private Integer findSeatDepth(UserSizes userSizes) {
+        int seatDepth = userSizes.getThighLength() - 2;
         if (seatDepth <= 24) {
             seatDepth = 24;
         }
@@ -86,15 +80,15 @@ public class CalculateDimensionsWheelchair {
     }
 
     //длинна подножки
-    private Integer findFootrestLength(Integer shinLength) {
-        int footrestLength = shinLength;
-        if (shinLength <= 40) {
+    private Integer findFootrestLength(UserSizes userSizes) {
+        int footrestLength = userSizes.getShinLength();
+        if (footrestLength <= 40) {
             footrestLength = 40;
         }
-        if (shinLength > 40 && shinLength <= 47) {
+        if (footrestLength > 40 && footrestLength <= 47) {
             footrestLength = 41;
         }
-        if (shinLength > 47) {
+        if (footrestLength > 47) {
             footrestLength = 42;
         }
         return footrestLength;

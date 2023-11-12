@@ -24,22 +24,23 @@ class ChangePersonalSizeServiceMockitaTest {
     @Test
     public void ChangePersonalSizeServiceWithError() {
         database = Mockito.mock(Database.class);
-        ChangePersonalSizeRequest notValidationRequest = new ChangePersonalSizeRequest(1L, 22, 33, 44, 45);
+        ChangePersonalSizeRequest notErrorsRequest = new ChangePersonalSizeRequest(1L, 22, 33, 44, 45);
         validator = Mockito.mock(ChangePersonalSizeValidator.class);
-        Mockito.when(validator.validate(notValidationRequest)).thenReturn(
+        Mockito.when(validator.validate(notErrorsRequest)).thenReturn(
                 List.of(new CoreError("Change Persona Size", "Incorrect personal sizes !")));
         service = new ChangePersonalSizeService(null, validator);
-        ChangePersonalSizeResponse response = service.execute(notValidationRequest);
+        ChangePersonalSizeResponse response = service.execute(notErrorsRequest);
         assertTrue(response.hasErrors());
     }
 
     @Test
     public void ChangePersonalSizeWithoutError() {
         database = Mockito.mock(Database.class);
-        ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(1L, 22, 33, 44, 45);
+        ChangePersonalSizeRequest request =  new ChangePersonalSizeRequest(1L, 22, 33, 44, 45);
         validator = Mockito.mock(ChangePersonalSizeValidator.class);
-        Mockito.when(validator.validate(request)).thenReturn(List.of());
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
+        Mockito.when(validator.validate(request)).thenReturn(List.of());
+
         service = new ChangePersonalSizeService(database, validator);
         ChangePersonalSizeResponse response = service.execute(request);
         assertFalse(response.hasErrors());

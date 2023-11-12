@@ -3,25 +3,18 @@ package lv.avangardteen.core.service;
 import lv.avangardteen.data.DataComponents;
 import lv.avangardteen.dto.Category;
 import lv.avangardteen.dto.Component;
+import lv.avangardteen.dto.Wheelchair;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class WheelchairComponent {
+public class WheelchairComponent extends Wheelchair {
     private DataComponents dataComponents = new DataComponents();
     private Map<Category, Component> components = new HashMap<>();
 
-
-    public WheelchairComponent() {
-
-
-    }
-
-
-
-    public void addComponents(int index) {
+    public void addComponents(Integer index) {
         List<Component> componentList = dataComponents.getAllComponents();
         for (Component component : componentList) {
             if (component.getIndex() == index) {
@@ -30,19 +23,20 @@ public class WheelchairComponent {
         }
     }
 
-
-
     public Map<Category, Component> getComponents() {
         return this.components;
     }
 
-
-    public int getPriceComponent() {
-        int priceComponents = 0;
+    private double getPriceComponent() {
+        double priceComponents = 0.0;
         for (Map.Entry<Category, Component> component : components.entrySet()) {
             priceComponents += component.getValue().getPrice();
         }
         return priceComponents;
+    }
+
+    public double countPriceOrder() {
+        return getPriceComponent() + getPriceWheelchair();
     }
 
     @Override

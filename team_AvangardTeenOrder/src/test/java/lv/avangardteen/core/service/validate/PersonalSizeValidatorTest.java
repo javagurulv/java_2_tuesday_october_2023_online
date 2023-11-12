@@ -1,5 +1,7 @@
 package lv.avangardteen.core.service.validate;
 
+import lv.avangardteen.core.request.ChangePersonalSizeRequest;
+import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.CoreError;
 import org.junit.jupiter.api.Test;
 
@@ -8,85 +10,73 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PersonalSizeValidatorTest {
-
+    private ClientRequest request1;
+    private ChangePersonalSizeRequest request;
     private PersonalSizeValidator personalSizeValidator;
+
 
     @Test
     public void errorsIsEmpty() {
+        request = new ChangePersonalSizeRequest(2l, 33, 33, 33, 33);
+        request1 =  new ClientRequest("Ivan",
+                1234, "Lesnaja", 0, 33, 33, 33,
+                11, 21, 31, 41);
         personalSizeValidator = new PersonalSizeValidator();
-        Integer pelvisWidth = 33;
-        Integer thighLength = 33;
-        Integer backHeight = 33;
-        Integer shinLength = 33;
-        List<CoreError> errors = personalSizeValidator.validate(pelvisWidth,
-                thighLength, backHeight, shinLength);
+
+        List<CoreError> errors = personalSizeValidator.validate(request.getUserSizes());
+        List<CoreError> errors1 = personalSizeValidator.validate(request1.getUserSizes());
         assertEquals(errors, List.of());
+        assertEquals(errors1.size(), 1);
     }
 
     @Test
     public void pelvisWidthIsEmpty() {
+        request = new ChangePersonalSizeRequest(2l, 0, 33, 33, 33);
         personalSizeValidator = new PersonalSizeValidator();
-        Integer pelvisWidth = null;
-        Integer thighLength = 33;
-        Integer backHeight = 33;
-        Integer shinLength = 33;
-        List<CoreError> errors = personalSizeValidator.validate(pelvisWidth,
-                thighLength, backHeight, shinLength);
+
+        List<CoreError> errors = personalSizeValidator.validate(request.getUserSizes());
         assertEquals(errors, List.of(new CoreError("pelvisWidth", "Must not be empty!")));
     }
 
     @Test
     public void thighLengthIsEmpty() {
+        request = new ChangePersonalSizeRequest(2l, 0, 0, 33, 33);
         personalSizeValidator = new PersonalSizeValidator();
-        Integer pelvisWidth = null;
-        Integer thighLength = 0;
-        Integer backHeight = 33;
-        Integer shinLength = 33;
-        List<CoreError> errors = personalSizeValidator.validate(pelvisWidth,
-                thighLength, backHeight, shinLength);
+
+        List<CoreError> errors = personalSizeValidator.validate(request.getUserSizes());
         assertEquals(errors, List.of(new CoreError("pelvisWidth", "Must not be empty!"),
                 new CoreError("thighLength", "Must not be empty!")));
     }
 
     @Test
-    public void  backHeightIsEmpty() {
+    public void backHeightIsEmpty() {
+        request = new ChangePersonalSizeRequest(2l, 33, 33, null, 33);
         personalSizeValidator = new PersonalSizeValidator();
-        Integer pelvisWidth = 33;
-        Integer thighLength = 33;
-        Integer backHeight = 0;
-        Integer shinLength = 33;
-        List<CoreError> errors = personalSizeValidator.validate(pelvisWidth,
-                thighLength, backHeight, shinLength);
+
+        List<CoreError> errors = personalSizeValidator.validate(request.getUserSizes());
         assertEquals(errors, List.of(new CoreError("backHeight", "Must not be empty!")));
 
     }
 
     @Test
     public void shinLengthIsEmpty() {
+        request = new ChangePersonalSizeRequest(2l, 33, 33, 33, null);
         personalSizeValidator = new PersonalSizeValidator();
-        Integer pelvisWidth = 33;
-        Integer thighLength = 33;
-        Integer backHeight = 33;
-        Integer shinLength = null;
-        List<CoreError> errors = personalSizeValidator.validate(pelvisWidth,
-                thighLength, backHeight, shinLength);
+
+        List<CoreError> errors = personalSizeValidator.validate(request.getUserSizes());
         assertEquals(errors, List.of(new CoreError("shinLength", "Must not be empty!")));
 
     }
 
     @Test
     public void listErrors() {
+        request = new ChangePersonalSizeRequest(2l, 0, 0, 0, 0);
         personalSizeValidator = new PersonalSizeValidator();
-        Integer pelvisWidth = 0;
-        Integer thighLength = 0;
-        Integer backHeight = null;
-        Integer shinLength = null;
-        List<CoreError> errors = personalSizeValidator.validate(pelvisWidth,
-                thighLength, backHeight, shinLength);
+
+        List<CoreError> errors = personalSizeValidator.validate(request.getUserSizes());
         assertEquals(errors.size(), 4);
 
     }
-
 
 
 }

@@ -10,7 +10,7 @@ public class Client {
     Integer phoneNumber;
     String userAddress;
     UserSizes userSizes;
-    Wheelchair wheelchair = new Wheelchair();
+    Wheelchair wheelchair;
     WheelchairComponent wheelchairComponents;
     double priseOrder;
 
@@ -29,7 +29,6 @@ public class Client {
     public void setPriseOrder(double priseOrder) {
         this.priseOrder = priseOrder;
     }
-
 
     public String getNameSurname() {
         return nameSurname;
