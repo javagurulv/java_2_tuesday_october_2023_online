@@ -16,7 +16,7 @@ public class RemoveBookRequestValidatorTest {
     private RemoveBookRequestValidator validator = new RemoveBookRequestValidator();
 
     @Test
-    public void shouldReturnErrorWhenTitleIsNull() {
+    public void shouldReturnErrorWhenBookIdIsNull() {
         RemoveBookRequest request = new RemoveBookRequest(null);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
