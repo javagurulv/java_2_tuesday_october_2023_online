@@ -46,8 +46,8 @@ public class TravelCalculatePremiumServiceImplTest {
         when(requestValidator.validate(request)).thenReturn(errors);
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(response.getErrors().size(), 1);
-        assertEquals(response.getErrors().get(0).getField(), "field");
-        assertEquals(response.getErrors().get(0).getMessage(), "errorMessage");
+        assertEquals(response.getErrors().get(0).getErrorCode(), "errorCode");
+        assertEquals(response.getErrors().get(0).getDescription(), "error description");
     }
 
     @Test
@@ -57,8 +57,8 @@ public class TravelCalculatePremiumServiceImplTest {
         when(requestValidator.validate(request)).thenReturn(errors);
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(response.getErrors().size(), 1);
-        assertEquals(response.getErrors().get(0).getField(), "field");
-        assertEquals(response.getErrors().get(0).getMessage(), "errorMessage");
+        assertEquals(response.getErrors().get(0).getErrorCode(), "errorCode");
+        assertEquals(response.getErrors().get(0).getDescription(), "error description");
     }
 
     @Test
@@ -114,7 +114,7 @@ public class TravelCalculatePremiumServiceImplTest {
 
     private List<ValidationError> buildValidationErrorList() {
         return List.of(
-                new ValidationError("field", "errorMessage")
+                new ValidationError("errorCode", "error description")
         );
     }
 
