@@ -1,4 +1,4 @@
-package lv.javaguru.travel.insurance.core;
+package lv.javaguru.travel.insurance.core.underwriting;
 
 import lv.javaguru.travel.insurance.core.util.DateTimeUtil;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
@@ -13,18 +13,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class TravelPremiumUnderwritingTest {
+class TravelPremiumUnderwritingImplTest {
     @Mock
     private DateTimeUtil dateTimeService;
     SimpleDateFormat dates = new SimpleDateFormat("dd.MM.yyyy");
     @InjectMocks
-    private TravelPremiumUnderwriting travelPremiumUnderwriting;
+    private TravelPremiumUnderwritingImpl travelPremiumUnderwriting;
 
     @Test
     void shouldReturnResponseWithCorrectAgreementPrice() throws ParseException {

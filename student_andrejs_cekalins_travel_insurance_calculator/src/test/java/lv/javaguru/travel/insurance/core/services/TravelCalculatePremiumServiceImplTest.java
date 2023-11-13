@@ -1,5 +1,6 @@
-package lv.javaguru.travel.insurance.core;
+package lv.javaguru.travel.insurance.core.services;
 
+import lv.javaguru.travel.insurance.core.underwriting.TravelPremiumUnderwriting;
 import lv.javaguru.travel.insurance.core.validations.TravelCalculatePremiumRequestValidatorImpl;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumResponse;
@@ -19,15 +20,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-
 @ExtendWith(MockitoExtension.class)
 class TravelCalculatePremiumServiceImplTest {
     @Mock
     private TravelCalculatePremiumRequestValidatorImpl requestValidator;
     @Mock
     private TravelPremiumUnderwriting travelPremiumUnderwriting;
-     SimpleDateFormat dates = new SimpleDateFormat("dd.MM.yyyy");
+    SimpleDateFormat dates = new SimpleDateFormat("dd.MM.yyyy");
     @InjectMocks
     private TravelCalculatePremiumServiceImpl service;
 
