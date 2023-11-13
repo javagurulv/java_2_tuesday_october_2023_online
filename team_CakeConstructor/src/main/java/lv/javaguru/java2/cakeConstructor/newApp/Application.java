@@ -1,35 +1,48 @@
 package lv.javaguru.java2.cakeConstructor.newApp;
 
+import lv.javaguru.java2.cakeConstructor.newApp.console_ui.*;
+import lv.javaguru.java2.cakeConstructor.newApp.database.Database;
+import lv.javaguru.java2.cakeConstructor.newApp.database.DatabaseImpl;
+import lv.javaguru.java2.cakeConstructor.newApp.database.Ingridient;
+import lv.javaguru.java2.cakeConstructor.newApp.services.AddIngridientService;
+import lv.javaguru.java2.cakeConstructor.newApp.services.GetAllIngridientsService;
+import lv.javaguru.java2.cakeConstructor.newApp.services.RemoveIngridientService;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Application {
+
+    private static DatabaseImpl database = new Database();
+
+    private static AddIngridientService addService = new AddIngridientService(database);
+    private static UIAction addIngridient = new AddIngridientUIAction(addService);
+
+    private static RemoveIngridientService removeService = new RemoveIngridientService(database);
+    private static UIAction remove = new RemoveIngridientUIAction(removeService);
+
+    private static GetAllIngridientsService getAllService = new GetAllIngridientsService(database);
+    private static UIAction getAllInfridients = new GetAllIngridientsUIAction(getAllService);
+
+    private static UIAction exit = new ExitUIAction();
+
+
     public static void main(String[] args) {
         List<Ingridient> ingridients = new ArrayList<>();
 
         while (true){
             printProgramMenu();
             int userChoice = getUserChoice();
-            switch (userChoice){
-                case 1:{
-                    addIngridient(ingridients);
-                    break;
-                }
-                case 2:{
-                    removeIngridient(ingridients);
-                    break;
-                }
-                case 3:{
-                    printIngridient(ingridients);
-                    break;
-                }
-                case 4:{
-                    exitProgram();
-                }
-            }
+            executeSelectedMenuItem(userChoice);
+
         }
     }
+
+
+
+
+
 
     private static void printProgramMenu(){
         System.out.println("Program menu:");
@@ -46,37 +59,24 @@ public class Application {
         int userChoice = scan.nextInt();
         return userChoice;
     }
-    private static void exitProgram() {
-        System.out.println("Good by!");
-        System.exit(0);
-    }
-
-    private static void printIngridient(List<Ingridient> ingridients) {
-        System.out.println("Ingridient list: ");
-        for (Ingridient ingridient : ingridients) {
-            System.out.println(ingridient);
+    private static void executeSelectedMenuItem(int selectedMenu) {
+        switch (selectedMenu) {
+            case 1: {
+                addIngridient.execute();
+                break;
+            }
+            case 2: {
+                remove.execute();
+                break;
+            }
+            case 3: {
+                getAllInfridients.execute();
+                break;
+            }
+            case 4: {
+                exit.execute();
+                break;
+            }
         }
-        System.out.println("Ingridient list end.");
-    }
-
-    private static void removeIngridient(List<Ingridient> ingridients) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter type of ingridient: ");
-        String typeOfIngridient= scanner.nextLine();
-        System.out.println("Enter taste of ingridient: ");
-        String tasteOfIngridient = scanner.nextLine();
-        ingridients.remove(new Ingridient(typeOfIngridient, tasteOfIngridient));
-        System.out.println("Your ingridient was removed from list.");
-    }
-
-    private static void addIngridient(List<Ingridient> ingridients) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter type of ingridient: ");
-        String typeOfIngridient = scanner.nextLine();
-        System.out.println("Enter taste of ingridient: ");
-        String tasteOfIngridient = scanner.nextLine();
-        Ingridient ingridient = new Ingridient(typeOfIngridient, tasteOfIngridient);
-        ingridients.add(ingridient);
-        System.out.println("Your book was added to list.");
     }
 }
