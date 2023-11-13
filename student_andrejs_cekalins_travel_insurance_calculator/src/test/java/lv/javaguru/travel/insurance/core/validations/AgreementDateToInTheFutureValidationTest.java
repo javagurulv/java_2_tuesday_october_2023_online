@@ -1,8 +1,7 @@
 package lv.javaguru.travel.insurance.core.validations;
 
-import lv.javaguru.travel.insurance.core.DateTimeService;
-import lv.javaguru.travel.insurance.core.ErrorCodeUnit;
-import lv.javaguru.travel.insurance.core.validations.AgreementDateToInTheFutureValidation;
+import lv.javaguru.travel.insurance.core.util.DateTimeUtil;
+import lv.javaguru.travel.insurance.core.util.ErrorCodeUnit;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ import static org.mockito.Mockito.*;
 class AgreementDateToInTheFutureValidationTest {
 
     @Mock
-    private DateTimeService dateTimeService;
+    private DateTimeUtil dateTimeService;
     @Mock
     private ErrorCodeUnit errorCodeUnit;
 

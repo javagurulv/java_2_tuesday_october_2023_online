@@ -1,6 +1,6 @@
 package lv.javaguru.travel.insurance.core;
 
-import lv.javaguru.travel.insurance.core.DateTimeService;
+import lv.javaguru.travel.insurance.core.util.DateTimeUtil;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
@@ -10,7 +10,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DateTimeServiceTest {
-    private DateTimeService dateTimeService = new DateTimeService();
+    private DateTimeUtil dateTimeService = new DateTimeUtil();
     SimpleDateFormat dates = new SimpleDateFormat("dd.MM.yyyy");
 
     @Test
