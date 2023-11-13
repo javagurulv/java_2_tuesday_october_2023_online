@@ -1,6 +1,9 @@
 package lv.avangardteen.core.request;
 
 
+import lv.avangardteen.core.service.WheelchairComponent;
+import lv.avangardteen.dto.UserSizes;
+
 public class ClientRequest {
 
     String nameSurname;
@@ -14,6 +17,8 @@ public class ClientRequest {
     Integer indexWheelBack;
     Integer indexBrakeChoose;
     Integer indexArmrestChoose;
+    private UserSizes userSizes = new UserSizes();
+    private WheelchairComponent wheelchairComponent = new WheelchairComponent();
 
 
     public ClientRequest(String nameSurname, Integer phoneNumber,
@@ -33,6 +38,30 @@ public class ClientRequest {
         this.indexArmrestChoose = indexArmrestChoose;
     }
 
+    public UserSizes getUserSizes() {
+        return setUserSizes();
+    }
+
+    public UserSizes setUserSizes() {
+        userSizes.setPelvisWidth(pelvisWidth);
+        userSizes.setThighLength(thighLength);
+        userSizes.setBackHeight(backHeight);
+        userSizes.setShinLength(shinLength);
+        return userSizes;
+    }
+
+    public WheelchairComponent getWheelchairComponent() {
+        return setWheelchairComponent();
+    }
+
+    public WheelchairComponent setWheelchairComponent() {
+        wheelchairComponent.addComponents(indexWheelFront);
+        wheelchairComponent.addComponents(indexWheelBack);
+        wheelchairComponent.addComponents(indexBrakeChoose);
+        wheelchairComponent.addComponents(indexArmrestChoose);
+        return wheelchairComponent;
+    }
+
     public String getNameSurname() {
         return nameSurname;
     }
@@ -43,37 +72,5 @@ public class ClientRequest {
 
     public String getUserAddress() {
         return userAddress;
-    }
-
-    public Integer getShinLength() {
-        return shinLength;
-    }
-
-    public Integer getBackHeight() {
-        return backHeight;
-    }
-
-    public Integer getThighLength() {
-        return thighLength;
-    }
-
-    public Integer getPelvisWidth() {
-        return pelvisWidth;
-    }
-
-    public Integer getIndexWheelFront() {
-        return indexWheelFront;
-    }
-
-    public Integer getIndexWheelBack() {
-        return indexWheelBack;
-    }
-
-    public Integer getIndexBrakeChoose() {
-        return indexBrakeChoose;
-    }
-
-    public Integer getIndexArmrestChoose() {
-        return indexArmrestChoose;
     }
 }

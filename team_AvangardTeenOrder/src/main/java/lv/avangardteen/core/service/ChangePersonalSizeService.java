@@ -13,8 +13,8 @@ import java.util.List;
 
 public class ChangePersonalSizeService {
     private Database database;
-    private UserSizes userSizes;
 
+    private CalculateDimensionsWheelchair dimensionsWheelchair = new CalculateDimensionsWheelchair();
     private ChangePersonalSizeValidator validator;
 
     public ChangePersonalSizeService(Database database, ChangePersonalSizeValidator validator) {
@@ -32,19 +32,11 @@ public class ChangePersonalSizeService {
 
     private ChangePersonalSizeResponse getChangePersonalSizeResponse(ChangePersonalSizeRequest request) {
         Client client = database.getClient(request.getId());
-        UserSizes userSizes = new UserSizes();
-        userSizes.setPelvisWidth(request.getPelvisWidth());
-        userSizes.setThighLength(request.getThighLength());
-        userSizes.setBackHeight(request.getBackHeight());
-        userSizes.setShinLength(request.getShinLength());
+        UserSizes userSizes = request.getUserSizes();
         client.setUserSizes(userSizes);
-        client.setWheelchair(buildWheelchair(userSizes));
+        client.setWheelchair(dimensionsWheelchair.setDimensions(userSizes));
 
         return new ChangePersonalSizeResponse(client);
     }
 
-    private static Wheelchair buildWheelchair(UserSizes userSizes) {
-        CalculateDimensionsWheelchair calculateDimensionsWheelchair = new CalculateDimensionsWheelchair(userSizes, new Wheelchair());
-        return calculateDimensionsWheelchair.setDimensions(userSizes);
-    }
 }

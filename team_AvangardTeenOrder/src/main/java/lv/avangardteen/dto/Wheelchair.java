@@ -9,7 +9,7 @@ public class Wheelchair {
     Integer footrestLength;
     Integer bachHeight;
 
-    double priceWheelchair = 177000.0;
+    private double priceWheelchair = 177000.0;
 
     public Integer getSeatWidth() {
         return seatWidth;

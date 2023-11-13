@@ -9,8 +9,9 @@ import lv.avangardteen.core.service.ClientService;
 import lv.avangardteen.dto.Category;
 import lv.avangardteen.dto.Client;
 import lv.avangardteen.dto.Component;
-import lv.avangardteen.dto.WheelchairComponent;
+import lv.avangardteen.core.service.WheelchairComponent;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 
 import java.util.List;
@@ -20,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApplicationContextChangeComponentTest {
 
-
+    @Mock
     private ApplicationContext appContext = new ApplicationContext();
 
     @Test
@@ -65,6 +66,5 @@ class ApplicationContextChangeComponentTest {
     private ChangeComponentService getChangeComponentService() {
         return appContext.getBean(ChangeComponentService.class);
     }
-
 
 }

@@ -22,7 +22,7 @@ public class ApplicationContext {
         beans.put(ClientIdValidator.class, new ClientIdValidator(getBean(Database.class)));
         beans.put(PersonalDateValidation.class, new PersonalDateValidation());
         beans.put(PersonalSizeValidator.class, new PersonalSizeValidator());
-        beans.put(ComponentValidator.class, new ComponentValidator(getBean(DataComponents.class)));
+        beans.put(ComponentValidator.class, new ComponentValidator());
 
         beans.put(ClientOrderValidator.class, new ClientOrderValidator(
                 getBean(PersonalDateValidation.class),

@@ -1,7 +1,6 @@
 package lv.avangardteen.core.service;
 
 import lv.avangardteen.dto.Client;
-import lv.avangardteen.dto.WheelchairComponent;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
@@ -13,37 +12,28 @@ import java.util.List;
 
 public class ChangeComponentService {
     private Database database;
-    private DataComponents dataComponents = new DataComponents();
     private ChooseComponentValidator validator;
 
-    public ChangeComponentService(Database database, ChooseComponentValidator validator) {
+    public ChangeComponentService(Database database,
+                                  ChooseComponentValidator validator) {
         this.database = database;
         this.validator = validator;
     }
 
     public ChangeComponentResponse execute(ChangeComponentRequest request) {
         List<CoreError> errors = validator.validate(request);
-        return  (!errors.isEmpty())
-            ? new ChangeComponentResponse(errors)
-            : getResponse(request);
+        return (!errors.isEmpty())
+                ? new ChangeComponentResponse(errors)
+                : getResponse(request);
 
     }
 
     private ChangeComponentResponse getResponse(ChangeComponentRequest request) {
         Client client = database.getClient(request.getId());
 
-        WheelchairComponent component = new WheelchairComponent();
+        client.setWheelchairComponents(request.getWheelchairComponent());
 
-        component.addComponents(request.getWheelFrontChoose());
-        component.addComponents(request.getWheelBackChoose());
-        component.addComponents(request.getArmrestChoose());
-        component.addComponents(request.getBrakeChoose());
-        client.setWheelchairComponents(component);
-
-        double priceComponent = client.getWheelchairComponents().getPriceComponent();
-        double priseWheelchair = client.getWheelchair().getPriceWheelchair();
-        client.setPriseOrder(priseWheelchair + priceComponent);
-
+        client.setPriseOrder(client.getWheelchairComponents().countPriceOrder());
 
         return new ChangeComponentResponse(client);
     }

@@ -3,7 +3,6 @@ package lv.avangardteen.core.service;
 import lv.avangardteen.dto.Client;
 import lv.avangardteen.dto.UserSizes;
 import lv.avangardteen.dto.Wheelchair;
-import lv.avangardteen.dto.WheelchairComponent;
 import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.ClientResponse;
 import lv.avangardteen.core.responce.CoreError;
@@ -14,14 +13,15 @@ import java.util.List;
 
 
 public class ClientService {
+
     private Database database;
     private ClientOrderValidator validator;
+    private CalculateDimensionsWheelchair dimensionsWheelchair = new CalculateDimensionsWheelchair();
 
     public ClientService(Database database, ClientOrderValidator validator) {
         this.database = database;
         this.validator = validator;
     }
-
 
     public ClientResponse execute(ClientRequest request) {
         List<CoreError> errors = validator.validate(request);
@@ -36,33 +36,17 @@ public class ClientService {
         clientResponse.getClient().setUserAddress(request.getUserAddress());
         clientResponse.getClient().setPhoneNumber(request.getPhoneNumber());
 
-
-        UserSizes userSizes = new UserSizes();
-        userSizes.setPelvisWidth(request.getPelvisWidth());
-        userSizes.setThighLength(request.getThighLength());
-        userSizes.setBackHeight(request.getBackHeight());
-        userSizes.setShinLength(request.getShinLength());
+        UserSizes userSizes = request.getUserSizes();
         clientResponse.getClient().setUserSizes(userSizes);
+        clientResponse.getClient().setWheelchair(dimensionsWheelchair.setDimensions(userSizes));
 
-        clientResponse.getClient().setWheelchair(buildWheelchair(userSizes));
+        clientResponse.getClient().setWheelchairComponents(request.getWheelchairComponent());
 
-
-        clientResponse.getClient().setWheelchairComponents(new WheelchairComponent());
-        clientResponse.getClient().getWheelchairComponents().addComponents(request.getIndexWheelFront());
-        clientResponse.getClient().getWheelchairComponents().addComponents(request.getIndexWheelBack());
-        clientResponse.getClient().getWheelchairComponents().addComponents(request.getIndexBrakeChoose());
-        clientResponse.getClient().getWheelchairComponents().addComponents(request.getIndexArmrestChoose());
-
-        clientResponse.getClient().setPriseOrder(clientResponse.getClient().getWheelchairComponents().getPriceComponent()
-                + clientResponse.getClient().getWheelchair().getPriceWheelchair());
+        clientResponse.getClient().setPriseOrder(clientResponse.getClient().getWheelchairComponents().countPriceOrder());
 
         database.addUser(clientResponse.getClient());
 
         return new ClientResponse(clientResponse.getClient());
     }
 
-    private static Wheelchair buildWheelchair(UserSizes userSizes) {
-        CalculateDimensionsWheelchair calculateDimensionsWheelchair = new CalculateDimensionsWheelchair(userSizes, new Wheelchair());
-        return calculateDimensionsWheelchair.setDimensions(userSizes);
-    }
 }

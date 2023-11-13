@@ -22,7 +22,7 @@ class ChangePersonalSizeValidatorTest {
     @BeforeEach
     public void init() {
         idValidator = Mockito.mock(ClientIdValidator.class);
-        personalSizeValidator = Mockito.mock(PersonalSizeValidator.class);
+        personalSizeValidator = new PersonalSizeValidator();
         validator = new ChangePersonalSizeValidator(idValidator, personalSizeValidator);
     }
 
@@ -50,11 +50,11 @@ class ChangePersonalSizeValidatorTest {
     @Test
     public void shouldReturnErrorsWhenPersonalSizeValidatorReturnErrors() {
         ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(2l,
-                33, 33, 33, 33);
-        when(personalSizeValidator.validate(request.getPelvisWidth(),
-                request.getThighLength(), request.getBackHeight(),
-                request.getShinLength())).thenReturn(List.of(new CoreError("errors", "message")));
+                0, 33, 33, 33);
+
+        List<CoreError> errorsUser = personalSizeValidator.validate(request.getUserSizes());
         List<CoreError> errors = validator.validate(request);
+        assertEquals(errorsUser.size(), 1);
         assertEquals(errors.size(), 1);
 
     }
@@ -63,9 +63,7 @@ class ChangePersonalSizeValidatorTest {
     public void shouldNotReturnErrorsWhenPersonalSizeValidatorReturnNoErrors() {
         ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(2l,
                 33, 33, 33, 33);
-        when(personalSizeValidator.validate(request.getPelvisWidth(),
-                request.getThighLength(), request.getBackHeight(),
-                request.getShinLength())).thenReturn(List.of());
+        when(personalSizeValidator.validate(request.getUserSizes())).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
 

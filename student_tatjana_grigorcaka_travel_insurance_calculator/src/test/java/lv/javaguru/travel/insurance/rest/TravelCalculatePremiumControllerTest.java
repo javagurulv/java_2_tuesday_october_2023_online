@@ -1,6 +1,6 @@
 package lv.javaguru.travel.insurance.rest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +12,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static uk.org.webcompere.modelassert.json.JsonAssertions.assertJson;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -35,18 +36,34 @@ public class TravelCalculatePremiumControllerTest {
     }
 
     @Test
-    public void firstNameNotProvided() throws Exception {
+    public void firstNameIsNull() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_firstName_not_provided.json",
-                "rest/TravelCalculatePremiumResponse_firstName_not_provided.json"
+                "rest/TravelCalculatePremiumRequest_firstName_is_null.json",
+                "rest/TravelCalculatePremiumResponse_firstName_is_null.json"
         );
     }
 
     @Test
-    public void lastNameNotProvided() throws Exception {
+    public void firstNameIsEmpty() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_lastName_not_provided.json",
-                "rest/TravelCalculatePremiumResponse_lastName_not_provided.json"
+                "rest/TravelCalculatePremiumRequest_firstName_is_empty.json",
+                "rest/TravelCalculatePremiumResponse_firstName_is_empty.json"
+        );
+    }
+
+    @Test
+    public void lastNameIsNull() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_lastName_is_null.json",
+                "rest/TravelCalculatePremiumResponse_lastName_is_null.json"
+        );
+    }
+
+    @Test
+    public void lastNameIsEmpty() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_lastName_is_empty.json",
+                "rest/TravelCalculatePremiumResponse_lastName_is_empty.json"
         );
     }
 
@@ -67,10 +84,42 @@ public class TravelCalculatePremiumControllerTest {
     }
 
     @Test
+    public void agreementDateFromInThePast() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_agreementDateFrom_in_the_past.json",
+                "rest/TravelCalculatePremiumResponse_agreementDateFrom_in_the_past.json"
+        );
+    }
+
+    @Test
+    public void agreementDateToInThePast() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_agreementDateTo_in_the_past.json",
+                "rest/TravelCalculatePremiumResponse_agreementDateTo_in_the_past.json"
+        );
+    }
+
+    @Test
     public void agreementDateToLessThanAgreementDateFrom() throws Exception {
         executeAndCompare(
                 "rest/TravelCalculatePremiumRequest_dateTo_lessThan_dateFrom.json",
                 "rest/TravelCalculatePremiumResponse_dateTo_lessThan_dateFrom.json"
+        );
+    }
+
+    @Test
+    public void selectedRisksIsNull() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_selectedRisks_null.json",
+                "rest/TravelCalculatePremiumResponse_selectedRisks_null.json"
+        );
+    }
+
+    @Test
+    public void selectedRisksIsEmpty() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_selectedRisks_empty.json",
+                "rest/TravelCalculatePremiumResponse_selectedRisks_empty.json"
         );
     }
 
@@ -96,7 +145,11 @@ public class TravelCalculatePremiumControllerTest {
 
         String jsonResponse = jsonFileReader.readJsonFromFile(jsonResponseFilePath);
 
-        ObjectMapper mapper = new ObjectMapper();
-        assertEquals(mapper.readTree(responseBodyContent), mapper.readTree(jsonResponse));
+        assertJson(responseBodyContent)
+                .where()
+                .keysInAnyOrder()
+                .arrayInAnyOrder()
+                .isEqualTo(jsonResponse);
     }
+
 }

@@ -8,9 +8,10 @@ import java.util.*;
 public class ClientOrderValidator {
 
 
-private PersonalDateValidation personalDateValidation;
-private PersonalSizeValidator personalSizeValidator;
-private ComponentValidator componentValidator;
+
+    private PersonalDateValidation personalDateValidation;
+    private PersonalSizeValidator personalSizeValidator;
+    private ComponentValidator componentValidator;
 
     public ClientOrderValidator(PersonalDateValidation personalDateValidation,
                                 PersonalSizeValidator personalSizeValidator,
@@ -39,16 +40,12 @@ private ComponentValidator componentValidator;
     }
 
     private void validatePersonSize(ClientRequest request, List<CoreError> errors) {
-        errors.addAll(personalSizeValidator.validate(request.getPelvisWidth(),
-                request.getThighLength(), request.getBackHeight(), request.getShinLength()));
+        errors.addAll(personalSizeValidator.validate(request.getUserSizes()));
     }
 
     private void validateComponent(ClientRequest request, List<CoreError> errors) {
         errors.addAll(componentValidator
-                .validate(request.getIndexWheelFront(),
-                        request.getIndexWheelBack(),
-                        request.getIndexBrakeChoose(),
-                        request.getIndexArmrestChoose()));
+                .validate(request.getWheelchairComponent()));
 
     }
 

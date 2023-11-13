@@ -20,12 +20,11 @@ public class OrderUIAction implements UIAction {
     @Override
     public void execute() {
         try {
-
             Scanner scan1 = new Scanner(System.in);
             System.out.println("введите Имя и Фамилию");
             String nameSurname = scan1.nextLine();
             Scanner scan3 = new Scanner(System.in);
-            System.out.println("введите номер телефона");
+            System.out.println("введите номер телефона, по которому можно утонить время доставки");
             Integer phoneNumber = scan3.nextInt();
             System.out.println("введите свой адрес");
             String userAddress = scan1.nextLine();

@@ -30,8 +30,7 @@ public class ChooseComponentValidator {
 
     private void validateComponent(ChangeComponentRequest request, List<CoreError> errors) {
         errors.addAll(componentValidator
-                .validate(request.getWheelFrontChoose(),
-                        request.getWheelBackChoose(), request.getBrakeChoose(), request.getArmrestChoose()));
+                .validate(request.getWheelchairComponent()));
 
     }
 }

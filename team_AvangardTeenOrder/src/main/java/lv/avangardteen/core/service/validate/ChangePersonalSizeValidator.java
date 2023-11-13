@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ChangePersonalSizeValidator {
 
+
     private ClientIdValidator idValidator;
     private PersonalSizeValidator sizeValidation;
 
@@ -31,8 +32,7 @@ public class ChangePersonalSizeValidator {
     }
 
     private void validatePersonSize(ChangePersonalSizeRequest request, List<CoreError> errors) {
-        errors.addAll(sizeValidation.validate(request.getPelvisWidth(),
-                request.getThighLength(), request.getBackHeight(), request.getShinLength()));
+        errors.addAll(sizeValidation.validate(request.getUserSizes()));
     }
 
 }

@@ -9,7 +9,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CalculateDimensionsWheelchairTest {
-
     @Mock
     private UserSizes userSizes;
     @Mock
@@ -25,12 +24,13 @@ class CalculateDimensionsWheelchairTest {
         Mockito.when(userSizes.getPelvisWidth()).thenReturn(33);
         Mockito.when(userSizes.getThighLength()).thenReturn(33);
         Mockito.when(userSizes.getShinLength()).thenReturn(33);
-        calculate = new CalculateDimensionsWheelchair(userSizes, wheelchair);
+        calculate = new CalculateDimensionsWheelchair();
         wheelchair = calculate.setDimensions(userSizes);
         assertEquals(wheelchair.getBachHeight(), 33);
         assertEquals(wheelchair.getFootrestLength(), 40);
         assertEquals(wheelchair.getSeatDepth(), 32);
         assertEquals(wheelchair.getSeatWidth(), 36);
     }
+
 
 }

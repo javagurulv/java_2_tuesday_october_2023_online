@@ -34,7 +34,7 @@ public class DataComponents {
     }
 
 
-    public Component getComponent(int index) {
+    public Component getComponent(Integer index) {
         List<Component> components = getAllComponents();
         Component component = null;
         for (Component comp : components) {
@@ -53,40 +53,6 @@ public class DataComponents {
         }
         return index;
     }
-
-    public Set<String> getAllBackWheelIndex() {
-        List<Component> components = getAllComponents();
-        Set<String> marking = new HashSet<>();
-        for (Component component : components) {
-            if (component.getCategory().equals(Category.BACK_WHEEL)) {
-                marking.add(component.getMarking());
-            }
-        }
-        return marking;
-    }
-
-    public Set<String> getAllBrakeIndex() {
-        List<Component> components = getAllComponents();
-        Set<String> marking = new HashSet<>();
-        for (Component component : components) {
-            if (component.getCategory().equals(Category.BRAKE)) {
-                marking.add(component.getMarking());
-            }
-        }
-        return marking;
-    }
-
-    public Set<String> getAllArmrestIndex() {
-        List<Component> components = getAllComponents();
-        Set<String> marking = new HashSet<>();
-        for (Component component : components) {
-            if (component.getCategory().equals(Category.ARMREST)) {
-                marking.add(component.getMarking());
-            }
-        }
-        return marking;
-    }
-
 
     public List<Component> allFrontWheels() {
         List<Component> allWheels = new ArrayList<>();
