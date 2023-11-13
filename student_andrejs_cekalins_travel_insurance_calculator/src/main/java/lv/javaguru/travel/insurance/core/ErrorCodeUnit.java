@@ -10,14 +10,14 @@ import java.util.Properties;
 
 @Component
 public class ErrorCodeUnit {
-    private Properties props;
+    private Properties properties;
 
     ErrorCodeUnit() throws IOException {
         Resource resource = new ClassPathResource("errorCodes.properties");
-        props = PropertiesLoaderUtils.loadProperties(resource);
+        properties = PropertiesLoaderUtils.loadProperties(resource);
     }
 
     public String getErrorDescription(String errorCode) {
-        return props.getProperty(errorCode);
+        return properties.getProperty(errorCode);
     }
 }
