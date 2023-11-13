@@ -1,7 +1,7 @@
 package lv.javaguru.java2.cakeConstructor.newApp.console_ui;
-import lv.javaguru.java2.cakeConstructor.newApp.database.DatabaseImpl;
-import lv.javaguru.java2.cakeConstructor.newApp.database.Ingridient;
-import lv.javaguru.java2.cakeConstructor.newApp.services.GetAllIngridientsService;
+import lv.javaguru.java2.cakeConstructor.newApp.core.request.GetAllIngridientsRequest;
+import lv.javaguru.java2.cakeConstructor.newApp.core.response.GetAllIngridientsResponse;
+import lv.javaguru.java2.cakeConstructor.newApp.core.services.GetAllIngridientsService;
 
 public class GetAllIngridientsUIAction implements UIAction{
 
@@ -13,7 +13,9 @@ public class GetAllIngridientsUIAction implements UIAction{
     @Override
     public void execute() {
         System.out.println("Ingridient list: ");
-        service.execute().forEach(System.out::println);
+        GetAllIngridientsRequest request = new GetAllIngridientsRequest();
+        GetAllIngridientsResponse response = service.execute(request);
+        response.getIngridients().forEach(System.out::println);
         System.out.println("Ingridient list end.");
     }
 }

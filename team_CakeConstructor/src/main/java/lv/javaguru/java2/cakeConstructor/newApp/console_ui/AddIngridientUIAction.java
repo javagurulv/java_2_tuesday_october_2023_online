@@ -1,8 +1,8 @@
 package lv.javaguru.java2.cakeConstructor.newApp.console_ui;
 
-import lv.javaguru.java2.cakeConstructor.newApp.database.DatabaseImpl;
-import lv.javaguru.java2.cakeConstructor.newApp.database.Ingridient;
-import lv.javaguru.java2.cakeConstructor.newApp.services.AddIngridientService;
+import lv.javaguru.java2.cakeConstructor.newApp.core.request.AddIngridientRequest;
+import lv.javaguru.java2.cakeConstructor.newApp.core.response.AddIngridientResponse;
+import lv.javaguru.java2.cakeConstructor.newApp.core.services.AddIngridientService;
 
 import java.util.Scanner;
 
@@ -21,7 +21,9 @@ public class AddIngridientUIAction implements UIAction{
         String typeOfIngridient = scanner.nextLine();
         System.out.println("Enter taste of ingridient: ");
         String tasteOfIngridient = scanner.nextLine();
-        service.execute(typeOfIngridient,tasteOfIngridient);
+        AddIngridientRequest request = new AddIngridientRequest(typeOfIngridient,tasteOfIngridient);
+        AddIngridientResponse response = service.execute(request);
+        System.out.println("New ingridient id was: " + response.getNewIngridient().getId());
         System.out.println("Your book was added to list.");
     }
 }

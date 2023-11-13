@@ -1,4 +1,4 @@
-package lv.javaguru.java2.cakeConstructor.newApp.database;
+package lv.javaguru.java2.cakeConstructor.newApp.core.database;
 
 
 import java.util.Objects;

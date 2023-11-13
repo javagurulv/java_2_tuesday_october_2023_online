@@ -1,12 +1,10 @@
 package lv.javaguru.java2.cakeConstructor.newApp;
 
 import lv.javaguru.java2.cakeConstructor.newApp.console_ui.*;
-import lv.javaguru.java2.cakeConstructor.newApp.database.Database;
-import lv.javaguru.java2.cakeConstructor.newApp.database.DatabaseImpl;
-import lv.javaguru.java2.cakeConstructor.newApp.database.Ingridient;
-import lv.javaguru.java2.cakeConstructor.newApp.services.AddIngridientService;
-import lv.javaguru.java2.cakeConstructor.newApp.services.GetAllIngridientsService;
-import lv.javaguru.java2.cakeConstructor.newApp.services.RemoveIngridientService;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.Database;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.DatabaseImpl;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.Ingridient;
+import lv.javaguru.java2.cakeConstructor.newApp.core.services.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +14,8 @@ public class Application {
 
     private static DatabaseImpl database = new Database();
 
-    private static AddIngridientService addService = new AddIngridientService(database);
+    private static AddIngridientValidation validation = new AddIngridientValidation();
+    private static AddIngridientService addService = new AddIngridientService(database,validation);
     private static UIAction addIngridient = new AddIngridientUIAction(addService);
 
     private static RemoveIngridientService removeService = new RemoveIngridientService(database);
@@ -24,6 +23,10 @@ public class Application {
 
     private static GetAllIngridientsService getAllService = new GetAllIngridientsService(database);
     private static UIAction getAllInfridients = new GetAllIngridientsUIAction(getAllService);
+
+    private static SearchIngridientRequestValidation searchValidation = new SearchIngridientRequestValidation();
+    private static SearchIngridientsService searchIngridientsService = new SearchIngridientsService(database,searchValidation);
+    private static UIAction searchIngridient = new SearchIngridientsUIAction(searchIngridientsService);
 
     private static UIAction exit = new ExitUIAction();
 
@@ -49,7 +52,8 @@ public class Application {
         System.out.println("1. Add ingridient to cake");
         System.out.println("2. Delete ingridient from cake");
         System.out.println("3. Show all ingridients in the cake");
-        System.out.println("4. Exit");
+        System.out.println("4. Search ingridients");
+        System.out.println("5. Exit");
 
         System.out.println("");
     }
@@ -74,6 +78,9 @@ public class Application {
                 break;
             }
             case 4: {
+                searchIngridient.execute();
+            }
+            case 5: {
                 exit.execute();
                 break;
             }
