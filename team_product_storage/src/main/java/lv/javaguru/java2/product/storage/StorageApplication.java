@@ -1,37 +1,16 @@
 package lv.javaguru.java2.product.storage;
 
-import lv.javaguru.java2.product.storage.console_ui.*;
-import lv.javaguru.java2.product.storage.core.database.Database;
-import lv.javaguru.java2.product.storage.core.database.InMemoryDatabase;
-import lv.javaguru.java2.product.storage.core.services.*;
-import lv.javaguru.java2.product.storage.core.services.validators.*;
+import lv.javaguru.java2.product.storage.console_ui.AddProductUIAction;
+import lv.javaguru.java2.product.storage.console_ui.ExitProgramUIAction;
+import lv.javaguru.java2.product.storage.console_ui.PrintAllProductsUIAction;
+import lv.javaguru.java2.product.storage.console_ui.RemoveProductUIAction;
+import lv.javaguru.java2.product.storage.console_ui.SearchProductsUIAction;
 
 import java.util.Scanner;
 
 public class StorageApplication {
 
-    private static Database database = new InMemoryDatabase();
-
-    private static AddProductRequestValidator addProductRequestValidator = new AddProductRequestValidator();
-
-    private static RemoveProductRequestValidator removeProductRequestValidator = new RemoveProductRequestValidator();
-
-    private static SearchProductsRequestFieldValidator searchProductsRequestFieldValidator = new SearchProductsRequestFieldValidator();
-    private static OrderingValidator orderingValidator = new OrderingValidator();
-    private static PagingValidator pagingValidator = new PagingValidator();
-    private static SearchProductsRequestValidator searchProductsRequestValidator = new SearchProductsRequestValidator(
-            searchProductsRequestFieldValidator, orderingValidator, pagingValidator
-    );
-    private static AddProductService addProductService = new AddProductService(database, addProductRequestValidator);
-    private static RemoveProductService removeProductService = new RemoveProductService(database, removeProductRequestValidator);
-    private static GetAllProductsService getAllProductService = new GetAllProductsService(database);
-    private static SearchProductsService searchProductsService = new SearchProductsService(database, searchProductsRequestValidator);
-
-    private static UIAction addProductUIAction = new AddProductUIAction(addProductService);
-    private static UIAction removeProductUIAction = new RemoveProductUIAction(removeProductService);
-    private static UIAction printAllProductsUIAction = new PrintAllProductsUIAction(getAllProductService);
-    private static UIAction exitProgramUIAction = new ExitProgramUIAction();
-    private static UIAction searchProductsUIAction = new SearchProductsUIAction(searchProductsService);
+    private static ApplicationContext applicationContext = new ApplicationContext();
 
     public static void main(String[] args) {
             while (true) {
@@ -47,7 +26,7 @@ public class StorageApplication {
         System.out.println("Press 2: Remove product from list: ");
         System.out.println("Press 3: Display all products in the list: ");
         System.out.println("Press 4. Search products");
-        System.out.println("Press 4: Exit from program.");
+        System.out.println("Press 5: Exit from program.");
 
         System.out.println("");
     }
@@ -61,26 +40,31 @@ public class StorageApplication {
     private static void executeMenu(int userChoice) {
         switch (userChoice) {
             case 1: {
-                addProductUIAction.execute();
+                AddProductUIAction uiAction = applicationContext.getBean(AddProductUIAction.class);
+                uiAction.execute();
                 break;
             }
             case 2: {
-                removeProductUIAction.execute();
+                RemoveProductUIAction uiAction = applicationContext.getBean(RemoveProductUIAction.class);
+                uiAction.execute();
                 break;
             }
             case 3: {
-                printAllProductsUIAction.execute();
+                PrintAllProductsUIAction uiAction = applicationContext.getBean(PrintAllProductsUIAction.class);
+                uiAction.execute();
                 break;
             }
             case 4: {
-                searchProductsUIAction.execute();
+                SearchProductsUIAction uiAction = applicationContext.getBean(SearchProductsUIAction.class);
+                uiAction.execute();
                 break;
             }
             case 5: {
-                exitProgramUIAction.execute();
+                ExitProgramUIAction uiAction = applicationContext.getBean(ExitProgramUIAction.class);
+                uiAction.execute();
+                break;
             }
         }
     }
-
 
 }
