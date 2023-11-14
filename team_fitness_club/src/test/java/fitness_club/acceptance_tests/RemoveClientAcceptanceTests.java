@@ -8,13 +8,13 @@ import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.DeleteClientService;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-@Ignore
+@Disabled
 public class RemoveClientAcceptanceTests {
     private ApplicationContext appContext = new ApplicationContext();
 
