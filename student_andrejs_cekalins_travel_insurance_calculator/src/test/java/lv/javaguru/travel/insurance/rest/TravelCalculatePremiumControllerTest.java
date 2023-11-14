@@ -43,8 +43,8 @@ public class TravelCalculatePremiumControllerTest {
     @Test
     public void personFirstNameIsNull() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_FirstName_is_null.json",
-                "rest/TravelCalculatePremiumResponse_FirstName_is_null.json"
+                "rest/TravelCalculatePremiumRequest_firstName_is_null.json",
+                "rest/TravelCalculatePremiumResponse_firstName_is_null.json"
         );
     }
     @Test
