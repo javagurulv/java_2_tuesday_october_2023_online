@@ -1,5 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.console_ui;
 
+import lv.javaguru.java2.cakeConstructor.newApp.core.request.Ordering;
 import lv.javaguru.java2.cakeConstructor.newApp.core.request.SearchIngridientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.SearchIngridientResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.SearchIngridientsService;
@@ -22,7 +23,13 @@ public class SearchIngridientsUIAction implements UIAction {
         System.out.println("Enter taste of ingridient: ");
         String taste = scanner.nextLine();
 
-        SearchIngridientRequest request = new SearchIngridientRequest(type, taste);
+        System.out.println("Enter orderBy (type||taste): ");
+        String orderBy = scanner.nextLine();
+        System.out.println("Enter orderDirection (ASCENDING||DESCENDING): ");
+        String orderDirection = scanner.nextLine();
+        Ordering ordering = new Ordering(orderBy, orderDirection);
+
+        SearchIngridientRequest request = new SearchIngridientRequest(type, taste,ordering);
         SearchIngridientResponse response = service.execute(request);
 
         if (response.hasErrors()) {

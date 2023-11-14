@@ -32,7 +32,6 @@ public class Application {
 
 
     public static void main(String[] args) {
-        List<Ingridient> ingridients = new ArrayList<>();
 
         while (true){
             printProgramMenu();
