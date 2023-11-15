@@ -1,4 +1,4 @@
-package lv.avangardteen;
+package lv.avangardteen.acceptancetests;
 
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.request.ClientRequest;
@@ -6,6 +6,8 @@ import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.ChangeComponentService;
 import lv.avangardteen.core.service.ClientService;
+import lv.avangardteen.dependency_injection.ApplicationContext;
+import lv.avangardteen.dependency_injection.DIApplicationContextBuilder;
 import lv.avangardteen.dto.Category;
 import lv.avangardteen.dto.Client;
 import lv.avangardteen.dto.Component;
@@ -22,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ApplicationContextChangeComponentTest {
 
     @Mock
-    private ApplicationContext appContext = new ApplicationContext();
+    private ApplicationContext appContext = new DIApplicationContextBuilder().build("lv.avangardteen");
 
     @Test
     public void changeComponentTest() {

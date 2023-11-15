@@ -7,20 +7,24 @@ import lv.avangardteen.core.service.validate.ClientIdValidator;
 import lv.avangardteen.core.service.validate.ShowOrderValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ShowOrderValidatorTest {
+    @Mock
     private ClientIdValidator idValidator;
+    @InjectMocks
     private ShowOrderValidator validator;
 
     @BeforeEach
     public void init() {
-        idValidator = Mockito.mock(ClientIdValidator.class);
-        validator = new ShowOrderValidator(idValidator);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test

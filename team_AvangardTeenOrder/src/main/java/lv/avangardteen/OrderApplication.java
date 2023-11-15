@@ -1,17 +1,13 @@
 package lv.avangardteen;
 
 import lv.avangardteen.UIAction.*;
-import lv.avangardteen.core.request.ChangePersonalSizeRequest;
-import lv.avangardteen.core.service.*;
-import lv.avangardteen.core.service.validate.*;
-import lv.avangardteen.data.DataComponents;
-import lv.avangardteen.data.DataOrders;
-import lv.avangardteen.data.Database;
+import lv.avangardteen.dependency_injection.ApplicationContext;
+import lv.avangardteen.dependency_injection.DIApplicationContextBuilder;
 
 import java.util.Scanner;
 
 public class OrderApplication {
-    private static ApplicationContext applicationContext = new ApplicationContext();
+    private static ApplicationContext applicationContext = new DIApplicationContextBuilder().build("lv.avangardteen");
 
 
     public static void main(String[] args) {

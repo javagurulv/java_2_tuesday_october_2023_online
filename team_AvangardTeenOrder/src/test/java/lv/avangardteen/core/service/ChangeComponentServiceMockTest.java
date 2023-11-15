@@ -7,46 +7,50 @@ import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChooseComponentValidator;
 import lv.avangardteen.data.Database;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 class ChangeComponentServiceMockTest {
 
-    private Database database;
-    private ChooseComponentValidator validator;
-    private ChangeComponentService service;
+    @Mock private Database database;
+    @Mock private ChooseComponentValidator validator;
+    @InjectMocks private ChangeComponentService service;
+
+
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.openMocks(this);
+    }
 
     @Test
     public void ChangeComponentExecuteWithError() {
-        ChangeComponentRequest notValidationRequest = new ChangeComponentRequest(
+        ChangeComponentRequest request = new ChangeComponentRequest(
                 0L, 11,12,13,14);
-        validator = Mockito.mock(ChooseComponentValidator.class);
-        Mockito.when(validator.validate(notValidationRequest)).thenReturn(
+       Mockito.when(validator.validate(request)).thenReturn(
                 List.of(new CoreError("Change Component", "Incorrect component chose!")));
-        service = new ChangeComponentService(null, validator);
-        ChangeComponentResponse response = service.execute(notValidationRequest);
+        ChangeComponentResponse response = service.execute(request);
         assertTrue(response.hasErrors());
     }
 
     @Test
     public void ChangeComponentWithoutError() {
-        database = Mockito.mock(Database.class);
-
-        validator = Mockito.mock(ChooseComponentValidator.class);
         ChangeComponentRequest request = new ChangeComponentRequest(
                 1L, 11, 12, 13, 14);
-        Mockito.when(validator.validate(request)).thenReturn(List.of());
-        Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
-        service = new ChangeComponentService(database,validator);
+        when(database.getClient(request.getId())).thenReturn(new Client());
+        when(validator.validate(request)).thenReturn(List.of());
         ChangeComponentResponse response = service.execute(request);
         assertFalse(response.hasErrors());
 
 
-        // nado li proverjatj logiku dobavlenija componentov i obrazovanija ceni?
     }
 }

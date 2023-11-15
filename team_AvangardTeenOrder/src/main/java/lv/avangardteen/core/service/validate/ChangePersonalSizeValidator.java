@@ -2,21 +2,19 @@ package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.responce.CoreError;
+import lv.avangardteen.dependency_injection.DIComponent;
+import lv.avangardteen.dependency_injection.DIDependency;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@DIComponent
 public class ChangePersonalSizeValidator {
 
-
+    @DIDependency
     private ClientIdValidator idValidator;
+    @DIDependency
     private PersonalSizeValidator sizeValidation;
-
-    public ChangePersonalSizeValidator(ClientIdValidator idValidator,
-                                       PersonalSizeValidator sizeValidation) {
-        this.idValidator = idValidator;
-        this.sizeValidation = sizeValidation;
-    }
 
     public List<CoreError> validate(ChangePersonalSizeRequest request) {
         List<CoreError> errors = new ArrayList<>();

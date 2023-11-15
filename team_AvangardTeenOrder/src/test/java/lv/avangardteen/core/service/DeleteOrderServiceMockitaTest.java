@@ -6,8 +6,12 @@ import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.DeleteOrderResponse;
 import lv.avangardteen.core.service.validate.IdOrderValidator;
 import lv.avangardteen.data.Database;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
@@ -16,29 +20,33 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DeleteOrderServiceMockitaTest {
 
-    private DeleteOrderService service;
+    @Mock
     private Database database;
+    @Mock
     private IdOrderValidator validator;
+    @InjectMocks
+    private DeleteOrderService service;
+
+
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.openMocks(this);
+    }
+
     @Test
-    public void DeleteOrderWithError(){
+    public void DeleteOrderWithError() {
         DeleteOrderRequest notValidationRequest = new DeleteOrderRequest(1L);
-        database = Mockito.mock(Database.class);
-        validator = Mockito.mock(IdOrderValidator.class);
         Mockito.when(validator.validate(notValidationRequest)).thenReturn(
                 List.of(new CoreError("Delete Order", "Incorrect ID number!")));
-        service = new DeleteOrderService(database,validator);
         DeleteOrderResponse response = service.execute(notValidationRequest);
         assertTrue(response.hasErrors());
     }
 
     @Test
-    public void DeleteOrderWithoutError(){
+    public void DeleteOrderWithoutError() {
         DeleteOrderRequest request = new DeleteOrderRequest(1L);
-        database = Mockito.mock(Database.class);
-        validator = Mockito.mock(IdOrderValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(List.of());
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
-        service = new DeleteOrderService(database,validator);
         DeleteOrderResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         Mockito.verify(database).deleteUser(request.getId());

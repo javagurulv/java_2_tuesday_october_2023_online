@@ -2,24 +2,19 @@ package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.CoreError;
+import lv.avangardteen.dependency_injection.DIComponent;
+import lv.avangardteen.dependency_injection.DIDependency;
 
 import java.util.*;
 
+@DIComponent
 public class ClientOrderValidator {
-
-
-
+    @DIDependency
     private PersonalDateValidation personalDateValidation;
+    @DIDependency
     private PersonalSizeValidator personalSizeValidator;
+    @DIDependency
     private ComponentValidator componentValidator;
-
-    public ClientOrderValidator(PersonalDateValidation personalDateValidation,
-                                PersonalSizeValidator personalSizeValidator,
-                                ComponentValidator componentValidator) {
-        this.personalDateValidation = personalDateValidation;
-        this.personalSizeValidator = personalSizeValidator;
-        this.componentValidator = componentValidator;
-    }
 
     public List<CoreError> validate(ClientRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -28,7 +23,6 @@ public class ClientOrderValidator {
         validateComponent(request, errors);
         return errors;
     }
-
 
 
     private void validatePersonalDate(ClientRequest request, List<CoreError> errors) {

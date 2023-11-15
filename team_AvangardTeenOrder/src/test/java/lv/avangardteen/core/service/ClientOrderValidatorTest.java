@@ -8,7 +8,10 @@ import lv.avangardteen.core.service.validate.PersonalDateValidation;
 import lv.avangardteen.core.service.validate.PersonalSizeValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
@@ -17,18 +20,19 @@ import static org.mockito.Mockito.when;
 
 class ClientOrderValidatorTest {
 
+    @Mock
     private PersonalDateValidation personalDateValidation;
+    @Mock
     private PersonalSizeValidator personalSizeValidator;
+    @Mock
     private ComponentValidator componentValidator;
+    @InjectMocks
     private ClientOrderValidator validator;
+
 
     @BeforeEach
     public void init() {
-
-        personalDateValidation = Mockito.mock(PersonalDateValidation.class);
-        personalSizeValidator = Mockito.mock(PersonalSizeValidator.class);
-        componentValidator = Mockito.mock(ComponentValidator.class);
-        validator = new ClientOrderValidator(personalDateValidation, personalSizeValidator, componentValidator);
+        MockitoAnnotations.openMocks(this);
     }
 
 

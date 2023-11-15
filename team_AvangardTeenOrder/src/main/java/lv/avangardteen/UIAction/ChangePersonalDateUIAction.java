@@ -4,17 +4,17 @@ import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.service.ChangePersonalDateService;
 import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.dependency_injection.DIComponent;
+import lv.avangardteen.dependency_injection.DIDependency;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+@DIComponent
 public class ChangePersonalDateUIAction implements UIAction {
 
+    @DIDependency
     ChangePersonalDateService service;
-
-    public ChangePersonalDateUIAction(ChangePersonalDateService service) {
-        this.service = service;
-    }
 
     @Override
     public void execute() {

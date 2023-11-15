@@ -1,6 +1,5 @@
 package lv.avangardteen.acceptancetests;
 
-import lv.avangardteen.ApplicationContext;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.request.ClientRequest;
@@ -10,12 +9,14 @@ import lv.avangardteen.core.service.ChangePersonalDateService;
 import lv.avangardteen.core.service.ChangePersonalSizeService;
 import lv.avangardteen.core.service.ClientService;
 import lv.avangardteen.core.service.ShowOrderService;
+import lv.avangardteen.dependency_injection.ApplicationContext;
+import lv.avangardteen.dependency_injection.DIApplicationContextBuilder;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AcceptanceTest3 {
-    private ApplicationContext appContext = new ApplicationContext();
+    private ApplicationContext appContext = new DIApplicationContextBuilder().build("lv.avangardteen");
 
     @Test
     public void shouldChangeOneOrderPersonalDataAndChangeSecondOrderPersonalSize() {

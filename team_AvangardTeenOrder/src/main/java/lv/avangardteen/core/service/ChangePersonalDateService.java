@@ -1,5 +1,7 @@
 package lv.avangardteen.core.service;
 
+import lv.avangardteen.dependency_injection.DIComponent;
+import lv.avangardteen.dependency_injection.DIDependency;
 import lv.avangardteen.dto.Client;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.ChangePersonalDateResponse;
@@ -9,15 +11,13 @@ import lv.avangardteen.data.Database;
 
 import java.util.List;
 
+@DIComponent
 public class ChangePersonalDateService {
+    @DIDependency
     private Database database;
 
+    @DIDependency
     private ChangePersonalDateValidator validator;
-
-    public ChangePersonalDateService(Database database, ChangePersonalDateValidator validator) {
-        this.database = database;
-        this.validator = validator;
-    }
 
     public ChangePersonalDateResponse execute(ChangePersonalDateRequest request) {
         List<CoreError> errors = validator.validate(request);
