@@ -3,17 +3,18 @@ package avangardteen.java.responce;
 import avangardteen.java.Category;
 import avangardteen.java.Client;
 import avangardteen.java.Component;
+import avangardteen.java.Wheelchair;
 
 import java.util.List;
 
 public class ChangeCompanentsResponce {
     List<Category> listAllCategory;
     List<Component> chooseNewComponent;
-    Client client;
+   Wheelchair wheelchair;
 
 
-    public Client getClient() {
-        return client;
+    public Wheelchair getWheelchair() {
+        return wheelchair;
     }
 
     public ChangeCompanentsResponce(List<Component> newChoose) {
@@ -28,9 +29,9 @@ public class ChangeCompanentsResponce {
         return chooseNewComponent;
     }
 
-    public ChangeCompanentsResponce(List<Category> listAllCategory, Client client) {
+    public ChangeCompanentsResponce(List<Category> listAllCategory, Wheelchair wheelchair) {
         this.listAllCategory = listAllCategory;
-        this.client = client;
+        this.wheelchair = wheelchair;
     }
 
     public ChangeCompanentsResponce() {

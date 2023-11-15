@@ -2,6 +2,7 @@ package avangardteen.java.service;
 
 import avangardteen.java.Client;
 import avangardteen.java.CoreError;
+import avangardteen.java.UserSizes;
 import avangardteen.java.request.AddAnthropometricDataRequest;
 import avangardteen.java.responce.AddAnthropometricDataResponse;
 import avangardteen.java.service.valigation.AddAntropologDateValigation;
@@ -10,11 +11,11 @@ import java.io.StreamCorruptedException;
 import java.util.List;
 
 public class AddAtropologDateServis {
-    Client user;
+    UserSizes sizes;
     AddAntropologDateValigation valigation;
 
-    public AddAtropologDateServis(Client user, AddAntropologDateValigation valigation) {
-        this.user = user;
+    public AddAtropologDateServis(UserSizes sizes, AddAntropologDateValigation valigation) {
+        this.sizes = sizes;
         this.valigation = valigation;
     }
 
@@ -23,22 +24,22 @@ public class AddAtropologDateServis {
         if (!errorlist.isEmpty()){
             return new AddAnthropometricDataResponse(errorlist);
         }
-        user.getUserSizes().setBackHeight(request.getBackLength());
-        user.getUserSizes().setPelvisWidth(request.getPelwicWidth());
-        user.getUserSizes().setThighLength(request.getThighLength());
-        user.getUserSizes().setShinLength(request.getShinLength());
+       sizes.setBackHeight(request.getBackLength());
+        sizes.setPelvisWidth(request.getPelwicWidth());
+        sizes.setThighLength(request.getThighLength());
+        sizes.setShinLength(request.getShinLength());
         return new AddAnthropometricDataResponse();
     }
     public void setShinLength(int choose) {
-        user.getUserSizes().setShinLength(choose);
+        sizes.setShinLength(choose);
     }
     public void setPelvis(int choose) {
-        user.getUserSizes().setPelvisWidth(choose);
+        sizes.setPelvisWidth(choose);
     }
     public void setThighLength(int choose) {
-        user.getUserSizes().setThighLength(choose);
+        sizes.setThighLength(choose);
     }
     public void setBackLength(int choose) {
-        user.getUserSizes().setShinLength(choose);
+        sizes.setShinLength(choose);
     }
 }

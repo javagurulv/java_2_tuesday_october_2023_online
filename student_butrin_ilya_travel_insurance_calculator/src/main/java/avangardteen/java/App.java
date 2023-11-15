@@ -5,45 +5,27 @@ import avangardteen.java.data.DataComponents;
 import avangardteen.java.data.DataUsers;
 import avangardteen.java.service.*;
 import avangardteen.java.service.valigation.AddAntropologDateValigation;
-import avangardteen.java.service.valigation.ChangeAntropologDateValidation;
+import avangardteen.java.service.valigation.ChangeAntropologDateValigation;
 
 import java.util.Scanner;
 public class
-ConsoleInterface {
-    static Client client = new Client(new Wheelchair(),
-                                new UserSizes());
-    private static AddAntropologDateValigation addAntropologDateValigation = new AddAntropologDateValigation();
-    private static DataUsers data = new DataUsers();
-    private static DataComponents dataComponents = new DataComponents();
-    private static AddUserDataServis addUserDataServis = new AddUserDataServis(client, data);
-    private static ChooseWheelChairComponentsServis chooseWheelChairComponentsServis = new ChooseWheelChairComponentsServis(dataComponents,client);
-    private static AddAtropologDateServis addAntropometricDataServis = new AddAtropologDateServis(client,addAntropologDateValigation);
-    private static GetAntropometricDataServis getAntropometricDataServis = new GetAntropometricDataServis(client);
-    private static ChangeComponentServise changeComponentServise = new ChangeComponentServise(dataComponents,client);
-    private static UIAction changeComponent = new ChangeComponentUIAction(changeComponentServise);
-    private static ShowAllComponentsServis showAllComponentsServis = new ShowAllComponentsServis(client);
-    private static UIAction showAllComponents = new ShowAllComponentsUIAction(showAllComponentsServis);
-    private static ShowAllPricesServise showAllPricesServise = new ShowAllPricesServise(client);
-    private static UIAction showAllPrice = new ShowAllPricesUIAction(showAllPricesServise);
-    private static UIAction chooseWheelchairComponens = new ChooseWheelchairComponensUIAction(chooseWheelChairComponentsServis);
-    public static UIAction addPersonalData = new AddPersonalDateIUAction(addUserDataServis);
-    public static UIAction showDataSize = new ShowDataSizeUIActive(getAntropometricDataServis);
-    public static AddAnthropometricDataIUActiv addAnthropometricDataIUActiv = new AddAnthropometricDataIUActiv(addAntropometricDataServis);
-    public static ChangeAntropologDateValidation changeAntropologDateValidation = new ChangeAntropologDateValidation();
-    public static ChangeAntropometricDataService changeAntropometricDataService = new ChangeAntropometricDataService(changeAntropologDateValidation, client);
-    public static ChangenAtropologDateUIAAction changenAtropologDateUIAAction = new ChangenAtropologDateUIAAction(changeAntropometricDataService);
+App {
+    private static ApplicationContext applicationContext = new ApplicationContext();
     public static void main(String[] args) {
+        ShowDataSizeUIActive  showDataSize = applicationContext.getBean(ShowDataSizeUIActive.class);
         Scanner scan = new Scanner(System.in);
         while (true) {
             showMenu();
             int choose  = scan.nextInt();
             switch (choose) {
                 case (1):
+                    AddAnthropometricDataIUActiv  addAnthropometricDataIUActiv = applicationContext.getBean(AddAnthropometricDataIUActiv.class);
                     addAnthropometricDataIUActiv.execute();
                     break;
                 case (2):
                     System.out.println("какой из параметров хотите поменять?");
                     showDataSize.execute();
+                    ChangenAtropologDateUIAAction  changenAtropologDateUIAAction = applicationContext.getBean(ChangenAtropologDateUIAAction.class);
                     changenAtropologDateUIAAction.execute();
                     break;
                 case (3):
@@ -55,20 +37,24 @@ ConsoleInterface {
                             "В каждом пункте будет указана цена, которая будет прибавляться к стоимости коляске. \n " +
                             "Если вместо цены стоит ноль, значит этот элемент входит в базовую стоимость и не увеличивает общую стоимость коляски.");
                     System.out.println();
+                    ChooseWheelchairComponensUIAction chooseWheelchairComponens = applicationContext.getBean(ChooseWheelchairComponensUIAction.class);
                     chooseWheelchairComponens.execute();
                     break;
                 case (5):
+                    ChangeComponentUIAction changeComponent = applicationContext.getBean(ChangeComponentUIAction.class);
                     changeComponent.execute();
                     break;
                 case (6):
+                    ShowAllComponentsUIAction  showAllComponents = applicationContext.getBean(ShowAllComponentsUIAction.class);
                     showAllComponents.execute();
                     break;
                 case (7):
+                    ShowAllPricesUIAction showAllPrice = applicationContext.getBean(ShowAllPricesUIAction.class);
                     showAllPrice.execute();
                     break;
                 case (8):
-                    addPersonalData.execute();
-                    System.exit(0);
+                    AddPersonalDateIUAction addPersonalDate = applicationContext.getBean(AddPersonalDateIUAction.class);
+                    addPersonalDate.execute();
             }
         }
     }

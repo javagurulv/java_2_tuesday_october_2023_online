@@ -1,22 +1,42 @@
 package avangardteen.java.service;
 
+import avangardteen.java.CoreError;
+import avangardteen.java.UserSizes;
+import avangardteen.java.Wheelchair;
 import avangardteen.java.data.DataUsers;
 import avangardteen.java.Client;
+import avangardteen.java.request.AddPersonalDataRequest;
+import avangardteen.java.responce.AddPersonalDateResponce;
+import avangardteen.java.service.valigation.WheelchairValigator;
+
+import java.util.List;
 
 public class AddUserDataServis {
-    Client user;
     DataUsers data;
+    UserSizes sizes;
+    Wheelchair wheelchair;
+    WheelchairValigator valigator;
 
 
-    public AddUserDataServis(Client user, DataUsers data) {
-        this.user = user;
+    public AddUserDataServis(DataUsers data, UserSizes sizes, Wheelchair wheelchair, WheelchairValigator valigator) {
         this.data = data;
+        this.sizes = sizes;
+        this.wheelchair = wheelchair;
+        this.valigator = valigator;
     }
 
-    public void addUzer (String name, String phone, String email){
-        user.setUserEmail(email);
-        user.setNameSurname(name);
-        user.setPhoneNumber(phone);
-        data.addUser(user);
+    public AddPersonalDateResponce addUzer(AddPersonalDataRequest request) {
+        List<CoreError> errors = valigator.errorlist(wheelchair);
+        if (!errors.isEmpty())
+            return new AddPersonalDateResponce(errors);
+        else {
+            Client user = new Client(wheelchair, sizes);
+            user.setUserEmail(request.geteMail());
+            user.setNameSurname(request.getNameSurname());
+            user.setPhoneNumber(request.getPhoneNumber());
+            data.addUser(user);
+            return new AddPersonalDateResponce();
+
+        }
     }
 }

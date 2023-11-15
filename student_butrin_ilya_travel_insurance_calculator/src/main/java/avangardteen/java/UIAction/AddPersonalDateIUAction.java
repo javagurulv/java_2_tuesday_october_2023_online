@@ -1,9 +1,13 @@
 package avangardteen.java.UIAction;
 
 import avangardteen.java.Client;
+import avangardteen.java.CoreError;
 import avangardteen.java.Wheelchair;
+import avangardteen.java.request.AddPersonalDataRequest;
+import avangardteen.java.responce.AddPersonalDateResponce;
 import avangardteen.java.service.AddUserDataServis;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class AddPersonalDateIUAction implements UIAction{
@@ -22,7 +26,14 @@ public class AddPersonalDateIUAction implements UIAction{
         String phoneNumber = scan.nextLine();
         System.out.println("введите е-маил, на который Вам придет выбранная детализация");
         String userEmail = scan.nextLine();
-        servis.addUzer(nameSurname,phoneNumber,userEmail);
+        AddPersonalDataRequest request = new AddPersonalDataRequest(nameSurname,phoneNumber,userEmail);
+        AddPersonalDateResponce responce = servis.addUzer(request);
+        if (responce.hasErrors()){
+            List<CoreError> errors = responce.getErrorList();
+            for (CoreError error : errors) {
+                System.err.println(error.getLocation() + ": " + error.getMessage());}}
+        else{
         System.out.println("Данные записаны");
+            System.exit(0);}
     }
     }

@@ -1,25 +1,19 @@
 package classWork;
 import classWork.consoleUI.*;
+import classWork.core.database.Database;
+import classWork.core.database.InMemoryDatabaseImpl;
 import classWork.core.service.AddBookService;
-import classWork.core.service.valigators.AddBookValidator;
+import classWork.core.service.SearchBooksService;
+import classWork.core.service.valigators.*;
 import classWork.core.service.GetAllBookService;
 import classWork.core.service.RemoveBookService;
-import classWork.core.service.valigators.RemoveBookValidators;
 
 
 import java.util.Scanner;
 
 public class BookListApplication {
-    Database data = new InMemoryDatabaseImpl();
-    AddBookValidator addBookValidator = new AddBookValidator(data);
-   RemoveBookValidators removeBookValidator = new RemoveBookValidators();
-    UIAction addBook = new AddBookUIAction(new AddBookService(data, addBookValidator));
-    UIAction removeBook = new RemoveBookUIAction(new RemoveBookService(data, removeBookValidator));
-    UIAction getbook = new GetAllBooksUIAction(new GetAllBookService(data));
-    UIAction exit = new ExitUIAction();
-    SearchBookValidator searchBookValidator = new SearchBookValidator();
-    SearchBooksService searchBooksService = new SearchBooksService(searchBookValidator,data);
-    UIAction searchBook = new SearchBookUIAction(searchBooksService);
+
+  ApplicationContext applicationContext = new ApplicationContext();
     public static void main(String[] args) {
 
         BookListApplication bookListApplication = new BookListApplication();
@@ -44,18 +38,23 @@ public class BookListApplication {
 
             switch (choose) {
                 case (1):
+                    AddBookUIAction addBook = applicationContext.getBean(AddBookUIAction.class);
                     addBook.execute();
                     break;
                 case (2):
+                    RemoveBookUIAction removeBook = applicationContext.getBean(RemoveBookUIAction.class);
                     removeBook.execute();
                     break;
                 case (3):
+                    GetAllBooksUIAction getbook = applicationContext.getBean(GetAllBooksUIAction.class);
                     getbook.execute();
                     break;
                 case (4):
+                    SearchBookUIAction searchBook = applicationContext.getBean(SearchBookUIAction.class);
                     searchBook.execute();
                     break;
                 case (5):
+                    ExitUIAction exit = applicationContext.getBean(ExitUIAction.class);
                     exit.execute();
 
             }
