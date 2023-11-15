@@ -1,46 +1,16 @@
 package lv.javaguru.java2.lessoncode.book.app;
 
-import lv.javaguru.java2.lessoncode.book.app.console_ui.*;
-import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
-import lv.javaguru.java2.lessoncode.book.app.core.database.InMemoryDatabaseImpl;
-import lv.javaguru.java2.lessoncode.book.app.core.services.AddBookService;
-import lv.javaguru.java2.lessoncode.book.app.core.services.GetAllBooksService;
-import lv.javaguru.java2.lessoncode.book.app.core.services.RemoveBookService;
-import lv.javaguru.java2.lessoncode.book.app.core.services.SearchBooksService;
-import lv.javaguru.java2.lessoncode.book.app.core.services.validators.OrderingValidator;
-import lv.javaguru.java2.lessoncode.book.app.core.services.validators.PagingValidator;
-import lv.javaguru.java2.lessoncode.book.app.core.services.validators.AddBookRequestValidator;
-import lv.javaguru.java2.lessoncode.book.app.core.services.validators.SearchBooksRequestFieldValidator;
-import lv.javaguru.java2.lessoncode.book.app.core.services.validators.SearchBooksRequestValidator;
-import lv.javaguru.java2.lessoncode.book.app.core.services.validators.RemoveBookRequestValidator;
+import lv.javaguru.java2.lessoncode.book.app.console_ui.AddBookUIAction;
+import lv.javaguru.java2.lessoncode.book.app.console_ui.ProgramExitUIAction;
+import lv.javaguru.java2.lessoncode.book.app.console_ui.PrintAllBooksUIAction;
+import lv.javaguru.java2.lessoncode.book.app.console_ui.RemoveBookUIAction;
+import lv.javaguru.java2.lessoncode.book.app.console_ui.SearchBooksUIAction;
 
 import java.util.Scanner;
 
     public class BookListApplication {
 
-    private static Database database = new InMemoryDatabaseImpl();
-
-    private static AddBookRequestValidator addBookRequestvalidator = new AddBookRequestValidator();
-
-    private static RemoveBookRequestValidator removeBookRequestValidator = new RemoveBookRequestValidator();
-
-    private static SearchBooksRequestFieldValidator searchBooksRequestFieldValidator = new SearchBooksRequestFieldValidator();
-
-    private static OrderingValidator orderingValidator = new OrderingValidator();
-    private static PagingValidator pagingValidator = new PagingValidator();
-    private static SearchBooksRequestValidator searchBooksRequestValidator = new SearchBooksRequestValidator(
-                searchBooksRequestFieldValidator, orderingValidator, pagingValidator
-        );
-    private static AddBookService addBookService = new AddBookService(database, addBookRequestvalidator);
-    private static RemoveBookService removeBookService = new RemoveBookService(database, removeBookRequestValidator);
-    private static GetAllBooksService getAllBooksService = new GetAllBooksService(database);
-    private static SearchBooksService searchBooksService = new SearchBooksService(database, searchBooksRequestValidator);
-
-    private static AddBookUIAction addBookUIAction = new AddBookUIAction(addBookService);
-    private static RemoveBookUIAction removeBookUIAction = new RemoveBookUIAction(removeBookService);
-    private static PrintAllBooksUIAction printAllBooksUIAction = new PrintAllBooksUIAction(getAllBooksService);
-    private static ProgramExitUIAction programExitUIAction = new ProgramExitUIAction();
-    private static SearchBooksUIAction searchBooksUIAction = new SearchBooksUIAction(searchBooksService);
+        private static ApplicationContext applicationContext = new ApplicationContext();
 
     public static void main(String[] args) {
     while (true) {
@@ -50,31 +20,6 @@ import java.util.Scanner;
         executeSelectedMenuItem(userChoice);
     }
 }
-
-    private static void executeSelectedMenuItem(int userChoice) {
-        switch(userChoice) {
-            case 1: {
-                addBookUIAction.execute();
-                break;
-            }
-            case 2: {
-                removeBookUIAction.execute();
-                break;
-            }
-            case 3: {
-                printAllBooksUIAction.execute();
-                break;
-            }
-            case 4: {
-                searchBooksUIAction.execute();
-                break;
-            }
-            case 5: {
-                programExitUIAction.execute();
-
-            }
-        }
-    }
 
     private static int getUserMenuChoice() {
             System.out.println("Enter menu item number to execute ");
@@ -91,5 +36,35 @@ import java.util.Scanner;
             System.out.println("5. Exit");
 
             System.out.println("");
+        }
+
+        private static void executeSelectedMenuItem(int userChoice) {
+            switch(userChoice) {
+                case 1: {
+                    AddBookUIAction uiAction = applicationContext.getBean(AddBookUIAction.class);
+                    uiAction.execute();
+                    break;
+                }
+                case 2: {
+                    RemoveBookUIAction uiAction = applicationContext.getBean(RemoveBookUIAction.class);
+                    uiAction.execute();
+                    break;
+                }
+                case 3: {
+                    PrintAllBooksUIAction uiAction = applicationContext.getBean(PrintAllBooksUIAction.class);
+                    uiAction.execute();
+                    break;
+                }
+                case 4: {
+                    SearchBooksUIAction uiAction = applicationContext.getBean(SearchBooksUIAction.class);
+                    uiAction.execute();
+                    break;
+                }
+                case 5: {
+                    ProgramExitUIAction uiAction = applicationContext.getBean(ProgramExitUIAction.class);
+                    uiAction.execute();
+                    break;
+                }
+            }
         }
 }

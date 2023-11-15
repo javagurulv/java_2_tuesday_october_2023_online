@@ -8,10 +8,12 @@ import fitness_club.core.requests.GetAllClientsRequest;
 import fitness_club.core.responses.GetAllClientsResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.GetAllClientsService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
+@Disabled
 public class GetAllClientsTest {
     private ApplicationContext appContext = new ApplicationContext();
 

@@ -4,10 +4,16 @@ public class ChooseWheelchairComponensRequest {
 int chooseArmed;
 int chooseFrontWheels;
 int chooseBreaks;
+int chooseBackWheels;
+int chooseBackWheelSize;
 
+    public int getChooseBackWheels() {
+        return chooseBackWheels;
+    }
     public int getChooseArmed() {
         return chooseArmed;
     }
+
 
     public int getChooseFrontWheels() {
         return chooseFrontWheels;
@@ -17,9 +23,16 @@ int chooseBreaks;
         return chooseBreaks;
     }
 
-    public ChooseWheelchairComponensRequest(int chooseArmed, int chooseFrontWheels, int chooseBreaks) {
+    public int getChooseBackWheelSize() {
+        return chooseBackWheelSize;
+    }
+
+    public ChooseWheelchairComponensRequest(int chooseArmed, int chooseFrontWheels, int chooseBreaks, int chooseBackWheels, int chooseBackWheelSize) {
         this.chooseArmed = chooseArmed;
         this.chooseFrontWheels = chooseFrontWheels;
         this.chooseBreaks = chooseBreaks;
+        this.chooseBackWheels = chooseBackWheels;
+        this.chooseBackWheelSize = chooseBackWheelSize;
     }
 }
+

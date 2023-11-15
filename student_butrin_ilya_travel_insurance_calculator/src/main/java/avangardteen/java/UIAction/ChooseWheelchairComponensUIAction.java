@@ -6,6 +6,7 @@ import avangardteen.java.request.ChooseWheelchairComponensRequest;
 import avangardteen.java.responce.ChooseWheelchairComponensResponce;
 import avangardteen.java.service.ChooseWheelChairComponentsServis;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,9 +27,13 @@ public class ChooseWheelchairComponensUIAction implements UIAction {
         int choosefrontWheels = scanner.nextInt();
         addBreaks();
         int chooseBreaks = scanner.nextInt();
+        addBackWheelsSize();
+        int chooseBackWheelsize = scanner.nextInt();
+        addBackWheels(chooseBackWheelsize);
+        int chooseBackWheels = scanner.nextInt();
         addArmrest();
         int chooseArmrest = scanner.nextInt();
-        ChooseWheelchairComponensRequest request = new ChooseWheelchairComponensRequest(chooseArmrest,choosefrontWheels,chooseBreaks);
+        ChooseWheelchairComponensRequest request = new ChooseWheelchairComponensRequest(chooseArmrest,choosefrontWheels,chooseBreaks,chooseBackWheels,chooseBackWheelsize);
         ChooseWheelchairComponensResponce responce = servis.addAllComponent(request);
     }
 
@@ -40,6 +45,34 @@ public class ChooseWheelchairComponensUIAction implements UIAction {
                     + ". Цена: " + frontWheelList.get(i).getPrice());
         }
     }
+    private void addBackWheels(int backWheelSize) {
+        System.out.println("А какие заднии колеса Вам нужны?");
+        List<Component> backWheelList = new ArrayList<>();
+        switch (backWheelSize) {
+            case (1):
+               backWheelList = servis.getAllBackWheelsFor20Size();
+                break;
+            case (2):
+                backWheelList = servis.getAllBackWheelsFor22Size();
+                break;
+            case (3):
+                backWheelList = servis.getAllBackWheelsFor24Size();
+                break;
+        }
+            for (int i = 0; i < backWheelList.size(); i++) {
+                System.out.println(i + 1 + ". " + backWheelList.get(i).getInformation()
+                        + ". Цена: " + backWheelList.get(i).getPrice());
+            }
+
+    }
+    private void addBackWheelsSize() {
+        System.out.println("Какого размера поставим заднии колеса? ");
+        List<Component> backWheelListSize = servis.getAllBackWheelsSize();
+        for (int i = 0; i <  backWheelListSize.size(); i++) {
+            System.out.println(i + 1 + ". " + backWheelListSize.get(i).getInformation());
+        }
+    }
+
 
     private void addArmrest() {
         System.out.println("На последок выберем подлокотники");

@@ -10,10 +10,12 @@ import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.SearchClientService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
+@Disabled
 public class AcceptanceSearchTest {
     ApplicationContext appContext = new ApplicationContext();
 

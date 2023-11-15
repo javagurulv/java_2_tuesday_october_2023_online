@@ -1,6 +1,6 @@
 package classWork.core.service;
 
-import classWork.Database;
+import classWork.core.database.Database;
 import classWork.core.CoreError;
 import classWork.core.requests.RemoveBookReques;
 import classWork.core.response.RemoveBookResponce;

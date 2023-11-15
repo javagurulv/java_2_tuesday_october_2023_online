@@ -2,10 +2,12 @@ package avangardteen.java.UIAction;
 
 import avangardteen.java.Category;
 import avangardteen.java.Component;
+import avangardteen.java.CoreError;
 import avangardteen.java.request.ChangeComponentsRequest;
 import avangardteen.java.responce.ChangeCompanentsResponce;
 import avangardteen.java.service.ChangeComponentServise;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -33,20 +35,20 @@ ChangeComponentServise servise;
         int newChoose = scan.nextInt();
         ChangeComponentsRequest request2 = new ChangeComponentsRequest(cathegory, newChoose);
         ChangeCompanentsResponce responce3 = servise.responce3(request2);
+        if(responce3.hasErrors()) {
+            List<CoreError> errors = responce3.getErrorList();
+            for (CoreError error : errors) {
+                System.err.println(error.getLocation() + ": " + error.getMessage());
 
-
-
-
-
+            }
+        }
     }
-
-
 
 
         public  void showAllComponent(ChangeCompanentsResponce response) {
             response.getListAllCategory();
             int i = 0;
-            for (Map.Entry<Category, Component> component : response.getClient().getWheelchair().getComponents().entrySet()) {
+            for (Map.Entry<Category, Component> component : response.getWheelchair().getComponents().entrySet()) {
                 i++;
                 System.out.println(i + ". " +
                         component.getKey() + ": " +
