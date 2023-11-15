@@ -36,7 +36,7 @@ public class AddUserDataServis {
             user.setPhoneNumber(request.getPhoneNumber());
             data.addUser(user);
             return new AddPersonalDateResponce();
-
         }
     }
+
 }

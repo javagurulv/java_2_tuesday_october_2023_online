@@ -1,12 +1,10 @@
 package avangardteen.java.service;
 
-import avangardteen.java.Category;
-import avangardteen.java.Client;
-import avangardteen.java.Component;
-import avangardteen.java.Wheelchair;
+import avangardteen.java.*;
 import avangardteen.java.data.DataComponents;
 import avangardteen.java.request.ChangeComponentsRequest;
 import avangardteen.java.responce.ChangeCompanentsResponce;
+import avangardteen.java.service.valigation.WheelchairValigator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +17,7 @@ import static avangardteen.java.Category.BACK_WHEEL_SIZE;
 public class ChangeComponentServise {
     DataComponents components;
     Wheelchair wheelchair;
+    WheelchairValigator valigator;
 
     public ChangeComponentServise(DataComponents components, Wheelchair wheelchair) {
         this.components = components;
@@ -27,17 +26,20 @@ public class ChangeComponentServise {
 
     public ChangeCompanentsResponce responce() {
         List<Category> listAllCathegory = listAllCategory();
-        ChangeCompanentsResponce responce = new ChangeCompanentsResponce(listAllCathegory, wheelchair);
+        ChangeCompanentsResponce responce = new ChangeCompanentsResponce(listAllCathegory, null, wheelchair);
         return responce;
     }
     public ChangeCompanentsResponce responce2(ChangeComponentsRequest request) {
         List<Component> listAllComponen = listComponents(request);
-        ChangeCompanentsResponce responce = new ChangeCompanentsResponce(listAllComponen);
+        ChangeCompanentsResponce responce = new ChangeCompanentsResponce(null, listAllComponen, null);
         return responce;
     }
     public ChangeCompanentsResponce responce3 (ChangeComponentsRequest request) {
         chooseNewComponent(request);
         ChangeCompanentsResponce responce = new ChangeCompanentsResponce();
+        List <CoreError> errors = valigator.errorlist(wheelchair);
+        if (!errors.isEmpty())
+            return new ChangeCompanentsResponce();
         return responce;
     }
 
@@ -53,6 +55,7 @@ public class ChangeComponentServise {
     }
 
     public  List<Component> chooseNewComponent(ChangeComponentsRequest request) {
+
         List<Component> chooseNewComponent = listComponents(request);
         int choose = request.getNewChoose();
         for (int i = 1; i <= chooseNewComponent.size(); i++) {
@@ -60,6 +63,7 @@ public class ChangeComponentServise {
                 String id = chooseNewComponent.get(i - 1).getComponentID();
                 wheelchair.addComponents(id, components);
             }
+
         }
         return chooseNewComponent;
     }

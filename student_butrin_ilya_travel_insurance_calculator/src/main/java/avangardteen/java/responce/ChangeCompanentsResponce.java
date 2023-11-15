@@ -1,25 +1,22 @@
 package avangardteen.java.responce;
 
-import avangardteen.java.Category;
-import avangardteen.java.Client;
-import avangardteen.java.Component;
-import avangardteen.java.Wheelchair;
+import avangardteen.java.*;
 
 import java.util.List;
 
-public class ChangeCompanentsResponce {
+public class ChangeCompanentsResponce extends CoreResponce {
     List<Category> listAllCategory;
     List<Component> chooseNewComponent;
    Wheelchair wheelchair;
 
+    public ChangeCompanentsResponce(List<CoreError> errorList) {
+        super(errorList);
+    }
 
     public Wheelchair getWheelchair() {
         return wheelchair;
     }
 
-    public ChangeCompanentsResponce(List<Component> newChoose) {
-        this.chooseNewComponent = newChoose;
-    }
 
     public List<Category> getListAllCategory() {
         return listAllCategory;
@@ -29,8 +26,9 @@ public class ChangeCompanentsResponce {
         return chooseNewComponent;
     }
 
-    public ChangeCompanentsResponce(List<Category> listAllCategory, Wheelchair wheelchair) {
+    public ChangeCompanentsResponce(List<Category> listAllCategory, List<Component> chooseNewComponent, Wheelchair wheelchair) {
         this.listAllCategory = listAllCategory;
+        this.chooseNewComponent = chooseNewComponent;
         this.wheelchair = wheelchair;
     }
 
