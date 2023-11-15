@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataUsers {
-    List<Client> users = new ArrayList<>();
+    List<Client> clients = new ArrayList<>();
     int id=0;
 
-    public List<Client> getUsers() {
-        return users;
+    public List<Client> getClients() {
+        return clients;
     }
-    public void addUser (Client user){
+    public void addUser (Client client){
         id++;
-        user.setId(id);
-        users.add(user);
+        client.setId(id);
+        clients.add(client);
     }
 }

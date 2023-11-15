@@ -1,7 +1,7 @@
 package classWork.core.service;
 
 import classWork.Book;
-import classWork.Database;
+import classWork.core.database.Database;
 import classWork.core.response.GetAllBookResponce;
 
 import java.util.List;

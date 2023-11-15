@@ -3,6 +3,7 @@ package avangardteen.java.UIAction;
 import avangardteen.java.CoreError;
 import avangardteen.java.request.ChangeAntropologDateRequest;
 import avangardteen.java.responce.ChangeAntropologDateResponce;
+import avangardteen.java.service.AddAtropologDateServis;
 import avangardteen.java.service.ChangeAntropometricDataService;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class ChangenAtropologDateUIAAction implements UIAction {
         String meaning = scan.nextLine();
         ChangeAntropologDateRequest request = new ChangeAntropologDateRequest(choose, meaning);
 
-        ChangeAntropologDateResponce responce = servis.response(request);
+        ChangeAntropologDateResponce responce = servis.responce(request);
         if (responce.hasErrors()) {
             List<CoreError> errors = responce.getErrorList();
             for (CoreError error : errors) {

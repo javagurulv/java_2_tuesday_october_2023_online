@@ -7,15 +7,14 @@ import avangardteen.java.request.ShowDataSizeRequest;
 import avangardteen.java.responce.ShowDataSizeResponse;
 
 public class GetAntropometricDataServis {
-     Client client;
+UserSizes sizes;
 
-    public GetAntropometricDataServis(Client client) {
-        this.client = client;
+    public GetAntropometricDataServis(UserSizes sizes) {
+        this.sizes = sizes;
     }
 
     public ShowDataSizeResponse response (ShowDataSizeRequest request){
-        UserSizes size = client.getUserSizes();
-        return new ShowDataSizeResponse(size);
+        return new ShowDataSizeResponse(sizes);
     }
 }
 

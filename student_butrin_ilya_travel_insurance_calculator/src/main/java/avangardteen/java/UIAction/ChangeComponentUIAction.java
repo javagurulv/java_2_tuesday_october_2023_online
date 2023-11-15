@@ -46,7 +46,7 @@ ChangeComponentServise servise;
         public  void showAllComponent(ChangeCompanentsResponce response) {
             response.getListAllCategory();
             int i = 0;
-            for (Map.Entry<Category, Component> component : response.getClient().getWheelchair().getComponents().entrySet()) {
+            for (Map.Entry<Category, Component> component : response.getWheelchair().getComponents().entrySet()) {
                 i++;
                 System.out.println(i + ". " +
                         component.getKey() + ": " +

@@ -4,7 +4,7 @@ import classWork.core.CoreError;
 import classWork.core.response.AddBookResponse;
 import classWork.core.requests.AddBookRequest;
 import classWork.Book;
-import classWork.Database;
+import classWork.core.database.Database;
 import classWork.core.service.valigators.AddBookValidator;
 
 import java.util.List;
