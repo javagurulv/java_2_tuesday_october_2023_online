@@ -7,7 +7,10 @@ import lv.avangardteen.core.service.validate.IdOrderValidator;
 import lv.avangardteen.data.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
@@ -16,14 +19,15 @@ import static org.mockito.Mockito.mock;
 
 class IdOrderValidatorTest {
 
+    @Mock
     private ClientIdValidator validatorId;
+    @InjectMocks
     private IdOrderValidator validator;
 
 
     @BeforeEach
     public void init() {
-        validatorId = Mockito.mock(ClientIdValidator.class);
-        validator = new IdOrderValidator(validatorId);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
@@ -35,10 +39,10 @@ class IdOrderValidatorTest {
     }
 
     @Test
-    public void  isErrors() {
+    public void isErrors() {
         DeleteOrderRequest request = new DeleteOrderRequest(1L);
         Mockito.when(validatorId.validate(request.getId())).thenReturn(List.of(
-                new CoreError("errors", "message") ));
+                new CoreError("errors", "message")));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
     }

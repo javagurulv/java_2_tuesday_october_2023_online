@@ -7,7 +7,10 @@ import lv.avangardteen.core.service.validate.ClientIdValidator;
 import lv.avangardteen.core.service.validate.ComponentValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
@@ -15,15 +18,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 class ChooseComponentValidatorTest {
+    @Mock
     private ClientIdValidator idValidator;
+    @Mock
     private ComponentValidator componentValidator;
+    @InjectMocks
     private ChooseComponentValidator validator;
+
 
     @BeforeEach
     public void init() {
-        idValidator = Mockito.mock(ClientIdValidator.class);
-        componentValidator = Mockito.mock(ComponentValidator.class);
-        validator = new ChooseComponentValidator(idValidator, componentValidator);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
