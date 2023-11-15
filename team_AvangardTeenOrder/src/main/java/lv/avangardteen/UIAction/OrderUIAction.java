@@ -4,18 +4,18 @@ import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.ClientResponse;
 import lv.avangardteen.core.service.ClientService;
 import lv.avangardteen.data.DataComponents;
+import lv.avangardteen.dependency_injection.DIComponent;
+import lv.avangardteen.dependency_injection.DIDependency;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+@DIComponent
 public class OrderUIAction implements UIAction {
-    DataComponents dataComponents = new DataComponents();
+    @DIDependency
+    DataComponents dataComponents;
+    @DIDependency
     ClientService service;
-
-    public OrderUIAction(ClientService service) {
-
-        this.service = service;
-    }
 
     @Override
     public void execute() {

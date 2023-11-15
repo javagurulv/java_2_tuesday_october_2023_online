@@ -1,5 +1,6 @@
 package lv.avangardteen.data;
 
+import lv.avangardteen.dependency_injection.DIComponent;
 import lv.avangardteen.dto.Client;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+@DIComponent
 public class DataOrders implements Database {
     private Long nextId = 1L;
     List<Client> clients = new ArrayList<>();

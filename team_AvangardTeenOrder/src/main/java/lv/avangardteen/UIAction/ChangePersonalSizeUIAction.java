@@ -4,17 +4,17 @@ import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.service.ChangePersonalSizeService;
 import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.dependency_injection.DIComponent;
+import lv.avangardteen.dependency_injection.DIDependency;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+@DIComponent
 public class ChangePersonalSizeUIAction implements UIAction {
 
+    @DIDependency
     ChangePersonalSizeService service;
-
-    public ChangePersonalSizeUIAction(ChangePersonalSizeService service) {
-        this.service = service;
-    }
 
     @Override
     public void execute() {

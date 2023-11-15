@@ -1,10 +1,11 @@
 package lv.avangardteen.data;
 
+import lv.avangardteen.dependency_injection.DIComponent;
 import lv.avangardteen.dto.Category;
 import lv.avangardteen.dto.Component;
 
 import java.util.*;
-
+@DIComponent
 public class DataComponents {
 
     List<Component> allComponents = List.of(

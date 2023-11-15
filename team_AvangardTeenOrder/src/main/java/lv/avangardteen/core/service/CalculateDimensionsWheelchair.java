@@ -1,8 +1,9 @@
 package lv.avangardteen.core.service;
 
+import lv.avangardteen.dependency_injection.DIComponent;
 import lv.avangardteen.dto.UserSizes;
 import lv.avangardteen.dto.Wheelchair;
-
+@DIComponent
 public class CalculateDimensionsWheelchair {
 
     private UserSizes userSizes;

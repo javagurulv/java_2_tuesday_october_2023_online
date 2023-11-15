@@ -3,6 +3,7 @@ package lv.avangardteen.core.service.validate;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.WheelchairComponent;
 import lv.avangardteen.data.DataComponents;
+import lv.avangardteen.dependency_injection.DIComponent;
 import lv.avangardteen.dto.Category;
 import lv.avangardteen.dto.Component;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
+@DIComponent
 public class ComponentValidator {
 
     public List<CoreError> validate(WheelchairComponent wheelchairComponent) {
