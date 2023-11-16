@@ -1,6 +1,5 @@
-package lv.javaguru.travel.insurance.core;
+package lv.javaguru.travel.insurance.core.util;
 
-import lv.javaguru.travel.insurance.core.util.DateTimeUtil;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
@@ -9,7 +8,7 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DateTimeServiceTest {
+class DateTimeUtilTest {
 
     private DateTimeUtil dateTimeService = new DateTimeUtil();
 
