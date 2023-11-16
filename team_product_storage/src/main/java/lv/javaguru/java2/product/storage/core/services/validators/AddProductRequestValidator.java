@@ -2,11 +2,13 @@ package lv.javaguru.java2.product.storage.core.services.validators;
 
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
+import lv.javaguru.java2.product.storage.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@DIComponent
 public class AddProductRequestValidator {
 
     public List<CoreError> validate(AddProductRequest request) {

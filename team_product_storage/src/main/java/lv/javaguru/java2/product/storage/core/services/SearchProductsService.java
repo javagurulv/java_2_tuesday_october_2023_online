@@ -8,22 +8,20 @@ import lv.javaguru.java2.product.storage.core.requests.SearchProductsRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 import lv.javaguru.java2.product.storage.core.responses.SearchProductsResponse;
 import lv.javaguru.java2.product.storage.core.services.validators.SearchProductsRequestValidator;
+import lv.javaguru.java2.product.storage.dependency_injection.DIComponent;
+import lv.javaguru.java2.product.storage.dependency_injection.DIDependency;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@DIComponent
 public class SearchProductsService {
 
-    private Database database;
-    private SearchProductsRequestValidator validator;
+    @DIDependency private Database database;
+    @DIDependency private SearchProductsRequestValidator validator;
 
-    public SearchProductsService(Database database,
-                                 SearchProductsRequestValidator validator) {
-        this.database = database;
-        this.validator = validator;
-    }
 
     public SearchProductsResponse execute(SearchProductsRequest request) {
         List<CoreError> errors = validator.validate(request);
