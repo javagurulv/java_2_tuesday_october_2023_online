@@ -5,17 +5,15 @@ import lv.javaguru.java2.lessoncode.book.app.core.responses.SearchBooksResponse;
 import lv.javaguru.java2.lessoncode.book.app.core.services.SearchBooksService;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Ordering;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchBooksRequest;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIDependency;
 
 import java.util.Scanner;
 
-
+@DIComponent
 public class SearchBooksUIAction implements UIAction{
 
-    private SearchBooksService searchBooksService;
-
-    public SearchBooksUIAction(SearchBooksService searchBooksService) {
-        this.searchBooksService = searchBooksService;
-    }
+    @DIDependency private SearchBooksService searchBooksService;
 
     @Override
     public void execute() {

@@ -5,10 +5,9 @@ import java.util.Objects;
 
 public class Book {
 
-
+    private Long id;
     private String title;
     private String author;
-    private Long id;
 
     private List<Page> pages;
 

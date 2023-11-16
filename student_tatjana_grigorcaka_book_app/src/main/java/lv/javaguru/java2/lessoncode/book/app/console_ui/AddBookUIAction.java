@@ -4,16 +4,15 @@ import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.services.AddBookService;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.AddBookResponse;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class AddBookUIAction  implements UIAction {
 
-    private AddBookService addBookService;
-
-    public AddBookUIAction(AddBookService addBookService) {
-        this.addBookService = addBookService;
-    }
+    @DIDependency private AddBookService addBookService;
 
     @Override
     public void execute() {

@@ -2,11 +2,13 @@ package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Ordering;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@DIComponent
 public class OrderingValidator {
 
     public List<CoreError> validate(Ordering ordering) {
