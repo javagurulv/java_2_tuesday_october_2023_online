@@ -52,8 +52,8 @@ class TravelCalculatePremiumServiceImplTest {
         when(validator.validate(request)).thenReturn(errors);
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(response.getErrors().size(), 1);
-        assertEquals(response.getErrors().get(0).getField(), "errorsField");
-        assertEquals(response.getErrors().get(0).getMessage(), "errorsMessage");
+        assertEquals(response.getErrors().get(0).getErrorCode(), "errorsField");
+        assertEquals(response.getErrors().get(0).getDescription(), "errorsMessage");
 
     }
 
@@ -108,6 +108,12 @@ class TravelCalculatePremiumServiceImplTest {
         when(underwritingPrice.calculatePremium(request)).thenReturn(new BigDecimal(20));
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(response.getAgreementPrice(), new BigDecimal(20));
+    }
+
+    private List<ValidationError> buildValidationErrorList() {
+        return List.of(
+                new ValidationError("field", "errorMessage")
+        );
     }
 
     private Date createDate(String dateStr) {

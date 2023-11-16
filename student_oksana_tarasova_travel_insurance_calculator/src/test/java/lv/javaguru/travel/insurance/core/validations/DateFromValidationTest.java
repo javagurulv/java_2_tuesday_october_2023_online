@@ -1,10 +1,12 @@
 package lv.javaguru.travel.insurance.core.validations;
 
+import lv.javaguru.travel.insurance.core.ErrorCodeUtil;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -21,7 +23,8 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class DateFromValidationTest {
-
+    @Mock
+    private ErrorCodeUtil errorCodeUtil;
     @InjectMocks
     private DateFromValidation validation;
 
@@ -38,9 +41,11 @@ class DateFromValidationTest {
     void validatorDateFromIsNull() {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(null);
+        when(errorCodeUtil.getErrorDescription("ERROR_CODE_2")).thenReturn("error description");
         Optional<ValidationError> validationError= validation.execute(request);
-        assertThat(validationError).contains(new ValidationError("agreementDateFrom", "Must not be empty!"));
-
+        assertTrue(validationError.isPresent());
+        assertEquals(validationError.get().getErrorCode(), "ERROR_CODE_2");
+        assertEquals(validationError.get().getDescription(), "error description");
     }
 
     private Date createDate(String dateStr) {
