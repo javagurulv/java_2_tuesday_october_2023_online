@@ -1,6 +1,5 @@
 package lv.javaguru.travel.insurance.core.validations;
 
-import lv.javaguru.travel.insurance.core.ErrorCodeUtil;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,7 @@ import static org.mockito.Mockito.*;
 class EmptySelectedRiskValidationTest {
 
     @Mock
-    private ErrorCodeUtil errorCodeUtil;
+    private ValidationErrorFactory errorFactory;
     @InjectMocks
     EmptySelectedRiskValidation validation;
 
@@ -27,22 +26,22 @@ class EmptySelectedRiskValidationTest {
     public void shouldReturnErrorWhenSelectedRisksIsNull() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getSelectedRisks()).thenReturn(null);
-        when(errorCodeUtil.getErrorDescription("ERROR_CODE_6")).thenReturn("error description");
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_6")).thenReturn(validationError);
         Optional<ValidationError> errorOpt = validation.execute(request);
         assertTrue(errorOpt.isPresent());
-        assertEquals(errorOpt.get().getErrorCode(), "ERROR_CODE_6");
-        assertEquals(errorOpt.get().getDescription(), "error description");
+        assertSame(errorOpt.get(), validationError);
     }
 
     @Test
     public void shouldReturnErrorWhenSelectedRisksIsEmpty() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getSelectedRisks()).thenReturn(List.of());
-        when(errorCodeUtil.getErrorDescription("ERROR_CODE_6")).thenReturn("error description");
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_6")).thenReturn(validationError);
         Optional<ValidationError> errorOpt = validation.execute(request);
         assertTrue(errorOpt.isPresent());
-        assertEquals(errorOpt.get().getErrorCode(), "ERROR_CODE_6");
-        assertEquals(errorOpt.get().getDescription(), "error description");
+        assertSame(errorOpt.get(), validationError);
     }
 
     @Test
@@ -51,7 +50,7 @@ class EmptySelectedRiskValidationTest {
         when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL"));
         Optional<ValidationError> errorOpt = validation.execute(request);
         assertTrue(errorOpt.isEmpty());
-        verifyNoInteractions(errorCodeUtil);
+        verifyNoInteractions(errorFactory);
     }
 
 

@@ -1,5 +1,8 @@
-package lv.javaguru.travel.insurance.core;
+package lv.javaguru.travel.insurance.core.underwriting;
 
+import lv.javaguru.travel.insurance.core.underwriting.TravelPremiumUnderwriting;
+import lv.javaguru.travel.insurance.core.underwriting.UnderwritingPrice;
+import lv.javaguru.travel.insurance.core.util.DateTimeUtil;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +23,7 @@ class UnderwritingPriceTest {
 
 
     @Mock
-    private DateTimeService dateTimeService;
+    private DateTimeUtil dateTimeService;
 
     @InjectMocks
     private UnderwritingPrice premiumUnderwriting;

@@ -1,7 +1,6 @@
 package lv.javaguru.travel.insurance.core.validations;
 
-import lv.javaguru.travel.insurance.core.DateTimeService;
-import lv.javaguru.travel.insurance.core.ErrorCodeUtil;
+import lv.javaguru.travel.insurance.core.util.DateTimeUtil;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
@@ -11,24 +10,22 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.lang.management.OperatingSystemMXBean;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DateToInFutureValidationTest {
 
     @Mock
-    private DateTimeService dateTimeService;
+    private DateTimeUtil dateTimeService;
     @Mock
-    private ErrorCodeUtil errorCodeUtil;
+    private ValidationErrorFactory errorFactory;
     @InjectMocks
     private DateToInFutureValidation validation;
 
@@ -38,7 +35,8 @@ class DateToInFutureValidationTest {
         when(request.getAgreementDateTo()).thenReturn(createDate("16.05.2024"));
         when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("17.05.2023"));
         Optional<ValidationError> validationError = validation.execute(request);
-        assertEquals(validationError, Optional.empty());
+        assertTrue(validationError.isEmpty());
+        verifyNoInteractions(errorFactory);
 
     }
 
@@ -47,11 +45,11 @@ class DateToInFutureValidationTest {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateTo()).thenReturn(createDate("16.05.2022"));
         when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("17.05.2023"));
-        when(errorCodeUtil.getErrorDescription("ERROR_CODE_3")).thenReturn("error description");
-        Optional<ValidationError> validationError = validation.execute(request);
-        assertTrue(validationError.isPresent());
-        assertEquals(validationError.get().getErrorCode(), "ERROR_CODE_3");
-        assertEquals(validationError.get().getDescription(), "error description");
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_3")).thenReturn(validationError);
+        Optional<ValidationError> errorOpt = validation.execute(request);
+        assertTrue(errorOpt.isPresent());
+        assertSame(errorOpt.get(), validationError);
 
     }
 

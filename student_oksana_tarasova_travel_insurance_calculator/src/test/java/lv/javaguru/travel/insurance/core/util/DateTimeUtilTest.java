@@ -1,4 +1,4 @@
-package lv.javaguru.travel.insurance.core;
+package lv.javaguru.travel.insurance.core.util;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,9 +8,9 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DateTimeServiceTest {
+class DateTimeUtilTest {
 
-    private DateTimeService dateTimeService = new DateTimeService();
+    private DateTimeUtil dateTimeService = new DateTimeUtil();
 
     @Test
     public void shouldDaysBetweenBeZero() {

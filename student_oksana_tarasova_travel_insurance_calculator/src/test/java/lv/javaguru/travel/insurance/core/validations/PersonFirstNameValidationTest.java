@@ -1,6 +1,5 @@
 package lv.javaguru.travel.insurance.core.validations;
 
-import lv.javaguru.travel.insurance.core.ErrorCodeUtil;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
@@ -10,20 +9,16 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PersonFirstNameValidationTest {
     @Mock
-    private ErrorCodeUtil errorCodeUtil;
+    private ValidationErrorFactory errorFactory;
     @InjectMocks
     private PersonFirstNameValidation validation;
 
@@ -33,29 +28,30 @@ class PersonFirstNameValidationTest {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getPersonFirstName()).thenReturn("Ivan");
         Optional<ValidationError> validFirstName = validation.execute(request);
-        Optional<ValidationError> expected = Optional.empty();
-        assertEquals(expected, validFirstName);
+        assertTrue(validFirstName.isEmpty());
+        verifyNoInteractions(errorFactory);
     }
 
     @Test
     void validatorFirstNameIsNull() {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getPersonFirstName()).thenReturn(null);
-        when(errorCodeUtil.getErrorDescription("ERROR_CODE_7")).thenReturn("error description");
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_7")).thenReturn(validationError);
         Optional<ValidationError> validFirstName = validation.execute(request);
-        assertTrue(validFirstName.isPresent());
-        assertEquals(validFirstName.get().getErrorCode(), "ERROR_CODE_7");
-        assertEquals(validFirstName.get().getDescription(), "error description");
+        Optional<ValidationError> errorOpt = validation.execute(request);
+        assertTrue(errorOpt.isPresent());
+        assertSame(errorOpt.get(), validationError);
     }
 
     @Test
     void validatorFirstNameIsEmpty() {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getPersonFirstName()).thenReturn("");
-        when(errorCodeUtil.getErrorDescription("ERROR_CODE_7")).thenReturn("error description");
-        Optional<ValidationError> validFirstName = validation.execute(request);
-        assertTrue(validFirstName.isPresent());
-        assertEquals(validFirstName.get().getErrorCode(), "ERROR_CODE_7");
-        assertEquals(validFirstName.get().getDescription(), "error description");
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_7")).thenReturn(validationError);
+        Optional<ValidationError> errorOpt = validation.execute(request);
+        assertTrue(errorOpt.isPresent());
+        assertSame(errorOpt.get(), validationError);
     }
 }
