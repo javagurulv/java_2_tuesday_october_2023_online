@@ -1,6 +1,6 @@
 package fitness_club.acceptance_tests;
 
-import fitness_club.ApplicationContext;
+import fitness_club.dependency_injection.ApplicationContext;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
