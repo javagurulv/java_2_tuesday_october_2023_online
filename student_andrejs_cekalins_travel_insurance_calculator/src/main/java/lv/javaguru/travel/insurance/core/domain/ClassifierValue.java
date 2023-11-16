@@ -15,18 +15,18 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class ClassifierValue {
 
-   @Id
+    @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-   @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "classifier_id", nullable = false)
     private Classifier classifier;
 
-   @Column(name = "ic", nullable = false)
+    @Column(name = "ic", nullable = false)
     private String ic;
 
-   @Column (name = "description", nullable = false)
+    @Column(name = "description", nullable = false)
     private String description;
 }
