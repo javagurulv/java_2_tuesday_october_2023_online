@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.management.OperatingSystemMXBean;
 import java.text.ParseException;
@@ -20,14 +21,14 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verifyNoInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DateFromInFutureValidationTest {
     @Mock
     private DateTimeService dateTimeService;
-    @Mock private ErrorCodeUtil errorCodeUtil;
+    @Mock
+    private ValidationErrorFactory errorFactory;
     @InjectMocks
     private DateFromInFutureValidation validation;
 
@@ -38,7 +39,7 @@ class DateFromInFutureValidationTest {
         when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("17.05.2023"));
         Optional<ValidationError> errorOpt = validation.execute(request);
         assertTrue(errorOpt.isEmpty());
-        verifyNoInteractions(errorCodeUtil);
+        verifyNoInteractions(errorFactory);
     }
 
     @Test
@@ -46,11 +47,11 @@ class DateFromInFutureValidationTest {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.05.2022"));
         when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("17.05.2023"));
-        when(errorCodeUtil.getErrorDescription("ERROR_CODE_1")).thenReturn("error description");
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_1")).thenReturn(validationError);
         Optional<ValidationError> errorOpt = validation.execute(request);
         assertTrue(errorOpt.isPresent());
-        assertEquals(errorOpt.get().getErrorCode(), "ERROR_CODE_1");
-        assertEquals(errorOpt.get().getDescription(), "error description");
+        assertSame(errorOpt.get(), validationError);
     }
 
     private Date createDate(String dateStr) {

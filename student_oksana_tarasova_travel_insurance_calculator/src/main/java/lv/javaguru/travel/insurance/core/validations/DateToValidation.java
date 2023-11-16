@@ -11,17 +11,13 @@ import java.util.Optional;
 @Component
 public class DateToValidation implements TravelRequestValidation {
 
-    @Autowired
-    private ErrorCodeUtil errorCodeUtil;
+    @Autowired private ValidationErrorFactory errorFactory;
 
     @Override
     public Optional<ValidationError> execute(TravelCalculatePremiumRequest request) {
         return (request.getAgreementDateTo() == null)
-                ? Optional.of(buildError("ERROR_CODE_4"))
+                ? Optional.of(errorFactory.buildError("ERROR_CODE_4"))
                 : Optional.empty();
     }
-    private ValidationError buildError(String errorCode) {
-        String errorDescription = errorCodeUtil.getErrorDescription(errorCode);
-        return new ValidationError(errorCode, errorDescription);
-    }
+
 }

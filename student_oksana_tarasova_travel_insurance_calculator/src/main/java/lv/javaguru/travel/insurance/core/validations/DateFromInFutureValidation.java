@@ -15,20 +15,15 @@ public class DateFromInFutureValidation implements TravelRequestValidation {
     @Autowired
     DateTimeService dateTimeService;
 
-    @Autowired
-    private ErrorCodeUtil errorCodeUtil;
+    @Autowired private ValidationErrorFactory errorFactory;
 
     @Override
     public Optional<ValidationError> execute(TravelCalculatePremiumRequest request) {
         Date dateFrom = request.getAgreementDateFrom();
         Date currentDateTime = dateTimeService.getCurrentDateTime();
         return (dateFrom != null && dateFrom.before(currentDateTime))
-                ? Optional.of(buildError("ERROR_CODE_1"))
+                ? Optional.of(errorFactory.buildError("ERROR_CODE_1"))
                 : Optional.empty();
     }
 
-    private ValidationError buildError(String errorCode) {
-        String errorDescription = errorCodeUtil.getErrorDescription(errorCode);
-        return new ValidationError(errorCode, errorDescription);
-    }
 }

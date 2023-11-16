@@ -18,12 +18,12 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DateFromIsLessDateToValidationTest {
     @Mock
-    private ErrorCodeUtil errorCodeUtil;
+    private ValidationErrorFactory errorFactory;
     @InjectMocks
     private DateFromIsLessDateToValidation validation;
 
@@ -33,7 +33,8 @@ class DateFromIsLessDateToValidationTest {
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.04.2024"));
         when(request.getAgreementDateTo()).thenReturn(createDate("16.05.2024"));
         Optional<ValidationError> validationError = validation.execute(request);
-        assertEquals(validationError, Optional.empty());
+        assertTrue(validationError.isEmpty());
+        verifyNoInteractions(errorFactory);
     }
 
     @Test
@@ -41,11 +42,11 @@ class DateFromIsLessDateToValidationTest {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.06.2024"));
         when(request.getAgreementDateTo()).thenReturn(createDate("16.05.2024"));
-when(errorCodeUtil.getErrorDescription("ERROR_CODE_5")).thenReturn("error description");
-        Optional<ValidationError> validationError = validation.execute(request);
-        assertTrue(validationError.isPresent());
-        assertEquals(validationError.get().getErrorCode(), "ERROR_CODE_5");
-        assertEquals(validationError.get().getDescription(), "error description");
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_5")).thenReturn(validationError);
+        Optional<ValidationError> errorOpt = validation.execute(request);
+        assertTrue(errorOpt.isPresent());
+        assertSame(errorOpt.get(), validationError);
     }
 
 
