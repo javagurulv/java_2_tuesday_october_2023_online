@@ -4,7 +4,7 @@ import avangardteen.java.Client;
 import avangardteen.java.CoreError;
 import avangardteen.java.Wheelchair;
 import avangardteen.java.data.DataComponents;
-import avangardteen.java.request.AddPersonalDataRequest;
+
 import avangardteen.java.responce.AddPersonalDateResponce;
 import avangardteen.java.service.AddUserDataServis;
 
@@ -23,7 +23,7 @@ public class AddPersonalDateIUAction implements UIAction{
     @Override
     public void execute() {
 
-        Scanner scan = new Scanner(System.in);
+        /*Scanner scan = new Scanner(System.in);
         System.out.println("введите Имя и фамилию");
         String nameSurname = scan.nextLine();
         System.out.println("введите номер телефона");
@@ -39,5 +39,7 @@ public class AddPersonalDateIUAction implements UIAction{
         else{
         System.out.println("Данные записаны");
             System.exit(0);}
+
+         */
     }
     }

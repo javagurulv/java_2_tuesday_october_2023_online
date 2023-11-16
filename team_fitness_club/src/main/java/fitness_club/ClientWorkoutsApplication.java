@@ -1,10 +1,7 @@
 package fitness_club;
 
 import fitness_club.console_UI.*;
-import fitness_club.core.database.Database;
-import fitness_club.core.database.InFileDatabase;
-import fitness_club.core.services.*;
-import fitness_club.data_vlidation.*;
+import fitness_club.dependency_injection.ApplicationContext;
 
 import java.util.Scanner;
 

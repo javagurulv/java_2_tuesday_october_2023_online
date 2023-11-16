@@ -1,4 +1,4 @@
-package fitness_club;
+package fitness_club.dependency_injection;
 
 import fitness_club.console_UI.*;
 import fitness_club.core.database.Database;

@@ -4,13 +4,13 @@ import classWork.core.CoreError;
 import classWork.core.response.AddBookResponse;
 import classWork.core.requests.AddBookRequest;
 import classWork.Book;
-import classWork.core.database.Database;
+
 import classWork.core.service.valigators.AddBookValidator;
 
 import java.util.List;
 
 public class AddBookService {
-    Database data;
+   /* Database data;
     AddBookValidator validator;
 
     public AddBookService(Database data, AddBookValidator validator) {
@@ -26,4 +26,6 @@ public class AddBookService {
         data.addBook(book);
         return new AddBookResponse(book);
     }
+
+    */
 }
