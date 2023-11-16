@@ -101,6 +101,22 @@ class TravelCalculatePremiumControllerTest {
         );
     }
 
+    @Test
+    public void selectedRiskIsNullControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_selected_risk_null.json",
+                "rest/TravelCalculatePremiumResponse_selected_risk_null.json"
+        );
+    }
+
+    @Test
+    public void selectedRiskIsEmptyControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_selected_risk_empty.json",
+                "rest/TravelCalculatePremiumResponse_selected_risk_empty.json"
+        );
+    }
+
 
     private void executeAndCompare(String jsonRequestFilePath,
                                    String jsonResponseFilePath) throws Exception {
