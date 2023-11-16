@@ -5,7 +5,7 @@ import avangardteen.java.UserSizes;
 import avangardteen.java.Wheelchair;
 import avangardteen.java.data.DataUsers;
 import avangardteen.java.Client;
-import avangardteen.java.request.AddPersonalDataRequest;
+
 import avangardteen.java.responce.AddPersonalDateResponce;
 import avangardteen.java.service.valigation.WheelchairValigator;
 
@@ -25,7 +25,7 @@ public class AddUserDataServis {
         this.valigator = valigator;
     }
 
-    public AddPersonalDateResponce addUzer(AddPersonalDataRequest request) {
+    /*public AddPersonalDateResponce addUzer(AddPersonalDataRequest request) {
         List<CoreError> errors = valigator.errorlist(wheelchair);
         if (!errors.isEmpty())
             return new AddPersonalDateResponce(errors);
@@ -38,5 +38,7 @@ public class AddUserDataServis {
             return new AddPersonalDateResponce();
         }
     }
+
+     */
 
 }
