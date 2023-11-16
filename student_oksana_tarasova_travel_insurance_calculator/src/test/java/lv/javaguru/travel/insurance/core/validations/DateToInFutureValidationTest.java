@@ -1,6 +1,7 @@
 package lv.javaguru.travel.insurance.core.validations;
 
 import lv.javaguru.travel.insurance.core.DateTimeService;
+import lv.javaguru.travel.insurance.core.ErrorCodeUtil;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,8 @@ class DateToInFutureValidationTest {
 
     @Mock
     private DateTimeService dateTimeService;
-
+    @Mock
+    private ErrorCodeUtil errorCodeUtil;
     @InjectMocks
     private DateToInFutureValidation validation;
 
@@ -36,17 +38,20 @@ class DateToInFutureValidationTest {
         when(request.getAgreementDateTo()).thenReturn(createDate("16.05.2024"));
         when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("17.05.2023"));
         Optional<ValidationError> validationError = validation.execute(request);
-       assertEquals(validationError, Optional.empty());
+        assertEquals(validationError, Optional.empty());
 
     }
+
     @Test
     void validatorDateToIsNotInFuture() {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateTo()).thenReturn(createDate("16.05.2022"));
         when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("17.05.2023"));
+        when(errorCodeUtil.getErrorDescription("ERROR_CODE_3")).thenReturn("error description");
         Optional<ValidationError> validationError = validation.execute(request);
-        ValidationError expected = (new ValidationError("agreementDateTo", "Must be in the future!"));
-        assertThat(validationError).contains(expected);
+        assertTrue(validationError.isPresent());
+        assertEquals(validationError.get().getErrorCode(), "ERROR_CODE_3");
+        assertEquals(validationError.get().getDescription(), "error description");
 
     }
 

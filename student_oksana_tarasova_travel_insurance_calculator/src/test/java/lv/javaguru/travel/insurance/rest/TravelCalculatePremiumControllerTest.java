@@ -27,7 +27,8 @@ class TravelCalculatePremiumControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired private JsonFileReader jsonFileReader;
+    @Autowired
+    private JsonFileReader jsonFileReader;
 
 
     @Test
@@ -136,8 +137,8 @@ class TravelCalculatePremiumControllerTest {
 
         assertJson(responseBodyContent)
                 .where()
-                .keysInAnyOrder()
-                .arrayInAnyOrder()
+                    .keysInAnyOrder()
+                    .arrayInAnyOrder()
                 .isEqualTo(jsonResponse);
     }
 

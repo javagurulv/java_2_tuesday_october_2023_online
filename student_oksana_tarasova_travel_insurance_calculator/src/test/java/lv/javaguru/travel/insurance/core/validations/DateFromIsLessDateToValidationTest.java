@@ -1,10 +1,12 @@
 package lv.javaguru.travel.insurance.core.validations;
 
+import lv.javaguru.travel.insurance.core.ErrorCodeUtil;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -20,7 +22,8 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class DateFromIsLessDateToValidationTest {
-
+    @Mock
+    private ErrorCodeUtil errorCodeUtil;
     @InjectMocks
     private DateFromIsLessDateToValidation validation;
 
@@ -38,9 +41,11 @@ class DateFromIsLessDateToValidationTest {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.06.2024"));
         when(request.getAgreementDateTo()).thenReturn(createDate("16.05.2024"));
+when(errorCodeUtil.getErrorDescription("ERROR_CODE_5")).thenReturn("error description");
         Optional<ValidationError> validationError = validation.execute(request);
-        ValidationError expected = (new ValidationError("agreementDateFrom", "Must be less than the agreementDateTo!"));
-        assertThat(validationError).contains(expected);
+        assertTrue(validationError.isPresent());
+        assertEquals(validationError.get().getErrorCode(), "ERROR_CODE_5");
+        assertEquals(validationError.get().getDescription(), "error description");
     }
 
 
