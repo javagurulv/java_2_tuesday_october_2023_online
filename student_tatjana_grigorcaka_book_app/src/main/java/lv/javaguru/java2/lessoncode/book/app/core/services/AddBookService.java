@@ -6,20 +6,16 @@ import lv.javaguru.java2.lessoncode.book.app.core.services.validators.AddBookReq
 import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.AddBookResponse;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIDependency;
 
 import java.util.List;
 
-
+@DIComponent
 public class AddBookService {
 
-    private Database database;
-    private AddBookRequestValidator validator;
-
-    public AddBookService(Database database,
-                          AddBookRequestValidator validator) {
-        this.database = database;
-        this.validator = validator;
-    }
+    @DIDependency private Database database;
+    @DIDependency private AddBookRequestValidator validator;
 
     public AddBookResponse execute(AddBookRequest request) {
         List<CoreError> errors = validator.validate(request);

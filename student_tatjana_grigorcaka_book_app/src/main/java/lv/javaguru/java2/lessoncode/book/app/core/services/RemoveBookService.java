@@ -5,20 +5,17 @@ import lv.javaguru.java2.lessoncode.book.app.core.requests.RemoveBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.RemoveBookResponse;
 import lv.javaguru.java2.lessoncode.book.app.core.services.validators.RemoveBookRequestValidator;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIDependency;
 
 import java.util.List;
 
-
+@DIComponent
 public class RemoveBookService {
 
-    private Database database;
-    private RemoveBookRequestValidator validator;
+    @DIDependency private Database database;
+    @DIDependency private RemoveBookRequestValidator validator;
 
-    public RemoveBookService(Database database,
-                             RemoveBookRequestValidator validator) {
-        this.database = database;
-        this.validator = validator;
-    }
 
     public RemoveBookResponse execute(RemoveBookRequest request) {
         List<CoreError> errors = validator.validate(request);

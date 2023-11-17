@@ -6,76 +6,51 @@ import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 public class SearchBooksRequestValidatorTest {
 
-    private SearchBooksRequestFieldValidator fieldValidator;
-    private OrderingValidator orderingValidator;
-    private PagingValidator pagingValidator;
-    private SearchBooksRequestValidator validator;
-
-    @Before
-    public void init() {
-        fieldValidator = Mockito.mock(SearchBooksRequestFieldValidator.class);
-        orderingValidator = Mockito.mock(OrderingValidator.class);
-        pagingValidator = Mockito.mock(PagingValidator.class);
-        validator = new SearchBooksRequestValidator(fieldValidator, orderingValidator, pagingValidator);
-    }
+    private SearchBooksRequestValidator validator = new SearchBooksRequestValidator();
 
     @Test
-    public void shouldNotReturnErrorsWhenFieldValidatorReturnNoErrors() {
+    public void shouldNotReturnErrorsWhenTitleIsProvided() {
         SearchBooksRequest request = new SearchBooksRequest("The Little Prince", null);
-        when(fieldValidator.validate(request)).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
 
     @Test
-    public void shouldReturnErrorsWhenFieldValidatorReturnErrors() {
+    public void shouldNotReturnErrorsWhenAuthorIsProvided() {
         SearchBooksRequest request = new SearchBooksRequest(null, "Antoine de Saint-Exupery");
-        CoreError error = new CoreError("title", "Must not be empty!");
-        when(fieldValidator.validate(request)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 1);
+        assertEquals(errors.size(), 0);
+    }
+
+    @Test
+    public void shouldNotReturnErrorsWhenTitleAndAuthorIsProvided() {
+        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery");
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 0);
+    }
+
+    @Test
+    public void shouldReturnErrorWhenSearchFieldsAreEmpty() {
+        SearchBooksRequest request = new SearchBooksRequest(null, null);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 2);
         assertEquals(errors.get(0).getErrorCode(), "title");
         assertEquals(errors.get(0).getErrorMessage(), "Must not be empty!");
+        assertEquals(errors.get(1).getErrorCode(), "author");
+        assertEquals(errors.get(1).getErrorMessage(), "Must not be empty!");
     }
 
     @Test
-    public void shouldNotReturnErrorsWhenOrderingValidatorReturnNoErrors() {
-        Ordering ordering = new Ordering("title", "ASCENDING");
-        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", ordering);
-        when(orderingValidator.validate(ordering)).thenReturn(List.of());
-        List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 0);
-    }
-
-    @Test
-    public void shouldReturnErrorsWhenOrderingValidatorReturnErrorsOrderByIsEmptyV1() {
-        Ordering ordering = new Ordering(null, "ASCENDING");
-        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", ordering);
-        CoreError error = new CoreError("orderBy", "Must not be empty!");
-        when(orderingValidator.validate(ordering)).thenReturn(List.of(error));
-        List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getErrorCode(), "orderBy");
-        assertEquals(errors.get(0).getErrorMessage(), "Must not be empty!");
-    }
-
-    @Test
-    public void shouldReturnErrorsWhenOrderingValidatorReturnErrorsOrderDirectionIsEmptyV2() {
+    public void shouldReturnErrorWhenOrderDirectionAreEmpty() {
         Ordering ordering = new Ordering("title", null);
         SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", ordering);
-        CoreError error = new CoreError("orderDirection", "Must not be empty!");
-        when(orderingValidator.validate(ordering)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "orderDirection");
@@ -83,11 +58,19 @@ public class SearchBooksRequestValidatorTest {
     }
 
     @Test
-    public void shouldReturnErrorsWhenOrderingValidatorReturnErrorsOrderByContainsNotValidValueV3() {
+    public void shouldReturnErrorWhenOrderByAreEmpty() {
+        Ordering ordering = new Ordering(null, "ASCENDING");
+        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", ordering);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getErrorCode(), "orderBy");
+        assertEquals(errors.get(0).getErrorMessage(), "Must not be empty!");
+    }
+
+    @Test
+    public void shouldReturnErrorWhenOrderByContainNotValidValue() {
         Ordering ordering = new Ordering("notValidValue", "ASCENDING");
         SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", ordering);
-        CoreError error = new CoreError("orderBy", "Must contain 'author' or 'title' only!");
-        when(orderingValidator.validate(ordering)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "orderBy");
@@ -95,11 +78,9 @@ public class SearchBooksRequestValidatorTest {
     }
 
     @Test
-    public void shouldReturnErrorsWhenOrderingValidatorReturnErrorsOrderDirectionContainsNotValidValueV4() {
+    public void shouldReturnErrorWhenOrderDirectionContainNotValidValue() {
         Ordering ordering = new Ordering("title", "notValidValue");
         SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", ordering);
-        CoreError error = new CoreError("orderDirection", "Must contain 'ASCENDING' or 'DESCENDING' only!");
-        when(orderingValidator.validate(ordering)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "orderDirection");
@@ -107,51 +88,9 @@ public class SearchBooksRequestValidatorTest {
     }
 
     @Test
-    public void shouldNotInvokeOrderingValidatorWhenNoOrderingObjectPresentInRequest() {
-        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery");
-        validator.validate(request);
-        verifyNoMoreInteractions(orderingValidator);
-    }
-
-    @Test
-    public void shouldNotReturnErrorsWhenPagingValidatorReturnNoErrors() {
-        Paging paging = new Paging(7, 7);
+    public void shouldReturnErrorWhenPageNumberContainNotValidValue() {
+        Paging paging = new Paging(0, 1);
         SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", paging);
-        when(pagingValidator.validate(paging)).thenReturn(List.of());
-        List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 0);
-    }
-
-    @Test
-    public void shouldReturnErrorsWhenPagingValidatorReturnErrorsPageNumberIsEmptyV1() {
-        Paging paging = new Paging(null, 7);
-        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", paging);
-        CoreError error = new CoreError("pageNumber", "Must not be empty!");
-        when(pagingValidator.validate(paging)).thenReturn(List.of(error));
-        List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getErrorCode(), "pageNumber");
-        assertEquals(errors.get(0).getErrorMessage(), "Must not be empty!");
-    }
-
-    @Test
-    public void shouldReturnErrorsWhenPagingValidatorReturnErrorsPageSizeIsEmptyV2() {
-        Paging paging = new Paging(7, null);
-        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", paging);
-        CoreError error = new CoreError("pageSize", "Must not be empty!");
-        when(pagingValidator.validate(paging)).thenReturn(List.of(error));
-        List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getErrorCode(), "pageSize");
-        assertEquals(errors.get(0).getErrorMessage(), "Must not be empty!");
-    }
-
-    @Test
-    public void shouldReturnErrorsWhenPagingValidatorReturnErrorsPageNumberIsZeroV3() {
-        Paging paging = new Paging(0, 7);
-        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", paging);
-        CoreError error = new CoreError("pageNumber", "Must be greater then 0!");
-        when(pagingValidator.validate(paging)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "pageNumber");
@@ -159,11 +98,9 @@ public class SearchBooksRequestValidatorTest {
     }
 
     @Test
-    public void shouldReturnErrorsWhenPagingValidatorReturnErrorsPageSizeIsZeroV4() {
-        Paging paging = new Paging(7, 0);
+    public void shouldReturnErrorWhenPageSizeContainNotValidValue() {
+        Paging paging = new Paging(1, 0);
         SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", paging);
-        CoreError error = new CoreError("pageSize", "Must be greater then 0!");
-        when(pagingValidator.validate(paging)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "pageSize");
@@ -171,10 +108,23 @@ public class SearchBooksRequestValidatorTest {
     }
 
     @Test
-    public void shouldNotInvokePagingValidatorWhenNoPagingObjectPresentInRequest() {
-        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery");
-        validator.validate(request);
-        verifyNoMoreInteractions(pagingValidator);
+    public void shouldReturnErrorWhenPageNumberAreEmpty() {
+        Paging paging = new Paging(null, 1);
+        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", paging);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getErrorCode(), "pageNumber");
+        assertEquals(errors.get(0).getErrorMessage(), "Must not be empty!");
+    }
+
+    @Test
+    public void shouldReturnErrorWhenPageSizeAreEmpty() {
+        Paging paging = new Paging(1, null);
+        SearchBooksRequest request = new SearchBooksRequest("The Little Prince", "Antoine de Saint-Exupery", paging);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getErrorCode(), "pageSize");
+        assertEquals(errors.get(0).getErrorMessage(), "Must not be empty!");
     }
 
 }

@@ -5,12 +5,15 @@ import lv.javaguru.java2.lessoncode.book.app.console_ui.ProgramExitUIAction;
 import lv.javaguru.java2.lessoncode.book.app.console_ui.PrintAllBooksUIAction;
 import lv.javaguru.java2.lessoncode.book.app.console_ui.RemoveBookUIAction;
 import lv.javaguru.java2.lessoncode.book.app.console_ui.SearchBooksUIAction;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.ApplicationContext;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIApplicationContextBuilder;
 
 import java.util.Scanner;
 
     public class BookListApplication {
 
-        private static ApplicationContext applicationContext = new ApplicationContext();
+        private static ApplicationContext applicationContext =
+                new DIApplicationContextBuilder().build("lv.javaguru.java2.lessoncode.book.app");
 
     public static void main(String[] args) {
     while (true) {

@@ -5,12 +5,15 @@ import lv.javaguru.java2.product.storage.console_ui.ExitProgramUIAction;
 import lv.javaguru.java2.product.storage.console_ui.PrintAllProductsUIAction;
 import lv.javaguru.java2.product.storage.console_ui.RemoveProductUIAction;
 import lv.javaguru.java2.product.storage.console_ui.SearchProductsUIAction;
+import lv.javaguru.java2.product.storage.dependency_injection.ApplicationContext;
+import lv.javaguru.java2.product.storage.dependency_injection.DIApplicationContextBuilder;
 
 import java.util.Scanner;
 
 public class StorageApplication {
 
-    private static ApplicationContext applicationContext = new ApplicationContext();
+    private static ApplicationContext applicationContext =
+            new DIApplicationContextBuilder().build("lv.javaguru.java2.product.storage");
 
     public static void main(String[] args) {
             while (true) {

@@ -3,16 +3,15 @@ package lv.javaguru.java2.product.storage.console_ui;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.AddProductResponse;
 import lv.javaguru.java2.product.storage.core.services.AddProductService;
+import lv.javaguru.java2.product.storage.dependency_injection.DIComponent;
+import lv.javaguru.java2.product.storage.dependency_injection.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class AddProductUIAction implements UIAction {
 
-    private AddProductService addProductService;
-
-    public AddProductUIAction(AddProductService addProductService) {
-        this.addProductService = addProductService;
-    }
+    @DIDependency private AddProductService addProductService;
 
     @Override
     public void execute() {

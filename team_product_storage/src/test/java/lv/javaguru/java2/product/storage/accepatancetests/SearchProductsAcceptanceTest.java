@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.accepatancetests;
 
-import lv.javaguru.java2.product.storage.ApplicationContext;
+import lv.javaguru.java2.product.storage.dependency_injection.ApplicationContext;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.requests.Ordering;
 import lv.javaguru.java2.product.storage.core.requests.Paging;
@@ -9,13 +9,15 @@ import lv.javaguru.java2.product.storage.core.responses.SearchProductsResponse;
 import lv.javaguru.java2.product.storage.core.services.AddProductService;
 import lv.javaguru.java2.product.storage.core.services.SearchProductsService;
 
+import lv.javaguru.java2.product.storage.dependency_injection.DIApplicationContextBuilder;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class SearchProductsAcceptanceTest {
 
-    private ApplicationContext appContext = new ApplicationContext();
+    private ApplicationContext appContext =
+            new DIApplicationContextBuilder().build("lv.javaguru.java2.product.storage");
 
     @Test
     public void searchProducts() {
