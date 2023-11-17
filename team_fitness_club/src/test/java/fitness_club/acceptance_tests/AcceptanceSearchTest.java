@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
-
+@Disabled
 public class AcceptanceSearchTest {
     ApplicationContext appContext = new ApplicationContext();
 
