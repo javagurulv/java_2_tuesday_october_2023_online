@@ -1,7 +1,7 @@
 package lv.javaguru.travel.insurance.core.validations;
 
-import lv.javaguru.travel.insurance.core.DateTimeService;
-import lv.javaguru.travel.insurance.core.ErrorCodeUtil;
+import lv.javaguru.travel.insurance.core.util.DateTimeUtil;
+import lv.javaguru.travel.insurance.core.util.ErrorCodeUtil;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class AgreementDateToInFutureValidationTest {
 
-    @Mock private DateTimeService dateTimeService;
+    @Mock private DateTimeUtil dateTimeUtil;
     @Mock private ErrorCodeUtil errorCodeUtil;
 
     @InjectMocks
@@ -32,7 +32,7 @@ class AgreementDateToInFutureValidationTest {
     public void shouldReturnErrorWhenAgreementDateToInThePast() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateTo()).thenReturn(createDate("15.01.2021"));
-        when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("30.10.2023"));
+        when(dateTimeUtil.getCurrentDateTime()).thenReturn(createDate("30.10.2023"));
         when(errorCodeUtil.getErrorDescription("ERROR_CODE_3")).thenReturn("error description");
         Optional<ValidationError> errorOpt = validation.execute(request);
         assertTrue(errorOpt.isPresent());
@@ -44,7 +44,7 @@ class AgreementDateToInFutureValidationTest {
     public void shouldNotReturnErrorWhenAgreementDateToInTheFuture() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateTo()).thenReturn(createDate("15.01.2025"));
-        when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("30.10.2023"));
+        when(dateTimeUtil.getCurrentDateTime()).thenReturn(createDate("30.10.2023"));
         Optional<ValidationError> errorOpt = validation.execute(request);
         assertTrue(errorOpt.isEmpty());
         verifyNoInteractions(errorCodeUtil);
