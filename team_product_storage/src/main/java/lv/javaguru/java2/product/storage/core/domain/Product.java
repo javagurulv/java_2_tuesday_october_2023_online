@@ -11,11 +11,14 @@ public class Product {
 
     private String productModel;
 
+    private int productQuantity;
 
-    public Product(String productName, String productBrand, String productModel) {
+
+    public Product(String productName, String productBrand, String productModel, int productQuantity) {
         this.productName = productName;
         this.productBrand = productBrand;
         this.productModel = productModel;
+        this.productQuantity = productQuantity;
     }
 
     public Long getId() {
@@ -49,16 +52,24 @@ public class Product {
         this.productModel = productModel;
     }
 
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Product product)) return false;
-        return Objects.equals(getId(), product.getId()) && Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getProductBrand(), product.getProductBrand()) && Objects.equals(getProductModel(), product.getProductModel());
+        return getProductQuantity() == product.getProductQuantity() && Objects.equals(getId(), product.getId()) && Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getProductBrand(), product.getProductBrand()) && Objects.equals(getProductModel(), product.getProductModel());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getProductName(), getProductBrand(), getProductModel());
+        return Objects.hash(getId(), getProductName(), getProductBrand(), getProductModel(), getProductQuantity());
     }
 
     @Override
@@ -68,6 +79,7 @@ public class Product {
                 ", productName='" + productName + '\'' +
                 ", productBrand='" + productBrand + '\'' +
                 ", productModel='" + productModel + '\'' +
+                ", productQuantity=" + productQuantity +
                 '}';
     }
 }

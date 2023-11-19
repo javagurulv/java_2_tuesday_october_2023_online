@@ -39,7 +39,7 @@ public class SearchProductsUIAction implements UIAction {
         SearchProductsResponse response = searchProductsService.execute(request);
 
         if (response.hasErrors()) {
-            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getErrorCode() + " " + coreError.getMessage()));
         } else {
             response.getProducts().forEach(System.out::println);
         }

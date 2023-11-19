@@ -22,12 +22,14 @@ public class AddProductUIAction implements UIAction {
         String productBrand = scanner.nextLine();
         System.out.println("Enter product model: ");
         String productModel = scanner.nextLine();
-        AddProductRequest request = new AddProductRequest(productName, productBrand, productModel);
+        System.out.println("Enter product quantity: ");
+        int productQuantity = scanner.nextInt();
+        AddProductRequest request = new AddProductRequest(productName, productBrand, productModel, productQuantity);
         AddProductResponse response = addProductService.execute(request);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->
-                    System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage())
+                    System.out.println("Error: " + coreError.getErrorCode() + " " + coreError.getMessage())
             );
         } else {
             System.out.println("New product id was: " + response.getNewProduct().getId());

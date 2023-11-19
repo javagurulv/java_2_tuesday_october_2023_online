@@ -16,6 +16,7 @@ public class AddProductRequestValidator {
         validateProductName(request).ifPresent(errors::add);
         validateProductBrand(request).ifPresent(errors::add);
         validateProductModel(request).ifPresent(errors::add);
+        validateProductQuantity(request).ifPresent(errors::add);
         return errors;
     }
 
@@ -35,6 +36,12 @@ public class AddProductRequestValidator {
     private Optional<CoreError> validateProductModel(AddProductRequest request) {
         return (request.getProductModel() == null || request.getProductModel().isEmpty())
                 ? Optional.of(new CoreError("productModel", "Must not be empty!"))
+                : Optional.empty();
+    }
+
+    private Optional<CoreError> validateProductQuantity(AddProductRequest request) {
+        return (request.getProductQuantity() <= 0 )
+                ? Optional.of(new CoreError("productQuantity", "Must be greater than 0!"))
                 : Optional.empty();
     }
 }

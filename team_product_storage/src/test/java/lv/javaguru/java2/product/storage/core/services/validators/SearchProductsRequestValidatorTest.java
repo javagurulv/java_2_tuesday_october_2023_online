@@ -5,15 +5,11 @@ import lv.javaguru.java2.product.storage.core.requests.Paging;
 import lv.javaguru.java2.product.storage.core.requests.SearchProductsRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
 
 
 public class SearchProductsRequestValidatorTest {
@@ -46,9 +42,9 @@ public class SearchProductsRequestValidatorTest {
         SearchProductsRequest request = new SearchProductsRequest(null, null);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 2);
-        assertEquals(errors.get(0).getField(), "productBrand");
+        assertEquals(errors.get(0).getErrorCode(), "productBrand");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
-        assertEquals(errors.get(1).getField(), "productModel");
+        assertEquals(errors.get(1).getErrorCode(), "productModel");
         assertEquals(errors.get(1).getMessage(), "Must not be empty!");
     }
 
@@ -58,7 +54,7 @@ public class SearchProductsRequestValidatorTest {
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", ordering);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "orderDirection");
+        assertEquals(errors.get(0).getErrorCode(), "orderDirection");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
@@ -68,7 +64,7 @@ public class SearchProductsRequestValidatorTest {
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", ordering);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "orderBy");
+        assertEquals(errors.get(0).getErrorCode(), "orderBy");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
@@ -78,7 +74,7 @@ public class SearchProductsRequestValidatorTest {
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", ordering);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "orderBy");
+        assertEquals(errors.get(0).getErrorCode(), "orderBy");
         assertEquals(errors.get(0).getMessage(), "Must contain 'productBrand' or 'productModel' only!");
     }
 
@@ -88,7 +84,7 @@ public class SearchProductsRequestValidatorTest {
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", ordering);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "orderDirection");
+        assertEquals(errors.get(0).getErrorCode(), "orderDirection");
         assertEquals(errors.get(0).getMessage(), "Must contain 'ASCENDING' or 'DESCENDING' only!");
     }
 
@@ -98,7 +94,7 @@ public class SearchProductsRequestValidatorTest {
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", paging);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "pageNumber");
+        assertEquals(errors.get(0).getErrorCode(), "pageNumber");
         assertEquals(errors.get(0).getMessage(), "Must be greater then 0!");
     }
 
@@ -108,7 +104,7 @@ public class SearchProductsRequestValidatorTest {
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", paging);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "pageSize");
+        assertEquals(errors.get(0).getErrorCode(), "pageSize");
         assertEquals(errors.get(0).getMessage(), "Must be greater then 0!");
     }
 
@@ -118,7 +114,7 @@ public class SearchProductsRequestValidatorTest {
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", paging);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "pageNumber");
+        assertEquals(errors.get(0).getErrorCode(), "pageNumber");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
@@ -128,7 +124,7 @@ public class SearchProductsRequestValidatorTest {
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", paging);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "pageSize");
+        assertEquals(errors.get(0).getErrorCode(), "pageSize");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 

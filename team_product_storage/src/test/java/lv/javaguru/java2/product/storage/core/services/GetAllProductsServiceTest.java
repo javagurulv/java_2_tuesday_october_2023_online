@@ -28,7 +28,7 @@ public class GetAllProductsServiceTest {
     @Test
     public void shouldGetProductsFromDb() {
         List<Product> products = new ArrayList<>();
-        products.add(new Product("Smartphone", "Apple", "iPhone 15"));
+        products.add(new Product("Smartphone", "Apple", "iPhone 15", 1));
         Mockito.when(database.getAllProducts()).thenReturn(products);
 
         GetAllProductsRequest request = new GetAllProductsRequest();

@@ -15,41 +15,50 @@ public class AddProductRequestValidatorTest {
 
     @Test
     public void shouldReturnErrorWhenProductNameIsNull() {
-        AddProductRequest request = new AddProductRequest(null, "Apple", "iPhone 15");
+        AddProductRequest request = new AddProductRequest(null, "Apple", "iPhone 15", 1);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "productName");
+        assertEquals(errors.get(0).getErrorCode(), "productName");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
     public void shouldReturnErrorWhenProductBrandIsNull() {
-        AddProductRequest request = new AddProductRequest("Smartphone", null, "iPhone 15");
+        AddProductRequest request = new AddProductRequest("Smartphone", null, "iPhone 15", 1);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "productBrand");
+        assertEquals(errors.get(0).getErrorCode(), "productBrand");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
     public void shouldReturnErrorWhenProductModelIsNull() {
-        AddProductRequest request = new AddProductRequest("Smartphone", "Apple", null);
+        AddProductRequest request = new AddProductRequest("Smartphone", "Apple", null, 1);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "productModel");
+        assertEquals(errors.get(0).getErrorCode(), "productModel");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
-    public void shouldReturnErrorsWhenProductNameAndProductBrandAndProductModelIsNull() {
-        AddProductRequest request = new AddProductRequest(null, null, null);
+    public void shouldReturnErrorWhenProductQuantityIsNull() {
+        AddProductRequest request = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 0);
         List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 3);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getErrorCode(), "productQuantity");
+        assertEquals(errors.get(0).getMessage(), "Must be greater than 0!");
+    }
+
+    @Test
+    public void shouldReturnErrorsWhenProductNameProductBrandProductModeAndProductQuantityIsNull() {
+        AddProductRequest request = new AddProductRequest(null, null, null, 0);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 4);
     }
 
     @Test
     public void shouldSuccess() {
-        AddProductRequest request = new AddProductRequest("Smartphone", "Apple", "iPhone 15");
+        AddProductRequest request = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }

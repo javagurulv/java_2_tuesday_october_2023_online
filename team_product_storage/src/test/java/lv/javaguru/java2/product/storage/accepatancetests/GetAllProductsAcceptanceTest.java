@@ -18,10 +18,10 @@ public class GetAllProductsAcceptanceTest {
 
     @Test
     public void shouldReturnCorrectProductList() {
-        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15");
+        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
         getAddProductService().execute(addProductRequest1);
 
-        AddProductRequest addProductRequest2 = new AddProductRequest("Smartphone","Apple", "iPhone 14");
+        AddProductRequest addProductRequest2 = new AddProductRequest("Smartphone","Apple", "iPhone 14", 1);
         getAddProductService().execute(addProductRequest2);
 
         GetAllProductsRequest getAllProductsRequest3 = new GetAllProductsRequest();

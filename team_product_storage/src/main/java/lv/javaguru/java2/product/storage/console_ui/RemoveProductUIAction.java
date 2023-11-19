@@ -21,7 +21,7 @@ public class RemoveProductUIAction implements UIAction {
         RemoveProductRequest request = new RemoveProductRequest(productId);
         RemoveProductResponse response = removeProductService.execute(request);
         if (response.hasErrors()) {
-            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getErrorCode() + " " + coreError.getMessage()));
         } else {
             if (response.isProductRemoved()) {
                 System.out.println("Your product was removed from list.");

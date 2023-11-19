@@ -54,7 +54,7 @@ public class SearchProductsServiceTest {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
-        products.add(new Product("Smartphone", "Apple", "iPhone 15"));
+        products.add(new Product("Smartphone", "Apple", "iPhone 15", 1));
         Mockito.when(database.findByProductBrand("Apple")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);
@@ -70,7 +70,7 @@ public class SearchProductsServiceTest {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
-        products.add(new Product("Smartphone", "Apple", "iPhone 15"));
+        products.add(new Product("Smartphone", "Apple", "iPhone 15", 1));
         Mockito.when(database.findByProductModel("iPhone 15")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);
@@ -86,7 +86,7 @@ public class SearchProductsServiceTest {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
-        products.add(new Product("Smartphone", "Apple", "iPhone 15"));
+        products.add(new Product("Smartphone", "Apple", "iPhone 15", 1));
         Mockito.when(database.findByProductBrandAndProductModel("Apple", "iPhone 15")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);
@@ -104,8 +104,8 @@ public class SearchProductsServiceTest {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
-        products.add(new Product("Smartphone", "Apple", "iPhone 15"));
-        products.add(new Product("Smartphone", "Apple", "iPhone 14"));
+        products.add(new Product("Smartphone", "Apple", "iPhone 15", 1));
+        products.add(new Product("Smartphone", "Apple", "iPhone 14", 1));
         Mockito.when(database.findByProductBrand("Apple")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);
@@ -122,8 +122,8 @@ public class SearchProductsServiceTest {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
-        products.add(new Product("Smartphone", "Apple", "iPhone 14"));
-        products.add(new Product("Smartphone", "Apple", "iPhone 15"));
+        products.add(new Product("Smartphone", "Apple", "iPhone 14", 1));
+        products.add(new Product("Smartphone", "Apple", "iPhone 15", 1));
         Mockito.when(database.findByProductBrand("Apple")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);
@@ -141,8 +141,8 @@ public class SearchProductsServiceTest {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
-        products.add(new Product("Smartphone", "Apple", "iPhone 14"));
-        products.add(new Product("Smartphone", "Apple", "iPhone 15"));
+        products.add(new Product("Smartphone", "Apple", "iPhone 14", 1));
+        products.add(new Product("Smartphone", "Apple", "iPhone 15", 1));
         Mockito.when(database.findByProductBrand("Apple")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);
@@ -159,8 +159,8 @@ public class SearchProductsServiceTest {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
-        products.add(new Product("Smartphone", "Apple", "iPhone 14"));
-        products.add(new Product("Smartphone", "Apple", "iPhone 15"));
+        products.add(new Product("Smartphone", "Apple", "iPhone 14", 1));
+        products.add(new Product("Smartphone", "Apple", "iPhone 15", 1));
         Mockito.when(database.findByProductBrand("Apple")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);

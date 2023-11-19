@@ -2,16 +2,16 @@ package lv.javaguru.java2.product.storage.core.responses;
 
 public class CoreError {
 
-    private String field;
+    private String errorCode;
     private String message;
 
-    public CoreError(String field, String message) {
-        this.field = field;
+    public CoreError(String errorCode, String message) {
+        this.errorCode = errorCode;
         this.message = message;
     }
 
-    public String getField() {
-        return field;
+    public String getErrorCode() {
+        return errorCode;
     }
 
     public String getMessage() {

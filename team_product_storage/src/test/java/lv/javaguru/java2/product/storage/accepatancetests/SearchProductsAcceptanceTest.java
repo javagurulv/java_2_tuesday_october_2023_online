@@ -21,10 +21,10 @@ public class SearchProductsAcceptanceTest {
 
     @Test
     public void searchProducts() {
-        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14");
+        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14", 1);
         getAddProductService().execute(request1);
 
-        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15");
+        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
         getAddProductService().execute(request2);
 
         SearchProductsRequest request3 = new SearchProductsRequest("Apple", null);
@@ -39,10 +39,10 @@ public class SearchProductsAcceptanceTest {
 
     @Test
     public void searchProductsOrderingDescending() {
-        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14");
+        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14", 1);
         getAddProductService().execute(request1);
 
-        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15");
+        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
         getAddProductService().execute(request2);
 
         Ordering ordering = new Ordering("productModel", "DESCENDING");
@@ -58,10 +58,10 @@ public class SearchProductsAcceptanceTest {
 
     @Test
     public void searchProductsOrderingAscending() {
-        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14");
+        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14", 1);
         getAddProductService().execute(request1);
 
-        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15");
+        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
         getAddProductService().execute(request2);
 
         Ordering ordering = new Ordering("productModel", "ASCENDING");
@@ -77,10 +77,10 @@ public class SearchProductsAcceptanceTest {
 
     @Test
     public void searchProductsOrderingPagingFirstPage() {
-        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14");
+        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14", 1);
         getAddProductService().execute(request1);
 
-        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15");
+        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
         getAddProductService().execute(request2);
 
         Ordering ordering = new Ordering("productModel", "ASCENDING");
@@ -94,10 +94,10 @@ public class SearchProductsAcceptanceTest {
     }
     @Test
     public void searchProductsOrderingPagingSecondPage() {
-        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14");
+        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14", 1);
         getAddProductService().execute(request1);
 
-        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15");
+        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
         getAddProductService().execute(request2);
 
         Ordering ordering = new Ordering("productModel", "ASCENDING");
