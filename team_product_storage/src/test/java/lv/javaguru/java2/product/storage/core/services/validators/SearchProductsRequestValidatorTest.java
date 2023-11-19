@@ -10,48 +10,69 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
+@RunWith(MockitoJUnitRunner.class)
 public class SearchProductsRequestValidatorTest {
 
-    private SearchProductsRequestValidator validator = new SearchProductsRequestValidator();
+    @Mock private SearchProductsRequestFieldValidator fieldValidator;
+    @Mock private OrderingValidator orderingValidator;
+    @Mock private PagingValidator pagingValidator;
+    @InjectMocks private SearchProductsRequestValidator validator;
+
 
     @Test
-    public void shouldNotReturnErrorsWhenProductBrandIsProvided() {
+    public void shouldNotReturnErrorsWhenFieldValidatorReturnNoErrors() {
         SearchProductsRequest request = new SearchProductsRequest("Apple", null);
+        when(fieldValidator.validate(request)).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
 
     @Test
-    public void shouldNotReturnErrorsWhenProductModelIsProvided() {
+    public void shouldReturnErrorsWhenFieldValidatorReturnErrors() {
         SearchProductsRequest request = new SearchProductsRequest(null, "iPhone 15");
+        CoreError error = new CoreError("productBrand", "Must not be empty!");
+        when(fieldValidator.validate(request)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 0);
-    }
-
-    @Test
-    public void shouldNotReturnErrorsWhenProductBrandAndProductModelIsProvided() {
-        SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15");
-        List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 0);
-    }
-
-    @Test
-    public void shouldReturnErrorWhenSearchFieldsAreEmpty() {
-        SearchProductsRequest request = new SearchProductsRequest(null, null);
-        List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 2);
+        assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "productBrand");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
-        assertEquals(errors.get(1).getErrorCode(), "productModel");
-        assertEquals(errors.get(1).getMessage(), "Must not be empty!");
     }
 
     @Test
-    public void shouldReturnErrorWhenOrderDirectionAreEmpty() {
-        Ordering ordering = new Ordering("productBrand", null);
+    public void shouldNotReturnErrorsWhenOrderingValidatorReturnNoErrors() {
+        Ordering ordering = new Ordering("productBrand", "ASCENDING");
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", ordering);
+        when(orderingValidator.validate(ordering)).thenReturn(List.of());
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 0);
+    }
+
+    @Test
+    public void shouldReturnErrorsWhenOrderingValidatorReturnErrorsOrderByIsEmptyV1() {
+        Ordering ordering = new Ordering(null, "ASCENDING");
+        SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", ordering);
+        CoreError error = new CoreError("orderBy", "Must not be empty!");
+        when(orderingValidator.validate(ordering)).thenReturn(List.of(error));
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getErrorCode(), "orderBy");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
+    }
+
+    @Test
+    public void shouldReturnErrorsWhenOrderingValidatorReturnErrorsOrderDirectionIsEmptyV2() {
+        Ordering ordering = new Ordering("productBand", null);
+        SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", ordering);
+        CoreError error = new CoreError("orderDirection", "Must not be empty!");
+        when(orderingValidator.validate(ordering)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "orderDirection");
@@ -59,29 +80,23 @@ public class SearchProductsRequestValidatorTest {
     }
 
     @Test
-    public void shouldReturnErrorWhenOrderByAreEmpty() {
-        Ordering ordering = new Ordering(null, "ASCENDING");
-        SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", ordering);
-        List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getErrorCode(), "orderBy");
-        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
-    }
-
-    @Test
-    public void shouldReturnErrorWhenOrderByContainNotValidValue() {
+    public void shouldReturnErrorsWhenOrderingValidatorReturnErrorsOrderByContainsNotValidValueV3() {
         Ordering ordering = new Ordering("notValidValue", "ASCENDING");
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", ordering);
+        CoreError error = new CoreError("orderBy", "Must contain 'productModel' or 'productBrand' only!");
+        when(orderingValidator.validate(ordering)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "orderBy");
-        assertEquals(errors.get(0).getMessage(), "Must contain 'productBrand' or 'productModel' only!");
+        assertEquals(errors.get(0).getMessage(), "Must contain 'productModel' or 'productBrand' only!");
     }
 
     @Test
-    public void shouldReturnErrorWhenOrderDirectionContainNotValidValue() {
-        Ordering ordering = new Ordering("productBrand", "notValidValue");
+    public void shouldReturnErrorsWhenOrderingValidatorReturnErrorsOrderDirectionContainsNotValidValueV4() {
+        Ordering ordering = new Ordering("productBand", "notValidValue");
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", ordering);
+        CoreError error = new CoreError("orderDirection", "Must contain 'ASCENDING' or 'DESCENDING' only!");
+        when(orderingValidator.validate(ordering)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "orderDirection");
@@ -89,29 +104,27 @@ public class SearchProductsRequestValidatorTest {
     }
 
     @Test
-    public void shouldReturnErrorWhenPageNumberContainNotValidValue() {
-        Paging paging = new Paging(0, 1);
-        SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", paging);
-        List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getErrorCode(), "pageNumber");
-        assertEquals(errors.get(0).getMessage(), "Must be greater then 0!");
+    public void shouldNotInvokeOrderingValidatorWhenNoOrderingObjectPresentInRequest() {
+        SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15");
+        validator.validate(request);
+        verifyNoMoreInteractions(orderingValidator);
     }
 
     @Test
-    public void shouldReturnErrorWhenPageSizeContainNotValidValue() {
-        Paging paging = new Paging(1, 0);
+    public void shouldNotReturnErrorsWhenPagingValidatorReturnNoErrors() {
+        Paging paging = new Paging(5, 5);
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", paging);
+        when(pagingValidator.validate(paging)).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getErrorCode(), "pageSize");
-        assertEquals(errors.get(0).getMessage(), "Must be greater then 0!");
+        assertEquals(errors.size(), 0);
     }
 
     @Test
-    public void shouldReturnErrorWhenPageNumberAreEmpty() {
-        Paging paging = new Paging(null, 1);
+    public void shouldReturnErrorsWhenPagingValidatorReturnErrorsPageNumberIsEmptyV1() {
+        Paging paging = new Paging(null, 5);
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", paging);
+        CoreError error = new CoreError("pageNumber", "Must not be empty!");
+        when(pagingValidator.validate(paging)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "pageNumber");
@@ -119,13 +132,45 @@ public class SearchProductsRequestValidatorTest {
     }
 
     @Test
-    public void shouldReturnErrorWhenPageSizeAreEmpty() {
-        Paging paging = new Paging(1, null);
+    public void shouldReturnErrorsWhenPagingValidatorReturnErrorsPageSizeIsEmptyV2() {
+        Paging paging = new Paging(5, null);
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", paging);
+        CoreError error = new CoreError("pageSize", "Must not be empty!");
+        when(pagingValidator.validate(paging)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "pageSize");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
+    @Test
+    public void shouldReturnErrorsWhenPagingValidatorReturnErrorsPageNumberIsZeroV3() {
+        Paging paging = new Paging(0, 5);
+        SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", paging);
+        CoreError error = new CoreError("pageNumber", "Must be greater then 0!");
+        when(pagingValidator.validate(paging)).thenReturn(List.of(error));
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getErrorCode(), "pageNumber");
+        assertEquals(errors.get(0).getMessage(), "Must be greater then 0!");
+    }
+
+    @Test
+    public void shouldReturnErrorsWhenPagingValidatorReturnErrorsPageSizeIsZeroV4() {
+        Paging paging = new Paging(5, 0);
+        SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", paging);
+        CoreError error = new CoreError("pageSize", "Must be greater then 0!");
+        when(pagingValidator.validate(paging)).thenReturn(List.of(error));
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getErrorCode(), "pageSize");
+        assertEquals(errors.get(0).getMessage(), "Must be greater then 0!");
+    }
+
+    @Test
+    public void shouldNotInvokePagingValidatorWhenNoPagingObjectPresentInRequest() {
+        SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15");
+        validator.validate(request);
+        verifyNoMoreInteractions(pagingValidator);
+    }
 }
