@@ -7,11 +7,13 @@ import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import fitness_club.core.responses.ChangeClientAgeGroupResponse;
 import fitness_club.data_vlidation.ChangeClientAgeGroupValidator;
 import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
@@ -32,14 +34,16 @@ public class ChangeClientAgeGroupServiceTest {
     @InjectMocks
     private ChangeClientAgeGroupService service;
 
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.initMocks(this);
+    }
+
     @Test
     void shouldChangeClientAgeGroupByPersonalCodeToNew() {
         ChangeClientAgeGroupRequest request = new ChangeClientAgeGroupRequest("1-2", ClientAgeGroups.ADULT);
-        validator = mock(ChangeClientAgeGroupValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(List.of());
-        database = mock(Database.class);
         Mockito.when(database.clientAgeGroupChangedByPersonalCode("1-2", ClientAgeGroups.ADULT)).thenReturn(true);
-        service = new ChangeClientAgeGroupService(database, validator);
         ChangeClientAgeGroupResponse response = service.execute(request);
         Assert.assertTrue(!response.hasErrors());
         Assert.assertTrue(response.isClientAgeGroupChanged());

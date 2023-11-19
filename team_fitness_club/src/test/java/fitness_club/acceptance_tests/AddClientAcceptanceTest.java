@@ -9,6 +9,7 @@ import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.responses.SearchClientResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.SearchClientService;
+import fitness_club.dependency_injection.DIApplicationContextBuilder;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,8 @@ import static org.junit.Assert.assertEquals;
 
 @Disabled
 public class AddClientAcceptanceTest {
-    private ApplicationContext appContext = new ApplicationContext();
+    private static ApplicationContext applicationContext =
+            new DIApplicationContextBuilder().build("fitness_club");
 
     @Test
     public void shouldReturnErrorForFirstName() {
@@ -56,10 +58,10 @@ public class AddClientAcceptanceTest {
     }
 
     private SearchClientService getSearchClientService() {
-        return appContext.getBean(SearchClientService.class);
+        return applicationContext.getBean(SearchClientService.class);
     }
 
     private AddClientService getAddClientService() {
-        return appContext.getBean(AddClientService.class);
+        return applicationContext.getBean(AddClientService.class);
     }
 }

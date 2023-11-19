@@ -8,7 +8,9 @@ import java.util.stream.Collectors;
 import fitness_club.core.domain.Client;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
+import fitness_club.dependency_injection.DIComponent;
 
+@DIComponent
 public class InMemoryDatabase implements Database {
 
     private Long nextId = 1L;

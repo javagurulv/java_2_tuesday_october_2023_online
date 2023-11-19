@@ -8,6 +8,7 @@ import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.DeleteClientService;
+import fitness_club.dependency_injection.DIApplicationContextBuilder;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,8 @@ import static org.junit.Assert.assertTrue;
 
 @Disabled
 public class RemoveClientAcceptanceTests {
-    private ApplicationContext appContext = new ApplicationContext();
+    private static ApplicationContext applicationContext =
+            new DIApplicationContextBuilder().build("fitness_club");
 
     @Test
     public void shouldReturnError() {
@@ -36,10 +38,10 @@ public class RemoveClientAcceptanceTests {
     }
 
     private AddClientService getAddClientService() {
-        return appContext.getBean(AddClientService.class);
+        return applicationContext.getBean(AddClientService.class);
     }
 
     private DeleteClientService getDeleteClientService() {
-        return appContext.getBean(DeleteClientService.class);
+        return applicationContext.getBean(DeleteClientService.class);
     }
 }

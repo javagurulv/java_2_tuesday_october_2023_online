@@ -6,11 +6,13 @@ import fitness_club.core.requests.RemoveClientRequest;
 
 import fitness_club.data_vlidation.RemoveClientRequestValidator;
 import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -28,15 +30,16 @@ public class RemoveClientServiceTest {
     private RemoveClientRequestValidator validator;
     @InjectMocks
     private DeleteClientService service;
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     void shouldDeleteClientWithPersonaCodeFromDatabase() {
         RemoveClientRequest request = new RemoveClientRequest("12-12");
-        validator=mock(RemoveClientRequestValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(List.of());
-        database = mock(Database.class);
         Mockito.when(database.deleteClientByPersonalCode("12-12")).thenReturn(true);
-        service = new DeleteClientService(database,validator);
         RemoveClientResponse response = service.execute(request);
         Assert.assertFalse(response.hasErrors());
         Assert.assertTrue(response.isClientRemoved());

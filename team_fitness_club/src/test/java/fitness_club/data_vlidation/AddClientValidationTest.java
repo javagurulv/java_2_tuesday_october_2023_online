@@ -7,11 +7,13 @@ import fitness_club.core.domain.Client;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
@@ -23,13 +25,15 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 class AddClientValidationTest {
     @Mock
-    private Database database = new InFileDatabase();
-    @Mock
-    private ClientAgeGroups clientAgeGroup;
-    @Mock
-    private Workouts workout;
+    private Database database;
     @InjectMocks
-    private AddClientRequestValidator validator = new AddClientRequestValidator(database);
+    private AddClientRequestValidator validator ;
+
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.initMocks(this);
+    }
+
 
     @Test
     void shouldReturnErrorWhenClientFirstNameIsNull() {
@@ -38,8 +42,8 @@ class AddClientValidationTest {
             when(request.getFirstName()).thenReturn(null);
             when(request.getLastName()).thenReturn("lastName");
             when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
-            when(request.getWorkout()).thenReturn(workout);
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.ADULT);
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = validator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -55,8 +59,8 @@ class AddClientValidationTest {
             when(request.getFirstName()).thenReturn("");
             when(request.getLastName()).thenReturn("lastName");
             when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
-            when(request.getWorkout()).thenReturn(workout);
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.ADULT);
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = validator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -72,8 +76,8 @@ class AddClientValidationTest {
             when(request.getFirstName()).thenReturn("firstName");
             when(request.getLastName()).thenReturn(null);
             when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
-            when(request.getWorkout()).thenReturn(workout);
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.ADULT);
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = validator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -89,8 +93,8 @@ class AddClientValidationTest {
             when(request.getFirstName()).thenReturn("firstName");
             when(request.getLastName()).thenReturn("");
             when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
-            when(request.getWorkout()).thenReturn(workout);
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.ADULT);
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = validator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -106,8 +110,8 @@ class AddClientValidationTest {
             when(request.getFirstName()).thenReturn("firstName");
             when(request.getLastName()).thenReturn("lastName");
             when(request.getPersonalCode()).thenReturn(null);
-            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
-            when(request.getWorkout()).thenReturn(workout);
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.ADULT);
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = validator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -123,8 +127,8 @@ class AddClientValidationTest {
             when(request.getFirstName()).thenReturn("firstName");
             when(request.getLastName()).thenReturn("lastName");
             when(request.getPersonalCode()).thenReturn("");
-            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
-            when(request.getWorkout()).thenReturn(workout);
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.ADULT);
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = validator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -140,8 +144,8 @@ class AddClientValidationTest {
             when(request.getFirstName()).thenReturn("6");
             when(request.getLastName()).thenReturn("lastName");
             when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
-            when(request.getWorkout()).thenReturn(workout);
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.ADULT);
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = validator.validate(request);
             assertEquals(errors.size(), 1);
             assertEquals(errors.get(0).getField(), "firstName");
@@ -156,8 +160,8 @@ class AddClientValidationTest {
             when(request.getFirstName()).thenReturn("!");
             when(request.getLastName()).thenReturn("lastName");
             when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
-            when(request.getWorkout()).thenReturn(workout);
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.ADULT);
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = validator.validate(request);
             assertEquals(errors.size(), 1);
             assertEquals(errors.get(0).getField(), "firstName");
@@ -172,8 +176,8 @@ class AddClientValidationTest {
             when(request.getFirstName()).thenReturn("firstName");
             when(request.getLastName()).thenReturn("777");
             when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
-            when(request.getWorkout()).thenReturn(workout);
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.ADULT);
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = validator.validate(request);
             assertEquals(errors.size(), 1);
             assertEquals(errors.get(0).getField(), "lastName");
@@ -188,8 +192,8 @@ class AddClientValidationTest {
             when(request.getFirstName()).thenReturn("firstName");
             when(request.getLastName()).thenReturn(",");
             when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
-            when(request.getWorkout()).thenReturn(workout);
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.ADULT);
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = validator.validate(request);
             assertEquals(errors.size(), 1);
             assertEquals(errors.get(0).getField(), "lastName");
@@ -204,8 +208,8 @@ class AddClientValidationTest {
             when(request.getFirstName()).thenReturn("firstName");
             when(request.getLastName()).thenReturn("lastName");
             when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getClientAgeGroup()).thenReturn(clientAgeGroup);
-            when(request.getWorkout()).thenReturn(workout);
+            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.ADULT);
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = validator.validate(request);
             assertTrue(errors.isEmpty());
         }

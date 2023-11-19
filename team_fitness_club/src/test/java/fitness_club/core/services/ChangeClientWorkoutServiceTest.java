@@ -14,11 +14,13 @@ import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.ChangeClientWorkoutService;
 import fitness_club.data_vlidation.ChangeClientWorkoutsValidator;
 import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
@@ -35,15 +37,16 @@ class ChangeClientWorkoutServiceTest {
     private ChangeClientWorkoutsValidator validator;
    @InjectMocks
     private ChangeClientWorkoutService service;
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     void shouldChangeClientWorkoutByPersonalCodeToNew() {
         ChangeClientWorkoutsRequest request= new ChangeClientWorkoutsRequest("1-2",Workouts.GYM);
-        validator =mock(ChangeClientWorkoutsValidator.class);
         when(validator.validate(request)).thenReturn(List.of());
-        database=mock(Database.class);
         when(database.clientWorkoutsChangedByPersonalCode("1-2",Workouts.GYM)).thenReturn(true);
-        service= new ChangeClientWorkoutService(database,validator);
         ChangeClientWorkoutsResponse response = service.execute(request);
         Assert.assertTrue(!response.hasErrors());
         Assert.assertTrue(response.isClientWorkoutsChanged());

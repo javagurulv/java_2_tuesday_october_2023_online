@@ -2,12 +2,14 @@ package fitness_club;
 
 import fitness_club.console_UI.*;
 import fitness_club.dependency_injection.ApplicationContext;
+import fitness_club.dependency_injection.DIApplicationContextBuilder;
 
 import java.util.Scanner;
 
 public class ClientWorkoutsApplication {
 
-    private static ApplicationContext applicationContext = new ApplicationContext();
+    private static ApplicationContext applicationContext =
+            new DIApplicationContextBuilder().build("fitness_club");
 
     public static void main(String[] args) {
 

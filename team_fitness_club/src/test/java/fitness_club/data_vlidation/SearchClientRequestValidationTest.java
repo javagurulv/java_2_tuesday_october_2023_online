@@ -6,8 +6,10 @@ import fitness_club.core.requests.SearchClientRequest;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
@@ -17,18 +19,19 @@ import static org.mockito.Mockito.when;
 
 class SearchClientRequestValidationTest {
 
+    @InjectMocks
+    private SearchClientRequestValidator validator;
+    @Mock
     private SearchClientRequestFieldValidator fieldValidator;
+    @Mock
     private OrderingValidator orderingValidator;
+    @Mock
     private PagingValidator pagingValidator;
 
-    private SearchClientRequestValidator validator;
 
     @BeforeEach
     public void init() {
-        fieldValidator = Mockito.mock(SearchClientRequestFieldValidator.class);
-        orderingValidator = Mockito.mock(OrderingValidator.class);
-        pagingValidator = Mockito.mock(PagingValidator.class);
-        validator = new SearchClientRequestValidator(fieldValidator, orderingValidator, pagingValidator);
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test

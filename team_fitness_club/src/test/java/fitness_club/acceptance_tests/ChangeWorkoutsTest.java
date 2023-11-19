@@ -11,6 +11,7 @@ import fitness_club.core.responses.SearchClientResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.ChangeClientWorkoutService;
 import fitness_club.core.services.SearchClientService;
+import fitness_club.dependency_injection.DIApplicationContextBuilder;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,8 @@ import static org.junit.Assert.assertEquals;
 
 @Disabled
 public class ChangeWorkoutsTest {
-    private ApplicationContext appContext = new ApplicationContext();
+    private static ApplicationContext applicationContext =
+            new DIApplicationContextBuilder().build("fitness_club");
 
     @Test
     public void shouldChangeClientAgeGroup() {
@@ -39,14 +41,14 @@ public class ChangeWorkoutsTest {
     }
 
     private AddClientService getAddClientService() {
-        return appContext.getBean(AddClientService.class);
+        return applicationContext.getBean(AddClientService.class);
     }
 
     private ChangeClientWorkoutService getChangeClientWorkoutService() {
-        return appContext.getBean(ChangeClientWorkoutService.class);
+        return applicationContext.getBean(ChangeClientWorkoutService.class);
     }
 
     private SearchClientService getSearchClientService() {
-        return appContext.getBean(SearchClientService.class);
+        return applicationContext.getBean(SearchClientService.class);
     }
 }

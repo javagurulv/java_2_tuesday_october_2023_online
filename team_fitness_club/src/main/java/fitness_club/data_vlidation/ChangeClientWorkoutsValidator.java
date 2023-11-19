@@ -2,11 +2,13 @@ package fitness_club.data_vlidation;
 
 import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import fitness_club.core.requests.ChangeClientWorkoutsRequest;
+import fitness_club.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@DIComponent
 public class ChangeClientWorkoutsValidator {
 
     public List<CoreError> validate(ChangeClientWorkoutsRequest request) {

@@ -3,15 +3,15 @@ package fitness_club.console_UI;
 import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.services.DeleteClientService;
+import fitness_club.dependency_injection.DIComponent;
+import fitness_club.dependency_injection.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class RemoveClientUIAction implements UIAction {
-    private DeleteClientService deleteClientService;
+    @DIDependency private DeleteClientService deleteClientService;
 
-    public RemoveClientUIAction(DeleteClientService deleteClientService) {
-        this.deleteClientService = deleteClientService;
-    }
 
     @Override
     public void execute() {

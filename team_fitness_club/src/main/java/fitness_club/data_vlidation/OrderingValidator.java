@@ -1,11 +1,13 @@
 package fitness_club.data_vlidation;
 
 import fitness_club.core.requests.Ordering;
+import fitness_club.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@DIComponent
 public class OrderingValidator {
     public List<CoreError> validate(Ordering ordering) {
         List<CoreError> errors = new ArrayList<>();
