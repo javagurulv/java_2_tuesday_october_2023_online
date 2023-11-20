@@ -8,7 +8,10 @@ import lv.avangardteen.core.service.validate.PersonalDateValidation;
 import lv.avangardteen.data.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
@@ -18,16 +21,17 @@ import static org.mockito.Mockito.when;
 
 class ChangePersonalDateValidatorTest {
 
+    @Mock
     private ClientIdValidator idValidator;
+    @Mock
     private PersonalDateValidation personalDateValidation;
+    @InjectMocks
     private ChangePersonalDateValidator validator;
+
 
     @BeforeEach
     public void init() {
-
-        idValidator = Mockito.mock(ClientIdValidator.class);
-        personalDateValidation = Mockito.mock(PersonalDateValidation.class);
-        validator = new ChangePersonalDateValidator(idValidator, personalDateValidation);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test

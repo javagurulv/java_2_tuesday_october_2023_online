@@ -1,6 +1,5 @@
 package lv.avangardteen.acceptancetests;
 
-import lv.avangardteen.ApplicationContext;
 import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.ClientResponse;
@@ -8,12 +7,14 @@ import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.ShowOrderResponse;
 import lv.avangardteen.core.service.ClientService;
 import lv.avangardteen.core.service.ShowOrderService;
+import lv.avangardteen.dependency_injection.ApplicationContext;
+import lv.avangardteen.dependency_injection.DIApplicationContextBuilder;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AcceptanceTest7 {
-    private ApplicationContext appContext = new ApplicationContext();
+    private ApplicationContext appContext = new DIApplicationContextBuilder().build("lv.avangardteen");
 
     @Test
     public void shouldReturnErrorsFromOneOrderAndReturnDataFromSecondOrder() {

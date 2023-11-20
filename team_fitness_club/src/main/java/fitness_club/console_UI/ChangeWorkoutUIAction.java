@@ -7,15 +7,15 @@ import fitness_club.core.responses.ChangeClientWorkoutsResponse;
 import fitness_club.core.services.ChangeClientWorkoutService;
 import fitness_club.core.services.GetClientAgeGroupService;
 import fitness_club.core.services.GetWorkoutService;
+import fitness_club.dependency_injection.DIComponent;
+import fitness_club.dependency_injection.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class ChangeWorkoutUIAction implements UIAction {
-    private ChangeClientWorkoutService service;
+    @DIDependency private ChangeClientWorkoutService service;
 
-    public ChangeWorkoutUIAction(ChangeClientWorkoutService service) {
-        this.service = service;
-    }
 
     @Override
     public void execute() {

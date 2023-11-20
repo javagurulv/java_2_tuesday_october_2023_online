@@ -2,11 +2,12 @@ package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
 import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@DIComponent
 public class SearchBooksRequestFieldValidator {
 
     public List<CoreError> validate(SearchBooksRequest request) {
@@ -22,6 +23,4 @@ public class SearchBooksRequestFieldValidator {
         return str == null || str.isEmpty();
     }
 }
-
-
 

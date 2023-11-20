@@ -7,7 +7,10 @@ import lv.avangardteen.core.service.validate.ClientIdValidator;
 import lv.avangardteen.core.service.validate.PersonalSizeValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
@@ -15,15 +18,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 class ChangePersonalSizeValidatorTest {
+    @Mock
     private ClientIdValidator idValidator;
+    @Mock
     private PersonalSizeValidator personalSizeValidator;
+    @InjectMocks
     private ChangePersonalSizeValidator validator;
+
 
     @BeforeEach
     public void init() {
-        idValidator = Mockito.mock(ClientIdValidator.class);
-        personalSizeValidator = new PersonalSizeValidator();
-        validator = new ChangePersonalSizeValidator(idValidator, personalSizeValidator);
+        MockitoAnnotations.openMocks(this);
     }
 
 
@@ -51,10 +56,8 @@ class ChangePersonalSizeValidatorTest {
     public void shouldReturnErrorsWhenPersonalSizeValidatorReturnErrors() {
         ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(2l,
                 0, 33, 33, 33);
-
-        List<CoreError> errorsUser = personalSizeValidator.validate(request.getUserSizes());
+        when(personalSizeValidator.validate(request.getUserSizes())).thenReturn(List.of(new CoreError("error", "message")));
         List<CoreError> errors = validator.validate(request);
-        assertEquals(errorsUser.size(), 1);
         assertEquals(errors.size(), 1);
 
     }

@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static uk.org.webcompere.modelassert.json.JsonAssertions.assertJson;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -26,7 +27,8 @@ class TravelCalculatePremiumControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired private JsonFileReader jsonFileReader;
+    @Autowired
+    private JsonFileReader jsonFileReader;
 
 
     @Test
@@ -101,6 +103,22 @@ class TravelCalculatePremiumControllerTest {
         );
     }
 
+    @Test
+    public void selectedRiskIsNullControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_selected_risk_null.json",
+                "rest/TravelCalculatePremiumResponse_selected_risk_null.json"
+        );
+    }
+
+    @Test
+    public void selectedRiskIsEmptyControllerTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_selected_risk_empty.json",
+                "rest/TravelCalculatePremiumResponse_selected_risk_empty.json"
+        );
+    }
+
 
     private void executeAndCompare(String jsonRequestFilePath,
                                    String jsonResponseFilePath) throws Exception {
@@ -116,8 +134,12 @@ class TravelCalculatePremiumControllerTest {
 
         String jsonResponse = jsonFileReader.readJsonFromFile(jsonResponseFilePath);
 
-        ObjectMapper mapper = new ObjectMapper();
-        assertEquals(mapper.readTree(responseBodyContent), mapper.readTree(jsonResponse));
+
+        assertJson(responseBodyContent)
+                .where()
+                    .keysInAnyOrder()
+                    .arrayInAnyOrder()
+                .isEqualTo(jsonResponse);
     }
 
 

@@ -18,7 +18,7 @@ public class OrderingValidatorTest {
         Ordering ordering = new Ordering("productBrand", null);
         List<CoreError> errors = validator.validate(ordering);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "orderDirection");
+        assertEquals(errors.get(0).getErrorCode(), "orderDirection");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
@@ -27,7 +27,7 @@ public class OrderingValidatorTest {
         Ordering ordering = new Ordering(null, "ASCENDING");
         List<CoreError> errors = validator.validate(ordering);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "orderBy");
+        assertEquals(errors.get(0).getErrorCode(), "orderBy");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
@@ -36,7 +36,7 @@ public class OrderingValidatorTest {
         Ordering ordering = new Ordering("notValidValue", "ASCENDING");
         List<CoreError> errors = validator.validate(ordering);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "orderBy");
+        assertEquals(errors.get(0).getErrorCode(), "orderBy");
         assertEquals(errors.get(0).getMessage(), "Must contain 'productModel' or 'productBrand' only!");
     }
 
@@ -45,7 +45,7 @@ public class OrderingValidatorTest {
         Ordering ordering = new Ordering("productBrand", "notValidValue");
         List<CoreError> errors = validator.validate(ordering);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "orderDirection");
+        assertEquals(errors.get(0).getErrorCode(), "orderDirection");
         assertEquals(errors.get(0).getMessage(), "Must contain 'ASCENDING' or 'DESCENDING' only!");
     }
 

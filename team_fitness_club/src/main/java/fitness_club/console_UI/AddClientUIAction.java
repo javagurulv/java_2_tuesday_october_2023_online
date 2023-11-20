@@ -1,21 +1,23 @@
 package fitness_club.console_UI;
 
 import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.GetClientAgeGroupService;
+import fitness_club.core.services.GetFitnessCentreService;
 import fitness_club.core.services.GetWorkoutService;
+import fitness_club.dependency_injection.DIComponent;
+import fitness_club.dependency_injection.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class AddClientUIAction implements UIAction {
-    private AddClientService service;
+    @DIDependency private AddClientService service;
 
-    public AddClientUIAction(AddClientService service) {
-        this.service = service;
-    }
 
     @Override
     public void execute() {
@@ -40,8 +42,15 @@ public class AddClientUIAction implements UIAction {
         System.out.println("2. Swimming Pool");
         System.out.println("3. Group Classes");
         Workouts clientWorkout = GetWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
+        System.out.println("Choose new fitness centre.");
+        System.out.println("1. Akropole Riga");
+        System.out.println("2. Imanta");
+        System.out.println("3. Riga Plaza");
+        System.out.println("4. Saga");
+        System.out.println("5. Zolitude");
+        FitnessCentre fitnessCentre = GetFitnessCentreService.getFitnessCentre(Integer.parseInt(scanner.nextLine()));
 
-        AddClientRequest request = new AddClientRequest(clientFirstName, clientLastName, clientPersonalCode, clientAgeGroups, clientWorkout);
+        AddClientRequest request = new AddClientRequest(clientFirstName, clientLastName, clientPersonalCode, clientAgeGroups, clientWorkout, fitnessCentre);
         AddClientResponse response = service.execute(request);
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->

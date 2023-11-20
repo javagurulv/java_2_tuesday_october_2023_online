@@ -5,19 +5,20 @@ import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PersonLastNameValidationTest {
-
+    @Mock
+    private ValidationErrorFactory errorFactory;
     @InjectMocks
     private PersonLastNameValidation validation;
 
@@ -27,7 +28,8 @@ class PersonLastNameValidationTest {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getPersonLastName()).thenReturn("Ivanov");
         Optional<ValidationError> validLastName = validation.execute(request);
-        assertEquals(validLastName, Optional.empty());
+        assertTrue(validLastName.isEmpty());
+        verifyNoInteractions(errorFactory);
 
     }
 
@@ -35,18 +37,22 @@ class PersonLastNameValidationTest {
     void validatorLastNameIsNull() {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getPersonLastName()).thenReturn(null);
-        Optional<ValidationError> validLastName = validation.execute(request);
-        assertThat(validLastName).contains(new ValidationError("personLastName", "Must not be empty!"));
-
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_8")).thenReturn(validationError);
+        Optional<ValidationError> errorOpt = validation.execute(request);
+        assertTrue(errorOpt.isPresent());
+        assertSame(errorOpt.get(), validationError);
     }
 
     @Test
     void validatorLastNameIsEmpty() {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getPersonLastName()).thenReturn("");
-        Optional<ValidationError> validLastName = validation.execute(request);
-        assertThat(validLastName).contains(new ValidationError("personLastName", "Must not be empty!"));
-
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_8")).thenReturn(validationError);
+        Optional<ValidationError> errorOpt = validation.execute(request);
+        assertTrue(errorOpt.isPresent());
+        assertSame(errorOpt.get(), validationError);
     }
 
 }

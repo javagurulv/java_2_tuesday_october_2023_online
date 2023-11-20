@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.accepatancetests;
 
-import lv.javaguru.java2.product.storage.ApplicationContext;
+import lv.javaguru.java2.product.storage.dependency_injection.ApplicationContext;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.requests.Ordering;
 import lv.javaguru.java2.product.storage.core.requests.Paging;
@@ -9,20 +9,22 @@ import lv.javaguru.java2.product.storage.core.responses.SearchProductsResponse;
 import lv.javaguru.java2.product.storage.core.services.AddProductService;
 import lv.javaguru.java2.product.storage.core.services.SearchProductsService;
 
+import lv.javaguru.java2.product.storage.dependency_injection.DIApplicationContextBuilder;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class SearchProductsAcceptanceTest {
 
-    private ApplicationContext appContext = new ApplicationContext();
+    private ApplicationContext appContext =
+            new DIApplicationContextBuilder().build("lv.javaguru.java2.product.storage");
 
     @Test
     public void searchProducts() {
-        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14");
+        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14", 1);
         getAddProductService().execute(request1);
 
-        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15");
+        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
         getAddProductService().execute(request2);
 
         SearchProductsRequest request3 = new SearchProductsRequest("Apple", null);
@@ -37,10 +39,10 @@ public class SearchProductsAcceptanceTest {
 
     @Test
     public void searchProductsOrderingDescending() {
-        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14");
+        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14", 1);
         getAddProductService().execute(request1);
 
-        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15");
+        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
         getAddProductService().execute(request2);
 
         Ordering ordering = new Ordering("productModel", "DESCENDING");
@@ -56,10 +58,10 @@ public class SearchProductsAcceptanceTest {
 
     @Test
     public void searchProductsOrderingAscending() {
-        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14");
+        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14", 1);
         getAddProductService().execute(request1);
 
-        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15");
+        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
         getAddProductService().execute(request2);
 
         Ordering ordering = new Ordering("productModel", "ASCENDING");
@@ -75,10 +77,10 @@ public class SearchProductsAcceptanceTest {
 
     @Test
     public void searchProductsOrderingPagingFirstPage() {
-        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14");
+        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14", 1);
         getAddProductService().execute(request1);
 
-        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15");
+        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
         getAddProductService().execute(request2);
 
         Ordering ordering = new Ordering("productModel", "ASCENDING");
@@ -92,10 +94,10 @@ public class SearchProductsAcceptanceTest {
     }
     @Test
     public void searchProductsOrderingPagingSecondPage() {
-        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14");
+        AddProductRequest request1 = new AddProductRequest("Smartphone", "Apple", "iPhone 14", 1);
         getAddProductService().execute(request1);
 
-        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15");
+        AddProductRequest request2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
         getAddProductService().execute(request2);
 
         Ordering ordering = new Ordering("productModel", "ASCENDING");

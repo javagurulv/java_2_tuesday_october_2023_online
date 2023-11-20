@@ -10,13 +10,15 @@ public class Client implements Serializable {
     private String personalCode;
     private ClientAgeGroups clientAgeGroup;
     private Workouts workouts;
+    private FitnessCentre fitnessCentre;
 
-    public Client(String firstName, String lastName, String personalCode, ClientAgeGroups clientAgeGroup, Workouts workouts) {
+    public Client(String firstName, String lastName, String personalCode, ClientAgeGroups clientAgeGroup, Workouts workouts, FitnessCentre fitnessCentre) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.personalCode = personalCode;
         this.clientAgeGroup = clientAgeGroup;
         this.workouts = workouts;
+        this.fitnessCentre = fitnessCentre;
     }
 
     public Client(String name, String lastName, String personalCode) {
@@ -44,6 +46,8 @@ public class Client implements Serializable {
     public void setWorkouts(Workouts workouts) {
         this.workouts = workouts;
     }
+
+    public void setFitnessCentre(FitnessCentre fitnessCentre) { this.fitnessCentre = fitnessCentre; }
 
     public void setPersonalCode(String personalCode) {
         this.personalCode = personalCode;
@@ -73,6 +77,8 @@ public class Client implements Serializable {
         return clientAgeGroup;
     }
 
+    public FitnessCentre getFitnessCentre() { return fitnessCentre; }
+
     public void setClientAgeGroup(ClientAgeGroups clientAgeGroup) {
         this.clientAgeGroup = clientAgeGroup;
     }
@@ -82,12 +88,17 @@ public class Client implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return Objects.equals(firstName, client.firstName) && Objects.equals(lastName, client.lastName) && Objects.equals(personalCode, client.personalCode) && clientAgeGroup == client.clientAgeGroup && workouts == client.workouts;
+        return Objects.equals(firstName, client.firstName)
+                && Objects.equals(lastName, client.lastName)
+                && Objects.equals(personalCode, client.personalCode)
+                && clientAgeGroup == client.clientAgeGroup
+                && fitnessCentre == client.fitnessCentre
+                && workouts == client.workouts;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, personalCode, clientAgeGroup, workouts);
+        return Objects.hash(firstName, lastName, personalCode, clientAgeGroup, workouts, fitnessCentre);
     }
 
     @Override
@@ -99,6 +110,7 @@ public class Client implements Serializable {
                 ", personalCode='" + personalCode + '\'' +
                 ", clientAgeGroup=" + clientAgeGroup +
                 ", workouts=" + workouts +
+                ", fitnessCentre=" + fitnessCentre +
                 '}';
     }
 }

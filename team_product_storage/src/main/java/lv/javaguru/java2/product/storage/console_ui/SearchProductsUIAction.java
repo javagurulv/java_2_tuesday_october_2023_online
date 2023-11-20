@@ -5,16 +5,15 @@ import lv.javaguru.java2.product.storage.core.requests.Paging;
 import lv.javaguru.java2.product.storage.core.requests.SearchProductsRequest;
 import lv.javaguru.java2.product.storage.core.responses.SearchProductsResponse;
 import lv.javaguru.java2.product.storage.core.services.SearchProductsService;
+import lv.javaguru.java2.product.storage.dependency_injection.DIComponent;
+import lv.javaguru.java2.product.storage.dependency_injection.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class SearchProductsUIAction implements UIAction {
 
-    private SearchProductsService searchProductsService;
-
-    public SearchProductsUIAction(SearchProductsService searchProductsService) {
-        this.searchProductsService = searchProductsService;
-    }
+    @DIDependency private SearchProductsService searchProductsService;
 
     @Override
     public void execute() {
@@ -40,7 +39,7 @@ public class SearchProductsUIAction implements UIAction {
         SearchProductsResponse response = searchProductsService.execute(request);
 
         if (response.hasErrors()) {
-            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getErrorCode() + " " + coreError.getMessage()));
         } else {
             response.getProducts().forEach(System.out::println);
         }

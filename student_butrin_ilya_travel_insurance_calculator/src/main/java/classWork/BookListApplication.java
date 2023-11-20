@@ -1,9 +1,8 @@
 package classWork;
 import classWork.consoleUI.*;
-import classWork.core.database.Database;
-import classWork.core.database.InMemoryDatabaseImpl;
+
 import classWork.core.service.AddBookService;
-import classWork.core.service.SearchBooksService;
+
 import classWork.core.service.valigators.*;
 import classWork.core.service.GetAllBookService;
 import classWork.core.service.RemoveBookService;
@@ -13,7 +12,7 @@ import java.util.Scanner;
 
 public class BookListApplication {
 
-  ApplicationContext applicationContext = new ApplicationContext();
+ /* ApplicationContext applicationContext = new ApplicationContext();
     public static void main(String[] args) {
 
         BookListApplication bookListApplication = new BookListApplication();
@@ -59,4 +58,6 @@ public class BookListApplication {
 
             }
         }
+
+  */
 }

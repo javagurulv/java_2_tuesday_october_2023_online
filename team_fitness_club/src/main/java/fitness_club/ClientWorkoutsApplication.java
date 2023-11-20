@@ -1,16 +1,15 @@
 package fitness_club;
 
 import fitness_club.console_UI.*;
-import fitness_club.core.database.Database;
-import fitness_club.core.database.InFileDatabase;
-import fitness_club.core.services.*;
-import fitness_club.data_vlidation.*;
+import fitness_club.dependency_injection.ApplicationContext;
+import fitness_club.dependency_injection.DIApplicationContextBuilder;
 
 import java.util.Scanner;
 
 public class ClientWorkoutsApplication {
 
-    private static ApplicationContext applicationContext = new ApplicationContext();
+    private static ApplicationContext applicationContext =
+            new DIApplicationContextBuilder().build("fitness_club");
 
     public static void main(String[] args) {
 
@@ -44,11 +43,16 @@ public class ClientWorkoutsApplication {
                     break;
                 }
                 case 6: {
-                    SearchClientUIAction uiAction = applicationContext.getBean(SearchClientUIAction.class);
+                    ChangeClientFitnessCentreUIAction uiAction = applicationContext.getBean(ChangeClientFitnessCentreUIAction.class);
                     uiAction.execute();
                     break;
                 }
                 case 7: {
+                    SearchClientUIAction uiAction = applicationContext.getBean(SearchClientUIAction.class);
+                    uiAction.execute();
+                    break;
+                }
+                case 8: {
                     ExitUIAction uiAction = applicationContext.getBean(ExitUIAction.class);
                     uiAction.execute();
                     break;
@@ -65,8 +69,9 @@ public class ClientWorkoutsApplication {
         System.out.println("3. Show all clients in the list");
         System.out.println("4. Change client workout");
         System.out.println("5. Change client age group");
-        System.out.println("6. Search clients in database");
-        System.out.println("7. Exit");
+        System.out.println("6. Change client fitness centre");
+        System.out.println("7. Search clients in database");
+        System.out.println("8. Exit");
         System.out.println("");
     }
 

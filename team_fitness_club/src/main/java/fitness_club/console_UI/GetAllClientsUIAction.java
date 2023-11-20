@@ -3,13 +3,13 @@ package fitness_club.console_UI;
 import fitness_club.core.requests.GetAllClientsRequest;
 import fitness_club.core.responses.GetAllClientsResponse;
 import fitness_club.core.services.GetAllClientsService;
+import fitness_club.dependency_injection.DIComponent;
+import fitness_club.dependency_injection.DIDependency;
 
+@DIComponent
 public class GetAllClientsUIAction implements UIAction {
-    private GetAllClientsService getAllClientsService;
+    @DIDependency private GetAllClientsService getAllClientsService;
 
-    public GetAllClientsUIAction(GetAllClientsService getAllClientsService) {
-        this.getAllClientsService = getAllClientsService;
-    }
 
     @Override
     public void execute() {

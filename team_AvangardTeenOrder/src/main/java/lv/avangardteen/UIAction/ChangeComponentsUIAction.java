@@ -5,18 +5,20 @@ import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.service.ChangeComponentService;
 import lv.avangardteen.data.DataComponents;
 import lv.avangardteen.data.DataOrders;
+import lv.avangardteen.dependency_injection.DIComponent;
+import lv.avangardteen.dependency_injection.DIDependency;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+@DIComponent
 public class ChangeComponentsUIAction implements UIAction {
+    @DIDependency
     DataOrders dataOrders;
-    DataComponents dataComponents = new DataComponents();
+    @DIDependency
+    DataComponents dataComponents;
+    @DIDependency
     ChangeComponentService service;
-
-    public ChangeComponentsUIAction(ChangeComponentService service) {
-        this.service = service;
-    }
 
 
     @Override

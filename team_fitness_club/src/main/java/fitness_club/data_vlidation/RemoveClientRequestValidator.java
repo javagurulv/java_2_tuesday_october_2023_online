@@ -1,11 +1,13 @@
 package fitness_club.data_vlidation;
 
 import fitness_club.core.requests.RemoveClientRequest;
+import fitness_club.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@DIComponent
 public class RemoveClientRequestValidator {
 
     public List<CoreError> validate(RemoveClientRequest request) {

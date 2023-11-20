@@ -7,10 +7,13 @@ public class AddProductRequest {
 
     private String productModel;
 
-    public AddProductRequest(String productName, String productBrand, String productModel) {
+    private int productQuantity;
+
+    public AddProductRequest(String productName, String productBrand, String productModel, int productQuantity) {
         this.productName = productName;
         this.productBrand = productBrand;
         this.productModel = productModel;
+        this.productQuantity = productQuantity;
     }
 
     public String getProductName() {
@@ -24,6 +27,8 @@ public class AddProductRequest {
     public String getProductModel() {
         return productModel;
     }
+
+    public int getProductQuantity() { return productQuantity; }
 }
 
 

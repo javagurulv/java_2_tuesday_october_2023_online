@@ -17,7 +17,7 @@ public class RemoveBookUIAction implements UIAction {
 
     @Override
     public void execute() {
-        Scanner scan = new Scanner(System.in);
+       /* Scanner scan = new Scanner(System.in);
         System.out.println("Введите номер книги, который хотите удалить");
         String del = scan.nextLine();
         Long delById;
@@ -34,6 +34,8 @@ public class RemoveBookUIAction implements UIAction {
         }
         else
             System.out.println("Книга удалена");
+
+        */
 
     }
 }

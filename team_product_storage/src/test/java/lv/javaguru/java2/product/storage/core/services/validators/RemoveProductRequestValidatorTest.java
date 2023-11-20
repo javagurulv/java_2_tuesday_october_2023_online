@@ -18,7 +18,7 @@ public class RemoveProductRequestValidatorTest {
         RemoveProductRequest request = new RemoveProductRequest(null);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "productId");
+        assertEquals(errors.get(0).getErrorCode(), "productId");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 

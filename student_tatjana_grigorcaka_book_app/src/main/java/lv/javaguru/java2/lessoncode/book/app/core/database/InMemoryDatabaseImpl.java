@@ -1,12 +1,14 @@
 package lv.javaguru.java2.lessoncode.book.app.core.database;
 
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@DIComponent
 public class InMemoryDatabaseImpl implements Database {
 
     private Long nextId = 1L;
@@ -57,13 +59,5 @@ public class InMemoryDatabaseImpl implements Database {
                 .filter(book -> book.getAuthor().equals(author))
                 .filter(book -> book.getTitle().equals(title))
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public Optional<Book> findBookByTitleAndAuthor(String author, String title) {
-        return books.stream()
-                .filter(book -> book.getTitle().equals(title))
-                .filter(book -> book.getAuthor().equals(author))
-                .findFirst();
     }
 }

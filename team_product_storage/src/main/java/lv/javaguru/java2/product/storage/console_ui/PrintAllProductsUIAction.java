@@ -3,14 +3,13 @@ package lv.javaguru.java2.product.storage.console_ui;
 import lv.javaguru.java2.product.storage.core.requests.GetAllProductsRequest;
 import lv.javaguru.java2.product.storage.core.responses.GetAllProductsResponse;
 import lv.javaguru.java2.product.storage.core.services.GetAllProductsService;
+import lv.javaguru.java2.product.storage.dependency_injection.DIComponent;
+import lv.javaguru.java2.product.storage.dependency_injection.DIDependency;
 
+@DIComponent
 public class PrintAllProductsUIAction implements UIAction {
 
-    private GetAllProductsService getAllProductsService;
-
-    public PrintAllProductsUIAction(GetAllProductsService getAllProductsService) {
-        this.getAllProductsService = getAllProductsService;
-    }
+    @DIDependency private GetAllProductsService getAllProductsService;
 
     @Override
     public void execute() {

@@ -2,17 +2,17 @@ package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.data.Database;
+import lv.avangardteen.dependency_injection.DIComponent;
+import lv.avangardteen.dependency_injection.DIDependency;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@DIComponent
 public class ClientIdValidator {
-    private Database database;
+   @DIDependency
+   private Database database;
 
-    public ClientIdValidator(Database database) {
-        this.database = database;
-    }
 
     public List<CoreError> validate(Long id) {
         List<CoreError> errors = new ArrayList<>();

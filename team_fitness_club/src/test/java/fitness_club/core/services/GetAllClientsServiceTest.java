@@ -2,17 +2,20 @@ package fitness_club.core.services;
 
 import fitness_club.core.database.Database;
 import fitness_club.core.database.InMemoryDatabase;
+import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.requests.GetAllClientsRequest;
 import fitness_club.core.responses.GetAllClientsResponse;
 import fitness_club.core.domain.Client;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.services.GetAllClientsService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -28,16 +31,18 @@ public class GetAllClientsServiceTest {
     private Database database;
     @InjectMocks
     private GetAllClientsService service;
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void shouldGetClientsFromDb() {
 
         List<Client> clients = List.of(new Client("Andrey", "Pupkin",
-                "12-12", ClientAgeGroups.ADULT, Workouts.GYM));
-        database = mock(Database.class);
+                "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE));
         Mockito.when(database.getAllClients()).thenReturn(clients);
         GetAllClientsRequest request = new GetAllClientsRequest();
-        service = new GetAllClientsService(database);
         GetAllClientsResponse response = service.execute(request);
         assertEquals(response.getClients().size(), 1);
         assertEquals(response.getClients().get(0).getPersonalCode(), "12-12");
@@ -46,11 +51,9 @@ public class GetAllClientsServiceTest {
     public void shouldNotGetClientsFromDb() {
 
         List<Client> clients = List.of(new Client("Andrey", "Pupkin",
-                "12-13", ClientAgeGroups.ADULT, Workouts.GYM));
-        database = mock(Database.class);
+                "12-13", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE));
         Mockito.when(database.getAllClients()).thenReturn(clients);
         GetAllClientsRequest request = new GetAllClientsRequest();
-        service = new GetAllClientsService(database);
         GetAllClientsResponse response = service.execute(request);
         assertEquals(response.getClients().size(), 1);
         assertNotEquals(response.getClients().get(0).getPersonalCode(), "12-12");

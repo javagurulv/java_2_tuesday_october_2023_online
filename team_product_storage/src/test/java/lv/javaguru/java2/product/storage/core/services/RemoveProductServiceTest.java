@@ -36,7 +36,7 @@ public class RemoveProductServiceTest {
         RemoveProductResponse response = service.execute(request);
         assertTrue(response.hasErrors());
         assertEquals(response.getErrors().size(), 1);
-        assertEquals(response.getErrors().get(0).getField(), "productIdToRemove");
+        assertEquals(response.getErrors().get(0).getErrorCode(), "productIdToRemove");
         assertEquals(response.getErrors().get(0).getMessage(), "Must not be empty!");
     }
 

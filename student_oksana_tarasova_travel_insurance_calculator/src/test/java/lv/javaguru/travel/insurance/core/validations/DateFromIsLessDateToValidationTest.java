@@ -5,22 +5,23 @@ import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DateFromIsLessDateToValidationTest {
-
+    @Mock
+    private ValidationErrorFactory errorFactory;
     @InjectMocks
     private DateFromIsLessDateToValidation validation;
 
@@ -30,7 +31,8 @@ class DateFromIsLessDateToValidationTest {
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.04.2024"));
         when(request.getAgreementDateTo()).thenReturn(createDate("16.05.2024"));
         Optional<ValidationError> validationError = validation.execute(request);
-        assertEquals(validationError, Optional.empty());
+        assertTrue(validationError.isEmpty());
+        verifyNoInteractions(errorFactory);
     }
 
     @Test
@@ -38,9 +40,11 @@ class DateFromIsLessDateToValidationTest {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.06.2024"));
         when(request.getAgreementDateTo()).thenReturn(createDate("16.05.2024"));
-        Optional<ValidationError> validationError = validation.execute(request);
-        ValidationError expected = (new ValidationError("agreementDateFrom", "Must be less than the agreementDateTo!"));
-        assertThat(validationError).contains(expected);
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_5")).thenReturn(validationError);
+        Optional<ValidationError> errorOpt = validation.execute(request);
+        assertTrue(errorOpt.isPresent());
+        assertSame(errorOpt.get(), validationError);
     }
 
 

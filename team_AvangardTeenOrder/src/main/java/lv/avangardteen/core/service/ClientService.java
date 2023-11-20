@@ -1,5 +1,7 @@
 package lv.avangardteen.core.service;
 
+import lv.avangardteen.dependency_injection.DIComponent;
+import lv.avangardteen.dependency_injection.DIDependency;
 import lv.avangardteen.dto.Client;
 import lv.avangardteen.dto.UserSizes;
 import lv.avangardteen.dto.Wheelchair;
@@ -11,17 +13,15 @@ import lv.avangardteen.data.Database;
 
 import java.util.List;
 
-
+@DIComponent
 public class ClientService {
 
+    @DIDependency
     private Database database;
+    @DIDependency
     private ClientOrderValidator validator;
-    private CalculateDimensionsWheelchair dimensionsWheelchair = new CalculateDimensionsWheelchair();
-
-    public ClientService(Database database, ClientOrderValidator validator) {
-        this.database = database;
-        this.validator = validator;
-    }
+    @DIDependency
+    private CalculateDimensionsWheelchair dimensionsWheelchair;
 
     public ClientResponse execute(ClientRequest request) {
         List<CoreError> errors = validator.validate(request);

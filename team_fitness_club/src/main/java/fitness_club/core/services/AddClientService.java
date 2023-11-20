@@ -6,20 +6,17 @@ import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.AddClientResponse;
 import fitness_club.data_vlidation.AddClientRequestValidator;
 import fitness_club.data_vlidation.CoreError;
+import fitness_club.dependency_injection.DIComponent;
+import fitness_club.dependency_injection.DIDependency;
 
 import java.util.List;
 
+@DIComponent
 public class AddClientService {
 
-    private Database database;
+    @DIDependency private Database database;
+    @DIDependency private AddClientRequestValidator validator;
 
-    private AddClientRequestValidator validator;
-
-    public AddClientService(Database database,
-                            AddClientRequestValidator validator) {
-        this.validator = validator;
-        this.database = database;
-    }
 
     public AddClientResponse execute(AddClientRequest request) {
         List<CoreError> errors = validator.validate(request);
@@ -38,7 +35,8 @@ public class AddClientService {
                 request.getLastName(),
                 request.getPersonalCode(),
                 request.getClientAgeGroup(),
-                request.getWorkout());
+                request.getWorkout(),
+                request.getFitnessCentre());
         database.addClient(client);
         return new AddClientResponse(client);
     }

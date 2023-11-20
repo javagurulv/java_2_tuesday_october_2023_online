@@ -17,7 +17,7 @@ public class PagingValidatorTest {
         Paging paging = new Paging(0, 1);
         List<CoreError> errors = validator.validate(paging);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "pageNumber");
+        assertEquals(errors.get(0).getErrorCode(), "pageNumber");
         assertEquals(errors.get(0).getMessage(), "Must be greater then 0!");
     }
 
@@ -26,7 +26,7 @@ public class PagingValidatorTest {
         Paging paging = new Paging(1, 0);
         List<CoreError> errors = validator.validate(paging);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "pageSize");
+        assertEquals(errors.get(0).getErrorCode(), "pageSize");
         assertEquals(errors.get(0).getMessage(), "Must be greater then 0!");
     }
 
@@ -35,7 +35,7 @@ public class PagingValidatorTest {
         Paging paging = new Paging(null, 1);
         List<CoreError> errors = validator.validate(paging);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "pageNumber");
+        assertEquals(errors.get(0).getErrorCode(), "pageNumber");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
@@ -44,7 +44,7 @@ public class PagingValidatorTest {
         Paging paging = new Paging(1, null);
         List<CoreError> errors = validator.validate(paging);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "pageSize");
+        assertEquals(errors.get(0).getErrorCode(), "pageSize");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 

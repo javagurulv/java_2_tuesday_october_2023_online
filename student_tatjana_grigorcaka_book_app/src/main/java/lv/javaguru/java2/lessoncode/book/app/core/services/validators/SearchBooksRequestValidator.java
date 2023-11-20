@@ -4,22 +4,19 @@ import lv.javaguru.java2.lessoncode.book.app.core.requests.Ordering;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Paging;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIDependency;
 
 import java.util.List;
 
+@DIComponent
 public class SearchBooksRequestValidator {
 
+    @DIDependency
     private SearchBooksRequestFieldValidator fieldValidator;
-    private OrderingValidator orderingValidator;
-    private PagingValidator pagingValidator;
+    @DIDependency private OrderingValidator orderingValidator;
+    @DIDependency private PagingValidator pagingValidator;
 
-    public SearchBooksRequestValidator(SearchBooksRequestFieldValidator fieldValidator,
-                                       OrderingValidator orderingValidator,
-                                       PagingValidator pagingValidator) {
-        this.fieldValidator = fieldValidator;
-        this.orderingValidator = orderingValidator;
-        this.pagingValidator = pagingValidator;
-    }
 
     public List<CoreError> validate(SearchBooksRequest request) {
         List<CoreError> errors = fieldValidator.validate(request);
@@ -41,5 +38,4 @@ public class SearchBooksRequestValidator {
             errors.addAll(orderingValidator.validate(ordering));
         }
     }
-
 }

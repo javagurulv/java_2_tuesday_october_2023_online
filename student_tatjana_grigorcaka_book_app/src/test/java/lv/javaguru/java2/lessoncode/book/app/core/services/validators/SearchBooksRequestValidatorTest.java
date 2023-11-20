@@ -11,24 +11,21 @@ import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
+@RunWith(MockitoJUnitRunner.class)
 public class SearchBooksRequestValidatorTest {
 
+    @Mock
     private SearchBooksRequestFieldValidator fieldValidator;
-    private OrderingValidator orderingValidator;
-    private PagingValidator pagingValidator;
+    @Mock private OrderingValidator orderingValidator;
+    @Mock private PagingValidator pagingValidator;
+    @InjectMocks
     private SearchBooksRequestValidator validator;
-
-    @Before
-    public void init() {
-        fieldValidator = Mockito.mock(SearchBooksRequestFieldValidator.class);
-        orderingValidator = Mockito.mock(OrderingValidator.class);
-        pagingValidator = Mockito.mock(PagingValidator.class);
-        validator = new SearchBooksRequestValidator(fieldValidator, orderingValidator, pagingValidator);
-    }
 
     @Test
     public void shouldNotReturnErrorsWhenFieldValidatorReturnNoErrors() {
@@ -178,3 +175,4 @@ public class SearchBooksRequestValidatorTest {
     }
 
 }
+

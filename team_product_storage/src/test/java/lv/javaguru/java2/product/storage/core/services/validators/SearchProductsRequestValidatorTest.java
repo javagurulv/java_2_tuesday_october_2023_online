@@ -5,9 +5,7 @@ import lv.javaguru.java2.product.storage.core.requests.Paging;
 import lv.javaguru.java2.product.storage.core.requests.SearchProductsRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.util.List;
 
@@ -15,22 +13,19 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
+@RunWith(MockitoJUnitRunner.class)
 public class SearchProductsRequestValidatorTest {
 
-    private SearchProductsRequestFieldValidator fieldValidator;
-    private OrderingValidator orderingValidator;
-    private PagingValidator pagingValidator;
-    private SearchProductsRequestValidator validator;
+    @Mock private SearchProductsRequestFieldValidator fieldValidator;
+    @Mock private OrderingValidator orderingValidator;
+    @Mock private PagingValidator pagingValidator;
+    @InjectMocks private SearchProductsRequestValidator validator;
 
-
-    @Before
-    public void init() {
-        fieldValidator = Mockito.mock(SearchProductsRequestFieldValidator.class);
-        orderingValidator = Mockito.mock(OrderingValidator.class);
-        pagingValidator = Mockito.mock(PagingValidator.class);
-        validator = new SearchProductsRequestValidator(fieldValidator, orderingValidator, pagingValidator);
-    }
 
     @Test
     public void shouldNotReturnErrorsWhenFieldValidatorReturnNoErrors() {
@@ -47,7 +42,7 @@ public class SearchProductsRequestValidatorTest {
         when(fieldValidator.validate(request)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "productBrand");
+        assertEquals(errors.get(0).getErrorCode(), "productBrand");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
@@ -68,7 +63,7 @@ public class SearchProductsRequestValidatorTest {
         when(orderingValidator.validate(ordering)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "orderBy");
+        assertEquals(errors.get(0).getErrorCode(), "orderBy");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
@@ -80,7 +75,7 @@ public class SearchProductsRequestValidatorTest {
         when(orderingValidator.validate(ordering)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "orderDirection");
+        assertEquals(errors.get(0).getErrorCode(), "orderDirection");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
@@ -92,7 +87,7 @@ public class SearchProductsRequestValidatorTest {
         when(orderingValidator.validate(ordering)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "orderBy");
+        assertEquals(errors.get(0).getErrorCode(), "orderBy");
         assertEquals(errors.get(0).getMessage(), "Must contain 'productModel' or 'productBrand' only!");
     }
 
@@ -104,7 +99,7 @@ public class SearchProductsRequestValidatorTest {
         when(orderingValidator.validate(ordering)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "orderDirection");
+        assertEquals(errors.get(0).getErrorCode(), "orderDirection");
         assertEquals(errors.get(0).getMessage(), "Must contain 'ASCENDING' or 'DESCENDING' only!");
     }
 
@@ -132,7 +127,7 @@ public class SearchProductsRequestValidatorTest {
         when(pagingValidator.validate(paging)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "pageNumber");
+        assertEquals(errors.get(0).getErrorCode(), "pageNumber");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
@@ -144,31 +139,31 @@ public class SearchProductsRequestValidatorTest {
         when(pagingValidator.validate(paging)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "pageSize");
+        assertEquals(errors.get(0).getErrorCode(), "pageSize");
         assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
-    public void shouldReturnErrorsWhenPagingValidatorReturnErrorsPageNumberIsNullV3() {
+    public void shouldReturnErrorsWhenPagingValidatorReturnErrorsPageNumberIsZeroV3() {
         Paging paging = new Paging(0, 5);
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", paging);
         CoreError error = new CoreError("pageNumber", "Must be greater then 0!");
         when(pagingValidator.validate(paging)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "pageNumber");
+        assertEquals(errors.get(0).getErrorCode(), "pageNumber");
         assertEquals(errors.get(0).getMessage(), "Must be greater then 0!");
     }
 
     @Test
-    public void shouldReturnErrorsWhenPagingValidatorReturnErrorsPageSizeIsNullV4() {
+    public void shouldReturnErrorsWhenPagingValidatorReturnErrorsPageSizeIsZeroV4() {
         Paging paging = new Paging(5, 0);
         SearchProductsRequest request = new SearchProductsRequest("Apple", "iPhone 15", paging);
         CoreError error = new CoreError("pageSize", "Must be greater then 0!");
         when(pagingValidator.validate(paging)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "pageSize");
+        assertEquals(errors.get(0).getErrorCode(), "pageSize");
         assertEquals(errors.get(0).getMessage(), "Must be greater then 0!");
     }
 
@@ -178,5 +173,4 @@ public class SearchProductsRequestValidatorTest {
         validator.validate(request);
         verifyNoMoreInteractions(pagingValidator);
     }
-
 }

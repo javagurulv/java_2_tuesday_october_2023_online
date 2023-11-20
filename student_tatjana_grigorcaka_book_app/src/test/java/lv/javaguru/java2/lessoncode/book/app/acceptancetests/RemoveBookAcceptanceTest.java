@@ -1,11 +1,12 @@
 package lv.javaguru.java2.lessoncode.book.app.acceptancetests;
 
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIApplicationContextBuilder;
 import org.junit.Test;
 
 import lv.javaguru.java2.lessoncode.book.app.core.requests.RemoveBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.RemoveBookResponse;
 import lv.javaguru.java2.lessoncode.book.app.core.services.RemoveBookService;
-import lv.javaguru.java2.lessoncode.book.app.ApplicationContext;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.ApplicationContext;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.services.AddBookService;
 
@@ -13,7 +14,8 @@ import static org.junit.Assert.*;
 
 public class RemoveBookAcceptanceTest {
 
-    private ApplicationContext appContext = new ApplicationContext();
+    private ApplicationContext appContext =
+            new DIApplicationContextBuilder().build("lv.javaguru.java2.lessoncode.book.app");
 
     @Test
     public void shouldReturnErrorResponseWhenBookIdNotProvided() {

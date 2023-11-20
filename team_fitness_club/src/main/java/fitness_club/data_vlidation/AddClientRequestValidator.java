@@ -4,17 +4,17 @@ import fitness_club.core.database.Database;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.database.InFileDatabase;
+import fitness_club.dependency_injection.DIComponent;
+import fitness_club.dependency_injection.DIDependency;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@DIComponent
 public class AddClientRequestValidator {
-    private Database database;
+    @DIDependency private Database database;
 
-    public AddClientRequestValidator(Database database) {
-        this.database = database;
-    }
 
     public List<CoreError> validate(AddClientRequest request) {
         List<CoreError> errors = new ArrayList<>();

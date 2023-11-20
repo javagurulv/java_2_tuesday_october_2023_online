@@ -1,6 +1,6 @@
 package lv.javaguru.travel.insurance.core.validations;
 
-import lv.javaguru.travel.insurance.core.DateTimeService;
+import lv.javaguru.travel.insurance.core.util.DateTimeUtil;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
@@ -10,22 +10,21 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.lang.management.OperatingSystemMXBean;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DateFromInFutureValidationTest {
     @Mock
-    private DateTimeService dateTimeService;
-
+    private DateTimeUtil dateTimeService;
+    @Mock
+    private ValidationErrorFactory errorFactory;
     @InjectMocks
     private DateFromInFutureValidation validation;
 
@@ -34,8 +33,9 @@ class DateFromInFutureValidationTest {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.05.2024"));
         when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("17.05.2023"));
-        Optional<ValidationError> validationError = validation.execute(request);
-        assertEquals(validationError, Optional.empty());
+        Optional<ValidationError> errorOpt = validation.execute(request);
+        assertTrue(errorOpt.isEmpty());
+        verifyNoInteractions(errorFactory);
     }
 
     @Test
@@ -43,9 +43,11 @@ class DateFromInFutureValidationTest {
         TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.05.2022"));
         when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("17.05.2023"));
-        Optional<ValidationError> validationError = validation.execute(request);
-        ValidationError expected = (new ValidationError("agreementDateFrom", "Must be in the future!"));
-        assertThat(validationError).contains(expected);
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_1")).thenReturn(validationError);
+        Optional<ValidationError> errorOpt = validation.execute(request);
+        assertTrue(errorOpt.isPresent());
+        assertSame(errorOpt.get(), validationError);
     }
 
     private Date createDate(String dateStr) {

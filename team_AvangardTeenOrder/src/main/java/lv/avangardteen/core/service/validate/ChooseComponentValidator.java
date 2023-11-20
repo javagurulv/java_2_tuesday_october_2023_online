@@ -2,19 +2,19 @@ package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.CoreError;
+import lv.avangardteen.dependency_injection.DIComponent;
+import lv.avangardteen.dependency_injection.DIDependency;
 
 import java.util.*;
 
+@DIComponent
 public class ChooseComponentValidator {
 
+    @DIDependency
     private ClientIdValidator idValidator;
 
+    @DIDependency
     private ComponentValidator componentValidator;
-
-    public ChooseComponentValidator(ClientIdValidator idValidator, ComponentValidator componentValidator) {
-        this.idValidator = idValidator;
-        this.componentValidator = componentValidator;
-    }
 
     public List<CoreError> validate(ChangeComponentRequest request) {
         List<CoreError> errors = new ArrayList<>();

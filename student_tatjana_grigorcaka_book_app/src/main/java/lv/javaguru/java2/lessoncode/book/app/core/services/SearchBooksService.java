@@ -8,21 +8,19 @@ import lv.javaguru.java2.lessoncode.book.app.core.services.validators.SearchBook
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Ordering;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Paging;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchBooksRequest;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
+import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIDependency;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@DIComponent
 public class SearchBooksService {
 
-    private Database database;
-    private SearchBooksRequestValidator validator;
-
-    public SearchBooksService(Database database, SearchBooksRequestValidator validator) {
-        this.database = database;
-        this.validator = validator;
-    }
+    @DIDependency  private Database database;
+    @DIDependency private SearchBooksRequestValidator validator;
 
     public SearchBooksResponse execute(SearchBooksRequest request) {
         List<CoreError> errors = validator.validate(request);

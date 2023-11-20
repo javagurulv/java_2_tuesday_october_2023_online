@@ -1,6 +1,7 @@
 package fitness_club.acceptance_tests;
 
-import fitness_club.ApplicationContext;
+import fitness_club.core.domain.FitnessCentre;
+import fitness_club.dependency_injection.ApplicationContext;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
@@ -11,6 +12,7 @@ import fitness_club.core.responses.SearchClientResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.ChangeClientWorkoutService;
 import fitness_club.core.services.SearchClientService;
+import fitness_club.dependency_injection.DIApplicationContextBuilder;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -18,11 +20,12 @@ import static org.junit.Assert.assertEquals;
 
 @Disabled
 public class ChangeWorkoutsTest {
-    private ApplicationContext appContext = new ApplicationContext();
+    private static ApplicationContext applicationContext =
+            new DIApplicationContextBuilder().build("fitness_club");
 
     @Test
     public void shouldChangeClientAgeGroup() {
-        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "12345", ClientAgeGroups.ADULT, Workouts.GYM);
+        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "12345", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         getAddClientService().execute(addClientRequest);
         ChangeClientWorkoutsRequest request = new ChangeClientWorkoutsRequest("12345", Workouts.GROUP_CLASSES);
         getChangeClientWorkoutService().execute(request);
@@ -39,14 +42,14 @@ public class ChangeWorkoutsTest {
     }
 
     private AddClientService getAddClientService() {
-        return appContext.getBean(AddClientService.class);
+        return applicationContext.getBean(AddClientService.class);
     }
 
     private ChangeClientWorkoutService getChangeClientWorkoutService() {
-        return appContext.getBean(ChangeClientWorkoutService.class);
+        return applicationContext.getBean(ChangeClientWorkoutService.class);
     }
 
     private SearchClientService getSearchClientService() {
-        return appContext.getBean(SearchClientService.class);
+        return applicationContext.getBean(SearchClientService.class);
     }
 }

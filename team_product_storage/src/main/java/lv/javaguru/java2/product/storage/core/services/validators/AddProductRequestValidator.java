@@ -2,11 +2,13 @@ package lv.javaguru.java2.product.storage.core.services.validators;
 
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
+import lv.javaguru.java2.product.storage.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@DIComponent
 public class AddProductRequestValidator {
 
     public List<CoreError> validate(AddProductRequest request) {
@@ -14,6 +16,7 @@ public class AddProductRequestValidator {
         validateProductName(request).ifPresent(errors::add);
         validateProductBrand(request).ifPresent(errors::add);
         validateProductModel(request).ifPresent(errors::add);
+        validateProductQuantity(request).ifPresent(errors::add);
         return errors;
     }
 
@@ -33,6 +36,12 @@ public class AddProductRequestValidator {
     private Optional<CoreError> validateProductModel(AddProductRequest request) {
         return (request.getProductModel() == null || request.getProductModel().isEmpty())
                 ? Optional.of(new CoreError("productModel", "Must not be empty!"))
+                : Optional.empty();
+    }
+
+    private Optional<CoreError> validateProductQuantity(AddProductRequest request) {
+        return (request.getProductQuantity() <= 0 )
+                ? Optional.of(new CoreError("productQuantity", "Must be greater than 0!"))
                 : Optional.empty();
     }
 }

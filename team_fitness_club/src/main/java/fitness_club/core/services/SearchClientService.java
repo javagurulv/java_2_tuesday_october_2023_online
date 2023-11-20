@@ -7,21 +7,18 @@ import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
 import fitness_club.data_vlidation.CoreError;
 import fitness_club.data_vlidation.SearchClientRequestValidator;
+import fitness_club.dependency_injection.DIComponent;
+import fitness_club.dependency_injection.DIDependency;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@DIComponent
 public class SearchClientService {
-    private Database database;
-    private SearchClientRequestValidator validator;
-
-    public SearchClientService(Database database,
-                               SearchClientRequestValidator validator) {
-        this.database = database;
-        this.validator = validator;
-    }
+    @DIDependency private Database database;
+    @DIDependency private SearchClientRequestValidator validator;
 
     public SearchClientResponse execute(SearchClientRequest request) {
         List<CoreError> errors = validator.validate(request);

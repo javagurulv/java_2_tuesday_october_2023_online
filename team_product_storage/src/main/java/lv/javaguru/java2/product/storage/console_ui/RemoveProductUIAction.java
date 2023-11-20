@@ -3,16 +3,15 @@ package lv.javaguru.java2.product.storage.console_ui;
 import lv.javaguru.java2.product.storage.core.requests.RemoveProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.RemoveProductResponse;
 import lv.javaguru.java2.product.storage.core.services.RemoveProductService;
+import lv.javaguru.java2.product.storage.dependency_injection.DIComponent;
+import lv.javaguru.java2.product.storage.dependency_injection.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class RemoveProductUIAction implements UIAction {
 
-    private RemoveProductService removeProductService;
-
-    public RemoveProductUIAction(RemoveProductService deleteProductService) {
-        this.removeProductService = deleteProductService;
-    }
+    @DIDependency private RemoveProductService removeProductService;
 
     @Override
     public void execute() {
@@ -22,7 +21,7 @@ public class RemoveProductUIAction implements UIAction {
         RemoveProductRequest request = new RemoveProductRequest(productId);
         RemoveProductResponse response = removeProductService.execute(request);
         if (response.hasErrors()) {
-            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getErrorCode() + " " + coreError.getMessage()));
         } else {
             if (response.isProductRemoved()) {
                 System.out.println("Your product was removed from list.");

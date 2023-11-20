@@ -3,7 +3,7 @@ package lv.javaguru.java2.lessoncode.book.app.core.responses;
 
 import java.util.List;
 
-public abstract class CoreResponse {
+abstract class CoreResponse {
 
     private List<CoreError> errors;
 

@@ -1,5 +1,8 @@
 package fitness_club.console_UI;
 
+import fitness_club.dependency_injection.DIComponent;
+
+@DIComponent
 public class ExitUIAction implements UIAction {
 
     @Override

@@ -5,19 +5,17 @@ import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import fitness_club.core.responses.ChangeClientAgeGroupResponse;
 import fitness_club.data_vlidation.ChangeClientAgeGroupValidator;
 import fitness_club.data_vlidation.CoreError;
+import fitness_club.dependency_injection.DIComponent;
+import fitness_club.dependency_injection.DIDependency;
 
 import java.util.List;
 
+@DIComponent
 public class ChangeClientAgeGroupService {
 
-    private Database database;
+    @DIDependency private Database database;
+    @DIDependency private ChangeClientAgeGroupValidator validator;
 
-    private ChangeClientAgeGroupValidator validator;
-
-    public ChangeClientAgeGroupService(Database database, ChangeClientAgeGroupValidator validator) {
-        this.validator = validator;
-        this.database = database;
-    }
 
     public ChangeClientAgeGroupResponse execute(ChangeClientAgeGroupRequest request) {
         List<CoreError> errors = validator.validate(request);

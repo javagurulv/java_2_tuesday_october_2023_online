@@ -5,19 +5,15 @@ import fitness_club.core.requests.ChangeClientWorkoutsRequest;
 import fitness_club.core.responses.ChangeClientWorkoutsResponse;
 import fitness_club.data_vlidation.ChangeClientWorkoutsValidator;
 import fitness_club.data_vlidation.CoreError;
+import fitness_club.dependency_injection.DIComponent;
+import fitness_club.dependency_injection.DIDependency;
 
 import java.util.List;
-
+@DIComponent
 public class ChangeClientWorkoutService {
 
-    private Database database;
-
-    private ChangeClientWorkoutsValidator validator;
-
-    public ChangeClientWorkoutService(Database database, ChangeClientWorkoutsValidator validator) {
-        this.database = database;
-        this.validator = validator;
-    }
+    @DIDependency private Database database;
+    @DIDependency private ChangeClientWorkoutsValidator validator;
 
     public ChangeClientWorkoutsResponse execute(ChangeClientWorkoutsRequest request) {
         List<CoreError> errors = validator.validate(request);

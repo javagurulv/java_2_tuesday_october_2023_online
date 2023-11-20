@@ -1,6 +1,5 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
-
 import static org.junit.Assert.*;
 
 import java.util.List;
@@ -10,6 +9,7 @@ import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import org.junit.Test;
 
 public class SearchBooksRequestFieldValidatorTest {
+
     private SearchBooksRequestFieldValidator validator = new SearchBooksRequestFieldValidator();
 
     @Test

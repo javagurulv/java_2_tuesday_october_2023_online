@@ -5,16 +5,17 @@ import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
 import fitness_club.core.services.SearchClientService;
+import fitness_club.dependency_injection.DIComponent;
+import fitness_club.dependency_injection.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class SearchClientUIAction implements UIAction {
 
-    private SearchClientService searchClientService;
+    @DIDependency private SearchClientService searchClientService;
 
-    public SearchClientUIAction(SearchClientService searchClientService) {
-        this.searchClientService = searchClientService;
-    }
+
 
     @Override
     public void execute() {

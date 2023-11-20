@@ -7,11 +7,13 @@ import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
 import fitness_club.data_vlidation.SearchClientRequestValidator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -30,21 +32,22 @@ public class SearchClientServiceTest {
     private SearchClientRequestValidator validator;
     @InjectMocks
     private SearchClientService service;
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void shouldSearchByFirstName() {
 
         SearchClientRequest request = new SearchClientRequest("Dmitry", null);
-        validator = mock(SearchClientRequestValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Dmitry", "Petrov", "1234"));
 
-        database = mock(Database.class);
         Mockito.when(database.findByFirstName("Dmitry")).thenReturn(clients);
 
-        service = new SearchClientService(database, validator);
         SearchClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         assertEquals(response.getFoundClients().size(), 1);
@@ -57,16 +60,13 @@ public class SearchClientServiceTest {
 
         SearchClientRequest request = new SearchClientRequest(null, "Petrov");
 
-        validator = mock(SearchClientRequestValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Ivan", "Petrov", "1234"));
 
-        database = mock(Database.class);
         Mockito.when(database.findByLastName("Petrov")).thenReturn(clients);
 
-        service = new SearchClientService(database, validator);
         SearchClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         assertEquals(response.getFoundClients().size(), 1);
@@ -79,17 +79,14 @@ public class SearchClientServiceTest {
         Ordering ordering = new Ordering("lastName", "ASCENDING");
         SearchClientRequest request = new SearchClientRequest("Dmitry", null, ordering);
 
-        validator = mock(SearchClientRequestValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Dmitry", "Arbuzov", "111"));
         clients.add(new Client("Dmitry", "Bananov", "112"));
 
-        database = mock(Database.class);
         Mockito.when(database.findByFirstName("Dmitry")).thenReturn(clients);
 
-        service = new SearchClientService(database, validator);
         SearchClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         assertEquals(response.getFoundClients().size(), 2);
@@ -102,17 +99,14 @@ public class SearchClientServiceTest {
         Ordering ordering = new Ordering("lastName", "DESCENDING");
         SearchClientRequest request = new SearchClientRequest("Dmitry", null, ordering);
 
-        validator = mock(SearchClientRequestValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Dmitry", "Arbuzov", "111"));
         clients.add(new Client("Dmitry", "Bananov", "112"));
 
-        database = mock(Database.class);
         Mockito.when(database.findByFirstName("Dmitry")).thenReturn(clients);
 
-        service = new SearchClientService(database, validator);
         SearchClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         assertEquals(response.getFoundClients().size(), 2);
@@ -125,17 +119,14 @@ public class SearchClientServiceTest {
         Paging paging = new Paging(1, 1);
         SearchClientRequest request = new SearchClientRequest("Dmitry", null, null, paging);
 
-        validator = mock(SearchClientRequestValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Dmitry", "Arbuzov", "111"));
         clients.add(new Client("Dmitry", "Bananov", "112"));
 
-        database = mock(Database.class);
         Mockito.when(database.findByFirstName("Dmitry")).thenReturn(clients);
 
-        service = new SearchClientService(database, validator);
         SearchClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         assertEquals(response.getFoundClients().size(), 1);
@@ -148,17 +139,14 @@ public class SearchClientServiceTest {
         Paging paging = new Paging(2, 1);
         SearchClientRequest request = new SearchClientRequest("Dmitry", null, null, paging);
 
-        validator = mock(SearchClientRequestValidator.class);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Dmitry", "Arbuzov", "111"));
         clients.add(new Client("Dmitry", "Bananov", "112"));
 
-        database = mock(Database.class);
         Mockito.when(database.findByFirstName("Dmitry")).thenReturn(clients);
 
-        service = new SearchClientService(database, validator);
         SearchClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         assertEquals(response.getFoundClients().size(), 1);
