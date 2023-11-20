@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import fitness_club.core.domain.Client;
 import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.domain.Workouts;
 import fitness_club.dependency_injection.DIComponent;
 
@@ -65,6 +66,22 @@ public class InMemoryDatabase implements Database {
         if (clientToChangeWorkoutOpt.isPresent()) {
             Client clientToChangeWorkout = clientToChangeWorkoutOpt.get();
             clientToChangeWorkout.setWorkouts(newWorkout);
+            updateClientIds(clients);
+            saveClient(clients);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean isClientFitnessCentreChangedByPersonalCode(String personalCode, FitnessCentre newFitnessCentre) {
+        Optional<Client> clientToChangeFitnessCentreOpt = clients.stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst();
+        if (clientToChangeFitnessCentreOpt.isPresent()) {
+            Client clientToChangeFitnessCentre = clientToChangeFitnessCentreOpt.get();
+            clientToChangeFitnessCentre.setFitnessCentre(newFitnessCentre);
             updateClientIds(clients);
             saveClient(clients);
             return true;

@@ -35,7 +35,8 @@ public class AddClientService {
                 request.getLastName(),
                 request.getPersonalCode(),
                 request.getClientAgeGroup(),
-                request.getWorkout());
+                request.getWorkout(),
+                request.getFitnessCentre());
         database.addClient(client);
         return new AddClientResponse(client);
     }

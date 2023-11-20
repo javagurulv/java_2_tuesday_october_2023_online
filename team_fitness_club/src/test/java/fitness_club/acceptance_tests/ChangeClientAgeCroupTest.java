@@ -1,5 +1,6 @@
 package fitness_club.acceptance_tests;
 
+import fitness_club.core.domain.FitnessCentre;
 import fitness_club.dependency_injection.ApplicationContext;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
@@ -24,7 +25,7 @@ public class ChangeClientAgeCroupTest {
 
     @Test
     public void shouldChangeClientAgeGroup() {
-        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "12345", ClientAgeGroups.ADULT, Workouts.GYM);
+        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "12345", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         getAddClientService().execute(addClientRequest);
         ChangeClientAgeGroupRequest request = new ChangeClientAgeGroupRequest("12345", ClientAgeGroups.CHILD);
         getChangeClientAgeGroupService().execute(request);

@@ -1,5 +1,6 @@
 package fitness_club.acceptance_tests;
 
+import fitness_club.core.domain.FitnessCentre;
 import fitness_club.dependency_injection.ApplicationContext;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
@@ -30,7 +31,7 @@ public class RemoveClientAcceptanceTests {
 
     @Test
     public void shouldRemoveClient() {
-        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "123", ClientAgeGroups.ADULT, Workouts.GYM);
+        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "123", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         getAddClientService().execute(addClientRequest);
         RemoveClientRequest request = new RemoveClientRequest("123");
         RemoveClientResponse response = getDeleteClientService().execute(request);

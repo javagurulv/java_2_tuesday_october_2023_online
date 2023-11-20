@@ -1,6 +1,7 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.Database;
+import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.responses.AddClientResponse;
 import fitness_club.data_vlidation.AddClientRequestValidator;
 import fitness_club.core.domain.ClientAgeGroups;
@@ -43,7 +44,7 @@ public class AddClientServiceTest {
     @Test
     void addClientShouldSuccess_Mockito_style() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
-                "12-12", ClientAgeGroups.ADULT, Workouts.GYM);
+                "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         when(validator.validate(request)).thenReturn(List.of());
         AddClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -53,7 +54,7 @@ public class AddClientServiceTest {
     @Test
     void addClientShouldFail_Mockito_style() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
-                "12-12", ClientAgeGroups.ADULT, Workouts.GYM);
+                "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         when(validator.validate(request)).thenReturn(List.of(new CoreError("error", "Warning")));
         AddClientResponse response = service.execute(request);
         assertTrue(response.hasErrors());
@@ -65,7 +66,7 @@ public class AddClientServiceTest {
     void addClient() {
         inMemoryDatabase = new InMemoryDatabase();
         addClient = new AddClientService(inMemoryDatabase, new AddClientRequestValidator());
-        AddClientRequest request = new AddClientRequest("Aaa", "Bbb", "12-12", ClientAgeGroups.SENIOR, Workouts.GYM);
+        AddClientRequest request = new AddClientRequest("Aaa", "Bbb", "12-12", ClientAgeGroups.SENIOR, Workouts.GYM, FitnessCentre.AKROPOLE);
         addClient.execute(request);
         Client client = new Client("Aaa", "Bbb", "12-12", ClientAgeGroups.SENIOR, Workouts.GYM);
         Assertions.assertTrue(inMemoryDatabase.getAllClients().contains(client));

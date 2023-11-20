@@ -1,5 +1,6 @@
 package fitness_club.acceptance_tests;
 
+import fitness_club.core.domain.FitnessCentre;
 import fitness_club.dependency_injection.ApplicationContext;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
@@ -21,8 +22,8 @@ public class GetAllClientsTest {
 
     @Test
     public void shouldReturnCorrectClientAmount() {
-        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "123", ClientAgeGroups.ADULT, Workouts.GYM);
-        AddClientRequest addClientRequest2 = new AddClientRequest("FirstName", "LastName", "321", ClientAgeGroups.ADULT, Workouts.GYM);
+        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "123", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
+        AddClientRequest addClientRequest2 = new AddClientRequest("FirstName", "LastName", "321", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         getAddClientService().execute(addClientRequest);
         getAddClientService().execute(addClientRequest2);
         GetAllClientsResponse response = getGetAllClientsService().execute(new GetAllClientsRequest());

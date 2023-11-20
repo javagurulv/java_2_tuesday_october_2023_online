@@ -2,6 +2,7 @@ package fitness_club.core.services;
 
 import fitness_club.core.database.Database;
 import fitness_club.core.database.InMemoryDatabase;
+import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.requests.GetAllClientsRequest;
 import fitness_club.core.responses.GetAllClientsResponse;
 import fitness_club.core.domain.Client;
@@ -39,7 +40,7 @@ public class GetAllClientsServiceTest {
     public void shouldGetClientsFromDb() {
 
         List<Client> clients = List.of(new Client("Andrey", "Pupkin",
-                "12-12", ClientAgeGroups.ADULT, Workouts.GYM));
+                "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE));
         Mockito.when(database.getAllClients()).thenReturn(clients);
         GetAllClientsRequest request = new GetAllClientsRequest();
         GetAllClientsResponse response = service.execute(request);
@@ -50,7 +51,7 @@ public class GetAllClientsServiceTest {
     public void shouldNotGetClientsFromDb() {
 
         List<Client> clients = List.of(new Client("Andrey", "Pupkin",
-                "12-13", ClientAgeGroups.ADULT, Workouts.GYM));
+                "12-13", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE));
         Mockito.when(database.getAllClients()).thenReturn(clients);
         GetAllClientsRequest request = new GetAllClientsRequest();
         GetAllClientsResponse response = service.execute(request);

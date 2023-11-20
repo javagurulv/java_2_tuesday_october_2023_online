@@ -50,8 +50,8 @@ public class RemoveClientServiceTest {
         inMemoryDatabase =  new InMemoryDatabase();
         addClient = new AddClientService(inMemoryDatabase, new AddClientRequestValidator());
         deleteClient = new DeleteClientService(inMemoryDatabase, new DeleteClientRequestValidator());
-        AddClientRequest addFirstClientRequest = new AddClientRequest("Aaa", "Bbb", "12-12", ClientAgeGroups.SENIOR, Workouts.GYM);
-        AddClientRequest addSecondClientRequest = new AddClientRequest("Ccc", "Ddd", "12-13", ClientAgeGroups.SENIOR, Workouts.GYM);
+        AddClientRequest addFirstClientRequest = new AddClientRequest("Aaa", "Bbb", "12-12", ClientAgeGroups.SENIOR, Workouts.GYM, FitnessCentre.AKROPOLE);
+        AddClientRequest addSecondClientRequest = new AddClientRequest("Ccc", "Ddd", "12-13", ClientAgeGroups.SENIOR, Workouts.GYM, FitnessCentre.AKROPOLE);
         DeleteClientRequest deleteSecondClientRequest = new DeleteClientRequest("12-13");
         addClient.execute(addFirstClientRequest);
         addClient.execute(addSecondClientRequest);

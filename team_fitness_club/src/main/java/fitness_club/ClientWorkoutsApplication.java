@@ -43,11 +43,16 @@ public class ClientWorkoutsApplication {
                     break;
                 }
                 case 6: {
-                    SearchClientUIAction uiAction = applicationContext.getBean(SearchClientUIAction.class);
+                    ChangeClientFitnessCentreUIAction uiAction = applicationContext.getBean(ChangeClientFitnessCentreUIAction.class);
                     uiAction.execute();
                     break;
                 }
                 case 7: {
+                    SearchClientUIAction uiAction = applicationContext.getBean(SearchClientUIAction.class);
+                    uiAction.execute();
+                    break;
+                }
+                case 8: {
                     ExitUIAction uiAction = applicationContext.getBean(ExitUIAction.class);
                     uiAction.execute();
                     break;
@@ -64,8 +69,9 @@ public class ClientWorkoutsApplication {
         System.out.println("3. Show all clients in the list");
         System.out.println("4. Change client workout");
         System.out.println("5. Change client age group");
-        System.out.println("6. Search clients in database");
-        System.out.println("7. Exit");
+        System.out.println("6. Change client fitness centre");
+        System.out.println("7. Search clients in database");
+        System.out.println("8. Exit");
         System.out.println("");
     }
 

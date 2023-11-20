@@ -3,6 +3,7 @@ package fitness_club.data_vlidation;
 import fitness_club.core.database.Database;
 import fitness_club.core.domain.Client;
 import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +33,7 @@ public class AddClientRequestValidatorDuplicateTest {
     @Test
     void shouldReturnErrorWhenDuplicateFound() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
-                "12-12", ClientAgeGroups.ADULT, Workouts.GYM);
+                "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         List<CoreError> errors = validator.validate(request);
 //        assertTrue(!errors.isEmpty());
 //        assertEquals(errors.get(0).getField(), "uniqueClient");
@@ -67,6 +68,9 @@ public class AddClientRequestValidatorDuplicateTest {
         }
 
         @Override
+        public boolean isClientFitnessCentreChangedByPersonalCode(String personalCode, FitnessCentre fitnessCentre) { return false; }
+
+        @Override
         public void saveClient(List<Client> clients) {
 
         }
@@ -89,7 +93,7 @@ public class AddClientRequestValidatorDuplicateTest {
         @Override
         public List<Client> findByPersonalCode(String personalCode) {
             return List.of(new Client("Andrey", "Pupkin",
-                    "12-12", ClientAgeGroups.ADULT, Workouts.GYM));
+                    "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE));
         }
     }
 }

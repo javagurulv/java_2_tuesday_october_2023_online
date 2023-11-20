@@ -1,6 +1,7 @@
 package fitness_club.core.requests;
 
 import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.domain.Workouts;
 
 public class AddClientRequest {
@@ -10,13 +11,15 @@ public class AddClientRequest {
     private String personalCode;
     private ClientAgeGroups clientAgeGroup;
     private Workouts workout;
+    private FitnessCentre fitnessCentre;
 
-    public AddClientRequest(String firstName, String lastName, String personalCode, ClientAgeGroups clientAgeGroup, Workouts workout) {
+    public AddClientRequest(String firstName, String lastName, String personalCode, ClientAgeGroups clientAgeGroup, Workouts workout, FitnessCentre fitnessCentre) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.personalCode = personalCode;
         this.clientAgeGroup = clientAgeGroup;
         this.workout = workout;
+        this.fitnessCentre = fitnessCentre;
     }
 
     public String getFirstName() {
@@ -38,5 +41,7 @@ public class AddClientRequest {
     public ClientAgeGroups getClientAgeGroup() {
         return clientAgeGroup;
     }
+
+    public FitnessCentre getFitnessCentre() { return  fitnessCentre; }
 
 }
