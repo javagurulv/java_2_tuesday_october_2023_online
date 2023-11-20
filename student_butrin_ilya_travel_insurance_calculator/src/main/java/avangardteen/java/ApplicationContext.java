@@ -36,7 +36,8 @@ public class ApplicationContext {
                 getBean(UserSizes.class)));
         beans.put(ChangeComponentServise.class, new ChangeComponentServise(
                 getBean(DataComponents.class),
-                getBean(Wheelchair.class)));
+                getBean(Wheelchair.class),
+                getBean(WheelchairValigator.class)));
         beans.put(ChangeComponentUIAction.class, new ChangeComponentUIAction(
                 getBean(ChangeComponentServise.class)));
         beans.put( ShowAllComponentsServis.class, new ShowAllComponentsServis(

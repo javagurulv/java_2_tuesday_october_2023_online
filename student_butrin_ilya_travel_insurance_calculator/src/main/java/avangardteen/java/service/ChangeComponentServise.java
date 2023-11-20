@@ -19,9 +19,10 @@ public class ChangeComponentServise {
     Wheelchair wheelchair;
     WheelchairValigator valigator;
 
-    public ChangeComponentServise(DataComponents components, Wheelchair wheelchair) {
+    public ChangeComponentServise(DataComponents components, Wheelchair wheelchair, WheelchairValigator valigator) {
         this.components = components;
         this.wheelchair = wheelchair;
+        this.valigator = valigator;
     }
 
     public ChangeCompanentsResponce responce() {
@@ -29,19 +30,36 @@ public class ChangeComponentServise {
         ChangeCompanentsResponce responce = new ChangeCompanentsResponce(listAllCathegory, null, wheelchair);
         return responce;
     }
+
+
     public ChangeCompanentsResponce responce2(ChangeComponentsRequest request) {
         List<Component> listAllComponen = listComponents(request);
         ChangeCompanentsResponce responce = new ChangeCompanentsResponce(null, listAllComponen, null);
         return responce;
     }
-    public ChangeCompanentsResponce responce3 (ChangeComponentsRequest request) {
+
+    public ChangeCompanentsResponce responce3(ChangeComponentsRequest request) {
         chooseNewComponent(request);
         ChangeCompanentsResponce responce = new ChangeCompanentsResponce();
-        List <CoreError> errors = valigator.errorlist(wheelchair);
+        List<CoreError> errors = valigator.errorlist(wheelchair);
         if (!errors.isEmpty())
-            return new ChangeCompanentsResponce();
+            return new ChangeCompanentsResponce(errors);
         return responce;
     }
+
+    public List<Component> responce4() {
+       List<Component> xx = checkSizeAndType();
+       return xx;
+    }
+    public void responce5(ChangeComponentsRequest request) {
+        List<Component> x = checkSizeAndType();
+        for (int i=0; i< x.size();i++)
+        if (request.getNewChoose() == i + 1){
+            String id = x.get(i).getComponentID();
+            wheelchair.addComponents(id,components);
+        }
+    }
+
 
 
     public List<Category> listAllCategory() {
@@ -74,24 +92,28 @@ public class ChangeComponentServise {
         for (int i = 0; i < components.getAllComponents().size(); i++) {
             if (components.getAllComponents().get(i).getCategory().equals(
                     listAllCategory.get(request.getCathegory() - 1))) {
-                newChoose.add(components.getAllComponents().get(i));}
-            if (listAllCategory.get(request.getCathegory() - 1).equals(BACK_WHEEL)) {
-                Component comp = wheelchair.getComponents().get(BACK_WHEEL_SIZE);
-                if (comp.getComponentID().equals("MG 04")) {
-                    List<Component> newChoose20Size = new ArrayList<>();
-                    newChoose20Size.addAll(components.allBackWheelsFor20size());
-                    return newChoose20Size;}
-                if (comp.getComponentID().equals("MG 01")) {
-                    List<Component> newChoose22Size = new ArrayList<>();
-                    newChoose22Size.addAll(components.allBackWheelsFor22size());
-                    return newChoose22Size;}
-                if (comp.getComponentID().equals("MG 02")) {
-                    List<Component> newChoose24Size = new ArrayList<>();
-                    newChoose24Size.addAll(components.allBackWheelsFor20size());
-                    return newChoose24Size;}
+                newChoose.add(components.getAllComponents().get(i));
             }
+
         }
         return newChoose;
+    }
+    public List<Component> checkSizeAndType(){
+        List <Component> info = new ArrayList<>();
+        Component comp = wheelchair.getComponents().get(BACK_WHEEL_SIZE);
+        if (comp.getComponentID().equals("MG 04")) {
+            info = new ArrayList<>();
+            info.addAll(components.allBackWheelsFor20size());
+        }
+        if (comp.getComponentID().equals("MG 01")) {
+            info = new ArrayList<>();
+            info.addAll(components.allBackWheelsFor22size());
+        }
+        if (comp.getComponentID().equals("MG 02")) {
+            info = new ArrayList<>();
+            info.addAll(components.allBackWheelsFor24Size());
+        }
+        return info;
 
 }
 }

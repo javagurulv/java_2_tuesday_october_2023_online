@@ -95,9 +95,9 @@ DataComponents {
         for (int i = 0; i < getAllComponents().size(); i++) {
             if (getAllComponents().get(i).getCategory().equals(Category.BACK_WHEEL)) {
                 allBackWheelFor24Size.add(getAllComponents().get(i));
-                allBackWheelFor24Size.remove(0);
             }
         }
+            allBackWheelFor24Size.remove(0);
         return allBackWheelFor24Size;
     }
     public List<Component> allBackWheels() {
