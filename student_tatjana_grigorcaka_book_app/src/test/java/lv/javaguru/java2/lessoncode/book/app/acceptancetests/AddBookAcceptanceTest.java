@@ -45,6 +45,21 @@ public class AddBookAcceptanceTest {
     }
 
     @Test
+    public void shouldReturnErrorWhenDuplicateBookFound() {
+        AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery");
+        getAddBookService().execute(addBookRequest1);
+        AddBookRequest addBookRequest2 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery");
+        getAddBookService().execute(addBookRequest2);
+
+        AddBookResponse response = getAddBookService().execute(addBookRequest2);
+
+        assertTrue(response.containsErrors());
+        assertEquals(response.getErrors().size(), 1);
+        assertEquals(response.getErrors().get(0).getErrorCode(), "duplicate");
+        assertEquals(response.getErrors().get(0).getErrorMessage(), "Duplicate book not accepted!");
+    }
+
+    @Test
     public void shouldReturnBook() {
         AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery");
         getAddBookService().execute(addBookRequest1);
