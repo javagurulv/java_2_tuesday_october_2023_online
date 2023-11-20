@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
-@Disabled
 public class ChangeWorkoutsTest {
     private static ApplicationContext applicationContext =
             new DIApplicationContextBuilder().build("fitness_club");

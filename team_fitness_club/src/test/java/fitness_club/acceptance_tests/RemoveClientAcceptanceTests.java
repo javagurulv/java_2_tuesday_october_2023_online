@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-@Disabled
 public class RemoveClientAcceptanceTests {
     private static ApplicationContext applicationContext =
             new DIApplicationContextBuilder().build("fitness_club");
