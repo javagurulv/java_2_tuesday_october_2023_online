@@ -1,11 +1,5 @@
 package fitness_club.dependency_injection;
 
-import fitness_club.console_UI.*;
-import fitness_club.core.database.Database;
-import fitness_club.core.database.InFileDatabase;
-import fitness_club.core.services.*;
-import fitness_club.data_vlidation.*;
-
 import java.util.HashMap;
 import java.util.Map;
 

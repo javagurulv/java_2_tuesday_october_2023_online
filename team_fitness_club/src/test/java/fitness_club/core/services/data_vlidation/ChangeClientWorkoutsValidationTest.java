@@ -1,20 +1,26 @@
-package fitness_club.data_vlidation;
+package fitness_club.core.services.data_vlidation;
 
-import fitness_club.core.requests.RemoveClientRequest;
+import fitness_club.core.domain.Workouts;
+import fitness_club.core.requests.ChangeClientWorkoutsRequest;
+import fitness_club.core.services.data_vlidation.ChangeClientWorkoutsValidator;
+import fitness_club.core.services.data_vlidation.CoreError;
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class RemoveClientValidationTest {
-    private RemoveClientRequestValidator requestValidator = new RemoveClientRequestValidator();
+class ChangeClientWorkoutsValidationTest {
+    private ChangeClientWorkoutsValidator requestValidator = new ChangeClientWorkoutsValidator();
 
     @Test
     void shouldReturnErrorWhenClientPersonalCodeIsNull() {
-        RemoveClientRequest request = mock(RemoveClientRequest.class);
+        ChangeClientWorkoutsRequest request = mock(ChangeClientWorkoutsRequest.class);
         {
             when(request.getPersonalCode()).thenReturn(null);
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -25,9 +31,10 @@ class RemoveClientValidationTest {
 
     @Test
     void shouldReturnErrorWhenClientPersonaCodeIsEmpty() {
-        RemoveClientRequest request = mock(RemoveClientRequest.class);
+        ChangeClientWorkoutsRequest request = mock(ChangeClientWorkoutsRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("");
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -38,9 +45,10 @@ class RemoveClientValidationTest {
 
     @Test
     void shouldNotReturnErrorWhenPersonalCodeIsPresent() {
-        RemoveClientRequest request = mock(RemoveClientRequest.class);
+        ChangeClientWorkoutsRequest request = mock(ChangeClientWorkoutsRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("personalCode");
+            when(request.getWorkout()).thenReturn(Workouts.GYM);
             List<CoreError> errors = requestValidator.validate(request);
             assertTrue(errors.isEmpty());
         }

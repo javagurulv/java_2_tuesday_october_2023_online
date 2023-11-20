@@ -6,7 +6,7 @@ import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
-import fitness_club.data_vlidation.SearchClientRequestValidator;
+import fitness_club.core.services.data_vlidation.SearchClientRequestValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

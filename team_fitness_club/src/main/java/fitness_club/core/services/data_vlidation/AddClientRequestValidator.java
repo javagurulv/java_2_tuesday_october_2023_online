@@ -1,20 +1,23 @@
-package fitness_club.data_vlidation;
+package fitness_club.core.services.data_vlidation;
 
 import fitness_club.core.database.Database;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
-import fitness_club.core.database.InFileDatabase;
 import fitness_club.dependency_injection.DIComponent;
 import fitness_club.dependency_injection.DIDependency;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @DIComponent
 public class AddClientRequestValidator {
-    @DIDependency private Database database;
-
+    @DIDependency
+    private Database database;
 
     public List<CoreError> validate(AddClientRequest request) {
         List<CoreError> errors = new ArrayList<>();

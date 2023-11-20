@@ -1,4 +1,4 @@
-package fitness_club.data_vlidation;
+package fitness_club.core.services.data_vlidation;
 
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
@@ -6,9 +6,7 @@ import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.dependency_injection.DIComponent;
 import fitness_club.dependency_injection.DIDependency;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @DIComponent
 public class SearchClientRequestValidator {

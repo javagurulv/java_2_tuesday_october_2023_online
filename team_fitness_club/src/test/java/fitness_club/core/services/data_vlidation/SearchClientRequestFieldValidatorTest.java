@@ -1,6 +1,8 @@
-package fitness_club.data_vlidation;
+package fitness_club.core.services.data_vlidation;
 
 import fitness_club.core.requests.SearchClientRequest;
+import fitness_club.core.services.data_vlidation.CoreError;
+import fitness_club.core.services.data_vlidation.SearchClientRequestFieldValidator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

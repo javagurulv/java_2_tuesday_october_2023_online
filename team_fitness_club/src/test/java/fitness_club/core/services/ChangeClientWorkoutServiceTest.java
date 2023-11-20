@@ -1,25 +1,16 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.Database;
-import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import fitness_club.core.responses.ChangeClientWorkoutsResponse;
-import fitness_club.data_vlidation.AddClientRequestValidator;
-import fitness_club.core.database.InMemoryDatabase;
-import fitness_club.core.domain.Client;
-import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
-import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.requests.ChangeClientWorkoutsRequest;
-import fitness_club.core.services.AddClientService;
-import fitness_club.core.services.ChangeClientWorkoutService;
-import fitness_club.data_vlidation.ChangeClientWorkoutsValidator;
+import fitness_club.core.services.data_vlidation.ChangeClientWorkoutsValidator;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 

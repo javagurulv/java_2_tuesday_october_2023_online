@@ -5,8 +5,8 @@ import fitness_club.core.domain.Client;
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
-import fitness_club.data_vlidation.CoreError;
-import fitness_club.data_vlidation.SearchClientRequestValidator;
+import fitness_club.core.services.data_vlidation.CoreError;
+import fitness_club.core.services.data_vlidation.SearchClientRequestValidator;
 import fitness_club.dependency_injection.DIComponent;
 import fitness_club.dependency_injection.DIDependency;
 

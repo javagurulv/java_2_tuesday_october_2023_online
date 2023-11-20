@@ -1,4 +1,4 @@
-package fitness_club.data_vlidation;
+package fitness_club.core.services.data_vlidation;
 
 import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.dependency_injection.DIComponent;

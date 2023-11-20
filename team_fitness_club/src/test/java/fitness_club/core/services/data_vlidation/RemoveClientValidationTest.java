@@ -1,24 +1,22 @@
-package fitness_club.data_vlidation;
+package fitness_club.core.services.data_vlidation;
 
-import fitness_club.core.domain.ClientAgeGroups;
-import fitness_club.core.requests.ChangeClientAgeGroupRequest;
+import fitness_club.core.requests.RemoveClientRequest;
+import fitness_club.core.services.data_vlidation.CoreError;
+import fitness_club.core.services.data_vlidation.RemoveClientRequestValidator;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class ChangeClientAgeGroupValidationTest {
-    private  ChangeClientAgeGroupValidator requestValidator = new ChangeClientAgeGroupValidator();
+class RemoveClientValidationTest {
+    private RemoveClientRequestValidator requestValidator = new RemoveClientRequestValidator();
 
     @Test
     void shouldReturnErrorWhenClientPersonalCodeIsNull() {
-        ChangeClientAgeGroupRequest request = mock(ChangeClientAgeGroupRequest.class);
+        RemoveClientRequest request = mock(RemoveClientRequest.class);
         {
             when(request.getPersonalCode()).thenReturn(null);
-            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.CHILD);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -29,10 +27,9 @@ class ChangeClientAgeGroupValidationTest {
 
     @Test
     void shouldReturnErrorWhenClientPersonaCodeIsEmpty() {
-        ChangeClientAgeGroupRequest request = mock(ChangeClientAgeGroupRequest.class);
+        RemoveClientRequest request = mock(RemoveClientRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("");
-            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.CHILD);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -43,10 +40,9 @@ class ChangeClientAgeGroupValidationTest {
 
     @Test
     void shouldNotReturnErrorWhenPersonalCodeIsPresent() {
-        ChangeClientAgeGroupRequest request = mock(ChangeClientAgeGroupRequest.class);
+        RemoveClientRequest request = mock(RemoveClientRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.CHILD);
             List<CoreError> errors = requestValidator.validate(request);
             assertTrue(errors.isEmpty());
         }

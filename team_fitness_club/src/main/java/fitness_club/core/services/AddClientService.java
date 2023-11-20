@@ -4,13 +4,16 @@ import fitness_club.core.database.Database;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.AddClientResponse;
-import fitness_club.data_vlidation.AddClientRequestValidator;
-import fitness_club.data_vlidation.CoreError;
+import fitness_club.core.services.data_vlidation.AddClientRequestValidator;
+import fitness_club.core.services.data_vlidation.CoreError;
 import fitness_club.dependency_injection.DIComponent;
 import fitness_club.dependency_injection.DIDependency;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
-
+@AllArgsConstructor
+@NoArgsConstructor
 @DIComponent
 public class AddClientService {
 

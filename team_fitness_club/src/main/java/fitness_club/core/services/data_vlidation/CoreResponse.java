@@ -1,4 +1,4 @@
-package fitness_club.data_vlidation;
+package fitness_club.core.services.data_vlidation;
 
 import java.util.List;
 

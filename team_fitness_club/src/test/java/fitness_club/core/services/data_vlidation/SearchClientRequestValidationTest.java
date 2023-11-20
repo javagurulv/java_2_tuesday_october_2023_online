@@ -1,14 +1,13 @@
-package fitness_club.data_vlidation;
+package fitness_club.core.services.data_vlidation;
 
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
-import org.junit.Before;
+import fitness_club.core.services.data_vlidation.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.List;
