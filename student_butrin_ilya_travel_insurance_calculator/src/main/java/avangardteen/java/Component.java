@@ -8,9 +8,9 @@ public class Component {
     private String information;
     private double price;
 
-    public Component(Category category, String marking, String information, double price) {
+    public Component(Category category, String componentID, String information, double price) {
         this.category = category;
-        this.componentID = marking;
+        this.componentID = componentID;
         this.information = information;
         this.price = price;
     }
