@@ -1,54 +1,21 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.database;
 
-import java.util.ArrayList;
+import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Ingredient;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Database implements DatabaseImpl{
+public interface Database {
 
-    private Long nextId=1L;
-    private List<Ingridient> ingridients = new ArrayList<>();
+    void save(Ingredient ingredient);
 
+    boolean deleteById(Long id);
 
-    @Override
-    public void save(Ingridient ingridient) {
-        ingridient.setId(nextId);
-        nextId++;
-        ingridients.add(ingridient);
-    }
+    List<Ingredient> getAllIngredients();
 
-    @Override
-    public boolean deleteById(Long id) {
-        ingridients.stream()
-                .filter(ingridient -> ingridient.getId().equals(id))
-                .findFirst()
-                .ifPresent(ingridient -> ingridients.remove(ingridient));
-        return false;
-    }
+    List<Ingredient> findByType(String type);
 
-    @Override
-    public List<Ingridient> getAllIngridients() {
-        return ingridients;
-    }
+    List<Ingredient> findByTaste(String taste);
 
-    @Override
-    public List<Ingridient> findByType(String type){
-        return ingridients.stream()
-                .filter(ingridient -> ingridient.getType().equals(type))
-                .collect(Collectors.toList());
-    }
-    @Override
-    public List<Ingridient> findByTypeAndTaste(String type, String taste) {
-        return ingridients.stream()
-                .filter(ingridient -> ingridient.getType().equals(type))
-                .filter(ingridient -> ingridient.getTaste().equals(taste))
-                .collect(Collectors.toList());
-    }
+    List<Ingredient> findByTypeAndTaste(String type, String taste);
 
-    @Override
-    public List<Ingridient> findByTaste (String taste){
-        return ingridients.stream()
-                .filter(ingridient -> ingridient.getTaste().equals(taste))
-                .collect(Collectors.toList());
-    }
 }

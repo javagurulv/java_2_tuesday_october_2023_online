@@ -1,17 +1,17 @@
-package lv.javaguru.java2.cakeConstructor.newApp.core.services;
+package lv.javaguru.java2.cakeConstructor.newApp.core.services.validators;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.request.Ordering;
-import lv.javaguru.java2.cakeConstructor.newApp.core.request.Paging;
-import lv.javaguru.java2.cakeConstructor.newApp.core.request.SearchIngridientRequest;
+import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Ordering;
+import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Paging;
+import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class SearchIngridientRequestValidation {
+public class SearchIngredientsRequestValidator {
 
-    public List<CoreError> validation (SearchIngridientRequest request){
+    public List<CoreError> validate(SearchIngredientsRequest request){
         List<CoreError> errors = new ArrayList<>();
         errors.addAll(validateSearchFields(request));
         if (request.getOrdering() != null) {
@@ -28,9 +28,9 @@ public class SearchIngridientRequestValidation {
         }
         return errors;
     }
-    private List<CoreError> validateSearchFields(SearchIngridientRequest request) {
+    private List<CoreError> validateSearchFields(SearchIngredientsRequest request) {
         List<CoreError> errors = new ArrayList<>();
-        if (isEmpty(request.getTypeOfIngridient()) && isEmpty(request.getTasteOfIngridient())) {
+        if (isEmpty(request.getType()) && isEmpty(request.getTaste())) {
             errors.add(new CoreError("type", "Must not be empty!"));
             errors.add(new CoreError("taste", "Must not be empty!"));
         }

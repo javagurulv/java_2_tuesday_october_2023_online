@@ -1,4 +1,4 @@
-package lv.javaguru.java2.cakeConstructor.newApp.core.request;
+package lv.javaguru.java2.cakeConstructor.newApp.core.requests;
 
 public class Paging {
 

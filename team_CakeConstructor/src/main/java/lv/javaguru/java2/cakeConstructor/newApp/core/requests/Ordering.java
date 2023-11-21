@@ -1,9 +1,14 @@
-package lv.javaguru.java2.cakeConstructor.newApp.core.request;
+package lv.javaguru.java2.cakeConstructor.newApp.core.requests;
 
 public class Ordering {
 
     private String orderBy;
     private String orderDirection;
+
+    public Ordering (String orderBy, String orderDirection){
+        this.orderBy=orderBy;
+        this.orderDirection=orderDirection;
+    }
 
     public String getOrderBy() {
         return orderBy;
@@ -13,8 +18,5 @@ public class Ordering {
         return orderDirection;
     }
 
-    public Ordering (String orderBy, String orderDirection){
-        this.orderBy=orderBy;
-        this.orderDirection=orderDirection;
-    }
+
 }

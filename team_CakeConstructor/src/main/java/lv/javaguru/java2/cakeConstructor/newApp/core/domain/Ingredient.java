@@ -1,9 +1,9 @@
-package lv.javaguru.java2.cakeConstructor.newApp.core.database;
+package lv.javaguru.java2.cakeConstructor.newApp.core.domain;
 
 
 import java.util.Objects;
 
-public class Ingridient {
+public class Ingredient {
 
 
     private Long id;
@@ -11,7 +11,7 @@ public class Ingridient {
     private String taste;
 
 
-    public Ingridient(String type, String taste) {
+    public Ingredient(String type, String taste) {
         this.type = type;
         this.taste = taste;
     }
@@ -19,8 +19,9 @@ public class Ingridient {
 
     @Override
     public String toString() {
-        return "Ingridient{" +
-                "type='" + type + '\'' +
+        return "Ingredient{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
                 ", taste='" + taste + '\'' +
                 '}';
     }
@@ -37,7 +38,7 @@ public class Ingridient {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ingridient that = (Ingridient) o;
+        Ingredient that = (Ingredient) o;
         return Objects.equals(id, that.id) && Objects.equals(type, that.type) && Objects.equals(taste, that.taste);
     }
 
