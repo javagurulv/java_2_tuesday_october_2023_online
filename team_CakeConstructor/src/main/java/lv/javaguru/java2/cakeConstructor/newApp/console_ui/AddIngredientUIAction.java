@@ -3,16 +3,16 @@ package lv.javaguru.java2.cakeConstructor.newApp.console_ui;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.AddIngredientResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.AddIngredientService;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
 
 import java.util.Scanner;
-
+@DIComponent
 public class AddIngredientUIAction implements UIAction {
 
+    @DIDependency
     private AddIngredientService addIngredientService;
 
-    public AddIngredientUIAction(AddIngredientService addIngredientService) {
-        this.addIngredientService = addIngredientService;
-    }
 
     @Override
     public void execute() {

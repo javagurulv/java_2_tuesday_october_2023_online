@@ -2,14 +2,15 @@ package lv.javaguru.java2.cakeConstructor.newApp.console_ui;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.GetAllIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.GetAllIngredientsResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.GetAllIngredientsService;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
 
+@DIComponent
 public class GetAllIngredientsUIAction implements UIAction{
 
+    @DIDependency
     private GetAllIngredientsService getAllIngredientsService;
 
-    public GetAllIngredientsUIAction(GetAllIngredientsService getAllIngredientsService) {
-        this.getAllIngredientsService = getAllIngredientsService;
-    }
 
     @Override
     public void execute() {

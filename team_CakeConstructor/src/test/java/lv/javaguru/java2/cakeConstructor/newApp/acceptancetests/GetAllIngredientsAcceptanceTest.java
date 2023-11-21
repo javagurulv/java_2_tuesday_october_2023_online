@@ -1,18 +1,20 @@
 package lv.javaguru.java2.cakeConstructor.newApp.acceptancetests;
 
-import lv.javaguru.java2.cakeConstructor.newApp.ApplicationContext;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.ApplicationContext;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.GetAllIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.GetAllIngredientsResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.AddIngredientService;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.GetAllIngredientsService;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIApplicationContextBuilder;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class GetAllIngredientsAcceptanceTest {
 
-    private ApplicationContext appContext = new ApplicationContext();
+    private ApplicationContext appContext =
+            new DIApplicationContextBuilder().build("lv.javaguru.java2.cakeConstructor.newApp");
 
     @Test
     public void shouldReturnCorrectIngredientList() {

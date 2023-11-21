@@ -1,12 +1,15 @@
 package lv.javaguru.java2.cakeConstructor.newApp;
 
 import lv.javaguru.java2.cakeConstructor.newApp.console_ui.*;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.ApplicationContext;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIApplicationContextBuilder;
 
 import java.util.Scanner;
 
 public class Application {
 
-    private static ApplicationContext applicationContext = new ApplicationContext();
+    private static ApplicationContext applicationContext =
+            new DIApplicationContextBuilder().build("lv.javaguru.java2.cakeConstructor.newApp");
 
     public static void main(String[] args) {
 
