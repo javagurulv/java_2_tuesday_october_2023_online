@@ -1,0 +1,42 @@
+package lv.javaguru.java2.cakeConstructor.newApp.core.services;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.Database;
+import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Ingredient;
+import lv.javaguru.java2.cakeConstructor.newApp.core.requests.GetAllIngredientsRequest;
+import lv.javaguru.java2.cakeConstructor.newApp.core.response.GetAllIngredientsResponse;
+
+@RunWith(MockitoJUnitRunner.class)
+public class GetAllIngredientsServiceTest {
+
+    @Mock
+    private Database database;
+    @InjectMocks
+    private GetAllIngredientsService service;
+
+    @Test
+    public void shouldGetIngredientsFromDb() {
+        List<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(new Ingredient("Biscuit", "Vanilla"));
+        Mockito.when(database.getAllIngredients()).thenReturn(ingredients);
+
+        GetAllIngredientsRequest request = new GetAllIngredientsRequest();
+        GetAllIngredientsResponse response = service.execute(request);
+        assertFalse(response.hasErrors());
+        assertEquals(response.getIngredients().size(), 1);
+        assertEquals(response.getIngredients().get(0).getType(), "Biscuit");
+        assertEquals(response.getIngredients().get(0).getTaste(), "Vanilla");
+    }
+
+}

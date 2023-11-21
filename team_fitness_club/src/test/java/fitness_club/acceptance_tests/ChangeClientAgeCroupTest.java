@@ -13,12 +13,10 @@ import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.ChangeClientAgeGroupService;
 import fitness_club.core.services.SearchClientService;
 import fitness_club.dependency_injection.DIApplicationContextBuilder;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
-@Disabled
 public class ChangeClientAgeCroupTest {
     private static ApplicationContext applicationContext =
             new DIApplicationContextBuilder().build("fitness_club");

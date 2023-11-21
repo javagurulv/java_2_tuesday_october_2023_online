@@ -4,7 +4,7 @@ import fitness_club.core.database.Database;
 import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.requests.RemoveClientRequest;
 
-import fitness_club.data_vlidation.RemoveClientRequestValidator;
+import fitness_club.core.services.data_vlidation.RemoveClientRequestValidator;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;

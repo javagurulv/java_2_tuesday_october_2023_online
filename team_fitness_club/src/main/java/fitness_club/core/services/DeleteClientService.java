@@ -3,8 +3,8 @@ package fitness_club.core.services;
 import fitness_club.core.database.Database;
 import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.responses.RemoveClientResponse;
-import fitness_club.data_vlidation.CoreError;
-import fitness_club.data_vlidation.RemoveClientRequestValidator;
+import fitness_club.core.services.data_vlidation.CoreError;
+import fitness_club.core.services.data_vlidation.RemoveClientRequestValidator;
 import fitness_club.dependency_injection.DIComponent;
 import fitness_club.dependency_injection.DIDependency;
 
