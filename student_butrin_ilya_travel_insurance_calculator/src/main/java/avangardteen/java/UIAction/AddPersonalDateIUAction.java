@@ -5,25 +5,23 @@ import avangardteen.java.CoreError;
 import avangardteen.java.Wheelchair;
 import avangardteen.java.data.DataComponents;
 
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
+import avangardteen.java.request.AddPersonalDataRequest;
 import avangardteen.java.responce.AddPersonalDateResponce;
 import avangardteen.java.service.AddUserDataServis;
 
 import java.util.List;
 import java.util.Scanner;
-
+@DIComponent
 public class AddPersonalDateIUAction implements UIAction{
-    AddUserDataServis servis;
-
-
-
-    public AddPersonalDateIUAction(AddUserDataServis servis) {
-        this.servis = servis;
-    }
+  @DIDependency
+  AddUserDataServis servis;
 
     @Override
     public void execute() {
 
-        /*Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         System.out.println("введите Имя и фамилию");
         String nameSurname = scan.nextLine();
         System.out.println("введите номер телефона");
@@ -40,6 +38,5 @@ public class AddPersonalDateIUAction implements UIAction{
         System.out.println("Данные записаны");
             System.exit(0);}
 
-         */
     }
     }

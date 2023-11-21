@@ -2,19 +2,15 @@ package avangardteen.java.UIAction;
 
 
 import avangardteen.java.UserSizes;
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
 import avangardteen.java.request.ShowDataSizeRequest;
 import avangardteen.java.responce.ShowDataSizeResponse;
 import avangardteen.java.service.GetAntropometricDataServis;
-
+@DIComponent
 public class ShowDataSizeUIActive implements UIAction{
-
-    public ShowDataSizeUIActive(GetAntropometricDataServis servis) {
-        this.servis = servis;
-    }
-
-    GetAntropometricDataServis servis;
-
-
+  @DIDependency
+  GetAntropometricDataServis servis;
     @Override
     public void execute() {
         ShowDataSizeRequest request = new ShowDataSizeRequest();

@@ -3,6 +3,8 @@ package avangardteen.java.UIAction;
 import avangardteen.java.Category;
 import avangardteen.java.Component;
 import avangardteen.java.CoreError;
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
 import avangardteen.java.request.ChangeComponentsRequest;
 import avangardteen.java.responce.ChangeCompanentsResponce;
 import avangardteen.java.service.ChangeComponentServise;
@@ -10,13 +12,10 @@ import avangardteen.java.service.ChangeComponentServise;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
+@DIComponent
 public class ChangeComponentUIAction implements UIAction {
-    ChangeComponentServise servise;
-
-    public ChangeComponentUIAction(ChangeComponentServise servise) {
-        this.servise = servise;
-    }
+   @DIDependency
+   ChangeComponentServise servise;
 
     Scanner scan = new Scanner(System.in);
 

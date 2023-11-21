@@ -1,19 +1,18 @@
 package classWork;
 import classWork.consoleUI.*;
 
-import classWork.core.service.AddBookService;
-
-import classWork.core.service.valigators.*;
-import classWork.core.service.GetAllBookService;
-import classWork.core.service.RemoveBookService;
+import classWork.dependency_injection.ApplicationContext;
+import classWork.dependency_injection.DIApplicationContextBuilder;
 
 
 import java.util.Scanner;
 
 public class BookListApplication {
+    private static ApplicationContext applicationContext =
+            new DIApplicationContextBuilder().build("classWork");
 
- ApplicationContext applicationContext = new ApplicationContext();
     public static void main(String[] args) {
+
 
         BookListApplication bookListApplication = new BookListApplication();
         while (true) {

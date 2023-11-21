@@ -3,21 +3,19 @@ package avangardteen.java.service;
 import avangardteen.java.Client;
 import avangardteen.java.CoreError;
 import avangardteen.java.UserSizes;
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
 import avangardteen.java.request.AddAnthropometricDataRequest;
 import avangardteen.java.responce.AddAnthropometricDataResponse;
 import avangardteen.java.service.valigation.AddAntropologDateValigation;
 
 import java.io.StreamCorruptedException;
 import java.util.List;
-
+@DIComponent
 public class AddAtropologDateServis {
-    UserSizes sizes;
-    AddAntropologDateValigation valigation;
+  @DIDependency UserSizes sizes;
+   @DIDependency AddAntropologDateValigation valigation;
 
-    public AddAtropologDateServis(UserSizes sizes, AddAntropologDateValigation valigation) {
-        this.sizes = sizes;
-        this.valigation = valigation;
-    }
 
     public AddAnthropometricDataResponse execute (AddAnthropometricDataRequest request) {
         List<CoreError> errorlist = valigation.errorlist(request);

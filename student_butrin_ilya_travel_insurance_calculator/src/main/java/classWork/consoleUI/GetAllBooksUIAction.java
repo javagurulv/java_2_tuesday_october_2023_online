@@ -3,14 +3,12 @@ package classWork.consoleUI;
 
 import classWork.core.response.GetAllBookResponce;
 import classWork.core.service.GetAllBookService;
+import classWork.dependency_injection.DIComponent;
+import classWork.dependency_injection.DIDependency;
 
+@DIComponent
 public class GetAllBooksUIAction implements UIAction {
-
-    public GetAllBooksUIAction(GetAllBookService service) {
-        this.service = service;
-    }
-
-    GetAllBookService service;
+    @DIDependency GetAllBookService service;
 
     @Override
     public void execute() {

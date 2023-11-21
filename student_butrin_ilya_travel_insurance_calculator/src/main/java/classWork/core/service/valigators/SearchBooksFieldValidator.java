@@ -2,11 +2,12 @@ package classWork.core.service.valigators;
 
 import classWork.core.CoreError;
 import classWork.core.requests.SearchBooksRequest;
+import classWork.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@DIComponent
 public class SearchBooksFieldValidator {
     public List<CoreError> errorList(SearchBooksRequest request) {
         List<CoreError> errorList = new ArrayList<>();

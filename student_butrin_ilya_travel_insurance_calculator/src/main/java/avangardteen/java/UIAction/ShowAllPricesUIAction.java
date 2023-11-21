@@ -3,16 +3,15 @@ package avangardteen.java.UIAction;
 import avangardteen.java.Category;
 import avangardteen.java.Component;
 import avangardteen.java.Wheelchair;
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
 import avangardteen.java.service.ShowAllPricesServise;
 
 import java.util.Map;
-
+@DIComponent
 public class ShowAllPricesUIAction implements UIAction{
-    ShowAllPricesServise servise;
-
-    public ShowAllPricesUIAction(ShowAllPricesServise servise) {
-        this.servise = servise;
-    }
+  @DIDependency
+  ShowAllPricesServise servise;
 
     @Override
     public void execute() {

@@ -2,6 +2,8 @@ package avangardteen.java.UIAction;
 
 
 import avangardteen.java.CoreError;
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
 import avangardteen.java.request.AddAnthropometricDataRequest;
 import avangardteen.java.responce.AddAnthropometricDataResponse;
 import avangardteen.java.service.AddAtropologDateServis;
@@ -9,16 +11,13 @@ import avangardteen.java.service.ChooseAntropometricDataServis;
 
 import java.util.List;
 import java.util.Scanner;
-
+@DIComponent
 public class AddAnthropometricDataIUActiv implements UIAction {
 
+   @DIDependency
+   AddAtropologDateServis servis;
+
     Scanner scan = new Scanner(System.in);
-    AddAtropologDateServis servis;
-
-    public AddAnthropometricDataIUActiv(AddAtropologDateServis servis) {
-        this.servis = servis;
-    }
-
     public void execute() {
         System.out.println("введите ширину таза пользователя");
         String pelwicWidthscan = scan.nextLine();

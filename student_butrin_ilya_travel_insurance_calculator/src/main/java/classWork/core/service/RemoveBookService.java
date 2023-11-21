@@ -5,20 +5,17 @@ import classWork.core.database.Database;
 import classWork.core.requests.RemoveBookReques;
 import classWork.core.response.RemoveBookResponce;
 import classWork.core.service.valigators.RemoveBookValidators;
+import classWork.dependency_injection.DIComponent;
+import classWork.dependency_injection.DIDependency;
 
 import java.util.List;
 
 
-
+@DIComponent
 public class RemoveBookService {
 
-  Database data;
-    RemoveBookValidators validators;
-
-    public RemoveBookService(Database data, RemoveBookValidators validators) {
-        this.data = data;
-        this.validators = validators;
-    }
+    @DIDependency Database data;
+    @DIDependency RemoveBookValidators validators;
 
     public RemoveBookResponce execute (RemoveBookReques reques) {
         List<CoreError> errorList = validators.errorList(reques);

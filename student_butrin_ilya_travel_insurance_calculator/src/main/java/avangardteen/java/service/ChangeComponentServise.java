@@ -2,6 +2,8 @@ package avangardteen.java.service;
 
 import avangardteen.java.*;
 import avangardteen.java.data.DataComponents;
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
 import avangardteen.java.request.ChangeComponentsRequest;
 import avangardteen.java.responce.ChangeCompanentsResponce;
 import avangardteen.java.service.valigation.WheelchairValigator;
@@ -13,17 +15,13 @@ import java.util.Scanner;
 
 import static avangardteen.java.Category.BACK_WHEEL;
 import static avangardteen.java.Category.BACK_WHEEL_SIZE;
-
+@DIComponent
 public class ChangeComponentServise {
-    DataComponents components;
-    Wheelchair wheelchair;
-    WheelchairValigator valigator;
 
-    public ChangeComponentServise(DataComponents components, Wheelchair wheelchair, WheelchairValigator valigator) {
-        this.components = components;
-        this.wheelchair = wheelchair;
-        this.valigator = valigator;
-    }
+ @DIDependency  DataComponents components;
+   @DIDependency Wheelchair wheelchair;
+   @DIDependency WheelchairValigator valigator;
+
 
     public ChangeCompanentsResponce responce() {
         List<Category> listAllCathegory = listAllCategory();

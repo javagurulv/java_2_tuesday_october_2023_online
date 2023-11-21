@@ -6,11 +6,14 @@ import avangardteen.java.data.DataUsers;
 import avangardteen.java.service.*;
 import avangardteen.java.service.valigation.AddAntropologDateValigation;
 import avangardteen.java.service.valigation.ChangeAntropologDateValigation;
+import classWork.dependency_injection.ApplicationContext;
+import classWork.dependency_injection.DIApplicationContextBuilder;
 
 import java.util.Scanner;
 public class
 App {
-    private static ApplicationContext applicationContext = new ApplicationContext();
+    private static ApplicationContext applicationContext =
+            new DIApplicationContextBuilder().build("avangardteen.java");
     public static void main(String[] args) {
         ShowDataSizeUIActive  showDataSize = applicationContext.getBean(ShowDataSizeUIActive.class);
         Scanner scan = new Scanner(System.in);

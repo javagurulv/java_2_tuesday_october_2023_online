@@ -1,12 +1,13 @@
 package avangardteen.java;
 
 import avangardteen.java.data.DataComponents;
+import avangardteen.java.dependency_injection.DIComponent;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+@DIComponent
 public class Wheelchair {
 
     int seatWidth;

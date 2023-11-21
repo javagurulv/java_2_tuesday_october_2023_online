@@ -3,20 +3,18 @@ package avangardteen.java.service;
 import avangardteen.java.Component;
 import avangardteen.java.data.DataComponents;
 import avangardteen.java.Wheelchair;
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
 import avangardteen.java.request.ChooseWheelchairComponensRequest;
 import avangardteen.java.responce.ChooseWheelchairComponensResponce;
 
 import java.util.List;
-
+@DIComponent
 public class ChooseWheelChairComponentsServis {
 
-    DataComponents data;
-    Wheelchair wheelchair;
+  @DIDependency DataComponents data;
+  @DIDependency Wheelchair wheelchair;
 
-    public ChooseWheelChairComponentsServis(DataComponents data, Wheelchair wheelchair) {
-        this.data = data;
-        this.wheelchair = wheelchair;
-    }
 
     public List<Component> getAllFrontWheels() {
         List<Component> frontWheelList = data.allFrontWheels();

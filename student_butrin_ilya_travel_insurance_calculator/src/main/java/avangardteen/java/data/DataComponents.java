@@ -2,12 +2,12 @@ package avangardteen.java.data;
 
 import avangardteen.java.Category;
 import avangardteen.java.Component;
+import avangardteen.java.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class
-DataComponents {
+@DIComponent
+public class DataComponents {
 
     List<Component> allComponents = List.of(
             new Component(Category.BRAKE, "MH 01", "На уровне колен пользователя, стандарт", 0),

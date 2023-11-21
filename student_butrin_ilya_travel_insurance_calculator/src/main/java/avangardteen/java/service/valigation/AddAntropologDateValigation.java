@@ -1,6 +1,7 @@
 package avangardteen.java.service.valigation;
 
 import avangardteen.java.CoreError;
+import avangardteen.java.dependency_injection.DIComponent;
 import avangardteen.java.request.AddAnthropometricDataRequest;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-
+@DIComponent
 public class AddAntropologDateValigation {
 
     public  List<CoreError> errorlist (AddAnthropometricDataRequest request) {

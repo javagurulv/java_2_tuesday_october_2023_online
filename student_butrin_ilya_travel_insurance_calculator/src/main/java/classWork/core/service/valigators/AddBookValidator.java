@@ -3,18 +3,17 @@ package classWork.core.service.valigators;
 import classWork.core.CoreError;
 import classWork.core.database.Database;
 import classWork.core.requests.AddBookRequest;
+import classWork.dependency_injection.DIComponent;
+import classWork.dependency_injection.DIDependency;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
+@DIComponent
 public class AddBookValidator {
-    Database data;
+   @DIDependency Database data;
 
-    public AddBookValidator(Database data) {
-        this.data = data;
-    }
 
     public List<CoreError> errorlist (AddBookRequest request){
         List<CoreError> errorList;

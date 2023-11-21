@@ -7,17 +7,15 @@ import classWork.core.response.SearchBooksResponse;
 import classWork.core.CoreError;
 import classWork.core.requests.SearchBooksRequest;
 import classWork.core.service.SearchBooksService;
+import classWork.dependency_injection.DIComponent;
+import classWork.dependency_injection.DIDependency;
 
 import java.util.List;
 import java.util.Scanner;
-
+@DIComponent
 public class SearchBookUIAction implements UIAction {
-    SearchBooksService servis;
-
-    public SearchBookUIAction(SearchBooksService servis) {
-        this.servis = servis;
-    }
-
+   @DIDependency
+   SearchBooksService servis;
     @Override
     public void execute() {
         Scanner scan = new Scanner(System.in);

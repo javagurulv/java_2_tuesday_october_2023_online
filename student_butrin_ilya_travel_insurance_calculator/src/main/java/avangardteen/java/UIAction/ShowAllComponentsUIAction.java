@@ -3,18 +3,16 @@ package avangardteen.java.UIAction;
 import avangardteen.java.Category;
 import avangardteen.java.Component;
 import avangardteen.java.Wheelchair;
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
 import avangardteen.java.service.ShowAllComponentsServis;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
+@DIComponent
 public class ShowAllComponentsUIAction implements UIAction {
-ShowAllComponentsServis servis;
-
-    public ShowAllComponentsUIAction(ShowAllComponentsServis servis) {
-        this.servis = servis;
-    }
+@DIDependency ShowAllComponentsServis servis;
 
     @Override
     public void execute() {

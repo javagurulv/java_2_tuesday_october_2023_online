@@ -1,10 +1,11 @@
 package avangardteen.java.data;
 
 import avangardteen.java.Client;
+import avangardteen.java.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@DIComponent
 public class DataUsers {
     List<Client> clients = new ArrayList<>();
     int id=0;

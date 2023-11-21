@@ -4,17 +4,16 @@ import classWork.Book;
 
 import classWork.core.database.Database;
 import classWork.core.response.GetAllBookResponce;
+import classWork.dependency_injection.DIComponent;
+import classWork.dependency_injection.DIDependency;
 
 import java.util.List;
-
+@DIComponent
 public class GetAllBookService {
 
+  @DIDependency
   Database data;
 
-
-    public GetAllBookService(Database data) {
-        this.data = data;
-        }
     public GetAllBookResponce execute() {
         List<Book> books = data.getBooks();
         for (Book bookFromList : books)

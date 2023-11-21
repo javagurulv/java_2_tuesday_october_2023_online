@@ -2,6 +2,8 @@ package avangardteen.java.UIAction;
 
 import avangardteen.java.Component;
 import avangardteen.java.data.DataComponents;
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
 import avangardteen.java.request.ChooseWheelchairComponensRequest;
 import avangardteen.java.responce.ChooseWheelchairComponensResponce;
 import avangardteen.java.service.ChooseWheelChairComponentsServis;
@@ -10,13 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
+@DIComponent
 public class ChooseWheelchairComponensUIAction implements UIAction {
-    ChooseWheelChairComponentsServis servis;
-
-    public ChooseWheelchairComponensUIAction(ChooseWheelChairComponentsServis servis) {
-        this.servis = servis;
-    }
+  @DIDependency
+  ChooseWheelChairComponentsServis servis;
 
     DataComponents armrestList = new DataComponents();
 

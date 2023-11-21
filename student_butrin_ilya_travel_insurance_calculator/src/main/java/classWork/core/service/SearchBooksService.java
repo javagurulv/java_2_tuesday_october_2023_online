@@ -6,18 +6,16 @@ import classWork.core.service.valigators.SearchBookValigator;
 import classWork.core.response.SearchBooksResponse;
 import classWork.core.CoreError;
 import classWork.core.requests.SearchBooksRequest;
+import classWork.dependency_injection.DIComponent;
+import classWork.dependency_injection.DIDependency;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@DIComponent
 public class SearchBooksService {
-    SearchBookValigator valigator;
-    Database data;
-
-    public SearchBooksService(SearchBookValigator valigator, Database data) {
-        this.valigator = valigator;
-        this.data = data;
-    }
+   @DIDependency SearchBookValigator valigator;
+   @DIDependency Database data;
     public SearchBooksResponse searchAndSort (SearchBooksRequest request) {
         List<CoreError> errorList = valigator.errorList(request);
         if (!errorList.isEmpty())

@@ -3,6 +3,8 @@ package avangardteen.java.service;
 import avangardteen.java.Client;
 import avangardteen.java.CoreError;
 import avangardteen.java.UserSizes;
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
 import avangardteen.java.request.ChangeAntropologDateRequest;
 import avangardteen.java.responce.ChangeAntropologDateResponce;
 import avangardteen.java.service.valigation.ChangeAntropologDateValigation;
@@ -11,15 +13,11 @@ import avangardteen.java.service.valigation.ChangeAntropologDateValigation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+@DIComponent
 public class ChangeAntropometricDataService {
-    UserSizes sizes;
-    ChangeAntropologDateValigation valigator;
+ @DIDependency UserSizes sizes;
+   @DIDependency ChangeAntropologDateValigation valigator;
 
-    public ChangeAntropometricDataService(UserSizes sizes, ChangeAntropologDateValigation valigator) {
-        this.sizes = sizes;
-        this.valigator = valigator;
-    }
 
     public ChangeAntropologDateResponce responce(ChangeAntropologDateRequest request) {
         List<CoreError> errorList;

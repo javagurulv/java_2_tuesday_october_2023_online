@@ -3,11 +3,12 @@ package avangardteen.java.service.valigation;
 import avangardteen.java.Category;
 import avangardteen.java.CoreError;
 import avangardteen.java.Wheelchair;
+import avangardteen.java.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@DIComponent
 public class WheelchairValigator {
     public List<CoreError> errorlist(Wheelchair wheelchair) {
         List<CoreError> errorList = new ArrayList<>();

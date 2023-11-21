@@ -3,11 +3,12 @@ package classWork.core.service.valigators;
 import classWork.core.CoreError;
 import classWork.core.requests.Ordering;
 import classWork.core.requests.SearchBooksRequest;
+import classWork.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@DIComponent
 public class SearchBookOrderingValigator {
     public List<CoreError> errorList(Ordering ordering) {
         List<CoreError> errorList = new ArrayList<>();
@@ -27,7 +28,7 @@ public class SearchBookOrderingValigator {
     }
 
     public Optional<CoreError> orderBy(Ordering ordering) {
-        if (!ordering.equals("по автору") && !ordering.getOrderBy().equals("по названию"))
+        if (!ordering.getOrderBy().equals("по автору") && !ordering.getOrderBy().equals("по названию"))
             if (!ordering.getOrderBy().isEmpty()) {
                 return Optional.of(new CoreError("сортировка(критерий)", "введите \"по автору\" или \"по названию\""));
             }

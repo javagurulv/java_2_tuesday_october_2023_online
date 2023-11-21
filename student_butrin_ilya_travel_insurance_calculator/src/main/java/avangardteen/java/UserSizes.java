@@ -1,5 +1,8 @@
 package avangardteen.java;
 
+import avangardteen.java.dependency_injection.DIComponent;
+
+@DIComponent
 public class
 UserSizes {
     public int pelvisWidth; //ширина таза

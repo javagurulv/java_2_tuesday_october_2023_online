@@ -1,6 +1,8 @@
 package avangardteen.java.UIAction;
 
 import avangardteen.java.CoreError;
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
 import avangardteen.java.request.ChangeAntropologDateRequest;
 import avangardteen.java.responce.ChangeAntropologDateResponce;
 import avangardteen.java.service.AddAtropologDateServis;
@@ -8,14 +10,11 @@ import avangardteen.java.service.ChangeAntropometricDataService;
 
 import java.util.List;
 import java.util.Scanner;
-
+@DIComponent
 public class ChangenAtropologDateUIAAction implements UIAction {
-    static ChangeAntropometricDataService servis;
+   @DIDependency
+   static ChangeAntropometricDataService servis;
 
-    public ChangenAtropologDateUIAAction(
-            ChangeAntropometricDataService servis) {
-        this.servis = servis;
-    }
 
     static Scanner scan = new Scanner(System.in);
 

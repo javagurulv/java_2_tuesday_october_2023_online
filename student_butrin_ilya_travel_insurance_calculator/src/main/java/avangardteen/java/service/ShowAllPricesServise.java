@@ -4,16 +4,15 @@ import avangardteen.java.Category;
 import avangardteen.java.Client;
 import avangardteen.java.Component;
 import avangardteen.java.Wheelchair;
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
 
 import java.security.PublicKey;
 import java.util.Map;
-
+@DIComponent
 public class ShowAllPricesServise {
-   Wheelchair wheelchair;
-
-    public ShowAllPricesServise(Wheelchair wheelchair) {
-        this.wheelchair = wheelchair;
-    }
+ @DIDependency
+ Wheelchair wheelchair;
 
     public int GetComponentPrice() {
         int priceComponents = 0;

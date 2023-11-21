@@ -6,26 +6,22 @@ import avangardteen.java.Wheelchair;
 import avangardteen.java.data.DataUsers;
 import avangardteen.java.Client;
 
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
+import avangardteen.java.request.AddPersonalDataRequest;
 import avangardteen.java.responce.AddPersonalDateResponce;
 import avangardteen.java.service.valigation.WheelchairValigator;
-
 import java.util.List;
+@DIComponent public class AddUserDataServis {
+  @DIDependency DataUsers data;
+   @DIDependency UserSizes sizes;
+   @DIDependency Wheelchair wheelchair;
+   @DIDependency WheelchairValigator valigator;
 
-public class AddUserDataServis {
-    DataUsers data;
-    UserSizes sizes;
-    Wheelchair wheelchair;
-    WheelchairValigator valigator;
 
 
-    public AddUserDataServis(DataUsers data, UserSizes sizes, Wheelchair wheelchair, WheelchairValigator valigator) {
-        this.data = data;
-        this.sizes = sizes;
-        this.wheelchair = wheelchair;
-        this.valigator = valigator;
-    }
 
-    /*public AddPersonalDateResponce addUzer(AddPersonalDataRequest request) {
+    public AddPersonalDateResponce addUzer(AddPersonalDataRequest request) {
         List<CoreError> errors = valigator.errorlist(wheelchair);
         if (!errors.isEmpty())
             return new AddPersonalDateResponce(errors);
@@ -39,6 +35,6 @@ public class AddUserDataServis {
         }
     }
 
-     */
+
 
 }

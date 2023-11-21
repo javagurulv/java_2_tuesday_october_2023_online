@@ -1,12 +1,13 @@
 package avangardteen.java.service;
 
 import avangardteen.java.Client;
+import avangardteen.java.dependency_injection.DIComponent;
+import avangardteen.java.dependency_injection.DIDependency;
 
+@DIComponent
 public class ChooseAntropometricDataServis {
-    Client user;
-    public ChooseAntropometricDataServis(Client user) {
-        this.user = user;
-    }
+   @DIDependency
+   Client user;
 
 
     public  void setPelvis (int choose){
