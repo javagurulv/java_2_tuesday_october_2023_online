@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class BookListApplication {
 
- /* ApplicationContext applicationContext = new ApplicationContext();
+ ApplicationContext applicationContext = new ApplicationContext();
     public static void main(String[] args) {
 
         BookListApplication bookListApplication = new BookListApplication();
@@ -59,5 +59,4 @@ public class BookListApplication {
             }
         }
 
-  */
 }

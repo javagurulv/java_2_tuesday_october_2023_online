@@ -1,6 +1,7 @@
 package classWork.core.service.valigators;
 
 import classWork.core.CoreError;
+import classWork.core.database.Database;
 import classWork.core.requests.AddBookRequest;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.Optional;
 
 
 public class AddBookValidator {
-  /*  Database data;
+    Database data;
 
     public AddBookValidator(Database data) {
         this.data = data;
@@ -46,5 +47,4 @@ public class AddBookValidator {
 
     }
 
-   */
 }

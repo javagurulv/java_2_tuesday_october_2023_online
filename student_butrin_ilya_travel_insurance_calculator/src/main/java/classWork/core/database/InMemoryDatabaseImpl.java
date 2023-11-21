@@ -1,8 +1,9 @@
-package classWork;
+package classWork.core.database;
+
+import classWork.Book;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class InMemoryDatabaseImpl implements Database {
     List<Book> books = new ArrayList<>();

@@ -1,6 +1,7 @@
 package classWork.core.service;
 
 import classWork.core.CoreError;
+import classWork.core.database.Database;
 import classWork.core.requests.RemoveBookReques;
 import classWork.core.response.RemoveBookResponce;
 import classWork.core.service.valigators.RemoveBookValidators;
@@ -10,7 +11,8 @@ import java.util.List;
 
 
 public class RemoveBookService {
-   /* Database data;
+
+  Database data;
     RemoveBookValidators validators;
 
     public RemoveBookService(Database data, RemoveBookValidators validators) {
@@ -28,7 +30,7 @@ public class RemoveBookService {
         return new RemoveBookResponce(bol);
         }
 
-    */
+
 
     }
 

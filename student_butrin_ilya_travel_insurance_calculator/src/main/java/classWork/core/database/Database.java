@@ -1,4 +1,6 @@
-package classWork;
+package classWork.core.database;
+
+import classWork.Book;
 
 import java.util.List;
 

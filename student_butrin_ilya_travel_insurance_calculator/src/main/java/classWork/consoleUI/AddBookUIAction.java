@@ -18,7 +18,7 @@ public class AddBookUIAction implements UIAction {
 
     @Override
     public void execute() {
-       /* Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         System.out.println("Введите автора");
         String author = scan.nextLine();
         System.out.println("Введите название книги");
@@ -33,7 +33,7 @@ public class AddBookUIAction implements UIAction {
         }
         else System.out.println("Книга добавлена");
 
-        */
+
 
 
         }

@@ -1,5 +1,6 @@
-package classWork;
+package classWork.core.response;
 
+import classWork.Book;
 import classWork.core.CoreError;
 import classWork.core.CoreResponse;
 

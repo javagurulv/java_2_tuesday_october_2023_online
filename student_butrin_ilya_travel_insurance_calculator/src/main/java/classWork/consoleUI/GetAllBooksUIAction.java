@@ -14,7 +14,7 @@ public class GetAllBooksUIAction implements UIAction {
 
     @Override
     public void execute() {
-      //  GetAllBookResponce responce = service.execute();
+     GetAllBookResponce responce = service.execute();
 
     }
 }

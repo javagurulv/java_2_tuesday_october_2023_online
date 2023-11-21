@@ -2,12 +2,14 @@ package classWork.core.service;
 
 import classWork.Book;
 
+import classWork.core.database.Database;
 import classWork.core.response.GetAllBookResponce;
 
 import java.util.List;
 
 public class GetAllBookService {
-   /* Database data;
+
+  Database data;
 
 
     public GetAllBookService(Database data) {
@@ -22,5 +24,5 @@ public class GetAllBookService {
         return new GetAllBookResponce(books);
     }
 
-    */
+
     }
