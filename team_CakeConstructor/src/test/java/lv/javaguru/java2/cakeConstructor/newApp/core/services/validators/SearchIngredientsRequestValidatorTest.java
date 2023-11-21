@@ -4,9 +4,14 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Ordering;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Paging;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
@@ -14,20 +19,14 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class SearchIngredientsRequestValidatorTest {
 
-    private SearchIngredientsRequestFieldValidator fieldValidator;
-    private OrderingValidator orderingValidator;
-    private PagingValidator pagingValidator;
-    private SearchIngredientsRequestValidator validator;
+    @Mock private SearchIngredientsRequestFieldValidator fieldValidator;
+    @Mock private OrderingValidator orderingValidator;
+    @Mock private PagingValidator pagingValidator;
+    @InjectMocks private SearchIngredientsRequestValidator validator;
 
-    @Before
-    public void init() {
-        fieldValidator = Mockito.mock(SearchIngredientsRequestFieldValidator.class);
-        orderingValidator = Mockito.mock(OrderingValidator.class);
-        pagingValidator = Mockito.mock(PagingValidator.class);
-        validator = new SearchIngredientsRequestValidator(fieldValidator, orderingValidator, pagingValidator);
-    }
 
     @Test
     public void shouldNotReturnErrorsWhenFieldValidatorReturnNoErrors() {

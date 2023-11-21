@@ -5,16 +5,17 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Paging;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.SearchIngredientsResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.SearchIngredientsService;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class SearchIngredientsUIAction implements UIAction {
 
+    @DIDependency
     private SearchIngredientsService searchIngredientsService;
 
-    public SearchIngredientsUIAction(SearchIngredientsService searchIngredientsService) {
-        this.searchIngredientsService = searchIngredientsService;
-    }
 
     @Override
     public void execute() {
