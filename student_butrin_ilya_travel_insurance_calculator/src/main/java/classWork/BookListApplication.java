@@ -17,7 +17,7 @@ public class BookListApplication {
         BookListApplication bookListApplication = new BookListApplication();
         while (true) {
            showMenu();
-            int choose = selectСategory();
+            int choose = selectCategory();
             bookListApplication.executeMenu(choose);
         }
     }
@@ -27,7 +27,7 @@ public class BookListApplication {
             System.out.println("3. распечатка списка книг на консоль");
             System.out.println("4. поиск книг по автору и/или названию");
             System.out.println("5. выйти из программы");}
-        public static int selectСategory (){
+        public static int selectCategory(){
         Scanner scanner = new Scanner(System.in);
         int choose = scanner.nextInt();
         return choose;
