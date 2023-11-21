@@ -4,9 +4,7 @@ import lv.javaguru.java2.cakeConstructor.newApp.console_ui.*;
 import lv.javaguru.java2.cakeConstructor.newApp.core.database.InMemoryDatabaseImpl;
 import lv.javaguru.java2.cakeConstructor.newApp.core.database.Database;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.*;
-import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.AddIngredientRequestValidator;
-import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.RemoveIngredientRequestValidator;
-import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.SearchIngredientsRequestValidator;
+import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.*;
 
 import java.util.Scanner;
 
@@ -16,7 +14,13 @@ public class Application {
 
     private static AddIngredientRequestValidator addIngredientRequestValidator = new AddIngredientRequestValidator();
     private static RemoveIngredientRequestValidator removeIngredientRequestValidator = new RemoveIngredientRequestValidator();
-    private static SearchIngredientsRequestValidator searchIngredientsRequestValidator = new SearchIngredientsRequestValidator();
+
+    private static SearchIngredientsRequestFieldValidator searchIngredientsRequestFieldValidator = new SearchIngredientsRequestFieldValidator();
+
+    private static OrderingValidator orderingValidator = new OrderingValidator();
+    private static PagingValidator pagingValidator = new PagingValidator();
+    private static SearchIngredientsRequestValidator searchIngredientsRequestValidator = new SearchIngredientsRequestValidator(
+            searchIngredientsRequestFieldValidator, orderingValidator, pagingValidator);
 
     private static AddIngredientService addIngredientService = new AddIngredientService(database,addIngredientRequestValidator);
     private static RemoveIngredientService removeIngredientService = new RemoveIngredientService(database, removeIngredientRequestValidator);
