@@ -14,13 +14,9 @@ public class Wheelchair {
     int findSeatDepth;
     int footrestLength;
 
-
-
     private Client userData;
      Map<Category,Component> components = new HashMap<>();
      private int priceWheelchair = 177700;
-
-
 
     public Client getUserData() {
         return userData;
