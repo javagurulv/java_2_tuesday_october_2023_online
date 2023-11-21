@@ -1,39 +1,12 @@
 package lv.javaguru.java2.cakeConstructor.newApp;
 
 import lv.javaguru.java2.cakeConstructor.newApp.console_ui.*;
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.InMemoryDatabaseImpl;
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.Database;
-import lv.javaguru.java2.cakeConstructor.newApp.core.services.*;
-import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.*;
 
 import java.util.Scanner;
 
 public class Application {
 
-    private static Database database = new InMemoryDatabaseImpl();
-
-    private static AddIngredientRequestValidator addIngredientRequestValidator = new AddIngredientRequestValidator();
-    private static RemoveIngredientRequestValidator removeIngredientRequestValidator = new RemoveIngredientRequestValidator();
-
-    private static SearchIngredientsRequestFieldValidator searchIngredientsRequestFieldValidator = new SearchIngredientsRequestFieldValidator();
-
-    private static OrderingValidator orderingValidator = new OrderingValidator();
-    private static PagingValidator pagingValidator = new PagingValidator();
-    private static SearchIngredientsRequestValidator searchIngredientsRequestValidator = new SearchIngredientsRequestValidator(
-            searchIngredientsRequestFieldValidator, orderingValidator, pagingValidator);
-
-    private static AddIngredientService addIngredientService = new AddIngredientService(database,addIngredientRequestValidator);
-    private static RemoveIngredientService removeIngredientService = new RemoveIngredientService(database, removeIngredientRequestValidator);
-    private static GetAllIngredientsService getAllIngredientsService = new GetAllIngredientsService(database);
-    private static SearchIngredientsService searchIngredientsService = new SearchIngredientsService(database,searchIngredientsRequestValidator);
-
-    private static UIAction addIngredientUIAction = new AddIngredientUIAction(addIngredientService);
-    private static UIAction removeIngredientUIAction = new RemoveIngredientUIAction(removeIngredientService);
-    private static UIAction getAllIngredientsUIAction = new GetAllIngredientsUIAction(getAllIngredientsService);
-    private static UIAction searchIngredientsUIAction = new SearchIngredientsUIAction(searchIngredientsService);
-
-    private static UIAction exitUIAction = new ExitUIAction();
-
+    private static ApplicationContext applicationContext = new ApplicationContext();
 
     public static void main(String[] args) {
 
@@ -65,22 +38,28 @@ public class Application {
     private static void executeSelectedMenuItem(int selectedMenu) {
         switch (selectedMenu) {
             case 1: {
-                addIngredientUIAction.execute();
+                AddIngredientUIAction uiAction = applicationContext.getBean(AddIngredientUIAction.class);
+                uiAction.execute();
                 break;
             }
             case 2: {
-                removeIngredientUIAction.execute();
+                RemoveIngredientUIAction uiAction = applicationContext.getBean(RemoveIngredientUIAction.class);
+                uiAction.execute();
                 break;
             }
             case 3: {
-                getAllIngredientsUIAction.execute();
+                GetAllIngredientsUIAction uiAction = applicationContext.getBean(GetAllIngredientsUIAction.class);
+                uiAction.execute();
                 break;
             }
             case 4: {
-                searchIngredientsUIAction.execute();
+                SearchIngredientsUIAction uiAction = applicationContext.getBean(SearchIngredientsUIAction.class);
+                uiAction.execute();
+                break;
             }
             case 5: {
-                exitUIAction.execute();
+                ExitUIAction uiAction = applicationContext.getBean(ExitUIAction.class);
+                uiAction.execute();
                 break;
             }
         }
