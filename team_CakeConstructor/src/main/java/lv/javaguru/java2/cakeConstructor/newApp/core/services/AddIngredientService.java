@@ -6,19 +6,17 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientReque
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.AddIngredientResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.AddIngredientRequestValidator;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
 
 import java.util.List;
 
+@DIComponent
 public class AddIngredientService {
 
-    private Database database;
-    private AddIngredientRequestValidator validator;
+    @DIDependency private Database database;
+    @DIDependency private AddIngredientRequestValidator validator;
 
-    public AddIngredientService(Database database,
-                                AddIngredientRequestValidator validator){
-        this.database=database;
-        this.validator=validator;
-    }
 
     public AddIngredientResponse execute(AddIngredientRequest request){
         List<CoreError> errors = validator.validate(request);

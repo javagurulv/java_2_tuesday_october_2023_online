@@ -8,22 +8,20 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchIngredientsR
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.SearchIngredientsResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.SearchIngredientsRequestValidator;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@DIComponent
 public class SearchIngredientsService {
 
-    private Database database;
-    private SearchIngredientsRequestValidator validator;
+    @DIDependency private Database database;
+    @DIDependency private SearchIngredientsRequestValidator validator;
 
-    public SearchIngredientsService(Database database,
-                                    SearchIngredientsRequestValidator validation){
-        this.database=database;
-        this.validator=validation;
-    }
 
     public SearchIngredientsResponse execute(SearchIngredientsRequest request) {
         List<CoreError> errors = validator.validate(request);

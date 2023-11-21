@@ -2,11 +2,13 @@ package lv.javaguru.java2.cakeConstructor.newApp.core.services.validators;
 
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@DIComponent
 public class AddIngredientRequestValidator {
 
     public List<CoreError> validate(AddIngredientRequest request) {

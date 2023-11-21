@@ -1,12 +1,14 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.database;
 
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Ingredient;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@DIComponent
 public class InMemoryDatabaseImpl implements Database {
 
     private Long nextId=1L;
