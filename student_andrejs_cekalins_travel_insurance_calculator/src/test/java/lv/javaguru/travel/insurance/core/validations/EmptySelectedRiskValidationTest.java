@@ -18,36 +18,38 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class EmptySelectedRiskValidationTest {
     @Mock
-    private ErrorCodeUnit errorCodeUnit;
+    private ValidationErrorFactory errorFactory;
     @InjectMocks
     private EmptySelectedRiskValidation validation;
 
     @Test
-    void shouldReturnErrorWhenRiskIsNull(){
+    void shouldReturnErrorWhenRiskIsNull() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getSelectedRisks()).thenReturn(null);
-        when(errorCodeUnit.getErrorDescription("ERROR_CODE_8")).thenReturn("Field selectRisk must not be empty!");
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_8")).thenReturn(validationError);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isPresent());
-        assertEquals(errorOpt.get().getErrorCode(),"ERROR_CODE_8");
-        assertEquals(errorOpt.get().getDescription(), "Field selectRisk must not be empty!");
+        assertEquals(errorOpt.get(), validationError);
     }
+
     @Test
-    void shouldReturnErrorWhenRiskIsEmpty(){
+    void shouldReturnErrorWhenRiskIsEmpty() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getSelectedRisks()).thenReturn(List.of());
-        when(errorCodeUnit.getErrorDescription("ERROR_CODE_8")).thenReturn("Field selectRisk must not be empty!");
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_8")).thenReturn(validationError);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isPresent());
-        assertEquals(errorOpt.get().getErrorCode(),"ERROR_CODE_8");
-        assertEquals(errorOpt.get().getDescription(), "Field selectRisk must not be empty!");
+        assertEquals(errorOpt.get(), validationError);
     }
+
     @Test
     void shouldNotReturnErrorWhenSelectedRisksIsNotEmpty() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_CANCELLATION"));
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isEmpty());
-        verifyNoInteractions(errorCodeUnit);
+        verifyNoInteractions(errorFactory);
     }
 }

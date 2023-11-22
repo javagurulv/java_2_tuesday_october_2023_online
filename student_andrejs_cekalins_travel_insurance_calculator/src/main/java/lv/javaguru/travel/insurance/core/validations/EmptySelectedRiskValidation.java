@@ -9,17 +9,13 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-class EmptySelectedRiskValidation implements TravelRequestValidation {
+class EmptySelectedRiskValidation extends TravelRequestValidationImpl {
     @Autowired
-    private ErrorCodeUnit errorCodeUnit;
+    private ValidationErrorFactory errorFactory;
 
-   public Optional<ValidationError> execute(TravelCalculatePremiumRequest request) {
-        return (request.getSelectedRisks()==null || request.getSelectedRisks().isEmpty())
-                ? Optional.of(buildError("ERROR_CODE_8"))
+    public Optional<ValidationError> validate(TravelCalculatePremiumRequest request) {
+        return (request.getSelectedRisks() == null || request.getSelectedRisks().isEmpty())
+                ? Optional.of(errorFactory.buildError("ERROR_CODE_8"))
                 : Optional.empty();
-    }
-    private ValidationError buildError(String errorCode) {
-        String errorDescription = errorCodeUnit.getErrorDescription(errorCode);
-        return new ValidationError(errorCode, errorDescription);
     }
 }

@@ -18,6 +18,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
 class AgreementDateFromInTheFutureValidationTest {
 
@@ -25,7 +26,7 @@ class AgreementDateFromInTheFutureValidationTest {
     @Mock
     private DateTimeUtil dateTimeService;
     @Mock
-    private ErrorCodeUnit errorCodeUnit;
+    private ValidationErrorFactory errorFactory;
 
     @InjectMocks
     private AgreementDateFromInTheFutureValidation validation;
@@ -35,11 +36,11 @@ class AgreementDateFromInTheFutureValidationTest {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.11.2021"));
         when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("01.11.2023"));
-        when(errorCodeUnit.getErrorDescription("ERROR_CODE_4")).thenReturn("Field agreementDayFrom must be in the future!");
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_4")).thenReturn(validationError);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isPresent());
-        assertEquals(errorOpt.get().getErrorCode(), "ERROR_CODE_4");
-        assertEquals(errorOpt.get().getDescription(), "Field agreementDayFrom must be in the future!");
+        assertEquals(errorOpt.get(), validationError);
     }
 
     @Test
@@ -47,7 +48,7 @@ class AgreementDateFromInTheFutureValidationTest {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.11.2025"));
         when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("01.11.2023"));
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isEmpty());
     }
 
