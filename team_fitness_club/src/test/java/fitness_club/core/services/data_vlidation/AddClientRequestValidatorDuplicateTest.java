@@ -6,6 +6,7 @@ import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
+import fitness_club.core.responses.CoreError;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

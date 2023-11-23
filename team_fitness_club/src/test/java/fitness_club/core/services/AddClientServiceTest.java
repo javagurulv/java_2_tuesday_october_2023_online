@@ -7,7 +7,7 @@ import fitness_club.core.services.data_vlidation.AddClientRequestValidator;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
-import fitness_club.core.services.data_vlidation.CoreError;
+import fitness_club.core.responses.CoreError;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,5 @@
 package fitness_club.core.responses;
 
-import fitness_club.core.services.data_vlidation.CoreError;
-import fitness_club.core.services.data_vlidation.CoreResponse;
-
 import java.util.List;
 
 public class ChangeClientAgeGroupResponse extends CoreResponse {

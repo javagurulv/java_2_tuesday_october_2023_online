@@ -2,8 +2,7 @@ package fitness_club.core.services.data_vlidation;
 
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.ChangeClientWorkoutsRequest;
-import fitness_club.core.services.data_vlidation.ChangeClientWorkoutsValidator;
-import fitness_club.core.services.data_vlidation.CoreError;
+import fitness_club.core.responses.CoreError;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

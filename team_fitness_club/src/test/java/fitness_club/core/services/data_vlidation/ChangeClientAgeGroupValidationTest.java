@@ -2,8 +2,7 @@ package fitness_club.core.services.data_vlidation;
 
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.requests.ChangeClientAgeGroupRequest;
-import fitness_club.core.services.data_vlidation.ChangeClientAgeGroupValidator;
-import fitness_club.core.services.data_vlidation.CoreError;
+import fitness_club.core.responses.CoreError;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

@@ -1,12 +1,13 @@
 package fitness_club.core.services.data_vlidation;
 
 import fitness_club.core.requests.SearchClientRequest;
-import fitness_club.dependency_injection.DIComponent;
+import fitness_club.core.responses.CoreError;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@DIComponent
+@Component
 public class SearchClientRequestFieldValidator {
 
     public List<CoreError> validate (SearchClientRequest request) {

@@ -1,15 +1,16 @@
 package fitness_club;
 
+import fitness_club.config.ClientWorkoutsConfiguration;
 import fitness_club.console_UI.*;
-import fitness_club.dependency_injection.ApplicationContext;
-import fitness_club.dependency_injection.DIApplicationContextBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Scanner;
 
 public class ClientWorkoutsApplication {
 
     private static ApplicationContext applicationContext =
-            new DIApplicationContextBuilder().build("fitness_club");
+            new AnnotationConfigApplicationContext(ClientWorkoutsConfiguration.class);
 
     public static void main(String[] args) {
 

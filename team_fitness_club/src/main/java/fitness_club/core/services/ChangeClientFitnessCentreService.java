@@ -4,18 +4,20 @@ import fitness_club.core.database.Database;
 import fitness_club.core.requests.ChangeClientFitnessCentreRequest;
 import fitness_club.core.responses.ChangeClientFitnessCentreResponse;
 import fitness_club.core.services.data_vlidation.ChangeClientFitnessCentreValidator;
-import fitness_club.core.services.data_vlidation.CoreError;
-import fitness_club.dependency_injection.DIComponent;
-import fitness_club.dependency_injection.DIDependency;
+import fitness_club.core.responses.CoreError;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class ChangeClientFitnessCentreService {
 
 
-    @DIDependency private Database database;
-    @DIDependency private ChangeClientFitnessCentreValidator validator;
+    @Autowired
+    private Database database;
+    @Autowired
+    private ChangeClientFitnessCentreValidator validator;
 
     public ChangeClientFitnessCentreResponse execute(ChangeClientFitnessCentreRequest request) {
         List<CoreError> errors = validator.validate(request);

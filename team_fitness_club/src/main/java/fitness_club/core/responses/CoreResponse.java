@@ -1,4 +1,6 @@
-package fitness_club.core.services.data_vlidation;
+package fitness_club.core.responses;
+
+import fitness_club.core.responses.CoreError;
 
 import java.util.List;
 

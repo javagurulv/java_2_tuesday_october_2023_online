@@ -1,4 +1,4 @@
-package fitness_club.core.services.data_vlidation;
+package fitness_club.core.responses;
 
 public class CoreError {
     private String field;

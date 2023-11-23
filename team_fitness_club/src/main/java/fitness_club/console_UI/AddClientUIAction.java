@@ -9,14 +9,15 @@ import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.GetClientAgeGroupService;
 import fitness_club.core.services.GetFitnessCentreService;
 import fitness_club.core.services.GetWorkoutService;
-import fitness_club.dependency_injection.DIComponent;
-import fitness_club.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class AddClientUIAction implements UIAction {
-    @DIDependency private AddClientService service;
+    @Autowired
+    private AddClientService service;
 
 
     @Override

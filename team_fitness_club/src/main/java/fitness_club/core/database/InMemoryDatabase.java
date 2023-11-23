@@ -9,9 +9,9 @@ import fitness_club.core.domain.Client;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.domain.Workouts;
-import fitness_club.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
 
-@DIComponent
+@Component
 public class InMemoryDatabase implements Database {
 
     private Long nextId = 1L;
