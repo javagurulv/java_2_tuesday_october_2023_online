@@ -30,11 +30,14 @@ import static org.mockito.Mockito.mock;
 public class SearchClientServiceTest {
     @Mock
     private Database database;
+
     @Mock
     private SearchClientRequestValidator validator;
+
     @InjectMocks
     private SearchClientService service;
-    @Before
+
+    @BeforeEach
     public void setup() {
         ReflectionTestUtils.setField(service, "orderingEnabled", true);
         ReflectionTestUtils.setField(service, "pagingEnabled", true);
@@ -101,7 +104,7 @@ public class SearchClientServiceTest {
         assertEquals(response.getFoundClients().get(0).getLastName(), "Arbuzov");
         assertEquals(response.getFoundClients().get(1).getLastName(), "Bananov");
     }
-/*
+
     @Test
     public void shouldSearchByFirstNameWithOrderingDescending() {
         Ordering ordering = new Ordering("lastName", "DESCENDING");
@@ -162,5 +165,5 @@ public class SearchClientServiceTest {
         assertEquals(response.getFoundClients().get(0).getLastName(), "Bananov");
     }
 
- */
+
 }

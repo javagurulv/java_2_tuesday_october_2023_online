@@ -1,7 +1,7 @@
 package fitness_club;
 
 import fitness_club.config.ClientWorkoutsConfiguration;
-import fitness_club.console_UI.*;
+import fitness_club.console_UI.ProgramMenu;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -9,76 +9,21 @@ import java.util.Scanner;
 
 public class ClientWorkoutsApplication {
 
-    private static ApplicationContext applicationContext =
-            new AnnotationConfigApplicationContext(ClientWorkoutsConfiguration.class);
 
     public static void main(String[] args) {
 
+        ApplicationContext applicationContext = createApplicationContext();
+
+        ProgramMenu programMenu = applicationContext.getBean(ProgramMenu.class);
+
         while (true) {
-            printProgramMenu();
-            int userChoiceMenuNumber = getMenuNumber();
-            switch (userChoiceMenuNumber) {
-                case 1: {
-                    AddClientUIAction uiAction = applicationContext.getBean(AddClientUIAction.class);
-                    uiAction.execute();
-                    break;
-                }
-                case 2: {
-                    RemoveClientUIAction uiAction = applicationContext.getBean(RemoveClientUIAction.class);
-                    uiAction.execute();
-                    break;
-                }
-                case 3: {
-                    GetAllClientsUIAction uiAction = applicationContext.getBean(GetAllClientsUIAction.class);
-                    uiAction.execute();
-                    break;
-                }
-                case 4: {
-                    ChangeWorkoutUIAction uiAction = applicationContext.getBean(ChangeWorkoutUIAction.class);
-                    uiAction.execute();
-                    break;
-                }
-                case 5: {
-                    ChangeClientAgeGroupUIAction uiAction = applicationContext.getBean(ChangeClientAgeGroupUIAction.class);
-                    uiAction.execute();
-                    break;
-                }
-                case 6: {
-                    ChangeClientFitnessCentreUIAction uiAction = applicationContext.getBean(ChangeClientFitnessCentreUIAction.class);
-                    uiAction.execute();
-                    break;
-                }
-                case 7: {
-                    SearchClientUIAction uiAction = applicationContext.getBean(SearchClientUIAction.class);
-                    uiAction.execute();
-                    break;
-                }
-                case 8: {
-                    ExitUIAction uiAction = applicationContext.getBean(ExitUIAction.class);
-                    uiAction.execute();
-                    break;
-                }
-            }
+            programMenu.printProgramMenu();
+            int menuNumber = programMenu.getMenuNumber();
+            programMenu.executeSelectedMenuItem(menuNumber);
         }
     }
 
-    public static void printProgramMenu() {
-        System.out.println("");
-        System.out.println("Program menu:");
-        System.out.println("1. Add client to list");
-        System.out.println("2. Delete client from list");
-        System.out.println("3. Show all clients in the list");
-        System.out.println("4. Change client workout");
-        System.out.println("5. Change client age group");
-        System.out.println("6. Change client fitness centre");
-        System.out.println("7. Search clients in database");
-        System.out.println("8. Exit");
-        System.out.println("");
-    }
-
-    public static int getMenuNumber() {
-        System.out.println("Enter menu item number to execute: ");
-        Scanner scanner = new Scanner(System.in);
-        return Integer.parseInt(scanner.nextLine());
+    private static ApplicationContext createApplicationContext() {
+        return new AnnotationConfigApplicationContext(ClientWorkoutsConfiguration.class);
     }
 }
