@@ -23,7 +23,10 @@ public class AddBookService {
             return new AddBookResponse(errors);
         }
 
-        Book book = new Book(request.getBookTitle(), request.getBookAuthor());
+        Book book = new Book(
+                request.getBookTitle(),
+                request.getBookAuthor(),
+                request.getGenre());
         database.save(book);
 
         return new AddBookResponse(book);

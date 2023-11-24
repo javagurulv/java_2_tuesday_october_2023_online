@@ -2,6 +2,7 @@ package lv.javaguru.java2.lessoncode.book.app.acceptancetests;
 
 import static org.junit.Assert.assertEquals;
 
+import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
 import lv.javaguru.java2.lessoncode.book.app.dependency_injection.ApplicationContext;
 import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIApplicationContextBuilder;
 import org.junit.Test;
@@ -21,10 +22,10 @@ public class SearchBookAcceptanceTest {
 
     @Test
     public void searchBooks() {
-        AddBookRequest request1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery1");
+        AddBookRequest request1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery1", Genre.FABLE);
         getAddBookService().execute(request1);
 
-        AddBookRequest request2 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery2");
+        AddBookRequest request2 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery2",  Genre.FABLE);
         getAddBookService().execute(request2);
 
         SearchBooksRequest request3 = new SearchBooksRequest("The Little Prince", null);
@@ -33,16 +34,18 @@ public class SearchBookAcceptanceTest {
         assertEquals(response.getBooks().size(), 2);
         assertEquals(response.getBooks().get(0).getTitle(), "The Little Prince");
         assertEquals(response.getBooks().get(0).getAuthor(), "Antoine de Saint-Exupery1");
+        assertEquals(response.getBooks().get(0).getGenre(), Genre.FABLE);
         assertEquals(response.getBooks().get(1).getTitle(), "The Little Prince");
         assertEquals(response.getBooks().get(1).getAuthor(), "Antoine de Saint-Exupery2");
+        assertEquals(response.getBooks().get(0).getGenre(), Genre.FABLE);
     }
 
     @Test
     public void searchBooksOrderingDescending() {
-        AddBookRequest request1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery1");
+        AddBookRequest request1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery1",  Genre.FABLE);
         getAddBookService().execute(request1);
 
-        AddBookRequest request2 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery2");
+        AddBookRequest request2 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery2", Genre.FABLE);
         getAddBookService().execute(request2);
 
         Ordering ordering = new Ordering("author", "DESCENDING");
@@ -50,18 +53,21 @@ public class SearchBookAcceptanceTest {
         SearchBooksResponse response = getSearchBooksService().execute(request3);
 
         assertEquals(response.getBooks().size(), 2);
+
         assertEquals(response.getBooks().get(0).getTitle(), "The Little Prince");
         assertEquals(response.getBooks().get(0).getAuthor(), "Antoine de Saint-Exupery2");
+        assertEquals(response.getBooks().get(0).getGenre(), Genre.FABLE);
         assertEquals(response.getBooks().get(1).getTitle(), "The Little Prince");
         assertEquals(response.getBooks().get(1).getAuthor(), "Antoine de Saint-Exupery1");
+        assertEquals(response.getBooks().get(0).getGenre(), Genre.FABLE);
     }
 
     @Test
     public void searchBooksOrderingAscending() {
-        AddBookRequest request1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery1");
+        AddBookRequest request1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery1", Genre.FABLE);
         getAddBookService().execute(request1);
 
-        AddBookRequest request2 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery2");
+        AddBookRequest request2 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery2", Genre.FABLE);
         getAddBookService().execute(request2);
 
         Ordering ordering = new Ordering("author", "ASCENDING");
@@ -71,16 +77,19 @@ public class SearchBookAcceptanceTest {
         assertEquals(response.getBooks().size(), 2);
         assertEquals(response.getBooks().get(0).getTitle(), "The Little Prince");
         assertEquals(response.getBooks().get(0).getAuthor(), "Antoine de Saint-Exupery1");
+        assertEquals(response.getBooks().get(0).getGenre(), Genre.FABLE);
         assertEquals(response.getBooks().get(1).getTitle(), "The Little Prince");
         assertEquals(response.getBooks().get(1).getAuthor(), "Antoine de Saint-Exupery2");
+        assertEquals(response.getBooks().get(0).getGenre(), Genre.FABLE);
+
     }
 
     @Test
     public void searchBooksOrderingPagingFirstPage() {
-        AddBookRequest request1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery1");
+        AddBookRequest request1 = new AddBookRequest( "The Little Prince", "Antoine de Saint-Exupery1", Genre.FABLE);
         getAddBookService().execute(request1);
 
-        AddBookRequest request2 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery2");
+        AddBookRequest request2 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery2", Genre.FABLE);
         getAddBookService().execute(request2);
 
         Ordering ordering = new Ordering("author", "ASCENDING");
@@ -91,13 +100,15 @@ public class SearchBookAcceptanceTest {
         assertEquals(response.getBooks().size(), 1);
         assertEquals(response.getBooks().get(0).getTitle(), "The Little Prince");
         assertEquals(response.getBooks().get(0).getAuthor(), "Antoine de Saint-Exupery1");
+        assertEquals(response.getBooks().get(0).getGenre(), Genre.FABLE);
     }
+
     @Test
     public void searchBooksOrderingPagingSecondPage() {
-        AddBookRequest request1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery1");
+        AddBookRequest request1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery1", Genre.FABLE);
         getAddBookService().execute(request1);
 
-        AddBookRequest request2 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery2");
+        AddBookRequest request2 = new AddBookRequest( "The Little Prince", "Antoine de Saint-Exupery2", Genre.FABLE);
         getAddBookService().execute(request2);
 
         Ordering ordering = new Ordering("author", "ASCENDING");
@@ -108,6 +119,7 @@ public class SearchBookAcceptanceTest {
         assertEquals(response.getBooks().size(), 1);
         assertEquals(response.getBooks().get(0).getTitle(), "The Little Prince");
         assertEquals(response.getBooks().get(0).getAuthor(), "Antoine de Saint-Exupery2");
+        assertEquals(response.getBooks().get(0).getGenre(), Genre.FABLE);
 
 }
 

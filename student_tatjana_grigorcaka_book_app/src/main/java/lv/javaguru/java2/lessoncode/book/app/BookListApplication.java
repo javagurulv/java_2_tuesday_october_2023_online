@@ -36,7 +36,7 @@ import java.util.Scanner;
             System.out.println("2. Delete book from list: ");
             System.out.println("3. Show all books in the list: ");
             System.out.println("4. Search books");
-            System.out.println("5. Exit");
+            System.out.println("5. Exit program");
 
             System.out.println("");
         }
