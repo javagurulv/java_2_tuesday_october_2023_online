@@ -1,20 +1,21 @@
 package lv.javaguru.java2.lessoncode.book.app.console_ui;
 
+import java.util.Scanner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.services.AddBookService;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.AddBookResponse;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIDependency;
 
-import java.util.Scanner;
 
-@DIComponent
+@Component
 public class AddBookUIAction implements UIAction {
 
-    @DIDependency
-    private AddBookService addBookService;
+    @Autowired private AddBookService addBookService;
 
     @Override
     public void execute() {

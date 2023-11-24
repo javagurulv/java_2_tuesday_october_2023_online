@@ -4,17 +4,17 @@ import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@DIComponent
+@Component
 public class AddBookRequestValidator {
 
-    @DIDependency private Database database;
+    @Autowired private Database database;
 
 
     public List<CoreError> validate(AddBookRequest request) {

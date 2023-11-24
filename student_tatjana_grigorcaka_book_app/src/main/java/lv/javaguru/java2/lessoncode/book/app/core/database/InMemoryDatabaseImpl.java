@@ -1,14 +1,14 @@
 package lv.javaguru.java2.lessoncode.book.app.core.database;
 
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@DIComponent
+@Component
 public class InMemoryDatabaseImpl implements Database {
 
     private Long nextId = 1L;

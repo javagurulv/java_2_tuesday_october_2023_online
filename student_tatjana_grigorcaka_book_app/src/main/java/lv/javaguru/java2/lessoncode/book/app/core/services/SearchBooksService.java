@@ -8,19 +8,27 @@ import lv.javaguru.java2.lessoncode.book.app.core.services.validators.SearchBook
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Ordering;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Paging;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchBooksRequest;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIDependency;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@DIComponent
+@Component
 public class SearchBooksService {
 
-    @DIDependency  private Database database;
-    @DIDependency private SearchBooksRequestValidator validator;
+    @Value("${search.ordering.enabled}")
+    private boolean orderingEnabled;
+
+    @Value("${search.paging.enabled}")
+    private boolean pagingEnabled;
+
+    @Autowired private Database database;
+    @Autowired private SearchBooksRequestValidator validator;
 
     public SearchBooksResponse execute(SearchBooksRequest request) {
         List<CoreError> errors = validator.validate(request);
@@ -36,7 +44,7 @@ public class SearchBooksService {
     }
 
     private List<Book> order (List < Book > books, Ordering ordering){
-        if (ordering != null) {
+        if (orderingEnabled && (ordering != null)) {
             Comparator<Book> comparator = ordering.getOrderBy().equals("title")
                     ? Comparator.comparing(Book::getTitle)
                     : Comparator.comparing(Book::getAuthor);
@@ -64,7 +72,7 @@ public class SearchBooksService {
     }
 
     private List<Book> paging(List<Book> books, Paging paging) {
-        if (paging != null) {
+        if (pagingEnabled && (paging != null)) {
             int skip = (paging.getPageNumber() - 1) * paging.getPageSize();
             return books.stream()
                     .skip(skip)

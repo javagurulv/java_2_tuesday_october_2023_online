@@ -5,15 +5,15 @@ import lv.javaguru.java2.lessoncode.book.app.core.responses.SearchBooksResponse;
 import lv.javaguru.java2.lessoncode.book.app.core.services.SearchBooksService;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Ordering;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchBooksRequest;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class SearchBooksUIAction implements UIAction{
 
-    @DIDependency private SearchBooksService searchBooksService;
+    @Autowired private SearchBooksService searchBooksService;
 
     @Override
     public void execute() {

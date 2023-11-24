@@ -1,28 +1,28 @@
 package lv.javaguru.java2.lessoncode.book.app;
 
+import lv.javaguru.java2.lessoncode.book.app.config.BookListConfiguration;
 import lv.javaguru.java2.lessoncode.book.app.console_ui.AddBookUIAction;
 import lv.javaguru.java2.lessoncode.book.app.console_ui.ProgramExitUIAction;
 import lv.javaguru.java2.lessoncode.book.app.console_ui.PrintAllBooksUIAction;
 import lv.javaguru.java2.lessoncode.book.app.console_ui.RemoveBookUIAction;
 import lv.javaguru.java2.lessoncode.book.app.console_ui.SearchBooksUIAction;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.ApplicationContext;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIApplicationContextBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Scanner;
 
-    public class BookListApplication {
+public class BookListApplication {
 
-        private static ApplicationContext applicationContext =
-                new DIApplicationContextBuilder().build("lv.javaguru.java2.lessoncode.book.app");
+    private static ApplicationContext applicationContext =
+            new AnnotationConfigApplicationContext(BookListConfiguration.class);
 
     public static void main(String[] args) {
-    while (true) {
-        printMenu();
-        int userChoice = getUserMenuChoice();
-
-        executeSelectedMenuItem(userChoice);
+        while (true) {
+            printMenu();
+            int userChoice = getUserMenuChoice();
+            executeSelectedMenuItem(userChoice);
+        }
     }
-}
 
     private static int getUserMenuChoice() {
             System.out.println("Enter menu item number to execute ");

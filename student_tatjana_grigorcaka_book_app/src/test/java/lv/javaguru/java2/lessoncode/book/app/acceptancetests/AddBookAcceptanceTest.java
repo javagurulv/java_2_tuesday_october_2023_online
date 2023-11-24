@@ -1,10 +1,12 @@
 package lv.javaguru.java2.lessoncode.book.app.acceptancetests;
 
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIApplicationContextBuilder;
+import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.ApplicationContext;
+import lv.javaguru.java2.lessoncode.book.app.config.BookListConfiguration;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.AddBookResponse;
@@ -16,8 +18,12 @@ import static org.junit.Assert.*;
 
 public class AddBookAcceptanceTest {
 
-    private ApplicationContext appContext =
-            new DIApplicationContextBuilder().build("lv.javaguru.java2.lessoncode.book.app");
+    private ApplicationContext appContext;
+
+    @Before
+    public void setup() {
+        appContext = new AnnotationConfigApplicationContext(BookListConfiguration.class);
+    }
 
     @Test
     public void shouldReturnErrorWhenBookTitleNotProvided() {
