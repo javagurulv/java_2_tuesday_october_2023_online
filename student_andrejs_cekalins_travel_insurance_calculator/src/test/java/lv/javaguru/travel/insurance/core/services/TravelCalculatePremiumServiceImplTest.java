@@ -99,7 +99,7 @@ class TravelCalculatePremiumServiceImplTest {
         when(requestValidator.validate(request)).thenReturn(List.of());
         when(travelPremiumUnderwriting.calculatePremium(request)).thenReturn(new BigDecimal(4L));
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
-        assertEquals(response.getAgreementPrice(), new BigDecimal(4));
+        assertEquals(response.getAgreementPremium(), new BigDecimal(4));
     }
     private List<ValidationError> buildValidationErrorList() {
         return List.of(new ValidationError("field", "errorMessage!"));
