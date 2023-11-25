@@ -5,6 +5,7 @@ import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.services.data_vlidation.RemoveClientRequestValidator;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -25,8 +26,9 @@ public class RemoveClientServiceTest {
     @InjectMocks
     private DeleteClientService service;
 
+
     @Test
-    void shouldDeleteClientWithPersonaCodeFromDatabase() {
+    public void shouldDeleteClientWithPersonaCodeFromDatabase() {
         RemoveClientRequest request = new RemoveClientRequest("12-12");
         Mockito.when(validator.validate(request)).thenReturn(List.of());
         Mockito.when(database.deleteClientByPersonalCode("12-12")).thenReturn(true);

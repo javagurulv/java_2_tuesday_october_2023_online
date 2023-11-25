@@ -4,10 +4,12 @@ import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.CoreError;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import java.util.List;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -24,7 +26,10 @@ public class SearchClientRequestValidationTest {
     @Mock
     private PagingValidator pagingValidator;
 
-
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void shouldNotReturnErrorsWhenFieldValidatorReturnNoErrors() {
