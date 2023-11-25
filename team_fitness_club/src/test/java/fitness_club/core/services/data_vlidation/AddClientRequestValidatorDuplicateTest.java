@@ -7,7 +7,7 @@ import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.CoreError;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -16,7 +16,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class AddClientRequestValidatorDuplicateTest {
@@ -26,7 +27,7 @@ public class AddClientRequestValidatorDuplicateTest {
     private AddClientRequestValidator validator;
 
     @Test
-    void shouldReturnErrorWhenDuplicateFound() {
+    public void shouldReturnErrorWhenDuplicateFound() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
                 "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         database = Mockito.mock(Database.class);
@@ -41,7 +42,7 @@ public class AddClientRequestValidatorDuplicateTest {
     }
 
     @Test
-    void shouldNotReturnErrorWhenDuplicateNotFound() {
+    public void shouldNotReturnErrorWhenDuplicateNotFound() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
                 "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         database = Mockito.mock(Database.class);

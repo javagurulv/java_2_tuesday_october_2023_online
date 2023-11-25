@@ -3,22 +3,17 @@ package fitness_club.core.services;
 import fitness_club.core.database.Database;
 import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.requests.RemoveClientRequest;
-
 import fitness_club.core.services.data_vlidation.RemoveClientRequestValidator;
 import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -29,10 +24,6 @@ public class RemoveClientServiceTest {
     private RemoveClientRequestValidator validator;
     @InjectMocks
     private DeleteClientService service;
-    @BeforeEach
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     void shouldDeleteClientWithPersonaCodeFromDatabase() {

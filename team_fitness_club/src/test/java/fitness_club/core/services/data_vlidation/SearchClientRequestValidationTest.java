@@ -4,19 +4,16 @@ import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.CoreError;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-class SearchClientRequestValidationTest {
+public class SearchClientRequestValidationTest {
 
     @InjectMocks
     private SearchClientRequestValidator validator;
@@ -28,10 +25,6 @@ class SearchClientRequestValidationTest {
     private PagingValidator pagingValidator;
 
 
-    @BeforeEach
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     public void shouldNotReturnErrorsWhenFieldValidatorReturnNoErrors() {

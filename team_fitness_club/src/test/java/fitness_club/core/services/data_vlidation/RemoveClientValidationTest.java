@@ -2,17 +2,17 @@ package fitness_club.core.services.data_vlidation;
 
 import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.responses.CoreError;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class RemoveClientValidationTest {
+public class RemoveClientValidationTest {
     private RemoveClientRequestValidator requestValidator = new RemoveClientRequestValidator();
 
     @Test
-    void shouldReturnErrorWhenClientPersonalCodeIsNull() {
+    public void shouldReturnErrorWhenClientPersonalCodeIsNull() {
         RemoveClientRequest request = mock(RemoveClientRequest.class);
         {
             when(request.getPersonalCode()).thenReturn(null);
@@ -25,7 +25,7 @@ class RemoveClientValidationTest {
     }
 
     @Test
-    void shouldReturnErrorWhenClientPersonaCodeIsEmpty() {
+    public void shouldReturnErrorWhenClientPersonaCodeIsEmpty() {
         RemoveClientRequest request = mock(RemoveClientRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("");
@@ -38,7 +38,7 @@ class RemoveClientValidationTest {
     }
 
     @Test
-    void shouldNotReturnErrorWhenPersonalCodeIsPresent() {
+    public void shouldNotReturnErrorWhenPersonalCodeIsPresent() {
         RemoveClientRequest request = mock(RemoveClientRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("personalCode");

@@ -1,15 +1,14 @@
 package fitness_club.dependency_injection;
 
-import org.junit.jupiter.api.Test;
-
+import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
 
-class ClassFinderTest {
+public class ClassFinderTest {
 
     @Test
-    void findClassesInsidePackage() throws IOException, ClassNotFoundException {
+    public void findClassesInsidePackage() throws IOException, ClassNotFoundException {
         ClassFinder classFinder = new ClassFinder();
         List<Class> classes = classFinder.findClassesInsidePackage("fitness_club");
         classes.forEach(aClass -> {

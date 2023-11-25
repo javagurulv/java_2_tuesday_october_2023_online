@@ -3,19 +3,17 @@ package fitness_club.core.services.data_vlidation;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.ChangeClientWorkoutsRequest;
 import fitness_club.core.responses.CoreError;
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class ChangeClientWorkoutsValidationTest {
+public class ChangeClientWorkoutsValidationTest {
     private ChangeClientWorkoutsValidator requestValidator = new ChangeClientWorkoutsValidator();
 
     @Test
-    void shouldReturnErrorWhenClientPersonalCodeIsNull() {
+    public void shouldReturnErrorWhenClientPersonalCodeIsNull() {
         ChangeClientWorkoutsRequest request = mock(ChangeClientWorkoutsRequest.class);
         {
             when(request.getPersonalCode()).thenReturn(null);
@@ -29,7 +27,7 @@ class ChangeClientWorkoutsValidationTest {
     }
 
     @Test
-    void shouldReturnErrorWhenClientPersonaCodeIsEmpty() {
+    public void shouldReturnErrorWhenClientPersonaCodeIsEmpty() {
         ChangeClientWorkoutsRequest request = mock(ChangeClientWorkoutsRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("");
@@ -43,7 +41,7 @@ class ChangeClientWorkoutsValidationTest {
     }
 
     @Test
-    void shouldNotReturnErrorWhenPersonalCodeIsPresent() {
+    public void shouldNotReturnErrorWhenPersonalCodeIsPresent() {
         ChangeClientWorkoutsRequest request = mock(ChangeClientWorkoutsRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("personalCode");

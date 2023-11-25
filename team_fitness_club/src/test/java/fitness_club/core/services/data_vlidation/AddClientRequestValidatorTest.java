@@ -7,16 +7,19 @@ import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.services.AddClientService;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class AddClientRequestValidatorTest {
+@RunWith(MockitoJUnitRunner.class)
+public class AddClientRequestValidatorTest {
     @Mock
     private Database database;
     @Mock
@@ -25,7 +28,7 @@ class AddClientRequestValidatorTest {
     private AddClientRequestValidator validator;
 
     @Test
-    void shouldReturnErrorWhenFirstNameIsNull() {
+    public void shouldReturnErrorWhenFirstNameIsNull() {
         service = new AddClientService(database, validator);
         AddClientRequest request = new AddClientRequest(null, "lastName", "personalCode",
                 ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
@@ -39,7 +42,7 @@ class AddClientRequestValidatorTest {
     }
 
     @Test
-    void shouldReturnErrorWhenFirstNameIsEmpty() {
+    public void shouldReturnErrorWhenFirstNameIsEmpty() {
         database = Mockito.mock(Database.class);
         validator = new AddClientRequestValidator(database);
         AddClientRequest request = new AddClientRequest("", "lastName", "personalCode",
@@ -52,7 +55,7 @@ class AddClientRequestValidatorTest {
     }
 
     @Test
-    void shouldReturnErrorWhenLastNameIsNull() {
+    public void shouldReturnErrorWhenLastNameIsNull() {
         database = Mockito.mock(Database.class);
         validator = new AddClientRequestValidator(database);
         AddClientRequest request = new AddClientRequest("firstName", null, "personalCode",
@@ -65,7 +68,7 @@ class AddClientRequestValidatorTest {
     }
 
     @Test
-    void shouldReturnErrorWhenLastNameIsEmpty() {
+    public void shouldReturnErrorWhenLastNameIsEmpty() {
         database = Mockito.mock(Database.class);
         validator = new AddClientRequestValidator(database);
         AddClientRequest request = new AddClientRequest("firstName", "", "personalCode",
@@ -78,7 +81,7 @@ class AddClientRequestValidatorTest {
     }
 
     @Test
-    void shouldReturnErrorWhenClientFirstNameIsNumbers() {
+    public void shouldReturnErrorWhenClientFirstNameIsNumbers() {
         database = Mockito.mock(Database.class);
         validator = new AddClientRequestValidator(database);
         AddClientRequest request = new AddClientRequest("5", "lastName", "personalCode",
@@ -91,7 +94,7 @@ class AddClientRequestValidatorTest {
     }
 
     @Test
-    void shouldReturnErrorWhenClientFirstNameIsSymbol() {
+    public void shouldReturnErrorWhenClientFirstNameIsSymbol() {
         database = Mockito.mock(Database.class);
         validator = new AddClientRequestValidator(database);
         AddClientRequest request = new AddClientRequest("!", "lastName", "personalCode",
@@ -104,7 +107,7 @@ class AddClientRequestValidatorTest {
     }
 
     @Test
-    void shouldReturnErrorWhenClientLastNameIsNumbers() {
+    public void shouldReturnErrorWhenClientLastNameIsNumbers() {
         database = Mockito.mock(Database.class);
         validator = new AddClientRequestValidator(database);
         AddClientRequest request = new AddClientRequest("firstName", "5", "personalCode",
@@ -117,7 +120,7 @@ class AddClientRequestValidatorTest {
     }
 
     @Test
-    void shouldReturnErrorWhenClientLastNameIsSymbol() {
+    public void shouldReturnErrorWhenClientLastNameIsSymbol() {
         database = Mockito.mock(Database.class);
         validator = new AddClientRequestValidator(database);
         AddClientRequest request = new AddClientRequest("firstName", "!", "personalCode",
@@ -130,7 +133,7 @@ class AddClientRequestValidatorTest {
     }
 
     @Test
-    void shouldReturnErrorWhenPersonaCodeNull() {
+    public void shouldReturnErrorWhenPersonaCodeNull() {
         database = Mockito.mock(Database.class);
         validator = new AddClientRequestValidator(database);
         AddClientRequest request = new AddClientRequest("firstName", "lastName", null,
@@ -143,7 +146,7 @@ class AddClientRequestValidatorTest {
     }
 
     @Test
-    void shouldReturnErrorWhenPersonaCodeIsEmpty() {
+    public void shouldReturnErrorWhenPersonaCodeIsEmpty() {
         database = Mockito.mock(Database.class);
         validator = new AddClientRequestValidator(database);
         AddClientRequest request = new AddClientRequest("firstName", "lastName", "",
@@ -156,7 +159,7 @@ class AddClientRequestValidatorTest {
     }
 
     @Test
-    void shouldNotReturnErrorWhenAllFieldsArePresent() {
+    public void shouldNotReturnErrorWhenAllFieldsArePresent() {
         database = Mockito.mock(Database.class);
         validator = new AddClientRequestValidator(database);
         AddClientRequest request = new AddClientRequest("firstName", "lastName", "personalCode",
