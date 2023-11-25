@@ -3,15 +3,15 @@ package lv.avangardteen.UIAction;
 import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.ShowOrderResponse;
 import lv.avangardteen.core.service.ShowOrderService;
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class ShowOrderUIAction implements UIAction {
-    @DIDependency
+    @Autowired
     ShowOrderService service;
 
     @Override

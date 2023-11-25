@@ -1,15 +1,15 @@
-package lv.avangardteen.dto;
+package lv.avangardteen.core.dto;
 
 import java.util.Objects;
 
-public class Component {
+public class Components {
     private Category category;
     private Integer index;
     private String marking;
     private String information;
     private double price;
 
-    public Component(Category category, Integer index, String marking, String information, double price) {
+    public Components(Category category, Integer index, String marking, String information, double price) {
         this.category = category;
         this.index = index;
         this.marking = marking;
@@ -70,7 +70,7 @@ public class Component {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Component component = (Component) o;
+        Components component = (Components) o;
         return index == component.index && Double.compare(component.price, price) == 0 && category == component.category && Objects.equals(marking, component.marking) && Objects.equals(information, component.information);
     }
 

@@ -1,17 +1,17 @@
 package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.data.Database;
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dependency_injection.DIDependency;
+import lv.avangardteen.core.data.Database;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@DIComponent
+@Component
 public class ClientIdValidator {
-   @DIDependency
-   private Database database;
+    @Autowired
+    private Database database;
 
 
     public List<CoreError> validate(Long id) {

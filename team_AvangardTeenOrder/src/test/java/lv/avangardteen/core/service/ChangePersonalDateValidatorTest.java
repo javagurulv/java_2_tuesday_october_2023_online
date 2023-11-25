@@ -5,12 +5,10 @@ import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChangePersonalDateValidator;
 import lv.avangardteen.core.service.validate.ClientIdValidator;
 import lv.avangardteen.core.service.validate.PersonalDateValidation;
-import lv.avangardteen.data.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.List;

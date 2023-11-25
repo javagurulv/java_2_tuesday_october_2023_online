@@ -3,18 +3,18 @@ package lv.avangardteen.UIAction;
 import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.ClientResponse;
 import lv.avangardteen.core.service.ClientService;
-import lv.avangardteen.data.DataComponents;
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dependency_injection.DIDependency;
+import lv.avangardteen.core.data.DataComponents;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class OrderUIAction implements UIAction {
-    @DIDependency
+    @Autowired
     DataComponents dataComponents;
-    @DIDependency
+    @Autowired
     ClientService service;
 
     @Override

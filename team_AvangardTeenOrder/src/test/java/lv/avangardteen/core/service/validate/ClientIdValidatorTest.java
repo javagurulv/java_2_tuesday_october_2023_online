@@ -1,12 +1,11 @@
 package lv.avangardteen.core.service.validate;
 
-import lv.avangardteen.dto.Client;
+import lv.avangardteen.core.dto.Client;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.data.Database;
+import lv.avangardteen.core.data.Database;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 
 import java.util.List;

@@ -1,11 +1,11 @@
 package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-@DIComponent
+@Component
 public class PersonalDateValidation {
 
     public List<CoreError> validate(String surname, Integer phone, String address) {

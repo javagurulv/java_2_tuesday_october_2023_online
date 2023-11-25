@@ -1,4 +1,4 @@
-package lv.avangardteen.dto;
+package lv.avangardteen.core.dto;
 
 public class UserSizes {
     public Integer pelvisWidth; //ширина таза

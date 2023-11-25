@@ -3,16 +3,16 @@ package lv.avangardteen.UIAction;
 import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.DeleteOrderResponse;
 import lv.avangardteen.core.service.DeleteOrderService;
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class DeleteOrderUIAction implements UIAction {
 
-    @DIDependency
+    @Autowired
     DeleteOrderService service;
 
     @Override

@@ -1,13 +1,14 @@
 package lv.avangardteen;
 
 import lv.avangardteen.UIAction.*;
-import lv.avangardteen.dependency_injection.ApplicationContext;
-import lv.avangardteen.dependency_injection.DIApplicationContextBuilder;
+import lv.avangardteen.config.OrderListConfiguration;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Scanner;
 
 public class OrderApplication {
-    private static ApplicationContext applicationContext = new DIApplicationContextBuilder().build("lv.avangardteen");
+    private static ApplicationContext applicationContext = new AnnotationConfigApplicationContext(OrderListConfiguration.class);
 
 
     public static void main(String[] args) {

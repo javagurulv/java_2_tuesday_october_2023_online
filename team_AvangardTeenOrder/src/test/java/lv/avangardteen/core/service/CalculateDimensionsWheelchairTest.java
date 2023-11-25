@@ -1,7 +1,7 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.dto.UserSizes;
-import lv.avangardteen.dto.Wheelchair;
+import lv.avangardteen.core.dto.UserSizes;
+import lv.avangardteen.core.dto.Wheelchair;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;

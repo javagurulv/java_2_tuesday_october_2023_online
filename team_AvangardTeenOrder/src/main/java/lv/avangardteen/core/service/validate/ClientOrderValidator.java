@@ -2,18 +2,18 @@ package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-@DIComponent
+@Component
 public class ClientOrderValidator {
-    @DIDependency
+    @Autowired
     private PersonalDateValidation personalDateValidation;
-    @DIDependency
+    @Autowired
     private PersonalSizeValidator personalSizeValidator;
-    @DIDependency
+    @Autowired
     private ComponentValidator componentValidator;
 
     public List<CoreError> validate(ClientRequest request) {

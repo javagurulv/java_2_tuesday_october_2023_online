@@ -1,12 +1,13 @@
 package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dto.UserSizes;
+import lv.avangardteen.core.dto.UserSizes;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-@DIComponent
+
+@Component
 public class PersonalSizeValidator {
 
     public List<CoreError> validate(UserSizes userSizes) {
