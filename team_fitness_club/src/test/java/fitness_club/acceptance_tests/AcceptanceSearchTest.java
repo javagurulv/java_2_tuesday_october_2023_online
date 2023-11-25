@@ -28,7 +28,7 @@ public class AcceptanceSearchTest {
    }
 
     @Test
-    void searchClients() {
+    public void searchClients() {
         AddClientRequest request1 = new AddClientRequest("Aaa", "Bbb", "123", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         getAddclientService().execute(request1);
 
@@ -45,7 +45,7 @@ public class AcceptanceSearchTest {
     }
 
     @Test
-    void searchBooksOrderingDescending() {
+    public void searchBooksOrderingDescending() {
         AddClientRequest request1 = new AddClientRequest("Aaa", "Bbb", "123", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         getAddclientService().execute(request1);
         AddClientRequest request2 = new AddClientRequest("Aaa", "Ddd", "1234", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
@@ -63,7 +63,7 @@ public class AcceptanceSearchTest {
     }
 
     @Test
-    void searchBooksOrderingAscending() {
+    public void searchBooksOrderingAscending() {
         AddClientRequest request1 = new AddClientRequest("Aaa", "Bbb", "123", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         getAddclientService().execute(request1);
         AddClientRequest request2 = new AddClientRequest("Aaa", "Ddd", "1234", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
@@ -82,7 +82,7 @@ public class AcceptanceSearchTest {
     }
 
     @Test
-    void searchBooksOrderingPaging() {
+    public void searchBooksOrderingPaging() {
         AddClientRequest request1 = new AddClientRequest("Aaa", "Bbb", "123", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         getAddclientService().execute(request1);
         AddClientRequest request2 = new AddClientRequest("Aaa", "Ddd", "1234", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
