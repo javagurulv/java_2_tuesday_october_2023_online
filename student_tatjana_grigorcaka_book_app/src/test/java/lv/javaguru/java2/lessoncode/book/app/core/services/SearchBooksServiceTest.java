@@ -6,12 +6,15 @@ import static org.mockito.ArgumentMatchers.any;
 import java.util.ArrayList;
 import java.util.List;
 
+import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
@@ -30,6 +33,12 @@ public class SearchBooksServiceTest  {
     @Mock private SearchBooksRequestValidator validator;
     @InjectMocks
     private SearchBooksService service;
+
+    @Before
+    public void setup() {
+        ReflectionTestUtils.setField(service, "orderingEnabled", true);
+        ReflectionTestUtils.setField(service, "pagingEnabled", true);
+    }
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidatorFails() {
@@ -54,7 +63,7 @@ public class SearchBooksServiceTest  {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Book> books = new ArrayList<>();
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery"));
+        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery", Genre.FABLE));
         Mockito.when(database.findByTitle("The Little Prince")).thenReturn(books);
 
         SearchBooksResponse response = service.execute(request);
@@ -62,6 +71,7 @@ public class SearchBooksServiceTest  {
         assertEquals(response.getBooks().size(), 1);
         assertEquals(response.getBooks().get(0).getTitle(), "The Little Prince");
         assertEquals(response.getBooks().get(0).getAuthor(), "Antoine de Saint-Exupery");
+        assertEquals(response.getBooks().get(0).getGenre(), Genre.FABLE);
     }
 
     @Test
@@ -70,7 +80,7 @@ public class SearchBooksServiceTest  {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Book> books = new ArrayList<>();
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery"));
+        books.add(new Book( "The Little Prince", "Antoine de Saint-Exupery", Genre.FABLE));
         Mockito.when(database.findByAuthor("Antoine de Saint-Exupery")).thenReturn(books);
 
         SearchBooksResponse response = service.execute(request);
@@ -78,6 +88,7 @@ public class SearchBooksServiceTest  {
         assertEquals(response.getBooks().size(), 1);
         assertEquals(response.getBooks().get(0).getTitle(), "The Little Prince");
         assertEquals(response.getBooks().get(0).getAuthor(), "Antoine de Saint-Exupery");
+        assertEquals(response.getBooks().get(0).getGenre(), Genre.FABLE);
     }
 
     @Test
@@ -86,7 +97,7 @@ public class SearchBooksServiceTest  {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Book> books = new ArrayList<>();
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery"));
+        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery", Genre.FABLE));
         Mockito.when(database.findByTitleAndAuthor("The Little Prince", "Antoine de Saint-Exupery")).thenReturn(books);
 
         SearchBooksResponse response = service.execute(request);
@@ -94,6 +105,7 @@ public class SearchBooksServiceTest  {
         assertEquals(response.getBooks().size(), 1);
         assertEquals(response.getBooks().get(0).getTitle(), "The Little Prince");
         assertEquals(response.getBooks().get(0).getAuthor(), "Antoine de Saint-Exupery");
+        assertEquals(response.getBooks().get(0).getGenre(), Genre.FABLE);
     }
 
     @Test
@@ -103,8 +115,8 @@ public class SearchBooksServiceTest  {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Book> books = new ArrayList<>();
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery2"));
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery1"));
+        books.add(new Book( "The Little Prince", "Antoine de Saint-Exupery2", Genre.FABLE));
+        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery1", Genre.FABLE));
         Mockito.when(database.findByTitle("The Little Prince")).thenReturn(books);
 
         SearchBooksResponse response = service.execute(request);
@@ -121,8 +133,8 @@ public class SearchBooksServiceTest  {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Book> books = new ArrayList<>();
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery1"));
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery2"));
+        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery1", Genre.FABLE));
+        books.add(new Book( "The Little Prince", "Antoine de Saint-Exupery2", Genre.FABLE));
         Mockito.when(database.findByTitle("The Little Prince")).thenReturn(books);
 
         SearchBooksResponse response = service.execute(request);
@@ -139,8 +151,8 @@ public class SearchBooksServiceTest  {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Book> books = new ArrayList<>();
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery1"));
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery2"));
+        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery1", Genre.FABLE));
+        books.add(new Book( "The Little Prince", "Antoine de Saint-Exupery2",Genre.FABLE));
         Mockito.when(database.findByTitle("The Little Prince")).thenReturn(books);
 
         SearchBooksResponse response = service.execute(request);
@@ -157,8 +169,8 @@ public class SearchBooksServiceTest  {
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Book> books = new ArrayList<>();
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery1"));
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery2"));
+        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery1", Genre.FABLE));
+        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery2", Genre.FABLE));
         Mockito.when(database.findByTitle("The Little Prince")).thenReturn(books);
 
         SearchBooksResponse response = service.execute(request);

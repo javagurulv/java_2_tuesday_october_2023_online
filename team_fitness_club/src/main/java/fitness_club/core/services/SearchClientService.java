@@ -1,53 +1,50 @@
 package fitness_club.core.services;
 
+
 import fitness_club.core.database.Database;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.Ordering;
+import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
-import fitness_club.core.services.data_vlidation.CoreError;
+import fitness_club.core.responses.CoreError;
 import fitness_club.core.services.data_vlidation.SearchClientRequestValidator;
-import fitness_club.dependency_injection.DIComponent;
-import fitness_club.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@DIComponent
+@Component
 public class SearchClientService {
-    @DIDependency private Database database;
-    @DIDependency private SearchClientRequestValidator validator;
+    @Value("${search.ordering.enabled}")
+    private boolean orderingEnabled;
+
+    @Value("${search.paging.enabled}")
+    private boolean pagingEnabled;
+
+    @Autowired
+    private Database database;
+    @Autowired
+    private SearchClientRequestValidator validator;
 
     public SearchClientResponse execute(SearchClientRequest request) {
         List<CoreError> errors = validator.validate(request);
-
         if (!errors.isEmpty()) {
             return new SearchClientResponse(null, errors);
         }
 
         List<Client> foundClients = search(request);
-        foundClients = order(foundClients,request.getOrdering());
-        foundClients = paging(foundClients, request);
+        foundClients = order(foundClients, request.getOrdering());
+        foundClients = paging(foundClients, request.getPaging());
 
         return new SearchClientResponse(foundClients, null);
     }
-    private List<Client> order(List<Client> foundClients, Ordering ordering) {
-        if (ordering != null) {
-            Comparator<Client> comparator = ordering.getOrderBy().equals("lastName")
-                    ? Comparator.comparing(Client::getLastName)
-                    : Comparator.comparing(Client::getFirstName);
-            if (ordering.getOrderDirection().equals("DESCENDING")) {
-                comparator = comparator.reversed();
-            }
-            return foundClients.stream().sorted(comparator).collect(Collectors.toList());
-        } else {
-            return foundClients;
-        }
-    }
 
-    List<Client> search(SearchClientRequest request) {
+    private List<Client> search(SearchClientRequest request) {
         List<Client> foundClients = new ArrayList<>();
         if (request.isFirstNameProvided() && !request.isLastNameProvided()) {
             foundClients = database.findByFirstName(request.getFirstName());
@@ -64,12 +61,27 @@ public class SearchClientService {
         return foundClients;
     }
 
-    List<Client> paging(List<Client> clients, SearchClientRequest request) {
-        if (request.getPaging() != null) {
-            int skip = (request.getPaging().getPageNumber() - 1) * request.getPaging().getPageSize();
+    private List<Client> order(List<Client> foundClients, Ordering ordering) {
+        if (orderingEnabled && (ordering != null)) {
+            Comparator<Client> comparator = ordering.getOrderBy().equals("lastName")
+                    ? Comparator.comparing(Client::getLastName)
+                    : Comparator.comparing(Client::getFirstName);
+            if (ordering.getOrderDirection().equals("DESCENDING")) {
+                comparator = comparator.reversed();
+            }
+            return foundClients.stream().sorted(comparator).collect(Collectors.toList());
+        } else {
+            return foundClients;
+        }
+    }
+
+
+   private List<Client> paging(List<Client> clients, Paging paging) {
+        if (pagingEnabled && (paging != null)) {
+            int skip = (paging.getPageNumber() - 1) * paging.getPageSize();
             return clients.stream()
                     .skip(skip)
-                    .limit(request.getPaging().getPageSize())
+                    .limit(paging.getPageSize())
                     .collect(Collectors.toList());
         } else {
             return clients;

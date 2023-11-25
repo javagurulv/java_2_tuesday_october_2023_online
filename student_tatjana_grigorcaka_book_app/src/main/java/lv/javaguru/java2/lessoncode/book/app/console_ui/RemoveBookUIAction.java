@@ -3,15 +3,16 @@ package lv.javaguru.java2.lessoncode.book.app.console_ui;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.RemoveBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.RemoveBookResponse;
 import lv.javaguru.java2.lessoncode.book.app.core.services.RemoveBookService;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIDependency;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class RemoveBookUIAction implements UIAction {
 
-    @DIDependency private RemoveBookService removeBookService;
+    @Autowired private RemoveBookService removeBookService;
 
     @Override
     public void execute() {

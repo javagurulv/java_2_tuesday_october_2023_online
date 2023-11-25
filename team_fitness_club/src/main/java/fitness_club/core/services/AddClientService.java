@@ -5,20 +5,23 @@ import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.services.data_vlidation.AddClientRequestValidator;
-import fitness_club.core.services.data_vlidation.CoreError;
-import fitness_club.dependency_injection.DIComponent;
-import fitness_club.dependency_injection.DIDependency;
+import fitness_club.core.responses.CoreError;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
-@DIComponent
+@Component
 public class AddClientService {
 
-    @DIDependency private Database database;
-    @DIDependency private AddClientRequestValidator validator;
+    @Autowired
+    private Database database;
+    @Autowired
+    private AddClientRequestValidator validator;
 
 
     public AddClientResponse execute(AddClientRequest request) {

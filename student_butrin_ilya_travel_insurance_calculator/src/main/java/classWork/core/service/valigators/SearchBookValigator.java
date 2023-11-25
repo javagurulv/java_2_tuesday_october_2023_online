@@ -2,21 +2,18 @@ package classWork.core.service.valigators;
 
 import classWork.core.CoreError;
 import classWork.core.requests.SearchBooksRequest;
+import classWork.dependency_injection.DIComponent;
+import classWork.dependency_injection.DIDependency;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@DIComponent
 public class SearchBookValigator {
-    SearchBooksFieldValidator field = new SearchBooksFieldValidator();
-    SearchBookOrderingValigator ordering = new SearchBookOrderingValigator();
-    SearchBookPagingValigator paging = new SearchBookPagingValigator();
-
-    public SearchBookValigator(SearchBooksFieldValidator field, SearchBookOrderingValigator ordering, SearchBookPagingValigator paging) {
-        this.field = field;
-        this.ordering = ordering;
-        this.paging = paging;
-    }
+  @DIDependency
+  SearchBooksFieldValidator field = new SearchBooksFieldValidator();
+  @DIDependency  SearchBookOrderingValigator ordering = new SearchBookOrderingValigator();
+  @DIDependency SearchBookPagingValigator paging = new SearchBookPagingValigator();
 
     public List<CoreError> errorList(SearchBooksRequest request) {
         List<CoreError> errorList = new ArrayList<>();

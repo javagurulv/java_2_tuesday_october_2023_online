@@ -7,14 +7,12 @@ import fitness_club.core.services.data_vlidation.AddClientRequestValidator;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
-import fitness_club.core.services.data_vlidation.CoreError;
+import fitness_club.core.responses.CoreError;
 import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
@@ -36,13 +34,9 @@ public class AddClientServiceTest {
     private Database database;
 
 
-    @BeforeEach
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
-    void addClientShouldSuccess_Mockito_style() {
+    public void addClientShouldSuccess_Mockito_style() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
                 "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         when(validator.validate(request)).thenReturn(List.of());
@@ -52,7 +46,7 @@ public class AddClientServiceTest {
     }
 
     @Test
-    void addClientShouldFail_Mockito_style() {
+    public void addClientShouldFail_Mockito_style() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
                 "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         when(validator.validate(request)).thenReturn(List.of(new CoreError("error", "Warning")));

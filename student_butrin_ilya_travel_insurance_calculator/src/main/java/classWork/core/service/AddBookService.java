@@ -7,17 +7,15 @@ import classWork.core.requests.AddBookRequest;
 import classWork.Book;
 
 import classWork.core.service.valigators.AddBookValidator;
+import classWork.dependency_injection.DIComponent;
+import classWork.dependency_injection.DIDependency;
 
 import java.util.List;
 
+@DIComponent
 public class AddBookService {
-   Database data;
-    AddBookValidator validator;
-
-    public AddBookService(Database data, AddBookValidator validator) {
-        this.data = data;
-        this.validator = validator;
-    }
+   @DIDependency Database data;
+   @DIDependency AddBookValidator validator;
 
     public AddBookResponse execute(AddBookRequest request) {
         List <CoreError> errorlist = validator.errorlist(request);

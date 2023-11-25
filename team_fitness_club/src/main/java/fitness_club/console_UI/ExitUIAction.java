@@ -1,8 +1,8 @@
 package fitness_club.console_UI;
 
-import fitness_club.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
 
-@DIComponent
+@Component
 public class ExitUIAction implements UIAction {
 
     @Override

@@ -1,10 +1,11 @@
 package classWork.core.database;
 
 import classWork.Book;
+import classWork.dependency_injection.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@DIComponent
 public class InMemoryDatabaseImpl implements Database {
     List<Book> books = new ArrayList<>();
     Long id = 1l;

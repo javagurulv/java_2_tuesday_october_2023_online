@@ -6,15 +6,16 @@ import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.responses.ChangeClientAgeGroupResponse;
 import fitness_club.core.services.ChangeClientAgeGroupService;
 import fitness_club.core.services.GetClientAgeGroupService;
-import fitness_club.dependency_injection.DIComponent;
-import fitness_club.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class ChangeClientAgeGroupUIAction implements UIAction {
-    @DIDependency private ChangeClientAgeGroupService changeClientAgeGroupService;
+    @Autowired
+    private ChangeClientAgeGroupService changeClientAgeGroupService;
 
 
     @Override

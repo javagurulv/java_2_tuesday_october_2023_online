@@ -1,13 +1,10 @@
 package fitness_club.core.services.data_vlidation;
 
 import fitness_club.core.requests.SearchClientRequest;
-import fitness_club.core.services.data_vlidation.CoreError;
-import fitness_club.core.services.data_vlidation.SearchClientRequestFieldValidator;
-import org.junit.jupiter.api.Test;
-
+import fitness_club.core.responses.CoreError;
+import org.junit.Test;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class SearchClientRequestFieldValidatorTest {
 

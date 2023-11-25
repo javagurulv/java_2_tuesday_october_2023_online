@@ -3,17 +3,18 @@ package fitness_club.core.services.data_vlidation;
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
-import fitness_club.dependency_injection.DIComponent;
-import fitness_club.dependency_injection.DIDependency;
+import fitness_club.core.responses.CoreError;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class SearchClientRequestValidator {
 
-    @DIDependency private SearchClientRequestFieldValidator fieldValidator;
-    @DIDependency private OrderingValidator orderingValidator;
-    @DIDependency private PagingValidator pagingValidator;
+    @Autowired private SearchClientRequestFieldValidator fieldValidator;
+    @Autowired private OrderingValidator orderingValidator;
+    @Autowired private PagingValidator pagingValidator;
 
 
 

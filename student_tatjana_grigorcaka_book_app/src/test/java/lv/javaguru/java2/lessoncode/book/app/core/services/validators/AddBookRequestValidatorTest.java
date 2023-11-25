@@ -2,18 +2,14 @@ package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
 import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
+import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
-import lv.javaguru.java2.lessoncode.book.app.core.requests.GetAllBooksRequest;
-import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
-import lv.javaguru.java2.lessoncode.book.app.core.responses.GetAllBooksResponse;
-import lv.javaguru.java2.lessoncode.book.app.core.services.validators.AddBookRequestValidator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,34 +25,44 @@ public class AddBookRequestValidatorTest {
     @InjectMocks
     private AddBookRequestValidator validator;
 
+
     @Test
     public void shouldReturnErrorWhenTitleIsNull() {
-        AddBookRequest request = new AddBookRequest(null, "Antoine de Saint-Exupery");
+        AddBookRequest request = new AddBookRequest(null, "Antoine de Saint-Exupery", Genre.FABLE);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getErrorCode(), "title");
+        assertEquals(errors.get(0).getErrorCode(), "bookTitle");
         assertEquals(errors.get(0).getErrorMessage(), "Must not be empty!");
     }
 
     @Test
     public void shouldReturnErrorWhenAuthorIsNull() {
-        AddBookRequest request = new AddBookRequest("The Little Prince", null);
+        AddBookRequest request = new AddBookRequest("The Little Prince", null, Genre.FABLE);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getErrorCode(), "author");
+        assertEquals(errors.get(0).getErrorCode(), "bookAuthor");
         assertEquals(errors.get(0).getErrorMessage(), "Must not be empty!");
     }
 
     @Test
-    public void shouldReturnErrorsWhenAuthorAndTitleIsNull() {
-        AddBookRequest request = new AddBookRequest(null, null);
+    public void shouldReturnErrorWhenGenreIsNull() {
+        AddBookRequest request = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", null);
         List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 2);
+        assertEquals(errors.size(), 1);
+        assertEquals(errors.get(0).getErrorCode(), "genre");
+        assertEquals(errors.get(0).getErrorMessage(), "Must not be empty!");
+    }
+
+    @Test
+    public void shouldReturnErrorsWhenTitleAuthorAndGenreIsNull() {
+        AddBookRequest request = new AddBookRequest(null, null,  null);
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 3);
     }
 
     @Test
     public void shouldSuccess() {
-        AddBookRequest request = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery");
+        AddBookRequest request = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery",  Genre.FABLE);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
@@ -64,10 +70,10 @@ public class AddBookRequestValidatorTest {
     @Test
     public void shouldReturnErrorWhenDuplicateFound() {
         List<Book> books = new ArrayList<>();
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery"));
-        Mockito.when(database.findByTitleAndAuthor("The Little Prince", "Antoine de Saint-Exupery")).thenReturn(List.of(new Book("The Little Prince","Antoine de Saint-Exupery")));
+        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery", Genre.FABLE));
+        Mockito.when(database.findByTitleAndAuthor("The Little Prince", "Antoine de Saint-Exupery")).thenReturn(List.of(new Book("The Little Prince","Antoine de Saint-Exupery",  Genre.FABLE)));
 
-        AddBookRequest request = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery");
+        AddBookRequest request = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", Genre.FABLE);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "duplicate");
@@ -79,7 +85,7 @@ public class AddBookRequestValidatorTest {
         List<Book> books = new ArrayList<>();
         Mockito.when(database.findByTitleAndAuthor("The Little Prince", "Antoine de Saint-Exupery")).thenReturn(books);
 
-        AddBookRequest request = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery");
+        AddBookRequest request = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", Genre.FABLE);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }

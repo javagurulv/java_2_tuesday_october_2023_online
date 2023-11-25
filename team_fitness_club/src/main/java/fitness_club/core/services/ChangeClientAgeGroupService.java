@@ -4,17 +4,19 @@ import fitness_club.core.database.Database;
 import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import fitness_club.core.responses.ChangeClientAgeGroupResponse;
 import fitness_club.core.services.data_vlidation.ChangeClientAgeGroupValidator;
-import fitness_club.core.services.data_vlidation.CoreError;
-import fitness_club.dependency_injection.DIComponent;
-import fitness_club.dependency_injection.DIDependency;
+import fitness_club.core.responses.CoreError;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class ChangeClientAgeGroupService {
 
-    @DIDependency private Database database;
-    @DIDependency private ChangeClientAgeGroupValidator validator;
+   @Autowired
+   private Database database;
+   @Autowired
+   private ChangeClientAgeGroupValidator validator;
 
 
     public ChangeClientAgeGroupResponse execute(ChangeClientAgeGroupRequest request) {

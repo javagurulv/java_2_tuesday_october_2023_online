@@ -5,16 +5,13 @@ import classWork.core.CoreError;
 import classWork.core.requests.AddBookRequest;
 import classWork.core.response.AddBookResponse;
 import classWork.core.service.AddBookService;
+import classWork.dependency_injection.DIComponent;
+import classWork.dependency_injection.DIDependency;
 
 import java.util.List;
 import java.util.Scanner;
-
-public class AddBookUIAction implements UIAction {
-    AddBookService addBookService;
-
-    public AddBookUIAction(AddBookService addBookService) {
-        this.addBookService = addBookService;
-    }
+@DIComponent public class AddBookUIAction implements UIAction {
+    @DIDependency AddBookService addBookService;
 
     @Override
     public void execute() {

@@ -7,6 +7,7 @@ import java.util.List;
 
 import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
+import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.GetAllBooksRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.GetAllBooksResponse;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class GetAllBooksServiceTest {
     @Test
     public void shouldGetBooksFromDb() {
         List<Book> books = new ArrayList<>();
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery"));
+        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery", Genre.FABLE));
         Mockito.when(database.getAllBooks()).thenReturn(books);
 
         GetAllBooksRequest request = new GetAllBooksRequest();
@@ -36,6 +37,7 @@ public class GetAllBooksServiceTest {
         assertEquals(response.getBooks().size(), 1);
         assertEquals(response.getBooks().get(0).getTitle(), "The Little Prince");
         assertEquals(response.getBooks().get(0).getAuthor(), "Antoine de Saint-Exupery");
+        assertEquals(response.getBooks().get(0).getGenre(), Genre.FABLE);
     }
 
 }

@@ -2,19 +2,20 @@ package fitness_club.core.services.data_vlidation;
 
 import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.requests.ChangeClientFitnessCentreRequest;
-import org.junit.jupiter.api.Test;
+import fitness_club.core.responses.CoreError;
+import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
-class ChangeClientFitnessCentreValidatorTest {
+public class ChangeClientFitnessCentreValidatorTest {
     private ChangeClientFitnessCentreValidator validator = new ChangeClientFitnessCentreValidator();
 
     @Test
-    void shouldReturnErrorWhenClientPersonalCodeIsNull() {
+    public void shouldReturnErrorWhenClientPersonalCodeIsNull() {
         ChangeClientFitnessCentreRequest request = Mockito.mock(ChangeClientFitnessCentreRequest.class);
         {
             when(request.getPersonalCode()).thenReturn(null);
@@ -26,7 +27,7 @@ class ChangeClientFitnessCentreValidatorTest {
         }
     }
     @Test
-    void shouldReturnErrorWhenClientPersonalCodeIsEmpty() {
+    public void shouldReturnErrorWhenClientPersonalCodeIsEmpty() {
         ChangeClientFitnessCentreRequest request = Mockito.mock(ChangeClientFitnessCentreRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("");
@@ -38,7 +39,7 @@ class ChangeClientFitnessCentreValidatorTest {
         }
     }
     @Test
-    void shouldNotReturnErrorWhenClientPersonalCodeEntered() {
+    public void shouldNotReturnErrorWhenClientPersonalCodeEntered() {
         ChangeClientFitnessCentreRequest request = Mockito.mock(ChangeClientFitnessCentreRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("personalCode");

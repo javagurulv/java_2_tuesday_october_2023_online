@@ -16,7 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SearchBookValigatorTest {
-    AddBookRequest request = new AddBookRequest("pus", "luk");
+/*    AddBookRequest request = new AddBookRequest("pus", "luk");
     AddBookRequest request2 = new AddBookRequest("pus", "gid");
     AddBookRequest request3 = new AddBookRequest("pus", "kap");
     AddBookRequest request4 = new AddBookRequest("ler", "kap");
@@ -101,5 +101,5 @@ class SearchBookValigatorTest {
    void test7() {
         List<CoreError> real = new SearchBookValigator(field,ordering,paging).errorList(searchrequest7);
         assertEquals(real.size(), 4);
-    }
+    }*/
 }

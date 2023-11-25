@@ -4,24 +4,19 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Ordering;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Paging;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
+import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@DIComponent
 public class SearchIngredientsRequestValidator {
 
-    private SearchIngredientsRequestFieldValidator fieldValidator;
-    private OrderingValidator orderingValidator;
-    private PagingValidator pagingValidator;
-
-    public SearchIngredientsRequestValidator(SearchIngredientsRequestFieldValidator fieldValidator,
-                                             OrderingValidator orderingValidator,
-                                             PagingValidator pagingValidator) {
-        this.fieldValidator = fieldValidator;
-        this.orderingValidator = orderingValidator;
-        this.pagingValidator = pagingValidator;
-    }
+    @DIDependency private SearchIngredientsRequestFieldValidator fieldValidator;
+    @DIDependency private OrderingValidator orderingValidator;
+    @DIDependency private PagingValidator pagingValidator;
 
 
     public List<CoreError> validate(SearchIngredientsRequest request) {

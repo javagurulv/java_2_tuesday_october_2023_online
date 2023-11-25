@@ -5,14 +5,14 @@ import fitness_club.core.requests.ChangeClientFitnessCentreRequest;
 import fitness_club.core.responses.ChangeClientFitnessCentreResponse;
 import fitness_club.core.services.ChangeClientFitnessCentreService;
 import fitness_club.core.services.GetFitnessCentreService;
-import fitness_club.dependency_injection.DIComponent;
-import fitness_club.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
-
-@DIComponent
+@Component
 public class ChangeClientFitnessCentreUIAction implements UIAction {
-    @DIDependency private ChangeClientFitnessCentreService service;
+    @Autowired
+    private ChangeClientFitnessCentreService service;
 
     @Override
     public void execute() {

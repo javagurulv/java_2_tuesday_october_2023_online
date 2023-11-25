@@ -4,18 +4,18 @@ import lv.javaguru.java2.lessoncode.book.app.core.requests.Ordering;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Paging;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIDependency;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class SearchBooksRequestValidator {
 
-    @DIDependency
-    private SearchBooksRequestFieldValidator fieldValidator;
-    @DIDependency private OrderingValidator orderingValidator;
-    @DIDependency private PagingValidator pagingValidator;
+    @Autowired private SearchBooksRequestFieldValidator fieldValidator;
+    @Autowired private OrderingValidator orderingValidator;
+    @Autowired private PagingValidator pagingValidator;
 
 
     public List<CoreError> validate(SearchBooksRequest request) {

@@ -1,28 +1,22 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.Database;
-import fitness_club.core.database.InMemoryDatabase;
 import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.requests.GetAllClientsRequest;
 import fitness_club.core.responses.GetAllClientsResponse;
 import fitness_club.core.domain.Client;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
-import fitness_club.core.services.GetAllClientsService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
+
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -31,10 +25,6 @@ public class GetAllClientsServiceTest {
     private Database database;
     @InjectMocks
     private GetAllClientsService service;
-    @BeforeEach
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     public void shouldGetClientsFromDb() {

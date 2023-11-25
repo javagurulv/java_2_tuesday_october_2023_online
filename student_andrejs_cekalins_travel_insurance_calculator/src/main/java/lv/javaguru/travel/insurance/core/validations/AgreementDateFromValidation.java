@@ -8,16 +8,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 @Component
-public class AgreementDateFromValidation implements TravelRequestValidation {
+public class AgreementDateFromValidation extends TravelRequestValidationImpl{
     @Autowired
-    private ErrorCodeUnit errorCodeUnit;
-    public Optional<ValidationError> execute(TravelCalculatePremiumRequest request) {
+    private ValidationErrorFactory errorFactory;
+    @Override
+    public Optional<ValidationError> validate(TravelCalculatePremiumRequest request) {
         return (request.getAgreementDateFrom() == null)
-                ? Optional.of(buildError("ERROR_CODE_3"))
+                ? Optional.of(errorFactory.buildError("ERROR_CODE_3"))
                 : Optional.empty();
-    }
-    private ValidationError buildError(String errorCode) {
-        String errorDescription = errorCodeUnit.getErrorDescription(errorCode);
-        return new ValidationError(errorCode, errorDescription);
     }
 }

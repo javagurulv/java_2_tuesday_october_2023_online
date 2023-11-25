@@ -7,17 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+
 @Component
-public class PersonLastNameValidation implements TravelRequestValidation {
+public class PersonLastNameValidation extends TravelRequestValidationImpl {
     @Autowired
-    private ErrorCodeUnit errorCodeUnit;
-    public Optional<ValidationError> execute(TravelCalculatePremiumRequest request) {
+    private ValidationErrorFactory errorFactory;
+
+    public Optional<ValidationError> validate(TravelCalculatePremiumRequest request) {
         return (request.getPersonLastName() == null || request.getPersonLastName().isEmpty())
-                ? Optional.of(buildError("ERROR_CODE_2"))
+                ? Optional.of(errorFactory.buildError("ERROR_CODE_2"))
                 : Optional.empty();
-    }
-    private ValidationError buildError(String errorCode) {
-        String errorDescription = errorCodeUnit.getErrorDescription(errorCode);
-        return new ValidationError(errorCode, errorDescription);
     }
 }
