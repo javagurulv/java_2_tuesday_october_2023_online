@@ -22,10 +22,14 @@ public class TravelCalculatePremiumResponse extends CoreResponse {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date agreementDateFrom;
 
-    @JsonFormat (pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date agreementDateTo;
 
     private BigDecimal agreementPremium;
 
-    public TravelCalculatePremiumResponse(List<ValidationError> errors) {super(errors);}
+    private List<RiskPremium> risks;
+
+    public TravelCalculatePremiumResponse(List<ValidationError> errors) {
+        super(errors);
+    }
 }
