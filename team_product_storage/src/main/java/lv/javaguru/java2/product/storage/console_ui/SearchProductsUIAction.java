@@ -5,15 +5,16 @@ import lv.javaguru.java2.product.storage.core.requests.Paging;
 import lv.javaguru.java2.product.storage.core.requests.SearchProductsRequest;
 import lv.javaguru.java2.product.storage.core.responses.SearchProductsResponse;
 import lv.javaguru.java2.product.storage.core.services.SearchProductsService;
-import lv.javaguru.java2.product.storage.dependency_injection.DIComponent;
-import lv.javaguru.java2.product.storage.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class SearchProductsUIAction implements UIAction {
 
-    @DIDependency private SearchProductsService searchProductsService;
+    @Autowired
+    private SearchProductsService searchProductsService;
 
     @Override
     public void execute() {

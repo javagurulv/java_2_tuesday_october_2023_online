@@ -3,15 +3,16 @@ package lv.javaguru.java2.product.storage.console_ui;
 import lv.javaguru.java2.product.storage.core.requests.RemoveProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.RemoveProductResponse;
 import lv.javaguru.java2.product.storage.core.services.RemoveProductService;
-import lv.javaguru.java2.product.storage.dependency_injection.DIComponent;
-import lv.javaguru.java2.product.storage.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class RemoveProductUIAction implements UIAction {
 
-    @DIDependency private RemoveProductService removeProductService;
+    @Autowired
+    private RemoveProductService removeProductService;
 
     @Override
     public void execute() {
