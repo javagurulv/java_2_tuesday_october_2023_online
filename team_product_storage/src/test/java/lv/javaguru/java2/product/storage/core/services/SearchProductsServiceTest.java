@@ -6,12 +6,14 @@ import static org.mockito.ArgumentMatchers.any;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import lv.javaguru.java2.product.storage.core.database.Database;
 import lv.javaguru.java2.product.storage.core.domain.Product;
@@ -22,14 +24,20 @@ import lv.javaguru.java2.product.storage.core.responses.CoreError;
 import lv.javaguru.java2.product.storage.core.responses.SearchProductsResponse;
 import lv.javaguru.java2.product.storage.core.services.validators.SearchProductsRequestValidator;
 
+
 @RunWith(MockitoJUnitRunner.class)
 public class SearchProductsServiceTest {
 
-    @Mock
-    private Database database;
+    @Mock private Database database;
     @Mock private SearchProductsRequestValidator validator;
     @InjectMocks
     private SearchProductsService service;
+
+    @Before
+    public void setup() {
+        ReflectionTestUtils.setField(service, "orderingEnabled", true);
+        ReflectionTestUtils.setField(service, "pagingEnabled", true);
+    }
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidatorFails() {

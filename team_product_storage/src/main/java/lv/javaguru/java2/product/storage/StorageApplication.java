@@ -1,19 +1,21 @@
 package lv.javaguru.java2.product.storage;
 
+import lv.javaguru.java2.product.storage.config.BookListConfiguration;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import lv.javaguru.java2.product.storage.console_ui.AddProductUIAction;
 import lv.javaguru.java2.product.storage.console_ui.ExitProgramUIAction;
 import lv.javaguru.java2.product.storage.console_ui.PrintAllProductsUIAction;
 import lv.javaguru.java2.product.storage.console_ui.RemoveProductUIAction;
 import lv.javaguru.java2.product.storage.console_ui.SearchProductsUIAction;
-import lv.javaguru.java2.product.storage.dependency_injection.ApplicationContext;
-import lv.javaguru.java2.product.storage.dependency_injection.DIApplicationContextBuilder;
 
 import java.util.Scanner;
 
 public class StorageApplication {
 
     private static ApplicationContext applicationContext =
-            new DIApplicationContextBuilder().build("lv.javaguru.java2.product.storage");
+            new AnnotationConfigApplicationContext(BookListConfiguration.class);
 
     public static void main(String[] args) {
             while (true) {

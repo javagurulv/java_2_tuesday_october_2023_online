@@ -1,21 +1,28 @@
 package lv.javaguru.java2.product.storage.accepatancetests;
 
-import lv.javaguru.java2.product.storage.dependency_injection.ApplicationContext;
+import lv.javaguru.java2.product.storage.config.BookListConfiguration;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.requests.RemoveProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.RemoveProductResponse;
 import lv.javaguru.java2.product.storage.core.services.AddProductService;
 import lv.javaguru.java2.product.storage.core.services.RemoveProductService;
-import lv.javaguru.java2.product.storage.dependency_injection.DIApplicationContextBuilder;
+
+import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class RemoveProductAcceptanceTest {
 
-    private ApplicationContext appContext =
-            new DIApplicationContextBuilder().build("lv.javaguru.java2.product.storage");
+    private ApplicationContext appContext;
+
+    @Before
+    public void setup() {
+        appContext = new AnnotationConfigApplicationContext(BookListConfiguration.class);
+    }
 
     @Test
     public void shouldReturnErrorResponseWhenProductIdNotProvided() {
