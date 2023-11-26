@@ -30,22 +30,22 @@ class DateFromInFutureValidationTest {
 
     @Test
     void validatorDateFromInFuture() {
-        TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
+        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.05.2024"));
         when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("17.05.2023"));
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isEmpty());
         verifyNoInteractions(errorFactory);
     }
 
     @Test
     void validatorDateFromIsNotInFuture() {
-        TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
+        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.05.2022"));
         when(dateTimeService.getCurrentDateTime()).thenReturn(createDate("17.05.2023"));
         ValidationError validationError = mock(ValidationError.class);
         when(errorFactory.buildError("ERROR_CODE_1")).thenReturn(validationError);
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isPresent());
         assertSame(errorOpt.get(), validationError);
     }

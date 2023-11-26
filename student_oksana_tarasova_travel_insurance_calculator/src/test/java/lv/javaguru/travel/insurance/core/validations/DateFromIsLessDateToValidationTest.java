@@ -27,22 +27,22 @@ class DateFromIsLessDateToValidationTest {
 
     @Test
     void validateDateFromIsLessDateTo() {
-        TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
+        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.04.2024"));
         when(request.getAgreementDateTo()).thenReturn(createDate("16.05.2024"));
-        Optional<ValidationError> validationError = validation.execute(request);
+        Optional<ValidationError> validationError = validation.validate(request);
         assertTrue(validationError.isEmpty());
         verifyNoInteractions(errorFactory);
     }
 
     @Test
     void validateDateToIsLessDateFrom() {
-        TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
+        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.06.2024"));
         when(request.getAgreementDateTo()).thenReturn(createDate("16.05.2024"));
         ValidationError validationError = mock(ValidationError.class);
         when(errorFactory.buildError("ERROR_CODE_5")).thenReturn(validationError);
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isPresent());
         assertSame(errorOpt.get(), validationError);
     }

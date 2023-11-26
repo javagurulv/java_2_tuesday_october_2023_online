@@ -10,14 +10,14 @@ import java.util.Date;
 import java.util.Optional;
 
 @Component
-public class DateToInFutureValidation implements TravelRequestValidation {
+public class DateToInFutureValidation extends TravelRequestValidationImpl {
     @Autowired
     DateTimeUtil dateTimeService;
 
     @Autowired private ValidationErrorFactory errorFactory;
 
     @Override
-    public Optional<ValidationError> execute(TravelCalculatePremiumRequest request) {
+    public Optional<ValidationError> validate(TravelCalculatePremiumRequest request) {
         Date dateTo = request.getAgreementDateTo();
         Date currentDateTime = dateTimeService.getCurrentDateTime();
         return (dateTo != null && dateTo.before(currentDateTime))
