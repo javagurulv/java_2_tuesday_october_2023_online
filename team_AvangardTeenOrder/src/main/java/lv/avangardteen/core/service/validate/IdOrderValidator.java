@@ -2,14 +2,14 @@ package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class IdOrderValidator {
-    @DIDependency
+    @Autowired
     private ClientIdValidator validatorId;
 
     public List<CoreError> validate(DeleteOrderRequest request) {

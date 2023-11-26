@@ -1,14 +1,15 @@
-package lv.avangardteen.data;
+package lv.avangardteen.core.data;
 
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dto.Client;
+import lv.avangardteen.core.dto.Client;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-@DIComponent
+
+@Component
 public class DataOrders implements Database {
     private Long nextId = 1L;
     List<Client> clients = new ArrayList<>();
@@ -32,11 +33,11 @@ public class DataOrders implements Database {
         Optional<Client> clientToDelete = clients.stream()
                 .filter(client -> client.getId() == id)
                 .findFirst();
-               if(clientToDelete.isPresent()) {
-               Client clientToRemove = clientToDelete.get();
-               isClientDelete = clients.remove(clientToRemove);
-               }
-               return isClientDelete;
+        if (clientToDelete.isPresent()) {
+            Client clientToRemove = clientToDelete.get();
+            isClientDelete = clients.remove(clientToRemove);
+        }
+        return isClientDelete;
 
     }
 

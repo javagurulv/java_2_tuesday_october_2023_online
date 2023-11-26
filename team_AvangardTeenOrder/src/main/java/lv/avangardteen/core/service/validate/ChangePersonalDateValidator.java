@@ -2,18 +2,18 @@ package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@DIComponent
+@Component
 public class ChangePersonalDateValidator {
 
-    @DIDependency
+    @Autowired
     private ClientIdValidator clientIdValidator;
-    @DIDependency
+    @Autowired
     private PersonalDateValidation personalDateValidation;
 
     public List<CoreError> validate(ChangePersonalDateRequest request) {

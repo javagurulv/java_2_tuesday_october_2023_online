@@ -36,34 +36,34 @@ public class TravelCalculatePremiumControllerTest {
     }
 
     @Test
-    public void firstNameIsNull() throws Exception {
+    public void personFirstNameIsNull() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_firstName_is_null.json",
-                "rest/TravelCalculatePremiumResponse_firstName_is_null.json"
+                "rest/TravelCalculatePremiumRequest_personFirstName_is_null.json",
+                "rest/TravelCalculatePremiumResponse_personFirstName_is_null.json"
         );
     }
 
     @Test
-    public void firstNameIsEmpty() throws Exception {
+    public void personFirstNameIsEmpty() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_firstName_is_empty.json",
-                "rest/TravelCalculatePremiumResponse_firstName_is_empty.json"
+                "rest/TravelCalculatePremiumRequest_personFirstName_is_empty.json",
+                "rest/TravelCalculatePremiumResponse_personFirstName_is_empty.json"
         );
     }
 
     @Test
-    public void lastNameIsNull() throws Exception {
+    public void personLastNameIsNull() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_lastName_is_null.json",
-                "rest/TravelCalculatePremiumResponse_lastName_is_null.json"
+                "rest/TravelCalculatePremiumRequest_personLastName_is_null.json",
+                "rest/TravelCalculatePremiumResponse_personLastName_is_null.json"
         );
     }
 
     @Test
-    public void lastNameIsEmpty() throws Exception {
+    public void personLastNameIsEmpty() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_lastName_is_empty.json",
-                "rest/TravelCalculatePremiumResponse_lastName_is_empty.json"
+                "rest/TravelCalculatePremiumRequest_personLastName_is_empty.json",
+                "rest/TravelCalculatePremiumResponse_personLastName_is_empty.json"
         );
     }
 

@@ -1,6 +1,4 @@
-package lv.avangardteen.dto;
-
-import lv.avangardteen.dto.UserSizes;
+package lv.avangardteen.core.dto;
 
 public class Wheelchair {
 

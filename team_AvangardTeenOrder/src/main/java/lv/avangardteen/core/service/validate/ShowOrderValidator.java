@@ -2,15 +2,15 @@ package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class ShowOrderValidator {
 
-    @DIDependency
+    @Autowired
     private ClientIdValidator idValidator;
 
     public List<CoreError> validate(ShowOrderRequest request) {

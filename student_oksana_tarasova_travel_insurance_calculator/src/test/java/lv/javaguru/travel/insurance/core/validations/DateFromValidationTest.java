@@ -28,9 +28,9 @@ class DateFromValidationTest {
 
     @Test
     void validatorDateFrom() {
-        TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
+        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(createDate("01.01.2021"));
-        Optional<ValidationError> validationError = validation.execute(request);
+        Optional<ValidationError> validationError = validation.validate(request);
         assertTrue(validationError.isEmpty());
         verifyNoInteractions(errorFactory);
 
@@ -38,11 +38,11 @@ class DateFromValidationTest {
 
     @Test
     void validatorDateFromIsNull() {
-        TravelCalculatePremiumRequest request = Mockito.mock(TravelCalculatePremiumRequest.class);
+        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateFrom()).thenReturn(null);
         ValidationError validationError = mock(ValidationError.class);
         when(errorFactory.buildError("ERROR_CODE_2")).thenReturn(validationError);
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isPresent());
         assertSame(errorOpt.get(), validationError);
     }

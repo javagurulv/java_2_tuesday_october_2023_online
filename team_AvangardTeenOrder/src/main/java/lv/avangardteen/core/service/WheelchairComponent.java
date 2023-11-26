@@ -1,9 +1,9 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.data.DataComponents;
-import lv.avangardteen.dto.Category;
-import lv.avangardteen.dto.Component;
-import lv.avangardteen.dto.Wheelchair;
+import lv.avangardteen.core.data.DataComponents;
+import lv.avangardteen.core.dto.Category;
+import lv.avangardteen.core.dto.Components;
+import lv.avangardteen.core.dto.Wheelchair;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,24 +12,24 @@ import java.util.Objects;
 
 public class WheelchairComponent extends Wheelchair {
     private DataComponents dataComponents = new DataComponents();
-    private Map<Category, Component> components = new HashMap<>();
+    private Map<Category, Components> components = new HashMap<>();
 
     public void addComponents(Integer index) {
-        List<Component> componentList = dataComponents.getAllComponents();
-        for (Component component : componentList) {
+        List<Components> componentList = dataComponents.getAllComponents();
+        for (Components component : componentList) {
             if (component.getIndex() == index) {
                 components.put(component.getCategory(), component);
             }
         }
     }
 
-    public Map<Category, Component> getComponents() {
+    public Map<Category, Components> getComponents() {
         return this.components;
     }
 
     private double getPriceComponent() {
         double priceComponents = 0.0;
-        for (Map.Entry<Category, Component> component : components.entrySet()) {
+        for (Map.Entry<Category, Components> component : components.entrySet()) {
             priceComponents += component.getValue().getPrice();
         }
         return priceComponents;
