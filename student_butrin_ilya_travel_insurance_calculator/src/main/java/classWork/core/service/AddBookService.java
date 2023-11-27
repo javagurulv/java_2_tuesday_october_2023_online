@@ -7,15 +7,15 @@ import classWork.core.requests.AddBookRequest;
 import classWork.Book;
 
 import classWork.core.service.valigators.AddBookValidator;
-import classWork.dependency_injection.DIComponent;
-import classWork.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class AddBookService {
-   @DIDependency Database data;
-   @DIDependency AddBookValidator validator;
+    @Autowired Database data;
+    @Autowired AddBookValidator validator;
 
     public AddBookResponse execute(AddBookRequest request) {
         List <CoreError> errorlist = validator.errorlist(request);

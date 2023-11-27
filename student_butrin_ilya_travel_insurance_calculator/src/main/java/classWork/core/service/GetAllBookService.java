@@ -4,14 +4,14 @@ import classWork.Book;
 
 import classWork.core.database.Database;
 import classWork.core.response.GetAllBookResponce;
-import classWork.dependency_injection.DIComponent;
-import classWork.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-@DIComponent
+@Component
 public class GetAllBookService {
 
-  @DIDependency
+    @Autowired
   Database data;
 
     public GetAllBookResponce execute() {

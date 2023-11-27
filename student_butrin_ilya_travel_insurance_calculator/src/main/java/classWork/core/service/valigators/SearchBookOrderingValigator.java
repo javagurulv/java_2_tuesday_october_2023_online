@@ -2,13 +2,12 @@ package classWork.core.service.valigators;
 
 import classWork.core.CoreError;
 import classWork.core.requests.Ordering;
-import classWork.core.requests.SearchBooksRequest;
-import classWork.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-@DIComponent
+@Component
 public class SearchBookOrderingValigator {
     public List<CoreError> errorList(Ordering ordering) {
         List<CoreError> errorList = new ArrayList<>();

@@ -1,15 +1,17 @@
 package classWork;
 import classWork.consoleUI.*;
 
-import classWork.dependency_injection.ApplicationContext;
 import classWork.dependency_injection.DIApplicationContextBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 
 
 import java.util.Scanner;
 
 public class BookListApplication {
     private static ApplicationContext applicationContext =
-            new DIApplicationContextBuilder().build("classWork");
+            new AnnotationConfigApplicationContext(BookListConfiguration.class);
 
     public static void main(String[] args) {
 

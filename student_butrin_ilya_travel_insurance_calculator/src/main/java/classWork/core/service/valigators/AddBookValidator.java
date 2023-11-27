@@ -3,16 +3,17 @@ package classWork.core.service.valigators;
 import classWork.core.CoreError;
 import classWork.core.database.Database;
 import classWork.core.requests.AddBookRequest;
-import classWork.dependency_injection.DIComponent;
-import classWork.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@DIComponent
+@Component
 public class AddBookValidator {
-   @DIDependency Database data;
+    @Autowired
+    Database data;
 
 
     public List<CoreError> errorlist (AddBookRequest request){

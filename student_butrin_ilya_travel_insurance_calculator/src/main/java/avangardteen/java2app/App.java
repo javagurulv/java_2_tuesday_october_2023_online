@@ -1,13 +1,14 @@
 package avangardteen.java2app;
 import avangardteen.java2app.UIAction.*;
-import avangardteen.java2app.dependency_injection.ApplicationContext;
 import avangardteen.java2app.dependency_injection.DIApplicationContextBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Scanner;
 public class
 App {
     private static ApplicationContext applicationContext =
-            new DIApplicationContextBuilder().build("avangardteen.java2app");
+            new AnnotationConfigApplicationContext(AppConfiguration.class);
     public static void main(String[] args) {
         ShowDataSizeUIActive  showDataSize = applicationContext.getBean(ShowDataSizeUIActive.class);
         Scanner scan = new Scanner(System.in);

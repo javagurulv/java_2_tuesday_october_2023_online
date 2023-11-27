@@ -6,16 +6,17 @@ import classWork.core.requests.RemoveBookReques;
 import classWork.core.response.RemoveBookResponce;
 import classWork.core.service.valigators.RemoveBookValidators;
 import classWork.dependency_injection.DIComponent;
-import classWork.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 
-@DIComponent
+@Component
 public class RemoveBookService {
 
-    @DIDependency Database data;
-    @DIDependency RemoveBookValidators validators;
+    @Autowired Database data;
+    @Autowired RemoveBookValidators validators;
 
     public RemoveBookResponce execute (RemoveBookReques reques) {
         List<CoreError> errorList = validators.errorList(reques);

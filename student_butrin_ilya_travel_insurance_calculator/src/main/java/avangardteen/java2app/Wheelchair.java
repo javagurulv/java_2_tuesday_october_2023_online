@@ -1,13 +1,13 @@
 package avangardteen.java2app;
 
 import avangardteen.java2app.data.DataComponents;
-import avangardteen.java2app.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@DIComponent
+@Component
 public class Wheelchair {
 
     int seatWidth;
@@ -15,7 +15,7 @@ public class Wheelchair {
     int footrestLength;
 
     private Client userData;
-     Map<Category,Component> components = new HashMap<>();
+     Map<Category,ComponentWheelchair> components = new HashMap<>();
      private int priceWheelchair = 177700;
 
     public Client getUserData() {
@@ -27,8 +27,8 @@ public class Wheelchair {
     }
 
     public void addComponents(String userChoose, DataComponents componentList) {
-        List<Component> components1 = componentList.getAllComponents();
-        for (Component component : components1) {
+        List<ComponentWheelchair> components1 = componentList.getAllComponents();
+        for (ComponentWheelchair component : components1) {
             if (component.getComponentID().equals(userChoose)) {
                 components.put(component.getCategory(),component);
             }
@@ -36,11 +36,11 @@ public class Wheelchair {
     }
 
 
-    public void setComponents(Map<Category, Component> components) {
+    public void setComponents(Map<Category, ComponentWheelchair> components) {
         this.components = components;
     }
 
-    public Map<Category, Component> getComponents() {
+    public Map<Category, ComponentWheelchair> getComponents() {
         return components;
     }
 

@@ -2,13 +2,13 @@ package avangardteen.java2app;
 
 import java.util.Objects;
 
-public class Component {
+public class ComponentWheelchair {
     private Category category;
     private String componentID;
     private String information;
     private double price;
 
-    public Component(Category category, String componentID, String information, double price) {
+    public ComponentWheelchair(Category category, String componentID, String information, double price) {
         this.category = category;
         this.componentID = componentID;
         this.information = information;
@@ -60,7 +60,7 @@ public class Component {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Component component = (Component) o;
+        ComponentWheelchair component = (ComponentWheelchair) o;
         return Double.compare(component.price, price) == 0 && category == component.category && Objects.equals(componentID, component.componentID) && Objects.equals(information, component.information);
     }
 

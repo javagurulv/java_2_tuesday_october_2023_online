@@ -4,11 +4,12 @@ package classWork.consoleUI;
 import classWork.core.response.GetAllBookResponce;
 import classWork.core.service.GetAllBookService;
 import classWork.dependency_injection.DIComponent;
-import classWork.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@DIComponent
+@Component
 public class GetAllBooksUIAction implements UIAction {
-    @DIDependency GetAllBookService service;
+    @Autowired GetAllBookService service;
 
     @Override
     public void execute() {

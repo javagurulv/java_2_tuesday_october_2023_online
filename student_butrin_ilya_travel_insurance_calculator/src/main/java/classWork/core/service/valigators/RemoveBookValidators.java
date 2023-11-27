@@ -2,12 +2,12 @@ package classWork.core.service.valigators;
 
 import classWork.core.CoreError;
 import classWork.core.requests.RemoveBookReques;
-import classWork.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-@DIComponent
+@Component
 public class RemoveBookValidators {
     public List<CoreError> errorList (RemoveBookReques request){
         List<CoreError> errors = new ArrayList<>();

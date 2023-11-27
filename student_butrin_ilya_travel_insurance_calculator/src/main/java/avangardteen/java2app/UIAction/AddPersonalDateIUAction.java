@@ -2,17 +2,17 @@ package avangardteen.java2app.UIAction;
 
 import avangardteen.java2app.CoreError;
 
-import avangardteen.java2app.dependency_injection.DIComponent;
-import avangardteen.java2app.dependency_injection.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.AddPersonalDataRequest;
 import avangardteen.java2app.responce.AddPersonalDateResponce;
 import avangardteen.java2app.service.AddUserDataServis;
 
 import java.util.List;
 import java.util.Scanner;
-@DIComponent
+@Component
 public class AddPersonalDateIUAction implements UIAction{
-  @DIDependency
+  @Autowired
   AddUserDataServis servis;
 
     @Override

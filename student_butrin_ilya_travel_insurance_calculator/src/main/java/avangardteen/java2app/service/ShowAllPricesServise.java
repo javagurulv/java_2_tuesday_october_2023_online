@@ -1,20 +1,20 @@
 package avangardteen.java2app.service;
 
 import avangardteen.java2app.Category;
-import avangardteen.java2app.Component;
+import avangardteen.java2app.ComponentWheelchair;
 import avangardteen.java2app.Wheelchair;
-import avangardteen.java2app.dependency_injection.DIComponent;
-import avangardteen.java2app.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
-@DIComponent
+@Component
 public class ShowAllPricesServise {
- @DIDependency
+ @Autowired
  Wheelchair wheelchair;
 
     public int GetComponentPrice() {
         int priceComponents = 0;
-        for (Map.Entry<Category, Component> component : wheelchair.getComponents().entrySet()) {
+        for (Map.Entry<Category, ComponentWheelchair> component : wheelchair.getComponents().entrySet()) {
             priceComponents += component.getValue().getPrice();
         }
         return priceComponents;
@@ -24,7 +24,7 @@ public class ShowAllPricesServise {
         return price;
     }
     public void showComponentPrice() {
-        for (Map.Entry<Category, Component> component : wheelchair.getComponents().entrySet()) {
+        for (Map.Entry<Category, ComponentWheelchair> component : wheelchair.getComponents().entrySet()) {
             if (component.getValue().getPrice() > 0)
             System.out.println(component.getKey() + ": " + component.getValue().getInformation() + " цена: " + component.getValue().getPrice());
 

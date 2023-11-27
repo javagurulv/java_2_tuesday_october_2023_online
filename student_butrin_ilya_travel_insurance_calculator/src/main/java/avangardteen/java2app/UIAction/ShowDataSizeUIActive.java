@@ -2,14 +2,14 @@ package avangardteen.java2app.UIAction;
 
 
 import avangardteen.java2app.UserSizes;
-import avangardteen.java2app.dependency_injection.DIComponent;
-import avangardteen.java2app.dependency_injection.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.ShowDataSizeRequest;
 import avangardteen.java2app.responce.ShowDataSizeResponse;
 import avangardteen.java2app.service.GetAntropometricDataServis;
-@DIComponent
+@Component
 public class ShowDataSizeUIActive implements UIAction{
-  @DIDependency
+  @Autowired
   GetAntropometricDataServis servis;
     @Override
     public void execute() {

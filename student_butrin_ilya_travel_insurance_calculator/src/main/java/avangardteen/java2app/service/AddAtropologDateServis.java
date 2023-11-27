@@ -2,17 +2,17 @@ package avangardteen.java2app.service;
 
 import avangardteen.java2app.CoreError;
 import avangardteen.java2app.UserSizes;
-import avangardteen.java2app.dependency_injection.DIComponent;
-import avangardteen.java2app.dependency_injection.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.AddAnthropometricDataRequest;
 import avangardteen.java2app.responce.AddAnthropometricDataResponse;
 import avangardteen.java2app.service.valigation.AddAntropologDateValigation;
 
 import java.util.List;
-@DIComponent
+@Component
 public class AddAtropologDateServis {
-  @DIDependency UserSizes sizes;
-   @DIDependency AddAntropologDateValigation valigation;
+  @Autowired UserSizes sizes;
+   @Autowired AddAntropologDateValigation valigation;
 
 
     public AddAnthropometricDataResponse execute (AddAnthropometricDataRequest request) {

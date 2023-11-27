@@ -1,7 +1,7 @@
 package avangardteen.java2app.service.valigation;
 
 import avangardteen.java2app.CoreError;
-import avangardteen.java2app.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
 import avangardteen.java2app.request.AddAnthropometricDataRequest;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-@DIComponent
+@Component
 public class AddAntropologDateValigation {
 
     public  List<CoreError> errorlist (AddAnthropometricDataRequest request) {
