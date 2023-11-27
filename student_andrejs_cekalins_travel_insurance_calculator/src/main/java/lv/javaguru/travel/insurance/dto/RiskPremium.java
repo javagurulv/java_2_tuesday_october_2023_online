@@ -5,17 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CoreResponse {
+public class RiskPremium {
 
-    private List<ValidationError> errors;
+    private String riskIc;
 
-    public boolean hasError() {
-        return errors != null && !errors.isEmpty();
-    }
+    private BigDecimal premium;
+
 }

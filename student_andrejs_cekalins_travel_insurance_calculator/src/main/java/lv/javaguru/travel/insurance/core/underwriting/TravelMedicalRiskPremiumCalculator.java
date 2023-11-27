@@ -15,7 +15,8 @@ public class TravelMedicalRiskPremiumCalculator implements TravelRiskPremiumCalc
 
     @Override
     public BigDecimal calculatePremium(TravelCalculatePremiumRequest request) {
-        var daysBetween = dateTimeUtil.getDaysBetween(request.getAgreementDateFrom(), request.getAgreementDateTo());
+        var daysBetween = dateTimeUtil.getDaysBetween(request.getAgreementDateFrom(),
+                request.getAgreementDateTo());
         return new BigDecimal(daysBetween);
     }
 
