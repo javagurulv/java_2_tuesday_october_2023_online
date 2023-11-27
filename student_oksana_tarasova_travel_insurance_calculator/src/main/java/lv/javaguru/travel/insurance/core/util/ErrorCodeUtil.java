@@ -23,7 +23,6 @@ public class ErrorCodeUtil {
         return props.getProperty(errorCode);
     }
 
-
     public String getErrorDescription(String errorCode, List<Placeholder> placeholders) {
         String errorDescription = props.getProperty(errorCode);
         for(Placeholder placeholder : placeholders) {

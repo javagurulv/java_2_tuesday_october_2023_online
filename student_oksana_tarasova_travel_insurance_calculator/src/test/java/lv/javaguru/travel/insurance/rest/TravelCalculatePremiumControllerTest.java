@@ -119,6 +119,13 @@ class TravelCalculatePremiumControllerTest {
         );
     }
 
+    @Test
+    public void selectedRisksNotSupported() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_selectedRisks_not_supported.json",
+                "rest/TravelCalculatePremiumResponse_selectedRisks_not_supported.json"
+        );
+    }
 
     private void executeAndCompare(String jsonRequestFilePath,
                                    String jsonResponseFilePath) throws Exception {
@@ -137,8 +144,8 @@ class TravelCalculatePremiumControllerTest {
 
         assertJson(responseBodyContent)
                 .where()
-                    .keysInAnyOrder()
-                    .arrayInAnyOrder()
+                .keysInAnyOrder()
+                .arrayInAnyOrder()
                 .isEqualTo(jsonResponse);
     }
 
