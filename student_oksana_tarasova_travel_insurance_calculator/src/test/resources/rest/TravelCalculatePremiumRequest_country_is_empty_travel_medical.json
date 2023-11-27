@@ -3,6 +3,6 @@
   "personLastName" : "Ivanov",
   "agreementDateFrom" : "2025-05-25",
   "agreementDateTo" : "2025-05-29",
-  "country": "SPAIN",
-  "selected_risks": []
+  "country" : "",
+  "selected_risks":["TRAVEL_MEDICAL"]
 }
