@@ -1,12 +1,12 @@
 package avangardteen.java2app.UIAction;
 
-import avangardteen.java2app.dependency_injection.DIComponent;
-import avangardteen.java2app.dependency_injection.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.service.ShowAllPricesServise;
 
-@DIComponent
+@Component
 public class ShowAllPricesUIAction implements UIAction{
-  @DIDependency
+  @Autowired
   ShowAllPricesServise servise;
 
     @Override

@@ -1,8 +1,8 @@
 package avangardteen.java2app;
 
-import avangardteen.java2app.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
 
-@DIComponent
+@Component
 public class
 UserSizes {
     public int pelvisWidth; //ширина таза

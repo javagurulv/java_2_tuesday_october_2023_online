@@ -10,18 +10,14 @@ import classWork.core.service.valigators.SearchBookPagingValigator;
 import classWork.core.service.valigators.SearchBookValigator;
 import classWork.core.service.valigators.SearchBooksFieldValidator;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SearchBookValigatorTest {
-/*    AddBookRequest request = new AddBookRequest("pus", "luk");
-    AddBookRequest request2 = new AddBookRequest("pus", "gid");
-    AddBookRequest request3 = new AddBookRequest("pus", "kap");
-    AddBookRequest request4 = new AddBookRequest("ler", "kap");
-    AddBookRequest request5 = new AddBookRequest("ler", "ser");
-    AddBookRequest request6 = new AddBookRequest("tol", "kap");
+
     Ordering or1 = new Ordering("","");
     Ordering or2 = new Ordering("keks","");
     Ordering or3 = new Ordering("","keks");
@@ -44,18 +40,17 @@ class SearchBookValigatorTest {
     SearchBooksRequest searchrequest6 = new SearchBooksRequest("tol", "kap",pa6, or5);
     SearchBooksRequest searchrequest7 = new SearchBooksRequest("", "", pa7, or6);
 
-    SearchBooksFieldValidator field = new SearchBooksFieldValidator();
-    SearchBookOrderingValigator ordering = new SearchBookOrderingValigator();
-    SearchBookPagingValigator paging = new SearchBookPagingValigator();
+  SearchBookValigator validator = new SearchBookValigator();
     @Test
     void test1() {
-        List<CoreError> real = new SearchBookValigator(field,ordering,paging).errorList(searchrequest);
+
+        List<CoreError> real = validator.errorList(searchrequest);
         assertEquals(real.size(), 0);
     }
 
     @Test
     void test2() {
-        List<CoreError> real = new SearchBookValigator(field,ordering,paging).errorList(searchrequest2);
+        List<CoreError> real = validator.errorList(searchrequest2);
         String mess = real.get(0).getField();
         assertEquals(real.size(), 2);
         assertEquals(mess, "Автор и название");
@@ -63,7 +58,7 @@ class SearchBookValigatorTest {
 
     @Test
     void test3() {
-        List<CoreError> real = new SearchBookValigator(field,ordering,paging).errorList(searchrequest3);
+        List<CoreError> real = validator.errorList(searchrequest3);
         String mess = real.get(0).getField();
         String mess2 = real.get(1).getField();
         assertEquals(real.size(), 3);
@@ -74,7 +69,7 @@ class SearchBookValigatorTest {
 
     @Test
     void test4() {
-        List<CoreError> real = new SearchBookValigator(field,ordering,paging).errorList(searchrequest4);
+        List<CoreError> real = validator.errorList(searchrequest4);
         String mess = real.get(0).getField();
         String mess2 = real.get(1).getField();
         assertEquals(real.size(), 2);
@@ -84,13 +79,13 @@ class SearchBookValigatorTest {
 
     @Test
     void test5() {
-        List<CoreError> real = new SearchBookValigator(field,ordering,paging).errorList(searchrequest5);
+        List<CoreError> real = validator.errorList(searchrequest5);
         assertEquals(real.size(), 1);
     }
 
     @Test
     void test6() {
-        List<CoreError> real = new SearchBookValigator(field,ordering,paging).errorList(searchrequest6);
+        List<CoreError> real = validator.errorList(searchrequest6);
         String mess = real.get(0).getField();
         assertEquals(real.size(), 3);
         assertEquals(mess, "сортировка(возр/убыв)");
@@ -99,7 +94,7 @@ class SearchBookValigatorTest {
 
    @Test
    void test7() {
-        List<CoreError> real = new SearchBookValigator(field,ordering,paging).errorList(searchrequest7);
+       List<CoreError> real = validator.errorList(searchrequest7);
         assertEquals(real.size(), 4);
-    }*/
+    }
 }

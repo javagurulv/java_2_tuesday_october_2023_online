@@ -2,18 +2,18 @@ package avangardteen.java2app.UIAction;
 
 
 import avangardteen.java2app.CoreError;
-import avangardteen.java2app.dependency_injection.DIComponent;
-import avangardteen.java2app.dependency_injection.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.AddAnthropometricDataRequest;
 import avangardteen.java2app.responce.AddAnthropometricDataResponse;
 import avangardteen.java2app.service.AddAtropologDateServis;
 
 import java.util.List;
 import java.util.Scanner;
-@DIComponent
+@Component
 public class AddAnthropometricDataIUActiv implements UIAction {
 
-   @DIDependency
+   @Autowired
    AddAtropologDateServis servis;
 
     Scanner scan = new Scanner(System.in);

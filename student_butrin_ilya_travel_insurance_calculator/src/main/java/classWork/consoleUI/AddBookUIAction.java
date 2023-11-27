@@ -6,12 +6,14 @@ import classWork.core.requests.AddBookRequest;
 import classWork.core.response.AddBookResponse;
 import classWork.core.service.AddBookService;
 import classWork.dependency_injection.DIComponent;
-import classWork.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Scanner;
-@DIComponent public class AddBookUIAction implements UIAction {
-    @DIDependency AddBookService addBookService;
+@Component
+public class AddBookUIAction implements UIAction {
+    @Autowired AddBookService addBookService;
 
     @Override
     public void execute() {

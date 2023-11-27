@@ -2,10 +2,11 @@ package classWork.core.database;
 
 import classWork.Book;
 import classWork.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-@DIComponent
+@Component
 public class InMemoryDatabaseImpl implements Database {
     List<Book> books = new ArrayList<>();
     Long id = 1l;

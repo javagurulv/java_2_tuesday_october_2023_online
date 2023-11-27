@@ -1,20 +1,20 @@
 package avangardteen.java2app.service;
 
 import avangardteen.java2app.Category;
-import avangardteen.java2app.Component;
+import avangardteen.java2app.ComponentWheelchair;
 import avangardteen.java2app.Wheelchair;
-import avangardteen.java2app.dependency_injection.DIComponent;
-import avangardteen.java2app.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
-@DIComponent
+@Component
 public class ShowAllComponentsServis {
- @DIDependency
+ @Autowired
  Wheelchair wheelchair;
 
 
-    public Map<Category, Component> getComponent (){
-        Map<Category, Component> components = wheelchair.getComponents();
+    public Map<Category, ComponentWheelchair> getComponent (){
+        Map<Category, ComponentWheelchair> components = wheelchair.getComponents();
         return components;
     }
 }

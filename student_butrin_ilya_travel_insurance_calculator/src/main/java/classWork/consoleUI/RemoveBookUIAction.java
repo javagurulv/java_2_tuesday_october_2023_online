@@ -4,14 +4,15 @@ import classWork.core.CoreError;
 import classWork.core.requests.RemoveBookReques;
 import classWork.core.response.RemoveBookResponce;
 import classWork.core.service.RemoveBookService;
-import classWork.dependency_injection.DIComponent;
-import classWork.dependency_injection.DIDependency;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Scanner;
-@DIComponent
+@Component
 public class RemoveBookUIAction implements UIAction {
-    @DIDependency RemoveBookService service;
+    @Autowired RemoveBookService service;
     @Override
     public void execute() {
         Scanner scan = new Scanner(System.in);

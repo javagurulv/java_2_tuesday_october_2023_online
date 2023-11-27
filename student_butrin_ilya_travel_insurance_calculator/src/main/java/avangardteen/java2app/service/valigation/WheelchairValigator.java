@@ -3,12 +3,13 @@ package avangardteen.java2app.service.valigation;
 import avangardteen.java2app.Category;
 import avangardteen.java2app.CoreError;
 import avangardteen.java2app.Wheelchair;
-import avangardteen.java2app.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-@DIComponent
+@Component
 public class WheelchairValigator {
     public List<CoreError> errorlist(Wheelchair wheelchair) {
         List<CoreError> errorList = new ArrayList<>();

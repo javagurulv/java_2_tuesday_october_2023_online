@@ -1,20 +1,20 @@
 package avangardteen.java2app.UIAction;
 
-import avangardteen.java2app.Component;
+import avangardteen.java2app.ComponentWheelchair;
 import avangardteen.java2app.data.DataComponents;
-import avangardteen.java2app.dependency_injection.DIComponent;
-import avangardteen.java2app.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.ChooseWheelchairComponensRequest;
 import avangardteen.java2app.responce.ChooseWheelchairComponensResponce;
 import avangardteen.java2app.service.ChooseWheelChairComponentsServis;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class ChooseWheelchairComponensUIAction implements UIAction {
-  @DIDependency
+  @Autowired
   ChooseWheelChairComponentsServis servis;
 
     DataComponents armrestList = new DataComponents();
@@ -38,7 +38,7 @@ public class ChooseWheelchairComponensUIAction implements UIAction {
 
     private void addFrontWheels() {
         System.out.println("Выберите тип и размер передних колес коляски");
-        List<Component> frontWheelList = servis.getAllFrontWheels();
+        List<ComponentWheelchair> frontWheelList = servis.getAllFrontWheels();
         for (int i = 0; i <  frontWheelList.size(); i++) {
             System.out.println(i + 1 + ". " + frontWheelList.get(i).getInformation()
                     + ". Цена: " + frontWheelList.get(i).getPrice());
@@ -46,7 +46,7 @@ public class ChooseWheelchairComponensUIAction implements UIAction {
     }
     private void addBackWheels(int backWheelSize) {
         System.out.println("А какие заднии колеса Вам нужны?");
-        List<Component> backWheelList = new ArrayList<>();
+        List<ComponentWheelchair> backWheelList = new ArrayList<>();
         switch (backWheelSize) {
             case (1):
                backWheelList = servis.getAllBackWheelsFor20Size();
@@ -66,7 +66,7 @@ public class ChooseWheelchairComponensUIAction implements UIAction {
     }
     private void addBackWheelsSize() {
         System.out.println("Какого размера поставим заднии колеса? ");
-        List<Component> backWheelListSize = servis.getAllBackWheelsSize();
+        List<ComponentWheelchair> backWheelListSize = servis.getAllBackWheelsSize();
         for (int i = 0; i <  backWheelListSize.size(); i++) {
             System.out.println(i + 1 + ". " + backWheelListSize.get(i).getInformation());
         }
@@ -75,7 +75,7 @@ public class ChooseWheelchairComponensUIAction implements UIAction {
 
     private void addArmrest() {
         System.out.println("На последок выберем подлокотники");
-        List<Component> armrestList = servis.getAllArmest();
+        List<ComponentWheelchair> armrestList = servis.getAllArmest();
         for (int i = 0; i < armrestList.size(); i++) {
             System.out.println(i + 1 + ". " + armrestList.get(i).getInformation()
                     + ". Цена: " + armrestList.get(i).getPrice());
@@ -83,7 +83,7 @@ public class ChooseWheelchairComponensUIAction implements UIAction {
     }
 
     private void addBreaks() {
-        List<Component> breaksList = servis.getAllBrakes();
+        List<ComponentWheelchair> breaksList = servis.getAllBrakes();
         System.out.println("Теперь определимся с тормозами" + "\n Введите марку выбранных тормозов");
         for (int i = 0; i < breaksList.size(); i++) {
             System.out.println(i + 1 + ". " + breaksList.get(i).getInformation()

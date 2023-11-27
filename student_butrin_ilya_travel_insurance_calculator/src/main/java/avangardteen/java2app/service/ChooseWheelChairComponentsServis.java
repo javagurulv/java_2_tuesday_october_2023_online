@@ -1,51 +1,51 @@
 package avangardteen.java2app.service;
 
-import avangardteen.java2app.Component;
+import avangardteen.java2app.ComponentWheelchair;
 import avangardteen.java2app.data.DataComponents;
 import avangardteen.java2app.Wheelchair;
-import avangardteen.java2app.dependency_injection.DIComponent;
-import avangardteen.java2app.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.ChooseWheelchairComponensRequest;
 import avangardteen.java2app.responce.ChooseWheelchairComponensResponce;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-@DIComponent
+@Component
 public class ChooseWheelChairComponentsServis {
 
-  @DIDependency DataComponents data;
-  @DIDependency Wheelchair wheelchair;
+  @Autowired DataComponents data;
+  @Autowired Wheelchair wheelchair;
 
 
-    public List<Component> getAllFrontWheels() {
-        List<Component> frontWheelList = data.allFrontWheels();
+    public List<ComponentWheelchair> getAllFrontWheels() {
+        List<ComponentWheelchair> frontWheelList = data.allFrontWheels();
         return frontWheelList;
     }
-    public List<Component> getAllBrakes() {
-        List<Component> breakList = data.allBrakes();
+    public List<ComponentWheelchair> getAllBrakes() {
+        List<ComponentWheelchair> breakList = data.allBrakes();
         return breakList;
     }
-    public List<Component> getAllArmest() {
-        List<Component> armestList = data.allArmest();
+    public List<ComponentWheelchair> getAllArmest() {
+        List<ComponentWheelchair> armestList = data.allArmest();
         return armestList;
     }
-    public List<Component> getAllBackWheels() {
-        List<Component> backWheelList = data.allBackWheels();
+    public List<ComponentWheelchair> getAllBackWheels() {
+        List<ComponentWheelchair> backWheelList = data.allBackWheels();
         return backWheelList;
     }
-    public List<Component> getAllBackWheelsFor20Size() {
-        List<Component> backWheelListFor20Size = data.allBackWheelsFor20size();
+    public List<ComponentWheelchair> getAllBackWheelsFor20Size() {
+        List<ComponentWheelchair> backWheelListFor20Size = data.allBackWheelsFor20size();
         return backWheelListFor20Size;
     }
-    public List<Component> getAllBackWheelsFor22Size() {
-        List<Component> backWheelListFor22Size = data.allBackWheelsFor22size();
+    public List<ComponentWheelchair> getAllBackWheelsFor22Size() {
+        List<ComponentWheelchair> backWheelListFor22Size = data.allBackWheelsFor22size();
         return backWheelListFor22Size;
     }
-    public List<Component> getAllBackWheelsFor24Size() {
-        List<Component> backWheelListFor24Size = data.allBackWheelsFor24Size();
+    public List<ComponentWheelchair> getAllBackWheelsFor24Size() {
+        List<ComponentWheelchair> backWheelListFor24Size = data.allBackWheelsFor24Size();
         return backWheelListFor24Size;
     }
-    public List<Component> getAllBackWheelsSize() {
-        List<Component> backWheelsizeList = data.allBackWheelsSize();
+    public List<ComponentWheelchair> getAllBackWheelsSize() {
+        List<ComponentWheelchair> backWheelsizeList = data.allBackWheelsSize();
         return backWheelsizeList;
     }
 

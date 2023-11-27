@@ -8,13 +8,14 @@ import classWork.core.CoreError;
 import classWork.core.requests.SearchBooksRequest;
 import classWork.core.service.SearchBooksService;
 import classWork.dependency_injection.DIComponent;
-import classWork.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Scanner;
-@DIComponent
+@Component
 public class SearchBookUIAction implements UIAction {
-   @DIDependency
+   @Autowired
    SearchBooksService servis;
     @Override
     public void execute() {

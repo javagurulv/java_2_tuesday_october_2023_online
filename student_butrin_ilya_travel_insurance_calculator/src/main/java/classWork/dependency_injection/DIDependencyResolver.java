@@ -1,7 +1,7 @@
 package classWork.dependency_injection;
 
 import classWork.dependency_injection.ApplicationContext;
-import classWork.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;

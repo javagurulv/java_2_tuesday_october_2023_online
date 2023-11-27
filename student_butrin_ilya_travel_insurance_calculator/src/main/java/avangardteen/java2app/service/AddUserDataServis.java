@@ -6,17 +6,17 @@ import avangardteen.java2app.Wheelchair;
 import avangardteen.java2app.data.DataUsers;
 import avangardteen.java2app.Client;
 
-import avangardteen.java2app.dependency_injection.DIComponent;
-import avangardteen.java2app.dependency_injection.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.AddPersonalDataRequest;
 import avangardteen.java2app.responce.AddPersonalDateResponce;
 import avangardteen.java2app.service.valigation.WheelchairValigator;
 import java.util.List;
-@DIComponent public class AddUserDataServis {
-  @DIDependency DataUsers data;
-   @DIDependency UserSizes sizes;
-   @DIDependency Wheelchair wheelchair;
-   @DIDependency WheelchairValigator valigator;
+@Component public class AddUserDataServis {
+  @Autowired DataUsers data;
+   @Autowired UserSizes sizes;
+   @Autowired Wheelchair wheelchair;
+   @Autowired WheelchairValigator valigator;
 
 
 

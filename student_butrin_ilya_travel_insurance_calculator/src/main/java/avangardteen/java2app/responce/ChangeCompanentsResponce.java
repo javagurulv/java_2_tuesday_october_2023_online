@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ChangeCompanentsResponce extends CoreResponce {
     List<Category> listAllCategory;
-    List<Component> chooseNewComponent;
+    List<ComponentWheelchair> chooseNewComponent;
    Wheelchair wheelchair;
 
     public ChangeCompanentsResponce(List<CoreError> errorList) {
@@ -22,11 +22,11 @@ public class ChangeCompanentsResponce extends CoreResponce {
         return listAllCategory;
     }
 
-    public List<Component> getChooseNewComponent() {
+    public List<ComponentWheelchair> getChooseNewComponent() {
         return chooseNewComponent;
     }
 
-    public ChangeCompanentsResponce(List<Category> listAllCategory, List<Component> chooseNewComponent, Wheelchair wheelchair) {
+    public ChangeCompanentsResponce(List<Category> listAllCategory, List<ComponentWheelchair> chooseNewComponent, Wheelchair wheelchair) {
         this.listAllCategory = listAllCategory;
         this.chooseNewComponent = chooseNewComponent;
         this.wheelchair = wheelchair;

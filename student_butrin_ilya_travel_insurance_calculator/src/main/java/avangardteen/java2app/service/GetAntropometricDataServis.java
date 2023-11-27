@@ -1,13 +1,13 @@
 package avangardteen.java2app.service;
 
 import avangardteen.java2app.UserSizes;
-import avangardteen.java2app.dependency_injection.DIComponent;
-import avangardteen.java2app.dependency_injection.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.ShowDataSizeRequest;
 import avangardteen.java2app.responce.ShowDataSizeResponse;
-@DIComponent
+@Component
 public class GetAntropometricDataServis {
-@DIDependency UserSizes sizes;
+@Autowired UserSizes sizes;
 
     public ShowDataSizeResponse response (ShowDataSizeRequest request){
         return new ShowDataSizeResponse(sizes);

@@ -2,23 +2,24 @@ package avangardteen.java2app.service;
 
 import avangardteen.java2app.*;
 import avangardteen.java2app.data.DataComponents;
-import avangardteen.java2app.dependency_injection.DIComponent;
-import avangardteen.java2app.dependency_injection.DIDependency;
+//import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.ChangeComponentsRequest;
 import avangardteen.java2app.responce.ChangeCompanentsResponce;
 import avangardteen.java2app.service.valigation.WheelchairValigator;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import static avangardteen.java2app.Category.BACK_WHEEL_SIZE;
-@DIComponent
+@Component
 public class ChangeComponentServise {
 
- @DIDependency  DataComponents components;
-   @DIDependency Wheelchair wheelchair;
-   @DIDependency WheelchairValigator valigator;
+ @Autowired  DataComponents components;
+   @Autowired Wheelchair wheelchair;
+   @Autowired WheelchairValigator valigator;
 
 
     public ChangeCompanentsResponce responce() {
@@ -29,7 +30,7 @@ public class ChangeComponentServise {
 
 
     public ChangeCompanentsResponce responce2(ChangeComponentsRequest request) {
-        List<Component> listAllComponen = listComponents(request);
+        List<ComponentWheelchair> listAllComponen = listComponents(request);
         ChangeCompanentsResponce responce = new ChangeCompanentsResponce(null, listAllComponen, null);
         return responce;
     }
@@ -43,12 +44,12 @@ public class ChangeComponentServise {
         return responce;
     }
 
-    public List<Component> responce4() {
-       List<Component> xx = checkSizeAndType();
+    public List<ComponentWheelchair> responce4() {
+       List<ComponentWheelchair> xx = checkSizeAndType();
        return xx;
     }
     public void responce5(ChangeComponentsRequest request) {
-        List<Component> x = checkSizeAndType();
+        List<ComponentWheelchair> x = checkSizeAndType();
         for (int i=0; i< x.size();i++)
         if (request.getNewChoose() == i + 1){
             String id = x.get(i).getComponentID();
@@ -61,16 +62,16 @@ public class ChangeComponentServise {
     public List<Category> listAllCategory() {
         List<Category> showCategory = new ArrayList<>();
         int number = 0;
-        for (Map.Entry<Category, Component> component : wheelchair.getComponents().entrySet()) {
+        for (Map.Entry<Category, ComponentWheelchair> component : wheelchair.getComponents().entrySet()) {
             number++;
             showCategory.add(component.getValue().getCategory());
         }
         return showCategory;
     }
 
-    public  List<Component> chooseNewComponent(ChangeComponentsRequest request) {
+    public  List<ComponentWheelchair> chooseNewComponent(ChangeComponentsRequest request) {
 
-        List<Component> chooseNewComponent = listComponents(request);
+        List<ComponentWheelchair> chooseNewComponent = listComponents(request);
         int choose = request.getNewChoose();
         for (int i = 1; i <= chooseNewComponent.size(); i++) {
             if (choose == i) {
@@ -82,9 +83,9 @@ public class ChangeComponentServise {
         return chooseNewComponent;
     }
 
-    public List<Component> listComponents(ChangeComponentsRequest request) {
+    public List<ComponentWheelchair> listComponents(ChangeComponentsRequest request) {
         List<Category> listAllCategory = listAllCategory();
-        List<Component> newChoose = new ArrayList<>();
+        List<ComponentWheelchair> newChoose = new ArrayList<>();
         for (int i = 0; i < components.getAllComponents().size(); i++) {
             if (components.getAllComponents().get(i).getCategory().equals(
                     listAllCategory.get(request.getCathegory() - 1))) {
@@ -94,9 +95,9 @@ public class ChangeComponentServise {
         }
         return newChoose;
     }
-    public List<Component> checkSizeAndType(){
-        List <Component> info = new ArrayList<>();
-        Component comp = wheelchair.getComponents().get(BACK_WHEEL_SIZE);
+    public List<ComponentWheelchair> checkSizeAndType(){
+        List <ComponentWheelchair> info = new ArrayList<>();
+        ComponentWheelchair comp = wheelchair.getComponents().get(BACK_WHEEL_SIZE);
         if (comp.getComponentID().equals("MG 04")) {
             info = new ArrayList<>();
             info.addAll(components.allBackWheelsFor20size());

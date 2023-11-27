@@ -1,20 +1,21 @@
 package avangardteen.java2app.UIAction;
 
 import avangardteen.java2app.Category;
-import avangardteen.java2app.Component;
+import avangardteen.java2app.ComponentWheelchair;
 import avangardteen.java2app.CoreError;
-import avangardteen.java2app.dependency_injection.DIComponent;
-import avangardteen.java2app.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.ChangeComponentsRequest;
 import avangardteen.java2app.responce.ChangeCompanentsResponce;
 import avangardteen.java2app.service.ChangeComponentServise;
+import org.springframework.stereotype.Component;
+
 
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-@DIComponent
+@Component
 public class ChangeComponentUIAction implements UIAction {
-   @DIDependency
+   @Autowired
    ChangeComponentServise servise;
 
     Scanner scan = new Scanner(System.in);
@@ -43,7 +44,7 @@ public class ChangeComponentUIAction implements UIAction {
                 System.err.println(error.getLocation() + ": " + error.getMessage());
                 if (error.getLocation().equals("Заднии колеса")) {
                     System.out.println("выберите новое значение параметра колеса:");
-                    List<Component> xxx = servise.responce4();
+                    List<ComponentWheelchair> xxx = servise.responce4();
                     for (int i = 0; i < xxx.size(); i++) {
                         System.out.println(i+1 +". " + xxx.get(i).getInformation());
                     }
@@ -62,7 +63,7 @@ public class ChangeComponentUIAction implements UIAction {
         public  void showAllComponent(ChangeCompanentsResponce response) {
             response.getListAllCategory();
             int i = 0;
-            for (Map.Entry<Category, Component> component : response.getWheelchair().getComponents().entrySet()) {
+            for (Map.Entry<Category, ComponentWheelchair> component : response.getWheelchair().getComponents().entrySet()) {
                 i++;
                 System.out.println(i + ". " +
                         component.getKey() + ": " +
