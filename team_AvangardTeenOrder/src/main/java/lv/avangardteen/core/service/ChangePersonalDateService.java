@@ -1,22 +1,22 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dependency_injection.DIDependency;
-import lv.avangardteen.dto.Client;
+import lv.avangardteen.core.dto.Client;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChangePersonalDateValidator;
-import lv.avangardteen.data.Database;
+import lv.avangardteen.core.data.Database;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class ChangePersonalDateService {
-    @DIDependency
+    @Autowired
     private Database database;
 
-    @DIDependency
+    @Autowired
     private ChangePersonalDateValidator validator;
 
     public ChangePersonalDateResponse execute(ChangePersonalDateRequest request) {

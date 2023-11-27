@@ -2,16 +2,15 @@ package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.WheelchairComponent;
-import lv.avangardteen.data.DataComponents;
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dto.Category;
-import lv.avangardteen.dto.Component;
+import lv.avangardteen.core.dto.Category;
+import lv.avangardteen.core.dto.Components;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-@DIComponent
+
+@Component
 public class ComponentValidator {
 
     public List<CoreError> validate(WheelchairComponent wheelchairComponent) {
@@ -33,8 +32,8 @@ public class ComponentValidator {
 
     private boolean indexWheelFrontIsAbsent(WheelchairComponent wheelchairComponent) {
 
-        Map<Category, Component> componentMap = wheelchairComponent.getComponents();
-        Component componentWheelFront = componentMap.get(Category.FRONT_WHEEL);
+        Map<Category, Components> componentMap = wheelchairComponent.getComponents();
+        Components componentWheelFront = componentMap.get(Category.FRONT_WHEEL);
         if (componentWheelFront != null) {
             return false;
         }
@@ -42,8 +41,8 @@ public class ComponentValidator {
     }
 
     private boolean indexBackWheelIsAbsent(WheelchairComponent wheelchairComponent) {
-        Map<Category, Component> componentMap = wheelchairComponent.getComponents();
-        Component componentWheelBack = componentMap.get(Category.BACK_WHEEL);
+        Map<Category, Components> componentMap = wheelchairComponent.getComponents();
+        Components componentWheelBack = componentMap.get(Category.BACK_WHEEL);
         if (componentWheelBack != null) {
             return false;
         }
@@ -51,8 +50,8 @@ public class ComponentValidator {
     }
 
     private boolean indexBrakeIsAbsent(WheelchairComponent wheelchairComponent) {
-        Map<Category, Component> componentMap = wheelchairComponent.getComponents();
-        Component componentBrake = componentMap.get(Category.BRAKE);
+        Map<Category, Components> componentMap = wheelchairComponent.getComponents();
+        Components componentBrake = componentMap.get(Category.BRAKE);
         if (componentBrake != null) {
             return false;
         }
@@ -60,8 +59,8 @@ public class ComponentValidator {
     }
 
     private boolean indexArmrestIsAbsent(WheelchairComponent wheelchairComponent) {
-        Map<Category, Component> componentMap = wheelchairComponent.getComponents();
-        Component componentArmrest = componentMap.get(Category.ARMREST);
+        Map<Category, Components> componentMap = wheelchairComponent.getComponents();
+        Components componentArmrest = componentMap.get(Category.ARMREST);
         if (componentArmrest != null) {
             return false;
         }

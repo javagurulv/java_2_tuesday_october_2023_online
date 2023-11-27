@@ -6,17 +6,17 @@ import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.DeleteOrderResponse;
 
 import lv.avangardteen.core.service.validate.IdOrderValidator;
-import lv.avangardteen.data.Database;
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dependency_injection.DIDependency;
+import lv.avangardteen.core.data.Database;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class DeleteOrderService {
-    @DIDependency
+    @Autowired
     private Database database;
-    @DIDependency
+    @Autowired
     private IdOrderValidator validator;
 
     public DeleteOrderResponse execute(DeleteOrderRequest request) {

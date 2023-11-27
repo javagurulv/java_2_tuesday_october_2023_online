@@ -3,10 +3,11 @@ package fitness_club.core.services.data_vlidation;
 import fitness_club.core.database.Database;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
-import fitness_club.dependency_injection.DIComponent;
-import fitness_club.dependency_injection.DIDependency;
+import fitness_club.core.responses.CoreError;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +15,9 @@ import java.util.Optional;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@DIComponent
+@Component
 public class AddClientRequestValidator {
-    @DIDependency
+   @Autowired
     private Database database;
 
     public List<CoreError> validate(AddClientRequest request) {

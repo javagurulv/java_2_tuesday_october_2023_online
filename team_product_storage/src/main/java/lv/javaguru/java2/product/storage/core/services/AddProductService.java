@@ -6,16 +6,16 @@ import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.AddProductResponse;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 import lv.javaguru.java2.product.storage.core.services.validators.AddProductRequestValidator;
-import lv.javaguru.java2.product.storage.dependency_injection.DIComponent;
-import lv.javaguru.java2.product.storage.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class AddProductService {
 
-    @DIDependency private Database database;
-    @DIDependency private AddProductRequestValidator validator;
+    @Autowired private Database database;
+    @Autowired private AddProductRequestValidator validator;
 
 
     public AddProductResponse execute(AddProductRequest request) {

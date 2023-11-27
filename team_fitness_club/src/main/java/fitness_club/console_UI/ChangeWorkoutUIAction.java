@@ -2,19 +2,18 @@ package fitness_club.console_UI;
 
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.ChangeClientWorkoutsRequest;
-import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.responses.ChangeClientWorkoutsResponse;
 import fitness_club.core.services.ChangeClientWorkoutService;
-import fitness_club.core.services.GetClientAgeGroupService;
 import fitness_club.core.services.GetWorkoutService;
-import fitness_club.dependency_injection.DIComponent;
-import fitness_club.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class ChangeWorkoutUIAction implements UIAction {
-    @DIDependency private ChangeClientWorkoutService service;
+   @Autowired
+   private ChangeClientWorkoutService service;
 
 
     @Override

@@ -3,9 +3,7 @@ package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.data.DataComponents;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.List;
 

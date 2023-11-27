@@ -8,8 +8,17 @@ public class Book {
     private Long id;
     private String title;
     private String author;
-
+    private Genre genre;
     private List<Page> pages;
+
+    public Book() {
+    }
+
+    public Book(String title, String author, Genre genre) {
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+    }
 
     public List<Page> getPages() {
         return pages;
@@ -17,14 +26,6 @@ public class Book {
 
     public void setPages(List<Page> pages) {
         this.pages = pages;
-    }
-
-    public Book() {
-    }
-
-    public Book(String title, String author) {
-        this.title = title;
-        this.author = author;
     }
 
     public Long getId() {
@@ -43,6 +44,8 @@ public class Book {
         return author;
     }
 
+    public Genre getGenre() { return genre; }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -51,24 +54,29 @@ public class Book {
         this.author = author;
     }
 
+    public void setGenre(Genre genre) { this.genre = genre; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Book book)) return false;
-        return Objects.equals(getTitle(), book.getTitle()) && Objects.equals(getAuthor(), book.getAuthor()) && Objects.equals(getId(), book.getId());
+        return Objects.equals(getId(), book.getId()) && Objects.equals(getTitle(), book.getTitle()) && Objects.equals(getAuthor(), book.getAuthor())  && getGenre() == book.getGenre() && Objects.equals(getPages(), book.getPages());
     }
+
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTitle(), getAuthor(), getId());
+        return Objects.hash(getId(), getTitle(), getAuthor(), getGenre(), getPages());
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", id=" + id +
+                ", genre=" + genre +
+                ", pages=" + pages +
                 '}';
     }
 }

@@ -1,6 +1,5 @@
 package lv.javaguru.travel.insurance.core.services;
 
-import lv.javaguru.travel.insurance.core.services.TravelCalculatePremiumServiceImpl;
 import lv.javaguru.travel.insurance.core.underwriting.TravelPremiumUnderwriting;
 import lv.javaguru.travel.insurance.core.validations.TravelCalculatePremiumRequestValidator;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
@@ -109,7 +108,7 @@ class TravelCalculatePremiumServiceImplTest {
         when(validator.validate(request)).thenReturn(List.of());
         when(underwritingPrice.calculatePremium(request)).thenReturn(new BigDecimal(20));
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
-        assertEquals(response.getAgreementPrice(), new BigDecimal(20));
+        assertEquals(response.getAgreementPremium(), new BigDecimal(20));
     }
 
     private List<ValidationError> buildValidationErrorList() {

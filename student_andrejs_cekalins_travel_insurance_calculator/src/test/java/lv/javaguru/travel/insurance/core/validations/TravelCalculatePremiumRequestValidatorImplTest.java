@@ -19,30 +19,55 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class TravelCalculatePremiumRequestValidatorImplTest {
     @InjectMocks
-    private TravelCalculatePremiumRequestValidatorImpl requestValidator;
+    private TravelCalculatePremiumRequestValidatorImpl validator;
 
     @Test
     public void shouldNotReturnErrors() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         TravelRequestValidation validation1 = mock(TravelRequestValidation.class);
-        when(validation1.execute(request)).thenReturn(Optional.empty());
+        when(validation1.validate(request)).thenReturn(Optional.empty());
+        when(validation1.validateList(request)).thenReturn(List.of());
         TravelRequestValidation validation2 = mock(TravelRequestValidation.class);
-        when(validation2.execute(request)).thenReturn(Optional.empty());
-        List<TravelRequestValidation> travelValidations = List.of(validation1,validation2);
-        ReflectionTestUtils.setField(requestValidator, "travelValidations", travelValidations);
-        List<ValidationError> errors = requestValidator.validate(request);
+        when(validation2.validate(request)).thenReturn(Optional.empty());
+        when(validation2.validateList(request)).thenReturn(List.of());
+        List<TravelRequestValidation> travelValidations = List.of(
+                validation1, validation2
+        );
+        ReflectionTestUtils.setField(validator, "travelValidations", travelValidations);
+        List<ValidationError> errors = validator.validate(request);
         assertTrue(errors.isEmpty());
     }
+
     @Test
-    public void shouldReturnErrors() {
+    public void shouldReturnSingleErrors() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         TravelRequestValidation validation1 = mock(TravelRequestValidation.class);
-        when(validation1.execute(request)).thenReturn(Optional.of(new ValidationError()));
+        when(validation1.validate(request)).thenReturn(Optional.of(new ValidationError()));
         TravelRequestValidation validation2 = mock(TravelRequestValidation.class);
-        when(validation2.execute(request)).thenReturn(Optional.of(new ValidationError()));
-        List<TravelRequestValidation> travelValidations = List.of(validation1,validation2);
-        ReflectionTestUtils.setField(requestValidator, "travelValidations", travelValidations);
-        List<ValidationError> errors = requestValidator.validate(request);
-        assertEquals(errors.size(),2);
+        when(validation2.validate(request)).thenReturn(Optional.of(new ValidationError()));
+        List<TravelRequestValidation> travelValidations = List.of(
+                validation1, validation2
+        );
+        ReflectionTestUtils.setField(validator, "travelValidations", travelValidations);
+        List<ValidationError> errors = validator.validate(request);
+        assertEquals(errors.size(), 2);
+    }
+
+    @Test
+    public void shouldReturnListErrors() {
+        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
+        TravelRequestValidation validation1 = mock(TravelRequestValidation.class);
+
+        when(validation1.validate(request)).thenReturn(Optional.empty());
+        when(validation1.validateList(request)).thenReturn(List.of(new ValidationError()));
+        TravelRequestValidation validation2 = mock(TravelRequestValidation.class);
+        when(validation2.validate(request)).thenReturn(Optional.empty());
+        when(validation2.validateList(request)).thenReturn(List.of(new ValidationError()));
+        List<TravelRequestValidation> travelValidations = List.of(
+                validation1, validation2
+        );
+        ReflectionTestUtils.setField(validator,"travelValidations", travelValidations);
+        List<ValidationError> errors =validator.validate(request);
+        assertEquals(errors.size(), 2);
     }
 }

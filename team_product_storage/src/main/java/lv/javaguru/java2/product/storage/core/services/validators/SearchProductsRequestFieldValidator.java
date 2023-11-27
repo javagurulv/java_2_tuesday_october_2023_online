@@ -2,12 +2,12 @@ package lv.javaguru.java2.product.storage.core.services.validators;
 
 import lv.javaguru.java2.product.storage.core.requests.SearchProductsRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
-import lv.javaguru.java2.product.storage.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@DIComponent
+@Component
 public class SearchProductsRequestFieldValidator {
 
     public List<CoreError> validate(SearchProductsRequest request) {

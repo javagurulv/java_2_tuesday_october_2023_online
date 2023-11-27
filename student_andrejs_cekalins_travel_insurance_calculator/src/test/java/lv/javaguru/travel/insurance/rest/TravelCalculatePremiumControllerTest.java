@@ -1,5 +1,6 @@
 package lv.javaguru.travel.insurance.rest;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_firstName_is_empty.json"
         );
     }
+
     @Test
     public void personFirstNameIsNull() throws Exception {
         executeAndCompare(
@@ -47,6 +49,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_firstName_is_null.json"
         );
     }
+
     @Test
     public void lastNameIsEmpty() throws Exception {
         executeAndCompare(
@@ -54,6 +57,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_lastName_is_empty.json"
         );
     }
+
     @Test
     public void lastNameIsNull() throws Exception {
         executeAndCompare(
@@ -118,6 +122,7 @@ public class TravelCalculatePremiumControllerTest {
                 "rest/TravelCalculatePremiumResponse_selected_risk_empty.json"
         );
     }
+
     @Test
     public void selectedRiskValidationNull() throws Exception {
         executeAndCompare(

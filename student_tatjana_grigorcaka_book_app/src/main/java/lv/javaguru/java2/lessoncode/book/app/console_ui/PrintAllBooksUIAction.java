@@ -3,13 +3,14 @@ package lv.javaguru.java2.lessoncode.book.app.console_ui;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.GetAllBooksRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.GetAllBooksResponse;
 import lv.javaguru.java2.lessoncode.book.app.core.services.GetAllBooksService;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIComponent;
-import lv.javaguru.java2.lessoncode.book.app.dependency_injection.DIDependency;
 
-@DIComponent
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class PrintAllBooksUIAction implements UIAction {
 
-    @DIDependency private GetAllBooksService getAllBooksService;
+    @Autowired private GetAllBooksService getAllBooksService;
 
     @Override
     public void execute() {

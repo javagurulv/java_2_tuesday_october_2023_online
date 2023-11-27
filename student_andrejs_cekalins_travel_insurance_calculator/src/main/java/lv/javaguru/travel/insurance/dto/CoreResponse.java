@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CoreResponse {
+
     private List<ValidationError> errors;
 
     public boolean hasError() {

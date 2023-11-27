@@ -5,16 +5,16 @@ import lv.javaguru.java2.product.storage.core.requests.RemoveProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 import lv.javaguru.java2.product.storage.core.responses.RemoveProductResponse;
 import lv.javaguru.java2.product.storage.core.services.validators.RemoveProductRequestValidator;
-import lv.javaguru.java2.product.storage.dependency_injection.DIComponent;
-import lv.javaguru.java2.product.storage.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class RemoveProductService {
 
-    @DIDependency private Database database;
-    @DIDependency private RemoveProductRequestValidator validator;
+    @Autowired private Database database;
+    @Autowired private RemoveProductRequestValidator validator;
 
 
     public RemoveProductResponse execute(RemoveProductRequest request) {

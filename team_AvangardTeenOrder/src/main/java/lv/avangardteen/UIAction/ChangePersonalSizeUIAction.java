@@ -3,17 +3,16 @@ package lv.avangardteen.UIAction;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.service.ChangePersonalSizeService;
-import lv.avangardteen.data.DataOrders;
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class ChangePersonalSizeUIAction implements UIAction {
 
-    @DIDependency
+    @Autowired
     ChangePersonalSizeService service;
 
     @Override

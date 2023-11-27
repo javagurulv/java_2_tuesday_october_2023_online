@@ -1,7 +1,7 @@
 package fitness_club.acceptance_tests;
 
+import fitness_club.config.ClientWorkoutsConfiguration;
 import fitness_club.core.domain.FitnessCentre;
-import fitness_club.dependency_injection.ApplicationContext;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
@@ -11,19 +11,24 @@ import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.SearchClientService;
-import fitness_club.dependency_injection.DIApplicationContextBuilder;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.junit.Assert.assertEquals;
 
 
 public class AcceptanceSearchTest {
-    private static ApplicationContext applicationContext =
-            new DIApplicationContextBuilder().build("fitness_club");
+   private ApplicationContext applicationContext;
+
+   @Before
+   public void setup() {
+       applicationContext = new AnnotationConfigApplicationContext(ClientWorkoutsConfiguration.class);
+   }
 
     @Test
-    void searchClients() {
+    public void searchClients() {
         AddClientRequest request1 = new AddClientRequest("Aaa", "Bbb", "123", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         getAddclientService().execute(request1);
 
@@ -40,7 +45,7 @@ public class AcceptanceSearchTest {
     }
 
     @Test
-    void searchBooksOrderingDescending() {
+    public void searchBooksOrderingDescending() {
         AddClientRequest request1 = new AddClientRequest("Aaa", "Bbb", "123", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         getAddclientService().execute(request1);
         AddClientRequest request2 = new AddClientRequest("Aaa", "Ddd", "1234", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
@@ -58,7 +63,7 @@ public class AcceptanceSearchTest {
     }
 
     @Test
-    void searchBooksOrderingAscending() {
+    public void searchBooksOrderingAscending() {
         AddClientRequest request1 = new AddClientRequest("Aaa", "Bbb", "123", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         getAddclientService().execute(request1);
         AddClientRequest request2 = new AddClientRequest("Aaa", "Ddd", "1234", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
@@ -77,7 +82,7 @@ public class AcceptanceSearchTest {
     }
 
     @Test
-    void searchBooksOrderingPaging() {
+    public void searchBooksOrderingPaging() {
         AddClientRequest request1 = new AddClientRequest("Aaa", "Bbb", "123", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         getAddclientService().execute(request1);
         AddClientRequest request2 = new AddClientRequest("Aaa", "Ddd", "1234", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);

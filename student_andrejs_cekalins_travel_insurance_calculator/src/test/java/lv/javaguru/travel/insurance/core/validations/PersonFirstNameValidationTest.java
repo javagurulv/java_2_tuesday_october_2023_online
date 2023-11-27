@@ -16,40 +16,40 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PersonFirstNameValidationTest {
-@Mock
-private ErrorCodeUnit errorCodeUnit;
+    @Mock
+    private ValidationErrorFactory errorFactory;
 
-@InjectMocks
+    @InjectMocks
     private PersonFirstNameValidation validation;
 
     @Test
     public void shouldReturnErrorWhenPersonFirstNameIsNull() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getPersonFirstName()).thenReturn(null);
-        when(errorCodeUnit.getErrorDescription("ERROR_CODE_1")).thenReturn("Field personFirstName must not be empty!");
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_1")).thenReturn(validationError);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isPresent());
-        assertEquals(errorOpt.get().getErrorCode(), "ERROR_CODE_1");
-        assertEquals(errorOpt.get().getDescription(), "Field personFirstName must not be empty!");
+        assertEquals(errorOpt.get(),validationError);
     }
 
     @Test
     public void shouldReturnErrorWhenPersonFirstNameIsEmpty() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getPersonFirstName()).thenReturn("");
-        when(errorCodeUnit.getErrorDescription("ERROR_CODE_1")).thenReturn("Field personFirstName must not be empty!");
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_1")).thenReturn(validationError);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isPresent());
-        assertEquals(errorOpt.get().getErrorCode(), "ERROR_CODE_1");
-        assertEquals(errorOpt.get().getDescription(), "Field personFirstName must not be empty!");
+        assertEquals(errorOpt.get(),validationError);
     }
 
     @Test
     public void shouldNotReturnErrorWhenPersonFirstNameIsPresent() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getPersonFirstName()).thenReturn("Andrey");
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isEmpty());
-        verifyNoInteractions(errorCodeUnit);
+        verifyNoInteractions(errorFactory);
     }
 }

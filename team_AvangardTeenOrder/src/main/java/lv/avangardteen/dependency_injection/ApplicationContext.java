@@ -1,18 +1,16 @@
 package lv.avangardteen.dependency_injection;
 
-import lv.avangardteen.UIAction.*;
-import lv.avangardteen.core.service.*;
-import lv.avangardteen.core.service.validate.*;
-import lv.avangardteen.data.DataComponents;
-import lv.avangardteen.data.DataOrders;
-import lv.avangardteen.data.Database;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class ApplicationContext {
 
+
     private Map<Class, Object> beans = new HashMap<>();
+
+    public ApplicationContext() {
+    }
+
     public void addBean(Class beanClass, Object beanInstance) {
         beans.put(beanClass, beanInstance);
         Class[] instanceInterfaces = beanClass.getInterfaces();

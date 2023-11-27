@@ -1,12 +1,12 @@
 package lv.avangardteen.UIAction;
 
-import lv.avangardteen.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
 
-@DIComponent
-public class ExitUIAction implements UIAction{
+@Component
+public class ExitUIAction implements UIAction {
     @Override
     public void execute() {
-        System.out.println("Good by!");
+        System.out.println("Good bye!");
         System.exit(0);
     }
 }

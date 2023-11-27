@@ -19,30 +19,30 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AgreementDateToValidationTest {
-@Mock
-private ErrorCodeUnit errorCodeUnit;
+    @Mock
+    private ValidationErrorFactory errorFactory;
 
-@InjectMocks
+    @InjectMocks
     private AgreementDateToValidation validation;
 
     @Test
     public void shouldReturnErrorWhenAgreementDateToIsNull() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateTo()).thenReturn(null);
-        when(errorCodeUnit.getErrorDescription("ERROR_CODE_6")).thenReturn("Field agreementDateTo must not be empty!");
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        ValidationError validationError = mock(ValidationError.class);
+        when(errorFactory.buildError("ERROR_CODE_6")).thenReturn(validationError);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isPresent());
-        assertEquals(errorOpt.get().getErrorCode(), "ERROR_CODE_6");
-        assertEquals(errorOpt.get().getDescription(), "Field agreementDateTo must not be empty!");
+        assertEquals(errorOpt.get(), validationError);
     }
 
     @Test
     public void shouldNotReturnErrorWhenAgreementDateToIsPresent() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getAgreementDateTo()).thenReturn(createDate("01.11.2025"));
-        Optional<ValidationError> errorOpt = validation.execute(request);
+        Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isEmpty());
-        verifyNoInteractions(errorCodeUnit);
+        verifyNoInteractions(errorFactory);
     }
 
     private Date createDate(String dateStr) {

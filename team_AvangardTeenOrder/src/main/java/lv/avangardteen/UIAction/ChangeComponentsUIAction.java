@@ -3,21 +3,21 @@ package lv.avangardteen.UIAction;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.service.ChangeComponentService;
-import lv.avangardteen.data.DataComponents;
-import lv.avangardteen.data.DataOrders;
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dependency_injection.DIDependency;
+import lv.avangardteen.core.data.DataComponents;
+import lv.avangardteen.core.data.DataOrders;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class ChangeComponentsUIAction implements UIAction {
-    @DIDependency
+    @Autowired
     DataOrders dataOrders;
-    @DIDependency
+    @Autowired
     DataComponents dataComponents;
-    @DIDependency
+    @Autowired
     ChangeComponentService service;
 
 

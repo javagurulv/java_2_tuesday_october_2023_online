@@ -1,9 +1,10 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.dependency_injection.DIComponent;
-import lv.avangardteen.dto.UserSizes;
-import lv.avangardteen.dto.Wheelchair;
-@DIComponent
+import lv.avangardteen.core.dto.UserSizes;
+import lv.avangardteen.core.dto.Wheelchair;
+import org.springframework.stereotype.Component;
+
+@Component
 public class CalculateDimensionsWheelchair {
 
     private UserSizes userSizes;

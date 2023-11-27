@@ -2,7 +2,7 @@ package lv.avangardteen.core.request;
 
 
 import lv.avangardteen.core.service.WheelchairComponent;
-import lv.avangardteen.dto.UserSizes;
+import lv.avangardteen.core.dto.UserSizes;
 
 public class ClientRequest {
 

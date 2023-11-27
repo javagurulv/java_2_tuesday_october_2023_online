@@ -1,18 +1,20 @@
 package lv.avangardteen.acceptancetests;
 
+import lv.avangardteen.config.OrderListConfiguration;
 import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.ShowOrderResponse;
 import lv.avangardteen.core.service.ClientService;
 import lv.avangardteen.core.service.ShowOrderService;
-import lv.avangardteen.dependency_injection.ApplicationContext;
 import lv.avangardteen.dependency_injection.DIApplicationContextBuilder;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AcceptanceTest6 {
-    private ApplicationContext appContext = new DIApplicationContextBuilder().build("lv.avangardteen");
+    private ApplicationContext appContext = new AnnotationConfigApplicationContext(OrderListConfiguration.class);
 
     @Test
     public void checkPriceOfDifferentArmrest() {

@@ -1,14 +1,12 @@
 package fitness_club.dependency_injection;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
+import org.junit.Test;
 import java.util.List;
 
 public class DIComponentCreatorTest {
 
     @Test
-    void create() {
+    public void create() {
         ApplicationContext applicationContext = new ApplicationContext();
         ClassFinder finder = new ClassFinder();
         DIComponentFilter filter = new DIComponentFilter();

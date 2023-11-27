@@ -5,15 +5,16 @@ import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
 import fitness_club.core.services.SearchClientService;
-import fitness_club.dependency_injection.DIComponent;
-import fitness_club.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class SearchClientUIAction implements UIAction {
 
-    @DIDependency private SearchClientService searchClientService;
+    @Autowired
+    private SearchClientService searchClientService;
 
 
 

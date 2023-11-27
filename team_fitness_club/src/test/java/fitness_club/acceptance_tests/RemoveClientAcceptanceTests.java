@@ -1,7 +1,7 @@
 package fitness_club.acceptance_tests;
 
+import fitness_club.config.ClientWorkoutsConfiguration;
 import fitness_club.core.domain.FitnessCentre;
-import fitness_club.dependency_injection.ApplicationContext;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
@@ -9,16 +9,21 @@ import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.DeleteClientService;
-import fitness_club.dependency_injection.DIApplicationContextBuilder;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class RemoveClientAcceptanceTests {
-    private static ApplicationContext applicationContext =
-            new DIApplicationContextBuilder().build("fitness_club");
+    private ApplicationContext applicationContext;
+
+    @Before
+    public void setup() {
+        applicationContext = new AnnotationConfigApplicationContext(ClientWorkoutsConfiguration.class);
+    }
 
     @Test
     public void shouldReturnError() {

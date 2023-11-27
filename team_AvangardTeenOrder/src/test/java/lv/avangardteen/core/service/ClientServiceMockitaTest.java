@@ -4,7 +4,7 @@ import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.ClientResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ClientOrderValidator;
-import lv.avangardteen.data.Database;
+import lv.avangardteen.core.data.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

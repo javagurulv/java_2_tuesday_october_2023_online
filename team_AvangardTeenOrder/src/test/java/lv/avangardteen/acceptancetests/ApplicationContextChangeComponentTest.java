@@ -1,19 +1,20 @@
 package lv.avangardteen.acceptancetests;
 
+import lv.avangardteen.config.OrderListConfiguration;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.request.ClientRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.ChangeComponentService;
 import lv.avangardteen.core.service.ClientService;
-import lv.avangardteen.dependency_injection.ApplicationContext;
-import lv.avangardteen.dependency_injection.DIApplicationContextBuilder;
-import lv.avangardteen.dto.Category;
-import lv.avangardteen.dto.Client;
-import lv.avangardteen.dto.Component;
+import lv.avangardteen.core.dto.Category;
+import lv.avangardteen.core.dto.Client;
+import lv.avangardteen.core.dto.Components;
 import lv.avangardteen.core.service.WheelchairComponent;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
 import java.util.List;
@@ -24,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ApplicationContextChangeComponentTest {
 
     @Mock
-    private ApplicationContext appContext = new DIApplicationContextBuilder().build("lv.avangardteen");
+    private ApplicationContext appContext = new AnnotationConfigApplicationContext(OrderListConfiguration.class);
 
     @Test
     public void changeComponentTest() {
@@ -39,7 +40,7 @@ class ApplicationContextChangeComponentTest {
         ChangeComponentResponse response = getChangeComponentService().execute(request);
         Client client = response.getClient();
         WheelchairComponent componentMap = client.getWheelchairComponents();
-        Map<Category, Component> getMap = componentMap.getComponents();
+        Map<Category, Components> getMap = componentMap.getComponents();
         assertEquals(getMap.get(Category.FRONT_WHEEL).getIndex(), 12);
         assertEquals(getMap.get(Category.BACK_WHEEL).getIndex(), 22);
         assertEquals(getMap.get(Category.BRAKE).getIndex(), 32);
