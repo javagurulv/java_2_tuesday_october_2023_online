@@ -40,6 +40,8 @@ include 'teacher:lesson_15_jpa_repositories'
 
 include 'teacher:lesson_16_liquibase'
 
+include 'teacher:sql_practice'
+
 include 'teacher:travel_insurance_calculator:step_1'
 include 'teacher:travel_insurance_calculator:step_2'
 include 'teacher:travel_insurance_calculator:step_3'
