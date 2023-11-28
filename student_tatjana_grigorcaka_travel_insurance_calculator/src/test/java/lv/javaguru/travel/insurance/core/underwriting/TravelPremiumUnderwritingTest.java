@@ -1,25 +1,21 @@
 package lv.javaguru.travel.insurance.core.underwriting;
 
-import lv.javaguru.travel.insurance.core.util.DateTimeUtil;
 import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
 
 @ExtendWith(MockitoExtension.class)
 public class TravelPremiumUnderwritingTest {
@@ -42,11 +38,10 @@ public class TravelPremiumUnderwritingTest {
     void shouldCalculatePremiumForOneRisk() {
         when(riskPremiumCalculator1.getRiskIc()).thenReturn("TRAVEL_MEDICAL");
         when(riskPremiumCalculator1.calculatePremium(any())).thenReturn(BigDecimal.ONE);
-
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL"));
-        BigDecimal premium = premiumUnderwriting.calculatePremium(request);
-        assertEquals(premium, BigDecimal.ONE);
+        TravelPremiumCalculationResult premiumCalculationResult = premiumUnderwriting.calculatePremium(request);
+        assertEquals(premiumCalculationResult.getTotalPremium(), BigDecimal.ONE);
     }
 
     @Test
@@ -59,8 +54,8 @@ public class TravelPremiumUnderwritingTest {
 
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
         when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL", "TRAVEL_EVACUATION"));
-        BigDecimal premium = premiumUnderwriting.calculatePremium(request);
-        assertEquals(premium, new BigDecimal(2));
+        TravelPremiumCalculationResult premiumCalculationResult = premiumUnderwriting.calculatePremium(request);
+        assertEquals(premiumCalculationResult.getTotalPremium(), new BigDecimal(2));
     }
 
 }
