@@ -30,8 +30,8 @@ class TravelCalculatePremiumControllerTest {
     @Test
     public void simpleRestControllerTest() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest.json",
-                "rest/TravelCalculatePremiumResponse.json"
+                "rest/TravelCalculatePremiumRequest_travel_medical.json",
+                "rest/TravelCalculatePremiumResponse_travel_medical.json"
         );
     }
 
