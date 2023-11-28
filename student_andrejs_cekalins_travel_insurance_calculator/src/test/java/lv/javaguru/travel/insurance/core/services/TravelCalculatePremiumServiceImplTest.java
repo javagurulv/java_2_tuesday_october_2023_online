@@ -21,6 +21,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
 class TravelCalculatePremiumServiceImplTest {
     @Mock
@@ -98,6 +99,7 @@ class TravelCalculatePremiumServiceImplTest {
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(response.getAgreementDateTo(), dateTo);
     }
+
     @Test
     void shouldReturnResponseWithCorrectAgreementPrice() throws ParseException {
         Date dateFrom = dates.parse("01.10.2023");
@@ -111,6 +113,7 @@ class TravelCalculatePremiumServiceImplTest {
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(response.getAgreementPremium(), new BigDecimal(9));
     }
+
     private List<ValidationError> buildValidationErrorList() {
         return List.of(new ValidationError("field", "errorMessage!"));
     }
