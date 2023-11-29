@@ -1,6 +1,7 @@
 {
   "personFirstName" : "Ivan",
   "personLastName" : "Ivanov",
+  "personBirthDate" : "2000-05-29",
   "agreementDateFrom": null,
   "agreementDateTo": "2025-05-21",
   "country": "SPAIN",
