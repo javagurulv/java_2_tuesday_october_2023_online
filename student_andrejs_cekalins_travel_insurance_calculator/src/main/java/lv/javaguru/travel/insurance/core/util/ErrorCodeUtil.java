@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Properties;
 
 @Component
-public class ErrorCodeUnit {
+public class ErrorCodeUtil {
     private Properties properties;
 
-    ErrorCodeUnit() throws IOException {
+    ErrorCodeUtil() throws IOException {
         Resource resource = new ClassPathResource("errorCodes.properties");
         properties = PropertiesLoaderUtils.loadProperties(resource);
     }

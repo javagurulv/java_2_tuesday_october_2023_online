@@ -1,6 +1,5 @@
 package lv.javaguru.travel.insurance.rest;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,6 +127,29 @@ public class TravelCalculatePremiumControllerTest {
         executeAndCompare(
                 "rest/TravelCalculatePremiumRequest_selected_risk_null.json",
                 "rest/TravelCalculatePremiumResponse_selected_risk_null.json"
+        );
+    }
+
+    @Test
+    public void selectedRisksNotSupported() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_selectedRisks_not_supported.json",
+                "rest/TravelCalculatePremiumResponse_selectedRisks_not_supported.json"
+        );
+    }
+
+    @Test
+    public void countryIsNullWhenTravelMedicalRiskSelected() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_country_is_null_travel_medical.json",
+                "rest/TravelCalculatePremiumResponse_country_is_null_travel_medical.json"
+        );
+    }
+    @Test
+    public void countryIsEmptyWhenTravelMedicalRiskSelected() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_country_is_empty_travel_medical.json",
+                "rest/TravelCalculatePremiumResponse_country_is_empty_travel_medical.json"
         );
     }
 
