@@ -1,3 +1,18 @@
+INSERT INTO classifiers(title, description)
+VALUES('RISK_TYPE', 'Risk type classifier');
+
+INSERT INTO classifier_values(
+	classifier_id,
+    ic,
+    description)
+SELECT
+	cl.id,
+    'TRAVEL_MEDICAL',
+    'Travel policy medical risk type'
+ FROM classifiers as cl
+ WHERE cl.title = 'RISK_TYPE';
+
+
 INSERT INTO classifier_values(
 	classifier_id,
     ic,
@@ -56,3 +71,40 @@ SELECT
     'Travel policy sport activities risk type'
  FROM classifiers as cl
  WHERE cl.title = 'RISK_TYPE';
+
+
+INSERT INTO classifiers(title, description)
+VALUES('COUNTRY', 'Country classifier');
+
+INSERT INTO classifier_values(
+	classifier_id,
+    ic,
+    description)
+SELECT
+	cl.id,
+    'LATVIA',
+    'Country Latvia'
+ FROM classifiers as cl
+ WHERE cl.title = 'COUNTRY';
+
+INSERT INTO classifier_values(
+	classifier_id,
+    ic,
+    description)
+SELECT
+	cl.id,
+    'SPAIN',
+    'Country Spain'
+ FROM classifiers as cl
+ WHERE cl.title = 'COUNTRY';
+
+INSERT INTO classifier_values(
+	classifier_id,
+    ic,
+    description)
+SELECT
+	cl.id,
+    'JAPAN',
+    'Country Japan'
+ FROM classifiers as cl
+ WHERE cl.title = 'COUNTRY';
