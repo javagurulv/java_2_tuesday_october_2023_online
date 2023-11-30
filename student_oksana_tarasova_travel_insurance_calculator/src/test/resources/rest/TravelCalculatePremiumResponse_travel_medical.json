@@ -6,11 +6,11 @@
   "agreementDateFrom": "2025-05-01",
   "agreementDateTo": "2025-05-21",
   "country": "SPAIN",
-  "agreementPremium": 50.00,
+  "agreementPremium": 55.00,
   "risks": [
     {
       "riskIc": "TRAVEL_MEDICAL",
-      "premium": 50.00
+      "premium": 55.00
     },
     {
       "riskIc": "TRAVEL_CANCELLATION",
