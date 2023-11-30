@@ -11,13 +11,13 @@ import java.util.Optional;
 @Component
 public class AgreementDateFromInTheFutureValidation extends TravelRequestValidationImpl {
     @Autowired
-    private DateTimeUtil dateTimeService;
+    private DateTimeUtil dateTimeUtil;
     @Autowired
     private ValidationErrorFactory errorFactory;
     @Override
     public Optional<ValidationError> validate(TravelCalculatePremiumRequest request) {
         Date dateFrom = request.getAgreementDateFrom();
-        Date currentDateTime = dateTimeService.getCurrentDateTime();
+        Date currentDateTime = dateTimeUtil.getCurrentDateTime();
         return (dateFrom != null && dateFrom.before(currentDateTime))
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_4"))
                 : Optional.empty();

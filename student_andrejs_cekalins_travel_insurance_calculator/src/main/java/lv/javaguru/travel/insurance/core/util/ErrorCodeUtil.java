@@ -21,6 +21,7 @@ public class ErrorCodeUtil {
     public String getErrorDescription(String errorCode) {
         return properties.getProperty(errorCode);
     }
+
     public String getErrorDescription(String errorCode, List<Placeholder> placeholders) {
         String errorDescription = properties.getProperty(errorCode);
         for (Placeholder placeholder : placeholders) {

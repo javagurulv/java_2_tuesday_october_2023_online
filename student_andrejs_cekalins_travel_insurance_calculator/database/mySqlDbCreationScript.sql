@@ -33,6 +33,7 @@ ADD FOREIGN KEY (`classifier_id`) REFERENCES `classifiers`(`id`);
 CREATE UNIQUE INDEX `ix_classifier_values_ic`
 ON `classifier_values` (`ic`);
 
+
 CREATE TABLE IF NOT EXISTS `country_default_day_rate` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `country_ic` VARCHAR(200) NOT NULL,

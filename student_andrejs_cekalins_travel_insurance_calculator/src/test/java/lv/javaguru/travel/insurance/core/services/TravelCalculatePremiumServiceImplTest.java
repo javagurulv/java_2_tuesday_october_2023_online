@@ -38,7 +38,7 @@ class TravelCalculatePremiumServiceImplTest {
         List<ValidationError> errors = buildValidationErrorList();
         when(requestValidator.validate(request)).thenReturn(errors);
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
-        assertTrue(response.hasError());
+        assertTrue(response.hasErrors());
     }
 
     @Test

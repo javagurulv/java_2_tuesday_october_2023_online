@@ -18,6 +18,7 @@ public class TravelCalculatePremiumRequestValidatorImpl implements TravelCalcula
     @Autowired
     private List<TravelRequestValidation> travelValidations;
 
+    @Override
     public List<ValidationError> validate(TravelCalculatePremiumRequest request) {
         List<ValidationError> singleErrors = collectSingleErrors(request);
         List<ValidationError> listErrors = collectListErrors(request);

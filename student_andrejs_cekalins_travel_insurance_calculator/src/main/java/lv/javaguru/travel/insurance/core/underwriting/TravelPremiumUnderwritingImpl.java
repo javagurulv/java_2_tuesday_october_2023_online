@@ -10,6 +10,7 @@ import java.util.List;
 
 @Component
 class TravelPremiumUnderwritingImpl implements TravelPremiumUnderwriting {
+
     @Autowired private SelectedRisksPremiumCalculator selectedRisksPremiumCalculator;
 
     @Override
