@@ -26,10 +26,10 @@ public class TravelCalculatePremiumControllerTest {
 
 
     @Test
-    public void successfulRequest() throws Exception {
+    public void successfulRequestTravelMedical() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_successful.json",
-                "rest/TravelCalculatePremiumResponse_successful.json"
+                "rest/TravelCalculatePremiumRequest_travel_medical_successful.json",
+                "rest/TravelCalculatePremiumResponse_travel_medical_successful.json"
         );
     }
 
