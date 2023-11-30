@@ -26,10 +26,10 @@ public class TravelCalculatePremiumControllerTest {
 
 
     @Test
-    public void successfulRequest() throws Exception {
+    public void successfulRequestTravelMedical() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_successful.json",
-                "rest/TravelCalculatePremiumResponse_successful.json"
+                "rest/TravelCalculatePremiumRequest_travel_medical_successful.json",
+                "rest/TravelCalculatePremiumResponse_travel_medical_successful.json"
         );
     }
 
@@ -62,6 +62,22 @@ public class TravelCalculatePremiumControllerTest {
         executeAndCompare(
                 "rest/TravelCalculatePremiumRequest_personLastName_is_empty.json",
                 "rest/TravelCalculatePremiumResponse_personLastName_is_empty.json"
+        );
+    }
+
+    @Test
+    public void personBirthDateIsNull() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_personBirthDate_is_null.json",
+                "rest/TravelCalculatePremiumResponse_personBirthDate_is_null.json"
+        );
+    }
+
+    @Test
+    public void personBirthDateIsInTheFuture() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_personBirthDate_in_the_future.json",
+                "rest/TravelCalculatePremiumResponse_personBirthDate_in_the_future.json"
         );
     }
 
