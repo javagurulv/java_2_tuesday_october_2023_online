@@ -27,7 +27,7 @@ public class RemoveBookAcceptanceTest {
 
     @Test
     public void shouldReturnErrorResponseWhenBookIdNotProvided() {
-        AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery",  Genre.FABLE);
+        AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery",  1943, Genre.FABLE);
         getAddBookService().execute(addBookRequest1);
 
         RemoveBookRequest removeBookRequest2 = new RemoveBookRequest(null);
@@ -41,7 +41,7 @@ public class RemoveBookAcceptanceTest {
 
     @Test
     public void shouldRemoveBook() {
-        AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery",  Genre.FABLE);
+        AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery",  1943, Genre.FABLE);
         getAddBookService().execute(addBookRequest1);
 
         RemoveBookRequest removeBookRequest2 = new RemoveBookRequest(1L);

@@ -1,5 +1,7 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Component
 public class AddBookRequestValidator {
 
@@ -21,7 +25,7 @@ public class AddBookRequestValidator {
         List<CoreError> errors = new ArrayList<>();
         validateTitle(request).ifPresent(errors::add);
         validateAuthor(request).ifPresent(errors::add);
-        validateGenre(request).ifPresent(errors::add);
+        validateIssueYear(request).ifPresent(errors::add);
         validateDuplicate(request).ifPresent(errors::add);
         return errors;
     }
@@ -39,11 +43,12 @@ public class AddBookRequestValidator {
                 : Optional.empty();
     }
 
-    private Optional<CoreError> validateGenre(AddBookRequest request) {
-        return (request.getGenre() == null)
-                ? Optional.of(new CoreError("genre", "Must not be empty!"))
+    private Optional<CoreError> validateIssueYear(AddBookRequest request) {
+        return (request.getIssueYear() == 0)
+                ? Optional.of(new CoreError("issueYear", "Must not be empty!"))
                 : Optional.empty();
     }
+
 
     private Optional<CoreError> validateDuplicate(AddBookRequest request) {
         List<Book> books = database.findByTitleAndAuthor(request.getBookTitle(), request.getBookAuthor());
