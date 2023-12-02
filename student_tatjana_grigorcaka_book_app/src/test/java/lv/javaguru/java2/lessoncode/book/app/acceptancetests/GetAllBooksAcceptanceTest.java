@@ -27,10 +27,10 @@ public class GetAllBooksAcceptanceTest {
 
     @Test
     public void shouldReturnCorrectBookList() {
-        AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery",  Genre.FABLE);
+        AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943, Genre.FABLE);
         getAddBookService().execute(addBookRequest1);
 
-        AddBookRequest addBookRequest2 = new AddBookRequest("The Alchemist","Paulo Coelho", Genre.FABLE);
+        AddBookRequest addBookRequest2 = new AddBookRequest("The Alchemist","Paulo Coelho", 1988, Genre.ADVENTURE);
         getAddBookService().execute(addBookRequest2);
 
         GetAllBooksRequest getAllBooksRequest3 = new GetAllBooksRequest();

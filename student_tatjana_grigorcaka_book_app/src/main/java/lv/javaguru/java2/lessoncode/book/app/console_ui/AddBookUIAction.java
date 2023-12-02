@@ -15,7 +15,8 @@ import lv.javaguru.java2.lessoncode.book.app.core.responses.AddBookResponse;
 @Component
 public class AddBookUIAction implements UIAction {
 
-    @Autowired private AddBookService addBookService;
+    @Autowired
+    private AddBookService addBookService;
 
     @Override
     public void execute() {
@@ -24,35 +25,24 @@ public class AddBookUIAction implements UIAction {
         String bookTitle = scanner.nextLine();
         System.out.println("Enter book author: ");
         String bookAuthor = scanner.nextLine();
+        System.out.println("Enter book issue year: ");
+        Integer issueYear = scanner.nextInt();
 
-        System.out.println("Select book genre: ");
-        while (true) {
-            System.out.println("Offered book genres:");
-            Genre[] genres = getGenresList();
-            System.out.println("0. Exit");
+        System.out.println("Select book genre:");
 
-            System.out.print("Enter book genre ID or 0 to exit: ");
-            int choice = scanner.nextInt();
+        Genre[] genres = getGenresList();
 
-            if (choice == 0) {
-                break;
-            } else if (choice < 1 || choice > genres.length) {
-                System.out.println("Invalid choice. Please try again");
-                continue;
+        Genre selectedGenre = getGenreChoice(scanner, genres);
+
+        AddBookRequest request = new AddBookRequest(bookTitle, bookAuthor, issueYear, selectedGenre);
+        AddBookResponse response = addBookService.execute(request);
+        if (response.containsErrors()) {
+            for (CoreError error : response.getErrors()) {
+                System.out.println("Error: " + error.getErrorCode() + " " + error.getErrorMessage());
             }
-            Genre selectedGenre = genres[choice - 1];
-
-            AddBookRequest request = new AddBookRequest(bookTitle, bookAuthor, selectedGenre);
-            AddBookResponse response = addBookService.execute(request);
-
-            if (response.containsErrors()) {
-                for (CoreError error : response.getErrors()) {
-                    System.out.println("Error: " + error.getErrorCode() + " " + error.getErrorMessage());
-                }
-            } else {
-                System.out.println("New book id was: " + response.getNewBook().getId());
-                System.out.println("Your book was added to the list: ");
-            }
+        } else {
+            System.out.println("New book id was: " + response.getNewBook().getId());
+            System.out.println("Your book was added to the list: ");
         }
     }
 
@@ -63,6 +53,34 @@ public class AddBookUIAction implements UIAction {
         }
         return genres;
     }
+
+
+    private static Genre getGenreChoice(Scanner scanner, Genre[] genres) {
+
+        System.out.println("Enter the number corresponding to the desired genre:");
+
+        int choice = 0;
+        while (true) {
+            try {
+                choice = scanner.nextInt();
+                if (choice >= 1 && choice <= genres.length) {
+                    Genre selectedGenre = genres[choice - 1];
+                    System.out.println("You selected: " + selectedGenre);
+                    return selectedGenre;
+                } else {
+                    System.out.println("Please enter a valid genre number.");
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please enter a valid genre number.");
+                scanner.next();
+            }
+        }
+    }
 }
+
+
+
+
+
 
 

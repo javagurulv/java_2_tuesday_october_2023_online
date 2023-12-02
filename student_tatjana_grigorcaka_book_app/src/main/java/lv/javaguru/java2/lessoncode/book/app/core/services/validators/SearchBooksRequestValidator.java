@@ -1,5 +1,7 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Ordering;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Paging;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchBooksRequest;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Component
 public class SearchBooksRequestValidator {
 
