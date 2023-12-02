@@ -114,7 +114,7 @@ public class AddBookServiceTest  {
         AddBookRequest validRequest = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943, Genre.FABLE);
         when(validator.validate(validRequest)).thenReturn(List.of());
         service.execute(validRequest);
-        verify(database).save(argThat(new BookMatcher("The Little Prince", "Antoine de Saint-Exupery", 1943)));
+        verify(database).save(argThat(new BookMatcher("The Little Prince", "Antoine de Saint-Exupery", 1943, Genre.FABLE)));
     }
 
     @Test

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import java.util.InputMismatchException;
 
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
@@ -26,12 +27,10 @@ public class AddBookUIAction implements UIAction {
         System.out.println("Enter book author: ");
         String bookAuthor = scanner.nextLine();
         System.out.println("Enter book issue year: ");
-        Integer issueYear = scanner.nextInt();
+        Integer issueYear = getIssueYear(scanner);
 
         System.out.println("Select book genre:");
-
         Genre[] genres = getGenresList();
-
         Genre selectedGenre = getGenreChoice(scanner, genres);
 
         AddBookRequest request = new AddBookRequest(bookTitle, bookAuthor, issueYear, selectedGenre);
@@ -44,6 +43,20 @@ public class AddBookUIAction implements UIAction {
             System.out.println("New book id was: " + response.getNewBook().getId());
             System.out.println("Your book was added to the list: ");
         }
+    }
+
+
+    private static Integer getIssueYear(Scanner scanner) {
+        Integer issueYear = null;
+        while (issueYear == null) {
+            try {
+                issueYear = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid integer for the issue year.");
+                scanner.next();
+            }
+        }
+        return issueYear;
     }
 
     private static Genre[] getGenresList() {
