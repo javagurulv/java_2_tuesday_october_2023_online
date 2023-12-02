@@ -1,6 +1,7 @@
 package lv.javaguru.java2.product.storage.accepatancetests;
 
 import lv.javaguru.java2.product.storage.config.BookListConfiguration;
+import lv.javaguru.java2.product.storage.core.domain.Category;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.requests.RemoveProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.RemoveProductResponse;
@@ -11,6 +12,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.math.BigDecimal;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -26,7 +29,7 @@ public class RemoveProductAcceptanceTest {
 
     @Test
     public void shouldReturnErrorResponseWhenProductIdNotProvided() {
-        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
+        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
         getAddProductService().execute(addProductRequest1);
 
         RemoveProductRequest removeProductRequest2 = new RemoveProductRequest(null);
@@ -40,7 +43,7 @@ public class RemoveProductAcceptanceTest {
 
     @Test
     public void shouldRemoveProduct() {
-        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1);
+        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
         getAddProductService().execute(addProductRequest1);
 
         RemoveProductRequest removeProductRequest2 = new RemoveProductRequest(1L);
