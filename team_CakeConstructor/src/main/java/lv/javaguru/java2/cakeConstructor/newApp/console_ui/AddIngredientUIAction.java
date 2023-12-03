@@ -3,15 +3,15 @@ package lv.javaguru.java2.cakeConstructor.newApp.console_ui;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.AddIngredientResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.AddIngredientService;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
-@DIComponent
+
+@Component
 public class AddIngredientUIAction implements UIAction {
 
-    @DIDependency
-    private AddIngredientService addIngredientService;
+    @Autowired private AddIngredientService addIngredientService;
 
 
     @Override

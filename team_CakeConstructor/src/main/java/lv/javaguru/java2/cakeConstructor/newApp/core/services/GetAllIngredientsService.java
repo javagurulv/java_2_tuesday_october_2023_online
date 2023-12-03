@@ -4,15 +4,15 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.database.Database;
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Ingredient;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.GetAllIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.GetAllIngredientsResponse;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class GetAllIngredientsService {
 
-    @DIDependency private Database database;
+    @Autowired private Database database;
 
 
     public GetAllIngredientsResponse execute(GetAllIngredientsRequest request){

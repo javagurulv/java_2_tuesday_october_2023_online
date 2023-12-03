@@ -1,15 +1,18 @@
 package lv.javaguru.java2.cakeConstructor.newApp;
 
-import lv.javaguru.java2.cakeConstructor.newApp.console_ui.*;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.ApplicationContext;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIApplicationContextBuilder;
-
 import java.util.Scanner;
 
-public class Application {
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import lv.javaguru.java2.cakeConstructor.newApp.config.CakeConfiguration;
+import lv.javaguru.java2.cakeConstructor.newApp.console_ui.*;
+
+
+public class CakeApplication {
 
     private static ApplicationContext applicationContext =
-            new DIApplicationContextBuilder().build("lv.javaguru.java2.cakeConstructor.newApp");
+            new AnnotationConfigApplicationContext(CakeConfiguration.class);
 
     public static void main(String[] args) {
 

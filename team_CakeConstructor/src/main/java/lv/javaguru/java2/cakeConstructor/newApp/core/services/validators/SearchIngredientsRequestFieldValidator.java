@@ -2,12 +2,12 @@ package lv.javaguru.java2.cakeConstructor.newApp.core.services.validators;
 
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@DIComponent
+@Component
 public class SearchIngredientsRequestFieldValidator {
 
     public List<CoreError> validate(SearchIngredientsRequest request) {

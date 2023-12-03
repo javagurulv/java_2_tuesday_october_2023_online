@@ -4,19 +4,17 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Ordering;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Paging;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-@DIComponent
+@Component
 public class SearchIngredientsRequestValidator {
 
-    @DIDependency private SearchIngredientsRequestFieldValidator fieldValidator;
-    @DIDependency private OrderingValidator orderingValidator;
-    @DIDependency private PagingValidator pagingValidator;
+    @Autowired private SearchIngredientsRequestFieldValidator fieldValidator;
+    @Autowired private OrderingValidator orderingValidator;
+    @Autowired private PagingValidator pagingValidator;
 
 
     public List<CoreError> validate(SearchIngredientsRequest request) {
