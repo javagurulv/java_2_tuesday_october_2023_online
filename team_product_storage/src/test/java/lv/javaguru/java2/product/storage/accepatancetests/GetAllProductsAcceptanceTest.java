@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.accepatancetests;
 
-import lv.javaguru.java2.product.storage.config.BookListConfiguration;
+import lv.javaguru.java2.product.storage.config.StorageConfiguration;
 import lv.javaguru.java2.product.storage.core.domain.Category;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.requests.GetAllProductsRequest;
@@ -23,7 +23,7 @@ public class GetAllProductsAcceptanceTest {
 
     @Before
     public void setup() {
-        appContext = new AnnotationConfigApplicationContext(BookListConfiguration.class);
+        appContext = new AnnotationConfigApplicationContext(StorageConfiguration.class);
     }
 
     @Test

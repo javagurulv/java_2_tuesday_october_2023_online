@@ -7,7 +7,7 @@ import lv.javaguru.java2.product.storage.core.responses.AddProductResponse;
 import lv.javaguru.java2.product.storage.core.responses.SearchProductsResponse;
 import lv.javaguru.java2.product.storage.core.services.AddProductService;
 import lv.javaguru.java2.product.storage.core.services.SearchProductsService;
-import lv.javaguru.java2.product.storage.config.BookListConfiguration;
+import lv.javaguru.java2.product.storage.config.StorageConfiguration;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +25,7 @@ public class AddProductAcceptanceTest {
 
     @Before
     public void setup() {
-        appContext = new AnnotationConfigApplicationContext(BookListConfiguration.class);
+        appContext = new AnnotationConfigApplicationContext(StorageConfiguration.class);
     }
 
     @Test

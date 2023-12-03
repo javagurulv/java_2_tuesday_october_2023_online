@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage;
 
-import lv.javaguru.java2.product.storage.config.BookListConfiguration;
+import lv.javaguru.java2.product.storage.config.StorageConfiguration;
 import lv.javaguru.java2.product.storage.console_ui.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -18,7 +18,7 @@ public class StorageApplication {
     }
 
     private static ApplicationContext createApplicationContext() {
-        return new AnnotationConfigApplicationContext(BookListConfiguration.class);
+        return new AnnotationConfigApplicationContext(StorageConfiguration.class);
     }
 
 }
