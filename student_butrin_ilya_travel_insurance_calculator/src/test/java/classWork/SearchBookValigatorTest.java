@@ -9,14 +9,15 @@ import classWork.core.service.valigators.SearchBookOrderingValigator;
 import classWork.core.service.valigators.SearchBookPagingValigator;
 import classWork.core.service.valigators.SearchBookValigator;
 import classWork.core.service.valigators.SearchBooksFieldValidator;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class SearchBookValigatorTest {
+import static org.junit.Assert.assertEquals;
+public class SearchBookValigatorTest {
 
     Ordering or1 = new Ordering("","");
     Ordering or2 = new Ordering("keks","");
@@ -42,14 +43,14 @@ class SearchBookValigatorTest {
 
   SearchBookValigator validator = new SearchBookValigator();
     @Test
-    void test1() {
+   public void test1() {
 
         List<CoreError> real = validator.errorList(searchrequest);
         assertEquals(real.size(), 0);
     }
 
     @Test
-    void test2() {
+    public void test2() {
         List<CoreError> real = validator.errorList(searchrequest2);
         String mess = real.get(0).getField();
         assertEquals(real.size(), 2);
@@ -57,7 +58,7 @@ class SearchBookValigatorTest {
     }
 
     @Test
-    void test3() {
+    public void test3() {
         List<CoreError> real = validator.errorList(searchrequest3);
         String mess = real.get(0).getField();
         String mess2 = real.get(1).getField();
@@ -68,7 +69,7 @@ class SearchBookValigatorTest {
     }
 
     @Test
-    void test4() {
+    public void test4() {
         List<CoreError> real = validator.errorList(searchrequest4);
         String mess = real.get(0).getField();
         String mess2 = real.get(1).getField();
@@ -78,13 +79,13 @@ class SearchBookValigatorTest {
     }
 
     @Test
-    void test5() {
+    public void test5() {
         List<CoreError> real = validator.errorList(searchrequest5);
         assertEquals(real.size(), 1);
     }
 
     @Test
-    void test6() {
+    public void test6() {
         List<CoreError> real = validator.errorList(searchrequest6);
         String mess = real.get(0).getField();
         assertEquals(real.size(), 3);
@@ -93,7 +94,7 @@ class SearchBookValigatorTest {
     }
 
    @Test
-   void test7() {
+   public void test7() {
        List<CoreError> real = validator.errorList(searchrequest7);
         assertEquals(real.size(), 4);
     }

@@ -14,10 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-
 @RunWith(MockitoJUnitRunner.class)
 public class RemoveBookServiceTest {
     @Mock Database data;

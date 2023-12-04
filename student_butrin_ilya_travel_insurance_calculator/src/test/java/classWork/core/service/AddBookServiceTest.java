@@ -1,5 +1,5 @@
 package classWork.core.service;
-
+import static org.junit.Assert.*;
 import classWork.Book;
 import classWork.core.CoreError;
 import classWork.core.database.Database;
@@ -14,8 +14,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
