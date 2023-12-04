@@ -40,6 +40,8 @@ include 'teacher:lesson_15_jpa_repositories'
 
 include 'teacher:lesson_16_liquibase'
 
+include 'teacher:sql_practice'
+
 include 'teacher:travel_insurance_calculator:step_1'
 include 'teacher:travel_insurance_calculator:step_2'
 include 'teacher:travel_insurance_calculator:step_3'
@@ -110,6 +112,17 @@ include 'teacher:travel_insurance_calculator:step_67'
 include 'teacher:travel_insurance_calculator:step_68'
 include 'teacher:travel_insurance_calculator:step_69'
 include 'teacher:travel_insurance_calculator:step_70'
+include 'teacher:travel_insurance_calculator:step_71'
+include 'teacher:travel_insurance_calculator:step_72'
+include 'teacher:travel_insurance_calculator:step_73'
+include 'teacher:travel_insurance_calculator:step_74'
+include 'teacher:travel_insurance_calculator:step_75'
+include 'teacher:travel_insurance_calculator:step_76'
+include 'teacher:travel_insurance_calculator:step_77'
+include 'teacher:travel_insurance_calculator:step_78'
+include 'teacher:travel_insurance_calculator:step_79'
+include 'teacher:travel_insurance_calculator:step_80'
+include 'teacher:travel_insurance_calculator:step_80_code_review'
 
 
 include 'student_anastasiia_bokareva_travel_insurance_calculator'

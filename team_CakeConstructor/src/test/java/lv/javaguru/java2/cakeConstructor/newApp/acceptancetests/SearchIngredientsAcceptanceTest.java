@@ -1,6 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.acceptancetests;
 
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.ApplicationContext;
+import lv.javaguru.java2.cakeConstructor.newApp.config.CakeConfiguration;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.SearchIngredientsResponse;
@@ -9,15 +9,19 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.services.SearchIngredientsS
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Ordering;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Paging;
 
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIApplicationContextBuilder;
+import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.junit.Assert.assertEquals;
 
 public class SearchIngredientsAcceptanceTest {
 
-    private ApplicationContext appContext =
-            new DIApplicationContextBuilder().build("lv.javaguru.java2.cakeConstructor.newApp");
+    private ApplicationContext appContext;
+
+    @Before
+    public void setup() { appContext = new AnnotationConfigApplicationContext(CakeConfiguration.class); }
 
     @Test
     public void searchIngredients() {

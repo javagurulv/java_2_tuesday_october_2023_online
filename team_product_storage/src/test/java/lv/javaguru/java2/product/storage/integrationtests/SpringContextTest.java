@@ -9,10 +9,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import lv.javaguru.java2.product.storage.config.BookListConfiguration;
+import lv.javaguru.java2.product.storage.config.StorageConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {BookListConfiguration.class})
+@ContextConfiguration(classes = {StorageConfiguration.class})
 public class SpringContextTest {
 
 	@Autowired private ApplicationContext appContext;

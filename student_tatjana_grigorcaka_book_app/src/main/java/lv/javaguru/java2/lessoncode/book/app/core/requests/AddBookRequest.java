@@ -6,12 +6,15 @@ public class AddBookRequest {
 
     private String bookTitle;
     private String bookAuthor;
+    private Integer issueYear;
     private Genre genre;
 
-    public AddBookRequest(String bookTitle, String bookAuthor, Genre genre) {
+    public AddBookRequest(String bookTitle, String bookAuthor, Integer issueYear, Genre genre) {
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
+        this.issueYear = issueYear;
         this.genre = genre;
+
     }
 
     public String getBookTitle() {
@@ -20,8 +23,8 @@ public class AddBookRequest {
     public String getBookAuthor() {
         return bookAuthor;
     }
+    public Integer getIssueYear() { return issueYear; }
     public Genre getGenre() { return genre; }
-
 }
 
 

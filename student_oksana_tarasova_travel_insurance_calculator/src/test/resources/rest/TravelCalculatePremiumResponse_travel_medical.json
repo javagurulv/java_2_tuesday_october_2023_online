@@ -1,0 +1,24 @@
+{
+  "errors": null,
+  "personFirstName": "Ivan",
+  "personLastName": "Ivanov",
+  "personBirthDate": "2000-05-29",
+  "agreementDateFrom": "2025-05-01",
+  "agreementDateTo": "2025-05-21",
+  "country": "SPAIN",
+  "agreementPremium": 55.00,
+  "risks": [
+    {
+      "riskIc": "TRAVEL_MEDICAL",
+      "premium": 55.00
+    },
+    {
+      "riskIc": "TRAVEL_CANCELLATION",
+      "premium": 0.00
+    },
+    {
+      "riskIc": "TRAVEL_LOSS_BAGGAGE",
+      "premium": 0.00
+    }
+  ]
+}

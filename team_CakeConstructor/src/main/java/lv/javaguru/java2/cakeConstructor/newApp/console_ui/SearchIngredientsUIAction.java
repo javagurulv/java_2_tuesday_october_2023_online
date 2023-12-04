@@ -5,16 +5,15 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Paging;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.SearchIngredientsResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.SearchIngredientsService;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class SearchIngredientsUIAction implements UIAction {
 
-    @DIDependency
-    private SearchIngredientsService searchIngredientsService;
+    @Autowired private SearchIngredientsService searchIngredientsService;
 
 
     @Override

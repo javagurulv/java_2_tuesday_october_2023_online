@@ -1,7 +1,9 @@
 {
   "personFirstName" : "Ivan",
   "personLastName" : "Ivanov",
+  "personBirthDate" : "2000-05-29",
   "agreementDateFrom": "2025-05-01",
   "agreementDateTo": null,
+  "country": "SPAIN",
   "selected_risks":["TRAVEL_MEDICAL", "TRAVEL_CANCELLATION", "TRAVEL_LOSS_BAGGAGE"]
 }

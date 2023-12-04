@@ -6,16 +6,16 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientReque
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.AddIngredientResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.AddIngredientRequestValidator;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class AddIngredientService {
 
-    @DIDependency private Database database;
-    @DIDependency private AddIngredientRequestValidator validator;
+    @Autowired private Database database;
+    @Autowired private AddIngredientRequestValidator validator;
 
 
     public AddIngredientResponse execute(AddIngredientRequest request){

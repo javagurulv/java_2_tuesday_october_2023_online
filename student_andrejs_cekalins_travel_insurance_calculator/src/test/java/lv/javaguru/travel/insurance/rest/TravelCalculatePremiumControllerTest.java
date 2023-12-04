@@ -1,6 +1,5 @@
 package lv.javaguru.travel.insurance.rest;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,74 +26,81 @@ public class TravelCalculatePremiumControllerTest {
     private JsonFileReader jsonFileReader;
 
     @Test
-    public void successRequest() throws Exception {
+    public void successRequestTravelMedical() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_success.json",
-                "rest/TravelCalculatePremiumResponse_success.json"
+                "rest/TravelCalculatePremiumRequest_travel_medical_success.json",
+                "rest/TravelCalculatePremiumResponse_travel_medical_success.json"
         );
     }
 
     @Test
     public void personFirstNameIsEmpty() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_firstName_is_empty.json",
-                "rest/TravelCalculatePremiumResponse_firstName_is_empty.json"
+                "rest/TravelCalculatePremiumRequest_personFirstName_is_empty.json",
+                "rest/TravelCalculatePremiumResponse_personFirstName_is_empty.json"
         );
     }
 
     @Test
     public void personFirstNameIsNull() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_firstName_is_null.json",
-                "rest/TravelCalculatePremiumResponse_firstName_is_null.json"
+                "rest/TravelCalculatePremiumRequest_personFirstName_is_null.json",
+                "rest/TravelCalculatePremiumResponse_personFirstName_is_null.json"
         );
     }
 
     @Test
-    public void lastNameIsEmpty() throws Exception {
+    public void personLastNameIsEmpty() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_lastName_is_empty.json",
-                "rest/TravelCalculatePremiumResponse_lastName_is_empty.json"
+                "rest/TravelCalculatePremiumRequest_personLastName_is_empty.json",
+                "rest/TravelCalculatePremiumResponse_personLastName_is_empty.json"
         );
     }
 
     @Test
-    public void lastNameIsNull() throws Exception {
+    public void personLastNameIsNull() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_lastName_is_null.json",
-                "rest/TravelCalculatePremiumResponse_lastName_is_null.json"
+                "rest/TravelCalculatePremiumRequest_personLastName_is_null.json",
+                "rest/TravelCalculatePremiumResponse_personLastName_is_null.json"
         );
     }
 
     @Test
-    public void allFieldsNotProvided() throws Exception {
+    public void personBirthDateIsNull() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_allFields_not_provided.json",
-                "rest/TravelCalculatePremiumResponse_allFields_not_provided.json"
+                "rest/TravelCalculatePremiumRequest_personBirthDate_is_null.json",
+                "rest/TravelCalculatePremiumResponse_personBirthDate_is_null.json"
         );
     }
 
     @Test
-    public void dateFromNotProvided() throws Exception {
+    public void personBirthDateIsInTheFuture() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_dateFrom_not_provided.json",
-                "rest/TravelCalculatePremiumResponse_dateFrom_not_provided.json"
+                "rest/TravelCalculatePremiumRequest_personBirthDate_in_the_future.json",
+                "rest/TravelCalculatePremiumResponse_personBirthDate_in_the_future.json"
         );
     }
 
     @Test
-    public void dateToNotProvided() throws Exception {
+    public void agreementDateFromNotProvided() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_dateTo_not_provided.json",
-                "rest/TravelCalculatePremiumResponse_dateTo_not_provided.json"
+                "rest/TravelCalculatePremiumRequest_agreementDateFrom_not_provided.json",
+                "rest/TravelCalculatePremiumResponse_agreementDateFrom_not_provided.json"
+        );
+    }
+    @Test
+    public void agreementDateToNotProvided() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_agreementDateTo_not_provided.json",
+                "rest/TravelCalculatePremiumResponse_agreementDateTo_not_provided.json"
         );
     }
 
     @Test
     public void agreementDateToLessThenAgreementDateFrom() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_dateTo_less_then_dateFrom.json",
-                "rest/TravelCalculatePremiumResponse_dateTo_less_then_dateFrom.json"
+                "rest/TravelCalculatePremiumRequest_agreementDateTo_less_then_dateFrom.json",
+                "rest/TravelCalculatePremiumResponse_agreementDateTo_less_then_dateFrom.json"
         );
 
     }
@@ -102,16 +108,16 @@ public class TravelCalculatePremiumControllerTest {
     @Test
     public void agreementDateFromInThePast() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_dateFrom_In_The_Past.json",
-                "rest/TravelCalculatePremiumResponse_dateFrom_In_The_Past.json"
+                "rest/TravelCalculatePremiumRequest_agreementDateFrom_In_The_Past.json",
+                "rest/TravelCalculatePremiumResponse_agreementDateFrom_In_The_Past.json"
         );
     }
 
     @Test
     public void agreementDateToInThePast() throws Exception {
         executeAndCompare(
-                "rest/TravelCalculatePremiumRequest_dateTo_In_The_Past.json",
-                "rest/TravelCalculatePremiumResponse_dateTo_In_The_Past.json"
+                "rest/TravelCalculatePremiumRequest_agreementDateTo_In_The_Past.json",
+                "rest/TravelCalculatePremiumResponse_agreementDateTo_In_The_Past.json"
         );
     }
 
@@ -128,6 +134,38 @@ public class TravelCalculatePremiumControllerTest {
         executeAndCompare(
                 "rest/TravelCalculatePremiumRequest_selected_risk_null.json",
                 "rest/TravelCalculatePremiumResponse_selected_risk_null.json"
+        );
+    }
+
+    @Test
+    public void selectedRisksNotSupported() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_selectedRisks_not_supported.json",
+                "rest/TravelCalculatePremiumResponse_selectedRisks_not_supported.json"
+        );
+    }
+
+    @Test
+    public void countryIsNullWhenTravelMedicalRiskSelected() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_country_is_null_travel_medical.json",
+                "rest/TravelCalculatePremiumResponse_country_is_null_travel_medical.json"
+        );
+    }
+
+    @Test
+    public void allFieldsNotProvided() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_allFields_not_provided.json",
+                "rest/TravelCalculatePremiumResponse_allFields_not_provided.json"
+        );
+    }
+
+    @Test
+    public void countryIsEmptyWhenTravelMedicalRiskSelected() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_country_is_empty_travel_medical.json",
+                "rest/TravelCalculatePremiumResponse_country_is_empty_travel_medical.json"
         );
     }
 

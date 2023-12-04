@@ -14,12 +14,14 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchIngredientsR
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.SearchIngredientsResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.SearchIngredientsRequestValidator;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.util.ReflectionTestUtils;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SearchIngredientsServiceTest {
@@ -28,6 +30,12 @@ public class SearchIngredientsServiceTest {
     @Mock private SearchIngredientsRequestValidator validator;
     @InjectMocks
     private SearchIngredientsService service;
+
+    @Before
+    public void setup() {
+        ReflectionTestUtils.setField(service, "orderingEnabled", true);
+        ReflectionTestUtils.setField(service, "pagingEnabled", true);
+    }
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidatorFails() {

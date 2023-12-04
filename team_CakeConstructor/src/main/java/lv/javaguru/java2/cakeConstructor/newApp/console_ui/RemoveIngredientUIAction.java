@@ -3,16 +3,15 @@ package lv.javaguru.java2.cakeConstructor.newApp.console_ui;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.RemoveIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.RemoveIngredientResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.RemoveIngredientService;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class RemoveIngredientUIAction implements UIAction {
 
-    @DIDependency
-    private RemoveIngredientService removeIngredientService;
+    @Autowired private RemoveIngredientService removeIngredientService;
 
 
     @Override

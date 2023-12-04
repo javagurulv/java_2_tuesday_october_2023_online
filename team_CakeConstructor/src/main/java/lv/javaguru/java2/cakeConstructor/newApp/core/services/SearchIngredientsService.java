@@ -8,19 +8,27 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchIngredientsR
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.SearchIngredientsResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.SearchIngredientsRequestValidator;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@DIComponent
+import org.springframework.beans.factory.annotation.Value;
+
+@Component
 public class SearchIngredientsService {
 
-    @DIDependency private Database database;
-    @DIDependency private SearchIngredientsRequestValidator validator;
+    @Value("${search.ordering.enabled}")
+    private boolean orderingEnabled;
+
+    @Value("${search.paging.enabled}")
+    private boolean pagingEnabled;
+
+    @Autowired private Database database;
+    @Autowired private SearchIngredientsRequestValidator validator;
 
 
     public SearchIngredientsResponse execute(SearchIngredientsRequest request) {
@@ -36,19 +44,6 @@ public class SearchIngredientsService {
         return new SearchIngredientsResponse(ingredients, null);
     }
 
-    private List<Ingredient> order (List<Ingredient> ingredients, Ordering ordering) {
-        if (ordering != null) {
-            Comparator<Ingredient> comparator = ordering.getOrderBy().equals("type")
-                    ? Comparator.comparing(Ingredient::getType)
-                    : Comparator.comparing(Ingredient::getTaste);
-            if (ordering.getOrderDirection().equals("DESCENDING")) {
-                comparator = comparator.reversed();
-            }
-            return ingredients.stream().sorted(comparator).collect(Collectors.toList());
-        } else {
-            return ingredients;
-        }
-    }
     private List<Ingredient> search(SearchIngredientsRequest request) {
         List<Ingredient> ingredients = new ArrayList<>();
         if (request.isTypeProvided() && !request.isTasteProvided()) {
@@ -63,8 +58,22 @@ public class SearchIngredientsService {
         return ingredients;
     }
 
+    private List<Ingredient> order(List<Ingredient> ingredients, Ordering ordering) {
+        if (orderingEnabled && (ordering != null)) {
+            Comparator<Ingredient> comparator = ordering.getOrderBy().equals("type")
+                    ? Comparator.comparing(Ingredient::getType)
+                    : Comparator.comparing(Ingredient::getTaste);
+            if (ordering.getOrderDirection().equals("DESCENDING")) {
+                comparator = comparator.reversed();
+            }
+            return ingredients.stream().sorted(comparator).collect(Collectors.toList());
+        } else {
+            return ingredients;
+        }
+    }
+
     private List<Ingredient> paging(List<Ingredient> ingredients, Paging paging) {
-        if (paging != null) {
+        if (pagingEnabled && (paging != null)) {
             int skip = (paging.getPageNumber() - 1) * paging.getPageSize();
             return ingredients.stream()
                     .skip(skip)

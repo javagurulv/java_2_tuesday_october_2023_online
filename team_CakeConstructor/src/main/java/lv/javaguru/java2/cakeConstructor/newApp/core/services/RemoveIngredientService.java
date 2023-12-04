@@ -5,16 +5,16 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.requests.RemoveIngredientRe
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.RemoveIngredientResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.RemoveIngredientRequestValidator;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIComponent;
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class RemoveIngredientService {
 
-    @DIDependency private Database database;
-    @DIDependency private RemoveIngredientRequestValidator validator;
+    @Autowired private Database database;
+    @Autowired private RemoveIngredientRequestValidator validator;
 
 
     public RemoveIngredientResponse execute(RemoveIngredientRequest request) {

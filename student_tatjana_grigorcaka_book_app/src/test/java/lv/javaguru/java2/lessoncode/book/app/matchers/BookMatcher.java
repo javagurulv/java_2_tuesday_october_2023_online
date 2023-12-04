@@ -10,11 +10,14 @@ public class BookMatcher implements ArgumentMatcher<Book> {
 
     private String title;
     private String author;
+    private Integer issueYear;
     private Genre genre;
 
-    public BookMatcher(String title, String author, Genre genre) {
+
+    public BookMatcher(String title, String author, Integer issueYear, Genre genre) {
         this.title = title;
         this.author = author;
+        this.issueYear = issueYear;
         this.genre = genre;
     }
 
@@ -23,7 +26,9 @@ public class BookMatcher implements ArgumentMatcher<Book> {
     public boolean matches(Book book) {
         return book.getTitle().equals(title)
                 && book.getAuthor().equals(author)
+                && Objects.equals(book.getIssueYear(), issueYear)
                 && book.getGenre().equals(genre);
+
     }
 
 

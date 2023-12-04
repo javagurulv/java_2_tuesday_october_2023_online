@@ -1,6 +1,13 @@
 package lv.javaguru.java2.cakeConstructor.newApp.acceptancetests;
 
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.ApplicationContext;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import lv.javaguru.java2.cakeConstructor.newApp.config.CakeConfiguration;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.AddIngredientResponse;
@@ -8,16 +15,14 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.response.SearchIngredientsR
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.AddIngredientService;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.SearchIngredientsService;
 
-import lv.javaguru.java2.cakeConstructor.newApp.dependency_injection.DIApplicationContextBuilder;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class AddIngredientAcceptanceTest {
 
-    private ApplicationContext appContext =
-            new DIApplicationContextBuilder().build("lv.javaguru.java2.cakeConstructor.newApp");
+    private ApplicationContext appContext;
+
+    @Before
+    public void setup() { appContext = new AnnotationConfigApplicationContext(CakeConfiguration.class); }
 
     @Test
     public void shouldReturnErrorWhenTypeNotProvided() {

@@ -24,7 +24,13 @@ public class AddProductService {
             return new AddProductResponse(errors);
         }
 
-        Product product = new Product(request.getProductName(), request.getProductBrand(), request.getProductModel(), request.getProductQuantity());
+        Product product = new Product(
+                request.getProductName(),
+                request.getProductBrand(),
+                request.getProductModel(),
+                request.getProductQuantity(),
+                request.getPriceInStock(),
+                request.getCategory());
         database.save(product);
         return new AddProductResponse(product);
     }
