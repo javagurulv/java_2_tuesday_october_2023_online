@@ -1,5 +1,8 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
+import java.util.regex.Pattern;
+import java.util.regex.MatchResult;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -44,8 +48,8 @@ public class AddBookRequestValidator {
     }
 
     private Optional<CoreError> validateIssueYear(AddBookRequest request) {
-        return (request.getIssueYear() == 0)
-                ? Optional.of(new CoreError("issueYear", "Must not be empty!"))
+        return ((request.getIssueYear() <= 0))
+                ? Optional.of(new CoreError("issueYear", "Must be greater than 0!"))
                 : Optional.empty();
     }
 
