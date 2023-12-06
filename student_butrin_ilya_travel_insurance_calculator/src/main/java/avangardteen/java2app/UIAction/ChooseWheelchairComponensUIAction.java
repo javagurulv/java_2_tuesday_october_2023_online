@@ -21,6 +21,11 @@ public class ChooseWheelchairComponensUIAction implements UIAction {
 
     @Override
     public void execute() {
+        System.out.println("А теперь давайте поговорим о самой коляске. " +
+                "\n У Вас будет несколько вариантов основных элементов, из которых  надо будет выбрать один вариант. \n " +
+                "В каждом пункте будет указана цена, которая будет прибавляться к стоимости коляске. \n " +
+                "Если вместо цены стоит ноль, значит этот элемент входит в базовую стоимость и не увеличивает общую стоимость коляски.");
+        System.out.println();
         Scanner scanner = new Scanner(System.in);
         addFrontWheels();
         int choosefrontWheels = scanner.nextInt();

@@ -10,6 +10,8 @@ import java.util.Scanner;
 @Component
 public class ProgramMenu {
     private Map<Integer, UIAction> menuNumberToUIActionMap;
+    
+
     @Autowired
     public ProgramMenu(List<UIAction> uiActions) {
         menuNumberToUIActionMap = new HashMap<>();
