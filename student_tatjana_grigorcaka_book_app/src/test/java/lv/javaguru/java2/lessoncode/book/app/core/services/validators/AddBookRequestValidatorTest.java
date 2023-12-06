@@ -50,7 +50,7 @@ public class AddBookRequestValidatorTest {
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "issueYear");
-        assertEquals(errors.get(0).getErrorMessage(), "Must not be empty!");
+        assertEquals(errors.get(0).getErrorMessage(), "Must be greater than 0!");
     }
 
     @Test

@@ -136,7 +136,7 @@ public class AddProductServiceTest {
     @Test
     public void shouldReturnResponseWithErrorsWhenValidationFailsWhenPriceInStockIsNull() {
         AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"), Category.PHONES);
-        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("priceInStock", "Must be greater than 0.01!")));
+        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("priceInStock", "Must be greater than 0.00!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertTrue(response.hasErrors());
     }
@@ -144,17 +144,17 @@ public class AddProductServiceTest {
     @Test
     public void shouldReturnResponseWithErrorsReceivedFromValidatorWhenPriceInStockIsNull() {
         AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"), Category.PHONES);
-        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("priceInStock", "Must be greater than 0.01!")));
+        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("priceInStock", "Must be greater than 0.00!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertEquals(response.getErrors().size(), 1);
         assertEquals(response.getErrors().get(0).getErrorCode(), "priceInStock");
-        assertEquals(response.getErrors().get(0).getMessage(), "Must be greater than 0.01!");
+        assertEquals(response.getErrors().get(0).getMessage(), "Must be greater than 0.00!");
     }
 
     @Test
     public void shouldNotInvokeDatabaseWhenRequestValidationFailsWhenPriceInStockIsNull() {
         AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"), Category.PHONES);
-        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("priceInStock", "Must be greater than 0.01!")));
+        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("priceInStock", "Must be greater than 0.00!")));
         service.execute(notValidRequest);
         verifyNoInteractions(database);
     }

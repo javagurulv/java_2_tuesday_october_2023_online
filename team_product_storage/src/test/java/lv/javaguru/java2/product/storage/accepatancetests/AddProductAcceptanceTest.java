@@ -90,7 +90,7 @@ public class AddProductAcceptanceTest {
         assertTrue(response.hasErrors());
         assertEquals(response.getErrors().size(), 1);
         assertEquals(response.getErrors().get(0).getErrorCode(), "priceInStock");
-        assertEquals(response.getErrors().get(0).getMessage(), "Must be greater than 0.01!");
+        assertEquals(response.getErrors().get(0).getMessage(), "Must be greater than 0.00!");
     }
 
     @Test
