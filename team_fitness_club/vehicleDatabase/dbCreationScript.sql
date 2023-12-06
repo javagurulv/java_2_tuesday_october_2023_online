@@ -58,19 +58,19 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
 
 ALTER TABLE `member_card`
-ADD FOREIGN KEY (`client_id) REFERENCES `clients`(`id`);
+ADD FOREIGN KEY (`client_id`) REFERENCES `clients`(`id`);
 
 ALTER TABLE `member_card`
-ADD FOREIGN KEY (`client_age_group_id) REFERENCES `clients_age_groups`(`id`);
+ADD FOREIGN KEY (`client_age_group_id`) REFERENCES `clients_age_groups`(`id`);
 
 ALTER TABLE `member_card`
-ADD FOREIGN KEY (`age_group_id) REFERENCES `age_groups`(`id`);
+ADD FOREIGN KEY (`age_group_id`) REFERENCES `age_groups`(`id`);
 
 ALTER TABLE `member_card`
-ADD FOREIGN KEY (`workout_id) REFERENCES `workouts`(`id`);
+ADD FOREIGN KEY (`workout_id`) REFERENCES `workouts`(`id`);
 
 ALTER TABLE `member_card`
-ADD FOREIGN KEY (`fitness_centre_id) REFERENCES `fitness_centres`(`id`);
+ADD FOREIGN KEY (`fitness_centre_id`) REFERENCES `fitness_centres`(`id`);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
