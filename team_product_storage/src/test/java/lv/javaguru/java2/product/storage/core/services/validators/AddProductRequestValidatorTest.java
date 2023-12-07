@@ -66,7 +66,7 @@ public class AddProductRequestValidatorTest {
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "priceInStock");
-        assertEquals(errors.get(0).getMessage(), "Must be greater than 0.01!");
+        assertEquals(errors.get(0).getMessage(), "Must be greater than 0.00!");
     }
 
     @Test

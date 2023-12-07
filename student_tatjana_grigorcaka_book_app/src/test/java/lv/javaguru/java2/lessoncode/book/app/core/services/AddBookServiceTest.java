@@ -83,27 +83,27 @@ public class AddBookServiceTest  {
     }
 
     @Test
-    public void shouldReturnResponseWithErrorsWhenValidationFailsWhenIssueYearIsEmpty() {
+    public void shouldReturnResponseWithErrorsWhenValidationFailsWhenIssueYearIsNull() {
         AddBookRequest notValidRequest = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 0, Genre.FABLE);
-        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("issueYear", "Must not be empty!")));
+        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("issueYear", "Must be greater than 0!")));
         AddBookResponse response = service.execute(notValidRequest);
         assertTrue(response.containsErrors());
     }
 
     @Test
-    public void shouldReturnResponseWithErrorsReceivedFromValidatorWhenIssueYearIsEmpty() {
+    public void shouldReturnResponseWithErrorsReceivedFromValidatorWhenIssueYearIsNull() {
         AddBookRequest notValidRequest = new AddBookRequest("The Little Price", "Antoine de Saint-Exupery", 0, Genre.FABLE);
-        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("issueYear", "Must not be empty!")));
+        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("issueYear", "Must be greater than 0!")));
         AddBookResponse response = service.execute(notValidRequest);
         assertEquals(response.getErrors().size(), 1);
         assertEquals(response.getErrors().get(0).getErrorCode(), "issueYear");
-        assertEquals(response.getErrors().get(0).getErrorMessage(), "Must not be empty!");
+        assertEquals(response.getErrors().get(0).getErrorMessage(), "Must be greater than 0!");
     }
 
     @Test
-    public void shouldNotInvokeDatabaseWhenRequestValidationFailsWhenIssueYearIsEmpty() {
+    public void shouldNotInvokeDatabaseWhenRequestValidationFailsWhenIssueYearIsNull() {
         AddBookRequest notValidRequest = new AddBookRequest("The Little Price", "Antoine de Saint-Exupery", 0, Genre.FABLE);
-        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("issueYear", "Must not be empty!")));
+        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("issueYear", "Must be greater than 0!")));
         service.execute(notValidRequest);
         verifyNoInteractions(database);
     }

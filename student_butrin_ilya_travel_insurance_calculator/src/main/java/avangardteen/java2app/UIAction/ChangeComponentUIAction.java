@@ -23,7 +23,6 @@ public class ChangeComponentUIAction implements UIAction {
     @Override
     public void execute() {
         ChangeCompanentsResponce responce = servise.responce();
-        System.out.println("Какой параметр хотите изменить?");
         showAllComponent(responce);
         int cathegory = scan.nextInt();
         ChangeComponentsRequest request = new ChangeComponentsRequest(cathegory);

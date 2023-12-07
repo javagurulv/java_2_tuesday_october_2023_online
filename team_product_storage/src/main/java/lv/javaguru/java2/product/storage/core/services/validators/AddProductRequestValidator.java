@@ -61,8 +61,8 @@ public class AddProductRequestValidator {
 
     private Optional<CoreError> validatePriceInStock(AddProductRequest request) {
         BigDecimal minPrice = new BigDecimal("0.01");
-        return (request.getPriceInStock().compareTo(minPrice) <= 0)
-                ? Optional.of(new CoreError("priceInStock", "Must be greater than 0.01!"))
+        return (request.getPriceInStock().compareTo(minPrice) <= 0.00)
+                ? Optional.of(new CoreError("priceInStock", "Must be greater than 0.00!"))
                 : Optional.empty();
     }
 

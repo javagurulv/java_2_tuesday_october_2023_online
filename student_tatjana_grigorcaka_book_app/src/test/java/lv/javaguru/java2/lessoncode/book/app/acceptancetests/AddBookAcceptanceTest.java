@@ -61,7 +61,7 @@ public class AddBookAcceptanceTest {
         assertTrue(response.containsErrors());
         assertEquals(response.getErrors().size(), 1);
         assertEquals(response.getErrors().get(0).getErrorCode(), "issueYear");
-        assertEquals(response.getErrors().get(0).getErrorMessage(), "Must not be empty!");
+        assertEquals(response.getErrors().get(0).getErrorMessage(), "Must be greater than 0!");
     }
 
     @Test
