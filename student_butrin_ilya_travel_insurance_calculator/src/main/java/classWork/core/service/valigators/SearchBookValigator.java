@@ -11,9 +11,9 @@ import java.util.Optional;
 @Component
 public class SearchBookValigator {
     @Autowired
-  SearchBooksFieldValidator field = new SearchBooksFieldValidator();
-    @Autowired  SearchBookOrderingValigator ordering = new SearchBookOrderingValigator();
-    @Autowired SearchBookPagingValigator paging = new SearchBookPagingValigator();
+  SearchBooksFieldValidator field;
+    @Autowired  SearchBookOrderingValigator ordering;
+    @Autowired SearchBookPagingValigator paging;
 
     public List<CoreError> errorList(SearchBooksRequest request) {
         List<CoreError> errorList = new ArrayList<>();
