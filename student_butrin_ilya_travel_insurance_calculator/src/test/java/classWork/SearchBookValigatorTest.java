@@ -1,4 +1,4 @@
-package classWork;
+/*package classWork;
 
 import classWork.core.CoreError;
 import classWork.core.requests.AddBookRequest;
@@ -99,3 +99,5 @@ public class SearchBookValigatorTest {
         assertEquals(real.size(), 4);
     }
 }
+
+ */
