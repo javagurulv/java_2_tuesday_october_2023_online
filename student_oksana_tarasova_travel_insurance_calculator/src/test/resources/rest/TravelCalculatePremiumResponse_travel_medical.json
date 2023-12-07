@@ -6,6 +6,7 @@
   "agreementDateFrom": "2025-05-01",
   "agreementDateTo": "2025-05-21",
   "country": "SPAIN",
+  "medicalRiskLimitLevel" : "LEVEL_10000",
   "agreementPremium": 55.00,
   "risks": [
     {
