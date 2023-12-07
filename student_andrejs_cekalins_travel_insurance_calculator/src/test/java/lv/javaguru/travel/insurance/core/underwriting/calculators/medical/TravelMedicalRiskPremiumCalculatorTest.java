@@ -55,6 +55,7 @@ class TravelMedicalRiskPremiumCalculatorTest {
         when(dayCountCalculator.calculate(request)).thenReturn(daysCount);
         when(countryDefaultDayRateCalculator.calculate(request)).thenReturn(countryDefaultRate);
         when(ageCoefficientCalculator.calculate(request)).thenReturn(ageCoefficient);
+
         BigDecimal expectedPremium = countryDefaultRate.multiply(daysCount).multiply(ageCoefficient)
                 .setScale(2, RoundingMode.HALF_UP);
 
