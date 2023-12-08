@@ -141,6 +141,14 @@ class TravelCalculatePremiumControllerTest {
     }
 
     @Test
+    public void countryNotSupportWhenMedicalRiskSelectedTest() throws Exception {
+        executeAndCompare(
+                "rest/TravelCalculatePremiumRequest_country_not_support_travel_medical.json",
+                "rest/TravelCalculatePremiumResponse_country_not_support_travel_medical.json"
+        );
+    }
+
+    @Test
     public void countryIsEmptyWhenTravelMedicalRiskSelected() throws Exception {
         executeAndCompare(
                 "rest/TravelCalculatePremiumRequest_country_is_empty_travel_medical.json",
