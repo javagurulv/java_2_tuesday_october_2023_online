@@ -1,6 +1,5 @@
 package lv.javaguru.java2.lessoncode.book.app.core.domain;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Book {
@@ -10,7 +9,6 @@ public class Book {
     private String author;
     private Integer issueYear;
     private Genre genre;
-    private List<Page> pages;
 
     public Book() {
     }
@@ -20,14 +18,6 @@ public class Book {
         this.author = author;
         this.issueYear = issueYear;
         this.genre = genre;
-    }
-
-    public List<Page> getPages() {
-        return pages;
-    }
-
-    public void setPages(List<Page> pages) {
-        this.pages = pages;
     }
 
     public Long getId() {
@@ -45,7 +35,6 @@ public class Book {
     public String getAuthor() {
         return author;
     }
-
 
     public void setTitle(String title) {
         this.title = title;

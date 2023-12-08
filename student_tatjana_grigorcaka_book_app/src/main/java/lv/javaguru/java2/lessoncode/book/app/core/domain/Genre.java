@@ -10,6 +10,7 @@ public enum Genre {
     THRILLER,
     HUMOR,
     CLASSIC,
-    FABLE
+    FABLE,
+    PERSONAL_FINANCE
 
     }
