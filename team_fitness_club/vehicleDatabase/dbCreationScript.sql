@@ -10,14 +10,11 @@ CREATE TABLE IF NOT EXISTS `clients` (
 `first_name` VARCHAR(50) NOT NULL,
 `last_name` VARCHAR(50) NOT NULL,
 `personal_code` VARCHAR(50) NOT NULL,
+`gender` VARCHAR(10) NOT NULL,
 PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
-
-ALTER TABLE `clients`
-  ADD `gender` VARCHAR(10);
-
 
 CREATE TABLE IF NOT EXISTS `age_groups` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
@@ -33,11 +30,10 @@ CREATE TABLE IF NOT EXISTS `workouts` (
 `workout` VARCHAR(50) NOT NULL,
 PRIMARY KEY (`id`)
 )
-
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
 
-CREATE TABLE IF NOT EXISTS `fitness_centre` (
+CREATE TABLE IF NOT EXISTS `fitness_centres` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
 `fitness_centre` VARCHAR(50) NOT NULL,
 PRIMARY KEY (`id`)
@@ -61,9 +57,6 @@ ALTER TABLE `member_card`
 ADD FOREIGN KEY (`client_id`) REFERENCES `clients`(`id`);
 
 ALTER TABLE `member_card`
-ADD FOREIGN KEY (`client_age_group_id`) REFERENCES `clients_age_groups`(`id`);
-
-ALTER TABLE `member_card`
 ADD FOREIGN KEY (`age_group_id`) REFERENCES `age_groups`(`id`);
 
 ALTER TABLE `member_card`
@@ -71,7 +64,6 @@ ADD FOREIGN KEY (`workout_id`) REFERENCES `workouts`(`id`);
 
 ALTER TABLE `member_card`
 ADD FOREIGN KEY (`fitness_centre_id`) REFERENCES `fitness_centres`(`id`);
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
