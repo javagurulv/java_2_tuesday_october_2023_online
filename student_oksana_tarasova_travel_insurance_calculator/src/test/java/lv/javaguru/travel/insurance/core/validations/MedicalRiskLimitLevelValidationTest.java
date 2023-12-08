@@ -97,5 +97,4 @@ class MedicalRiskLimitLevelValidationTest {
         assertTrue(validationErrorOpt.isPresent());
         assertSame(validationError, validationErrorOpt.get());
     }
-
 }
