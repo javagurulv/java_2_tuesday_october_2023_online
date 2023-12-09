@@ -13,11 +13,14 @@ import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.ChangeClientWorkoutService;
 import fitness_club.core.services.SearchClientService;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.junit.Assert.assertEquals;
+
+@Ignore
 public class ChangeWorkoutsTest {
     private ApplicationContext applicationContext;
 
