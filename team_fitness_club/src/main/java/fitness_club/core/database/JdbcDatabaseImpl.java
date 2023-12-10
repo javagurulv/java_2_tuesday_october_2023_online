@@ -1,45 +1,61 @@
 package fitness_club.core.database;
 
+import fitness_club.core.domain.Client;
+import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.domain.FitnessCentre;
+import fitness_club.core.domain.Workouts;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import fitness_club.core.domain.Client;
-import fitness_club.core.domain.ClientAgeGroups;
-import fitness_club.core.domain.FitnessCentre;
-import fitness_club.core.domain.Workouts;
-import org.springframework.stereotype.Component;
+@Component
+class JdbcDatabaseImpl implements Database {
 
-//@Component
-public class InMemoryDatabase implements Database {
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-    private Long nextId = 1L;
     private List<Client> clients = new ArrayList<>();
 
+    @Override
     public void addClient(Client client) {
-        client.setId(nextId);
-        nextId++;
-        clients.add(client);
+        jdbcTemplate.update(
+                "INSERT INTO clients (first_name, last_name, personal_code) "
+                        + "VALUES (?, ?, ?)",
+                client.getFirstName(), client.getLastName(), client.getPersonalCode()
+        );
+//        jdbcTemplate.update(
+//                "INSERT INTO age_groups (age_group) "
+//                        + "VALUES (?)",
+//                client.getClientAgeGroup().toString()
+//        );
+//        jdbcTemplate.update(
+//                "INSERT INTO workouts (workout) "
+//                        + "VALUES (?)",
+//                client.getWorkouts().toString()
+//        );
+//        jdbcTemplate.update(
+//                "INSERT INTO fitness_centres (fitness_centre) "
+//                        + "VALUES (?)",
+//                client.getFitnessCentre().toString()
+//        );
     }
 
+    @Override
     public boolean deleteClientByPersonalCode(String personalCode) {
-        boolean isClientDeleted = false;
-        Optional<Client> clientToDeleteOpt = clients.stream()
-                .filter(client -> client.getPersonalCode().equals(personalCode))
-                .findFirst();
-        if (clientToDeleteOpt.isPresent()) {
-            Client clientToRemove = clientToDeleteOpt.get();
-            isClientDeleted = clients.remove(clientToRemove);
-            updateClientIds(clients);
-            saveClient(clients);
-        }
-        return isClientDeleted;
-
+        String sql = "DELETE FROM clients WHERE personal_code = ?";
+        Object[] args = new Object[] {personalCode};
+        return jdbcTemplate.update(sql, args) == 1;
     }
 
     public List<Client> getAllClients() {
-        return clients;
+        String sql = "SELECT * FROM clients\n" +
+                "INNER JOIN age_groups, workouts, fitness_centres;";
+        return jdbcTemplate.query(sql, new ClientRowMapper());
     }
 
     @Override
@@ -95,31 +111,38 @@ public class InMemoryDatabase implements Database {
 
     @Override
     public List<Client> findByFirstName(String firstName) {
-        return getAllClients().stream()
-                .filter(client -> client.getFirstName().equals(firstName))
-                .collect(Collectors.toList());
+        String sql = "SELECT * FROM clients\n" +
+                "INNER JOIN age_groups, workouts, fitness_centres\n" +
+                "WHERE first_name = ?";
+        Object[] args = new Object[] {firstName};
+        return jdbcTemplate.query(sql, args, new ClientRowMapper());
     }
 
     @Override
     public List<Client> findByLastName(String lastName) {
-        return getAllClients().stream()
-                .filter(client -> client.getLastName().equals(lastName))
-                .collect(Collectors.toList());
+        String sql = "SELECT * FROM clients\n" +
+                "INNER JOIN age_groups, workouts, fitness_centres\n" +
+                "WHERE last_name = ?";
+        Object[] args = new Object[] {lastName};
+        return jdbcTemplate.query(sql, args, new ClientRowMapper());
     }
 
     @Override
     public List<Client> findByFirstNameAndLastName(String firstName, String lastName) {
-        return getAllClients().stream()
-                .filter(client -> client.getFirstName().equals(firstName))
-                .filter(client -> client.getLastName().equals(lastName))
-                .collect(Collectors.toList());
+        String sql = "SELECT * FROM clients\n" +
+                "INNER JOIN age_groups, workouts, fitness_centres\n" +
+                "WHERE first_name = ? AND last_name = ?";
+        Object[] args = new Object[] {firstName, lastName};
+        return jdbcTemplate.query(sql, args, new ClientRowMapper());
     }
 
     @Override
     public List<Client> findByPersonalCode(String personalCode) {
-        return getAllClients().stream()
-                .filter(client -> client.getPersonalCode().equals(personalCode))
-                .collect(Collectors.toList());
+        String sql = "SELECT * FROM clients\n" +
+                "INNER JOIN age_groups, workouts, fitness_centres\n" +
+                "WHERE personal_code = ?";
+        Object[] args = new Object[] {personalCode};
+        return jdbcTemplate.query(sql, args, new ClientRowMapper());
     }
 
     private void updateClientIds(List<Client> clients) {
@@ -127,5 +150,6 @@ public class InMemoryDatabase implements Database {
             clients.get(i).setId((long) (i + 1));
         }
     }
+
 
 }

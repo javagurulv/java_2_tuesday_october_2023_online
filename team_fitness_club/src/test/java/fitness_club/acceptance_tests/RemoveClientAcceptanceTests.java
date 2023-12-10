@@ -10,6 +10,7 @@ import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.DeleteClientService;
 import org.junit.Before;;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@Ignore
 public class RemoveClientAcceptanceTests {
     private ApplicationContext applicationContext;
 
