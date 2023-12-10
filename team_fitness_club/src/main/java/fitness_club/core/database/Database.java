@@ -8,17 +8,19 @@ import fitness_club.core.domain.Workouts;
 import java.util.List;
 
 public interface Database {
-    void addClient(Client client);
+    void save(Client client);
 
-    boolean deleteClientByPersonalCode(String personalCode);
+    boolean deleteByPersonalCode(String personalCode);
 
     List<Client> getAllClients();
 
     boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup);
+
     boolean clientWorkoutsChangedByPersonalCode(String personalCode, Workouts newWorkout);
+
     boolean isClientFitnessCentreChangedByPersonalCode(String personalCode, FitnessCentre fitnessCentre);
 
-    void saveClient(List<Client> clients);
+    //void saveClient(List<Client> clients);
 
     List<Client> findByFirstName(String firsName);
 

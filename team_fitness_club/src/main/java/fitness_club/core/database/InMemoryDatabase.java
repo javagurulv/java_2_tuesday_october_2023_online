@@ -17,13 +17,13 @@ public class InMemoryDatabase implements Database {
     private Long nextId = 1L;
     private List<Client> clients = new ArrayList<>();
 
-    public void addClient(Client client) {
+    public void save(Client client) {
         client.setId(nextId);
         nextId++;
         clients.add(client);
     }
 
-    public boolean deleteClientByPersonalCode(String personalCode) {
+    public boolean deleteByPersonalCode(String personalCode) {
         boolean isClientDeleted = false;
         Optional<Client> clientToDeleteOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
@@ -41,7 +41,6 @@ public class InMemoryDatabase implements Database {
     public List<Client> getAllClients() {
         return clients;
     }
-
     @Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
@@ -89,6 +88,8 @@ public class InMemoryDatabase implements Database {
             return false;
         }
     }
+
+
 
     public void saveClient(List<Client> clients) {
     }

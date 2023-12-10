@@ -19,7 +19,7 @@ public class ChangeClientAgeGroupService {
    private ChangeClientAgeGroupValidator validator;
 
 
-    public ChangeClientAgeGroupResponse execute(ChangeClientAgeGroupRequest request) {
+   public ChangeClientAgeGroupResponse execute(ChangeClientAgeGroupRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new ChangeClientAgeGroupResponse(errors);

@@ -22,14 +22,14 @@ public class InFileDatabase implements Database {
         this.filename = ".\\team_fitness_club\\src\\main\\java\\fitness_club\\core\\database\\ClientsFile.bin";
     }
 
-    public void addClient(Client client) {
+    public void save(Client client) {
         List<Client> clients = getAllClients();
         client.setId(generateNextId(clients));
         clients.add(client);
         saveClient(clients);
     }
 
-    public boolean deleteClientByPersonalCode(String personalCode) {
+    public boolean deleteByPersonalCode(String personalCode) {
         boolean isClientDeleted = false;
         Optional<Client> clientToDeleteOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
@@ -48,7 +48,6 @@ public class InFileDatabase implements Database {
         loadClientsFromFile();
         return clients;
     }
-
     @Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         loadClientsFromFile();
@@ -99,6 +98,8 @@ public class InFileDatabase implements Database {
             return false;
         }
     }
+
+
 
     public void saveClient(List<Client> clients) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {

@@ -42,7 +42,7 @@ public class AddClientServiceTest {
         when(validator.validate(request)).thenReturn(List.of());
         AddClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        verify(database).addClient(any());
+        verify(database).save(any());
     }
 
     @Test
