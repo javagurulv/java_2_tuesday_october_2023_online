@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS `clients` (
 `first_name` VARCHAR(50) NOT NULL,
 `last_name` VARCHAR(50) NOT NULL,
 `personal_code` VARCHAR(50) NOT NULL,
+`age_group_id` BIGINT NOT NULL,
+`workout_id` BIGINT NOT NULL,
+`fitness_centre_id` BIGINT NOT NULL,
 PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB
@@ -40,9 +43,6 @@ PRIMARY KEY (`id`)
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
 
-
-ALTER TABLE `clients`
-ADD FOREIGN KEY (`client_id`) REFERENCES `clients`(`id`);
 
 ALTER TABLE `clients`
 ADD FOREIGN KEY (`age_group_id`) REFERENCES `age_groups`(`id`);
