@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -23,16 +24,15 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class AgeCoefficientCalculatorTest {
-
     @Mock
     private DateTimeUtil dateTimeUtil;
-        @Mock
+    @Mock
     private AgeCoefficientRepository ageCoefficientRepository;
 
-        @InjectMocks
-        private AgeCoefficientCalculator calculator;
+    @InjectMocks
+    private AgeCoefficientCalculator calculator;
 
-        private TravelCalculatePremiumRequest request;
+    private TravelCalculatePremiumRequest request;
 
     @BeforeEach
     void setUp() {
@@ -43,6 +43,7 @@ class AgeCoefficientCalculatorTest {
 
     @Test
     public void shouldFindCoefficientWhenAgeCoefficientExists() {
+        ReflectionTestUtils.setField(calculator, "medicalRiskAgeCoefficientEnabled", true);
         LocalDate currentDate = LocalDate.of(2023, 12, 6);
         int age = 23;
         BigDecimal expectedCoefficient = BigDecimal.valueOf(1.2);
@@ -56,8 +57,10 @@ class AgeCoefficientCalculatorTest {
 
         assertEquals(expectedCoefficient, result);
     }
+
     @Test
     void shouldThrowExceptionWhenAgeCoefficientNotFound() {
+        ReflectionTestUtils.setField(calculator, "medicalRiskAgeCoefficientEnabled", true);
         LocalDate currentDate = LocalDate.of(2023, 12, 6);
         int age = 23;
 
