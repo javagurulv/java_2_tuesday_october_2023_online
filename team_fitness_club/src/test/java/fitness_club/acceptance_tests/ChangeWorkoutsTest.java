@@ -30,7 +30,7 @@ public class ChangeWorkoutsTest {
     }
 
 
-    @Test
+   /* @Test
     public void shouldChangeClientAgeGroup() {
         AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "12345", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
         getAddClientService().execute(addClientRequest);
@@ -59,4 +59,6 @@ public class ChangeWorkoutsTest {
     private SearchClientService getSearchClientService() {
         return applicationContext.getBean(SearchClientService.class);
     }
+
+    */
 }

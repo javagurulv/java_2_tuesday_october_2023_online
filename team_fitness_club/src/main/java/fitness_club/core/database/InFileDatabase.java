@@ -48,7 +48,7 @@ public class InFileDatabase implements Database {
         loadClientsFromFile();
         return clients;
     }
-    @Override
+    /*@Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         loadClientsFromFile();
         Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
@@ -64,6 +64,8 @@ public class InFileDatabase implements Database {
             return false;
         }
     }
+
+
 
     @Override
     public boolean clientWorkoutsChangedByPersonalCode(String personalCode, Workouts newWorkout) {
@@ -98,6 +100,8 @@ public class InFileDatabase implements Database {
             return false;
         }
     }
+
+     */
 
 
 

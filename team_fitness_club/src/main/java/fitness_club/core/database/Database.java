@@ -14,11 +14,11 @@ public interface Database {
 
     List<Client> getAllClients();
 
-    boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup);
+   // boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup);
 
-    boolean clientWorkoutsChangedByPersonalCode(String personalCode, Workouts newWorkout);
+   // boolean clientWorkoutsChangedByPersonalCode(String personalCode, Workouts newWorkout);
 
-    boolean isClientFitnessCentreChangedByPersonalCode(String personalCode, FitnessCentre fitnessCentre);
+  //  boolean isClientFitnessCentreChangedByPersonalCode(String personalCode, FitnessCentre fitnessCentre);
 
     //void saveClient(List<Client> clients);
 

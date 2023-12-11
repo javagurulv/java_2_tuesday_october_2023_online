@@ -10,9 +10,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@Ignore
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ClientWorkoutsConfiguration.class})
+
 public class SpringContextTest {
     @Autowired private ApplicationContext applicationContext;
 

@@ -26,12 +26,17 @@ public class AddClientService {
 
     public AddClientResponse execute(AddClientRequest request) {
         List<CoreError> errors = validator.validate(request);
-        return errors.isEmpty()
-                ? addNewClient(request)
-                : buildErrorResponse(errors);
+        if (!errors.isEmpty()) {
+            return new AddClientResponse(errors);
+        }
+
+        Client client = new Client(request.getFirstName(), request.getLastName(), request.getPersonalCode());
+        database.save(client);
+
+        return new AddClientResponse(client);
     }
 
-    private AddClientResponse buildErrorResponse(List<CoreError> errors) {
+   /* private AddClientResponse buildErrorResponse(List<CoreError> errors) {
         return new AddClientResponse(errors);
     }
 
@@ -39,12 +44,14 @@ public class AddClientService {
         Client client = new Client(
                 request.getFirstName(),
                 request.getLastName(),
-                request.getPersonalCode(),
-                request.getClientAgeGroup(),
-                request.getWorkout(),
-                request.getFitnessCentre());
+                request.getPersonalCode());
+                //request.getClientAgeGroup(),
+                //request.getWorkout(),
+               // request.getFitnessCentre());
         database.save(client);
         return new AddClientResponse(client);
     }
+
+    */
 
 }

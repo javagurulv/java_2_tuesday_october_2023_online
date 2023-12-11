@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-public class ChangeClientFitnessCentreService {
+//@Component
+abstract public class ChangeClientFitnessCentreService {
 
 
-    @Autowired
+   /* @Autowired
     private Database database;
     @Autowired
     private ChangeClientFitnessCentreValidator validator;
@@ -27,4 +27,6 @@ public class ChangeClientFitnessCentreService {
         boolean isClientFitnessCentreChanged = database.isClientFitnessCentreChangedByPersonalCode(request.getPersonalCode(), request.getFitnessCentre());
         return new ChangeClientFitnessCentreResponse(isClientFitnessCentreChanged);
     }
+
+    */
 }

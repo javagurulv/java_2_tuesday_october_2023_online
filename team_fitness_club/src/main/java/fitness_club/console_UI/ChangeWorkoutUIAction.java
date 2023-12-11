@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@Component
-public class ChangeWorkoutUIAction implements UIAction {
-   @Autowired
+//@Component
+abstract public class ChangeWorkoutUIAction implements UIAction {
+  /* @Autowired
    private ChangeClientWorkoutService service;
 
 
@@ -47,4 +47,6 @@ public class ChangeWorkoutUIAction implements UIAction {
             }
         }
     }
+
+   */
 }

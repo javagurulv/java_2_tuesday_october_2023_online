@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 
 @Ignore
 public class ChangeClientAgeCroupTest {
-    private ApplicationContext applicationContext;
+    /*private ApplicationContext applicationContext;
 
     @Before
     public void setup() {
@@ -59,4 +59,6 @@ public class ChangeClientAgeCroupTest {
     private SearchClientService getSearchClientService() {
         return applicationContext.getBean(SearchClientService.class);
     }
+
+     */
 }

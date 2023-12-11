@@ -41,7 +41,7 @@ public class InMemoryDatabase implements Database {
     public List<Client> getAllClients() {
         return clients;
     }
-    @Override
+   /* @Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
@@ -88,6 +88,8 @@ public class InMemoryDatabase implements Database {
             return false;
         }
     }
+
+    */
 
 
 
