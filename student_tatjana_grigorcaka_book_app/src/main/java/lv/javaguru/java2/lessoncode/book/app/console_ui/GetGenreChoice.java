@@ -1,4 +1,4 @@
-package lv.javaguru.java2.lessoncode.book.app.core.services;
+package lv.javaguru.java2.lessoncode.book.app.console_ui;
 
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 @Component
-public class GetGenreChoiceService {
+public class GetGenreChoice {
 
     public Genre getGenreChoice(Scanner scanner, List<String> genres) {
         System.out.println("Enter the number corresponding to the desired genre:");
