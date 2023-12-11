@@ -1,4 +1,4 @@
-package lv.javaguru.java2.product.storage.core.services;
+package lv.javaguru.java2.product.storage.console_ui;
 
 import lv.javaguru.java2.product.storage.core.domain.Category;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 @Component
-public class GetCategoryChoiceService {
+public class GetCategoryChoice {
 
     public Category getCategoryChoice(Scanner scanner, List<String> categories) {
         System.out.println("Enter the number corresponding to the desired category:");
