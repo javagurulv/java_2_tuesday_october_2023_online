@@ -3,7 +3,6 @@ package lv.javaguru.java2.lessoncode.book.app.console_ui;
 import java.util.List;
 import java.util.Scanner;
 
-import lv.javaguru.java2.lessoncode.book.app.core.services.GetGenreChoiceService;
 import lv.javaguru.java2.lessoncode.book.app.core.services.GetGenresListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,7 +22,7 @@ public class AddBookUIAction implements UIAction {
     @Autowired
     private GetGenresListService getGenresListService;
     @Autowired
-    private GetGenreChoiceService getGenreChoiceService;
+    private GetGenreChoice getGenreChoice;
 
     @Override
     public void execute() {
@@ -36,7 +35,7 @@ public class AddBookUIAction implements UIAction {
         Integer issueYear = scanner.nextInt();
         System.out.println("Select book genre:");
         List<String> genres = getGenresListService.getGenresList();
-        Genre selectedGenre = getGenreChoiceService.getGenreChoice(scanner, genres);
+        Genre selectedGenre = getGenreChoice.getGenreChoice(scanner, genres);
 
         AddBookRequest request = new AddBookRequest(bookTitle, bookAuthor, issueYear, selectedGenre);
         AddBookResponse response = addBookService.execute(request);
