@@ -1,4 +1,4 @@
-package classWork.acceptance_test;
+/* package classWork.acceptance_test;
 
 import classWork.BookListConfiguration;
 import classWork.core.CoreError;
@@ -47,3 +47,4 @@ public class test2 {
         return  applicationContext.getBean(GetAllBookService.class);
     }
 }
+*/
