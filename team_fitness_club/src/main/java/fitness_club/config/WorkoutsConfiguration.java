@@ -13,19 +13,17 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan(basePackages = "fitness_club")
 @PropertySource(value = "classpath:application.properties")
-
-
-public class ClientWorkoutsConfiguration {
+public class WorkoutsConfiguration {
     @Value("${jdbc.url}")
     private String jdbcUrl;
 
     @Value("${driverClass}")
     private String driverClass;
 
-    @Value("${vehicleDatabase.user.name}")
+    @Value("${database.user.name}")
     private String userName;
 
-    @Value("${vehicleDatabase.user.password}")
+    @Value("${database.user.password}")
     private String password;
 
     @Bean

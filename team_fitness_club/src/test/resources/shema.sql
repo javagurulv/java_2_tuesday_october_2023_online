@@ -1,5 +1,8 @@
-CREATE SCHEMA IF NOT EXISTS `fitness_club` DEFAULT CHARACTER SET utf8 ;
-USE `fitness_club` ;
+DROP TABLE IF EXISTS member_card CASCADE;
+DROP TABLE IF EXISTS fitness_centres CASCADE;
+DROP TABLE IF EXISTS workouts CASCADE;
+DROP TABLE IF EXISTS age_groups CASCADE;
+DROP TABLE IF EXISTS clients CASCADE;
 
 CREATE TABLE IF NOT EXISTS `clients` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
@@ -8,10 +11,6 @@ CREATE TABLE IF NOT EXISTS `clients` (
 `personal_code` VARCHAR(50) NOT NULL,
 PRIMARY KEY (`id`)
 )
-ENGINE = InnoDB
-AUTO_INCREMENT = 1002;
-
-CREATE UNIQUE INDEX `ix_clients_personal_code` ON `clients` (`personal_code`);
 
 
 CREATE TABLE IF NOT EXISTS `age_groups` (
@@ -19,10 +18,6 @@ CREATE TABLE IF NOT EXISTS `age_groups` (
 `age_group` VARCHAR(50) NOT NULL,
 PRIMARY KEY (`id`)
 )
-ENGINE = InnoDB
-AUTO_INCREMENT = 1002;
-
-CREATE UNIQUE INDEX `ix_age_groups_age_group` ON `age_groups` (`age_group`);
 
 
 CREATE TABLE IF NOT EXISTS `workouts` (
@@ -30,10 +25,6 @@ CREATE TABLE IF NOT EXISTS `workouts` (
 `workout` VARCHAR(50) NOT NULL,
 PRIMARY KEY (`id`)
 )
-ENGINE = InnoDB
-AUTO_INCREMENT = 1002;
-
-CREATE UNIQUE INDEX `ix_workouts_workout` ON `workouts` (`workout`);
 
 
 CREATE TABLE IF NOT EXISTS `fitness_centres` (
@@ -41,10 +32,6 @@ CREATE TABLE IF NOT EXISTS `fitness_centres` (
 `fitness_centre` VARCHAR(50) NOT NULL,
 PRIMARY KEY (`id`)
 )
-ENGINE = InnoDB
-AUTO_INCREMENT = 1002;
-
-CREATE UNIQUE INDEX `ix_fitness_centres_fitness_centre` ON `fitness_centres` (`fitness_centre`);
 
 
 CREATE TABLE IF NOT EXISTS `member_card` (
@@ -56,8 +43,6 @@ CREATE TABLE IF NOT EXISTS `member_card` (
 `term_of_contract` DATETIME NOT NULL,
 PRIMARY KEY (`id`)
 )
-ENGINE = InnoDB
-AUTO_INCREMENT = 1002;
 
 
 ALTER TABLE `member_card`
