@@ -37,7 +37,7 @@ public class AddClientAcceptanceTest {
 
     @Test
     public void shouldReturnErrorForFirstName() {
-        AddClientRequest addClientRequest = new AddClientRequest("", "test", "12345", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
+        AddClientRequest addClientRequest = new AddClientRequest("", "test", "12345");
         AddClientResponse response = getAddClientService().execute(addClientRequest);
         assertEquals(response.getErrors().get(0).getField(), "firstName");
         assertEquals(response.getErrors().get(0).getMessage(), "Field first name must not be empty or contain symbols or numbers!");
@@ -45,7 +45,7 @@ public class AddClientAcceptanceTest {
 
     @Test
     public void shouldReturnErrorForLastName() {
-        AddClientRequest addClientRequest = new AddClientRequest("test", "", "12345", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
+        AddClientRequest addClientRequest = new AddClientRequest("test", "", "12345");
         AddClientResponse response = getAddClientService().execute(addClientRequest);
         assertEquals(response.getErrors().get(0).getField(), "lastName");
         assertEquals(response.getErrors().get(0).getMessage(), "Field last name must not be empty or contain symbols or numbers!");
@@ -53,7 +53,7 @@ public class AddClientAcceptanceTest {
 
     @Test
     public void shouldReturnErrorForPersonalCode() {
-        AddClientRequest addClientRequest = new AddClientRequest("test", "test2", "", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
+        AddClientRequest addClientRequest = new AddClientRequest("test", "test2", "");
         AddClientResponse response = getAddClientService().execute(addClientRequest);
         assertEquals(response.getErrors().size(), 2);
         assertEquals(response.getErrors().get(1).getField(), "personalCode");
@@ -62,14 +62,14 @@ public class AddClientAcceptanceTest {
 
     @Test
     public void shouldReturnCorrectClient() {
-        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "123", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
+        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "123");
         getAddClientService().execute(addClientRequest);
         SearchClientResponse response = getSearchClientService().execute(new SearchClientRequest("FirstName", "LastName"));
         assertEquals(response.getFoundClients().get(0).getFirstName(), "FirstName");
         assertEquals(response.getFoundClients().get(0).getLastName(), "LastName");
         assertEquals(response.getFoundClients().get(0).getPersonalCode(), "123");
-        assertEquals(response.getFoundClients().get(0).getClientAgeGroup(), ClientAgeGroups.ADULT);
-        assertEquals(response.getFoundClients().get(0).getWorkouts(), Workouts.GYM);
+      //  assertEquals(response.getFoundClients().get(0).getClientAgeGroup(), ClientAgeGroups.ADULT);
+      //  assertEquals(response.getFoundClients().get(0).getWorkouts(), Workouts.GYM);
     }
 
     private SearchClientService getSearchClientService() {

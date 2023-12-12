@@ -12,7 +12,8 @@ public class Client implements Serializable {
     private Workouts workouts;
     private FitnessCentre fitnessCentre;
 
-    public Client() { }
+    public Client() {
+    }
 
     public Client(String firstName, String lastName, String personalCode, ClientAgeGroups clientAgeGroup, Workouts workouts, FitnessCentre fitnessCentre) {
         this.firstName = firstName;
@@ -29,7 +30,8 @@ public class Client implements Serializable {
         this.personalCode = personalCode;
     }
 
-    public Client(String personalCode) {this.personalCode = personalCode;
+    public Client(String personalCode) {
+        this.personalCode = personalCode;
 
     }
 
@@ -49,7 +51,9 @@ public class Client implements Serializable {
         this.workouts = workouts;
     }
 
-    public void setFitnessCentre(FitnessCentre fitnessCentre) { this.fitnessCentre = fitnessCentre; }
+    public void setFitnessCentre(FitnessCentre fitnessCentre) {
+        this.fitnessCentre = fitnessCentre;
+    }
 
     public void setPersonalCode(String personalCode) {
         this.personalCode = personalCode;
@@ -79,7 +83,9 @@ public class Client implements Serializable {
         return clientAgeGroup;
     }
 
-    public FitnessCentre getFitnessCentre() { return fitnessCentre; }
+    public FitnessCentre getFitnessCentre() {
+        return fitnessCentre;
+    }
 
     public void setClientAgeGroup(ClientAgeGroups clientAgeGroup) {
         this.clientAgeGroup = clientAgeGroup;
@@ -92,15 +98,15 @@ public class Client implements Serializable {
         Client client = (Client) o;
         return Objects.equals(firstName, client.firstName)
                 && Objects.equals(lastName, client.lastName)
-                && Objects.equals(personalCode, client.personalCode)
-                && clientAgeGroup == client.clientAgeGroup
-                && fitnessCentre == client.fitnessCentre
-                && workouts == client.workouts;
+                && Objects.equals(personalCode, client.personalCode);
+        //&& clientAgeGroup == client.clientAgeGroup
+        //  && fitnessCentre == client.fitnessCentre
+        //  && workouts == client.workouts;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, personalCode, clientAgeGroup, workouts, fitnessCentre);
+        return Objects.hash(firstName, lastName, personalCode);
     }
 
     @Override
@@ -110,9 +116,9 @@ public class Client implements Serializable {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", personalCode='" + personalCode + '\'' +
-                ", clientAgeGroup=" + clientAgeGroup +
-                ", workouts=" + workouts +
-                ", fitnessCentre=" + fitnessCentre +
+                //", clientAgeGroup=" + clientAgeGroup +
+                //", workouts=" + workouts +
+                //", fitnessCentre=" + fitnessCentre +
                 '}';
     }
 }

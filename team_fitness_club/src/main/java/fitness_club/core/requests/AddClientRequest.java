@@ -13,13 +13,13 @@ public class AddClientRequest {
     private Workouts workout;
     private FitnessCentre fitnessCentre;
 
-    public AddClientRequest(String firstName, String lastName, String personalCode, ClientAgeGroups clientAgeGroup, Workouts workout, FitnessCentre fitnessCentre) {
+    public AddClientRequest(String firstName, String lastName, String personalCode) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.personalCode = personalCode;
-        this.clientAgeGroup = clientAgeGroup;
-        this.workout = workout;
-        this.fitnessCentre = fitnessCentre;
+       // this.clientAgeGroup = clientAgeGroup;
+        //this.workout = workout;
+       // this.fitnessCentre = fitnessCentre;
     }
 
     public String getFirstName() {

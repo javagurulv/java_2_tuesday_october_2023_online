@@ -37,7 +37,7 @@ public class RemoveClientAcceptanceTests {
 
     @Test
     public void shouldRemoveClient() {
-        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "123", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
+        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "123");
         getAddClientService().execute(addClientRequest);
         RemoveClientRequest request = new RemoveClientRequest("123");
         RemoveClientResponse response = getDeleteClientService().execute(request);
