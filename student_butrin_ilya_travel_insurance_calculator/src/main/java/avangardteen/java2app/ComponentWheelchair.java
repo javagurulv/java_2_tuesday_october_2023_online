@@ -15,20 +15,8 @@ public class ComponentWheelchair {
         this.price = price;
     }
 
-      public void setCategory(Category category) {
+    public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public void setComponentID(String componentID) {
-        this.componentID = componentID;
-    }
-
-    public void setInformation(String information) {
-        this.information = information;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public Category getCategory() {
@@ -47,10 +35,12 @@ public class ComponentWheelchair {
         return price;
     }
 
+
     @Override
     public String toString() {
-        return "Component{" +
-                "marking='" + componentID + '\'' +
+        return "ComponentWheelchair{" +
+                "category=" + category +
+                ", componentID='" + componentID + '\'' +
                 ", information='" + information + '\'' +
                 ", price=" + price +
                 '}';
