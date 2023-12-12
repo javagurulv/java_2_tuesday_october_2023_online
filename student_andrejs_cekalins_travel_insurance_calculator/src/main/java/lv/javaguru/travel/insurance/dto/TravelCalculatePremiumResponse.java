@@ -30,6 +30,8 @@ public class TravelCalculatePremiumResponse extends CoreResponse {
 
     private String country;
 
+    private String medicalRiskLimitLevel;
+
     private BigDecimal agreementPremium;
 
     private List<RiskPremium> risks;

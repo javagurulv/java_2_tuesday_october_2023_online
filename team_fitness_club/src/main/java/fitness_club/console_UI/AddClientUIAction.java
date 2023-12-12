@@ -33,7 +33,7 @@ public class AddClientUIAction implements UIAction {
                 toUpperCase().concat(clientLastName.substring(1)) : clientLastName;
         System.out.println("Enter client personal code: ");
         String clientPersonalCode = scanner.nextLine();
-        System.out.println("Choose client age group: ");
+        /*System.out.println("Choose client age group: ");
         System.out.println("1. Child");
         System.out.println("2. Adult");
         System.out.println("3. Senior");
@@ -51,7 +51,9 @@ public class AddClientUIAction implements UIAction {
         System.out.println("5. Zolitude");
         FitnessCentre fitnessCentre = GetFitnessCentreService.getFitnessCentre(Integer.parseInt(scanner.nextLine()));
 
-        AddClientRequest request = new AddClientRequest(clientFirstName, clientLastName, clientPersonalCode, clientAgeGroups, clientWorkout, fitnessCentre);
+
+         */
+        AddClientRequest request = new AddClientRequest(clientFirstName, clientLastName, clientPersonalCode);
         AddClientResponse response = service.execute(request);
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->

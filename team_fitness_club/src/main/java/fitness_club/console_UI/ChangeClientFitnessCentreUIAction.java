@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
-@Component
-public class ChangeClientFitnessCentreUIAction implements UIAction {
-    @Autowired
+//@Component
+abstract public class ChangeClientFitnessCentreUIAction implements UIAction {
+   /* @Autowired
     private ChangeClientFitnessCentreService service;
 
     @Override
@@ -47,4 +47,6 @@ public class ChangeClientFitnessCentreUIAction implements UIAction {
             }
         }
     }
+
+    */
 }
