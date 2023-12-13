@@ -24,7 +24,7 @@ public class DeleteClientService {
         if (!errors.isEmpty()) {
             return new RemoveClientResponse(errors);
         }
-        boolean isClientRemoved = database.deleteClientByPersonalCode(request.getPersonalCode());
+        boolean isClientRemoved = database.deleteByPersonalCode(request.getPersonalCode());
         return new RemoveClientResponse(isClientRemoved);
     }
 }

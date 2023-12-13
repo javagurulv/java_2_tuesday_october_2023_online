@@ -29,7 +29,7 @@ public class AddClientRequestValidatorDuplicateTest {
     @Test
     public void shouldReturnErrorWhenDuplicateFound() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
-                "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
+                "12-12");
         database = Mockito.mock(Database.class);
         validator = new AddClientRequestValidator(database);
         Client client = new Client("Andrey", "Pupkin",
@@ -44,7 +44,7 @@ public class AddClientRequestValidatorDuplicateTest {
     @Test
     public void shouldNotReturnErrorWhenDuplicateNotFound() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
-                "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
+                "12-12");
         database = Mockito.mock(Database.class);
         validator = new AddClientRequestValidator(database);
         Mockito.when(database.findByPersonalCode("12-12")).thenReturn(List.of());

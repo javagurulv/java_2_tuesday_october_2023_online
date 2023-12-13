@@ -8,6 +8,7 @@ import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.CoreError;
+import fitness_club.matchers.ClientMatcher;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,56 +18,100 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AddClientServiceTest {
 
-
-    @InjectMocks
-    private AddClientService service;
     @Mock
     private AddClientRequestValidator validator;
     @Mock
     private Database database;
+    @InjectMocks
+    private AddClientService service;
 
+    @Test
+    public void shouldReturnResponseWithErrorsWhenValidationFails() {
+        AddClientRequest notValidRequest = new AddClientRequest(null, "Pupkin",
+                "12-12");
+        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("firstName",
+                "Field first name must not be empty or contain symbols or numbers!")));
+        AddClientResponse response = service.execute(notValidRequest);
+        assertTrue(response.hasErrors());
+    }
 
+    @Test
+    public void shouldReturnResponseWithErrorsReceivedFromValidator() {
+        AddClientRequest notValidRequest = new AddClientRequest(null, "Pupkin",
+                "12-12");
+        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("firstName",
+                "Field first name must not be empty or contain symbols or numbers!")));
+        AddClientResponse response = service.execute(notValidRequest);
+        assertEquals(response.getErrors().size(), 1);
+        assertEquals(response.getErrors().get(0).getField(), "firstName");
+        assertEquals(response.getErrors().get(0).getMessage(), "Field first name must not be empty or contain symbols or numbers!");
+    }
 
     @Test
     public void addClientShouldSuccess_Mockito_style() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
-                "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
+                "12-12");
         when(validator.validate(request)).thenReturn(List.of());
         AddClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        verify(database).addClient(any());
+        verify(database).save(any());
     }
 
     @Test
     public void addClientShouldFail_Mockito_style() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
-                "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
+                "12-12");
         when(validator.validate(request)).thenReturn(List.of(new CoreError("error", "Warning")));
         AddClientResponse response = service.execute(request);
         assertTrue(response.hasErrors());
         Assert.assertEquals(response.getErrors().size(), 1);
     }
-}
 
-   /* @Test
-    void addClient() {
-        inMemoryDatabase = new InMemoryDatabase();
-        addClient = new AddClientService(inMemoryDatabase, new AddClientRequestValidator());
-        AddClientRequest request = new AddClientRequest("Aaa", "Bbb", "12-12", ClientAgeGroups.SENIOR, Workouts.GYM, FitnessCentre.AKROPOLE);
-        addClient.execute(request);
-        Client client = new Client("Aaa", "Bbb", "12-12", ClientAgeGroups.SENIOR, Workouts.GYM);
-        Assertions.assertTrue(inMemoryDatabase.getAllClients().contains(client));
-
+    @Test
+    public void shouldNotInvokeDatabaseWhenRequestValidationFails() {
+        AddClientRequest notValidRequest = new AddClientRequest(null, "Pupkin",
+                "12-12");
+        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("firstName",
+                "Field first name must not be empty or contain symbols or numbers!")));
+        service.execute(notValidRequest);
+        verifyNoInteractions(database);
     }
 
-    */
+    @Test
+    public void shouldAddClientToDatabaseWhenRequestIsValid() {
+        AddClientRequest validRequest = new AddClientRequest("Andrey", "Pupkin", "1212");
+        when(validator.validate(validRequest)).thenReturn(List.of());
+        service.execute(validRequest);
+        verify(database).save(argThat(new ClientMatcher("Andrey", "Pupkin", "1212")));
+    }
+
+    @Test
+    public void shouldReturnResponseWithoutErrorsWhenRequestIsValid() {
+        AddClientRequest validRequest = new AddClientRequest("Andrey", "Pupkin", "1212");
+        when(validator.validate(validRequest)).thenReturn(List.of());
+        AddClientResponse response = service.execute(validRequest);
+        assertFalse(response.hasErrors());
+    }
+
+    @Test
+    public void shouldReturnResponseWithBookWhenRequestIsValid() {
+       AddClientRequest validRequest = new AddClientRequest("Andrey", "Pupkin", "1212");
+        when(validator.validate(validRequest)).thenReturn(List.of());
+        AddClientResponse response = service.execute(validRequest);
+        assertNotNull(response.getNewClient());
+        assertEquals(response.getNewClient().getFirstName(), validRequest.getFirstName());
+        assertEquals(response.getNewClient().getLastName(), validRequest.getLastName());
+        assertEquals(response.getNewClient().getPersonalCode(), validRequest.getPersonalCode());
+    }
+}
+
 
 

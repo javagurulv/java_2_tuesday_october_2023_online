@@ -5,7 +5,6 @@ import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.AddProductResponse;
 import lv.javaguru.java2.product.storage.core.services.AddProductService;
 import lv.javaguru.java2.product.storage.core.services.GetCategoriesListService;
-import lv.javaguru.java2.product.storage.core.services.GetCategoryChoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +20,7 @@ public class AddProductUIAction implements UIAction {
     @Autowired
     private GetCategoriesListService getCategoriesListService;
     @Autowired
-    private GetCategoryChoiceService getCategoryChoiceService;
+    private GetCategoryChoice getCategoryChoice;
 
     @Override
     public void execute() {
@@ -38,7 +37,7 @@ public class AddProductUIAction implements UIAction {
         BigDecimal priceInStock = scanner.nextBigDecimal();
         System.out.println("Select product category:");
         List<String> categories = getCategoriesListService.getCategoriesList();
-        Category selectedCategory = getCategoryChoiceService.getCategoryChoice(scanner, categories);
+        Category selectedCategory = getCategoryChoice.getCategoryChoice(scanner, categories);
 
         AddProductRequest request = new AddProductRequest(productName, productBrand, productModel, productQuantity, priceInStock, selectedCategory);
         AddProductResponse response = addProductService.execute(request);

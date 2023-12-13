@@ -1,17 +1,13 @@
 package fitness_club.core.database;
 
 import fitness_club.core.domain.Client;
-import fitness_club.core.domain.ClientAgeGroups;
-import fitness_club.core.domain.FitnessCentre;
-import fitness_club.core.domain.Workouts;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Component
 class JdbcDatabaseImpl implements Database {
@@ -19,10 +15,8 @@ class JdbcDatabaseImpl implements Database {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private List<Client> clients = new ArrayList<>();
-
     @Override
-    public void addClient(Client client) {
+    public void save(Client client) {
         jdbcTemplate.update(
                 "INSERT INTO clients (first_name, last_name, personal_code) "
                         + "VALUES (?, ?, ?)",
@@ -46,19 +40,18 @@ class JdbcDatabaseImpl implements Database {
     }
 
     @Override
-    public boolean deleteClientByPersonalCode(String personalCode) {
+    public boolean deleteByPersonalCode(String personalCode) {
         String sql = "DELETE FROM clients WHERE personal_code = ?";
-        Object[] args = new Object[] {personalCode};
+        Object[] args = new Object[]{personalCode};
         return jdbcTemplate.update(sql, args) == 1;
     }
 
     public List<Client> getAllClients() {
-        String sql = "SELECT * FROM clients\n" +
-                "INNER JOIN age_groups, workouts, fitness_centres;";
+        String sql = "SELECT * FROM clients";
         return jdbcTemplate.query(sql, new ClientRowMapper());
     }
 
-    @Override
+    /*@Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
@@ -109,47 +102,43 @@ class JdbcDatabaseImpl implements Database {
     public void saveClient(List<Client> clients) {
     }
 
+     */
+
     @Override
     public List<Client> findByFirstName(String firstName) {
-        String sql = "SELECT * FROM clients\n" +
-                "INNER JOIN age_groups, workouts, fitness_centres\n" +
-                "WHERE first_name = ?";
-        Object[] args = new Object[] {firstName};
-        return jdbcTemplate.query(sql, args, new ClientRowMapper());
+        String sql = "SELECT * FROM clients WHERE first_name = ?";
+        Object[] args = new Object[]{firstName};
+        return jdbcTemplate.query(sql, new ClientRowMapper(), args);
     }
 
     @Override
     public List<Client> findByLastName(String lastName) {
-        String sql = "SELECT * FROM clients\n" +
-                "INNER JOIN age_groups, workouts, fitness_centres\n" +
-                "WHERE last_name = ?";
-        Object[] args = new Object[] {lastName};
-        return jdbcTemplate.query(sql, args, new ClientRowMapper());
+        String sql = "SELECT * FROM clients WHERE last_name = ?";
+        Object[] args = new Object[]{lastName};
+        return jdbcTemplate.query(sql, new ClientRowMapper(), args);
     }
 
     @Override
     public List<Client> findByFirstNameAndLastName(String firstName, String lastName) {
-        String sql = "SELECT * FROM clients\n" +
-                "INNER JOIN age_groups, workouts, fitness_centres\n" +
-                "WHERE first_name = ? AND last_name = ?";
-        Object[] args = new Object[] {firstName, lastName};
-        return jdbcTemplate.query(sql, args, new ClientRowMapper());
+        String sql = "SELECT * FROM clients WHERE first_name = ? AND last_name = ?";
+        Object[] args = new Object[]{firstName, lastName};
+        return jdbcTemplate.query(sql, new ClientRowMapper(), args);
     }
 
     @Override
     public List<Client> findByPersonalCode(String personalCode) {
-        String sql = "SELECT * FROM clients\n" +
-                "INNER JOIN age_groups, workouts, fitness_centres\n" +
-                "WHERE personal_code = ?";
-        Object[] args = new Object[] {personalCode};
-        return jdbcTemplate.query(sql, args, new ClientRowMapper());
+        String sql = "SELECT * FROM clients WHERE personal_code = ?";
+        Object[] args = new Object[]{personalCode};
+        return jdbcTemplate.query(sql, new ClientRowMapper(), args);
     }
 
-    private void updateClientIds(List<Client> clients) {
+  /*  private void updateClientIds(List<Client> clients) {
         for (int i = 0; i < clients.size(); i++) {
             clients.get(i).setId((long) (i + 1));
         }
     }
+
+   */
 
 
 }

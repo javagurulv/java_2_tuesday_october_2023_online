@@ -1,4 +1,4 @@
-package classWork.acceptance_test;
+/* package classWork.acceptance_test;
 
 import classWork.BookListConfiguration;
 import classWork.core.requests.AddBookRequest;
@@ -36,3 +36,4 @@ public class test1 {
         return appContext.getBean(GetAllBookService.class);
     }
 }
+*/

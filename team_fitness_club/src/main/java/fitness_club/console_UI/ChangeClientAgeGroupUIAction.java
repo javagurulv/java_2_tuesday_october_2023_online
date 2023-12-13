@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@Component
-public class ChangeClientAgeGroupUIAction implements UIAction {
-    @Autowired
+//@Component
+abstract public class ChangeClientAgeGroupUIAction implements UIAction {
+   /* @Autowired
     private ChangeClientAgeGroupService changeClientAgeGroupService;
 
 
@@ -50,4 +50,6 @@ public class ChangeClientAgeGroupUIAction implements UIAction {
             }
         }
     }
+
+    */
 }

@@ -1,9 +1,6 @@
 package fitness_club.acceptance_tests;
 
-import fitness_club.config.ClientWorkoutsConfiguration;
-import fitness_club.core.domain.FitnessCentre;
-import fitness_club.core.domain.ClientAgeGroups;
-import fitness_club.core.domain.Workouts;
+import fitness_club.config.WorkoutsConfiguration;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.responses.RemoveClientResponse;
@@ -24,7 +21,7 @@ public class RemoveClientAcceptanceTests {
 
     @Before
     public void setup() {
-        applicationContext = new AnnotationConfigApplicationContext(ClientWorkoutsConfiguration.class);
+        applicationContext = new AnnotationConfigApplicationContext(WorkoutsConfiguration.class);
     }
 
     @Test
@@ -37,7 +34,7 @@ public class RemoveClientAcceptanceTests {
 
     @Test
     public void shouldRemoveClient() {
-        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "123", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
+        AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "123");
         getAddClientService().execute(addClientRequest);
         RemoveClientRequest request = new RemoveClientRequest("123");
         RemoveClientResponse response = getDeleteClientService().execute(request);
