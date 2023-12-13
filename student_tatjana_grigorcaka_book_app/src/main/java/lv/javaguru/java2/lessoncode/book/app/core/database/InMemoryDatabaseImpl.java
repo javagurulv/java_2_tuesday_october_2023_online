@@ -1,14 +1,13 @@
 package lv.javaguru.java2.lessoncode.book.app.core.database;
 
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Component
+//@Component
 public class InMemoryDatabaseImpl implements Database {
 
     private Long nextId = 1L;
@@ -38,6 +37,7 @@ public class InMemoryDatabaseImpl implements Database {
     public List<Book> getAllBooks() {
         return books;
     }
+
 
     @Override
     public List<Book> findByTitle(String title) {

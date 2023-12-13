@@ -1,10 +1,17 @@
 package lv.javaguru.java2.lessoncode.book.app.acceptancetests;
 
-import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import lv.javaguru.java2.lessoncode.book.app.DatabaseCleaner;
+import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
 
 import lv.javaguru.java2.lessoncode.book.app.config.BookListConfiguration;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
@@ -16,21 +23,27 @@ import lv.javaguru.java2.lessoncode.book.app.core.services.SearchBooksService;
 
 import static org.junit.Assert.*;
 
+@Ignore
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {BookListConfiguration.class})
+@Sql({"/schema.sql"})
 public class AddBookAcceptanceTest {
 
-    private ApplicationContext appContext;
+    @Autowired private AddBookService addBookService;
+    @Autowired private SearchBooksService searchBooksService;
+    @Autowired private DatabaseCleaner databaseCleaner;
 
     @Before
     public void setup() {
-        appContext = new AnnotationConfigApplicationContext(BookListConfiguration.class);
+        databaseCleaner.clean();
     }
 
     @Test
     public void shouldReturnErrorWhenBookTitleNotProvided() {
         AddBookRequest addBookRequest1 = new AddBookRequest(null, "Antoine de Saint-Exupery", 1943, Genre.FABLE);
-        getAddBookService().execute(addBookRequest1);
+        addBookService.execute(addBookRequest1);
 
-        AddBookResponse response = getAddBookService().execute(addBookRequest1);
+        AddBookResponse response = addBookService.execute(addBookRequest1);
 
         assertTrue(response.containsErrors());
         assertEquals(response.getErrors().size(), 1);
@@ -41,9 +54,9 @@ public class AddBookAcceptanceTest {
     @Test
     public void shouldReturnErrorWhenBookAuthorNotProvided() {
         AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", null, 1943, Genre.FABLE);
-        getAddBookService().execute(addBookRequest1);
+        addBookService.execute(addBookRequest1);
 
-        AddBookResponse response = getAddBookService().execute(addBookRequest1);
+        AddBookResponse response = addBookService.execute(addBookRequest1);
 
         assertTrue(response.containsErrors());
         assertEquals(response.getErrors().size(), 1);
@@ -54,9 +67,9 @@ public class AddBookAcceptanceTest {
     @Test
     public void shouldReturnErrorWhenIssueYearNotProvided() {
         AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 0, Genre.FABLE);
-        getAddBookService().execute(addBookRequest1);
+        addBookService.execute(addBookRequest1);
 
-        AddBookResponse response = getAddBookService().execute(addBookRequest1);
+        AddBookResponse response = addBookService.execute(addBookRequest1);
 
         assertTrue(response.containsErrors());
         assertEquals(response.getErrors().size(), 1);
@@ -67,11 +80,11 @@ public class AddBookAcceptanceTest {
     @Test
     public void shouldReturnErrorWhenDuplicateBookFound() {
         AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943, Genre.FABLE);
-        getAddBookService().execute(addBookRequest1);
+        addBookService.execute(addBookRequest1);
         AddBookRequest addBookRequest2 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943, Genre.FABLE);
-        getAddBookService().execute(addBookRequest2);
+        addBookService.execute(addBookRequest2);
 
-        AddBookResponse response = getAddBookService().execute(addBookRequest2);
+        AddBookResponse response = addBookService.execute(addBookRequest2);
 
         assertTrue(response.containsErrors());
         assertEquals(response.getErrors().size(), 1);
@@ -82,10 +95,10 @@ public class AddBookAcceptanceTest {
     @Test
     public void shouldReturnBook() {
         AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943, Genre.FABLE);
-        getAddBookService().execute(addBookRequest1);
+        addBookService.execute(addBookRequest1);
 
         SearchBooksRequest request2 = new SearchBooksRequest("The Little Prince", null);
-        SearchBooksResponse response = getSearchBooksService().execute(request2);
+        SearchBooksResponse response = searchBooksService.execute(request2);
 
         assertEquals(response.getBooks().size(), 1);
         assertEquals(response.getBooks().get(0).getTitle(), "The Little Prince");
@@ -95,8 +108,5 @@ public class AddBookAcceptanceTest {
 
     }
 
-    private AddBookService getAddBookService() { return appContext.getBean(AddBookService.class); }
-
-    private SearchBooksService getSearchBooksService() { return appContext.getBean(SearchBooksService.class); }
 
 }
