@@ -1,56 +1,42 @@
 package fitness_club.core.database;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import fitness_club.core.domain.Client;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+//@Component
+public class InMemoryClientRepositoryImpl implements ClientRepository {
 
-import java.util.List;
+    private Long nextId = 1L;
+    private List<Client> clients = new ArrayList<>();
 
-
-@Component
-class JdbcDatabaseImpl implements Database {
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    @Override
     public void save(Client client) {
-        jdbcTemplate.update(
-                "INSERT INTO clients (first_name, last_name, personal_code) "
-                        + "VALUES (?, ?, ?)",
-                client.getFirstName(), client.getLastName(), client.getPersonalCode()
-        );
-//        jdbcTemplate.update(
-//                "INSERT INTO age_groups (age_group) "
-//                        + "VALUES (?)",
-//                client.getClientAgeGroup().toString()
-//        );
-//        jdbcTemplate.update(
-//                "INSERT INTO workouts (workout) "
-//                        + "VALUES (?)",
-//                client.getWorkouts().toString()
-//        );
-//        jdbcTemplate.update(
-//                "INSERT INTO fitness_centres (fitness_centre) "
-//                        + "VALUES (?)",
-//                client.getFitnessCentre().toString()
-//        );
+        client.setId(nextId);
+        nextId++;
+        clients.add(client);
     }
 
-    @Override
     public boolean deleteByPersonalCode(String personalCode) {
-        String sql = "DELETE FROM clients WHERE personal_code = ?";
-        Object[] args = new Object[]{personalCode};
-        return jdbcTemplate.update(sql, args) == 1;
+        boolean isClientDeleted = false;
+        Optional<Client> clientToDeleteOpt = clients.stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst();
+        if (clientToDeleteOpt.isPresent()) {
+            Client clientToRemove = clientToDeleteOpt.get();
+            isClientDeleted = clients.remove(clientToRemove);
+            updateClientIds(clients);
+            saveClient(clients);
+        }
+        return isClientDeleted;
+
     }
 
     public List<Client> getAllClients() {
-        String sql = "SELECT * FROM clients";
-        return jdbcTemplate.query(sql, new ClientRowMapper());
+        return clients;
     }
-
     /*@Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
@@ -99,46 +85,45 @@ class JdbcDatabaseImpl implements Database {
         }
     }
 
+     */
+
+
     public void saveClient(List<Client> clients) {
     }
 
-     */
-
     @Override
     public List<Client> findByFirstName(String firstName) {
-        String sql = "SELECT * FROM clients WHERE first_name = ?";
-        Object[] args = new Object[]{firstName};
-        return jdbcTemplate.query(sql, new ClientRowMapper(), args);
+        return getAllClients().stream()
+                .filter(client -> client.getFirstName().equals(firstName))
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Client> findByLastName(String lastName) {
-        String sql = "SELECT * FROM clients WHERE last_name = ?";
-        Object[] args = new Object[]{lastName};
-        return jdbcTemplate.query(sql, new ClientRowMapper(), args);
+        return getAllClients().stream()
+                .filter(client -> client.getLastName().equals(lastName))
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Client> findByFirstNameAndLastName(String firstName, String lastName) {
-        String sql = "SELECT * FROM clients WHERE first_name = ? AND last_name = ?";
-        Object[] args = new Object[]{firstName, lastName};
-        return jdbcTemplate.query(sql, new ClientRowMapper(), args);
+        return getAllClients().stream()
+                .filter(client -> client.getFirstName().equals(firstName))
+                .filter(client -> client.getLastName().equals(lastName))
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Client> findByPersonalCode(String personalCode) {
-        String sql = "SELECT * FROM clients WHERE personal_code = ?";
-        Object[] args = new Object[]{personalCode};
-        return jdbcTemplate.query(sql, new ClientRowMapper(), args);
+        return getAllClients().stream()
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .collect(Collectors.toList());
     }
 
-  /*  private void updateClientIds(List<Client> clients) {
+    private void updateClientIds(List<Client> clients) {
         for (int i = 0; i < clients.size(); i++) {
             clients.get(i).setId((long) (i + 1));
         }
     }
-
-   */
-
 
 }

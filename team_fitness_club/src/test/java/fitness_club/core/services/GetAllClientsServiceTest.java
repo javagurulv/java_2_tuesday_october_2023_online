@@ -1,18 +1,14 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.Database;
-import fitness_club.core.domain.FitnessCentre;
+import fitness_club.core.database.ClientRepository;
 import fitness_club.core.requests.GetAllClientsRequest;
 import fitness_club.core.responses.GetAllClientsResponse;
 import fitness_club.core.domain.Client;
-import fitness_club.core.domain.ClientAgeGroups;
-import fitness_club.core.domain.Workouts;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 import static org.junit.Assert.*;
@@ -22,7 +18,7 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class GetAllClientsServiceTest {
    @Mock
-    private Database database;
+    private ClientRepository clientRepository;
     @InjectMocks
     private GetAllClientsService service;
 
@@ -31,7 +27,7 @@ public class GetAllClientsServiceTest {
 
         List<Client> clients = List.of(new Client("Andrey", "Pupkin",
                 "12-12"));
-        Mockito.when(database.getAllClients()).thenReturn(clients);
+        Mockito.when(clientRepository.getAllClients()).thenReturn(clients);
         GetAllClientsRequest request = new GetAllClientsRequest();
         GetAllClientsResponse response = service.execute(request);
         assertEquals(response.getClients().size(), 1);
@@ -42,7 +38,7 @@ public class GetAllClientsServiceTest {
 
         List<Client> clients = List.of(new Client("Andrey", "Pupkin",
                 "12-13"));
-        Mockito.when(database.getAllClients()).thenReturn(clients);
+        Mockito.when(clientRepository.getAllClients()).thenReturn(clients);
         GetAllClientsRequest request = new GetAllClientsRequest();
         GetAllClientsResponse response = service.execute(request);
         assertEquals(response.getClients().size(), 1);

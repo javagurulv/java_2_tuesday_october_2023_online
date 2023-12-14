@@ -19,23 +19,24 @@ public class Client {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "firstName", nullable = false)
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "lastName", nullable = false)
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "personalCode", nullable = false)
+    @Column(name = "personal_code", nullable = false)
     private String personalCode;
 
-public Client(String firstName, String lastName, String personalCode) {
+    public Client(String firstName, String lastName, String personalCode) {
     this.firstName=firstName;
     this.lastName=lastName;
     this.personalCode=personalCode;
-}
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
