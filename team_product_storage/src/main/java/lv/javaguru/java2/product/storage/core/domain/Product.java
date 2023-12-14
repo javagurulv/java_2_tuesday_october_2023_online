@@ -100,6 +100,7 @@ public class Product {
                 ", category=" + category +
                 '}';
     }
+
 }
 
 

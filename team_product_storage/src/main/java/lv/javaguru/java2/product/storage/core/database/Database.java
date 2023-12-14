@@ -12,11 +12,7 @@ public interface Database {
 
     List<Product> getAllProducts();
 
-    List<Product> findByProductName(String productName);
-
-
     List<Product> findByProductBrand(String productBrand);
-
 
     List<Product> findByProductModel(String productModel);
 
