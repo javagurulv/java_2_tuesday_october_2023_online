@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Component
+//@Component
 public class InMemoryDatabaseImpl implements Database {
     private Long nextId = 1L;
     List<Product> products = new ArrayList<>();
@@ -37,13 +37,6 @@ public class InMemoryDatabaseImpl implements Database {
         return products;
     }
 
-
-    @Override
-    public List<Product> findByProductName(String productName) {
-        return products.stream()
-                .filter(product -> product.getProductName().equals(productName))
-                .collect(Collectors.toList());
-    }
 
     @Override
     public List<Product> findByProductBrand(String productBrand) {
