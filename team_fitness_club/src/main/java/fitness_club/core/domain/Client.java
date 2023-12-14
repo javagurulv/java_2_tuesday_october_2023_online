@@ -1,96 +1,41 @@
 package fitness_club.core.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Client implements Serializable {
+@Entity
+@Table(name = "clients")
+@Getter
+@Setter
+@NoArgsConstructor
+
+public class Client {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "firstName", nullable = false)
     private String firstName;
+
+    @Column(name = "lastName", nullable = false)
     private String lastName;
+
+    @Column(name = "personalCode", nullable = false)
     private String personalCode;
-    private ClientAgeGroups clientAgeGroup;
-    private Workouts workouts;
-    private FitnessCentre fitnessCentre;
 
-    public Client() {
-    }
-
-    public Client(String firstName, String lastName, String personalCode, ClientAgeGroups clientAgeGroup, Workouts workouts, FitnessCentre fitnessCentre) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.personalCode = personalCode;
-        this.clientAgeGroup = clientAgeGroup;
-        this.workouts = workouts;
-        this.fitnessCentre = fitnessCentre;
-    }
-
-    public Client(String name, String lastName, String personalCode) {
-        this.firstName = name;
-        this.lastName = lastName;
-        this.personalCode = personalCode;
-    }
-
-    public Client(String personalCode) {
-        this.personalCode = personalCode;
-
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setWorkouts(Workouts workouts) {
-        this.workouts = workouts;
-    }
-
-    public void setFitnessCentre(FitnessCentre fitnessCentre) {
-        this.fitnessCentre = fitnessCentre;
-    }
-
-    public void setPersonalCode(String personalCode) {
-        this.personalCode = personalCode;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public Workouts getWorkouts() {
-        return workouts;
-    }
-
-    public String getPersonalCode() {
-        return personalCode;
-    }
-
-    public ClientAgeGroups getClientAgeGroup() {
-        return clientAgeGroup;
-    }
-
-    public FitnessCentre getFitnessCentre() {
-        return fitnessCentre;
-    }
-
-    public void setClientAgeGroup(ClientAgeGroups clientAgeGroup) {
-        this.clientAgeGroup = clientAgeGroup;
-    }
-
+public Client(String firstName, String lastName, String personalCode) {
+    this.firstName=firstName;
+    this.lastName=lastName;
+    this.personalCode=personalCode;
+}
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

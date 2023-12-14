@@ -33,7 +33,7 @@ public class AddClientRequestValidatorDuplicateTest {
         database = Mockito.mock(Database.class);
         validator = new AddClientRequestValidator(database);
         Client client = new Client("Andrey", "Pupkin",
-                "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
+                "12-12");
         Mockito.when(database.findByPersonalCode("12-12")).thenReturn(List.of(client));
         List<CoreError> errors = validator.validate(request);
         assertTrue(!errors.isEmpty());

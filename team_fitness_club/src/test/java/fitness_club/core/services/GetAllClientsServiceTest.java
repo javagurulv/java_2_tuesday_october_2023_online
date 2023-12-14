@@ -30,7 +30,7 @@ public class GetAllClientsServiceTest {
     public void shouldGetClientsFromDb() {
 
         List<Client> clients = List.of(new Client("Andrey", "Pupkin",
-                "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE));
+                "12-12"));
         Mockito.when(database.getAllClients()).thenReturn(clients);
         GetAllClientsRequest request = new GetAllClientsRequest();
         GetAllClientsResponse response = service.execute(request);
@@ -41,7 +41,7 @@ public class GetAllClientsServiceTest {
     public void shouldNotGetClientsFromDb() {
 
         List<Client> clients = List.of(new Client("Andrey", "Pupkin",
-                "12-13", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE));
+                "12-13"));
         Mockito.when(database.getAllClients()).thenReturn(clients);
         GetAllClientsRequest request = new GetAllClientsRequest();
         GetAllClientsResponse response = service.execute(request);
