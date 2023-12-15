@@ -1,7 +1,6 @@
 package lv.javaguru.java2.product.storage.core.database;
 
 import lv.javaguru.java2.product.storage.core.domain.Product;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 //@Component
-public class InMemoryDatabaseImpl implements Database {
+public class InMemoryProductRepositoryImpl implements ProductRepository {
     private Long nextId = 1L;
     List<Product> products = new ArrayList<>();
 

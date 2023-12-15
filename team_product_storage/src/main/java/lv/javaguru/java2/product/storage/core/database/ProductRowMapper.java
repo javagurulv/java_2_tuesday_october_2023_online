@@ -1,6 +1,5 @@
 package lv.javaguru.java2.product.storage.core.database;
 
-import lv.javaguru.java2.product.storage.core.domain.Category;
 import lv.javaguru.java2.product.storage.core.domain.Product;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -18,7 +17,6 @@ public class ProductRowMapper implements RowMapper<Product> {
 		product.setProductModel(rs.getString("product_model"));
 		product.setProductQuantity(rs.getInt("product_quantity"));
 		product.setPriceInStock(rs.getBigDecimal("price_in_stock"));
-		product.setCategory(Category.valueOf(rs.getString("category")));
 		return product;
 	}
 

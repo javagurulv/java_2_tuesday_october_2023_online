@@ -2,7 +2,6 @@ package lv.javaguru.java2.product.storage.accepatancetests;
 
 import lv.javaguru.java2.product.storage.DatabaseCleaner;
 import lv.javaguru.java2.product.storage.config.StorageConfiguration;
-import lv.javaguru.java2.product.storage.core.domain.Category;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.requests.RemoveProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.RemoveProductResponse;
@@ -40,7 +39,7 @@ public class RemoveProductAcceptanceTest {
 
     @Test
     public void shouldReturnErrorResponseWhenProductIdNotProvided() {
-        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"));
         addProductService.execute(addProductRequest1);
 
         RemoveProductRequest removeProductRequest2 = new RemoveProductRequest(null);
@@ -54,7 +53,7 @@ public class RemoveProductAcceptanceTest {
 
     @Test
     public void shouldRemoveProduct() {
-        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"));
         addProductService.execute(addProductRequest1);
 
         RemoveProductRequest removeProductRequest2 = new RemoveProductRequest(1L);

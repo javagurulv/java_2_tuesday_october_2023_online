@@ -1,6 +1,5 @@
 package lv.javaguru.java2.product.storage.matchers;
 
-import lv.javaguru.java2.product.storage.core.domain.Category;
 import org.mockito.ArgumentMatcher;
 
 import lv.javaguru.java2.product.storage.core.domain.Product;
@@ -15,15 +14,13 @@ public class ProductMatcher implements ArgumentMatcher<Product> {
     private String productModel;
     private Integer productQuantity;
     private BigDecimal priceInStock;
-    private Category category;
 
-    public ProductMatcher(String productName, String productBrand, String productModel, Integer productQuantity, BigDecimal priceInStock, Category category) {
+    public ProductMatcher(String productName, String productBrand, String productModel, Integer productQuantity, BigDecimal priceInStock) {
         this.productName = productName;
         this.productBrand = productBrand;
         this.productModel = productModel;
         this.productQuantity = productQuantity;
         this.priceInStock = priceInStock;
-        this.category = category;
     }
 
     @Override
@@ -32,8 +29,7 @@ public class ProductMatcher implements ArgumentMatcher<Product> {
                 && product.getProductBrand().equals(productBrand)
                 && product.getProductModel().equals(productModel)
                 && Objects.equals(product.getProductQuantity(), productQuantity)
-                && Objects.equals(product.getPriceInStock(), priceInStock)
-                && product.getCategory().equals(category);
+                && Objects.equals(product.getPriceInStock(), priceInStock);
 
     }
 }

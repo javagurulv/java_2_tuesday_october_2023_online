@@ -1,28 +1,44 @@
 package lv.javaguru.java2.product.storage.core.domain;
 
 import java.math.BigDecimal;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import java.util.Objects;
 
+@Entity
+@Table(name="products")
 public class Product {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name="product_name")
     private String productName;
+    @Column(name="product_brand")
     private String productBrand;
+    @Column(name="product_model")
     private String productModel;
+    @Column(name="product_quantity")
     private Integer productQuantity;
+    @Column(name="price_in_stock")
     private BigDecimal priceInStock;
-    private Category category;
+
 
     public Product() {
     }
 
-    public Product(String productName, String productBrand, String productModel, Integer productQuantity, BigDecimal priceInStock, Category category) {
+    public Product(String productName, String productBrand, String productModel, Integer productQuantity, BigDecimal priceInStock) {
         this.productName = productName;
         this.productBrand = productBrand;
         this.productModel = productModel;
         this.productQuantity = productQuantity;
         this.priceInStock = priceInStock;
-        this.category = category;
     }
 
     public Long getId() {
@@ -72,20 +88,18 @@ public class Product {
         this.priceInStock = priceInStock;
     }
 
-    public Category getCategory() { return category; }
 
-    public void setCategory(Category category) { this.category = category; }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Product product)) return false;
-        return Objects.equals(getId(), product.getId()) && Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getProductBrand(), product.getProductBrand()) && Objects.equals(getProductModel(), product.getProductModel()) && Objects.equals(getProductQuantity(), product.getProductQuantity()) && Objects.equals(getPriceInStock(), product.getPriceInStock()) && getCategory() == product.getCategory();
+        return Objects.equals(getId(), product.getId()) && Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getProductBrand(), product.getProductBrand()) && Objects.equals(getProductModel(), product.getProductModel()) && Objects.equals(getProductQuantity(), product.getProductQuantity()) && Objects.equals(getPriceInStock(), product.getPriceInStock());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getProductName(), getProductBrand(), getProductModel(), getProductQuantity(), getPriceInStock(), getCategory());
+        return Objects.hash(getId(), getProductName(), getProductBrand(), getProductModel(), getProductQuantity(), getPriceInStock());
     }
 
     @Override
@@ -97,7 +111,6 @@ public class Product {
                 ", productModel='" + productModel + '\'' +
                 ", productQuantity=" + productQuantity +
                 ", priceInStock=" + priceInStock +
-                ", category=" + category +
                 '}';
     }
 

@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.core.services;
 
-import lv.javaguru.java2.product.storage.core.database.Database;
+import lv.javaguru.java2.product.storage.core.database.ProductRepository;
 import lv.javaguru.java2.product.storage.core.domain.Product;
 import lv.javaguru.java2.product.storage.core.requests.Ordering;
 import lv.javaguru.java2.product.storage.core.requests.Paging;
@@ -11,6 +11,7 @@ import lv.javaguru.java2.product.storage.core.services.validators.SearchProducts
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@Transactional
 public class SearchProductsService {
 
     @Value("${search.ordering.enabled}")
@@ -26,7 +28,7 @@ public class SearchProductsService {
     @Value("${search.paging.enabled}")
     private boolean pagingEnabled;
 
-    @Autowired private Database database;
+    @Autowired private ProductRepository productRepository;
     @Autowired private SearchProductsRequestValidator validator;
 
 
@@ -60,13 +62,13 @@ public class SearchProductsService {
     private List<Product> search(SearchProductsRequest request) {
         List<Product> products = new ArrayList<>();
         if (request.isProductBrandProvided() && !request.isProductModelProvided()) {
-            products = database.findByProductBrand(request.getProductBrand());
+            products = productRepository.findByProductBrand(request.getProductBrand());
         }
         if (!request.isProductBrandProvided() && request.isProductModelProvided()) {
-            products = database.findByProductModel(request.getProductModel());
+            products = productRepository.findByProductModel(request.getProductModel());
         }
         if (request.isProductBrandProvided() && request.isProductModelProvided()) {
-            products = database.findByProductBrandAndProductModel(request.getProductBrand(), request.getProductModel());
+            products = productRepository.findByProductBrandAndProductModel(request.getProductBrand(), request.getProductModel());
         }
         return products;
     }

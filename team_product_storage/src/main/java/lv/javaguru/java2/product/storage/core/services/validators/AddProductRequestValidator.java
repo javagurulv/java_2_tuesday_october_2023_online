@@ -3,7 +3,7 @@ package lv.javaguru.java2.product.storage.core.services.validators;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import lv.javaguru.java2.product.storage.core.database.Database;
+import lv.javaguru.java2.product.storage.core.database.ProductRepository;
 import lv.javaguru.java2.product.storage.core.domain.Product;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
@@ -21,7 +21,7 @@ import java.util.Optional;
 public class AddProductRequestValidator {
 
     @Autowired
-    private Database database;
+    private ProductRepository productRepository;
 
     public List<CoreError> validate(AddProductRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -67,7 +67,7 @@ public class AddProductRequestValidator {
     }
 
     private Optional<CoreError> validateDuplicate(AddProductRequest request) {
-        List<Product> products = database.findByProductBrandAndProductModel(request.getProductBrand(), request.getProductModel());
+        List<Product> products = productRepository.findByProductBrandAndProductModel(request.getProductBrand(), request.getProductModel());
         return (!products.isEmpty())
                 ? Optional.of(new CoreError("duplicate", "Duplicate product not accepted!"))
                 : Optional.empty();
