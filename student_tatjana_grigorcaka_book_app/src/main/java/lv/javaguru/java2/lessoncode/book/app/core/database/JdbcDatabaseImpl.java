@@ -15,9 +15,9 @@ class JdbcDatabaseImpl implements Database {
 	@Override
 	public void save(Book book) {
 		jdbcTemplate.update(
-				"INSERT INTO books (title, author, issue_year) "
-						+ "VALUES (?, ?, ?)",
-				book.getTitle(), book.getAuthor(), book.getIssueYear()
+				"INSERT INTO books (title, author, issue_year, genre) "
+						+ "VALUES (?, ?, ?, ?)",
+				book.getTitle(), book.getAuthor(), book.getIssueYear(), book.getGenre().toString()
 		);
 	}
 

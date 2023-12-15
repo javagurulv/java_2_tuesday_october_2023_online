@@ -34,10 +34,10 @@ public class AddBookUIAction implements UIAction {
         System.out.println("Enter book issue year: ");
         Integer issueYear = scanner.nextInt();
         System.out.println("Select book genre:");
-        List<String> genres = getGenresListService.getGenresList();
-        Genre selectedGenre = getGenreChoice.getGenreChoice(scanner, genres);
+        List<String> genreNames = getGenresListService.getGenresList();
+        String selectedGenreName = getGenreChoice.getGenreChoice(scanner, genreNames);
 
-        AddBookRequest request = new AddBookRequest(bookTitle, bookAuthor, issueYear, selectedGenre);
+        AddBookRequest request = new AddBookRequest(bookTitle, bookAuthor, issueYear, Genre.valueOf((selectedGenreName)));
         AddBookResponse response = addBookService.execute(request);
         if (response.containsErrors()) {
             for (CoreError error : response.getErrors()) {

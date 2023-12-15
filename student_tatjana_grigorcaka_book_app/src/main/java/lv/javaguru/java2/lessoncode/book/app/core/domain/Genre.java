@@ -11,6 +11,10 @@ public enum Genre {
     HUMOR,
     CLASSIC,
     FABLE,
-    PERSONAL_FINANCE
+    PERSONAL_FINANCE;
+
+    public String enumToString() {
+        return this.name();
+    }
 
     }

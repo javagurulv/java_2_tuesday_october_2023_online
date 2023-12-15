@@ -12,7 +12,7 @@ public class GetGenresListService {
 
     public List<String> getGenresList() {
         List<String> genres = Arrays.stream(Genre.values())
-                .map(Enum::name)
+                .map(Genre::enumToString)
                 .collect(Collectors.toList());
 
         for (int i = 0; i < genres.size(); i++) {
