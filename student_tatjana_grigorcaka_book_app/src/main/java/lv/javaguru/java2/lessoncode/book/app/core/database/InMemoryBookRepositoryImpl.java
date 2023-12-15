@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 //@Component
-public class InMemoryDatabaseImpl implements Database {
+public class InMemoryBookRepositoryImpl implements BookRepository {
 
     private Long nextId = 1L;
     private List<Book> books = new ArrayList<>();

@@ -5,9 +5,8 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
+import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
-import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.GetAllBooksRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.GetAllBooksResponse;
 import org.junit.Test;
@@ -21,15 +20,15 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class GetAllBooksServiceTest {
 
     @Mock
-    private Database database;
+    private BookRepository bookRepository;
     @InjectMocks
     private GetAllBooksService service;
 
     @Test
     public void shouldGetBooksFromDb() {
         List<Book> books = new ArrayList<>();
-        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery", 1943, Genre.FABLE));
-        Mockito.when(database.getAllBooks()).thenReturn(books);
+        books.add(new Book("The Little Prince", "Antoine de Saint-Exupery", 1943));
+        Mockito.when(bookRepository.getAllBooks()).thenReturn(books);
 
         GetAllBooksRequest request = new GetAllBooksRequest();
         GetAllBooksResponse response = service.execute(request);
@@ -38,7 +37,6 @@ public class GetAllBooksServiceTest {
         assertEquals(response.getBooks().get(0).getTitle(), "The Little Prince");
         assertEquals(response.getBooks().get(0).getAuthor(), "Antoine de Saint-Exupery");
         assertEquals(response.getBooks().get(0).getIssueYear(), Integer.valueOf(1943));
-        assertEquals(response.getBooks().get(0).getGenre(), Genre.FABLE);
     }
 
 }

@@ -7,17 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-@Component
-class JdbcDatabaseImpl implements Database {
+//@Component
+class JdbcBookRepositoryImpl implements BookRepository {
 
 	@Autowired private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public void save(Book book) {
 		jdbcTemplate.update(
-				"INSERT INTO books (title, author, issue_year, genre) "
-						+ "VALUES (?, ?, ?, ?)",
-				book.getTitle(), book.getAuthor(), book.getIssueYear(), book.getGenre().toString()
+				"INSERT INTO books (title, author, issue_year) "
+						+ "VALUES (?, ?, ?)",
+				book.getTitle(), book.getAuthor(), book.getIssueYear()
 		);
 	}
 

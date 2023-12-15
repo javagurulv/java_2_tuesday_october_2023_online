@@ -1,15 +1,12 @@
 package lv.javaguru.java2.lessoncode.book.app.acceptancetests;
 
 import lv.javaguru.java2.lessoncode.book.app.DatabaseCleaner;
-import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import lv.javaguru.java2.lessoncode.book.app.config.BookListConfiguration;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.RemoveBookRequest;
@@ -40,7 +37,7 @@ public class RemoveBookAcceptanceTest {
 
     @Test
     public void shouldReturnErrorResponseWhenBookIdNotProvided() {
-        AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery",  1943, Genre.FABLE);
+        AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery",  1943);
         addBookService.execute(addBookRequest1);
 
         RemoveBookRequest removeBookRequest2 = new RemoveBookRequest(null);
@@ -54,7 +51,7 @@ public class RemoveBookAcceptanceTest {
 
     @Test
     public void shouldRemoveBook() {
-        AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery",  1943, Genre.FABLE);
+        AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery",  1943);
         addBookService.execute(addBookRequest1);
 
         RemoveBookRequest removeBookRequest2 = new RemoveBookRequest(1L);
