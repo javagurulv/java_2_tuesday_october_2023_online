@@ -68,8 +68,7 @@ public class UserSizes {
 
     @Override
     public String toString() {
-        return "UserSizes{" + getId() + '\n' +
-                "ширина таза =" + pelvisWidth + '\n' +
+        return  "ширина таза =" + pelvisWidth + '\n' +
                 " длинна бедра =" + thighLength + '\n' +
                 " высота спины =" + backHeight + '\n' +
                 " длинна голени =" + shinLength + '\n';

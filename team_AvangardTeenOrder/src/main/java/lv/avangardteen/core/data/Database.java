@@ -23,8 +23,8 @@ public interface Database {
     void updateWheelchairComponents(Long id, WheelchairComponent wheelchairComponent);
 
     boolean deleteOrder(Long id);
-    Client getClient(Long id);
 
+    Client getClient(Long id);
     UserSizes getUserSize(Long id);
     Wheelchair getWheelchair(Long id);
     WheelchairComponent getWheelchairComponents(Long id);

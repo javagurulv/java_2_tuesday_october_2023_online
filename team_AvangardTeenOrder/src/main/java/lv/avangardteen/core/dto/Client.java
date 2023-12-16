@@ -44,8 +44,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" + getId() + '\n' +
-                " Имя, Фамилия: " + nameSurname + '\n' +
+        return  " Имя, Фамилия: " + nameSurname + '\n' +
                 " номер телефона: " + phoneNumber + '\n' +
                 " адрес: " + userAddress +
                 '}';

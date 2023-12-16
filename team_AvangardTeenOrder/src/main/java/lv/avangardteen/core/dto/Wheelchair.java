@@ -75,7 +75,7 @@ public class Wheelchair {
 
     @Override
     public String toString() {
-        return
+        return  "Габариты инвалидного кресла: " + '\n' +
                 " ширина сиденья = " + getSeatWidth() + '\n' +
                         " глубина сиденья = " + getSeatDepth() + '\n' +
                         " длина подставки для ног = " + getFootrestLength() + '\n' +
