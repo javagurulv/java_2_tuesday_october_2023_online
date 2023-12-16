@@ -1,4 +1,4 @@
-/* package classWork.acceptance_test;
+ package classWork.acceptance_test;
 
 import classWork.BookListConfiguration;
 import classWork.core.CoreError;
@@ -9,6 +9,7 @@ import classWork.core.response.RemoveBookResponce;
 import classWork.core.service.AddBookService;
 import classWork.core.service.GetAllBookService;
 import classWork.core.service.RemoveBookService;
+import classWork.vihicleDatabase.DatabaseCleaner;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -24,6 +25,7 @@ public class test2 {
     @Before
     public void setup () {
         applicationContext = new AnnotationConfigApplicationContext(BookListConfiguration.class);
+        getDatabaseCleaner().clean();
     }
     @Test
     public void testDeleteBook () {
@@ -46,5 +48,7 @@ public class test2 {
     public GetAllBookService getAllBookService () {
         return  applicationContext.getBean(GetAllBookService.class);
     }
+    private DatabaseCleaner getDatabaseCleaner() {
+        return applicationContext.getBean(DatabaseCleaner.class);
+    }
 }
-*/

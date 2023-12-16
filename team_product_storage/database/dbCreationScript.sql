@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `product_model` VARCHAR(100) NOT NULL,
   `product_quantity` INT NOT NULL,
   `price_in_stock` DECIMAL(10,2) NOT NULL,
-  `category` VARCHAR(50) NOT NULL,
+  `category` VARCHAR(100),
   PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB

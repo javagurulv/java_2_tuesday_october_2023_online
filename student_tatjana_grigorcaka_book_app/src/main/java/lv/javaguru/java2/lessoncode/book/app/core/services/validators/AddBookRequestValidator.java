@@ -1,11 +1,8 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
-import java.util.regex.Pattern;
-import java.util.regex.MatchResult;
-
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
+import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
@@ -15,14 +12,13 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Pattern;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
 public class AddBookRequestValidator {
 
-    @Autowired private Database database;
+    @Autowired private BookRepository bookRepository;
 
 
     public List<CoreError> validate(AddBookRequest request) {
@@ -36,14 +32,14 @@ public class AddBookRequestValidator {
 
 
     private Optional<CoreError> validateTitle(AddBookRequest request) {
-        return (request.getBookTitle() == null || request.getBookTitle().isEmpty())
-                ? Optional.of(new CoreError("bookTitle", "Must not be empty!"))
+        return (request.getTitle() == null || request.getTitle().isEmpty())
+                ? Optional.of(new CoreError("title", "Must not be empty!"))
                 : Optional.empty();
     }
 
     private Optional<CoreError> validateAuthor(AddBookRequest request) {
-        return (request.getBookAuthor() == null || request.getBookAuthor().isEmpty())
-                ? Optional.of(new CoreError("bookAuthor", "Must not be empty!"))
+        return (request.getAuthor() == null || request.getAuthor().isEmpty())
+                ? Optional.of(new CoreError("author", "Must not be empty!"))
                 : Optional.empty();
     }
 
@@ -55,7 +51,7 @@ public class AddBookRequestValidator {
 
 
     private Optional<CoreError> validateDuplicate(AddBookRequest request) {
-        List<Book> books = database.findByTitleAndAuthor(request.getBookTitle(), request.getBookAuthor());
+        List<Book> books = bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor());
         return (!books.isEmpty())
                 ? Optional.of(new CoreError("duplicate", "Duplicate book not accepted!"))
                 : Optional.empty();

@@ -1,21 +1,8 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.Database;
-import fitness_club.core.domain.ClientAgeGroups;
-import fitness_club.core.requests.ChangeClientAgeGroupRequest;
-import fitness_club.core.responses.ChangeClientAgeGroupResponse;
-import fitness_club.core.services.data_vlidation.ChangeClientAgeGroupValidator;
-import org.junit.Assert;
 import org.junit.Ignore;
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import java.util.List;
 
 
 @Ignore

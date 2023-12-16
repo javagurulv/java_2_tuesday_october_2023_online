@@ -8,8 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
-import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
+import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.AddBookResponse;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
@@ -25,14 +24,14 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class AddBookServiceTest  {
 
-    @Mock private Database database;
+    @Mock private BookRepository bookRepository;
     @Mock private AddBookRequestValidator validator;
     @InjectMocks
     private AddBookService service;
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidationFailsWhenBookTitleIsEmpty() {
-        AddBookRequest notValidRequest = new AddBookRequest(null, "Antoine de Saint-Exupery", 1943, Genre.FABLE);
+        AddBookRequest notValidRequest = new AddBookRequest(null, "Antoine de Saint-Exupery", 1943);
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("bookTitle", "Must not be empty!")));
         AddBookResponse response = service.execute(notValidRequest);
         assertTrue(response.containsErrors());
@@ -40,7 +39,7 @@ public class AddBookServiceTest  {
 
     @Test
     public void shouldReturnResponseWithErrorsReceivedFromValidatorWhenBookTitleIsEmpty() {
-        AddBookRequest notValidRequest = new AddBookRequest( null, "Antoine de Saint-Exupery", 1943, Genre.FABLE);
+        AddBookRequest notValidRequest = new AddBookRequest( null, "Antoine de Saint-Exupery", 1943);
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("bookTitle", "Must not be empty!")));
         AddBookResponse response = service.execute(notValidRequest);
         assertEquals(response.getErrors().size(), 1);
@@ -50,15 +49,15 @@ public class AddBookServiceTest  {
 
     @Test
     public void shouldNotInvokeDatabaseWhenRequestValidationFailsWhenBookTitleIsEmpty() {
-        AddBookRequest notValidRequest = new AddBookRequest(null, "Antoine de Saint-Exupery", 1943, Genre.FABLE);
+        AddBookRequest notValidRequest = new AddBookRequest(null, "Antoine de Saint-Exupery", 1943);
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("bookTitle", "Must not be empty!")));
         service.execute(notValidRequest);
-        verifyNoInteractions(database);
+        verifyNoInteractions(bookRepository);
     }
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidationFailsWhenBookAuthorIsEmpty() {
-        AddBookRequest notValidRequest = new AddBookRequest("The Little Prince", null, 1943, Genre.FABLE);
+        AddBookRequest notValidRequest = new AddBookRequest("The Little Prince", null, 1943);
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("bookAuthor", "Must not be empty!")));
         AddBookResponse response = service.execute(notValidRequest);
         assertTrue(response.containsErrors());
@@ -66,7 +65,7 @@ public class AddBookServiceTest  {
 
     @Test
     public void shouldReturnResponseWithErrorsReceivedFromValidatorWhenBookAuthorIsEmpty() {
-        AddBookRequest notValidRequest = new AddBookRequest("The Little Price", null, 1943, Genre.FABLE);
+        AddBookRequest notValidRequest = new AddBookRequest("The Little Price", null, 1943);
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("bookAuthor", "Must not be empty!")));
         AddBookResponse response = service.execute(notValidRequest);
         assertEquals(response.getErrors().size(), 1);
@@ -76,15 +75,15 @@ public class AddBookServiceTest  {
 
     @Test
     public void shouldNotInvokeDatabaseWhenRequestValidationFailsWhenBookAuthorIsEmpty() {
-        AddBookRequest notValidRequest = new AddBookRequest("The Little Price", null, 1943, Genre.FABLE);
+        AddBookRequest notValidRequest = new AddBookRequest("The Little Price", null, 1943);
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("bookAuthor", "Must not be empty!")));
         service.execute(notValidRequest);
-        verifyNoInteractions(database);
+        verifyNoInteractions(bookRepository);
     }
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidationFailsWhenIssueYearIsNull() {
-        AddBookRequest notValidRequest = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 0, Genre.FABLE);
+        AddBookRequest notValidRequest = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 0);
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("issueYear", "Must be greater than 0!")));
         AddBookResponse response = service.execute(notValidRequest);
         assertTrue(response.containsErrors());
@@ -92,7 +91,7 @@ public class AddBookServiceTest  {
 
     @Test
     public void shouldReturnResponseWithErrorsReceivedFromValidatorWhenIssueYearIsNull() {
-        AddBookRequest notValidRequest = new AddBookRequest("The Little Price", "Antoine de Saint-Exupery", 0, Genre.FABLE);
+        AddBookRequest notValidRequest = new AddBookRequest("The Little Price", "Antoine de Saint-Exupery", 0);
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("issueYear", "Must be greater than 0!")));
         AddBookResponse response = service.execute(notValidRequest);
         assertEquals(response.getErrors().size(), 1);
@@ -102,24 +101,24 @@ public class AddBookServiceTest  {
 
     @Test
     public void shouldNotInvokeDatabaseWhenRequestValidationFailsWhenIssueYearIsNull() {
-        AddBookRequest notValidRequest = new AddBookRequest("The Little Price", "Antoine de Saint-Exupery", 0, Genre.FABLE);
+        AddBookRequest notValidRequest = new AddBookRequest("The Little Price", "Antoine de Saint-Exupery", 0);
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("issueYear", "Must be greater than 0!")));
         service.execute(notValidRequest);
-        verifyNoInteractions(database);
+        verifyNoInteractions(bookRepository);
     }
 
 
     @Test
     public void shouldAddBookToDatabaseWhenRequestIsValid() {
-        AddBookRequest validRequest = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943, Genre.FABLE);
+        AddBookRequest validRequest = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943);
         when(validator.validate(validRequest)).thenReturn(List.of());
         service.execute(validRequest);
-        verify(database).save(argThat(new BookMatcher("The Little Prince", "Antoine de Saint-Exupery", 1943, Genre.FABLE)));
+        verify(bookRepository).save(argThat(new BookMatcher("The Little Prince", "Antoine de Saint-Exupery", 1943)));
     }
 
     @Test
     public void shouldReturnResponseWithoutErrorsWhenRequestIsValid() {
-        AddBookRequest validRequest = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943, Genre.FABLE);
+        AddBookRequest validRequest = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943);
         when(validator.validate(validRequest)).thenReturn(List.of());
         AddBookResponse response = service.execute(validRequest);
         assertFalse(response.containsErrors());
@@ -127,13 +126,12 @@ public class AddBookServiceTest  {
 
     @Test
     public void shouldReturnResponseWithBookWhenRequestIsValid() {
-        AddBookRequest validRequest = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943, Genre.FABLE);
+        AddBookRequest validRequest = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943);
         when(validator.validate(validRequest)).thenReturn(List.of());
         AddBookResponse response = service.execute(validRequest);
         assertNotNull(response.getNewBook());
-        assertEquals(response.getNewBook().getTitle(), validRequest.getBookTitle());
-        assertEquals(response.getNewBook().getAuthor(), validRequest.getBookAuthor());
+        assertEquals(response.getNewBook().getTitle(), validRequest.getTitle());
+        assertEquals(response.getNewBook().getAuthor(), validRequest.getAuthor());
         assertEquals(response.getNewBook().getIssueYear(), validRequest.getIssueYear());
-        assertEquals(response.getNewBook().getGenre(), validRequest.getGenre());
     }
 }

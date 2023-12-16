@@ -1,7 +1,6 @@
 package lv.javaguru.java2.product.storage.core.services;
 
-import lv.javaguru.java2.product.storage.core.database.Database;
-import lv.javaguru.java2.product.storage.core.domain.Category;
+import lv.javaguru.java2.product.storage.core.database.ProductRepository;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.AddProductResponse;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
@@ -25,13 +24,13 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class AddProductServiceTest {
 
-    @Mock private Database database;
+    @Mock private ProductRepository productRepository;
     @Mock private AddProductRequestValidator validator;
     @InjectMocks private AddProductService service;
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidationFailsWhenProductNameIsEmpty() {
-        AddProductRequest notValidRequest = new AddProductRequest(null, "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest(null, "Apple", "iPhone 15", 1, new BigDecimal("1000.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("productName", "Must not be empty!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertTrue(response.hasErrors());
@@ -39,7 +38,7 @@ public class AddProductServiceTest {
 
     @Test
     public void shouldReturnResponseWithErrorsReceivedFromValidatorWhenProductNameIsEmpty() {
-        AddProductRequest notValidRequest = new AddProductRequest(null, "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest(null, "Apple", "iPhone 15", 1, new BigDecimal("1000.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("productName", "Must not be empty!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertEquals(response.getErrors().size(), 1);
@@ -49,15 +48,15 @@ public class AddProductServiceTest {
 
     @Test
     public void shouldNotInvokeDatabaseWhenRequestValidationFailsWhenProductNameIsEmpty() {
-        AddProductRequest notValidRequest = new AddProductRequest(null, "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest(null, "Apple", "iPhone 15", 1, new BigDecimal("1000.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("productName", "Must not be empty!")));
         service.execute(notValidRequest);
-        verifyNoInteractions(database);
+        verifyNoInteractions(productRepository);
     }
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidationFailsWhenProductBrandIsEmpty() {
-        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", null, "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", null, "iPhone 15", 1, new BigDecimal("1000.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("productBrand", "Must not be empty!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertTrue(response.hasErrors());
@@ -65,7 +64,7 @@ public class AddProductServiceTest {
 
     @Test
     public void shouldReturnResponseWithErrorsReceivedFromValidatorWhenProductBrandIsEmpty() {
-        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", null, "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", null, "iPhone 15", 1, new BigDecimal("1000.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("productBrand", "Must not be empty!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertEquals(response.getErrors().size(), 1);
@@ -75,15 +74,15 @@ public class AddProductServiceTest {
 
     @Test
     public void shouldNotInvokeDatabaseWhenRequestValidationFailsWhenProductBrandIsEmpty() {
-        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", null, "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", null, "iPhone 15", 1, new BigDecimal("1000.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("productBrand", "Must not be empty!")));
         service.execute(notValidRequest);
-        verifyNoInteractions(database);
+        verifyNoInteractions(productRepository);
     }
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidationFailsWhenProductModelIsEmpty() {
-        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", null, 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", null, 1, new BigDecimal("1000.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("productModel", "Must not be empty!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertTrue(response.hasErrors());
@@ -91,7 +90,7 @@ public class AddProductServiceTest {
 
     @Test
     public void shouldReturnResponseWithErrorsReceivedFromValidatorWhenProductModelIsEmpty() {
-        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", null, 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", null, 1, new BigDecimal("1000.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("productModel", "Must not be empty!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertEquals(response.getErrors().size(), 1);
@@ -101,15 +100,15 @@ public class AddProductServiceTest {
 
     @Test
     public void shouldNotInvokeDatabaseWhenRequestValidationFailsWhenProductModelIsEmpty() {
-        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", null, 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", null, 1, new BigDecimal("1000.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("productModel", "Must not be empty!")));
         service.execute(notValidRequest);
-        verifyNoInteractions(database);
+        verifyNoInteractions(productRepository);
     }
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidationFailsWhenProductQuantityIsNull() {
-        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 0, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 0, new BigDecimal("1000.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("productQuantity", "Must be greater than 0!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertTrue(response.hasErrors());
@@ -117,7 +116,7 @@ public class AddProductServiceTest {
 
     @Test
     public void shouldReturnResponseWithErrorsReceivedFromValidatorWhenProductQuantityIsNull() {
-        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 0, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 0, new BigDecimal("1000.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("productQuantity", "Must be greater than 0!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertEquals(response.getErrors().size(), 1);
@@ -127,15 +126,15 @@ public class AddProductServiceTest {
 
     @Test
     public void shouldNotInvokeDatabaseWhenRequestValidationFailsWhenProductQuantityIsNull() {
-        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 0, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 0, new BigDecimal("1000.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("productQuantity", "Must be greater than 0!")));
         service.execute(notValidRequest);
-        verifyNoInteractions(database);
+        verifyNoInteractions(productRepository);
     }
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidationFailsWhenPriceInStockIsNull() {
-        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("priceInStock", "Must be greater than 0.00!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertTrue(response.hasErrors());
@@ -143,7 +142,7 @@ public class AddProductServiceTest {
 
     @Test
     public void shouldReturnResponseWithErrorsReceivedFromValidatorWhenPriceInStockIsNull() {
-        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("priceInStock", "Must be greater than 0.00!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertEquals(response.getErrors().size(), 1);
@@ -153,23 +152,23 @@ public class AddProductServiceTest {
 
     @Test
     public void shouldNotInvokeDatabaseWhenRequestValidationFailsWhenPriceInStockIsNull() {
-        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"), Category.PHONES);
+        AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"));
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("priceInStock", "Must be greater than 0.00!")));
         service.execute(notValidRequest);
-        verifyNoInteractions(database);
+        verifyNoInteractions(productRepository);
     }
 
     @Test
     public void shouldAddProductToDatabaseWhenRequestIsValid() {
-        AddProductRequest validRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15",1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest validRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15",1, new BigDecimal("1000.00"));
         when(validator.validate(validRequest)).thenReturn(List.of());
         service.execute(validRequest);
-        verify(database).save(argThat(new ProductMatcher("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES)));
+        verify(productRepository).save(argThat(new ProductMatcher("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"))));
     }
 
     @Test
     public void shouldReturnResponseWithoutErrorsWhenRequestIsValid() {
-        AddProductRequest validRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest validRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"));
         when(validator.validate(validRequest)).thenReturn(List.of());
         AddProductResponse response = service.execute(validRequest);
         assertFalse(response.hasErrors());
@@ -177,7 +176,7 @@ public class AddProductServiceTest {
 
     @Test
     public void shouldReturnResponseWithProductWhenRequestIsValid() {
-        AddProductRequest validRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest validRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"));
         when(validator.validate(validRequest)).thenReturn(List.of());
         AddProductResponse response = service.execute(validRequest);
         assertNotNull(response.getNewProduct());
@@ -186,7 +185,7 @@ public class AddProductServiceTest {
         assertEquals(response.getNewProduct().getProductModel(), validRequest.getProductModel());
         assertEquals(response.getNewProduct().getProductQuantity(), validRequest.getProductQuantity());
         assertEquals(response.getNewProduct().getPriceInStock(), validRequest.getPriceInStock());
-        assertEquals(response.getNewProduct().getCategory(), validRequest.getCategory());
+
     }
 
 
