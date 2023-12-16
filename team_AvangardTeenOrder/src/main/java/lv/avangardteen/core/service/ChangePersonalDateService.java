@@ -29,14 +29,9 @@ public class ChangePersonalDateService {
     }
 
     private ChangePersonalDateResponse getResponse(ChangePersonalDateRequest request) {
-       // Client client = database.getClient(request.getId());
+
         Client client = request.getUserRegistration();
         ChangePersonalDateResponse response = new ChangePersonalDateResponse(client);
-
-        /*response.getClient().setNameSurname(client.getNameSurname());
-        response.getClient().setPhoneNumber(client.getPhoneNumber());
-        response.getClient().setUserAddress(client.getUserAddress());*/
-
         database.updateUser(request.getId(), request.getUserRegistration());
         return response;
     }

@@ -22,8 +22,18 @@ public class AcceptanceTest3 {
         getUserSizeRegistrationService().execute(sizeRegistrationRequest);
         ComponentRegistrationRequest componentRegistrationRequest = new ComponentRegistrationRequest(11, 21, 31, 41);
         getComponentRegistrationService().execute(componentRegistrationRequest);
+
         ShowOrderRequest showOrderRequest = new ShowOrderRequest(1l);
         ShowOrderResponse response = getShowOrderService().execute(showOrderRequest);
+
+        ChangePersonalDateRequest request4 = new ChangePersonalDateRequest(1l, "AlexNew",
+                654321l, "NewRiga");
+        getChangePersonalDateService().execute(request4);
+
+        ShowOrderRequest showOrderRequest1 = new ShowOrderRequest(1l);
+        ShowOrderResponse response5 = getShowOrderService().execute(showOrderRequest1);
+
+
         UserRegistrationRequest request1 = new UserRegistrationRequest("Alex", 123456l, "Riga");
         getUserRegistrationService().execute(request1);
         UserSizeRegistrationRequest sizeRegistrationRequest1 = new UserSizeRegistrationRequest(22, 33, 33, 33);
@@ -31,16 +41,10 @@ public class AcceptanceTest3 {
         ComponentRegistrationRequest componentRegistrationRequest1 = new ComponentRegistrationRequest(11, 21, 31, 41);
         getComponentRegistrationService().execute(componentRegistrationRequest1);
 
-        ChangePersonalDateRequest request4 = new ChangePersonalDateRequest(1L, "AlexNew",
-                654321l, "NewRiga");
-        getChangePersonalDateService().execute(request4);
-
-        ShowOrderRequest showOrderRequest1 = new ShowOrderRequest(1l);
-        ShowOrderResponse response5 = getShowOrderService().execute(showOrderRequest1);
-
-        ChangePersonalSizeRequest request5 = new ChangePersonalSizeRequest(2L,55,
-                12,13,14);
+        ChangePersonalSizeRequest request5 = new ChangePersonalSizeRequest(2L, 55,
+                12, 13, 14);
         getChangePersonalSizeService().execute(request5);
+
         ShowOrderRequest showOrderRequest2 = new ShowOrderRequest(2l);
         ShowOrderResponse response7 = getShowOrderService().execute(showOrderRequest2);
 
@@ -55,7 +59,7 @@ public class AcceptanceTest3 {
         assertEquals(response.getUserSizes().getThighLength(), 33);
         assertEquals(response.getUserSizes().getPelvisWidth(), 22);
 
-        assertEquals(response5.getClient().getId(), 1);
+        assertEquals(response5.getClient().getId(), 1l);
         assertEquals(response5.getClient().getNameSurname(), "AlexNew");
         assertEquals(response5.getClient().getPhoneNumber(), 654321l);
         assertEquals(response5.getClient().getUserAddress(), "NewRiga");
@@ -66,7 +70,7 @@ public class AcceptanceTest3 {
 
         assertEquals(response7.getClient().getId(), 2l);
         assertEquals(response7.getClient().getNameSurname(), "Alex");
-        assertEquals(response7.getClient().getPhoneNumber(), 123456l);
+        assertEquals(response7.getClient().getPhoneNumber(), 123456);
         assertEquals(response7.getClient().getUserAddress(), "Riga");
         assertEquals(response7.getUserSizes().getShinLength(), 14);
         assertEquals(response7.getUserSizes().getBackHeight(), 13);
@@ -87,14 +91,15 @@ public class AcceptanceTest3 {
         return appContext.getBean(ComponentRegistrationService.class);
     }
 
-    private ChangePersonalSizeService getChangePersonalSizeService () {
-        return  appContext.getBean(ChangePersonalSizeService.class);
+    private ChangePersonalSizeService getChangePersonalSizeService() {
+        return appContext.getBean(ChangePersonalSizeService.class);
     }
 
-    private ChangePersonalDateService getChangePersonalDateService () {
-        return  appContext.getBean(ChangePersonalDateService.class);
+    private ChangePersonalDateService getChangePersonalDateService() {
+        return appContext.getBean(ChangePersonalDateService.class);
     }
-    private ShowOrderService getShowOrderService () {
+
+    private ShowOrderService getShowOrderService() {
         return appContext.getBean(ShowOrderService.class);
     }
 
