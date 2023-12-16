@@ -23,13 +23,8 @@ public class ShowOrderUIAction implements UIAction {
             ShowOrderRequest orderRequest = new ShowOrderRequest(id);
 
             ShowOrderResponse response = service.execute(orderRequest);
+            System.out.println(response.toString());
 
-            if (response.hasErrors()) {
-                response.getErrors().forEach(coreError ->
-                        System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
-            } else {
-                System.out.println(response.getClient().toString());
-            }
         } catch (InputMismatchException e) {
             System.out.println("Must input only digits!");
         }

@@ -1,6 +1,6 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.dto.Client;
+import lv.avangardteen.core.dto.Order;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
@@ -28,12 +28,12 @@ public class ChangeComponentService {
     }
 
     private ChangeComponentResponse getResponse(ChangeComponentRequest request) {
-        Client client = database.getClient(request.getId());
+        WheelchairComponent wheelchairComponent = database.getWheelchairComponents(request.getId());
+        ChangeComponentResponse response = new ChangeComponentResponse(wheelchairComponent);
+        response.setWheelchairComponent(request.setWheelchairComponent());
+        database.updateWheelchairComponents(request.getId(), request.getWheelchairComponent());
 
-        client.setWheelchairComponents(request.getWheelchairComponent());
 
-        client.setPriseOrder(client.getWheelchairComponents().countPriceOrder());
-
-        return new ChangeComponentResponse(client);
+        return response;
     }
 }

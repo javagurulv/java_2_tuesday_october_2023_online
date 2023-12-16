@@ -18,7 +18,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ChangePersonalDateServiceMockitaTest {
+class ChangePersonalDateServiceMockitoTest {
     @Mock
     private Database database;
     @Mock
@@ -35,7 +35,7 @@ class ChangePersonalDateServiceMockitaTest {
 
     @Test
     public void ChangePersonalDateWithError() {
-        ChangePersonalDateRequest notValidationRequest = new ChangePersonalDateRequest(1L, "Name", 123245, "Riga");
+        ChangePersonalDateRequest notValidationRequest = new ChangePersonalDateRequest(1L, "Name", 123245l, "Riga");
         Mockito.when(validator.validate(notValidationRequest)).thenReturn(
                 List.of(new CoreError("Change Persona Date", "Incorrect personal date!")));
         ChangePersonalDateResponse response = service.execute(notValidationRequest);
@@ -44,11 +44,12 @@ class ChangePersonalDateServiceMockitaTest {
 
     @Test
     public void ChangePersonalDateWithoutError() {
-        ChangePersonalDateRequest request = new ChangePersonalDateRequest(1L, "Name", 123245, "Riga");
+        ChangePersonalDateRequest request = new ChangePersonalDateRequest(1L, "Name", 123245l, "Riga");
         Mockito.when(validator.validate(request)).thenReturn(List.of());
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
         ChangePersonalDateResponse response = service.execute(request);
         assertFalse(response.hasErrors());
+        Mockito.verify(database).updateUser(request.getId(), request.getUserRegistration());
 
     }
 

@@ -1,13 +1,25 @@
 package lv.avangardteen.core.dto;
 
+import java.util.Objects;
+
 public class UserSizes {
-    public Integer pelvisWidth; //ширина таза
-    public Integer thighLength; //длина бедра
-    public Integer backHeight; //высота спины
-    public Integer shinLength; //длина голени
+    private Long id;
+    private Integer pelvisWidth; //ширина таза
+    private Integer thighLength; //длина бедра
+    private Integer backHeight; //высота спины
+    private Integer shinLength; //длина голени
 
 
-    //ширина сиденья
+    public UserSizes() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Integer getPelvisWidth() {
         return pelvisWidth;
@@ -42,10 +54,24 @@ public class UserSizes {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserSizes userSizes = (UserSizes) o;
+        return Objects.equals(id, userSizes.id) && Objects.equals(pelvisWidth, userSizes.pelvisWidth) && Objects.equals(thighLength, userSizes.thighLength) && Objects.equals(backHeight, userSizes.backHeight) && Objects.equals(shinLength, userSizes.shinLength);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pelvisWidth, thighLength, backHeight, shinLength);
+    }
+
+    @Override
     public String toString() {
-        return  "ширина таза =" + pelvisWidth + '\n' +
+        return "UserSizes{" + getId() + '\n' +
+                "ширина таза =" + pelvisWidth + '\n' +
                 " длинна бедра =" + thighLength + '\n' +
-                " высота спины =" + backHeight +'\n'+
+                " высота спины =" + backHeight + '\n' +
                 " длинна голени =" + shinLength + '\n';
 
     }

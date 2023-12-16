@@ -1,14 +1,16 @@
 package lv.avangardteen.acceptancetests;
 
+
 import lv.avangardteen.config.OrderListConfiguration;
-import lv.avangardteen.core.request.ClientRequest;
+import lv.avangardteen.core.request.ComponentRegistrationRequest;
 import lv.avangardteen.core.request.ShowOrderRequest;
-import lv.avangardteen.core.responce.ClientResponse;
-import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.core.responce.ShowOrderResponse;
-import lv.avangardteen.core.service.ClientService;
+import lv.avangardteen.core.request.UserRegistrationRequest;
+import lv.avangardteen.core.request.UserSizeRegistrationRequest;
+import lv.avangardteen.core.responce.*;
+import lv.avangardteen.core.service.ComponentRegistrationService;
 import lv.avangardteen.core.service.ShowOrderService;
-import lv.avangardteen.dependency_injection.DIApplicationContextBuilder;
+import lv.avangardteen.core.service.UserRegistrationService;
+import lv.avangardteen.core.service.UserSizeRegistrationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -20,50 +22,50 @@ public class AcceptanceTest7 {
 
     @Test
     public void shouldReturnErrorsFromOneOrderAndReturnDataFromSecondOrder() {
-        ClientRequest request = new ClientRequest("", null, "", 0,
-                0, 0, 0, 0, 0,
-                 0, 0);
-        getClientService().execute(request);
 
-        ClientRequest request2 = new ClientRequest("Olga", 54321, "Tallin",
-                11,21, 31, 41, 17,21,
-                31, 41);
-        getClientService().execute(request2);
+        UserRegistrationRequest request = new UserRegistrationRequest("", null, "");
+        UserRegistrationResponse response = getUserRegistrationService().execute(request);
+        UserSizeRegistrationRequest sizeRegistrationRequest = new UserSizeRegistrationRequest(0, null, 0, 0);
+        UserSizeRegistrationResponse response1 = getUserSizeRegistrationService().execute(sizeRegistrationRequest);
+        ComponentRegistrationRequest componentRegistrationRequest = new ComponentRegistrationRequest(3, 2, 1, 5);
+        ComponentRegistrationResponse response2 = getComponentRegistrationService().execute(componentRegistrationRequest);
 
-        ClientResponse response = getClientService().execute(request);
 
-        ShowOrderResponse response2 = getShowOrderService().execute(new ShowOrderRequest(1L));
-
-        assertEquals(response.getErrors().size(), 11);
+        assertEquals(response.getErrors().size(), 3);
         assertEquals(response.getErrors().get(0), (new CoreError("surname", "Must not be empty!")));
         assertEquals(response.getErrors().get(1), (new CoreError("phone", "Must not be empty!")));
         assertEquals(response.getErrors().get(2), (new CoreError("address", "Must not be empty!")));
-        assertEquals(response.getErrors().get(3), (new CoreError("pelvisWidth", "Must not be empty!")));
-        assertEquals(response.getErrors().get(4), (new CoreError("thighLength", "Must not be empty!")));
-        assertEquals(response.getErrors().get(5), (new CoreError("backHeight", "Must not be empty!")));
-        assertEquals(response.getErrors().get(6), (new CoreError("shinLength", "Must not be empty!")));
-        assertEquals(response.getErrors().get(7), (new CoreError("indexFrontWheel", "This index is absent!")));
-        assertEquals(response.getErrors().get(8), (new CoreError("indexBackWheel", "This index is absent!")));
-        assertEquals(response.getErrors().get(9), (new CoreError("indexBrake", "This index is absent!")));
-        assertEquals(response.getErrors().get(10), (new CoreError("indexArmrest", "This index is absent!")));
 
-        assertEquals(response2.getClient().getId(), 1);
-        assertEquals(response2.getClient().getNameSurname(), "Olga");
-        assertEquals(response2.getClient().getPhoneNumber(), 54321);
-        assertEquals(response2.getClient().getUserAddress(), "Tallin");
-        assertEquals(response2.getClient().getUserSizes().getShinLength(), 11);
-        assertEquals(response2.getClient().getUserSizes().getBackHeight(), 21);
-        assertEquals(response2.getClient().getUserSizes().getThighLength(), 31);
-        assertEquals(response2.getClient().getUserSizes().getPelvisWidth(), 41);
+        assertEquals(response1.getErrors().size(), 4);
+        assertEquals(response1.getErrors().get(0), (new CoreError("pelvisWidth", "Must not be empty!")));
+        assertEquals(response1.getErrors().get(1), (new CoreError("thighLength", "Must not be empty!")));
+        assertEquals(response1.getErrors().get(2), (new CoreError("backHeight", "Must not be empty!")));
+        assertEquals(response1.getErrors().get(3), (new CoreError("shinLength", "Must not be empty!")));
+
+        assertEquals(response2.getErrors().size(), 4);
+        assertEquals(response2.getErrors().get(0), (new CoreError("indexFrontWheel", "This index is absent!")));
+        assertEquals(response2.getErrors().get(1), (new CoreError("indexBackWheel", "This index is absent!")));
+        assertEquals(response2.getErrors().get(2), (new CoreError("indexBrake", "This index is absent!")));
+        assertEquals(response2.getErrors().get(3), (new CoreError("indexArmrest", "This index is absent!")));
+
+
+    }
+    private UserRegistrationService getUserRegistrationService() {
+        return appContext.getBean(UserRegistrationService.class);
+    }
+
+    private UserSizeRegistrationService getUserSizeRegistrationService() {
+        return appContext.getBean(UserSizeRegistrationService.class);
 
     }
 
-    private ClientService getClientService () {
-        return appContext.getBean(ClientService.class);
+    private ComponentRegistrationService getComponentRegistrationService() {
+        return appContext.getBean(ComponentRegistrationService.class);
     }
 
-    private ShowOrderService getShowOrderService () {
+    private ShowOrderService getShowOrderService() {
         return appContext.getBean(ShowOrderService.class);
     }
 
 }
+

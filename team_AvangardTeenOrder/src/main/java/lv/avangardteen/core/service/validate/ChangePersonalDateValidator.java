@@ -29,11 +29,8 @@ public class ChangePersonalDateValidator {
     }
 
     private void validatePersonalDate(ChangePersonalDateRequest request, List<CoreError> errors) {
-        String surname = request.getNameSurname();
-        Integer phone = request.getPhoneNumber();
-        String address = request.getUserAddress();
         errors.addAll(personalDateValidation
-                .validate(surname, phone, address));
+                .validate(request.getUserRegistration()));
 
     }
 }

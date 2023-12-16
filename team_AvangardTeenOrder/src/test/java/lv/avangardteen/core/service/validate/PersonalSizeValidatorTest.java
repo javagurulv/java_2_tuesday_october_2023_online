@@ -1,7 +1,7 @@
 package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
-import lv.avangardteen.core.request.ClientRequest;
+import lv.avangardteen.core.request.UserSizeRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PersonalSizeValidatorTest {
-    private ClientRequest request1;
+    private UserSizeRegistrationRequest request1;
     private ChangePersonalSizeRequest request;
     private PersonalSizeValidator personalSizeValidator;
 
@@ -18,15 +18,14 @@ class PersonalSizeValidatorTest {
     @Test
     public void errorsIsEmpty() {
         request = new ChangePersonalSizeRequest(2l, 33, 33, 33, 33);
-        request1 =  new ClientRequest("Ivan",
-                1234, "Lesnaja", 0, 33, 33, 33,
-                11, 21, 31, 41);
+        request1 =  new UserSizeRegistrationRequest(22, 33, 33, 33);
+
         personalSizeValidator = new PersonalSizeValidator();
 
         List<CoreError> errors = personalSizeValidator.validate(request.getUserSizes());
         List<CoreError> errors1 = personalSizeValidator.validate(request1.getUserSizes());
         assertEquals(errors, List.of());
-        assertEquals(errors1.size(), 1);
+        assertEquals(errors1,List.of());
     }
 
     @Test

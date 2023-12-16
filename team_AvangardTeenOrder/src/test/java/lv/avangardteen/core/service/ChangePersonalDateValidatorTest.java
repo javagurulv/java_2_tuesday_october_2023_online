@@ -35,7 +35,7 @@ class ChangePersonalDateValidatorTest {
     @Test
     public void shouldNotReturnErrorsWhenIdValidatorReturnNoErrors() {
         ChangePersonalDateRequest request = new ChangePersonalDateRequest(2l,
-                "Ivanov", 3343534, "Lesnaja, 22");
+                "Ivanov", 3343534l, "Lesnaja, 22");
         when(idValidator.validate(request.getId())).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
@@ -44,7 +44,7 @@ class ChangePersonalDateValidatorTest {
     @Test
     public void shouldReturnErrorsWhenIdValidatorReturnErrors() {
         ChangePersonalDateRequest request = new ChangePersonalDateRequest(2l,
-                "Ivanov", 3343534, "Lesnaja, 22");
+                "Ivanov", 3343534l, "Lesnaja, 22");
         when(idValidator.validate(request.getId())).thenReturn(List.of(
                 new CoreError("errors", "message")));
 
@@ -55,9 +55,8 @@ class ChangePersonalDateValidatorTest {
     @Test
     public void shouldNotReturnErrorsWhenPersonalDateReturnNoErrors() {
         ChangePersonalDateRequest request = new ChangePersonalDateRequest(2l,
-                "Ivanov", 3343534, "Lesnaja, 22");
-        when(personalDateValidation.validate(request.getNameSurname(),
-                request.getPhoneNumber(), request.getUserAddress())).thenReturn(List.of());
+                "Ivanov", 3343534l, "Lesnaja, 22");
+        when(personalDateValidation.validate(request.getUserRegistration())).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
@@ -65,9 +64,8 @@ class ChangePersonalDateValidatorTest {
     @Test
     public void shouldReturnErrorsWhenPersonalDateReturnErrors() {
         ChangePersonalDateRequest request = new ChangePersonalDateRequest(2l,
-                "Ivanov", 3343534, "Lesnaja, 22");
-        when(personalDateValidation.validate(request.getNameSurname(),
-                request.getPhoneNumber(), request.getUserAddress())).thenReturn(List.of(
+                "Ivanov", 3343534l, "Lesnaja, 22");
+        when(personalDateValidation.validate(request.getUserRegistration())).thenReturn(List.of(
                 new CoreError("errors", "message")));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);

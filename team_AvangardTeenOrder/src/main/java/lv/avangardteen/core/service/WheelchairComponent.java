@@ -1,6 +1,7 @@
 package lv.avangardteen.core.service;
 
 import lv.avangardteen.core.data.DataComponents;
+import lv.avangardteen.core.data.DataComponentsImpl;
 import lv.avangardteen.core.dto.Category;
 import lv.avangardteen.core.dto.Components;
 import lv.avangardteen.core.dto.Wheelchair;
@@ -11,7 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class WheelchairComponent extends Wheelchair {
-    private DataComponents dataComponents = new DataComponents();
+    private DataComponents dataComponents = new DataComponentsImpl();
     private Map<Category, Components> components = new HashMap<>();
 
     public void addComponents(Integer index) {

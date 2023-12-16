@@ -1,5 +1,6 @@
 package lv.avangardteen.core.service;
 
+
 import lv.avangardteen.core.dto.Client;
 import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
@@ -18,7 +19,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class DeleteOrderServiceMockitaTest {
+class DeleteOrderServiceMockitoTest {
 
     @Mock
     private Database database;
@@ -49,7 +50,7 @@ class DeleteOrderServiceMockitaTest {
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
         DeleteOrderResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        Mockito.verify(database).deleteUser(request.getId());
+        Mockito.verify(database).deleteOrder(request.getId());
 
     }
 

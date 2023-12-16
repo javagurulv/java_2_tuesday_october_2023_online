@@ -3,6 +3,7 @@ package lv.avangardteen.core.dto;
 import java.util.Objects;
 
 public class Components {
+    private Long id;
     private Category category;
     private Integer index;
     private String marking;
@@ -15,6 +16,18 @@ public class Components {
         this.marking = marking;
         this.information = information;
         this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setIndex(Integer index) {
+        this.index = index;
     }
 
     public Integer getIndex() {

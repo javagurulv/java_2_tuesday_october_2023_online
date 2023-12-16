@@ -1,6 +1,8 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.dto.Client;
+
+import lv.avangardteen.core.dto.Order;
+import lv.avangardteen.core.dto.UserSizes;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.responce.CoreError;
@@ -17,8 +19,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 
-class ChangePersonalSizeServiceMockitaTest {
+class ChangePersonalSizeServiceMockitoTest {
 
     @Mock
     private Database database;
@@ -47,10 +51,12 @@ class ChangePersonalSizeServiceMockitaTest {
     @Test
     public void ChangePersonalSizeWithoutError() {
         ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(1L, 22, 33, 44, 45);
-        Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
+        Mockito.when(database.getUserSize(request.getId())).thenReturn(new UserSizes());
         Mockito.when(validator.validate(request)).thenReturn(List.of());
         ChangePersonalSizeResponse response = service.execute(request);
         assertFalse(response.hasErrors());
+        verify(database).updateUserSize(request.getId(), request.getUserSizes());
+        verify(database).updateWheelchair(request.getId(), calculateDimensionsWheelchair.setDimensions(request.getUserSizes()));
 
     }
 
