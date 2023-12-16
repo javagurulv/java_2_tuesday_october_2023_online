@@ -1,10 +1,7 @@
 package fitness_club.core.services.data_vlidation;
 
-import fitness_club.core.database.Database;
+import fitness_club.core.database.ClientRepository;
 import fitness_club.core.domain.Client;
-import fitness_club.core.domain.ClientAgeGroups;
-import fitness_club.core.domain.FitnessCentre;
-import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.CoreError;
 import org.junit.Test;
@@ -22,7 +19,7 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class AddClientRequestValidatorDuplicateTest {
     @Mock
-    private Database database;
+    private ClientRepository clientRepository;
     @InjectMocks
     private AddClientRequestValidator validator;
 
@@ -30,11 +27,11 @@ public class AddClientRequestValidatorDuplicateTest {
     public void shouldReturnErrorWhenDuplicateFound() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
                 "12-12");
-        database = Mockito.mock(Database.class);
-        validator = new AddClientRequestValidator(database);
+        clientRepository = Mockito.mock(ClientRepository.class);
+        validator = new AddClientRequestValidator(clientRepository);
         Client client = new Client("Andrey", "Pupkin",
-                "12-12", ClientAgeGroups.ADULT, Workouts.GYM, FitnessCentre.AKROPOLE);
-        Mockito.when(database.findByPersonalCode("12-12")).thenReturn(List.of(client));
+                "12-12");
+        Mockito.when(clientRepository.findByPersonalCode("12-12")).thenReturn(List.of(client));
         List<CoreError> errors = validator.validate(request);
         assertTrue(!errors.isEmpty());
         assertEquals(errors.get(0).getField(), "uniqueClient");
@@ -45,9 +42,9 @@ public class AddClientRequestValidatorDuplicateTest {
     public void shouldNotReturnErrorWhenDuplicateNotFound() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
                 "12-12");
-        database = Mockito.mock(Database.class);
-        validator = new AddClientRequestValidator(database);
-        Mockito.when(database.findByPersonalCode("12-12")).thenReturn(List.of());
+        clientRepository = Mockito.mock(ClientRepository.class);
+        validator = new AddClientRequestValidator(clientRepository);
+        Mockito.when(clientRepository.findByPersonalCode("12-12")).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }

@@ -1,30 +1,28 @@
 package lv.javaguru.java2.lessoncode.book.app.core.requests;
 
-import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
-
 public class AddBookRequest {
 
-    private String bookTitle;
-    private String bookAuthor;
+    private String title;
+    private String author;
     private Integer issueYear;
-    private Genre genre;
 
-    public AddBookRequest(String bookTitle, String bookAuthor, Integer issueYear, Genre genre) {
-        this.bookTitle = bookTitle;
-        this.bookAuthor = bookAuthor;
+
+    public AddBookRequest(String title, String author, Integer issueYear) {
+        this.title = title;
+        this.author = author;
         this.issueYear = issueYear;
-        this.genre = genre;
+
 
     }
 
-    public String getBookTitle() {
-        return bookTitle;
+    public String getTitle() {
+        return title;
     }
-    public String getBookAuthor() {
-        return bookAuthor;
+    public String getAuthor() {
+        return author;
     }
     public Integer getIssueYear() { return issueYear; }
-    public Genre getGenre() { return genre; }
+
 }
 
 

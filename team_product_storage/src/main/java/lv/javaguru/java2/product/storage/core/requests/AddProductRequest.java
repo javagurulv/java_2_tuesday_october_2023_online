@@ -1,7 +1,5 @@
 package lv.javaguru.java2.product.storage.core.requests;
 
-import lv.javaguru.java2.product.storage.core.domain.Category;
-
 import java.math.BigDecimal;
 
 public class AddProductRequest {
@@ -15,15 +13,13 @@ public class AddProductRequest {
 
     private BigDecimal priceInStock;
 
-    private Category category;
 
-    public AddProductRequest(String productName, String productBrand, String productModel, Integer productQuantity, BigDecimal priceInStock, Category category) {
+    public AddProductRequest(String productName, String productBrand, String productModel, Integer productQuantity, BigDecimal priceInStock) {
         this.productName = productName;
         this.productBrand = productBrand;
         this.productModel = productModel;
         this.productQuantity = productQuantity;
         this.priceInStock = priceInStock;
-        this.category = category;
     }
 
     public String getProductName() {
@@ -44,7 +40,6 @@ public class AddProductRequest {
         return priceInStock;
     }
 
-    public Category getCategory() { return category; }
 }
 
 

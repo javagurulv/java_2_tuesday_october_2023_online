@@ -6,7 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import java.util.ArrayList;
 import java.util.List;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
+import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.RemoveBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.RemoveBookResponse;
@@ -21,7 +21,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class RemoveBookServiceTest {
     @Mock
-    private Database database;
+    private BookRepository bookRepository;
     @Mock private RemoveBookRequestValidator validator;
     @InjectMocks
     private RemoveBookService service;
@@ -42,7 +42,7 @@ public class RemoveBookServiceTest {
     @Test
     public void shouldDeleteBookWithIdFromDatabase() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        Mockito.when(database.deleteById(1L)).thenReturn(true);
+        Mockito.when(bookRepository.deleteById(1L)).thenReturn(true);
         RemoveBookRequest request = new RemoveBookRequest(1L);
         RemoveBookResponse response = service.execute(request);
         assertFalse(response.containsErrors());

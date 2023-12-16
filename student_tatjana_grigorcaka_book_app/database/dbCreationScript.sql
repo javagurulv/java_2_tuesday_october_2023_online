@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `books` (
   `title` VARCHAR(200) NOT NULL,
   `author` VARCHAR(100) NOT NULL,
   `issue_year` INT NOT NULL,
-  `genre` VARCHAR(50) NOT NULL,
+  `genre` VARCHAR(100),
   PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB

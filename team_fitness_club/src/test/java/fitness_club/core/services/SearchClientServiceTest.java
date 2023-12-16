@@ -1,6 +1,6 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.Database;
+import fitness_club.core.database.ClientRepository;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class SearchClientServiceTest {
     @Mock
-    private Database database;
+    private ClientRepository clientRepository;
 
     @Mock
     private SearchClientRequestValidator validator;
@@ -53,7 +53,7 @@ public class SearchClientServiceTest {
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Dmitry", "Petrov", "1234"));
 
-        Mockito.when(database.findByFirstName("Dmitry")).thenReturn(clients);
+        Mockito.when(clientRepository.findByFirstName("Dmitry")).thenReturn(clients);
 
         SearchClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -72,7 +72,7 @@ public class SearchClientServiceTest {
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Ivan", "Petrov", "1234"));
 
-        Mockito.when(database.findByLastName("Petrov")).thenReturn(clients);
+        Mockito.when(clientRepository.findByLastName("Petrov")).thenReturn(clients);
 
         SearchClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -92,7 +92,7 @@ public class SearchClientServiceTest {
         clients.add(new Client("Dmitry", "Arbuzov", "111"));
         clients.add(new Client("Dmitry", "Bananov", "112"));
 
-        Mockito.when(database.findByFirstName("Dmitry")).thenReturn(clients);
+        Mockito.when(clientRepository.findByFirstName("Dmitry")).thenReturn(clients);
 
         SearchClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -112,7 +112,7 @@ public class SearchClientServiceTest {
         clients.add(new Client("Dmitry", "Arbuzov", "111"));
         clients.add(new Client("Dmitry", "Bananov", "112"));
 
-        Mockito.when(database.findByFirstName("Dmitry")).thenReturn(clients);
+        Mockito.when(clientRepository.findByFirstName("Dmitry")).thenReturn(clients);
 
         SearchClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -132,7 +132,7 @@ public class SearchClientServiceTest {
         clients.add(new Client("Dmitry", "Arbuzov", "111"));
         clients.add(new Client("Dmitry", "Bananov", "112"));
 
-        Mockito.when(database.findByFirstName("Dmitry")).thenReturn(clients);
+        Mockito.when(clientRepository.findByFirstName("Dmitry")).thenReturn(clients);
 
         SearchClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -152,7 +152,7 @@ public class SearchClientServiceTest {
         clients.add(new Client("Dmitry", "Arbuzov", "111"));
         clients.add(new Client("Dmitry", "Bananov", "112"));
 
-        Mockito.when(database.findByFirstName("Dmitry")).thenReturn(clients);
+        Mockito.when(clientRepository.findByFirstName("Dmitry")).thenReturn(clients);
 
         SearchClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());

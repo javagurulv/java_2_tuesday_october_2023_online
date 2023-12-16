@@ -1,6 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
+import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.SearchBooksResponse;
@@ -13,12 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@Transactional
 public class SearchBooksService {
 
     @Value("${search.ordering.enabled}")
@@ -27,7 +29,7 @@ public class SearchBooksService {
     @Value("${search.paging.enabled}")
     private boolean pagingEnabled;
 
-    @Autowired private Database database;
+    @Autowired private BookRepository bookRepository;
     @Autowired private SearchBooksRequestValidator validator;
 
     public SearchBooksResponse execute(SearchBooksRequest request) {
@@ -60,13 +62,13 @@ public class SearchBooksService {
     private List<Book> search(SearchBooksRequest request) {
         List<Book> books = new ArrayList<>();
         if (request.isTitleProvided() && !request.isAuthorProvided()) {
-            books = database.findByTitle(request.getTitle());
+            books = bookRepository.findByTitle(request.getTitle());
         }
         if (!request.isTitleProvided() && request.isAuthorProvided()) {
-            books = database.findByAuthor(request.getAuthor());
+            books = bookRepository.findByAuthor(request.getAuthor());
         }
         if (request.isTitleProvided() && request.isAuthorProvided()) {
-            books = database.findByTitleAndAuthor(request.getTitle(), request.getAuthor());
+            books = bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor());
         }
         return books;
     }

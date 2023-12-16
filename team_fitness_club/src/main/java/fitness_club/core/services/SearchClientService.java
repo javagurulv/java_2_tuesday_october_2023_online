@@ -1,7 +1,7 @@
 package fitness_club.core.services;
 
 
-import fitness_club.core.database.Database;
+import fitness_club.core.database.ClientRepository;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
@@ -27,7 +27,7 @@ public class SearchClientService {
     private boolean pagingEnabled;
 
     @Autowired
-    private Database database;
+    private ClientRepository clientRepository;
     @Autowired
     private SearchClientRequestValidator validator;
 
@@ -47,16 +47,16 @@ public class SearchClientService {
     private List<Client> search(SearchClientRequest request) {
         List<Client> foundClients = new ArrayList<>();
         if (request.isFirstNameProvided() && !request.isLastNameProvided()) {
-            foundClients = database.findByFirstName(request.getFirstName());
+            foundClients = clientRepository.findByFirstName(request.getFirstName());
         }
         if (!request.isFirstNameProvided() && request.isLastNameProvided()) {
-            foundClients = database.findByLastName(request.getLastName());
+            foundClients = clientRepository.findByLastName(request.getLastName());
         }
         if (request.isFirstNameProvided() && request.isLastNameProvided()) {
-            foundClients = database.findByFirstNameAndLastName(request.getFirstName(), request.getLastName());
+            foundClients = clientRepository.findByFirstNameAndLastName(request.getFirstName(), request.getLastName());
         }
         if (request.isPersonalCodeProvided()) {
-            foundClients = database.findByPersonalCode(request.getPersonaCode());
+            foundClients = clientRepository.findByPersonalCode(request.getPersonaCode());
         }
         return foundClients;
     }

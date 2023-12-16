@@ -1,6 +1,6 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.Database;
+import fitness_club.core.database.ClientRepository;
 import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.responses.CoreError;
@@ -14,7 +14,7 @@ import java.util.List;
 public class DeleteClientService {
 
     @Autowired
-    private Database database;
+    private ClientRepository clientRepository;
     @Autowired
     private RemoveClientRequestValidator validator;
 
@@ -24,7 +24,7 @@ public class DeleteClientService {
         if (!errors.isEmpty()) {
             return new RemoveClientResponse(errors);
         }
-        boolean isClientRemoved = database.deleteByPersonalCode(request.getPersonalCode());
+        boolean isClientRemoved = clientRepository.deleteByPersonalCode(request.getPersonalCode());
         return new RemoveClientResponse(isClientRemoved);
     }
 }
