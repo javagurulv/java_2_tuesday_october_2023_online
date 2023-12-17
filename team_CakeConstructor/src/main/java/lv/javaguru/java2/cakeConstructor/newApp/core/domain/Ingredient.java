@@ -1,16 +1,28 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import java.util.Objects;
 
+@Entity
+@Table(name = "ingredients")
 public class Ingredient {
 
-
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name="type", nullable = false)
     private String type;
+    @Column(name="taste", nullable = false)
     private String taste;
 
-    public Ingredient() {  }
+    public Ingredient() { }
 
     public Ingredient(String type, String taste) {
         this.type = type;

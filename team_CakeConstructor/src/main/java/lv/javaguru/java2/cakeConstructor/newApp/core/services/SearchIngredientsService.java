@@ -1,6 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.Database;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.IngredientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Ingredient;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Ordering;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Paging;
@@ -27,7 +27,7 @@ public class SearchIngredientsService {
     @Value("${search.paging.enabled}")
     private boolean pagingEnabled;
 
-    @Autowired private Database database;
+    @Autowired private IngredientRepository ingredientRepository;
     @Autowired private SearchIngredientsRequestValidator validator;
 
 
@@ -47,13 +47,13 @@ public class SearchIngredientsService {
     private List<Ingredient> search(SearchIngredientsRequest request) {
         List<Ingredient> ingredients = new ArrayList<>();
         if (request.isTypeProvided() && !request.isTasteProvided()) {
-            ingredients = database.findByType(request.getType());
+            ingredients = ingredientRepository.findByType(request.getType());
         }
         if (!request.isTypeProvided() && request.isTasteProvided()) {
-            ingredients = database.findByTaste(request.getTaste());
+            ingredients = ingredientRepository.findByTaste(request.getTaste());
         }
         if (request.isTypeProvided() && request.isTasteProvided()) {
-            ingredients = database.findByTypeAndTaste(request.getType(), request.getTaste());
+            ingredients = ingredientRepository.findByTypeAndTaste(request.getType(), request.getTaste());
         }
         return ingredients;
     }

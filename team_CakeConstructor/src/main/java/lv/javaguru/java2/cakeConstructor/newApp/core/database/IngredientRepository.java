@@ -4,7 +4,7 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Ingredient;
 
 import java.util.List;
 
-public interface Database {
+public interface IngredientRepository {
 
     void save(Ingredient ingredient);
 

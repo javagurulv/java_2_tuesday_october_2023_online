@@ -14,7 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.InMemoryDatabaseImpl;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.InMemoryIngredientRepositoryImpl;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.AddIngredientResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
@@ -25,7 +25,7 @@ import lv.javaguru.java2.cakeConstructor.newApp.matchers.IngredientMatcher;
 public class AddIngredientServiceTest {
 
     @Mock
-    private InMemoryDatabaseImpl inMemoryDatabaseImpl;
+    private InMemoryIngredientRepositoryImpl inMemoryDatabaseImpl;
     @Mock private AddIngredientRequestValidator validator;
     @InjectMocks
     private AddIngredientService service;

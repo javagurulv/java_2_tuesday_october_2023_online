@@ -1,6 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.Database;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.IngredientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Ingredient;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.AddIngredientResponse;
@@ -14,7 +14,7 @@ import java.util.List;
 @Component
 public class AddIngredientService {
 
-    @Autowired private Database database;
+    @Autowired private IngredientRepository ingredientRepository;
     @Autowired private AddIngredientRequestValidator validator;
 
 
@@ -25,7 +25,7 @@ public class AddIngredientService {
         }
 
         Ingredient ingredient = new Ingredient(request.getType(), request.getTaste());
-        database.save(ingredient);
+        ingredientRepository.save(ingredient);
 
         return new AddIngredientResponse(ingredient);
     }

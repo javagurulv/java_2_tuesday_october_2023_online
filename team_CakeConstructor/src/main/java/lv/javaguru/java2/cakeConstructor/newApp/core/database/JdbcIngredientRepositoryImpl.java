@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-class JdbcDatabaseImpl implements Database {
+//@Component
+class JdbcIngredientRepositoryImpl implements IngredientRepository {
 
 	@Autowired private JdbcTemplate jdbcTemplate;
 
