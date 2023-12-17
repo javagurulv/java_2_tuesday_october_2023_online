@@ -23,41 +23,34 @@ class EmptyCountryValidationTest {
     EmptyCountryValidation validation;
 
     @Test
-    public void shouldReturnNoErrorWhenSelectedRisksIsNull() {
+    public void shouldReturnNoErrorWhenCountryIsPresent() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
-        when(request.getSelectedRisks()).thenReturn(null);
+        when(request.getCountry()).thenReturn("Latvia");
         Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isEmpty());
     }
+
     @Test
-    public void shouldReturnNoErrorWhenSelectedRisksNotContainsTravelMedical() {
+    public void shouldReturnErrorWhenCountryIsNull() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_LOSS_BAGGAGE"));
-        Optional<ValidationError> errorOpt = validation.validate(request);
-        assertTrue(errorOpt.isEmpty());
-    }
-    @Test
-    public void shouldReturnErrorWhenSelectedRisksContainsTravelMedicalAndCountryIsNull() {
-        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL"));
         when(request.getCountry()).thenReturn(null);
         when(errorFactory.buildError("ERROR_CODE_10")).
                 thenReturn(new ValidationError("ERROR_CODE_10", "Field country must not be empty!"));
         Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isPresent());
         assertEquals("ERROR_CODE_10", errorOpt.get().getErrorCode());
-        assertEquals("Field country must not be empty!",errorOpt.get().getDescription());
+        assertEquals("Field country must not be empty!", errorOpt.get().getDescription());
     }
+
     @Test
-    public void shouldReturnErrorWhenSelectedRisksContainsTravelMedicalAndCountryIsEmpty() {
+    public void shouldReturnErrorWhenCountryIsEmpty() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL"));
         when(request.getCountry()).thenReturn("");
         when(errorFactory.buildError("ERROR_CODE_10")).
                 thenReturn(new ValidationError("ERROR_CODE_10", "Field country must not be empty!"));
         Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isPresent());
         assertEquals("ERROR_CODE_10", errorOpt.get().getErrorCode());
-        assertEquals("Field country must not be empty!",errorOpt.get().getDescription());
+        assertEquals("Field country must not be empty!", errorOpt.get().getDescription());
     }
 }
