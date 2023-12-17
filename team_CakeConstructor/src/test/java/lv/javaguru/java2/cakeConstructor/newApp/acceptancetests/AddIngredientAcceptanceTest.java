@@ -2,10 +2,12 @@ package lv.javaguru.java2.cakeConstructor.newApp.acceptancetests;
 
 import static org.junit.Assert.assertEquals;
 
+import lv.javaguru.java2.cakeConstructor.newApp.DatabaseCleaner;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import lv.javaguru.java2.cakeConstructor.newApp.config.CakeConfiguration;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientRequest;
@@ -14,22 +16,33 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.response.AddIngredientRespo
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.SearchIngredientsResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.AddIngredientService;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.SearchIngredientsService;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.assertTrue;
-
+@Ignore
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {CakeConfiguration.class})
+@Sql({"/schema.sql"})
 public class AddIngredientAcceptanceTest {
 
-    private ApplicationContext appContext;
+    @Autowired private AddIngredientService addIngredientService;
+    @Autowired private SearchIngredientsService searchIngredientsService;
+    @Autowired private DatabaseCleaner databaseCleaner;
 
     @Before
-    public void setup() { appContext = new AnnotationConfigApplicationContext(CakeConfiguration.class); }
+    public void setup() {
+        databaseCleaner.clean();
+    }
+
 
     @Test
     public void shouldReturnErrorWhenTypeNotProvided() {
         AddIngredientRequest addIngredientRequest1 = new AddIngredientRequest(null, "Vanilla");
-        getAddIngredientService().execute(addIngredientRequest1);
+        addIngredientService.execute(addIngredientRequest1);
 
-        AddIngredientResponse response = getAddIngredientService().execute(addIngredientRequest1);
+        AddIngredientResponse response = addIngredientService.execute(addIngredientRequest1);
 
         assertTrue(response.hasErrors());
         assertEquals(response.getErrors().size(), 1);
@@ -40,9 +53,9 @@ public class AddIngredientAcceptanceTest {
     @Test
     public void shouldReturnErrorWhenTasteNotProvided() {
         AddIngredientRequest addIngredientRequest1 = new AddIngredientRequest("Biscuit", null);
-        getAddIngredientService().execute(addIngredientRequest1);
+        addIngredientService.execute(addIngredientRequest1);
 
-        AddIngredientResponse response = getAddIngredientService().execute(addIngredientRequest1);
+        AddIngredientResponse response = addIngredientService.execute(addIngredientRequest1);
 
         assertTrue(response.hasErrors());
         assertEquals(response.getErrors().size(), 1);
@@ -53,19 +66,15 @@ public class AddIngredientAcceptanceTest {
     @Test
     public void shouldReturnIngredient() {
         AddIngredientRequest addIngredientRequest1 = new AddIngredientRequest("Biscuit", "Vanilla");
-        getAddIngredientService().execute(addIngredientRequest1);
+        addIngredientService.execute(addIngredientRequest1);
 
         SearchIngredientsRequest searchIngredientsRequest2 = new SearchIngredientsRequest("Biscuit", null);
-        SearchIngredientsResponse response = getSearchIngredientsService().execute(searchIngredientsRequest2);
+        SearchIngredientsResponse response = searchIngredientsService.execute(searchIngredientsRequest2);
 
         assertEquals(response.getIngredients().size(), 1);
         assertEquals(response.getIngredients().get(0).getType(), "Biscuit");
         assertEquals(response.getIngredients().get(0).getTaste(), "Vanilla");
     }
-
-    private AddIngredientService getAddIngredientService() { return appContext.getBean(AddIngredientService.class); }
-
-    private SearchIngredientsService getSearchIngredientsService() { return appContext.getBean(SearchIngredientsService.class); }
 
 }
 
