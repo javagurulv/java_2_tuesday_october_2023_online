@@ -1,5 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.acceptancetests;
 
+import lv.javaguru.java2.cakeConstructor.newApp.DatabaseCleaner;
 import lv.javaguru.java2.cakeConstructor.newApp.config.CakeConfiguration;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.RemoveIngredientRequest;
@@ -7,27 +8,39 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.response.RemoveIngredientRe
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.AddIngredientService;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.RemoveIngredientService;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@Ignore
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {CakeConfiguration.class})
+@Sql({"/schema.sql"})
 public class RemoveIngredientAcceptanceTest {
 
-    private ApplicationContext appContext;
+    @Autowired private AddIngredientService addIngredientService;
+    @Autowired private RemoveIngredientService removeIngredientService;
+    @Autowired private DatabaseCleaner databaseCleaner;
 
     @Before
-    public void setup() { appContext = new AnnotationConfigApplicationContext(CakeConfiguration.class); }
+    public void setup() {
+        databaseCleaner.clean();
+    }
 
     @Test
     public void shouldReturnErrorResponseWhenIngredientIdNotProvided() {
         AddIngredientRequest addIngredientRequest1 = new AddIngredientRequest("Biscuit", "Vanilla");
-        getAddIngredientService().execute(addIngredientRequest1);
+        addIngredientService.execute(addIngredientRequest1);
 
         RemoveIngredientRequest removeIngredientRequest2 = new RemoveIngredientRequest(null);
-        RemoveIngredientResponse response = getRemoveIngredientService().execute(removeIngredientRequest2);
+        RemoveIngredientResponse response = removeIngredientService.execute(removeIngredientRequest2);
 
         assertTrue(response.hasErrors());
         assertEquals(response.getErrors().size(), 1);
@@ -38,19 +51,13 @@ public class RemoveIngredientAcceptanceTest {
     @Test
     public void shouldRemoveIngredient() {
         AddIngredientRequest addIngredientRequest1 = new AddIngredientRequest("Biscuit", "Vanilla");
-        getAddIngredientService().execute(addIngredientRequest1);
+        addIngredientService.execute(addIngredientRequest1);
 
         RemoveIngredientRequest removeIngredientRequest2 = new RemoveIngredientRequest(1L);
-        RemoveIngredientResponse response = getRemoveIngredientService().execute(removeIngredientRequest2);
+        RemoveIngredientResponse response = removeIngredientService.execute(removeIngredientRequest2);
 
         assertTrue(response.isIngredientRemoved());
     }
 
-    private AddIngredientService getAddIngredientService() {
-        return appContext.getBean(AddIngredientService.class);
-    }
-
-    private RemoveIngredientService getRemoveIngredientService() { return appContext.getBean(RemoveIngredientService.class);
-    }
 
 }

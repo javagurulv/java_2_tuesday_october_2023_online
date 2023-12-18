@@ -1,15 +1,14 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.database;
 
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Ingredient;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Component
-public class InMemoryDatabaseImpl implements Database {
+//@Component
+public class InMemoryIngredientRepositoryImpl implements IngredientRepository {
 
     private Long nextId=1L;
     private List<Ingredient> ingredients = new ArrayList<>();
