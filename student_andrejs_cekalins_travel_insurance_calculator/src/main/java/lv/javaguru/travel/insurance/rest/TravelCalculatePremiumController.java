@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/insurance/travel")
+@RequestMapping("/insurance/travel/api")
 public class TravelCalculatePremiumController {
+
     @Autowired private TravelCalculatePremiumRequestLogger requestLogger;
     @Autowired private TravelCalculatePremiumResponseLogger responseLogger;
     @Autowired private TravelCalculatePremiumService calculatePremiumService;
@@ -24,7 +25,7 @@ public class TravelCalculatePremiumController {
     public TravelCalculatePremiumResponse calculatePremium(@RequestBody TravelCalculatePremiumRequest request) {
         Stopwatch stopwatch = Stopwatch.createStarted();
         TravelCalculatePremiumResponse response = processRequest(request);
-        executionTimeLogger.logExecution(stopwatch);
+        executionTimeLogger.logExecutionTime(stopwatch);
         return response;
     }
     private TravelCalculatePremiumResponse processRequest(TravelCalculatePremiumRequest request) {
