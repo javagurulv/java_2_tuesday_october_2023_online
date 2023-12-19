@@ -1,7 +1,7 @@
 package lv.javaguru.travel.insurance.core.validations.agreement;
 
 import lv.javaguru.travel.insurance.core.validations.ValidationErrorFactory;
-import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
+import lv.javaguru.travel.insurance.dto.v1.TravelCalculatePremiumRequestV1;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import lv.javaguru.travel.insurance.repositories.ClassifierValueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class CountryValidation extends TravelAgreementFieldValidationImpl {
     private ValidationErrorFactory errorFactory;
 
     @Override
-    public Optional<ValidationError> validate(TravelCalculatePremiumRequest request) {
+    public Optional<ValidationError> validate(TravelCalculatePremiumRequestV1 request) {
         return (containsTravelMedical(request)
                 && countryIsNotBlank(request))
                 && !existInDatabase(request.getCountry())
@@ -26,12 +26,12 @@ public class CountryValidation extends TravelAgreementFieldValidationImpl {
                 : Optional.empty();
     }
 
-    private boolean containsTravelMedical(TravelCalculatePremiumRequest request) {
+    private boolean containsTravelMedical(TravelCalculatePremiumRequestV1 request) {
         return request.getSelectedRisks() != null
                 && request.getSelectedRisks().contains("TRAVEL_MEDICAL");
     }
 
-    private boolean countryIsNotBlank(TravelCalculatePremiumRequest request) {
+    private boolean countryIsNotBlank(TravelCalculatePremiumRequestV1 request) {
         return request.getCountry() != null && !request.getCountry().isBlank();
     }
 

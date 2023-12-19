@@ -1,8 +1,7 @@
 package lv.javaguru.travel.insurance.core.validations.agreement;
 
 import lv.javaguru.travel.insurance.core.validations.ValidationErrorFactory;
-import lv.javaguru.travel.insurance.core.validations.agreement.AgreementDateToValidation;
-import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
+import lv.javaguru.travel.insurance.dto.v1.TravelCalculatePremiumRequestV1;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,7 +27,7 @@ class AgreementDateToValidationTest {
 
     @Test
     public void shouldReturnErrorWhenAgreementDateToIsNull() {
-        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
+        TravelCalculatePremiumRequestV1 request = mock(TravelCalculatePremiumRequestV1.class);
         when(request.getAgreementDateTo()).thenReturn(null);
         ValidationError validationError = mock(ValidationError.class);
         when(errorFactory.buildError("ERROR_CODE_6")).thenReturn(validationError);
@@ -39,7 +38,7 @@ class AgreementDateToValidationTest {
 
     @Test
     public void shouldNotReturnErrorWhenAgreementDateToIsPresent() {
-        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
+        TravelCalculatePremiumRequestV1 request = mock(TravelCalculatePremiumRequestV1.class);
         when(request.getAgreementDateTo()).thenReturn(createDate("01.11.2025"));
         Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isEmpty());

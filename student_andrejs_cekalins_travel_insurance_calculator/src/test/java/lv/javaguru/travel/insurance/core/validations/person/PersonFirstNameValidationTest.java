@@ -2,7 +2,7 @@ package lv.javaguru.travel.insurance.core.validations.person;
 
 import lv.javaguru.travel.insurance.core.validations.ValidationErrorFactory;
 import lv.javaguru.travel.insurance.core.validations.persona.PersonFirstNameValidation;
-import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
+import lv.javaguru.travel.insurance.dto.v1.TravelCalculatePremiumRequestV1;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +25,7 @@ class PersonFirstNameValidationTest {
 
     @Test
     public void shouldReturnErrorWhenPersonFirstNameIsNull() {
-        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
+        TravelCalculatePremiumRequestV1 request = mock(TravelCalculatePremiumRequestV1.class);
         when(request.getPersonFirstName()).thenReturn(null);
         ValidationError validationError = mock(ValidationError.class);
         when(errorFactory.buildError("ERROR_CODE_1")).thenReturn(validationError);
@@ -36,7 +36,7 @@ class PersonFirstNameValidationTest {
 
     @Test
     public void shouldReturnErrorWhenPersonFirstNameIsEmpty() {
-        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
+        TravelCalculatePremiumRequestV1 request = mock(TravelCalculatePremiumRequestV1.class);
         when(request.getPersonFirstName()).thenReturn("");
         ValidationError validationError = mock(ValidationError.class);
         when(errorFactory.buildError("ERROR_CODE_1")).thenReturn(validationError);
@@ -47,7 +47,7 @@ class PersonFirstNameValidationTest {
 
     @Test
     public void shouldNotReturnErrorWhenPersonFirstNameIsPresent() {
-        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
+        TravelCalculatePremiumRequestV1 request = mock(TravelCalculatePremiumRequestV1.class);
         when(request.getPersonFirstName()).thenReturn("Andrey");
         Optional<ValidationError> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isEmpty());

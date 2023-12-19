@@ -2,7 +2,7 @@ package lv.javaguru.travel.insurance.core.validations.agreement;
 
 import lv.javaguru.travel.insurance.core.util.Placeholder;
 import lv.javaguru.travel.insurance.core.validations.ValidationErrorFactory;
-import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
+import lv.javaguru.travel.insurance.dto.v1.TravelCalculatePremiumRequestV1;
 import lv.javaguru.travel.insurance.dto.ValidationError;
 import lv.javaguru.travel.insurance.repositories.ClassifierValueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +18,13 @@ public class SelectedRisksValidation extends TravelAgreementFieldValidationImpl 
     @Autowired private ValidationErrorFactory errorFactory;
 
     @Override
-    public List<ValidationError> validateList(TravelCalculatePremiumRequest request) {
+    public List<ValidationError> validateList(TravelCalculatePremiumRequestV1 request) {
         return request.getSelectedRisks() != null
                 ? validateSelectedRisks(request)
                 : List.of();
     }
 
-    private List<ValidationError> validateSelectedRisks(TravelCalculatePremiumRequest request) {
+    private List<ValidationError> validateSelectedRisks(TravelCalculatePremiumRequestV1 request) {
         return request.getSelectedRisks().stream()
                 .map(this::validateRiskIc)
                 .filter(Optional::isPresent)
