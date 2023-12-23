@@ -12,30 +12,16 @@ import java.util.Optional;
 @Component
 class MedicalRiskLimitLevelValidation extends TravelRequestValidationImpl {
 
-    @Value( "${medical.risk.limit.level.enabled:false}" )
-    private Boolean medicalRiskLimitLevelEnabled;
-
     @Autowired private ClassifierValueRepository classifierValueRepository;
     @Autowired private ValidationErrorFactory errorFactory;
 
 
     @Override
     public Optional<ValidationError> validate(TravelCalculatePremiumRequest request) {
-        return (isMedicalRiskLimitLevelEnabled()
-                && containsTravelMedical(request)
-                && isMedicalRiskLimitLevelNotBlank(request))
+        return (isMedicalRiskLimitLevelNotBlank(request))
                 && !existInDatabase(request.getMedicalRiskLimitLevel())
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_14"))
                 : Optional.empty();
-    }
-
-    private boolean isMedicalRiskLimitLevelEnabled() {
-        return medicalRiskLimitLevelEnabled;
-    }
-
-    private boolean containsTravelMedical(TravelCalculatePremiumRequest request) {
-        return request.getSelectedRisks() != null
-                && request.getSelectedRisks().contains("TRAVEL_MEDICAL");
     }
 
     private boolean isMedicalRiskLimitLevelNotBlank(TravelCalculatePremiumRequest request) {
