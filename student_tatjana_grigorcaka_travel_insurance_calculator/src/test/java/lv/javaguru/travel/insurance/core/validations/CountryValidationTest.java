@@ -28,46 +28,10 @@ class CountryValidationTest {
     @InjectMocks
     private CountryValidation validation;
 
-    @Test
-    public void shouldReturnNoErrorWhenSelectedRisksIsNull() {
-        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
-        when(request.getSelectedRisks()).thenReturn(null);
-        Optional<ValidationError> errorOpt = validation.validate(request);
-        assertTrue(errorOpt.isEmpty());
-    }
 
     @Test
-    public void shouldReturnNoErrorWhenSelectedRisksNotContainsTravelMedical() {
+    public void shouldReturnNoErrorWhenCountryExistInDb() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_EVACUATION"));
-        Optional<ValidationError> errorOpt = validation.validate(request);
-        assertTrue(errorOpt.isEmpty());
-    }
-
-    @Test
-    public void shouldReturnNoErrorWhenContainsTravelMedicalAndCountryIsNull() {
-        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL"));
-        when(request.getCountry()).thenReturn(null);
-        Optional<ValidationError> validationErrorOpt = validation.validate(request);
-        assertTrue(validationErrorOpt.isEmpty());
-        verifyNoInteractions(classifierValueRepository, errorFactory);
-    }
-
-    @Test
-    public void shouldReturnNoErrorWhenContainsTravelMedicalAndCountryIsBlank() {
-        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL"));
-        when(request.getCountry()).thenReturn("");
-        Optional<ValidationError> validationErrorOpt = validation.validate(request);
-        assertTrue(validationErrorOpt.isEmpty());
-        verifyNoInteractions(classifierValueRepository, errorFactory);
-    }
-
-    @Test
-    public void shouldReturnNoErrorWhenContainsTravelMedicalAndCountryExistInDb() {
-        TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL"));
         when(request.getCountry()).thenReturn("SPAIN");
         ClassifierValue classifierValue = mock(ClassifierValue.class);
         when(classifierValueRepository.findByClassifierTitleAndIc("COUNTRY", "SPAIN"))
@@ -78,9 +42,8 @@ class CountryValidationTest {
     }
 
     @Test
-    public void shouldReturnErrorWhenContainsTravelMedicalAndCountryNotExistInDb() {
+    public void shouldReturnErrorWhenCountryNotExistInDb() {
         TravelCalculatePremiumRequest request = mock(TravelCalculatePremiumRequest.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL"));
         when(request.getCountry()).thenReturn("SWITZERLAND");
         when(classifierValueRepository.findByClassifierTitleAndIc("COUNTRY", "SWITZERLAND"))
                 .thenReturn(Optional.empty());
