@@ -24,11 +24,11 @@ public class TravelCalculatePremiumRequestV1 {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date personBirthDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date agreementDateFrom;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date agreementDateTo;
 

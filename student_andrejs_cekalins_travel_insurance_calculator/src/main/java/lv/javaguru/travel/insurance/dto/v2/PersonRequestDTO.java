@@ -14,7 +14,6 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Component
 public class PersonRequestDTO {
 
     private String personFirstName;
