@@ -18,10 +18,10 @@ public class CountryValidation extends TravelAgreementFieldValidationImpl {
     private ValidationErrorFactory errorFactory;
 
     @Override
-    public Optional<ValidationErrorDTO> validate(AgreementDTO request) {
-        return (containsTravelMedical(request)
-                && countryIsNotBlank(request))
-                && !existInDatabase(request.getCountry())
+    public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {
+        return (containsTravelMedical(agreement)
+                && countryIsNotBlank(agreement))
+                && !existInDatabase(agreement.getCountry())
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_15"))
                 : Optional.empty();
     }

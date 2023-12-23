@@ -13,8 +13,8 @@ public class EmptyPersonsBirthDateValidation extends TravelPersonFieldValidation
     @Autowired
     private ValidationErrorFactory errorFactory;
 @Override
-    public Optional<ValidationErrorDTO> validate(PersonDTO request) {
-        return personBirthDateIsNull(request)
+    public Optional<ValidationErrorDTO> validate(PersonDTO person) {
+        return personBirthDateIsNull(person)
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_11"))
                 : Optional.empty();
     }

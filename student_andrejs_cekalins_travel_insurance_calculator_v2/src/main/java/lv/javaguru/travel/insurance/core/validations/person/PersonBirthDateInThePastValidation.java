@@ -18,8 +18,8 @@ public class PersonBirthDateInThePastValidation extends TravelPersonFieldValidat
     private ValidationErrorFactory errorFactory;
 
     @Override
-    public Optional<ValidationErrorDTO> validate(PersonDTO request) {
-        Date personBirthDate = request.getPersonBirthDate();
+    public Optional<ValidationErrorDTO> validate(PersonDTO person) {
+        Date personBirthDate = person.getPersonBirthDate();
         Date currentDateTime = dateTimeUtil.getCurrentDateTime();
         return (personBirthDate != null && personBirthDate.after(currentDateTime))
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_12"))

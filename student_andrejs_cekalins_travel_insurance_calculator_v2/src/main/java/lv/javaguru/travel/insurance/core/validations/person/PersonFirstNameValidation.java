@@ -15,8 +15,8 @@ public class PersonFirstNameValidation extends TravelPersonFieldValidationImpl {
     private ValidationErrorFactory errorFactory;
 
     @Override
-    public Optional<ValidationErrorDTO> validate(PersonDTO request) {
-        return (request.getPersonFirstName() == null || request.getPersonFirstName().isEmpty())
+    public Optional<ValidationErrorDTO> validate(PersonDTO person) {
+        return (person.getPersonFirstName() == null || person.getPersonFirstName().isEmpty())
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_1"))
                 : Optional.empty();
     }

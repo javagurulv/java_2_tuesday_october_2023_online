@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TravelAgreementFieldValidation {
-    Optional<ValidationError> validate(TravelCalculatePremiumRequestV1 request);
+    Optional<ValidationError> validate(TravelCalculatePremiumRequestV1 agreement);
 
-    List<ValidationError> validateList(TravelCalculatePremiumRequestV1 request);
+    List<ValidationError> validateList(TravelCalculatePremiumRequestV1 agreement);
 }

@@ -18,14 +18,14 @@ public class SelectedRisksValidation extends TravelAgreementFieldValidationImpl 
     @Autowired private ValidationErrorFactory errorFactory;
 
     @Override
-    public List<ValidationErrorDTO> validateList(AgreementDTO request) {
-        return request.getSelectedRisks() != null
-                ? validateSelectedRisks(request)
+    public List<ValidationErrorDTO> validateList(AgreementDTO agreement) {
+        return agreement.getSelectedRisks() != null
+                ? validateSelectedRisks(agreement)
                 : List.of();
     }
 
-    private List<ValidationErrorDTO> validateSelectedRisks(AgreementDTO request) {
-        return request.getSelectedRisks().stream()
+    private List<ValidationErrorDTO> validateSelectedRisks(AgreementDTO agreement) {
+        return agreement.getSelectedRisks().stream()
                 .map(this::validateRiskIc)
                 .filter(Optional::isPresent)
                 .map(Optional::get)

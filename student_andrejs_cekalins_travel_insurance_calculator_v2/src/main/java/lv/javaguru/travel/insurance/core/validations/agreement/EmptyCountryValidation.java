@@ -14,13 +14,13 @@ public class EmptyCountryValidation extends TravelAgreementFieldValidationImpl {
     private ValidationErrorFactory errorFactory;
 
     @Override
-    public Optional<ValidationErrorDTO> validate(AgreementDTO request) {
-        return (countryIsNullOrBlank(request))
+    public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {
+        return (countryIsNullOrBlank(agreement))
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_10"))
                 : Optional.empty();
     }
 
-    private boolean countryIsNullOrBlank(AgreementDTO request) {
-        return request.getCountry() == null || request.getCountry().isBlank();
+    private boolean countryIsNullOrBlank(AgreementDTO agreement) {
+        return agreement.getCountry() == null || agreement.getCountry().isBlank();
     }
 }

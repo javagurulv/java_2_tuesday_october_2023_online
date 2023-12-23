@@ -18,15 +18,15 @@ public class MedicalRiskLimitLevelValidation extends TravelAgreementFieldValidat
     private ValidationErrorFactory errorFactory;
 
     @Override
-    public Optional<ValidationErrorDTO> validate(AgreementDTO request) {
-        return ( isMedicalRiskLimitLevelNotBlank(request))
-                && !existInDatabase(request.getMedicalRiskLimitLevel())
+    public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {
+        return ( isMedicalRiskLimitLevelNotBlank(agreement))
+                && !existInDatabase(agreement.getMedicalRiskLimitLevel())
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_14"))
                 : Optional.empty();
     }
 
-        private boolean isMedicalRiskLimitLevelNotBlank(AgreementDTO request) {
-        return request.getMedicalRiskLimitLevel() != null && !request.getMedicalRiskLimitLevel().isBlank();
+        private boolean isMedicalRiskLimitLevelNotBlank(AgreementDTO agreement) {
+        return agreement.getMedicalRiskLimitLevel() != null && !agreement.getMedicalRiskLimitLevel().isBlank();
     }
 
     private boolean existInDatabase(String medicalRiscLimitLevelIc) {

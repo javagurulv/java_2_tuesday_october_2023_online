@@ -16,8 +16,8 @@ public class AgreementDateFromInTheFutureValidation extends TravelAgreementField
     @Autowired
     private ValidationErrorFactory errorFactory;
     @Override
-    public Optional<ValidationErrorDTO> validate(AgreementDTO request) {
-        Date dateFrom = request.getAgreementDateFrom();
+    public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {
+        Date dateFrom = agreement.getAgreementDateFrom();
         Date currentDateTime = dateTimeUtil.getCurrentDateTime();
         return (dateFrom != null && dateFrom.before(currentDateTime))
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_4"))

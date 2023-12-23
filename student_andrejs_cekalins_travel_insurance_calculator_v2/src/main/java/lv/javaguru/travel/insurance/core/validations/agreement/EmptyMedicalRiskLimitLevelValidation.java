@@ -19,10 +19,10 @@ public class EmptyMedicalRiskLimitLevelValidation extends TravelAgreementFieldVa
     private ValidationErrorFactory errorFactory;
 
     @Override
-    public Optional<ValidationErrorDTO> validate(AgreementDTO request) {
+    public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {
         return (isMedicalRiskLimitLevelEnabled()
-                && containsTravelMedical(request)
-                && isMedicalRiskLimitLevelIsNullOrBlank(request))
+                && containsTravelMedical(agreement)
+                && isMedicalRiskLimitLevelIsNullOrBlank(agreement))
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_13"))
                 : Optional.empty();
     }
@@ -31,13 +31,13 @@ public class EmptyMedicalRiskLimitLevelValidation extends TravelAgreementFieldVa
         return medicalRiskLimitLevelEnabled;
     }
 
-    private boolean containsTravelMedical(AgreementDTO request) {
-        return request.getSelectedRisks() != null
-                && request.getSelectedRisks().contains("TRAVEL_MEDICAL");
+    private boolean containsTravelMedical(AgreementDTO agreement) {
+        return agreement.getSelectedRisks() != null
+                && agreement.getSelectedRisks().contains("TRAVEL_MEDICAL");
     }
 
-    private boolean isMedicalRiskLimitLevelIsNullOrBlank(AgreementDTO request) {
-        return request.getMedicalRiskLimitLevel() == null
-                || request.getMedicalRiskLimitLevel().isBlank();
+    private boolean isMedicalRiskLimitLevelIsNullOrBlank(AgreementDTO agreement) {
+        return agreement.getMedicalRiskLimitLevel() == null
+                || agreement.getMedicalRiskLimitLevel().isBlank();
     }
 }

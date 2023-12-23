@@ -11,9 +11,10 @@ import java.util.Optional;
 public class AgreementDateFromValidation extends TravelAgreementFieldValidationImpl {
     @Autowired
     private ValidationErrorFactory errorFactory;
+
     @Override
-    public Optional<ValidationErrorDTO> validate(AgreementDTO request) {
-        return (request.getAgreementDateFrom() == null)
+    public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {
+        return (agreement.getAgreementDateFrom() == null)
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_3"))
                 : Optional.empty();
     }

@@ -17,8 +17,8 @@ public class AgreementDateToInTheFutureValidation extends TravelAgreementFieldVa
     @Autowired
     private ValidationErrorFactory errorFactory;
 
-    public Optional<ValidationErrorDTO> validate(AgreementDTO request) {
-        Date dateTo = request.getAgreementDateTo();
+    public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {
+        Date dateTo = agreement.getAgreementDateTo();
         Date currentDateTime = dateTimeUtil.getCurrentDateTime();
         return (dateTo != null && dateTo.before(currentDateTime))
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_7"))

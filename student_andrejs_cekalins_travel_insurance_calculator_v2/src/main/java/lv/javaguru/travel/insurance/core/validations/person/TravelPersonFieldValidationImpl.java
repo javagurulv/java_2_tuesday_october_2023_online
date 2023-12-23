@@ -9,7 +9,7 @@ import java.util.Optional;
 
 abstract class TravelPersonFieldValidationImpl implements TravelPersonFieldValidation {
     @Override
-    public Optional<ValidationErrorDTO> validate (PersonDTO request) {
+    public Optional<ValidationErrorDTO> validate (PersonDTO person) {
         return Optional.empty();}
 
     @Override

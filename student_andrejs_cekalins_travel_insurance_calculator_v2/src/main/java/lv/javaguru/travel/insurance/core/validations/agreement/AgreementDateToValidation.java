@@ -13,8 +13,8 @@ public class AgreementDateToValidation extends TravelAgreementFieldValidationImp
     @Autowired
     private ValidationErrorFactory errorFactory;
 
-    public Optional<ValidationErrorDTO> validate(AgreementDTO request) {
-        return (request.getAgreementDateTo() == null)
+    public Optional<ValidationErrorDTO> validate(AgreementDTO agreeement) {
+        return (agreeement.getAgreementDateTo() == null)
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_6"))
                 : Optional.empty();
     }
