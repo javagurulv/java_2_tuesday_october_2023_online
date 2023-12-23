@@ -1,4 +1,4 @@
-package lv.javaguru.travel.insurance.core.validations.persona;
+package lv.javaguru.travel.insurance.core.validations.person;
 
 import lv.javaguru.travel.insurance.core.validations.TravelPersonFieldValidation;
 import lv.javaguru.travel.insurance.dto.v1.TravelCalculatePremiumRequestV1;
