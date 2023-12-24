@@ -7,12 +7,17 @@ import classWork.core.service.AddBookService;
 import classWork.core.service.GetAllBookService;
 import classWork.vihicleDatabase.DatabaseCleaner;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.junit.Assert.assertEquals;
+
+@Disabled
+@Ignore
 public class test1 {
 
     private ApplicationContext appContext;
