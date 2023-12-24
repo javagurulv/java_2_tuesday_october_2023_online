@@ -44,6 +44,9 @@ public class InFileClientRepositoryImpl implements ClientRepository {
         loadClientsFromFile();
         return clients;
     }
+
+    @Override
+    public Long getClientIdByPersonalCode(String personalCode){return 0L;}
     /*@Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         loadClientsFromFile();

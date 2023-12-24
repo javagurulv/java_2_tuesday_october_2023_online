@@ -1,21 +1,19 @@
 package fitness_club.core.requests;
 
-import fitness_club.core.domain.Workouts;
-
-public class ChangeClientWorkoutsRequest {
+public class ChangeClientWorkoutRequest {
 
     private String personalCode;
-    private Workouts workout;
+    private Long workout;
 
     public String getPersonalCode() {
         return personalCode;
     }
 
-    public Workouts getWorkout() {
+    public Long getWorkout() {
         return workout;
     }
 
-    public ChangeClientWorkoutsRequest(String personalCode, Workouts workout) {
+    public ChangeClientWorkoutRequest(String personalCode, Long workout) {
         this.personalCode = personalCode;
         this.workout = workout;
     }

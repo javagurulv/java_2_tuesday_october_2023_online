@@ -1,6 +1,5 @@
 package fitness_club.console_UI;
 
-import fitness_club.core.responses.GetAllClientsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,11 +19,13 @@ public class ProgramMenu {
         menuNumberToUIActionMap.put(1, findUIAction(uiActions, AddClientUIAction.class));
         menuNumberToUIActionMap.put(2, findUIAction(uiActions, RemoveClientUIAction.class));
         menuNumberToUIActionMap.put(3, findUIAction(uiActions, GetAllClientsUIAction.class));
-        //menuNumberToUIActionMap.put(4, findUIAction(uiActions, ChangeWorkoutUIAction.class));
-        //menuNumberToUIActionMap.put(5, findUIAction(uiActions, ChangeClientAgeGroupUIAction.class));
-        //menuNumberToUIActionMap.put(6, findUIAction(uiActions, ChangeClientFitnessCentreUIAction.class));
-        menuNumberToUIActionMap.put(7, findUIAction(uiActions, SearchClientUIAction.class));
-        menuNumberToUIActionMap.put(8, findUIAction(uiActions, ExitUIAction.class));
+        menuNumberToUIActionMap.put(4, findUIAction(uiActions, AddMemberCardUIAction.class));
+        menuNumberToUIActionMap.put(5, findUIAction(uiActions, GetAllMemberCardsUIAction.class));
+        menuNumberToUIActionMap.put(6, findUIAction(uiActions, ChangeWorkoutUIAction.class));
+        menuNumberToUIActionMap.put(7, findUIAction(uiActions, ChangeClientAgeGroupUIAction.class));
+        menuNumberToUIActionMap.put(8, findUIAction(uiActions, ChangeClientFitnessCentreUIAction.class));
+        menuNumberToUIActionMap.put(9, findUIAction(uiActions, SearchClientUIAction.class));
+        menuNumberToUIActionMap.put(10, findUIAction(uiActions, ExitUIAction.class));
     }
 
 
@@ -41,11 +42,13 @@ public class ProgramMenu {
         System.out.println("1. Add client to list");
         System.out.println("2. Delete client from list");
         System.out.println("3. Show all clients in the list");
-        //System.out.println("4. Change client workout");
-        //System.out.println("5. Change client age group");
-        //System.out.println("6. Change client fitness centre");
-        System.out.println("7. Search clients in database");
-        System.out.println("8. Exit");
+        System.out.println("4. Add client member card");
+        System.out.println("5. Show all client member cards");
+        System.out.println("6. Change client workout");
+        System.out.println("7. Change client age group");
+        System.out.println("8. Change client fitness centre");
+        System.out.println("9. Search clients in database");
+        System.out.println("10. Exit");
         System.out.println("");
     }
 

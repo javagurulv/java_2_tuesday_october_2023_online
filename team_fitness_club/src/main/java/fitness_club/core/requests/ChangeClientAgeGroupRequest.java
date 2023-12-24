@@ -6,12 +6,12 @@ import fitness_club.core.domain.ClientAgeGroups;
 public class ChangeClientAgeGroupRequest {
 
     private String personalCode;
-    private ClientAgeGroups clientAgeGroup;
+    private Long clientAgeGroup;
 
     public String getPersonalCode() { return personalCode; }
-    public ClientAgeGroups getClientAgeGroup() { return clientAgeGroup; }
+    public Long getClientAgeGroup() { return clientAgeGroup; }
 
-    public ChangeClientAgeGroupRequest(String personalCode, ClientAgeGroups clientAgeGroup) {
+    public ChangeClientAgeGroupRequest(String personalCode, Long clientAgeGroup) {
         this.personalCode = personalCode;
         this.clientAgeGroup = clientAgeGroup;
     }

@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
@@ -28,7 +26,7 @@ public class Client {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "personal_code", nullable = false)
+    @Column(name = "personal_code", nullable = false, unique = true)
     private String personalCode;
 
     public Client(String firstName, String lastName, String personalCode) {

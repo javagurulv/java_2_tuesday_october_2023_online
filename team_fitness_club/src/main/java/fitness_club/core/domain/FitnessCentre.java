@@ -1,5 +1,7 @@
 package fitness_club.core.domain;
 
+
+
 public enum FitnessCentre {
 
     AKROPOLE,

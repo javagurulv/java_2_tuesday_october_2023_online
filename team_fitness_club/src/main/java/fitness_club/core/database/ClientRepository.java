@@ -11,6 +11,8 @@ public interface ClientRepository {
 
     List<Client> getAllClients();
 
+    Long getClientIdByPersonalCode(String personalCode);
+
    // boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup);
 
    // boolean clientWorkoutsChangedByPersonalCode(String personalCode, Workouts newWorkout);

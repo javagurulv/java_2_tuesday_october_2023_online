@@ -19,7 +19,7 @@ public class ChangeClientAgeGroupValidationTest {
         ChangeClientAgeGroupRequest request = mock(ChangeClientAgeGroupRequest.class);
         {
             when(request.getPersonalCode()).thenReturn(null);
-            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.CHILD);
+            when(request.getClientAgeGroup()).thenReturn(1L);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -33,7 +33,7 @@ public class ChangeClientAgeGroupValidationTest {
         ChangeClientAgeGroupRequest request = mock(ChangeClientAgeGroupRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("");
-            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.CHILD);
+            when(request.getClientAgeGroup()).thenReturn(1L);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -47,7 +47,7 @@ public class ChangeClientAgeGroupValidationTest {
         ChangeClientAgeGroupRequest request = mock(ChangeClientAgeGroupRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getClientAgeGroup()).thenReturn(ClientAgeGroups.CHILD);
+            when(request.getClientAgeGroup()).thenReturn(1L);
             List<CoreError> errors = requestValidator.validate(request);
             assertTrue(errors.isEmpty());
         }

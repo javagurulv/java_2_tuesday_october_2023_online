@@ -1,7 +1,7 @@
 package fitness_club.core.services.data_vlidation;
 
 import fitness_club.core.domain.Workouts;
-import fitness_club.core.requests.ChangeClientWorkoutsRequest;
+import fitness_club.core.requests.ChangeClientWorkoutRequest;
 import fitness_club.core.responses.CoreError;
 import java.util.List;
 import org.junit.Test;
@@ -14,10 +14,10 @@ public class ChangeClientWorkoutsValidationTest {
 
     @Test
     public void shouldReturnErrorWhenClientPersonalCodeIsNull() {
-        ChangeClientWorkoutsRequest request = mock(ChangeClientWorkoutsRequest.class);
+        ChangeClientWorkoutRequest request = mock(ChangeClientWorkoutRequest.class);
         {
             when(request.getPersonalCode()).thenReturn(null);
-            when(request.getWorkout()).thenReturn(Workouts.GYM);
+            when(request.getWorkout()).thenReturn(1L);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -28,10 +28,10 @@ public class ChangeClientWorkoutsValidationTest {
 
     @Test
     public void shouldReturnErrorWhenClientPersonaCodeIsEmpty() {
-        ChangeClientWorkoutsRequest request = mock(ChangeClientWorkoutsRequest.class);
+        ChangeClientWorkoutRequest request = mock(ChangeClientWorkoutRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("");
-            when(request.getWorkout()).thenReturn(Workouts.GYM);
+            when(request.getWorkout()).thenReturn(1L);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -42,10 +42,10 @@ public class ChangeClientWorkoutsValidationTest {
 
     @Test
     public void shouldNotReturnErrorWhenPersonalCodeIsPresent() {
-        ChangeClientWorkoutsRequest request = mock(ChangeClientWorkoutsRequest.class);
+        ChangeClientWorkoutRequest request = mock(ChangeClientWorkoutRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getWorkout()).thenReturn(Workouts.GYM);
+            when(request.getWorkout()).thenReturn(1L);
             List<CoreError> errors = requestValidator.validate(request);
             assertTrue(errors.isEmpty());
         }
