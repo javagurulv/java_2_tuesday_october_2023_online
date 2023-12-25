@@ -24,7 +24,7 @@ public abstract class TravelCalculatePremiumControllerTestCase {
 
     @Autowired private JsonFileReader jsonFileReader;
 
-    private static final String BASE_URL = "/insurance/travel/";
+    private static final String BASE_URL = "/insurance/travel/api/";
 
     protected abstract String getTestCaseFolderName();
 
@@ -35,11 +35,11 @@ public abstract class TravelCalculatePremiumControllerTestCase {
         );
     }
 
-    private void executeAndCompare(String jsonRequestFilePath,
-                                   String jsonResponseFilePath) throws Exception {
+    protected void executeAndCompare(String jsonRequestFilePath,
+                                     String jsonResponseFilePath) throws Exception {
         String jsonRequest = jsonFileReader.readJsonFromFile(jsonRequestFilePath);
 
-        MvcResult result = mockMvc.perform(post("/insurance/travel/")
+        MvcResult result = mockMvc.perform(post(BASE_URL)
                         .content(jsonRequest)
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())
