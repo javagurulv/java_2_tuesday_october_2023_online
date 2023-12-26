@@ -24,7 +24,7 @@ public class AgeCoefficientCalculator {
     @Autowired
     private AgeCoefficientRepository ageCoefficientRepository;
 
-    BigDecimal calculate(PersonDTO person) {
+    public BigDecimal calculate(PersonDTO person) {
         return medicalRiskAgeCoefficientEnabled
                 ? getCoefficient(person)
                 : getDefaultValue();

@@ -12,7 +12,7 @@ public class DayCountCalculator {
     @Autowired
     DateTimeUtil dateTimeUtil;
 
-    BigDecimal calculate(AgreementDTO agreement) {
+    public BigDecimal calculate(AgreementDTO agreement) {
         var daysBetween = dateTimeUtil.getDaysBetween(agreement.getAgreementDateFrom(), agreement.getAgreementDateTo());
         return new BigDecimal(daysBetween);
     }

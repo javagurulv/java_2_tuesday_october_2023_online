@@ -19,7 +19,7 @@ public class RiskLimitLevelCalculator {
     @Autowired
     private MedicalRiskLimitLevelRepository riskLimitLevelRepository;
 
-    BigDecimal calculate(AgreementDTO agreement) {
+    public BigDecimal calculate(AgreementDTO agreement) {
         return medicalRiskLimitLevelEnabled
                 ? getCoefficient(agreement)
                 : getDefaultValue();
