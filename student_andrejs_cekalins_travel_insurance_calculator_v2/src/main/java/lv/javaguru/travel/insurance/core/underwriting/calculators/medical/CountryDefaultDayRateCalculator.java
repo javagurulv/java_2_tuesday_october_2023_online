@@ -13,7 +13,7 @@ public class CountryDefaultDayRateCalculator {
     @Autowired
     private CountryDefaultDayRateRepository countryDefaultDayRateRepository;
 
-    BigDecimal calculate (AgreementDTO agreement) {
+    public BigDecimal calculate(AgreementDTO agreement) {
         return countryDefaultDayRateRepository.findByCountryIc(agreement.getCountry())
                 .map(CountryDefaultDayRate::getDefaultDayRate)
                 .orElseThrow(() -> new RuntimeException("Country day rate not found by country id = " + agreement.getCountry()));
