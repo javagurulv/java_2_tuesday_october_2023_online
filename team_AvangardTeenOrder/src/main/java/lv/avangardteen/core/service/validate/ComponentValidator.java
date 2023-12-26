@@ -2,8 +2,8 @@ package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.WheelchairComponent;
-import lv.avangardteen.core.dto.Category;
-import lv.avangardteen.core.dto.Components;
+import lv.avangardteen.core.domain.Category;
+import lv.avangardteen.core.domain.Components;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

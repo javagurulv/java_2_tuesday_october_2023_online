@@ -1,9 +1,8 @@
 package lv.avangardteen.core.responce;
 
-import lv.avangardteen.core.dto.Client;
-import lv.avangardteen.core.dto.Order;
-import lv.avangardteen.core.dto.UserSizes;
-import lv.avangardteen.core.dto.Wheelchair;
+import lv.avangardteen.core.domain.Client;
+import lv.avangardteen.core.domain.UserSizes;
+import lv.avangardteen.core.domain.Wheelchair;
 import lv.avangardteen.core.service.WheelchairComponent;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package lv.avangardteen.core.request;
 
-import lv.avangardteen.core.dto.Client;
+import lv.avangardteen.core.domain.Client;
 
 public class ChangePersonalDateRequest {
     private Long id;

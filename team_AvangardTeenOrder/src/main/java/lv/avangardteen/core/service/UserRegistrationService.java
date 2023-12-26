@@ -1,7 +1,7 @@
 package lv.avangardteen.core.service;
 
 import lv.avangardteen.core.data.Database;
-import lv.avangardteen.core.dto.Client;
+import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.request.UserRegistrationRequest;
 
 import lv.avangardteen.core.responce.CoreError;

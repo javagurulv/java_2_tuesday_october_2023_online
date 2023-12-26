@@ -2,8 +2,8 @@ package lv.avangardteen.core.service;
 
 
 import lv.avangardteen.core.data.Database;
-import lv.avangardteen.core.dto.UserSizes;
-import lv.avangardteen.core.dto.Wheelchair;
+import lv.avangardteen.core.domain.UserSizes;
+import lv.avangardteen.core.domain.Wheelchair;
 import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ClientIdValidator;

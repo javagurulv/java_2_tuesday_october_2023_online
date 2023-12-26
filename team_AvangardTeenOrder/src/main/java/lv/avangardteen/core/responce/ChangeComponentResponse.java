@@ -1,7 +1,6 @@
 package lv.avangardteen.core.responce;
 
 
-import lv.avangardteen.core.dto.Order;
 import lv.avangardteen.core.service.WheelchairComponent;
 
 import java.util.List;

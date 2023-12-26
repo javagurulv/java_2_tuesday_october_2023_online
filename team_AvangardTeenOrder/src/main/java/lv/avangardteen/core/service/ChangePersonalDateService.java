@@ -1,7 +1,6 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.dto.Client;
-import lv.avangardteen.core.dto.Order;
+import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.responce.CoreError;

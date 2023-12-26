@@ -1,6 +1,6 @@
 package lv.avangardteen.core.data;
 
-import lv.avangardteen.core.dto.Components;
+import lv.avangardteen.core.domain.Components;
 
 import java.util.List;
 

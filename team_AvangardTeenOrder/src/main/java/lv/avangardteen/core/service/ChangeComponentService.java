@@ -1,6 +1,5 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.dto.Order;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;

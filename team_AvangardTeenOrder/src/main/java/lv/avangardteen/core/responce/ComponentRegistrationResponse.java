@@ -1,7 +1,5 @@
 package lv.avangardteen.core.responce;
 
-import lv.avangardteen.core.dto.Components;
-import lv.avangardteen.core.dto.UserSizes;
 import lv.avangardteen.core.service.WheelchairComponent;
 
 import java.util.List;

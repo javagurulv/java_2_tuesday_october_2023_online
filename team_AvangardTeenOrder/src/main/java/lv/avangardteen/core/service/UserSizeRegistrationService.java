@@ -1,13 +1,8 @@
 package lv.avangardteen.core.service;
 
 import lv.avangardteen.core.data.Database;
-import lv.avangardteen.core.dto.Client;
-import lv.avangardteen.core.dto.Order;
-import lv.avangardteen.core.dto.UserSizes;
-import lv.avangardteen.core.dto.Wheelchair;
-import lv.avangardteen.core.request.ChangePersonalSizeRequest;
+import lv.avangardteen.core.domain.Wheelchair;
 import lv.avangardteen.core.request.UserSizeRegistrationRequest;
-import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.UserSizeRegistrationResponse;
 import lv.avangardteen.core.service.validate.PersonalSizeValidator;

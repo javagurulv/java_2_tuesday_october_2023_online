@@ -1,8 +1,7 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.dto.Order;
-import lv.avangardteen.core.dto.UserSizes;
-import lv.avangardteen.core.dto.Wheelchair;
+import lv.avangardteen.core.domain.UserSizes;
+import lv.avangardteen.core.domain.Wheelchair;
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.responce.CoreError;

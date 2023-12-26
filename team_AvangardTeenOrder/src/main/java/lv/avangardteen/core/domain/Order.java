@@ -1,4 +1,4 @@
-package lv.avangardteen.core.dto;
+package lv.avangardteen.core.domain;
 
 import lv.avangardteen.core.service.WheelchairComponent;
 

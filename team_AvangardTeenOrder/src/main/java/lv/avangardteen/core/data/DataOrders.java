@@ -1,6 +1,6 @@
 package lv.avangardteen.core.data;
 
-import lv.avangardteen.core.dto.*;
+import lv.avangardteen.core.domain.*;
 import lv.avangardteen.core.service.WheelchairComponent;
 import org.springframework.stereotype.Component;
 

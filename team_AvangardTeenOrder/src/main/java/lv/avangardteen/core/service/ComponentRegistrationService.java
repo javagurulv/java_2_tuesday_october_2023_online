@@ -1,10 +1,7 @@
 package lv.avangardteen.core.service;
 
 import lv.avangardteen.core.data.Database;
-import lv.avangardteen.core.dto.Order;
-import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.request.ComponentRegistrationRequest;
-import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.ComponentRegistrationResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ComponentValidator;
