@@ -34,15 +34,15 @@ public class AddMemberCardUIAction implements UIAction {
 
         System.out.println("Choose client age group: ");
         printEnumValues(ClientAgeGroups.values());
-        String clientAgeGroup = scanner.nextLine();
+        String clientAgeGroup = String.valueOf(ClientAgeGroups.values()[Integer.parseInt(scanner.nextLine())]);
 
         System.out.println("Choose client workout: ");
         printEnumValues(Workouts.values());
-        String clientWorkout = scanner.nextLine();
+        String clientWorkout = String.valueOf(Workouts.values()[Integer.parseInt(scanner.nextLine())]);
 
         System.out.println("Choose new fitness centre: ");
         printEnumValues(FitnessCentre.values());
-        String fitnessCentre = scanner.nextLine();
+        String fitnessCentre = String.valueOf(FitnessCentre.values()[Integer.parseInt(scanner.nextLine())]);
 
         System.out.println("Choose the date contract ends in format YYYY-MM-DD: ");
         Date termOfContract = parseDate(scanner.nextLine());
