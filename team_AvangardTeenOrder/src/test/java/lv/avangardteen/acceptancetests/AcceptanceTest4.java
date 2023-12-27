@@ -22,7 +22,7 @@ public class AcceptanceTest4 {
 
     @Test
     public void checkPriceOfDifferentBrakes() {
-        UserRegistrationRequest request = new UserRegistrationRequest("Alex", 123456l, "Riga");
+        UserRegistrationRequest request = new UserRegistrationRequest("Alex", 111l, 123456l, "Riga");
         getUserRegistrationService().execute(request);
         UserSizeRegistrationRequest sizeRegistrationRequest = new UserSizeRegistrationRequest(22, 33, 33, 33);
         getUserSizeRegistrationService().execute(sizeRegistrationRequest);

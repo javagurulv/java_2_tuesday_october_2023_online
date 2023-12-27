@@ -5,7 +5,7 @@ import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChangePersonalDateValidator;
-import lv.avangardteen.core.data.Database;
+import lv.avangardteen.core.database.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

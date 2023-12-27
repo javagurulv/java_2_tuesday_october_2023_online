@@ -6,7 +6,7 @@ import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.DeleteOrderResponse;
 import lv.avangardteen.core.service.validate.IdOrderValidator;
-import lv.avangardteen.core.data.Database;
+import lv.avangardteen.core.database.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -50,7 +50,7 @@ class DeleteOrderServiceMockitoTest {
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
         DeleteOrderResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        Mockito.verify(database).deleteOrder(request.getId());
+        Mockito.verify(database).deleteClientById(request.getId());
 
     }
 

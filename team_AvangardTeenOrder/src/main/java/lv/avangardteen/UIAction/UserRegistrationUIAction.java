@@ -22,11 +22,13 @@ public class UserRegistrationUIAction implements UIAction {
             System.out.println("Введите Имя и Фамилию");
             String nameSurname = scan.nextLine();
             Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите персональный код");
+            Long personalCode = scanner.nextLong();
             System.out.println("Введите номер телефона");
             Long phoneNumber = scanner.nextLong();
             System.out.println("Введите свой адрес");
             String address = scan.nextLine();
-            UserRegistrationRequest request = new UserRegistrationRequest(nameSurname, phoneNumber, address);
+            UserRegistrationRequest request = new UserRegistrationRequest(nameSurname, personalCode, phoneNumber, address);
             UserRegistrationResponse response = service.execute(request);
             if (response.hasErrors()) {
                 response.getErrors().forEach(coreError ->

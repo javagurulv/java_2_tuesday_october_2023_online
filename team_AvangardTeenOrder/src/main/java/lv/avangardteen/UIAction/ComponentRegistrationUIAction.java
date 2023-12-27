@@ -1,10 +1,7 @@
 package lv.avangardteen.UIAction;
 
-import lv.avangardteen.core.data.DataComponents;
-import lv.avangardteen.core.data.Database;
-import lv.avangardteen.core.request.ChangeComponentRequest;
+import lv.avangardteen.core.database.DataComponents;
 import lv.avangardteen.core.request.ComponentRegistrationRequest;
-import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.ComponentRegistrationResponse;
 import lv.avangardteen.core.service.ComponentRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;

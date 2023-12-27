@@ -6,7 +6,7 @@ import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.DeleteOrderResponse;
 
 import lv.avangardteen.core.service.validate.IdOrderValidator;
-import lv.avangardteen.core.data.Database;
+import lv.avangardteen.core.database.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +28,7 @@ public class DeleteOrderService {
     }
 
     private DeleteOrderResponse getDeleteOrderResponse(DeleteOrderRequest request) {
-        boolean isOrderRemove = database.deleteOrder(request.getId());
+        boolean isOrderRemove = database.deleteClientById(request.getId());
         return new DeleteOrderResponse(isOrderRemove);
     }
 }

@@ -1,8 +1,7 @@
-package lv.avangardteen.core.data;
+package lv.avangardteen.core.database;
 
 import lv.avangardteen.core.domain.*;
 import lv.avangardteen.core.service.WheelchairComponent;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Component
+//@Component
 public class DataOrders implements Database {
     private Long nextId = 1L;
     List<Client> clients = new ArrayList<>();
@@ -113,9 +112,9 @@ public class DataOrders implements Database {
         }
     }
 
-
     @Override
-    public boolean deleteOrder(Long id) {
+    public boolean deleteClientById(Long id) {
+
         return (deleteUserSize(id)
                 && deleteWheelchair(id)
                 && deleteWheelchairComponents(id));
@@ -220,20 +219,11 @@ public class DataOrders implements Database {
 
 
     @Override
-    public List<Client> findBySurname(String surname) {
+    public Client findBySurnameAndPersonalCode(String surname, Long personalCode) {
         return getClients().stream()
                 .filter(client -> client.getNameSurname().equals(surname))
-                .collect(Collectors.toList());
-
-
-    }
-
-    @Override
-    public List<Client> findBySurnameAndAddress(String surname, String address) {
-        return getClients().stream()
-                .filter(client -> client.getNameSurname().equals(surname))
-                .filter(client -> client.getUserAddress().equals(address))
-                .collect(Collectors.toList());
+                .filter(client -> client.getPersonalCode().equals(personalCode))
+                .findFirst().get();
     }
 
     @Override

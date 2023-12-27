@@ -7,7 +7,7 @@ import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.ShowOrderResponse;
 import lv.avangardteen.core.service.validate.ShowOrderValidator;
-import lv.avangardteen.core.data.Database;
+import lv.avangardteen.core.database.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package lv.avangardteen.core.data;
+package lv.avangardteen.core.database;
 
 import lv.avangardteen.core.domain.*;
 import lv.avangardteen.core.service.WheelchairComponent;
@@ -22,13 +22,13 @@ public interface Database {
     void updateWheelchair(Long id, Wheelchair wheelchair);
     void updateWheelchairComponents(Long id, WheelchairComponent wheelchairComponent);
 
-    boolean deleteOrder(Long id);
+    boolean deleteClientById(Long id);
 
     Client getClient(Long id);
     UserSizes getUserSize(Long id);
     Wheelchair getWheelchair(Long id);
     WheelchairComponent getWheelchairComponents(Long id);
 
-    List<Client> findBySurname(String surname);
-    List<Client> findBySurnameAndAddress(String surname, String address);
+
+    Client findBySurnameAndPersonalCode(String surname, Long personalCode);
 }

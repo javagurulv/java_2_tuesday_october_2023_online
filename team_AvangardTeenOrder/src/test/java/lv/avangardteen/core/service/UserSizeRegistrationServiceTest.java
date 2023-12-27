@@ -1,11 +1,9 @@
 package lv.avangardteen.core.service;
 
 
-import lv.avangardteen.core.data.Database;
-import lv.avangardteen.core.request.UserRegistrationRequest;
+import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.request.UserSizeRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.core.responce.UserRegistrationResponse;
 import lv.avangardteen.core.responce.UserSizeRegistrationResponse;
 import lv.avangardteen.core.service.validate.PersonalSizeValidator;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,6 +1,6 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.data.Database;
+import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.domain.Wheelchair;
 import lv.avangardteen.core.request.UserSizeRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;

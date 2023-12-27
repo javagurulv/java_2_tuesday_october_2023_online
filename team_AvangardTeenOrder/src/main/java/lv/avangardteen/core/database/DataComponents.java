@@ -1,4 +1,4 @@
-package lv.avangardteen.core.data;
+package lv.avangardteen.core.database;
 
 import lv.avangardteen.core.domain.Components;
 

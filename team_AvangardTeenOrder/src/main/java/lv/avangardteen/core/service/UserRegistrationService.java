@@ -1,6 +1,6 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.data.Database;
+import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.request.UserRegistrationRequest;
 

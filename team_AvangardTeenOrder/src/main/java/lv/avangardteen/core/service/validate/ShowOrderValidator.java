@@ -1,7 +1,6 @@
 package lv.avangardteen.core.service.validate;
 
-import lv.avangardteen.core.data.Database;
-import lv.avangardteen.core.request.ChangePersonalDateRequest;
+import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import org.springframework.beans.factory.annotation.Autowired;

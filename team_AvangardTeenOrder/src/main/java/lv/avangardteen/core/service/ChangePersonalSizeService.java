@@ -6,7 +6,7 @@ import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChangePersonalSizeValidator;
-import lv.avangardteen.core.data.Database;
+import lv.avangardteen.core.database.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

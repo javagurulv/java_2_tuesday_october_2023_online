@@ -1,11 +1,11 @@
 package lv.avangardteen.UIAction;
 
-import lv.avangardteen.core.data.DataComponents;
+import lv.avangardteen.core.database.DataComponents;
+import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.service.ChangeComponentService;
-import lv.avangardteen.core.data.DataComponentsImpl;
-import lv.avangardteen.core.data.DataOrders;
+import lv.avangardteen.core.database.DataOrders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ import java.util.Scanner;
 @Component
 public class ChangeComponentsUIAction implements UIAction {
     @Autowired
-    DataOrders dataOrders;
+    Database database;
     @Autowired
     DataComponents dataComponents;
     @Autowired
@@ -25,7 +25,6 @@ public class ChangeComponentsUIAction implements UIAction {
     @Override
     public void execute() {
         try {
-
 
             System.out.println("Введите номер заказа");
             Scanner scanner = new Scanner(System.in);

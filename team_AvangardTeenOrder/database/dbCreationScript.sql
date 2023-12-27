@@ -5,9 +5,10 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 CREATE SCHEMA IF NOT EXISTS `avangard_teen_order` DEFAULT CHARACTER SET utf8 ;
 USE `avangard_teen_order` ;
 
-CREATE TABLE IF NOT EXISTS  `client` (
+CREATE TABLE IF NOT EXISTS  `clients` (
 `id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT ,
 `name_surname` VARCHAR (200) NOT NULL,
+`personal_code` BIGINT NOT NULL,
 `telephone_number` BIGINT NOT NULL,
 `address` VARCHAR (300) NOT NULL
 
@@ -15,20 +16,25 @@ CREATE TABLE IF NOT EXISTS  `client` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 10;
 
-ALTER TABLE `client`
-ADD column 	`date_order` datetime default now();
+CREATE UNIQUE INDEX clients_type_index ON clients(name_surname, personal_code);
 
-CREATE TABLE IF NOT EXISTS  `client-anthropological_data` (
+CREATE TABLE IF NOT EXISTS  `client_size` (
 `id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT ,
-`client_id` BIGINT NOT NULL,
-`pelvis_width` INT NOT NULL,
-`thigh_length` INT NOT NULL,
-`back_height` INT NOT NULL,
-`shin_length` INT NOT NULL,
-foreign key (client_id) REFERENCES client (id)  ON DELETE CASCADE
+`clients_id` BIGINT NOT NULL,
+`pelvisWidth` INT NOT NULL,
+`thighLength` INT NOT NULL,
+`backHeight` INT NOT NULL,
+`shinLength` INT NOT NULL
+
 )
 ENGINE = InnoDB
 AUTO_INCREMENT = 10;
+
+ALTER TABLE `client_size`
+add foreign key (clients_id) REFERENCES clients (id)  ON DELETE CASCADE;
+
+CREATE UNIQUE INDEX client_size_type_index ON client_size(clients_id);
+
 
 CREATE TABLE IF NOT EXISTS  `wheelchair-dimensions` (
 `id` BIGINT NOT NULL  PRIMARY KEY AUTO_INCREMENT,

@@ -1,10 +1,8 @@
 package lv.avangardteen.integrationtests;
 
-
 import lv.avangardteen.config.OrderListConfiguration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,3 +23,4 @@ public class SpringContextTest {
     }
 
 }
+

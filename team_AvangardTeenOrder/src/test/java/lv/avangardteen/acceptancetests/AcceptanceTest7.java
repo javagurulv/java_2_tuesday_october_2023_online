@@ -23,7 +23,7 @@ public class AcceptanceTest7 {
     @Test
     public void shouldReturnErrorsFromOneOrderAndReturnDataFromSecondOrder() {
 
-        UserRegistrationRequest request = new UserRegistrationRequest("", null, "");
+        UserRegistrationRequest request = new UserRegistrationRequest("", 111l, null, "");
         UserRegistrationResponse response = getUserRegistrationService().execute(request);
         UserSizeRegistrationRequest sizeRegistrationRequest = new UserSizeRegistrationRequest(0, null, 0, 0);
         UserSizeRegistrationResponse response1 = getUserSizeRegistrationService().execute(sizeRegistrationRequest);

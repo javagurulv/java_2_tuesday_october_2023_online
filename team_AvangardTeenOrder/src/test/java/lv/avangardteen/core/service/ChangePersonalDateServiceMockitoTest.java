@@ -5,7 +5,7 @@ import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChangePersonalDateValidator;
-import lv.avangardteen.core.data.Database;
+import lv.avangardteen.core.database.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -35,7 +35,7 @@ class ChangePersonalDateServiceMockitoTest {
 
     @Test
     public void ChangePersonalDateWithError() {
-        ChangePersonalDateRequest notValidationRequest = new ChangePersonalDateRequest(1L, "Name", 123245l, "Riga");
+        ChangePersonalDateRequest notValidationRequest = new ChangePersonalDateRequest(1L, "Name", 111l, 123245l, "Riga");
         Mockito.when(validator.validate(notValidationRequest)).thenReturn(
                 List.of(new CoreError("Change Persona Date", "Incorrect personal date!")));
         ChangePersonalDateResponse response = service.execute(notValidationRequest);
@@ -44,7 +44,7 @@ class ChangePersonalDateServiceMockitoTest {
 
     @Test
     public void ChangePersonalDateWithoutError() {
-        ChangePersonalDateRequest request = new ChangePersonalDateRequest(1L, "Name", 123245l, "Riga");
+        ChangePersonalDateRequest request = new ChangePersonalDateRequest(1L, "Name", 111l, 123245l, "Riga");
         Mockito.when(validator.validate(request)).thenReturn(List.of());
         Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
         ChangePersonalDateResponse response = service.execute(request);

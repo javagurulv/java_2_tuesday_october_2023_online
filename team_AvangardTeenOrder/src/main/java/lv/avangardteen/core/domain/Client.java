@@ -5,8 +5,9 @@ import java.util.Objects;
 public class Client {
     Long id;
     String nameSurname;
-    Long phoneNumber;
-    String userAddress;
+    Long personalCode;
+    Long phone;
+    String address;
 
     public Client(){}
 
@@ -26,27 +27,36 @@ public class Client {
         this.nameSurname = nameSurname;
     }
 
-    public Long getPhoneNumber() {
-        return phoneNumber;
+    public Long getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(Long phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(Long phone) {
+        this.phone = phone;
     }
 
-    public String getUserAddress() {
-        return userAddress;
+    public Long getPersonalCode() {
+        return personalCode;
     }
 
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress;
+    public void setPersonalCode(Long personalCode) {
+        this.personalCode = personalCode;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
     public String toString() {
         return  " Имя, Фамилия: " + nameSurname + '\n' +
-                " номер телефона: " + phoneNumber + '\n' +
-                " адрес: " + userAddress +
+                "персональный код: " + personalCode + '\n' +
+                " номер телефона: " + phone + '\n' +
+                " адрес: " + address +
                 '}';
     }
 
@@ -55,11 +65,11 @@ public class Client {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return Objects.equals(id, client.id) && Objects.equals(nameSurname, client.nameSurname) && Objects.equals(phoneNumber, client.phoneNumber) && Objects.equals(userAddress, client.userAddress);
+        return Objects.equals(id, client.id) && Objects.equals(nameSurname, client.nameSurname) && Objects.equals(personalCode, client.personalCode) && Objects.equals(phone, client.phone) && Objects.equals(address, client.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nameSurname, phoneNumber, userAddress);
+        return Objects.hash(id, nameSurname, personalCode, phone, address);
     }
 }

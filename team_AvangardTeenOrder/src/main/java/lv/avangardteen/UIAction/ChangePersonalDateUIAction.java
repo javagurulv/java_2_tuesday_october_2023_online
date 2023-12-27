@@ -24,11 +24,13 @@ public class ChangePersonalDateUIAction implements UIAction {
             Scanner scan = new Scanner(System.in);
             System.out.println("Введите Имя и Фамилию");
             String nameSurname = scan.nextLine();
+            System.out.println("Введите персоналльный код");
+            Long personalCode = scanner.nextLong();
             System.out.println("Введите номер телефона");
             Long phoneNumber = scanner.nextLong();
             System.out.println("Введите свой адрес");
             String address = scan.nextLine();
-            ChangePersonalDateRequest request = new ChangePersonalDateRequest(id, nameSurname, phoneNumber, address);
+            ChangePersonalDateRequest request = new ChangePersonalDateRequest(id, nameSurname, personalCode, phoneNumber, address);
             ChangePersonalDateResponse response = service.execute(request);
             if (response.hasErrors()) {
                 response.getErrors().forEach(coreError ->

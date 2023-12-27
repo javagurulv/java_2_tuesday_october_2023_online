@@ -1,7 +1,7 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.data.DataComponents;
-import lv.avangardteen.core.data.DataComponentsImpl;
+import lv.avangardteen.core.database.DataComponents;
+import lv.avangardteen.core.database.DataComponentsImpl;
 import lv.avangardteen.core.domain.Category;
 import lv.avangardteen.core.domain.Components;
 import lv.avangardteen.core.domain.Wheelchair;
