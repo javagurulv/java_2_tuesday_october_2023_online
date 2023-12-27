@@ -34,9 +34,9 @@ public class AddMemberCardService {
         }
 
         MemberCard memberCard = new MemberCard(
-                getClientId(request),
+                request.getClient(),
                 request.getClientAgeGroups(),
-                request.getClientWorkout(),
+                request.getWorkouts(),
                 request.getFitnessCentre(),
                 request.getTermOfContract()
         );
@@ -46,6 +46,6 @@ public class AddMemberCardService {
     }
 
     private Long getClientId(AddMemberCardRequest request) {
-        return clientRepository.getClientIdByPersonalCode(request.getPersonalCode());
+        return clientRepository.getClientIdByPersonalCode(request.getClient().getPersonalCode());
     }
 }

@@ -35,7 +35,7 @@ public class AddMemberCardRequestValidator {
     }
 
     private Optional<CoreError> validatePersonalCodeNotEmpty(AddMemberCardRequest request) {
-        return request.getPersonalCode() == null || request.getPersonalCode().isEmpty()
+        return request.getClient() == null
                 ? Optional.of(new CoreError("personalCode", "Field personal code must not be empty!"))
                 : Optional.empty();
     }
@@ -47,7 +47,7 @@ public class AddMemberCardRequestValidator {
     }
 
     private Optional<CoreError> validateWorkoutNotEmpty(AddMemberCardRequest request) {
-        return request.getClientWorkout() == null
+        return request.getWorkouts() == null
                 ? Optional.of(new CoreError("personalCode", "Field personal code must not be empty!"))
                 : Optional.empty();
     }
@@ -65,7 +65,7 @@ public class AddMemberCardRequestValidator {
     }
 
     private Optional<CoreError> validateClientExist(AddMemberCardRequest request) {
-        List<Client> clients = clientRepository.findByPersonalCode(request.getPersonalCode());
+        List<Client> clients = clientRepository.findByPersonalCode(request.getClient().getPersonalCode());
         return (clients.isEmpty())
                 ? Optional.of(new CoreError("Client", "There is no such client in database!"))
                 : Optional.empty();
