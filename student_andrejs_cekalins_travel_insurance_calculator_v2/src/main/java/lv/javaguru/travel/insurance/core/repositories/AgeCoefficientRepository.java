@@ -7,7 +7,9 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface AgeCoefficientRepository extends JpaRepository<AgeCoefficient, Long> {
+public interface AgeCoefficientRepository
+        extends JpaRepository<AgeCoefficient, Long> {
+
     @Query("SELECT ac from AgeCoefficient ac " +
             "where ac.ageFrom <= :age " +
             "and ac.ageTo >= :age")

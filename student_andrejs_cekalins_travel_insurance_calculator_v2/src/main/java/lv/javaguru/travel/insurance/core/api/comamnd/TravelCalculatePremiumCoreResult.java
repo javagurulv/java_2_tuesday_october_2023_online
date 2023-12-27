@@ -19,7 +19,6 @@ public class TravelCalculatePremiumCoreResult {
 
     private AgreementDTO agreement;
 
-
     public boolean hasErrors() {
         return errors != null && !errors.isEmpty();
     }
