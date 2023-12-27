@@ -37,6 +37,9 @@ public class InMemoryClientRepositoryImpl implements ClientRepository {
     public List<Client> getAllClients() {
         return clients;
     }
+
+    @Override
+    public Long getClientIdByPersonalCode(String personalCode){return 0L;}
     /*@Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         Optional<Client> clientToChangeAgeGroupOpt = clients.stream()

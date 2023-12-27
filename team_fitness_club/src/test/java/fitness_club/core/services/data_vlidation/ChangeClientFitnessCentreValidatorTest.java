@@ -19,7 +19,7 @@ public class ChangeClientFitnessCentreValidatorTest {
         ChangeClientFitnessCentreRequest request = Mockito.mock(ChangeClientFitnessCentreRequest.class);
         {
             when(request.getPersonalCode()).thenReturn(null);
-            when(request.getFitnessCentre()).thenReturn(FitnessCentre.AKROPOLE);
+            when(request.getFitnessCentre()).thenReturn(1L);
             List<CoreError> errors = validator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.get(0).getField(), "personalCode");
@@ -31,7 +31,7 @@ public class ChangeClientFitnessCentreValidatorTest {
         ChangeClientFitnessCentreRequest request = Mockito.mock(ChangeClientFitnessCentreRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("");
-            when(request.getFitnessCentre()).thenReturn(FitnessCentre.AKROPOLE);
+            when(request.getFitnessCentre()).thenReturn(1L);
             List<CoreError> errors = validator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.get(0).getField(), "personalCode");
@@ -43,7 +43,7 @@ public class ChangeClientFitnessCentreValidatorTest {
         ChangeClientFitnessCentreRequest request = Mockito.mock(ChangeClientFitnessCentreRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getFitnessCentre()).thenReturn(FitnessCentre.AKROPOLE);
+            when(request.getFitnessCentre()).thenReturn(1L);
             List<CoreError> errors = validator.validate(request);
             assertEquals(errors.size(),0);
         }

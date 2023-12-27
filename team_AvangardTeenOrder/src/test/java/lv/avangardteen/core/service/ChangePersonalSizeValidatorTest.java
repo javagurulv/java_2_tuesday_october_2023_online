@@ -1,6 +1,7 @@
 package lv.avangardteen.core.service;
 
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
+import lv.avangardteen.core.request.UserSizeRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChangePersonalSizeValidator;
 import lv.avangardteen.core.service.validate.ClientIdValidator;
@@ -34,6 +35,7 @@ class ChangePersonalSizeValidatorTest {
 
     @Test
     public void shouldNotReturnErrorsWhenIdValidatorReturnNoErrors() {
+
         ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(2l,
                 33, 33, 33, 33);
         when(idValidator.validate(request.getId())).thenReturn(List.of());
@@ -44,6 +46,7 @@ class ChangePersonalSizeValidatorTest {
 
     @Test
     public void shouldReturnErrorsWhenIdValidatorReturnErrors() {
+
         ChangePersonalSizeRequest request = new ChangePersonalSizeRequest(2l,
                 33, 33, 33, 33);
         when(idValidator.validate(request.getId())).thenReturn(List.of(new CoreError("errors", "message")));
@@ -59,6 +62,7 @@ class ChangePersonalSizeValidatorTest {
         when(personalSizeValidator.validate(request.getUserSizes())).thenReturn(List.of(new CoreError("error", "message")));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
+
 
     }
 

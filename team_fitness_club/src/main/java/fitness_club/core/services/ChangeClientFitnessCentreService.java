@@ -1,22 +1,38 @@
 package fitness_club.core.services;
 
-//@Component
-abstract public class ChangeClientFitnessCentreService {
+import fitness_club.core.database.ClientRepository;
+import fitness_club.core.database.MemberCardRepository;
+import fitness_club.core.requests.ChangeClientFitnessCentreRequest;
+import fitness_club.core.requests.ChangeClientWorkoutRequest;
+import fitness_club.core.responses.ChangeClientFitnessCentreResponse;
+import fitness_club.core.responses.CoreError;
+import fitness_club.core.services.data_vlidation.ChangeClientFitnessCentreValidator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
 
-   /* @Autowired
-    private Database database;
+@Component
+public class ChangeClientFitnessCentreService {
+
+    @Autowired
+    private MemberCardRepository memberCardRepository;
+    @Autowired
+    private ClientRepository clientRepository;
     @Autowired
     private ChangeClientFitnessCentreValidator validator;
+
 
     public ChangeClientFitnessCentreResponse execute(ChangeClientFitnessCentreRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new ChangeClientFitnessCentreResponse(errors);
         }
-        boolean isClientFitnessCentreChanged = database.isClientFitnessCentreChangedByPersonalCode(request.getPersonalCode(), request.getFitnessCentre());
+        boolean isClientFitnessCentreChanged = memberCardRepository.isClientFitnessCentreChangedByPersonalCode(getClientId(request), request.getFitnessCentre());
         return new ChangeClientFitnessCentreResponse(isClientFitnessCentreChanged);
     }
 
-    */
+    private Long getClientId(ChangeClientFitnessCentreRequest request) {
+        return clientRepository.getClientIdByPersonalCode(request.getPersonalCode());
+    }
 }

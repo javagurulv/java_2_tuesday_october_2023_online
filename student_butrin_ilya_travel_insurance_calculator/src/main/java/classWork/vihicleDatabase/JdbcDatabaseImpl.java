@@ -28,8 +28,7 @@ public class JdbcDatabaseImpl implements Database {
 
     @Override
     public boolean deleteBook(Long id) {
-        return jdbcTemplate.update( "DELETE FROM books" +
-                "WRERE ID = ?", id) == 1;
+        return jdbcTemplate.update( "DELETE FROM books WHERE id = ?", id) == 1;
     }
 
     @Override

@@ -3,19 +3,21 @@ package lv.javaguru.java2.lessoncode.book.app.core.services;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.services.validators.AddBookRequestValidator;
-import lv.javaguru.java2.lessoncode.book.app.core.database.Database;
+import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.AddBookResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
 public class AddBookService {
-    @Autowired private Database database;
+    @Autowired private BookRepository bookRepository;
     @Autowired private AddBookRequestValidator validator;
 
+    @Transactional
     public AddBookResponse execute(AddBookRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
@@ -23,12 +25,11 @@ public class AddBookService {
         }
 
         Book book = new Book(
-                request.getBookTitle(),
-                request.getBookAuthor(),
-                request.getIssueYear(),
-                request.getGenre());
+                request.getTitle(),
+                request.getAuthor(),
+                request.getIssueYear());
 
-        database.save(book);
+        bookRepository.save(book);
 
         return new AddBookResponse(book);
     }

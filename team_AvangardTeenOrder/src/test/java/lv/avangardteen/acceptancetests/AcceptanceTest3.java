@@ -1,16 +1,10 @@
 package lv.avangardteen.acceptancetests;
 
+
 import lv.avangardteen.config.OrderListConfiguration;
-import lv.avangardteen.core.request.ChangePersonalDateRequest;
-import lv.avangardteen.core.request.ChangePersonalSizeRequest;
-import lv.avangardteen.core.request.ClientRequest;
-import lv.avangardteen.core.request.ShowOrderRequest;
+import lv.avangardteen.core.request.*;
 import lv.avangardteen.core.responce.ShowOrderResponse;
-import lv.avangardteen.core.service.ChangePersonalDateService;
-import lv.avangardteen.core.service.ChangePersonalSizeService;
-import lv.avangardteen.core.service.ClientService;
-import lv.avangardteen.core.service.ShowOrderService;
-import lv.avangardteen.dependency_injection.DIApplicationContextBuilder;
+import lv.avangardteen.core.service.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -22,60 +16,92 @@ public class AcceptanceTest3 {
 
     @Test
     public void shouldChangeOneOrderPersonalDataAndChangeSecondOrderPersonalSize() {
-        ClientRequest request1 = new ClientRequest("Alex", 123456, "Riga", 11,
-                22, 33, 44, 11, 21,
-                 31, 41);
-        getClientService().execute(request1);
+        UserRegistrationRequest request = new UserRegistrationRequest("Alex", 123456l, "Riga");
+        getUserRegistrationService().execute(request);
+        UserSizeRegistrationRequest sizeRegistrationRequest = new UserSizeRegistrationRequest(22, 33, 33, 33);
+        getUserSizeRegistrationService().execute(sizeRegistrationRequest);
+        ComponentRegistrationRequest componentRegistrationRequest = new ComponentRegistrationRequest(11, 21, 31, 41);
+        getComponentRegistrationService().execute(componentRegistrationRequest);
 
-        ClientRequest request2 = new ClientRequest("Olga", 54321, "Tallin",
-                11,21, 31, 41, 17,21,
-                31, 41);
-        getClientService().execute(request2);
+        ShowOrderRequest showOrderRequest = new ShowOrderRequest(1l);
+        ShowOrderResponse response = getShowOrderService().execute(showOrderRequest);
 
-        ChangePersonalDateRequest request4 = new ChangePersonalDateRequest(1L, "AlexNew",
-                654321, "NewRiga");
+        ChangePersonalDateRequest request4 = new ChangePersonalDateRequest(1l, "AlexNew",
+                654321l, "NewRiga");
         getChangePersonalDateService().execute(request4);
 
-        ChangePersonalSizeRequest request5 = new ChangePersonalSizeRequest(2L,55,
-                12,13,14);
+        ShowOrderRequest showOrderRequest1 = new ShowOrderRequest(1l);
+        ShowOrderResponse response5 = getShowOrderService().execute(showOrderRequest1);
+
+
+        UserRegistrationRequest request1 = new UserRegistrationRequest("Alex", 123456l, "Riga");
+        getUserRegistrationService().execute(request1);
+        UserSizeRegistrationRequest sizeRegistrationRequest1 = new UserSizeRegistrationRequest(22, 33, 33, 33);
+        getUserSizeRegistrationService().execute(sizeRegistrationRequest1);
+        ComponentRegistrationRequest componentRegistrationRequest1 = new ComponentRegistrationRequest(11, 21, 31, 41);
+        getComponentRegistrationService().execute(componentRegistrationRequest1);
+
+        ChangePersonalSizeRequest request5 = new ChangePersonalSizeRequest(2L, 55,
+                12, 13, 14);
         getChangePersonalSizeService().execute(request5);
 
-        ShowOrderResponse response = getShowOrderService().execute(new ShowOrderRequest(1L));
+        ShowOrderRequest showOrderRequest2 = new ShowOrderRequest(2l);
+        ShowOrderResponse response7 = getShowOrderService().execute(showOrderRequest2);
 
-        ShowOrderResponse response2 = getShowOrderService().execute(new ShowOrderRequest(2L));
 
         assertEquals(response.getClient().getId(), 1);
-        assertEquals(response.getClient().getNameSurname(), "AlexNew");
-        assertEquals(response.getClient().getPhoneNumber(), 654321);
-        assertEquals(response.getClient().getUserAddress(), "NewRiga");
-        assertEquals(response.getClient().getUserSizes().getShinLength(), 11);
-        assertEquals(response.getClient().getUserSizes().getBackHeight(), 22);
-        assertEquals(response.getClient().getUserSizes().getThighLength(), 33);
-        assertEquals(response.getClient().getUserSizes().getPelvisWidth(), 44);
+        assertEquals(response.getClient().getNameSurname(), "Alex");
+        assertEquals(response.getClient().getPhoneNumber(), 123456l);
+        assertEquals(response.getClient().getUserAddress(), "Riga");
+        assertEquals(response.getUserSizes().getId(), 1);
+        assertEquals(response.getUserSizes().getShinLength(), 33);
+        assertEquals(response.getUserSizes().getBackHeight(), 33);
+        assertEquals(response.getUserSizes().getThighLength(), 33);
+        assertEquals(response.getUserSizes().getPelvisWidth(), 22);
 
-        assertEquals(response2.getClient().getId(), 2);
-        assertEquals(response2.getClient().getNameSurname(), "Olga");
-        assertEquals(response2.getClient().getPhoneNumber(), 54321);
-        assertEquals(response2.getClient().getUserAddress(), "Tallin");
-        assertEquals(response2.getClient().getUserSizes().getShinLength(), 14);
-        assertEquals(response2.getClient().getUserSizes().getBackHeight(), 13);
-        assertEquals(response2.getClient().getUserSizes().getThighLength(), 12);
-        assertEquals(response2.getClient().getUserSizes().getPelvisWidth(), 55);
+        assertEquals(response5.getClient().getId(), 1l);
+        assertEquals(response5.getClient().getNameSurname(), "AlexNew");
+        assertEquals(response5.getClient().getPhoneNumber(), 654321l);
+        assertEquals(response5.getClient().getUserAddress(), "NewRiga");
+        assertEquals(response5.getUserSizes().getShinLength(), 33);
+        assertEquals(response5.getUserSizes().getBackHeight(), 33);
+        assertEquals(response5.getUserSizes().getThighLength(), 33);
+        assertEquals(response5.getUserSizes().getPelvisWidth(), 22);
+
+        assertEquals(response7.getClient().getId(), 2l);
+        assertEquals(response7.getClient().getNameSurname(), "Alex");
+        assertEquals(response7.getClient().getPhoneNumber(), 123456);
+        assertEquals(response7.getClient().getUserAddress(), "Riga");
+        assertEquals(response7.getUserSizes().getShinLength(), 14);
+        assertEquals(response7.getUserSizes().getBackHeight(), 13);
+        assertEquals(response7.getUserSizes().getThighLength(), 12);
+        assertEquals(response7.getUserSizes().getPelvisWidth(), 55);
 
     }
 
-    private ClientService getClientService () {
-        return appContext.getBean(ClientService.class);
-    }
-    private ChangePersonalSizeService getChangePersonalSizeService () {
-        return  appContext.getBean(ChangePersonalSizeService.class);
+    private UserRegistrationService getUserRegistrationService() {
+        return appContext.getBean(UserRegistrationService.class);
     }
 
-    private ChangePersonalDateService getChangePersonalDateService () {
-        return  appContext.getBean(ChangePersonalDateService.class);
+    private UserSizeRegistrationService getUserSizeRegistrationService() {
+        return appContext.getBean(UserSizeRegistrationService.class);
     }
-    private ShowOrderService getShowOrderService () {
+
+    private ComponentRegistrationService getComponentRegistrationService() {
+        return appContext.getBean(ComponentRegistrationService.class);
+    }
+
+    private ChangePersonalSizeService getChangePersonalSizeService() {
+        return appContext.getBean(ChangePersonalSizeService.class);
+    }
+
+    private ChangePersonalDateService getChangePersonalDateService() {
+        return appContext.getBean(ChangePersonalDateService.class);
+    }
+
+    private ShowOrderService getShowOrderService() {
         return appContext.getBean(ShowOrderService.class);
     }
 
 }
+

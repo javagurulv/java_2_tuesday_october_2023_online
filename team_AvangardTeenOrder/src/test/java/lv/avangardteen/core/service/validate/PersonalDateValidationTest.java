@@ -1,5 +1,6 @@
 package lv.avangardteen.core.service.validate;
 
+import lv.avangardteen.core.dto.Client;
 import lv.avangardteen.core.responce.CoreError;
 import org.junit.jupiter.api.Test;
 
@@ -14,37 +15,41 @@ class PersonalDateValidationTest {
     @Test
     public void surnameIsEmpty() {
         personalDateValidation = new PersonalDateValidation();
-        String surname = null;
-        Integer phone = 343434;
-        String address = "Lesnaja, 22";
-        List<CoreError> errors = personalDateValidation.validate(surname, phone, address);
+       Client client = new Client();
+       client.setNameSurname(null);
+        client.setPhoneNumber(343434l);
+        client.setUserAddress("Lesnaja, 22");
+        List<CoreError> errors = personalDateValidation.validate(client);
         assertEquals(errors, List.of(new CoreError("surname", "Must not be empty!")));
     }
     @Test
     public void phoneIsEmpty() {
         personalDateValidation = new PersonalDateValidation();
-        String surname = "Ivanov";
-        Integer phone = null;
-        String address = "Lesnaja, 22";
-        List<CoreError> errors = personalDateValidation.validate(surname, phone, address);
+        Client client = new Client();
+        client.setNameSurname("Ivanov");
+        client.setPhoneNumber(null);
+        client.setUserAddress("Lesnaja, 22");
+        List<CoreError> errors = personalDateValidation.validate(client);
         assertEquals(errors, List.of(new CoreError("phone", "Must not be empty!")));
     }
     @Test
     public void addressIsEmpty() {
         personalDateValidation = new PersonalDateValidation();
-        String surname = "Ivanov";
-        Integer phone =1234567;
-        String address = "";
-        List<CoreError> errors = personalDateValidation.validate(surname, phone, address);
+        Client client = new Client();
+        client.setNameSurname("Ivanov");
+        client.setPhoneNumber(343434l);
+        client.setUserAddress("");
+        List<CoreError> errors = personalDateValidation.validate(client);
         assertEquals(errors, List.of(new CoreError("address", "Must not be empty!")));
     }
     @Test
     public void SurnameAndAddressAreEmpty() {
         personalDateValidation = new PersonalDateValidation();
-        String surname = "";
-        Integer phone =1234567;
-        String address = "";
-        List<CoreError> errors = personalDateValidation.validate(surname, phone, address);
+        Client client = new Client();
+        client.setNameSurname("");
+        client.setPhoneNumber(343434l);
+        client.setUserAddress("");
+        List<CoreError> errors = personalDateValidation.validate(client);
         assertEquals(errors, List.of(new CoreError("surname", "Must not be empty!"),
                 new CoreError("address", "Must not be empty!")));
     }
@@ -52,10 +57,11 @@ class PersonalDateValidationTest {
     @Test
     public void SurnameAndAddressAndPhoneAreEmpty() {
         personalDateValidation = new PersonalDateValidation();
-        String surname = "";
-        Integer phone = 0;
-        String address = "";
-        List<CoreError> errors = personalDateValidation.validate(surname, phone, address);
+        Client client = new Client();
+        client.setNameSurname(null);
+        client.setPhoneNumber(null);
+        client.setUserAddress("");
+        List<CoreError> errors = personalDateValidation.validate(client);
         assertEquals(errors, List.of(new CoreError("surname", "Must not be empty!"),
                 new CoreError("phone", "Must not be empty!"),
                 new CoreError("address", "Must not be empty!")));

@@ -1,6 +1,7 @@
 package lv.avangardteen.core.service;
 
 import lv.avangardteen.core.dto.Client;
+import lv.avangardteen.core.dto.Order;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.responce.CoreError;
@@ -28,13 +29,10 @@ public class ChangePersonalDateService {
     }
 
     private ChangePersonalDateResponse getResponse(ChangePersonalDateRequest request) {
-        Client client = database.getClient(request.getId());
+
+        Client client = request.getUserRegistration();
         ChangePersonalDateResponse response = new ChangePersonalDateResponse(client);
-
-        response.getClient().setNameSurname(request.getNameSurname());
-        response.getClient().setPhoneNumber(request.getPhoneNumber());
-        response.getClient().setUserAddress(request.getUserAddress());
-
-        return new ChangePersonalDateResponse(client);
+        database.updateUser(request.getId(), request.getUserRegistration());
+        return response;
     }
 }

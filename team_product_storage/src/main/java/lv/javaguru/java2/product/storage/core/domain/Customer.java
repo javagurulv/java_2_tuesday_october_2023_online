@@ -1,11 +1,19 @@
 package lv.javaguru.java2.product.storage.core.domain;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name="customers")
 public class Customer {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name="customer_name")
     private String customerName;
+    @Column(name="registration_code")
     private String registrationCode;
 
     public Customer() {

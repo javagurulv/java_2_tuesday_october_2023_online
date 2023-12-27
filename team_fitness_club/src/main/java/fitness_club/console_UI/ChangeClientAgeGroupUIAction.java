@@ -1,6 +1,7 @@
 package fitness_club.console_UI;
 
 import fitness_club.core.domain.ClientAgeGroups;
+import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.responses.ChangeClientAgeGroupResponse;
@@ -12,10 +13,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-//@Component
-abstract public class ChangeClientAgeGroupUIAction implements UIAction {
-   /* @Autowired
-    private ChangeClientAgeGroupService changeClientAgeGroupService;
+@Component
+public class ChangeClientAgeGroupUIAction implements UIAction {
+    @Autowired
+    private ChangeClientAgeGroupService service;
 
 
     @Override
@@ -24,21 +25,13 @@ abstract public class ChangeClientAgeGroupUIAction implements UIAction {
         System.out.println("Change client age group: ");
         System.out.println("Enter client personal code: ");
         String clientPersonalCode = scanner.nextLine();
-        System.out.println("Choose new age group.");
-        System.out.println("1. Child");
-        System.out.println("2. Adult");
-        System.out.println("3. Senior");
-        ClientAgeGroups newClientAgeGroups = null;
-        try {
-            String input = scanner.nextLine().trim();
-            if (!input.isEmpty()) {
-                newClientAgeGroups = GetClientAgeGroupService.getClientAgeGroup(Integer.parseInt(input));
-            }
-        } catch (NumberFormatException e) {
-        }
 
-        ChangeClientAgeGroupRequest request = new ChangeClientAgeGroupRequest(clientPersonalCode, newClientAgeGroups);
-        ChangeClientAgeGroupResponse response = changeClientAgeGroupService.execute(request);
+        System.out.println("Choose new age group.");
+        printEnumValues(ClientAgeGroups.values());
+        Long newClientAgeGroup = Long.parseLong(scanner.nextLine());
+
+        ChangeClientAgeGroupRequest request = new ChangeClientAgeGroupRequest(clientPersonalCode, newClientAgeGroup);
+        ChangeClientAgeGroupResponse response = service.execute(request);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Alarm: " + coreError.getField() + " " + coreError.getMessage()));
@@ -51,5 +44,9 @@ abstract public class ChangeClientAgeGroupUIAction implements UIAction {
         }
     }
 
-    */
+    private void printEnumValues(Enum<?>[] values) {
+        for (int i = 0; i < values.length; i++) {
+            System.out.println((i + 1) + ". " + values[i]);
+        }
+    }
 }

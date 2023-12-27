@@ -51,6 +51,9 @@ class JdbcClientRepositoryImpl implements ClientRepository {
         return jdbcTemplate.query(sql, new ClientRowMapper());
     }
 
+    @Override
+    public Long getClientIdByPersonalCode(String personalCode){return 0L;}
+
     /*@Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         Optional<Client> clientToChangeAgeGroupOpt = clients.stream()

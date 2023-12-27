@@ -1,12 +1,16 @@
 package lv.avangardteen.acceptancetests;
 
+
 import lv.avangardteen.config.OrderListConfiguration;
-import lv.avangardteen.core.request.ClientRequest;
+import lv.avangardteen.core.request.ComponentRegistrationRequest;
 import lv.avangardteen.core.request.ShowOrderRequest;
+import lv.avangardteen.core.request.UserRegistrationRequest;
+import lv.avangardteen.core.request.UserSizeRegistrationRequest;
 import lv.avangardteen.core.responce.ShowOrderResponse;
-import lv.avangardteen.core.service.ClientService;
+import lv.avangardteen.core.service.ComponentRegistrationService;
 import lv.avangardteen.core.service.ShowOrderService;
-import lv.avangardteen.dependency_injection.DIApplicationContextBuilder;
+import lv.avangardteen.core.service.UserRegistrationService;
+import lv.avangardteen.core.service.UserSizeRegistrationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -18,38 +22,36 @@ public class AcceptanceTest4 {
 
     @Test
     public void checkPriceOfDifferentBrakes() {
-        ClientRequest request1 = new ClientRequest("Alex", 123456, "Riga", 11,
-                22, 33, 44, 11, 21,
-                 31, 41);
-        getClientService().execute(request1);
+        UserRegistrationRequest request = new UserRegistrationRequest("Alex", 123456l, "Riga");
+        getUserRegistrationService().execute(request);
+        UserSizeRegistrationRequest sizeRegistrationRequest = new UserSizeRegistrationRequest(22, 33, 33, 33);
+        getUserSizeRegistrationService().execute(sizeRegistrationRequest);
+        ComponentRegistrationRequest componentRegistrationRequest = new ComponentRegistrationRequest(11, 21, 31, 41);
+        getComponentRegistrationService().execute(componentRegistrationRequest);
+        ShowOrderRequest showOrderRequest = new ShowOrderRequest(1l);
+        ShowOrderResponse response = getShowOrderService().execute(showOrderRequest);
 
-        ClientRequest request2 = new ClientRequest("Alex", 123456, "Riga", 11,
-                22, 33, 44, 11, 21,
-                32, 41);
-        getClientService().execute(request2);
+        assertEquals(response.getClient().getId(), 1);
+        assertEquals(response.getWheelchairComponent().countPriceOrder(), 199700.0);
 
-        ClientRequest request3 = new ClientRequest("Alex", 123456, "Riga", 11,
-                22, 33, 44, 11, 21,
-                33, 41);
-        getClientService().execute(request3);
-
-        ShowOrderResponse response4 = getShowOrderService().execute(new ShowOrderRequest(1L));
-        ShowOrderResponse response5 = getShowOrderService().execute(new ShowOrderRequest(2L));
-        ShowOrderResponse response6 = getShowOrderService().execute(new ShowOrderRequest(3L));
-
-        assertEquals(response4.getClient().getId(), 1);
-        assertEquals(response4.getClient().getPriseOrder(), 199700);
-        assertEquals(response5.getClient().getId(), 2);
-        assertEquals(response5.getClient().getPriseOrder(), 201200);
-        assertEquals(response6.getClient().getId(), 3);
-        assertEquals(response6.getClient().getPriseOrder(), 205400);
     }
 
-    private ClientService getClientService () {
-        return appContext.getBean(ClientService.class);
+    private UserRegistrationService getUserRegistrationService() {
+        return appContext.getBean(UserRegistrationService.class);
     }
-    private ShowOrderService getShowOrderService () {
+
+    private UserSizeRegistrationService getUserSizeRegistrationService() {
+        return appContext.getBean(UserSizeRegistrationService.class);
+
+    }
+
+    private ComponentRegistrationService getComponentRegistrationService() {
+        return appContext.getBean(ComponentRegistrationService.class);
+    }
+
+    private ShowOrderService getShowOrderService() {
         return appContext.getBean(ShowOrderService.class);
     }
 
 }
+

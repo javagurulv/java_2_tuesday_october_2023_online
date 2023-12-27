@@ -21,14 +21,17 @@ public class ShowOrderUIAction implements UIAction {
             Scanner scanner = new Scanner(System.in);
             long id = scanner.nextLong();
             ShowOrderRequest orderRequest = new ShowOrderRequest(id);
-
             ShowOrderResponse response = service.execute(orderRequest);
-
             if (response.hasErrors()) {
                 response.getErrors().forEach(coreError ->
                         System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
             } else {
                 System.out.println(response.getClient().toString());
+                System.out.println(response.getUserSizes().toString());
+                System.out.println(response.getWheelchair().toString());
+                System.out.println(response.getWheelchairComponent().toString());
+                System.out.println("Цена заказа инвалидного кресла " +
+                        response.getWheelchairComponent().countPriceOrder());
             }
         } catch (InputMismatchException e) {
             System.out.println("Must input only digits!");

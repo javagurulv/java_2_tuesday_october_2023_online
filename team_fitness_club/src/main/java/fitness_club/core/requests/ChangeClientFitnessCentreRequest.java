@@ -6,17 +6,17 @@ import fitness_club.core.domain.FitnessCentre;
 public class ChangeClientFitnessCentreRequest {
 
     private String personalCode;
-    private FitnessCentre fitnessCentre;
+    private Long fitnessCentre;
 
     public String getPersonalCode() {
         return personalCode;
     }
 
-    public FitnessCentre getFitnessCentre() {
+    public Long getFitnessCentre() {
         return fitnessCentre;
     }
 
-    public ChangeClientFitnessCentreRequest(String personalCode, FitnessCentre fitnessCentre) {
+    public ChangeClientFitnessCentreRequest(String personalCode, Long fitnessCentre) {
         this.personalCode = personalCode;
         this.fitnessCentre = fitnessCentre;
     }

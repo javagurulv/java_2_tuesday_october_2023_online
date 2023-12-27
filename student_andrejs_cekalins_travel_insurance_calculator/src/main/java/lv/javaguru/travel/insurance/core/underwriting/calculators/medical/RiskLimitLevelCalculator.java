@@ -2,7 +2,7 @@ package lv.javaguru.travel.insurance.core.underwriting.calculators.medical;
 
 
 import lv.javaguru.travel.insurance.core.domain.MedicalRiskLimitLevel;
-import lv.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
+import lv.javaguru.travel.insurance.dto.v1.TravelCalculatePremiumRequestV1;
 import lv.javaguru.travel.insurance.repositories.MedicalRiskLimitLevelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,13 +19,13 @@ public class RiskLimitLevelCalculator {
     @Autowired
     private MedicalRiskLimitLevelRepository riskLimitLevelRepository;
 
-    BigDecimal calculate(TravelCalculatePremiumRequest request) {
+    BigDecimal calculate(TravelCalculatePremiumRequestV1 request) {
         return medicalRiskLimitLevelEnabled
                 ? getCoefficient(request)
                 : getDefaultValue();
     }
 
-    private BigDecimal getCoefficient(TravelCalculatePremiumRequest request) {
+    private BigDecimal getCoefficient(TravelCalculatePremiumRequestV1 request) {
         return riskLimitLevelRepository.findByMedicalRiskLimitLevelIc(request.getMedicalRiskLimitLevel())
                 .map(MedicalRiskLimitLevel::getCoefficient)
                 .orElseThrow(() -> new RuntimeException("Medical risk limit level not found by = " + request.getMedicalRiskLimitLevel()));

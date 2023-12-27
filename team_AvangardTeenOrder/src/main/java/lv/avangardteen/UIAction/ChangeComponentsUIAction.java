@@ -1,9 +1,10 @@
 package lv.avangardteen.UIAction;
 
+import lv.avangardteen.core.data.DataComponents;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.service.ChangeComponentService;
-import lv.avangardteen.core.data.DataComponents;
+import lv.avangardteen.core.data.DataComponentsImpl;
 import lv.avangardteen.core.data.DataOrders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,16 +32,16 @@ public class ChangeComponentsUIAction implements UIAction {
             long id = scanner.nextLong();
             System.out.println(dataComponents.allFrontWheels().toString());
             Scanner scan = new Scanner(System.in);
-            System.out.println("Введите маркировку тип и размер передних колес коляски");
+            System.out.println("Введите индекс передних колес коляски");
             Integer wheelFront = scan.nextInt();
             System.out.println(dataComponents.allBackWheels().toString());
-            System.out.println("Введите маркировку тип и размер задних колес коляски");
+            System.out.println("Введите индекс задних колес коляски");
             Integer wheelBack = scan.nextInt();
             System.out.println(dataComponents.allBrakes().toString());
-            System.out.println("Введите марку выбранных тормозов");
+            System.out.println("Введите индекс выбранных тормозов");
             Integer brake = scan.nextInt();
             System.out.println(dataComponents.allArmrest().toString());
-            System.out.println("Введите марку выбранных подлокотников");
+            System.out.println("Введите индекс выбранной подножки");
             Integer armrest = scan.nextInt();
             ChangeComponentRequest request = new ChangeComponentRequest(id, wheelFront, wheelBack,
                     brake, armrest);

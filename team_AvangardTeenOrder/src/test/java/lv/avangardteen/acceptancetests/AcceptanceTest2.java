@@ -1,66 +1,48 @@
 package lv.avangardteen.acceptancetests;
 
+
 import lv.avangardteen.config.OrderListConfiguration;
-import lv.avangardteen.core.request.ClientRequest;
-import lv.avangardteen.core.request.DeleteOrderRequest;
-import lv.avangardteen.core.request.ShowOrderRequest;
+import lv.avangardteen.core.request.*;
+import lv.avangardteen.core.responce.DeleteOrderResponse;
 import lv.avangardteen.core.responce.ShowOrderResponse;
-import lv.avangardteen.core.service.ClientService;
-import lv.avangardteen.core.service.DeleteOrderService;
-import lv.avangardteen.core.service.ShowOrderService;
-import lv.avangardteen.dependency_injection.DIApplicationContextBuilder;
+import lv.avangardteen.core.service.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AcceptanceTest2 {
     private ApplicationContext appContext = new AnnotationConfigApplicationContext(OrderListConfiguration.class);
 
     @Test
     public void shouldDeleteOneOrderData() {
-        ClientRequest request1 = new ClientRequest("Alex", 123456, "Riga", 11,
-                22, 33, 44, 11, 21,
-                 31, 41);
-        getClientService().execute(request1);
-
-        ClientRequest request2 = new ClientRequest("Olga", 54321, "Tallin",
-                11,21, 31, 41, 17,21,
-                31, 41);
-        getClientService().execute(request2);
+        UserRegistrationRequest request = new UserRegistrationRequest("Alex", 123456l, "Riga");
+        getUserRegistrationService().execute(request);
+        UserSizeRegistrationRequest sizeRegistrationRequest = new UserSizeRegistrationRequest(22, 33, 33, 33);
+        getUserSizeRegistrationService().execute(sizeRegistrationRequest);
+        ComponentRegistrationRequest componentRegistrationRequest = new ComponentRegistrationRequest(11, 21, 31, 41);
+        getComponentRegistrationService().execute(componentRegistrationRequest);
 
         DeleteOrderRequest request3 = new DeleteOrderRequest(1L);
-        getDeleteOrderService().execute(request3);
-
-        ShowOrderResponse response = getShowOrderService().execute(new ShowOrderRequest(1L));
-
-        ShowOrderResponse response2 = getShowOrderService().execute(new ShowOrderRequest(2L));
-
-        assertNull(response.getClient());
-
-        assertEquals(response2.getClient().getId(), 2);
-        assertEquals(response2.getClient().getNameSurname(), "Olga");
-        assertEquals(response2.getClient().getPhoneNumber(), 54321);
-        assertEquals(response2.getClient().getUserAddress(), "Tallin");
-        assertEquals(response2.getClient().getUserSizes().getShinLength(), 11);
-        assertEquals(response2.getClient().getUserSizes().getBackHeight(), 21);
-        assertEquals(response2.getClient().getUserSizes().getThighLength(), 31);
-        assertEquals(response2.getClient().getUserSizes().getPelvisWidth(), 41);
-
-    }
-
-    private ClientService getClientService () {
-        return appContext.getBean(ClientService.class);
+        DeleteOrderResponse response = getDeleteOrderService().execute(request3);
+        assertTrue(response.isOrderRemoved());
     }
 
     private DeleteOrderService getDeleteOrderService () {
         return  appContext.getBean(DeleteOrderService.class);
     }
 
-    private ShowOrderService getShowOrderService () {
-        return appContext.getBean(ShowOrderService.class);
+    private UserRegistrationService getUserRegistrationService() {
+        return appContext.getBean(UserRegistrationService.class);
     }
 
+    private UserSizeRegistrationService getUserSizeRegistrationService() {
+        return appContext.getBean(UserSizeRegistrationService.class);
+    }
+
+    private ComponentRegistrationService getComponentRegistrationService() {
+        return appContext.getBean(ComponentRegistrationService.class);
+    }
 }
+

@@ -28,7 +28,7 @@ public class DeleteOrderService {
     }
 
     private DeleteOrderResponse getDeleteOrderResponse(DeleteOrderRequest request) {
-        boolean isOrderRemove = database.deleteUser(request.getId());
+        boolean isOrderRemove = database.deleteOrder(request.getId());
         return new DeleteOrderResponse(isOrderRemove);
     }
 }

@@ -1,10 +1,8 @@
 package lv.javaguru.java2.product.storage.console_ui;
 
-import lv.javaguru.java2.product.storage.core.domain.Category;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.AddProductResponse;
 import lv.javaguru.java2.product.storage.core.services.AddProductService;
-import lv.javaguru.java2.product.storage.core.services.GetCategoriesListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,10 +15,6 @@ public class AddProductUIAction implements UIAction {
 
     @Autowired
     private AddProductService addProductService;
-    @Autowired
-    private GetCategoriesListService getCategoriesListService;
-    @Autowired
-    private GetCategoryChoice getCategoryChoice;
 
     @Override
     public void execute() {
@@ -35,11 +29,8 @@ public class AddProductUIAction implements UIAction {
         Integer productQuantity = scanner.nextInt();
         System.out.println("Enter price in stock: ");
         BigDecimal priceInStock = scanner.nextBigDecimal();
-        System.out.println("Select product category:");
-        List<String> categories = getCategoriesListService.getCategoriesList();
-        Category selectedCategory = getCategoryChoice.getCategoryChoice(scanner, categories);
 
-        AddProductRequest request = new AddProductRequest(productName, productBrand, productModel, productQuantity, priceInStock, selectedCategory);
+        AddProductRequest request = new AddProductRequest(productName, productBrand, productModel, productQuantity, priceInStock);
         AddProductResponse response = addProductService.execute(request);
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->

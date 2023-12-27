@@ -1,6 +1,7 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.dto.Client;
+
+import lv.avangardteen.core.dto.Order;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
@@ -17,6 +18,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 class ChangeComponentServiceMockTest {
@@ -36,7 +39,7 @@ class ChangeComponentServiceMockTest {
         ChangeComponentRequest request = new ChangeComponentRequest(
                 0L, 11,12,13,14);
        Mockito.when(validator.validate(request)).thenReturn(
-                List.of(new CoreError("Change Component", "Incorrect component chose!")));
+                List.of(new CoreError("Change Component", "Incorrect component choose!")));
         ChangeComponentResponse response = service.execute(request);
         assertTrue(response.hasErrors());
     }
@@ -45,10 +48,11 @@ class ChangeComponentServiceMockTest {
     public void ChangeComponentWithoutError() {
         ChangeComponentRequest request = new ChangeComponentRequest(
                 1L, 11, 12, 13, 14);
-        when(database.getClient(request.getId())).thenReturn(new Client());
+        when(database.getWheelchairComponents(request.getId())).thenReturn(new WheelchairComponent());
         when(validator.validate(request)).thenReturn(List.of());
         ChangeComponentResponse response = service.execute(request);
         assertFalse(response.hasErrors());
+        verify(database).updateWheelchairComponents(request.getId(), request.getWheelchairComponent());
 
 
     }

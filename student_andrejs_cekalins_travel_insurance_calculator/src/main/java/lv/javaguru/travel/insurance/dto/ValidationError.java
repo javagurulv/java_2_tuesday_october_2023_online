@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ValidationError {
+
     private String errorCode;
     private String description;
 }

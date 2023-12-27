@@ -1,18 +1,17 @@
 package fitness_club.console_UI;
 
 import fitness_club.core.domain.Workouts;
-import fitness_club.core.requests.ChangeClientWorkoutsRequest;
-import fitness_club.core.responses.ChangeClientWorkoutsResponse;
+import fitness_club.core.requests.ChangeClientWorkoutRequest;
+import fitness_club.core.responses.ChangeClientWorkoutResponse;
 import fitness_club.core.services.ChangeClientWorkoutService;
-import fitness_club.core.services.GetWorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-//@Component
-abstract public class ChangeWorkoutUIAction implements UIAction {
-  /* @Autowired
+@Component
+public class ChangeWorkoutUIAction implements UIAction {
+   @Autowired
    private ChangeClientWorkoutService service;
 
 
@@ -22,21 +21,14 @@ abstract public class ChangeWorkoutUIAction implements UIAction {
         System.out.println("Change client workout: ");
         System.out.println("Enter client personal code: ");
         String clientPersonalCode = scanner.nextLine();
-        System.out.println("Choose new workout.");
-        System.out.println("1. GYM");
-        System.out.println("2. Swimming Pool");
-        System.out.println("3. Group Classes");
-        Workouts newWorkout = null;
-        try {
-            String input = scanner.nextLine().trim();
-            if (!input.isEmpty()) {
-                newWorkout = GetWorkoutService.getWorkout(Integer.parseInt(input));
-            }
-        } catch (NumberFormatException e) {
-        }
 
-        ChangeClientWorkoutsRequest request = new ChangeClientWorkoutsRequest(clientPersonalCode, newWorkout);
-        ChangeClientWorkoutsResponse response = service.execute(request);
+        System.out.println("Choose client workout: ");
+        printEnumValues(Workouts.values());
+        Long newWorkout = Long.parseLong(scanner.nextLine());
+
+        ChangeClientWorkoutRequest request = new ChangeClientWorkoutRequest(clientPersonalCode, newWorkout);
+        ChangeClientWorkoutResponse response = service.execute(request);
+
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Alarm: " + coreError.getField() + " " + coreError.getMessage()));
         } else {
@@ -48,5 +40,9 @@ abstract public class ChangeWorkoutUIAction implements UIAction {
         }
     }
 
-   */
+    private void printEnumValues(Enum<?>[] values) {
+        for (int i = 0; i < values.length; i++) {
+            System.out.println((i + 1) + ". " + values[i]);
+        }
+    }
 }

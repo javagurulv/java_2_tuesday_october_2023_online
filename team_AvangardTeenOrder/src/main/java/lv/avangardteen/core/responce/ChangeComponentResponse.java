@@ -1,26 +1,25 @@
 package lv.avangardteen.core.responce;
 
 
-import lv.avangardteen.core.dto.Client;
+import lv.avangardteen.core.dto.Order;
+import lv.avangardteen.core.service.WheelchairComponent;
 
 import java.util.List;
 
-public class ChangeComponentResponse extends CoreResponse{
-    Client client;
+public class ChangeComponentResponse extends CoreResponse {
+    WheelchairComponent wheelchairComponent;
 
     public ChangeComponentResponse(List<CoreError> errors) {
         super(errors);
     }
-    public ChangeComponentResponse(Client client) {
-        this.client = client;
+
+    public ChangeComponentResponse(WheelchairComponent wheelchairComponent) {
+
+        this.wheelchairComponent = wheelchairComponent;
     }
 
 
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
+    public void setWheelchairComponent(WheelchairComponent wheelchairComponent) {
+        this.wheelchairComponent = wheelchairComponent;
     }
 }

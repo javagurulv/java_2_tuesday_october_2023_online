@@ -1,7 +1,6 @@
 package lv.javaguru.java2.product.storage.accepatancetests;
 
 import lv.javaguru.java2.product.storage.DatabaseCleaner;
-import lv.javaguru.java2.product.storage.core.domain.Category;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.requests.SearchProductsRequest;
 import lv.javaguru.java2.product.storage.core.responses.AddProductResponse;
@@ -42,7 +41,7 @@ public class AddProductAcceptanceTest {
 
     @Test
     public void shouldReturnErrorWhenProductNameNotProvided() {
-        AddProductRequest addProductRequest1 = new AddProductRequest(null, "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest addProductRequest1 = new AddProductRequest(null, "Apple", "iPhone 15", 1, new BigDecimal("1000.00"));
         addProductService.execute(addProductRequest1);
 
         AddProductResponse response = addProductService.execute(addProductRequest1);
@@ -55,7 +54,7 @@ public class AddProductAcceptanceTest {
 
     @Test
     public void shouldReturnErrorWhenProductBrandNotProvided() {
-        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", null, "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", null, "iPhone 15", 1, new BigDecimal("1000.00"));
         addProductService.execute(addProductRequest1);
 
         AddProductResponse response = addProductService.execute(addProductRequest1);
@@ -68,7 +67,7 @@ public class AddProductAcceptanceTest {
 
     @Test
     public void shouldReturnErrorWhenProductModelNotProvided() {
-        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", null, 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", null, 1, new BigDecimal("1000.00"));
         addProductService.execute(addProductRequest1);
 
         AddProductResponse response = addProductService.execute(addProductRequest1);
@@ -81,7 +80,7 @@ public class AddProductAcceptanceTest {
 
     @Test
     public void shouldReturnErrorWhenProductQuantityIsNull() {
-        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 0, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 0, new BigDecimal("1000.00"));
         addProductService.execute(addProductRequest1);
 
         AddProductResponse response = addProductService.execute(addProductRequest1);
@@ -94,7 +93,7 @@ public class AddProductAcceptanceTest {
 
     @Test
     public void shouldReturnErrorWhenPriceInStockIsNull() {
-        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"), Category.PHONES);
+        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"));
         addProductService.execute(addProductRequest1);
 
         AddProductResponse response = addProductService.execute(addProductRequest1);
@@ -107,9 +106,9 @@ public class AddProductAcceptanceTest {
 
     @Test
     public void shouldReturnErrorWhenDuplicateBookFound() {
-        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"));
         addProductService.execute(addProductRequest1);
-        AddProductRequest addBookRequest2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest addBookRequest2 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"));
         addProductService.execute(addBookRequest2);
 
         AddProductResponse response = addProductService.execute(addBookRequest2);
@@ -121,7 +120,7 @@ public class AddProductAcceptanceTest {
     }
     @Test
     public void shouldReturnProduct() {
-        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"), Category.PHONES);
+        AddProductRequest addProductRequest1 = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00"));
         addProductService.execute(addProductRequest1);
 
         SearchProductsRequest searchProductsRequest2 = new SearchProductsRequest("Apple", null);
@@ -133,7 +132,7 @@ public class AddProductAcceptanceTest {
         assertEquals(response.getProducts().get(0).getProductModel(), "iPhone 15");
         assertEquals(response.getProducts().get(0).getProductQuantity(), Integer.valueOf(1));
         assertEquals(response.getProducts().get(0).getPriceInStock(), new BigDecimal("1000.00"));
-        assertEquals(response.getProducts().get(0).getCategory(), Category.PHONES);
+
     }
 
 

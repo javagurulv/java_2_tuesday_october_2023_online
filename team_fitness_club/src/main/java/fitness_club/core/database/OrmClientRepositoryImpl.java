@@ -38,6 +38,14 @@ public class OrmClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
+    public Long getClientIdByPersonalCode (String personalCode) {
+        return sessionFactory.getCurrentSession()
+                .createQuery("SELECT c.id FROM Client c WHERE c.personalCode = :personalCode", Long.class)
+                .setParameter("personalCode", personalCode)
+                .uniqueResult();
+    }
+
+    @Override
     public List<Client> findByFirstName(String firsName) {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "select b FROM Client b where first_name = :firstName");

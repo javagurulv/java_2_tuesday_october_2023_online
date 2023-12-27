@@ -3,7 +3,6 @@ package lv.javaguru.java2.lessoncode.book.app.acceptancetests;
 import static org.junit.Assert.assertEquals;
 
 import lv.javaguru.java2.lessoncode.book.app.DatabaseCleaner;
-import lv.javaguru.java2.lessoncode.book.app.core.domain.Genre;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -37,10 +36,10 @@ public class GetAllBooksAcceptanceTest {
 
     @Test
     public void shouldReturnCorrectBookList() {
-        AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943, Genre.FABLE);
+        AddBookRequest addBookRequest1 = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943);
         addBookService.execute(addBookRequest1);
 
-        AddBookRequest addBookRequest2 = new AddBookRequest("The Alchemist","Paulo Coelho", 1988, Genre.ADVENTURE);
+        AddBookRequest addBookRequest2 = new AddBookRequest("The Alchemist","Paulo Coelho", 1988);
         addBookService.execute(addBookRequest2);
 
         GetAllBooksRequest getAllBooksRequest3 = new GetAllBooksRequest();

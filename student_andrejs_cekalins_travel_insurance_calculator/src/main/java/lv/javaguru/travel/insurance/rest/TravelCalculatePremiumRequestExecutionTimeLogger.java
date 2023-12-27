@@ -12,7 +12,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 public class TravelCalculatePremiumRequestExecutionTimeLogger {
     private static Logger logger = LoggerFactory.getLogger(TravelCalculatePremiumRequestExecutionTimeLogger.class);
 
-    void logExecution (Stopwatch stopwatch) {
+    void logExecutionTime (Stopwatch stopwatch) {
         stopwatch.stop();
         long elapsedMillis = stopwatch.elapsed(MILLISECONDS);
         logger.info("Request processing time (ms): " + elapsedMillis);

@@ -6,7 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import java.util.ArrayList;
 import java.util.List;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.Database;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.IngredientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Ingredient;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Ordering;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Paging;
@@ -26,7 +26,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 @RunWith(MockitoJUnitRunner.class)
 public class SearchIngredientsServiceTest {
 
-    @Mock private Database database;
+    @Mock private IngredientRepository ingredientRepository;
     @Mock private SearchIngredientsRequestValidator validator;
     @InjectMocks
     private SearchIngredientsService service;
@@ -51,7 +51,7 @@ public class SearchIngredientsServiceTest {
 
         Mockito.verify(validator).validate(request);
         Mockito.verify(validator).validate(any());
-        Mockito.verifyNoInteractions(database);
+        Mockito.verifyNoInteractions(ingredientRepository);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class SearchIngredientsServiceTest {
 
         List<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(new Ingredient("Biscuit", "Vanilla"));
-        Mockito.when(database.findByType("Biscuit")).thenReturn(ingredients);
+        Mockito.when(ingredientRepository.findByType("Biscuit")).thenReturn(ingredients);
 
         SearchIngredientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -77,7 +77,7 @@ public class SearchIngredientsServiceTest {
 
         List<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(new Ingredient("Biscuit", "Vanilla"));
-        Mockito.when(database.findByTaste("Vanilla")).thenReturn(ingredients);
+        Mockito.when(ingredientRepository.findByTaste("Vanilla")).thenReturn(ingredients);
 
         SearchIngredientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -93,7 +93,7 @@ public class SearchIngredientsServiceTest {
 
         List<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(new Ingredient("Biscuit", "Vanilla"));
-        Mockito.when(database.findByTypeAndTaste("Biscuit", "Vanilla")).thenReturn(ingredients);
+        Mockito.when(ingredientRepository.findByTypeAndTaste("Biscuit", "Vanilla")).thenReturn(ingredients);
 
         SearchIngredientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -111,7 +111,7 @@ public class SearchIngredientsServiceTest {
         List<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(new Ingredient("Biscuit", "Vanilla2"));
         ingredients.add(new Ingredient("Biscuit", "Vanilla1"));
-        Mockito.when(database.findByType("Biscuit")).thenReturn(ingredients);
+        Mockito.when(ingredientRepository.findByType("Biscuit")).thenReturn(ingredients);
 
         SearchIngredientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -129,7 +129,7 @@ public class SearchIngredientsServiceTest {
         List<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(new Ingredient("Biscuit", "Vanilla1"));
         ingredients.add(new Ingredient("Biscuit", "Vanilla2"));
-        Mockito.when(database.findByType("Biscuit")).thenReturn(ingredients);
+        Mockito.when(ingredientRepository.findByType("Biscuit")).thenReturn(ingredients);
 
         SearchIngredientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -147,7 +147,7 @@ public class SearchIngredientsServiceTest {
         List<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(new Ingredient("Biscuit", "Vanilla1"));
         ingredients.add(new Ingredient("Biscuit", "Vanilla2"));
-        Mockito.when(database.findByType("Biscuit")).thenReturn(ingredients);
+        Mockito.when(ingredientRepository.findByType("Biscuit")).thenReturn(ingredients);
 
         SearchIngredientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -165,7 +165,7 @@ public class SearchIngredientsServiceTest {
         List<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(new Ingredient("Biscuit", "Vanilla1"));
         ingredients.add(new Ingredient("Biscuit", "Vanilla2"));
-        Mockito.when(database.findByType("Biscuit")).thenReturn(ingredients);
+        Mockito.when(ingredientRepository.findByType("Biscuit")).thenReturn(ingredients);
 
         SearchIngredientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
