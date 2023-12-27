@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class  TravelCalculatePremiumResponseLogger {
-    private static final Logger logger = LoggerFactory.getLogger(TravelCalculatePremiumResponseLogger.class);
+public class TravelCalculatePremiumResponseLoggerV1 {
+    private static final Logger logger = LoggerFactory.getLogger(TravelCalculatePremiumResponseLoggerV1.class);
 
     void log(TravelCalculatePremiumResponseV1 response) {
         ObjectMapper objectMapper = new ObjectMapper();
