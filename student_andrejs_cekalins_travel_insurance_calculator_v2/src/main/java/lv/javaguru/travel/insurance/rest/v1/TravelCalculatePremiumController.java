@@ -1,4 +1,4 @@
-package lv.javaguru.travel.insurance.rest;
+package lv.javaguru.travel.insurance.rest.v1;
 
 import com.google.common.base.Stopwatch;
 import lv.javaguru.travel.insurance.core.api.comamnd.TravelCalculatePremiumCoreCommand;

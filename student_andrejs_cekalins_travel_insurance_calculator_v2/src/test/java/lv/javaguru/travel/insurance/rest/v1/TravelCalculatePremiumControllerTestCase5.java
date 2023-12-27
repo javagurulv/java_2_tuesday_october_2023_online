@@ -1,8 +1,8 @@
-package lv.javaguru.travel.insurance.rest;
+package lv.javaguru.travel.insurance.rest.v1;
 
 import org.junit.jupiter.api.Test;
 
-public class TravelCalculatePremiumControllerTestCase9 extends
+public class TravelCalculatePremiumControllerTestCase5 extends
         TravelCalculatePremiumControllerTestCase {
     @Test
     public void execute() throws Exception {
@@ -11,7 +11,7 @@ public class TravelCalculatePremiumControllerTestCase9 extends
 
     @Override
     protected String getTestCaseFolderName() {
-        return "test_case_9";
+        return "test_case_5";
     }
 
 }

@@ -1,5 +1,6 @@
-package lv.javaguru.travel.insurance.rest;
+package lv.javaguru.travel.insurance.rest.v1;
 
+import lv.javaguru.travel.insurance.rest.v1.TravelCalculatePremiumControllerTestCase;
 import org.junit.jupiter.api.Test;
 
 public class TravelCalculatePremiumControllerTestCase17 extends
