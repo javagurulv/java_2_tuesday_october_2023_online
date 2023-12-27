@@ -65,7 +65,7 @@ AUTO_INCREMENT = 1002;
 
 
 ALTER TABLE `member_card`
-ADD FOREIGN KEY (`client_id`) REFERENCES `clients`(`id`);
+ADD FOREIGN KEY (`client_id`) REFERENCES `clients`(`personal_code`);
 
 --ALTER TABLE `member_card`
 --ADD FOREIGN KEY (`age_group`) REFERENCES `age_groups`(`id`);
