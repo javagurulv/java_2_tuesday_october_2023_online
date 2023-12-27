@@ -54,9 +54,9 @@ CREATE UNIQUE INDEX `ix_fitness_centres_fitness_centre` ON `fitness_centres` (`f
 CREATE TABLE IF NOT EXISTS `member_card` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
 `client_id` BIGINT NOT NULL,
-`age_group_id` BIGINT NOT NULL,
-`workout_id` BIGINT NOT NULL,
-`fitness_centre_id` BIGINT NOT NULL,
+`age_group` VARCHAR(50) NOT NULL,
+`workout` VARCHAR(50) NOT NULL,
+`fitness_centre` VARCHAR(50) NOT NULL,
 `term_of_contract` DATETIME NOT NULL,
 PRIMARY KEY (`id`)
 )
@@ -65,16 +65,16 @@ AUTO_INCREMENT = 1002;
 
 
 ALTER TABLE `member_card`
-ADD FOREIGN KEY (`client_id`) REFERENCES `clients`(`id`);
+ADD FOREIGN KEY (`client_id`) REFERENCES `clients`(`personal_code`);
 
-ALTER TABLE `member_card`
-ADD FOREIGN KEY (`age_group_id`) REFERENCES `age_groups`(`id`);
-
-ALTER TABLE `member_card`
-ADD FOREIGN KEY (`workout_id`) REFERENCES `workouts`(`id`);
-
-ALTER TABLE `member_card`
-ADD FOREIGN KEY (`fitness_centre_id`) REFERENCES `fitness_centres`(`id`);
+--ALTER TABLE `member_card`
+--ADD FOREIGN KEY (`age_group`) REFERENCES `age_groups`(`id`);
+--
+--ALTER TABLE `member_card`
+--ADD FOREIGN KEY (`workout`) REFERENCES `workouts`(`id`);
+--
+--ALTER TABLE `member_card`
+--ADD FOREIGN KEY (`fitness_centre`) REFERENCES `fitness_centres`(`id`);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

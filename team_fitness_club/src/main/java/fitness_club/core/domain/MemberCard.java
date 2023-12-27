@@ -14,32 +14,32 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 public class MemberCard {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "client_id")
-    private Long clientId;
+    @OneToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
-    @Column(name = "age_group_id")
-    private Long ageGroupId;
+    @Column(name = "age_group")
+    private String clientAgeGroup;
 
-    @Column(name = "workout_id")
-    private Long workoutId;
+    @Column(name = "workout")
+    private String workouts;
 
-    @Column(name = "fitness_centre_id")
-    private Long fitnessCentreId;
+    @Column(name = "fitness_centre")
+    private String fitnessCentre;
 
     @Column(name = "term_of_contract")
     private Date termOfContract;
 
-    public MemberCard(Long clientId, Long ageGroupId, Long workoutId, Long fitnessCentreId, Date termOfContract) {
-        this.clientId = clientId;
-        this.ageGroupId = ageGroupId;
-        this.workoutId = workoutId;
-        this.fitnessCentreId = fitnessCentreId;
+    public MemberCard(Client client, String clientAgeGroup, String workouts, String fitnessCentre, Date termOfContract) {
+        this.client = client;
+        this.clientAgeGroup = clientAgeGroup;
+        this.workouts = workouts;
+        this.fitnessCentre = fitnessCentre;
         this.termOfContract = termOfContract;
     }
 }

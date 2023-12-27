@@ -20,13 +20,12 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.assertEquals;
-@Ignore
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {WorkoutsConfiguration.class})
 @Sql({"/schema.sql"})
 public class AcceptanceSearchTest {
-    @Autowired
-    private AddClientService addClientService;
+    @Autowired private AddClientService addClientService;
     @Autowired private SearchClientService searchClientService;
     @Autowired private DatabaseCleaner databaseCleaner;
 

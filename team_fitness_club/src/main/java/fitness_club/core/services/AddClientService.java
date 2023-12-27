@@ -37,7 +37,7 @@ public class AddClientService {
     }
 
    /* private AddClientResponse buildErrorResponse(List<CoreError> errors) {
-        return new AddClientResponse(errors);
+        return new AddCl b  ientResponse(errors);
     }
 
     private AddClientResponse addNewClient(AddClientRequest request) {

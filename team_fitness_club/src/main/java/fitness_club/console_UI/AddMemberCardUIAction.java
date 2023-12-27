@@ -1,5 +1,7 @@
 package fitness_club.console_UI;
 
+import com.mysql.cj.xdevapi.Client;
+import fitness_club.core.database.ClientRepository;
 import fitness_club.core.domain.ClientAgeGroups;
 import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.domain.Workouts;
@@ -20,6 +22,9 @@ public class AddMemberCardUIAction implements UIAction {
     @Autowired
     private AddMemberCardService service;
 
+    @Autowired
+    private ClientRepository clientRepository;
+
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
@@ -29,20 +34,20 @@ public class AddMemberCardUIAction implements UIAction {
 
         System.out.println("Choose client age group: ");
         printEnumValues(ClientAgeGroups.values());
-        Long clientAgeGroup = Long.parseLong(scanner.nextLine());
+        String clientAgeGroup = String.valueOf(ClientAgeGroups.values()[Integer.parseInt(scanner.nextLine())]);
 
         System.out.println("Choose client workout: ");
         printEnumValues(Workouts.values());
-        Long clientWorkout = Long.parseLong(scanner.nextLine());
+        String clientWorkout = String.valueOf(Workouts.values()[Integer.parseInt(scanner.nextLine())]);
 
         System.out.println("Choose new fitness centre: ");
         printEnumValues(FitnessCentre.values());
-        Long fitnessCentre = Long.parseLong(scanner.nextLine());
+        String fitnessCentre = String.valueOf(FitnessCentre.values()[Integer.parseInt(scanner.nextLine())]);
 
         System.out.println("Choose the date contract ends in format YYYY-MM-DD: ");
         Date termOfContract = parseDate(scanner.nextLine());
 
-        AddMemberCardRequest request = new AddMemberCardRequest(clientPersonalCode, clientAgeGroup, clientWorkout, fitnessCentre, termOfContract);
+        AddMemberCardRequest request = new AddMemberCardRequest(clientRepository.findByPersonalCode(clientPersonalCode).get(0), clientAgeGroup, clientWorkout, fitnessCentre, termOfContract);
         AddMemberCardsResponse response = service.execute(request);
 
         if (response.hasErrors()) {
@@ -50,7 +55,7 @@ public class AddMemberCardUIAction implements UIAction {
                     System.out.println("Oshibka: " + coreError.getField() + " " + coreError.getMessage())
             );
         } else {
-            System.out.println("Client has a member card now! Member Card ID: " + response.getNewMemberCard().getClientId());
+            System.out.println("Client has a member card now! Member Card ID: " + response.getNewMemberCard().getClient().getId());
             System.out.println("Enjoy your fitness.");
         }
     }
