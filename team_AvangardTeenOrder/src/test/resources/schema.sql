@@ -57,3 +57,21 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 1;
 
 CREATE UNIQUE INDEX category_type_index ON category(title);
+
+CREATE TABLE IF NOT EXISTS `components` (
+`id` BIGINT NOT NULL AUTO_INCREMENT,
+`category_key` VARCHAR(20) NOT NULL,
+`marking` VARCHAR (20) NOT NULL UNIQUE,
+`information` VARCHAR (2000) NOT NULL,
+`price` DOUBLE,
+PRIMARY KEY (`id`)
+)
+
+ENGINE = InnoDB
+AUTO_INCREMENT = 1;
+
+ALTER TABLE `components`
+ADD FOREIGN KEY (`category_key`)
+REFERENCES `category` (`title`);
+
+CREATE UNIQUE INDEX category_key_index ON components(category_key);
