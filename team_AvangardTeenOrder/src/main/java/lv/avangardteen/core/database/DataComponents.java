@@ -5,6 +5,7 @@ import lv.avangardteen.core.domain.Components;
 import java.util.List;
 
 public interface DataComponents {
+    void addComponent(Components component);
     List<Components> getAllComponents();
     Components getComponent(Integer index);
     List<Integer> getAllIndex();
@@ -12,5 +13,6 @@ public interface DataComponents {
     List<Components> allArmrest();
     List<Components> allBrakes();
     List<Components> allBackWheels();
+
 
 }

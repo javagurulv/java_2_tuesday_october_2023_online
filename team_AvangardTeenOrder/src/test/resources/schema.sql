@@ -12,19 +12,48 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 10;
 
 CREATE UNIQUE INDEX clients_type_index ON clients(name_surname, personal_code);
+
 CREATE TABLE IF NOT EXISTS  `client_size` (
 `id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT ,
-`clients_id` BIGINT NOT NULL,
-`pelvis_width` INT NOT NULL,
-`thigh_length` INT NOT NULL,
-`back_height` INT NOT NULL,
-`shin_length` INT NOT NULL
+`client_id` BIGINT NOT NULL,
+`pelvisWidth` INT NOT NULL,
+`thighLength` INT NOT NULL,
+`backHeight` INT NOT NULL,
+`shinLength` INT NOT NULL
 
 )
 ENGINE = InnoDB
 AUTO_INCREMENT = 10;
 
 ALTER TABLE `client_size`
-add foreign key (clients_id) REFERENCES clients (id)  ON DELETE CASCADE;
+add foreign key (client_id) REFERENCES clients (id)  ON DELETE CASCADE;
 
-CREATE UNIQUE INDEX client_size_type_index ON client_size(clients_id);
+CREATE UNIQUE INDEX client_size_type_index ON client_size(client_id);
+
+CREATE TABLE IF NOT EXISTS  `wheelchair` (
+`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+`client_id` BIGINT NOT NULL,
+`seatWidth` INT NOT NULL,
+`seatDepth` INT NOT NULL,
+`footrestLength` INT NOT NULL,
+`bachHeight` INT NOT NULL,
+`price` DOUBLE DEFAULT 177000.0,
+)
+ENGINE = InnoDB
+AUTO_INCREMENT = 10;
+
+ALTER TABLE `wheelchair`
+add foreign key (client_id) REFERENCES clients (id)  ON DELETE CASCADE;
+
+CREATE UNIQUE INDEX wheelchair_type_index ON wheelchair(client_id);
+
+CREATE TABLE IF NOT EXISTS `category`(
+`id` BIGINT NOT NULL AUTO_INCREMENT,
+`title` VARCHAR(20) NOT NULL,
+PRIMARY KEY (`id`)
+)
+
+ENGINE = InnoDB
+AUTO_INCREMENT = 1;
+
+CREATE UNIQUE INDEX category_type_index ON category(title);

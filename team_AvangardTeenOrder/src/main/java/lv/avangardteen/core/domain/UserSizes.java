@@ -1,13 +1,31 @@
 package lv.avangardteen.core.domain;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "client_size")
 public class UserSizes {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer pelvisWidth; //ширина таза
-    private Integer thighLength; //длина бедра
-    private Integer backHeight; //высота спины
-    private Integer shinLength; //длина голени
+
+    @OneToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
+
+    @Column(name = "pelvisWidth")
+    private Integer pelvisWidth;
+
+    @Column(name = "thighLength")
+    private Integer thighLength;
+
+    @Column(name = "backHeight")
+    private Integer backHeight;
+
+    @Column(name = "shinLength")
+    private Integer shinLength;
 
 
     public UserSizes() {
@@ -68,7 +86,7 @@ public class UserSizes {
 
     @Override
     public String toString() {
-        return  "ширина таза =" + pelvisWidth + '\n' +
+        return "ширина таза =" + pelvisWidth + '\n' +
                 " длинна бедра =" + thighLength + '\n' +
                 " высота спины =" + backHeight + '\n' +
                 " длинна голени =" + shinLength + '\n';

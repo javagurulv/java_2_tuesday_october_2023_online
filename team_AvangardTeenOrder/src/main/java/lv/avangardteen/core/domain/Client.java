@@ -1,13 +1,28 @@
 package lv.avangardteen.core.domain;
 
+import javax.persistence.*;
 import java.util.Objects;
-
+@Entity
+@Table(name="clients")
 public class Client {
+
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+    @Column(name = "name_surname", nullable = false)
     String nameSurname;
+
+    @Column(name = "personal_code", nullable = false)
     Long personalCode;
+
+    @Column(name = "phone", nullable = false)
     Long phone;
+
+    @Column(name = "address", nullable = false)
     String address;
+
 
     public Client(){}
 

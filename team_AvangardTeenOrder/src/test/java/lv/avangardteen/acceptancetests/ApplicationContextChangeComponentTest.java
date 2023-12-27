@@ -5,7 +5,7 @@ import lv.avangardteen.core.request.*;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.ShowOrderResponse;
 import lv.avangardteen.core.service.*;
-import lv.avangardteen.core.domain.Category;
+import lv.avangardteen.core.domain.Categories;
 import lv.avangardteen.core.domain.Components;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -38,11 +38,11 @@ class ApplicationContextChangeComponentTest {
         ShowOrderResponse response1  = getShowOrderService().execute(request2);
         WheelchairComponent wheelchairComponent = response1.getWheelchairComponent();
 
-        Map<Category, Components> getMap = wheelchairComponent.getComponents();
-        assertEquals(getMap.get(Category.FRONT_WHEEL).getIndex(), 12);
-        assertEquals(getMap.get(Category.BACK_WHEEL).getIndex(), 22);
-        assertEquals(getMap.get(Category.BRAKE).getIndex(), 32);
-        assertEquals(getMap.get(Category.ARMREST).getIndex(), 42);
+        Map<Categories, Components> getMap = wheelchairComponent.getComponents();
+        assertEquals(getMap.get(Categories.FRONT_WHEEL).getIndex(), 12);
+        assertEquals(getMap.get(Categories.BACK_WHEEL).getIndex(), 22);
+        assertEquals(getMap.get(Categories.BRAKE).getIndex(), 32);
+        assertEquals(getMap.get(Categories.ARMREST).getIndex(), 42);
 
     }
 
