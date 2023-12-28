@@ -1,6 +1,7 @@
 package lv.javaguru.travel.insurance.core.validations.person;
 
 
+import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import lv.javaguru.travel.insurance.core.validations.ValidationErrorFactory;
@@ -28,31 +29,34 @@ class PersonLastNameValidationTest {
 
     @Test
     public void shouldReturnErrorWhenPersonLastNameIsNull() {
-        PersonDTO request = mock(PersonDTO.class);
-        when(request.getPersonLastName()).thenReturn(null);
+        AgreementDTO agreement = mock(AgreementDTO.class);
+        PersonDTO person = mock(PersonDTO.class);
+        when(person.getPersonLastName()).thenReturn(null);
         ValidationErrorDTO validationError = mock(ValidationErrorDTO.class);
         when(errorFactory.buildError("ERROR_CODE_2")).thenReturn(validationError);
-        Optional<ValidationErrorDTO> errorOpt = validation.validate(request);
+        Optional<ValidationErrorDTO> errorOpt = validation.validate(agreement, person);
         assertTrue(errorOpt.isPresent());
         assertSame(errorOpt.get(), validationError);
     }
 
     @Test
     public void shouldReturnErrorWhenPersonLastNameIsEmpty() {
-        PersonDTO request = mock(PersonDTO.class);
-        when(request.getPersonLastName()).thenReturn("");
+        AgreementDTO agreement = mock(AgreementDTO.class);
+        PersonDTO person = mock(PersonDTO.class);
+        when(person.getPersonLastName()).thenReturn("");
         ValidationErrorDTO validationError = mock(ValidationErrorDTO.class);
         when(errorFactory.buildError("ERROR_CODE_2")).thenReturn(validationError);
-        Optional<ValidationErrorDTO> errorOpt = validation.validate(request);
+        Optional<ValidationErrorDTO> errorOpt = validation.validate(agreement, person);
         assertTrue(errorOpt.isPresent());
         Assertions.assertEquals(errorOpt.get(), validationError);
     }
 
     @Test
     public void shouldNotReturnErrorWhenPersonLastNameIsPresent() {
-        PersonDTO request = mock(PersonDTO.class);
-        when(request.getPersonLastName()).thenReturn("Pupkin");
-        Optional<ValidationErrorDTO> errorOpt = validation.validate(request);
+        AgreementDTO agreement = mock(AgreementDTO.class);
+        PersonDTO person = mock(PersonDTO.class);
+        when(person.getPersonLastName()).thenReturn("Pupkin");
+        Optional<ValidationErrorDTO> errorOpt = validation.validate(agreement, person);
         assertTrue(errorOpt.isEmpty());
         verifyNoInteractions(errorFactory);
     }

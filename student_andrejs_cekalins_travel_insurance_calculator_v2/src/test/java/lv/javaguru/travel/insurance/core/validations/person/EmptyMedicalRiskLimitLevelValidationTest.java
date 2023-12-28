@@ -1,9 +1,9 @@
-package lv.javaguru.travel.insurance.core.validations.agreement;
+package lv.javaguru.travel.insurance.core.validations.person;
 
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
+import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import lv.javaguru.travel.insurance.core.validations.ValidationErrorFactory;
-import lv.javaguru.travel.insurance.core.validations.agreement.EmptyMedicalRiskLimitLevelValidation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,24 +28,26 @@ class EmptyMedicalRiskLimitLevelValidationTest {
     @InjectMocks
     EmptyMedicalRiskLimitLevelValidation validation;
 
-    private AgreementDTO request;
+    private AgreementDTO agreement;
+    private PersonDTO person;
 
     @BeforeEach
     void setUp() {
-        request = new AgreementDTO();
+        agreement = new AgreementDTO();
+        person = new PersonDTO();
     }
 
 
     @Test
     void shouldReturnValidationErrorWhenMedicalRiskLimitLevelEnabledAndNullOrBlank() {
-        request.setSelectedRisks(List.of("TRAVEL_MEDICAL"));
-        request.setMedicalRiskLimitLevel(null);
+        agreement.setSelectedRisks(List.of("TRAVEL_MEDICAL"));
+        person.setMedicalRiskLimitLevel(null);
         ValidationErrorDTO expectedError = mock(ValidationErrorDTO.class);
         when(errorFactory.buildError("ERROR_CODE_13")).thenReturn(expectedError);
 
         ReflectionTestUtils.setField(validation, "medicalRiskLimitLevelEnabled", true);
 
-        Optional<ValidationErrorDTO> result = validation.validate(request);
+        Optional<ValidationErrorDTO> result = validation.validate(agreement, person);
 
         assertTrue(result.isPresent());
         Assertions.assertEquals(expectedError, result.get());
@@ -53,19 +55,19 @@ class EmptyMedicalRiskLimitLevelValidationTest {
 
     @Test
     void shouldNotReturnValidationErrorWhenMedicalRiskLimitLevelEnabledAndIsNotBlank() {
-        request.setSelectedRisks(List.of("TRAVEL_MEDICAL"));
-        request.setMedicalRiskLimitLevel("LEVEL_10000");
+        agreement.setSelectedRisks(List.of("TRAVEL_MEDICAL"));
+        person.setMedicalRiskLimitLevel("LEVEL_10000");
         ReflectionTestUtils.setField(validation, "medicalRiskLimitLevelEnabled", true);
-        Optional<ValidationErrorDTO> result = validation.validate(request);
+        Optional<ValidationErrorDTO> result = validation.validate(agreement, person);
         assertTrue(result.isEmpty());
     }
 
     @Test
     void shouldNotReturnValidationErrorWhenMedicalRiskLimitLevelNotEnabledAndIsBlank() {
-        request.setSelectedRisks(List.of("TRAVEL_MEDICAL"));
-        request.setMedicalRiskLimitLevel("");
+        agreement.setSelectedRisks(List.of("TRAVEL_MEDICAL"));
+        person.setMedicalRiskLimitLevel("");
         ReflectionTestUtils.setField(validation, "medicalRiskLimitLevelEnabled", false);
-        Optional<ValidationErrorDTO> result = validation.validate(request);
+        Optional<ValidationErrorDTO> result = validation.validate(agreement, person);
         assertTrue(result.isEmpty());
     }
 }

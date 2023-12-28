@@ -106,4 +106,13 @@ Test Case 27:
 Request: country is empty, RISK_TYPE - TRAVEL_EVACUATION.
 Response: error code = ERROR_CODE_10.
 
+Test_case_28:
+Request: first person medicalRiskLimitLevel is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_13.
+
+Test_case_28:
+Request: multiple persons medicalRiskLimitLevel is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_13.
+
+
 
