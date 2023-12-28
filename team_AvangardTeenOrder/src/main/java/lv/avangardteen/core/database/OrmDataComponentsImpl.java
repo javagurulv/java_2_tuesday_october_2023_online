@@ -1,5 +1,6 @@
 package lv.avangardteen.core.database;
 
+import lv.avangardteen.core.database.DataComponents;
 import lv.avangardteen.core.domain.Components;
 import org.springframework.stereotype.Component;
 
@@ -8,9 +9,10 @@ import java.util.List;
 
 
 @Component
-public class OrmDataComponentsImpl implements DataComponents{
+public class OrmDataComponentsImpl implements DataComponents {
 
     private Integer nextId = 1;
+
     List<Components> components = new ArrayList<>();
 
     @Override

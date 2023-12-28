@@ -31,6 +31,8 @@ public class Wheelchair {
     @Column(name = "price", nullable = false)
     double price;
 
+
+
     public Long getId() {
         return id;
     }

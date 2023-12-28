@@ -47,6 +47,26 @@ add foreign key (client_id) REFERENCES clients (id)  ON DELETE CASCADE;
 
 CREATE UNIQUE INDEX wheelchair_type_index ON wheelchair(client_id);
 
+
+CREATE TABLE IF NOT EXISTS  `order_components` (
+`id` BIGINT NOT NULL PRIMARY KEY auto_increment,
+`wheelchair_id` BIGINT NOT NULL,
+`component_id` INT NOT NULL
+
+)
+ENGINE = InnoDB
+AUTO_INCREMENT = 1;
+
+ALTER TABLE `order_components`
+add foreign key (component_id) REFERENCES `components` (id);
+
+ALTER TABLE `order_components`
+add foreign key (wheelchair_id) REFERENCES `wheelchair` (id)  ON DELETE CASCADE;
+
+CREATE UNIQUE INDEX order_components_components_index ON order_components(component_id);
+CREATE UNIQUE INDEX order_components_wheelchair_index ON order_components(wheelchair_id);
+
+
 CREATE TABLE IF NOT EXISTS `category`(
 `id` BIGINT NOT NULL AUTO_INCREMENT,
 `title` VARCHAR(20) NOT NULL,
@@ -59,7 +79,7 @@ AUTO_INCREMENT = 1;
 CREATE UNIQUE INDEX category_type_index ON category(title);
 
 CREATE TABLE IF NOT EXISTS `components` (
-`id` BIGINT NOT NULL AUTO_INCREMENT,
+`id` INT NOT NULL AUTO_INCREMENT,
 `category_key` VARCHAR(20) NOT NULL,
 `marking` VARCHAR (20) NOT NULL UNIQUE,
 `information` VARCHAR (2000) NOT NULL,
