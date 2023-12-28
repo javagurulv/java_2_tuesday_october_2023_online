@@ -1,5 +1,6 @@
 package lv.javaguru.travel.insurance.rest.v1;
 
+import lv.javaguru.travel.insurance.rest.common.JsonFileReader;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -17,7 +18,7 @@ import static uk.org.webcompere.modelassert.json.JsonAssertions.assertJson;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public abstract class TravelCalculatePremiumControllerTestCase {
+public abstract class TravelCalculatePremiumControllerV1TestCase {
     @Autowired
     private MockMvc mockMvc;
 

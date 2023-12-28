@@ -1,0 +1,109 @@
+Test_case_1:
+Request: All fields filled, RISK_TYPE - TRAVEL_MEDICAL.
+Response: success, without errors.
+
+Test_case_2:
+Request: first person personFirstName is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_1.
+
+Test_case_3:
+Request: first person personFirstName is empty, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_1.
+
+Test_case_4:
+Request: multiple persons personFirstName is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_1.
+
+Test_case_5:
+Request: multiple persons personsFirstName is empty, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_1.
+
+Test_case_6:
+Request: first person personLastName is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_2.
+
+Test_case_7:
+Request: first person personLastName is empty, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_2.
+
+Test_case_8:
+Request: multiple persons personLastName is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_2.
+
+Test_case_9:
+Request: multiple persons personLastName is empty, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_2.
+
+Test_case_10:
+Request: first person personBirthDate is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_11.
+
+Test_case_11:
+Request: multiple persons personBirthDate is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_11.
+
+Test_case_12:
+Request: first person personBirthDate is in the future, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_12.
+
+Test_case_13:
+Request: multiple persons personBirthDate is in the future, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_12.
+
+Test_case_14:
+Request: agreementDateFrom is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_3.
+
+Test_case_15:
+Request: agreementDateTo is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_6.
+
+Test_case_16:
+Request: agreementDateFrom is in the past, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_4.
+
+Test_case_17:
+Request: agreementDateTo is in the past, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_7.
+
+Test_case_18:
+Request: agreementDateTo is less than agreementDateFrom, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_5.
+
+Test_case_19:
+Request: selectedRisks is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_8.
+
+Test_case_20:
+Request:  selectedRisks is not supported (one risk), RISK_TYPE - TRAVEL_MEDICAL.
+Response: multiple error codes = ERROR_CODE_5.
+
+Test_case_21:
+Request:  selectedRisks is not supported (two risks), RISK_TYPE - TRAVEL_MEDICAL.
+Response: multiple error codes = ERROR_CODE_8.
+
+Test_case_22:
+Request: country is empty, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_10.
+
+Test_case_23:
+Request: country is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_10.
+
+Test_case_24:
+Request: all fields not provided, RISK_TYPE - TRAVEL_MEDICAL.
+Response: multiple error codes.
+
+Test_case_25:
+Request: all fields not provided.
+Response: multiple error codes.
+
+Test Case 26:
+Request: country is null, RISK_TYPE - TRAVEL_EVACUATION.
+Response: error code = ERROR_CODE_10.
+
+Test Case 27:
+Request: country is empty, RISK_TYPE - TRAVEL_EVACUATION.
+Response: error code = ERROR_CODE_10.
+
+

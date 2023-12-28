@@ -43,7 +43,7 @@ Request: agreementDateTo is in the past, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_7.
 
 Test_case_12:
-Request: agreementDateFrom is less than agreementDateTo, RISK_TYPE - TRAVEL_MEDICAL.
+Request: agreementDateTo is less than agreementDateFrom, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_5.
 
 Test_case_13:
@@ -51,7 +51,7 @@ Request: selectedRisks is null, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_8.
 
 Test_case_14:
-Request: selectedRisks is null, RISK_TYPE - TRAVEL_MEDICAL.
+Request: selectedRisks is empty, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_8.
 
 Test_case_15:

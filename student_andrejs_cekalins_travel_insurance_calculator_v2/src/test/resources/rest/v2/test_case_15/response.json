@@ -1,0 +1,14 @@
+{
+  "errors": [
+    {
+      "errorCode": "ERROR_CODE_6",
+      "description": "Field agreementDateTo must not be empty!"
+    }
+  ],
+  "agreementDateFrom": null,
+  "agreementDateTo": null,
+  "country": null,
+  "medicalRiskLimitLevel": null,
+  "agreementPremium": null,
+  "persons": null
+}

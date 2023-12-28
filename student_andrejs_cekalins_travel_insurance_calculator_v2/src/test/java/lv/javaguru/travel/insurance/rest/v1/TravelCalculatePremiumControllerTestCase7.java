@@ -3,7 +3,7 @@ package lv.javaguru.travel.insurance.rest.v1;
 import org.junit.jupiter.api.Test;
 
 public class TravelCalculatePremiumControllerTestCase7 extends
-        TravelCalculatePremiumControllerTestCase {
+        TravelCalculatePremiumControllerV1TestCase {
     @Test
     public void execute() throws Exception {
         executeAndCompare();
