@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class DtoV2Converter {
-    public TravelCalculatePremiumCoreCommand buildCoreCommand(lv.javaguru.travel.insurance.dto.v2.TravelCalculatePremiumRequestV2 request) {
+    public TravelCalculatePremiumCoreCommand buildCoreCommand(TravelCalculatePremiumRequestV2 request) {
         AgreementDTO agreement = buildAgreement(request);
         return new TravelCalculatePremiumCoreCommand(agreement);
     }
