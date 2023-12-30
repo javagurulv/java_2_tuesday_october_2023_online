@@ -1,21 +1,22 @@
-package fitness_club.core.services.data_vlidation;
+package fitness_club.core.services.vlidators;
 
-import fitness_club.core.requests.RemoveClientRequest;
+import fitness_club.core.requests.ChangeClientWorkoutRequest;
 import fitness_club.core.responses.CoreError;
-import org.junit.Test;
 import java.util.List;
+import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class RemoveClientValidationTest {
-    private RemoveClientRequestValidator requestValidator = new RemoveClientRequestValidator();
+public class ChangeClientWorkoutsValidationTest {
+    private ChangeClientWorkoutsValidator requestValidator = new ChangeClientWorkoutsValidator();
 
     @Test
     public void shouldReturnErrorWhenClientPersonalCodeIsNull() {
-        RemoveClientRequest request = mock(RemoveClientRequest.class);
+        ChangeClientWorkoutRequest request = mock(ChangeClientWorkoutRequest.class);
         {
             when(request.getPersonalCode()).thenReturn(null);
+            when(request.getWorkout()).thenReturn(1L);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -26,9 +27,10 @@ public class RemoveClientValidationTest {
 
     @Test
     public void shouldReturnErrorWhenClientPersonaCodeIsEmpty() {
-        RemoveClientRequest request = mock(RemoveClientRequest.class);
+        ChangeClientWorkoutRequest request = mock(ChangeClientWorkoutRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("");
+            when(request.getWorkout()).thenReturn(1L);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
@@ -39,9 +41,10 @@ public class RemoveClientValidationTest {
 
     @Test
     public void shouldNotReturnErrorWhenPersonalCodeIsPresent() {
-        RemoveClientRequest request = mock(RemoveClientRequest.class);
+        ChangeClientWorkoutRequest request = mock(ChangeClientWorkoutRequest.class);
         {
             when(request.getPersonalCode()).thenReturn("personalCode");
+            when(request.getWorkout()).thenReturn(1L);
             List<CoreError> errors = requestValidator.validate(request);
             assertTrue(errors.isEmpty());
         }

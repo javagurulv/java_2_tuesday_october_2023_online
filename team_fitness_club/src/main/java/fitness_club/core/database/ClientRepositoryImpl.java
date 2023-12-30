@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 @Transactional
-public class OrmClientRepositoryImpl implements ClientRepository {
+public class ClientRepositoryImpl implements ClientRepository {
 
     @Autowired private SessionFactory sessionFactory;
 

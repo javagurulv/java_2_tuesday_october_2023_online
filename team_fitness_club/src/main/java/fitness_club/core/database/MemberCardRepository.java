@@ -10,6 +10,8 @@ public interface MemberCardRepository {
 
     void save(MemberCard memberCard);
 
+    MemberCard getByPersonalCode(String personalCode);
+
     List<MemberCard> getAllMemberCards();
 
     boolean isClientWorkoutsChangedByPersonalCode(Long clientId, Long newWorkout);

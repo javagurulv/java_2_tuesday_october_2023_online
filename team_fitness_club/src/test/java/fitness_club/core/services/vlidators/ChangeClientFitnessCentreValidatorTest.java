@@ -1,6 +1,5 @@
-package fitness_club.core.services.data_vlidation;
+package fitness_club.core.services.vlidators;
 
-import fitness_club.core.domain.FitnessCentre;
 import fitness_club.core.requests.ChangeClientFitnessCentreRequest;
 import fitness_club.core.responses.CoreError;
 import org.junit.Test;

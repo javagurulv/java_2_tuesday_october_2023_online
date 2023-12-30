@@ -8,19 +8,19 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "workouts")
+@Table(name = "age_groups")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Workouts {
+public class AgeGroups {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "workout", nullable = false)
-    private String workout;
+    @Column(name = "age_group", nullable = false)
+    private String ageGroup;
 }

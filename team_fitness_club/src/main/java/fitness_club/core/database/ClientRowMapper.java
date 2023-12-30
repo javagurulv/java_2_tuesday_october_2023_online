@@ -1,9 +1,6 @@
 package fitness_club.core.database;
 
 import fitness_club.core.domain.Client;
-import fitness_club.core.domain.ClientAgeGroups;
-import fitness_club.core.domain.FitnessCentre;
-import fitness_club.core.domain.Workouts;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

@@ -24,7 +24,7 @@ public class MemberCard {
     private Client client;
 
     @Column(name = "age_group")
-    private String clientAgeGroup;
+    private String ageGroup;
 
     @Column(name = "workout")
     private String workouts;
@@ -37,7 +37,7 @@ public class MemberCard {
 
     public MemberCard(Client client, String clientAgeGroup, String workouts, String fitnessCentre, Date termOfContract) {
         this.client = client;
-        this.clientAgeGroup = clientAgeGroup;
+        this.ageGroup = ageGroup;
         this.workouts = workouts;
         this.fitnessCentre = fitnessCentre;
         this.termOfContract = termOfContract;

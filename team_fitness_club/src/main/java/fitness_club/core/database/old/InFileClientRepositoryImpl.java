@@ -1,22 +1,29 @@
-package fitness_club.core.database;
+package fitness_club.core.database.old;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import fitness_club.core.database.ClientRepository;
 import fitness_club.core.domain.Client;
+import fitness_club.core.domain.AgeGroups;
 
-//@Component
-public class InMemoryClientRepositoryImpl implements ClientRepository {
-
-    private Long nextId = 1L;
+public class InFileClientRepositoryImpl implements ClientRepository {
+    private AgeGroups ageGroups;
+    private final String filename;
     private List<Client> clients = new ArrayList<>();
 
+    public InFileClientRepositoryImpl() {
+        this.filename = ".\\team_fitness_club\\src\\main\\java\\fitness_club\\core\\database\\ClientsFile.bin";
+    }
+
     public void save(Client client) {
-        client.setId(nextId);
-        nextId++;
+        List<Client> clients = getAllClients();
+        client.setId(generateNextId(clients));
         clients.add(client);
+        saveClient(clients);
     }
 
     public boolean deleteByPersonalCode(String personalCode) {
@@ -35,6 +42,7 @@ public class InMemoryClientRepositoryImpl implements ClientRepository {
     }
 
     public List<Client> getAllClients() {
+        loadClientsFromFile();
         return clients;
     }
 
@@ -42,6 +50,7 @@ public class InMemoryClientRepositoryImpl implements ClientRepository {
     public Long getClientIdByPersonalCode(String personalCode){return 0L;}
     /*@Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
+        loadClientsFromFile();
         Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
                 .findFirst();
@@ -56,8 +65,11 @@ public class InMemoryClientRepositoryImpl implements ClientRepository {
         }
     }
 
+
+
     @Override
     public boolean clientWorkoutsChangedByPersonalCode(String personalCode, Workouts newWorkout) {
+        loadClientsFromFile();
         Optional<Client> clientToChangeWorkoutOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
                 .findFirst();
@@ -74,6 +86,7 @@ public class InMemoryClientRepositoryImpl implements ClientRepository {
 
     @Override
     public boolean isClientFitnessCentreChangedByPersonalCode(String personalCode, FitnessCentre newFitnessCentre) {
+        loadClientsFromFile();
         Optional<Client> clientToChangeFitnessCentreOpt = clients.stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
                 .findFirst();
@@ -91,7 +104,28 @@ public class InMemoryClientRepositoryImpl implements ClientRepository {
      */
 
 
+
     public void saveClient(List<Client> clients) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(clients);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Long generateNextId(List<Client> clients) {
+        if (clients.isEmpty()) {
+            return 1L;
+        } else {
+            long maxId = clients.stream().mapToLong(Client::getId).max().orElse(0L);
+            return maxId + 1;
+        }
+    }
+
+    private void updateClientIds(List<Client> clients) {
+        for (int i = 0; i < clients.size(); i++) {
+            clients.get(i).setId((long) (i + 1));
+        }
     }
 
     @Override
@@ -123,10 +157,15 @@ public class InMemoryClientRepositoryImpl implements ClientRepository {
                 .collect(Collectors.toList());
     }
 
-    private void updateClientIds(List<Client> clients) {
-        for (int i = 0; i < clients.size(); i++) {
-            clients.get(i).setId((long) (i + 1));
+    private void loadClientsFromFile() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+            List<Client> loadedClients = (List<Client>) ois.readObject();
+            clients.clear();
+            clients.addAll(loadedClients);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
+
 
 }

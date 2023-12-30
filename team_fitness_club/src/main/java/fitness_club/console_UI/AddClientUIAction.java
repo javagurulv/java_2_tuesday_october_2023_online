@@ -1,14 +1,8 @@
 package fitness_club.console_UI;
 
-import fitness_club.core.domain.ClientAgeGroups;
-import fitness_club.core.domain.FitnessCentre;
-import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.services.AddClientService;
-import fitness_club.core.services.GetClientAgeGroupService;
-import fitness_club.core.services.GetFitnessCentreService;
-import fitness_club.core.services.GetWorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

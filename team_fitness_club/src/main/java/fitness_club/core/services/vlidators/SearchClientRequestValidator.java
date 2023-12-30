@@ -1,4 +1,4 @@
-package fitness_club.core.services.data_vlidation;
+package fitness_club.core.services.vlidators;
 
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;

@@ -3,19 +3,16 @@ package fitness_club.core.requests;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddClientRequest {
+public class RegisterClientRequest {
 
     private String firstName;
-    private String lastName;
-    private String personalCode;
-    //private ClientAgeGroups clientAgeGroup;
-    //private Workouts workout;
-    //private FitnessCentre fitnessCentre;
 
+    private String lastName;
+
+    private String personalCode;
 }

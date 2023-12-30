@@ -4,7 +4,7 @@ import fitness_club.core.database.ClientRepository;
 import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.data_vlidation.RemoveClientRequestValidator;
+import fitness_club.core.services.vlidators.RemoveClientRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

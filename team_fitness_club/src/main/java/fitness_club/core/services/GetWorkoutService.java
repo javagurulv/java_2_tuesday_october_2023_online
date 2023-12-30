@@ -3,7 +3,7 @@ import fitness_club.core.domain.Workouts;
 
 public class GetWorkoutService {
 
-    public static Workouts getWorkout(int id) {
+    /*public static Workouts getWorkout(int id) {
         Workouts selectedWorkout = null;
         switch (id) {
             case 1 -> selectedWorkout = Workouts.GYM;
@@ -13,4 +13,6 @@ public class GetWorkoutService {
         }
         return selectedWorkout;
     }
+
+     */
 }

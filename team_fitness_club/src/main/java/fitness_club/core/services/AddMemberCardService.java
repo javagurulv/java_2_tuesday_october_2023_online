@@ -6,7 +6,7 @@ import fitness_club.core.domain.MemberCard;
 import fitness_club.core.requests.AddMemberCardRequest;
 import fitness_club.core.responses.AddMemberCardsResponse;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.data_vlidation.AddMemberCardRequestValidator;
+import fitness_club.core.services.vlidators.AddMemberCardRequestValidator;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

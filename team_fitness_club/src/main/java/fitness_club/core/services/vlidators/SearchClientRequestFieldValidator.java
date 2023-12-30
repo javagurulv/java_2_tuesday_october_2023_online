@@ -1,4 +1,4 @@
-package fitness_club.core.services.data_vlidation;
+package fitness_club.core.services.vlidators;
 
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.CoreError;
@@ -15,6 +15,7 @@ public class SearchClientRequestFieldValidator {
         if (isEmpty(request.getFirstName()) && isEmpty(request.getLastName())) {
             errors.add(new CoreError("firstName", "Must not be empty!"));
             errors.add(new CoreError("lastName", "Must not be empty!"));
+            errors.add(new CoreError("personalCode", "Must not be empty!"));
         }
         return errors;
     }

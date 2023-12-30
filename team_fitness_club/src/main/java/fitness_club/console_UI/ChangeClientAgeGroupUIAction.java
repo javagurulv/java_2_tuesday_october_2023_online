@@ -1,12 +1,9 @@
 package fitness_club.console_UI;
 
-import fitness_club.core.domain.ClientAgeGroups;
-import fitness_club.core.domain.Workouts;
+import fitness_club.core.domain.AgeGroups;
 import fitness_club.core.requests.ChangeClientAgeGroupRequest;
-import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.responses.ChangeClientAgeGroupResponse;
 import fitness_club.core.services.ChangeClientAgeGroupService;
-import fitness_club.core.services.GetClientAgeGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +24,7 @@ public class ChangeClientAgeGroupUIAction implements UIAction {
         String clientPersonalCode = scanner.nextLine();
 
         System.out.println("Choose new age group.");
-        printEnumValues(ClientAgeGroups.values());
+       // printEnumValues(AgeGroups.values());
         Long newClientAgeGroup = Long.parseLong(scanner.nextLine());
 
         ChangeClientAgeGroupRequest request = new ChangeClientAgeGroupRequest(clientPersonalCode, newClientAgeGroup);

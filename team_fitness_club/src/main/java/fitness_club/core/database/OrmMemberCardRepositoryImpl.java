@@ -21,9 +21,14 @@ public class OrmMemberCardRepositoryImpl implements MemberCardRepository {
     public void save(MemberCard memberCard) { sessionFactory.getCurrentSession().save(memberCard); }
 
     @Override
+    public MemberCard getByPersonalCode(String personalCode) {
+        return sessionFactory.getCurrentSession().get(MemberCard.class, personalCode);
+    }
+
+    @Override
     public List<MemberCard> getAllMemberCards() {
         return sessionFactory.getCurrentSession()
-                .createQuery("SELECT b FROM MemberCard b", MemberCard.class)
+                .createQuery("SELECT c FROM MemberCard c", MemberCard.class)
                 .getResultList();
     }
 

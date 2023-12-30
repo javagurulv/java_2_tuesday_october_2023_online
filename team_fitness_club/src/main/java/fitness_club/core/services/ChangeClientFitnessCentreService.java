@@ -3,10 +3,9 @@ package fitness_club.core.services;
 import fitness_club.core.database.ClientRepository;
 import fitness_club.core.database.MemberCardRepository;
 import fitness_club.core.requests.ChangeClientFitnessCentreRequest;
-import fitness_club.core.requests.ChangeClientWorkoutRequest;
 import fitness_club.core.responses.ChangeClientFitnessCentreResponse;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.data_vlidation.ChangeClientFitnessCentreValidator;
+import fitness_club.core.services.vlidators.ChangeClientFitnessCentreValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
