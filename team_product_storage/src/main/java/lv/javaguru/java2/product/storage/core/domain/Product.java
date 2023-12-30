@@ -18,27 +18,27 @@ public class Product {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name="product_name")
+    @Column(name="product_name", nullable = false)
     private String productName;
-    @Column(name="product_brand")
+    @Column(name="product_brand", nullable = false)
     private String productBrand;
-    @Column(name="product_model")
+    @Column(name="product_model", nullable = false)
     private String productModel;
-    @Column(name="product_quantity")
+    @Column(name="product_quantity", nullable = false)
     private Integer productQuantity;
-    @Column(name="price_in_stock")
-    private BigDecimal priceInStock;
+    @Column(name="price", nullable = false)
+    private BigDecimal price;
 
 
     public Product() {
     }
 
-    public Product(String productName, String productBrand, String productModel, Integer productQuantity, BigDecimal priceInStock) {
+    public Product(String productName, String productBrand, String productModel, Integer productQuantity, BigDecimal price) {
         this.productName = productName;
         this.productBrand = productBrand;
         this.productModel = productModel;
         this.productQuantity = productQuantity;
-        this.priceInStock = priceInStock;
+        this.price = price;
     }
 
     public Long getId() {
@@ -48,6 +48,7 @@ public class Product {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getProductName() {
         return productName;
     }
@@ -80,26 +81,24 @@ public class Product {
         this.productQuantity = productQuantity;
     }
 
-    public BigDecimal getPriceInStock() {
-        return priceInStock;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setPriceInStock(BigDecimal priceInStock) {
-        this.priceInStock = priceInStock;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
-
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Product product)) return false;
-        return Objects.equals(getId(), product.getId()) && Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getProductBrand(), product.getProductBrand()) && Objects.equals(getProductModel(), product.getProductModel()) && Objects.equals(getProductQuantity(), product.getProductQuantity()) && Objects.equals(getPriceInStock(), product.getPriceInStock());
+        return Objects.equals(getId(), product.getId()) && Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getProductBrand(), product.getProductBrand()) && Objects.equals(getProductModel(), product.getProductModel()) && Objects.equals(getProductQuantity(), product.getProductQuantity()) && Objects.equals(getPrice(), product.getPrice());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getProductName(), getProductBrand(), getProductModel(), getProductQuantity(), getPriceInStock());
+        return Objects.hash(getId(), getProductName(), getProductBrand(), getProductModel(), getProductQuantity(), getPrice());
     }
 
     @Override
@@ -110,10 +109,9 @@ public class Product {
                 ", productBrand='" + productBrand + '\'' +
                 ", productModel='" + productModel + '\'' +
                 ", productQuantity=" + productQuantity +
-                ", priceInStock=" + priceInStock +
+                ", price=" + price +
                 '}';
     }
-
 }
 
 

@@ -29,7 +29,7 @@ public class AddProductRequestValidator {
         validateProductBrand(request).ifPresent(errors::add);
         validateProductModel(request).ifPresent(errors::add);
         validateProductQuantity(request).ifPresent(errors::add);
-        validatePriceInStock(request).ifPresent(errors::add);
+        validatePrice(request).ifPresent(errors::add);
         validateDuplicate(request).ifPresent(errors::add);
         return errors;
     }
@@ -59,10 +59,10 @@ public class AddProductRequestValidator {
                 : Optional.empty();
     }
 
-    private Optional<CoreError> validatePriceInStock(AddProductRequest request) {
+    private Optional<CoreError> validatePrice(AddProductRequest request) {
         BigDecimal minPrice = new BigDecimal("0.01");
-        return (request.getPriceInStock().compareTo(minPrice) <= 0.00)
-                ? Optional.of(new CoreError("priceInStock", "Must be greater than 0.00!"))
+        return (request.getPrice().compareTo(minPrice) <= 0.00)
+                ? Optional.of(new CoreError("price", "Must be greater than 0.00!"))
                 : Optional.empty();
     }
 

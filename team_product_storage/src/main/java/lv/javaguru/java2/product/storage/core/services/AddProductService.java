@@ -13,12 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Component
+@Transactional
 public class AddProductService {
 
     @Autowired private ProductRepository productRepository;
     @Autowired private AddProductRequestValidator validator;
 
-    @Transactional
     public AddProductResponse execute(AddProductRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
@@ -30,7 +30,7 @@ public class AddProductService {
                 request.getProductBrand(),
                 request.getProductModel(),
                 request.getProductQuantity(),
-                request.getPriceInStock());
+                request.getPrice());
         productRepository.save(product);
         return new AddProductResponse(product);
     }

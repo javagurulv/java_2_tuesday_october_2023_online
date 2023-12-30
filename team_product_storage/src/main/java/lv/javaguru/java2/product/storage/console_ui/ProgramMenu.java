@@ -20,7 +20,9 @@ public class ProgramMenu {
         menuNumberToUIActionMap.put(2, findUIAction(uiActions, RemoveProductUIAction.class));
         menuNumberToUIActionMap.put(3, findUIAction(uiActions, PrintAllProductsUIAction.class));
         menuNumberToUIActionMap.put(4, findUIAction(uiActions, SearchProductsUIAction.class));
-        menuNumberToUIActionMap.put(5, findUIAction(uiActions, ExitProgramUIAction.class));
+        menuNumberToUIActionMap.put(5, findUIAction(uiActions, RegisterCustomerUIAction.class));
+        menuNumberToUIActionMap.put(6, findUIAction(uiActions, PrintAllCustomersUIAction.class));
+        menuNumberToUIActionMap.put(7, findUIAction(uiActions, ExitProgramUIAction.class));
     }
 
     private UIAction findUIAction(List<UIAction> uiActions, Class uiActionClass) {
@@ -36,8 +38,10 @@ public class ProgramMenu {
         System.out.println("Press 1: Add product to list: ");
         System.out.println("Press 2: Remove product from list: ");
         System.out.println("Press 3: Display all products in the list: ");
-        System.out.println("Press 4. Search products");
-        System.out.println("Press 5: Exit from program.");
+        System.out.println("Press 4: Search products");
+        System.out.println("Press 5: Register customer");
+        System.out.println("Press 6: Show all customer in the list");
+        System.out.println("Press 7: Exit from program");
         System.out.println();
     }
 

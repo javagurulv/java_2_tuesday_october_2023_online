@@ -11,15 +11,15 @@ public class AddProductRequest {
 
     private Integer productQuantity;
 
-    private BigDecimal priceInStock;
+    private BigDecimal price;
 
 
-    public AddProductRequest(String productName, String productBrand, String productModel, Integer productQuantity, BigDecimal priceInStock) {
+    public AddProductRequest(String productName, String productBrand, String productModel, Integer productQuantity, BigDecimal price) {
         this.productName = productName;
         this.productBrand = productBrand;
         this.productModel = productModel;
         this.productQuantity = productQuantity;
-        this.priceInStock = priceInStock;
+        this.price = price;
     }
 
     public String getProductName() {
@@ -36,8 +36,8 @@ public class AddProductRequest {
 
     public Integer getProductQuantity() { return productQuantity; }
 
-    public BigDecimal getPriceInStock() {
-        return priceInStock;
+    public BigDecimal getPrice() {
+        return price;
     }
 
 }

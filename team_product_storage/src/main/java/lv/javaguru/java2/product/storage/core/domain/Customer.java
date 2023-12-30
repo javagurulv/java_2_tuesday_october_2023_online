@@ -11,9 +11,9 @@ public class Customer {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name="customer_name")
+    @Column(name="customer_name", nullable = false)
     private String customerName;
-    @Column(name="registration_code")
+    @Column(name="registration_code", nullable = false)
     private String registrationCode;
 
     public Customer() {
@@ -64,7 +64,7 @@ public class Customer {
     public String toString() {
         return "Customer{" +
                 "id=" + id +
-                ", name='" + customerName + '\'' +
+                ", customerName='" + customerName + '\'' +
                 ", registrationCode='" + registrationCode + '\'' +
                 '}';
     }
