@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ClientIdValidator {
+public class OrderIdValidator {
     @Autowired
     private Database database;
 
@@ -17,17 +17,17 @@ public class ClientIdValidator {
     public List<CoreError> validate(Long id) {
         List<CoreError> errors = new ArrayList<>();
         if (isEmpty(id)) {
-            errors.add(new CoreError("idClient", "Must not be empty!"));
+            errors.add(new CoreError("idOrder", "Must not be empty!"));
 
         } else if (clientNotFound(id)) {
-            errors.add(new CoreError("idClient", "Order with this id not found!"));
+            errors.add(new CoreError("idOrder", "Order with this id not found!"));
         }
 
         return errors;
     }
 
     private boolean clientNotFound(Long id) {
-        return (database.getClient(id) == null);
+        return (database.getClientByOrderId(id) == null);
     }
 
     private boolean isEmpty(Long id) {

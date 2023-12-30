@@ -1,24 +1,51 @@
 package lv.avangardteen.core.responce;
 
-
-import lv.avangardteen.core.service.WheelchairComponent;
-
 import java.util.List;
 
 public class ChangeComponentResponse extends CoreResponse {
-    WheelchairComponent wheelchairComponent;
+
+    Integer wheelFrontChoose;
+    Integer wheelBackChoose;
+    Integer brakeChoose;
+    Integer footrestChoose;
+
 
     public ChangeComponentResponse(List<CoreError> errors) {
         super(errors);
     }
 
-    public ChangeComponentResponse(WheelchairComponent wheelchairComponent) {
+    public ChangeComponentResponse() {}
 
-        this.wheelchairComponent = wheelchairComponent;
+
+    public Integer getWheelFrontChoose() {
+        return wheelFrontChoose;
     }
 
+    public void setWheelFrontChoose(Integer wheelFrontChoose) {
+        this.wheelFrontChoose = wheelFrontChoose;
+    }
 
-    public void setWheelchairComponent(WheelchairComponent wheelchairComponent) {
-        this.wheelchairComponent = wheelchairComponent;
+    public Integer getWheelBackChoose() {
+        return wheelBackChoose;
+    }
+
+    public void setWheelBackChoose(Integer wheelBackChoose) {
+        this.wheelBackChoose = wheelBackChoose;
+    }
+
+    public Integer getBrakeChoose() {
+        return brakeChoose;
+    }
+
+    public void setBrakeChoose(Integer brakeChoose) {
+        this.brakeChoose = brakeChoose;
+    }
+
+    public Integer getFootrestChoose() {
+        return footrestChoose;
+    }
+
+    public void setFootrestChoose(Integer footrestChoose) {
+        this.footrestChoose = footrestChoose;
     }
 }

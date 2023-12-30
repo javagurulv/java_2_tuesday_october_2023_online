@@ -29,9 +29,13 @@ public class ShowOrderUIAction implements UIAction {
                 System.out.println(response.getClient().toString());
                 System.out.println(response.getUserSizes().toString());
                 System.out.println(response.getWheelchair().toString());
-                System.out.println(response.getWheelchairComponent().toString());
-                System.out.println("Цена заказа инвалидного кресла " +
-                        response.getWheelchairComponent().countPriceOrder());
+                System.out.println(response.getWheelchairComponents().toString());
+                System.out.println("Стоимость Avangard Teen: " +
+                        response.getPriceWheelchair());
+                System.out.println("Стоимость компонентов: " +
+                        response.getPriceComponents());
+                System.out.println("Цена заказа: " +
+                        response.getPriceOrder());
             }
         } catch (InputMismatchException e) {
             System.out.println("Must input only digits!");

@@ -10,7 +10,7 @@ public interface DataComponents {
     Components getComponent(Integer index);
     List<Integer> getAllIndex();
     List<Components> allFrontWheels();
-    List<Components> allArmrest();
+    List<Components> allFootrest();
     List<Components> allBrakes();
     List<Components> allBackWheels();
 

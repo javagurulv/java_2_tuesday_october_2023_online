@@ -1,7 +1,6 @@
 package lv.avangardteen.core.database;
 
-import lv.avangardteen.core.domain.*;
-import lv.avangardteen.core.service.WheelchairComponent;
+import lv.avangardteen.core.domain.Client;
 
 import java.util.List;
 
@@ -13,9 +12,11 @@ public interface Database {
 
     void updateUser(Long id, Client client);
 
-    boolean deleteClientById(Long id);
+    boolean deleteClientByOrderId(Long id);
 
-    Client getClient(Long id);
+    Client getClientByOrderId(Long idOrder);
 
     Client findBySurnameAndPersonalCode(String surname, Long personalCode);
+
+    void setOrderId(Long orderId);
 }

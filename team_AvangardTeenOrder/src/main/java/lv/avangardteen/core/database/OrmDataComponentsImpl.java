@@ -1,61 +1,88 @@
 package lv.avangardteen.core.database;
 
-import lv.avangardteen.core.database.DataComponents;
+import lv.avangardteen.core.domain.Category;
 import lv.avangardteen.core.domain.Components;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 
 @Component
+@Transactional
 public class OrmDataComponentsImpl implements DataComponents {
 
-    private Integer nextId = 1;
+@Autowired
+private SessionFactory sessionFactory;
 
-    List<Components> components = new ArrayList<>();
+
+    public void addCategory(Category category) {
+        sessionFactory.getCurrentSession().save(category);
+    }
+
 
     @Override
     public void addComponent(Components component) {
-        component.setId(nextId);
-        nextId++;
-        components.add(component);
+        sessionFactory.getCurrentSession().save(component);
     }
 
     @Override
     public List<Components> getAllComponents() {
-        return null;
+        return sessionFactory.getCurrentSession()
+                .createQuery("SELECT c FROM Components c", Components.class)
+                .getResultList();
     }
 
     @Override
-    public Components getComponent(Integer index) {
-        return null;
+    public Components getComponent(Integer id) {
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("Select c FROM Components WHERE id = :id", Components.class);
+        query.setParameter("id", id);
+        return (Components) query.getSingleResult();
+
     }
 
     @Override
-    public List<Integer> getAllIndex() {
-        return null;
+    public List getAllIndex() {
+        return sessionFactory.getCurrentSession()
+                .createQuery("Select id FROM Components c").getResultList();
+
     }
 
     @Override
     public List<Components> allFrontWheels() {
-        return null;
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("SELECT c FROM Components WHERE category_key = : titleCategory");
+        query.setParameter("category_key", "FRONT-WHEEL");
+        return query.getResultList();
     }
 
     @Override
-    public List<Components> allArmrest() {
-        return null;
+    public List<Components> allFootrest() {
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("SELECT c FROM Components WHERE category_key = : titleCategory");
+        query.setParameter("category_key", "FOOTREST");
+        return query.getResultList();
     }
 
     @Override
     public List<Components> allBrakes() {
-        return null;
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("SELECT c FROM Components WHERE category_key = : titleCategory");
+        query.setParameter("category_key", "BRAKE");
+        return query.getResultList();
     }
 
     @Override
     public List<Components> allBackWheels() {
-        return null;
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("SELECT c FROM Components WHERE category_key = : titleCategory");
+        query.setParameter("category_key", "BACK-WHEEL");
+        return query.getResultList();
     }
-
 
 }

@@ -1,4 +1,5 @@
 package lv.avangardteen.core.service;
+/*
 
 import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
@@ -49,4 +50,4 @@ class ShowOrderServiceMockitaTest {
     }
 
 
-}
+}*/

@@ -12,7 +12,7 @@ import java.util.List;
 public class ChangePersonalDateValidator {
 
     @Autowired
-    private ClientIdValidator clientIdValidator;
+    private OrderIdValidator clientIdValidator;
     @Autowired
     private PersonalDateValidation personalDateValidation;
 

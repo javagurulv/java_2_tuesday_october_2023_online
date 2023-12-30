@@ -1,13 +1,13 @@
 package lv.avangardteen.core.database;
+/*
 
 import lv.avangardteen.core.domain.*;
-import lv.avangardteen.core.service.WheelchairComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 //@Component
 public class DataOrders implements Database {
@@ -250,3 +250,4 @@ public class DataOrders implements Database {
                 '}';
     }
 }
+*/

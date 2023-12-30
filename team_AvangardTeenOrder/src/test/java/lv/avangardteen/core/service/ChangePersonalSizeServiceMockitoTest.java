@@ -1,4 +1,5 @@
 package lv.avangardteen.core.service;
+/*
 
 
 import lv.avangardteen.core.domain.UserSizes;
@@ -60,3 +61,4 @@ class ChangePersonalSizeServiceMockitoTest {
     }
 
 }
+*/

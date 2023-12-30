@@ -1,34 +1,42 @@
 DROP TABLE IF EXISTS clients CASCADE;
+DROP TABLE IF EXISTS client_size CASCADE;
+DROP TABLE IF EXISTS wheelchair CASCADE;
+DROP TABLE IF EXISTS order_components CASCADE;
 
 CREATE TABLE IF NOT EXISTS  `clients` (
 `id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT ,
 `name_surname` VARCHAR (200) NOT NULL,
 `personal_code` BIGINT NOT NULL,
-`telephone_number` BIGINT NOT NULL,
-`address` VARCHAR (300) NOT NULL
+`phone` BIGINT NOT NULL,
+`address` VARCHAR (300) NOT NULL,
+`order_id` BIGINT
 
 )
 ENGINE = InnoDB
 AUTO_INCREMENT = 10;
 
+ALTER TABLE `clients`
+add foreign key (order_id) REFERENCES wheelchair (id) ON DELETE CASCADE;
+
+CREATE UNIQUE INDEX ix_clients_wheelchair_order ON clients(id, order_id);
 CREATE UNIQUE INDEX clients_type_index ON clients(name_surname, personal_code);
 
 CREATE TABLE IF NOT EXISTS  `client_size` (
-`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT ,
+`id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 `client_id` BIGINT NOT NULL,
 `pelvisWidth` INT NOT NULL,
 `thighLength` INT NOT NULL,
 `backHeight` INT NOT NULL,
-`shinLength` INT NOT NULL
-
+`shinLength` INT NOT NULL,
+`order_id` BIGINT
 )
 ENGINE = InnoDB
 AUTO_INCREMENT = 10;
 
 ALTER TABLE `client_size`
-add foreign key (client_id) REFERENCES clients (id)  ON DELETE CASCADE;
+add foreign key (order_id) REFERENCES wheelchair (id)  ON DELETE CASCADE;
 
-CREATE UNIQUE INDEX client_size_type_index ON client_size(client_id);
+CREATE UNIQUE INDEX client_size_type_index ON client_size(order_id);
 
 CREATE TABLE IF NOT EXISTS  `wheelchair` (
 `id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,

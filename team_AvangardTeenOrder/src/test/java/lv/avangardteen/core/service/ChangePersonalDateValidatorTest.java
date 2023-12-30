@@ -3,7 +3,7 @@ package lv.avangardteen.core.service;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChangePersonalDateValidator;
-import lv.avangardteen.core.service.validate.ClientIdValidator;
+import lv.avangardteen.core.service.validate.OrderIdValidator;
 import lv.avangardteen.core.service.validate.PersonalDateValidation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 class ChangePersonalDateValidatorTest {
 
     @Mock
-    private ClientIdValidator idValidator;
+    private OrderIdValidator idValidator;
     @Mock
     private PersonalDateValidation personalDateValidation;
     @InjectMocks

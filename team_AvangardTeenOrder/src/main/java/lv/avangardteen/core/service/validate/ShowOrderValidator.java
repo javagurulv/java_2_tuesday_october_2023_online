@@ -12,7 +12,7 @@ import java.util.List;
 public class ShowOrderValidator {
 
     @Autowired
-    private ClientIdValidator idValidator;
+    private OrderIdValidator idValidator;
     @Autowired
     Database database;
 
@@ -25,9 +25,7 @@ public class ShowOrderValidator {
     }
 
     private boolean validateOrder(ShowOrderRequest request) {
-        if (database.getUserSize(request.getId()) != null
-                && database.getWheelchair(request.getId()) != null
-                && database.getWheelchairComponents(request.getId()) != null) {
+        if (database.getClientByOrderId(request.getId()) != null) {
             return false;
         }
         return true;

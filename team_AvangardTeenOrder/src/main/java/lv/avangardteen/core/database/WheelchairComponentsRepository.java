@@ -18,28 +18,41 @@ public class WheelchairComponentsRepository {
 
     public List<WheelchairComponents> getChooseComponents(Long id) {
         Query query =  sessionFactory.getCurrentSession()
-                .createQuery("SELECT wc FROM WheelchairComponents WHERE client_id = :id");
-        query.setParameter("client_id", id);
+                .createQuery("SELECT wc FROM WheelchairComponents WHERE wheelchair_id = :id");
+        query.setParameter("wheelchair_id", id);
         return  query.getResultList();
 
     }
 
-    public void addWheelchairComponents(WheelchairComponents wheelchairComponents) {
-        sessionFactory.getCurrentSession().save(wheelchairComponents);
+    public void addWheelchairComponents(Long idWheelchair, Integer chooseComponent) {
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("INSERT INTO order_components WHERE wheelchair_id = :wheelchair.id" +
+                        "AND components_id = :components.id");
+        query.setParameter("wheelchair_id", idWheelchair);
+        query.setParameter("component_id", chooseComponent);
     }
 
     public boolean deleteWheelchairComponents(Long id) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "delete WheelchairComponents wc where client_id = :id");
-        query.setParameter("client_id", id);
+                "delete order_components wc where wheelchair_id = :id");
+        query.setParameter("wheelchair_id", id);
         int result = query.executeUpdate();
         return result == 1;
 
     }
     public List<WheelchairComponents> getAllWheelchairComponents() {
         return sessionFactory.getCurrentSession()
-                .createQuery("SELECT wc FROM WheelchairComponents wc", WheelchairComponents.class)
+                .createQuery("SELECT wc FROM order_components wc", WheelchairComponents.class)
                 .getResultList();
     }
+
+    public Double getPriceComponents(Long idWheelchair) {
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("SELECT Sum(price) FROM Order_components" +
+                        "WHERE wheelchair_id = : id");
+        query.setParameter("wheelchair_id", idWheelchair);
+        return (Double) query.getSingleResult();
+    }
+
 
 }

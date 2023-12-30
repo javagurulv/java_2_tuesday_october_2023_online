@@ -10,10 +10,12 @@ import lv.avangardteen.core.responce.UserRegistrationResponse;
 import lv.avangardteen.core.service.validate.PersonalDateValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component
+@Transactional
 public class UserRegistrationService {
     @Autowired
     private Database database;

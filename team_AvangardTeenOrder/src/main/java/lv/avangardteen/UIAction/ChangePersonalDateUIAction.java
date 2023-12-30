@@ -5,11 +5,13 @@ import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.service.ChangePersonalDateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 @Component
+
 public class ChangePersonalDateUIAction implements UIAction {
 
     @Autowired

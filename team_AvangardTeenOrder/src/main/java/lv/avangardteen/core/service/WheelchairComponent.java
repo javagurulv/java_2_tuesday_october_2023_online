@@ -1,4 +1,5 @@
 package lv.avangardteen.core.service;
+/*
 
 import lv.avangardteen.core.database.DataComponents;
 
@@ -60,3 +61,4 @@ public class WheelchairComponent extends Wheelchair {
         return Objects.hash(dataComponents, components);
     }
 }
+*/

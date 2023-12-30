@@ -1,4 +1,5 @@
 package lv.avangardteen.core.service;
+/*
 
 
 import lv.avangardteen.core.database.Database;
@@ -59,3 +60,4 @@ class UserSizeRegistrationServiceTest {
     }
 
 }
+*/

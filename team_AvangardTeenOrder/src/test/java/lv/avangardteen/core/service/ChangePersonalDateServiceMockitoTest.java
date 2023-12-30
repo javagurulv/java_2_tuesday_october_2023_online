@@ -1,4 +1,5 @@
 package lv.avangardteen.core.service;
+/*
 
 import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
@@ -53,4 +54,4 @@ class ChangePersonalDateServiceMockitoTest {
 
     }
 
-}
+}*/

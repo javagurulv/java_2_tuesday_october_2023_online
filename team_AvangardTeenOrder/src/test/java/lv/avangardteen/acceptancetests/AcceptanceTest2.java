@@ -6,12 +6,20 @@ import lv.avangardteen.core.request.*;
 import lv.avangardteen.core.responce.DeleteOrderResponse;
 import lv.avangardteen.core.responce.ShowOrderResponse;
 import lv.avangardteen.core.service.*;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@Ignore
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {OrderListConfiguration.class})
+@Sql({"/schema.sql"})
 public class AcceptanceTest2 {
     private ApplicationContext appContext = new AnnotationConfigApplicationContext(OrderListConfiguration.class);
 

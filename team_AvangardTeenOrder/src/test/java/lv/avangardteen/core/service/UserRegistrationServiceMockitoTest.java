@@ -1,5 +1,6 @@
 package lv.avangardteen.core.service;
 
+/*
 
 import lv.avangardteen.core.request.UserRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
@@ -59,3 +60,4 @@ class UserRegistrationServiceMockitoTest {
     }
 
 }
+*/

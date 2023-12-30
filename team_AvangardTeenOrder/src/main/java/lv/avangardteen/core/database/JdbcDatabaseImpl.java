@@ -1,9 +1,9 @@
 package lv.avangardteen.core.database;
+/*
 
 import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.domain.UserSizes;
 import lv.avangardteen.core.domain.Wheelchair;
-import lv.avangardteen.core.service.WheelchairComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+//@Component
 public class JdbcDatabaseImpl implements Database{
 
     @Autowired
@@ -149,3 +149,4 @@ public class JdbcDatabaseImpl implements Database{
 
 
 }
+*/

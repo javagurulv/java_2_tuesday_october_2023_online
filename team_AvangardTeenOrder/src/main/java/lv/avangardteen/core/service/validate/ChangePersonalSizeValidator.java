@@ -12,7 +12,7 @@ import java.util.List;
 public class ChangePersonalSizeValidator {
 
     @Autowired
-    private ClientIdValidator idValidator;
+    private OrderIdValidator idValidator;
     @Autowired
     private PersonalSizeValidator sizeValidation;
 

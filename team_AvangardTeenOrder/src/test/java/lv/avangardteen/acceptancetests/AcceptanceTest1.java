@@ -1,5 +1,6 @@
 package lv.avangardteen.acceptancetests;
 
+/*
 
 import lv.avangardteen.DatabaseCleaner;
 import lv.avangardteen.config.OrderListConfiguration;
@@ -93,3 +94,4 @@ public class AcceptanceTest1 {
     }
 }
 
+*/

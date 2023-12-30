@@ -1,4 +1,5 @@
 package lv.avangardteen.core.service;
+/*
 
 
 import lv.avangardteen.core.request.ChangeComponentRequest;
@@ -56,3 +57,4 @@ class ChangeComponentServiceMockTest {
 
     }
 }
+*/

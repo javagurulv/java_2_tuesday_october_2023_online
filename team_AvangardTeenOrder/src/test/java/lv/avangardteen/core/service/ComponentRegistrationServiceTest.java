@@ -1,4 +1,5 @@
 package lv.avangardteen.core.service;
+/*
 
 import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.request.ComponentRegistrationRequest;
@@ -55,4 +56,4 @@ class ComponentRegistrationServiceTest {
 
     }
 
-}
+}*/

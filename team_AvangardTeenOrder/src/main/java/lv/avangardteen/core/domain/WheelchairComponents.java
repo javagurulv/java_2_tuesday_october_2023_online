@@ -13,8 +13,8 @@ public class WheelchairComponents {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @JoinColumn(name = "wheelchair_id")
+    private Wheelchair wheelchair;
 
     @OneToOne
     @JoinColumn(name = "component_id")
@@ -31,12 +31,12 @@ public class WheelchairComponents {
     }
 
 
-    public Client getClient() {
-        return client;
+    public Wheelchair getWheelchair() {
+        return wheelchair;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setWheelchair(Wheelchair wheelchair) {
+        this.wheelchair = wheelchair;
     }
 
     public Components getComponents() {
@@ -52,19 +52,19 @@ public class WheelchairComponents {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         WheelchairComponents that = (WheelchairComponents) o;
-        return Objects.equals(id, that.id) && Objects.equals(client, that.client) && Objects.equals(components, that.components);
+        return Objects.equals(id, that.id) && Objects.equals(wheelchair, that.wheelchair) && Objects.equals(components, that.components);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, client, components);
+        return Objects.hash(id, wheelchair, components);
     }
 
     @Override
     public String toString() {
         return "WheelchairComponents{" +
                 "id=" + id +
-                ", client=" + client +
+                ", wheelchair=" + wheelchair +
                 ", components=" + components +
                 '}';
     }

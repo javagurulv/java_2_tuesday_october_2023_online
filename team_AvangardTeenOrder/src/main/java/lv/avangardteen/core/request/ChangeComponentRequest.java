@@ -1,39 +1,40 @@
 package lv.avangardteen.core.request;
 
-import lv.avangardteen.core.service.WheelchairComponent;
-
 public class ChangeComponentRequest {
     Long id;
     Integer wheelFrontChoose;
     Integer wheelBackChoose;
     Integer brakeChoose;
-    Integer armrestChoose;
-    WheelchairComponent wheelchairComponent = new WheelchairComponent();
+    Integer footrestChoose;
+
 
     public ChangeComponentRequest(Long id, Integer wheelFrontChoose,
                                   Integer wheelBackChoose, Integer brakeChoose,
-                                  Integer armrestChoose) {
+                                  Integer footrestChoose) {
         this.id = id;
         this.wheelFrontChoose = wheelFrontChoose;
         this.wheelBackChoose = wheelBackChoose;
         this.brakeChoose = brakeChoose;
-        this.armrestChoose = armrestChoose;
+        this.footrestChoose = footrestChoose;
     }
 
     public Long getId() {
         return id;
     }
 
-    public WheelchairComponent getWheelchairComponent() {
-        return setWheelchairComponent();
+    public Integer getWheelFrontChoose() {
+        return wheelFrontChoose;
     }
 
-    public WheelchairComponent setWheelchairComponent() {
-        wheelchairComponent.addComponents(wheelFrontChoose);
-        wheelchairComponent.addComponents(wheelBackChoose);
-        wheelchairComponent.addComponents(brakeChoose);
-        wheelchairComponent.addComponents(armrestChoose);
-        return wheelchairComponent;
+    public Integer getWheelBackChoose() {
+        return wheelBackChoose;
     }
 
+    public Integer getBrakeChoose() {
+        return brakeChoose;
+    }
+
+    public Integer getFootrestChoose() {
+        return footrestChoose;
+    }
 }

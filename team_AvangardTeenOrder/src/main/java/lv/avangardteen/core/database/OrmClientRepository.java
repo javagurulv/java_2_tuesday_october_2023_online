@@ -1,6 +1,5 @@
 package lv.avangardteen.core.database;
 
-import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.domain.Client;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -42,19 +41,19 @@ public class OrmClientRepository implements Database {
     }
 
     @Override
-    public boolean deleteClientById(Long id) {
+    public boolean deleteClientByOrderId(Long id) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "delete Client where id = :id");
+                "delete Client where order_id = :id");
         query.setParameter("id", id);
         int result = query.executeUpdate();
         return result == 1;
     }
 
     @Override
-    public Client getClient(Long id) {
+    public Client getClientByOrderId(Long idOrder) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select c FROM Client c where id = :id");
-        query.setParameter("id", id);
+                "select c FROM Client c where order_id = :id");
+        query.setParameter("id", idOrder);
         return (Client) query.getSingleResult();
     }
 
@@ -65,5 +64,11 @@ public class OrmClientRepository implements Database {
         query.setParameter("name_surname", surname);
         query.setParameter("personal_code", personalCode);
         return (Client) query.getSingleResult();
+    }
+
+    public void setOrderId(Long orderId) {
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("INSERT INTO Clients c order_id = :id");
+        query.setParameter("order_id", orderId);
     }
 }

@@ -1,8 +1,6 @@
 package lv.avangardteen.core.database;
 
-import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.domain.Wheelchair;
-import lv.avangardteen.core.service.WheelchairComponent;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,7 @@ import java.util.List;
 
 @Component
 @Transactional
-public class OrmWheelchairRepository {
+public class WheelchairRepository {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -31,8 +29,8 @@ public class OrmWheelchairRepository {
 
     public void updateWheelchair(Long id, Wheelchair wheelchair) {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("UPDATE Wheelchair c where client_id = :id");
-        query.setParameter("client_id", id);
+                .createQuery("UPDATE Wheelchair c where id = :id");
+        query.setParameter("id", id);
         query.setParameter("seatWidth", wheelchair.getSeatWidth());
         query.setParameter("seatDepth", wheelchair.getSeatDepth());
         query.setParameter("footrestLength", wheelchair.getFootrestLength());
@@ -41,9 +39,28 @@ public class OrmWheelchairRepository {
 
     public Wheelchair getWheelchair(Long id) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select c FROM Wheelchair c where client_id = :id");
-        query.setParameter("client_id", id);
+                "select c FROM Wheelchair c where id = :id");
+        query.setParameter("id", id);
         return (Wheelchair) query.getSingleResult();
     }
 
+    public Long getIdWheelchair() {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "SHOW id FROM Wheelchair where id = `PRIMARY KEY`");
+        return (Long) query.getSingleResult();
+    }
+
+    public Double getPrice(Long id) {
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("SELECT price FROM Wheelchair where id = :id");
+          query.setParameter("id", id);
+          return (Double) query.getSingleResult();
+
+    }
+
 }
+ // $mysqli->insert_id)
+
+/*
+    SHOW INDEX FROM presort.final_conf_score_mld_run2
+        WHERE Key_name = 'PRIMARY';*/

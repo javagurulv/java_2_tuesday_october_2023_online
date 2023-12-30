@@ -27,8 +27,27 @@ public class UserSizes {
     @Column(name = "shinLength")
     private Integer shinLength;
 
+    @Column(name = "order_id")
+    private Long orderId;
+
 
     public UserSizes() {
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
     public Long getId() {
@@ -76,12 +95,12 @@ public class UserSizes {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserSizes userSizes = (UserSizes) o;
-        return Objects.equals(id, userSizes.id) && Objects.equals(pelvisWidth, userSizes.pelvisWidth) && Objects.equals(thighLength, userSizes.thighLength) && Objects.equals(backHeight, userSizes.backHeight) && Objects.equals(shinLength, userSizes.shinLength);
+        return Objects.equals(id, userSizes.id) && Objects.equals(client, userSizes.client) && Objects.equals(pelvisWidth, userSizes.pelvisWidth) && Objects.equals(thighLength, userSizes.thighLength) && Objects.equals(backHeight, userSizes.backHeight) && Objects.equals(shinLength, userSizes.shinLength) && Objects.equals(orderId, userSizes.orderId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pelvisWidth, thighLength, backHeight, shinLength);
+        return Objects.hash(id, client, pelvisWidth, thighLength, backHeight, shinLength, orderId);
     }
 
     @Override

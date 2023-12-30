@@ -1,4 +1,5 @@
 package lv.avangardteen.core.domain;
+/*
 
 public enum Categories {
 
@@ -7,3 +8,4 @@ public enum Categories {
     BRAKE,
     BACK_WHEEL
 }
+*/

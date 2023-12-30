@@ -1,6 +1,5 @@
 package lv.avangardteen.core.database;
 
-import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.domain.UserSizes;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -19,7 +18,7 @@ public class UserSizeRepository {
 
     public List<UserSizes> getUserSizesOrders() {
       return sessionFactory.getCurrentSession()
-                .createQuery("SELECT us FROM UserSize us", UserSizes.class)
+                .createQuery("SELECT us FROM Client_size us", UserSizes.class)
                 .getResultList();
     }
 
@@ -31,8 +30,8 @@ public class UserSizeRepository {
 
     public void updateUserSize(Long id, UserSizes userSizes) {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("UPDATE UserSize us where client_id = :id");
-        query.setParameter("client_id", id);
+                .createQuery("UPDATE Client_size us where order_id = :id");
+        query.setParameter("order_id", id);
         query.setParameter("pelvisWidth", userSizes.getPelvisWidth());
         query.setParameter("thighLength", userSizes.getThighLength());
         query.setParameter("backHeight", userSizes.getBackHeight());
@@ -40,11 +39,17 @@ public class UserSizeRepository {
     }
 
 
-    public UserSizes getUserSize(Long id) {
+    public UserSizes getUserSizeByOrderId(Long id) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select us FROM UserSize c where client_id = :id");
-        query.setParameter("client_id", id);
+                "select us FROM Client_size where order_id = :id");
+        query.setParameter("order_id", id);
         return (UserSizes) query.getSingleResult();
 
+    }
+
+    public void setOrderId(Long orderId) {
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("INSERT INTO Client_size c order_id = :id");
+        query.setParameter("order_id", orderId);
     }
 }
