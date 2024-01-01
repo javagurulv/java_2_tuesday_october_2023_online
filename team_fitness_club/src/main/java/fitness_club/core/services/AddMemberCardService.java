@@ -34,11 +34,11 @@ public class AddMemberCardService {
         }
 
         MemberCard memberCard = new MemberCard(
-                request.getClient(),
-                request.getClientAgeGroups(),
-                request.getWorkouts(),
-                request.getFitnessCentre(),
-                request.getTermOfContract()
+                //request.getClient(),
+              // request.getClientAgeGroups(),
+               //request.getWorkouts(),
+             //   request.getFitnessCentre(),
+             //   request.getTermOfContract()
         );
         memberCardRepository.save(memberCard);
 

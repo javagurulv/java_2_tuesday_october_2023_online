@@ -14,8 +14,5 @@ public class AddClientRequest {
     private String firstName;
     private String lastName;
     private String personalCode;
-    //private ClientAgeGroups clientAgeGroup;
-    //private Workouts workout;
-    //private FitnessCentre fitnessCentre;
 
 }

@@ -34,7 +34,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "firstName");
-        assertEquals(errors.get(0).getMessage(), "Field first name must not be empty or contain symbols or numbers!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
@@ -46,7 +46,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "firstName");
-        assertEquals(errors.get(0).getMessage(), "Field first name must not be empty or contain symbols or numbers!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
@@ -58,7 +58,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "lastName");
-        assertEquals(errors.get(0).getMessage(), "Field last name must not be empty or contain symbols or numbers!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
@@ -70,7 +70,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "lastName");
-        assertEquals(errors.get(0).getMessage(), "Field last name must not be empty or contain symbols or numbers!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
@@ -82,7 +82,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "firstName");
-        assertEquals(errors.get(0).getMessage(), "Field first name must not be empty or contain symbols or numbers!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
@@ -94,7 +94,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "firstName");
-        assertEquals(errors.get(0).getMessage(), "Field first name must not be empty or contain symbols or numbers!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
@@ -106,7 +106,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "lastName");
-        assertEquals(errors.get(0).getMessage(), "Field last name must not be empty or contain symbols or numbers!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
@@ -118,7 +118,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "lastName");
-        assertEquals(errors.get(0).getMessage(), "Field last name must not be empty or contain symbols or numbers!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
@@ -130,7 +130,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "personalCode");
-        assertEquals(errors.get(0).getMessage(), "Field personal code must not be empty!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
@@ -142,7 +142,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "personalCode");
-        assertEquals(errors.get(0).getMessage(), "Field personal code must not be empty!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
     }
 
     @Test

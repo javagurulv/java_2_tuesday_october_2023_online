@@ -35,7 +35,7 @@ public class AddClientRequestValidatorDuplicateTest {
         List<CoreError> errors = validator.validate(request);
         assertTrue(!errors.isEmpty());
         assertEquals(errors.get(0).getField(), "uniqueClient");
-        assertEquals(errors.get(0).getMessage(), "Field must not be duplicated! Client with such personal code is already in database!");
+        assertEquals(errors.get(0).getMessage(), "Is duplicate! Client with such personal code is already in database!");
     }
 
     @Test

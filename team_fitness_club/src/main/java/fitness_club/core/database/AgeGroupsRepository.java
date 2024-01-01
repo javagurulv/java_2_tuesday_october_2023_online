@@ -19,7 +19,8 @@ public class AgeGroupsRepository {
     }
 
     public AgeGroups findById(Long id) {
-        return sessionFactory.getCurrentSession().get(AgeGroups.class, id);
+        return sessionFactory.getCurrentSession().
+                get(AgeGroups.class, id);
     }
 
 }

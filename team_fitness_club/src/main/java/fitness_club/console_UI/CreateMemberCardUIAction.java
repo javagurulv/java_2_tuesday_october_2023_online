@@ -1,11 +1,9 @@
 package fitness_club.console_UI;
 
+import fitness_club.core.database.AgeGroupsRepository;
 import fitness_club.core.database.ClientRepository;
-import fitness_club.core.domain.AgeGroups;
+import fitness_club.core.database.WorkoutsRepository;
 import fitness_club.core.domain.FitnessCentres;
-import fitness_club.core.domain.Workouts;
-import fitness_club.core.requests.AddMemberCardRequest;
-import fitness_club.core.responses.AddMemberCardsResponse;
 import fitness_club.core.services.AddMemberCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,13 +14,24 @@ import java.util.Date;
 import java.util.Scanner;
 
 @Component
-public class AddMemberCardUIAction implements UIAction {
+public class CreateMemberCardUIAction implements UIAction {
 
     @Autowired
     private AddMemberCardService service;
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private AgeGroupsRepository ageGroupsRepository;
+
+    @Autowired
+    private WorkoutsRepository workoutsRepository;
+
+    @Autowired
+    private FitnessCentres fitnessCentres;
+
+
 
     @Override
     public void execute() {
@@ -36,27 +45,27 @@ public class AddMemberCardUIAction implements UIAction {
         //String clientAgeGroup = String.valueOf(AgeGroups.values()[Integer.parseInt(scanner.nextLine())]);
 
         System.out.println("Choose client workout: ");
-       // printEnumValues(Workouts.values());
-       // String clientWorkout = String.valueOf(Workouts.values()[Integer.parseInt(scanner.nextLine())]);
+        // printEnumValues(Workouts.values());
+        // String clientWorkout = String.valueOf(Workouts.values()[Integer.parseInt(scanner.nextLine())]);
 
         System.out.println("Choose new fitness centre: ");
         //printEnumValues(FitnessCentres.values());
-       // String fitnessCentre = String.valueOf(FitnessCentres.values()[Integer.parseInt(scanner.nextLine())]);
+        // String fitnessCentre = String.valueOf(FitnessCentres.values()[Integer.parseInt(scanner.nextLine())]);
 
         System.out.println("Choose the date contract ends in format YYYY-MM-DD: ");
         Date termOfContract = parseDate(scanner.nextLine());
 
-       // AddMemberCardRequest request = new AddMemberCardRequest(clientRepository.findByPersonalCode(clientPersonalCode).get(0), clientAgeGroup, clientWorkout, fitnessCentre, termOfContract);
-       // AddMemberCardsResponse response = service.execute(request);
+        // AddMemberCardRequest request = new AddMemberCardRequest(clientRepository.findByPersonalCode(clientPersonalCode).get(0), clientAgeGroup, clientWorkout, fitnessCentre, termOfContract);
+        // AddMemberCardsResponse response = service.execute(request);
 
-       // if (response.hasErrors()) {
-          //  response.getErrors().forEach(coreError ->
-    //                System.out.println("Oshibka: " + coreError.getField() + " " + coreError.getMessage())
-    //        );
-     //   } else {
-     //       System.out.println("Client has a member card now! Member Card ID: " + response.getNewMemberCard().getClient().getId());
-       //     System.out.println("Enjoy your fitness.");
-       // }
+        // if (response.hasErrors()) {
+        //  response.getErrors().forEach(coreError ->
+        //                System.out.println("Oshibka: " + coreError.getField() + " " + coreError.getMessage())
+        //        );
+        //   } else {
+        //       System.out.println("Client has a member card now! Member Card ID: " + response.getNewMemberCard().getClient().getId());
+        //     System.out.println("Enjoy your fitness.");
+        // }
     }
 
     private void printEnumValues(Enum<?>[] values) {

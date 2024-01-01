@@ -19,7 +19,7 @@ public class ProgramMenu {
         menuNumberToUIActionMap.put(1, findUIAction(uiActions, AddClientUIAction.class));
         menuNumberToUIActionMap.put(2, findUIAction(uiActions, RemoveClientUIAction.class));
         menuNumberToUIActionMap.put(3, findUIAction(uiActions, GetAllClientsUIAction.class));
-        menuNumberToUIActionMap.put(4, findUIAction(uiActions, AddMemberCardUIAction.class));
+        menuNumberToUIActionMap.put(4, findUIAction(uiActions, CreateMemberCardUIAction.class));
         menuNumberToUIActionMap.put(5, findUIAction(uiActions, GetAllMemberCardsUIAction.class));
         menuNumberToUIActionMap.put(6, findUIAction(uiActions, ChangeWorkoutUIAction.class));
         menuNumberToUIActionMap.put(7, findUIAction(uiActions, ChangeClientAgeGroupUIAction.class));
@@ -42,7 +42,7 @@ public class ProgramMenu {
         System.out.println("1. Add client to list");
         System.out.println("2. Delete client from list");
         System.out.println("3. Show all clients in the list");
-        System.out.println("4. Add client member card");
+        System.out.println("4. Create client member card");
         System.out.println("5. Show all client member cards");
         System.out.println("6. Change client workout");
         System.out.println("7. Change client age group");

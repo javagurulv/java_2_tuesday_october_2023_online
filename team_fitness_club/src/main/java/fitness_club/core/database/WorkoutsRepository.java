@@ -19,7 +19,8 @@ public class WorkoutsRepository {
     }
 
     public Workouts findById(Long id) {
-        return sessionFactory.getCurrentSession().get(Workouts.class, id);
+        return sessionFactory.getCurrentSession().
+                get(Workouts.class, id);
     }
 
 }

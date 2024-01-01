@@ -19,7 +19,8 @@ public class ClientCardRepository {
     }
 
     public MemberCard getById(Long id) {
-        return sessionFactory.getCurrentSession().get(MemberCard.class, id);
+        return sessionFactory.getCurrentSession().
+                get(MemberCard.class, id);
     }
 
 
