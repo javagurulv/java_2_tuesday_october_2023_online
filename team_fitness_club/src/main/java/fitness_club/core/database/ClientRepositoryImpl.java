@@ -33,7 +33,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Override
     public List<Client> getAllClients() {
         return sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Client c", Client.class)
+                .createQuery("SELECT * FROM Client ORDER BY last_name, id LIMIT 10 OFFSET 10", Client.class)
                 .getResultList();
     }
 
