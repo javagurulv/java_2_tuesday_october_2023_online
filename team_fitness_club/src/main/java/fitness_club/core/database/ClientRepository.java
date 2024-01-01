@@ -13,14 +13,6 @@ public interface ClientRepository {
 
     Long getClientIdByPersonalCode(String personalCode);
 
-   // boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup);
-
-   // boolean clientWorkoutsChangedByPersonalCode(String personalCode, Workouts newWorkout);
-
-  //  boolean isClientFitnessCentreChangedByPersonalCode(String personalCode, FitnessCentre fitnessCentre);
-
-    //void saveClient(List<Client> clients);
-
     List<Client> findByFirstName(String firsName);
 
     List<Client> findByLastName(String lastName);

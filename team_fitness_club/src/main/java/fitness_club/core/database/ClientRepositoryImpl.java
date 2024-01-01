@@ -33,7 +33,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Override
     public List<Client> getAllClients() {
         return sessionFactory.getCurrentSession()
-                .createQuery("SELECT b FROM Client b", Client.class)
+                .createQuery("SELECT c FROM Client c", Client.class)
                 .getResultList();
     }
 
@@ -48,7 +48,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Override
     public List<Client> findByFirstName(String firsName) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select b FROM Client b where first_name = :firstName");
+                "select c FROM Client c where first_name = :firstName");
         query.setParameter("firstName", firsName);
         return query.getResultList();
     }
@@ -56,7 +56,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Override
     public List<Client> findByLastName(String lastName) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select b FROM Client b where last_name = :lastName");
+                "select c FROM Client c where last_name = :lastName");
         query.setParameter("lastName", lastName);
         return query.getResultList();
     }
@@ -64,7 +64,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Override
     public List<Client> findByPersonalCode(String personalCode) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select b FROM Client b where personal_code = :personalCode");
+                "select c FROM Client c where personal_code = :personalCode");
         query.setParameter("personalCode", personalCode);
         return query.getResultList();
     }
@@ -72,7 +72,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Override
     public List<Client> findByFirstNameAndLastName(String firstName, String lastName) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select b FROM Client b where first_name = : firstName AND last_name = :lastName");
+                "select c FROM Client c where first_name = : firstName AND last_name = :lastName");
         query.setParameter("firstName", firstName);
         query.setParameter("lastName", lastName);
         return query.getResultList();

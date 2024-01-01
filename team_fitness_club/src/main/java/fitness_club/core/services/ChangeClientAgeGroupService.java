@@ -8,10 +8,12 @@ import fitness_club.core.responses.CoreError;
 import fitness_club.core.services.vlidators.ChangeClientAgeGroupValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component
+@Transactional
 public class ChangeClientAgeGroupService {
 
     @Autowired

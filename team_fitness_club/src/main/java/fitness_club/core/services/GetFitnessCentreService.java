@@ -1,7 +1,11 @@
 package fitness_club.core.services;
 
 import fitness_club.core.domain.FitnessCentres;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+@Component
+@Transactional
 public class GetFitnessCentreService {
 
    /* public static FitnessCentres getFitnessCentre(int id) {
