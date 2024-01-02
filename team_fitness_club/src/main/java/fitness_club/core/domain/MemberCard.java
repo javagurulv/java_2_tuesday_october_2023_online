@@ -23,7 +23,7 @@ public class MemberCard {
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
-
+    @OneToOne
     @Column(name = "age_group_id")
     private AgeGroups ageGroup;
 

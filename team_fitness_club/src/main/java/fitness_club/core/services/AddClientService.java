@@ -1,6 +1,7 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.ClientRepository;
+import fitness_club.core.database.ClientRepositoryImpl;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.AddClientResponse;
@@ -22,7 +23,7 @@ import java.util.List;
 public class AddClientService {
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientRepositoryImpl clientRepositoryImp;
     @Autowired
     private AddClientRequestValidator validator;
 
@@ -34,7 +35,7 @@ public class AddClientService {
         }
 
         Client client = new Client(request.getFirstName(), request.getLastName(), request.getPersonalCode());
-        clientRepository.save(client);
+        clientRepositoryImp.save(client);
 
         return new AddClientResponse(client);
     }
