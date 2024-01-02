@@ -2,7 +2,6 @@ UPDATE books
 SET author = "Joanne Rowling",
 	title = "Harry Potter And The Chamber Of Secrets",
 	issueYEar = 1998,
-	genre = "FANTASY"
 where id = 1002;
 
 UPDATE books

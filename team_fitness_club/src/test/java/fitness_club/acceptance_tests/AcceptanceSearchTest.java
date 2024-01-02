@@ -13,6 +13,7 @@ import fitness_club.core.services.SearchClientService;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,8 +26,7 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(classes = {WorkoutsConfiguration.class})
 @Sql({"/schema.sql"})
 public class AcceptanceSearchTest {
-    @Autowired
-    private AddClientService addClientService;
+    @Autowired private AddClientService addClientService;
     @Autowired private SearchClientService searchClientService;
     @Autowired private DatabaseCleaner databaseCleaner;
 

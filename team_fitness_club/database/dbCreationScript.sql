@@ -26,8 +26,6 @@ PRIMARY KEY (`id`)
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
 
-CREATE UNIQUE INDEX `ix_age_groups_age_group` ON `age_groups` (`age_group`);
-
 
 CREATE TABLE IF NOT EXISTS `workouts` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
@@ -36,8 +34,6 @@ PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
-
-CREATE UNIQUE INDEX `ix_workouts_workout` ON `workouts` (`workout`);
 
 
 CREATE TABLE IF NOT EXISTS `fitness_centres` (
@@ -48,15 +44,13 @@ PRIMARY KEY (`id`)
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
 
-CREATE UNIQUE INDEX `ix_fitness_centres_fitness_centre` ON `fitness_centres` (`fitness_centre`);
-
 
 CREATE TABLE IF NOT EXISTS `member_card` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
 `client_id` BIGINT NOT NULL,
-`age_group_id` BIGINT NOT NULL,
-`workout_id` BIGINT NOT NULL,
-`fitness_centre_id` BIGINT NOT NULL,
+`age_group_id` VARCHAR(50) NOT NULL,
+`workout_id` VARCHAR(50) NOT NULL,
+`fitness_centre_id` VARCHAR(50) NOT NULL,
 `term_of_contract` DATETIME NOT NULL,
 PRIMARY KEY (`id`)
 )
@@ -75,6 +69,16 @@ ADD FOREIGN KEY (`workout_id`) REFERENCES `workouts`(`id`);
 
 ALTER TABLE `member_card`
 ADD FOREIGN KEY (`fitness_centre_id`) REFERENCES `fitness_centres`(`id`);
+
+
+CREATE INDEX ix_member_card_client_id
+ON member_card (client_id);
+
+CREATE INDEX ix_member_card_age_group_id
+ON member_card (age_group_id);
+
+CREATE INDEX ix_member_card_fitness_centre_id
+ON member_card (fitness_centre_id);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

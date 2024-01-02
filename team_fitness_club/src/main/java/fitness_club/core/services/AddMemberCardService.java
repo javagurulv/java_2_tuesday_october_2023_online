@@ -6,17 +6,18 @@ import fitness_club.core.domain.MemberCard;
 import fitness_club.core.requests.AddMemberCardRequest;
 import fitness_club.core.responses.AddMemberCardsResponse;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.data_vlidation.AddMemberCardRequestValidator;
+import fitness_club.core.services.vlidators.AddMemberCardRequestValidator;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
+@Transactional
 public class AddMemberCardService {
 
     @Autowired
@@ -34,11 +35,11 @@ public class AddMemberCardService {
         }
 
         MemberCard memberCard = new MemberCard(
-                getClientId(request),
-                request.getClientAgeGroups(),
-                request.getClientWorkout(),
-                request.getFitnessCentre(),
-                request.getTermOfContract()
+                //request.getClient(),
+              // request.getClientAgeGroups(),
+               //request.getWorkouts(),
+             //   request.getFitnessCentre(),
+             //   request.getTermOfContract()
         );
         memberCardRepository.save(memberCard);
 
@@ -46,6 +47,6 @@ public class AddMemberCardService {
     }
 
     private Long getClientId(AddMemberCardRequest request) {
-        return clientRepository.getClientIdByPersonalCode(request.getPersonalCode());
+        return clientRepository.getClientIdByPersonalCode(request.getClient().getPersonalCode());
     }
 }

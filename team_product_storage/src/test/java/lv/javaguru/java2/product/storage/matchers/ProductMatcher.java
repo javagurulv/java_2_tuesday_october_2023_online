@@ -13,14 +13,14 @@ public class ProductMatcher implements ArgumentMatcher<Product> {
     private String productBrand;
     private String productModel;
     private Integer productQuantity;
-    private BigDecimal priceInStock;
+    private BigDecimal price;
 
-    public ProductMatcher(String productName, String productBrand, String productModel, Integer productQuantity, BigDecimal priceInStock) {
+    public ProductMatcher(String productName, String productBrand, String productModel, Integer productQuantity, BigDecimal price) {
         this.productName = productName;
         this.productBrand = productBrand;
         this.productModel = productModel;
         this.productQuantity = productQuantity;
-        this.priceInStock = priceInStock;
+        this.price = price;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ProductMatcher implements ArgumentMatcher<Product> {
                 && product.getProductBrand().equals(productBrand)
                 && product.getProductModel().equals(productModel)
                 && Objects.equals(product.getProductQuantity(), productQuantity)
-                && Objects.equals(product.getPriceInStock(), priceInStock);
+                && Objects.equals(product.getPrice(), price);
 
     }
 }

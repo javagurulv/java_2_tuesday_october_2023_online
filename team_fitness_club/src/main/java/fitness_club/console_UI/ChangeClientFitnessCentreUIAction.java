@@ -1,6 +1,6 @@
 package fitness_club.console_UI;
 
-import fitness_club.core.domain.FitnessCentre;
+import fitness_club.core.domain.FitnessCentres;
 import fitness_club.core.requests.ChangeClientFitnessCentreRequest;
 import fitness_club.core.responses.ChangeClientFitnessCentreResponse;
 import fitness_club.core.services.ChangeClientFitnessCentreService;
@@ -21,7 +21,7 @@ public class ChangeClientFitnessCentreUIAction implements UIAction {
         String clientPersonalCode = scanner.nextLine();
 
         System.out.println("Choose new fitness centre.");
-        printEnumValues(FitnessCentre.values());
+       // printEnumValues(FitnessCentres.values());
         Long newFitnessCentre = Long.parseLong(scanner.nextLine());
 
         ChangeClientFitnessCentreRequest request = new ChangeClientFitnessCentreRequest(clientPersonalCode, newFitnessCentre);

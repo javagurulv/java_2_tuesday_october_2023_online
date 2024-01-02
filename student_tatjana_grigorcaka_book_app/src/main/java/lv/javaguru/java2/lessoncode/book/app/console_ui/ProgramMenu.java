@@ -20,7 +20,9 @@ public class ProgramMenu {
         menuNumberToUIActionMap.put(2, findUIAction(uiActions, RemoveBookUIAction.class));
         menuNumberToUIActionMap.put(3, findUIAction(uiActions, PrintAllBooksUIAction.class));
         menuNumberToUIActionMap.put(4, findUIAction(uiActions, SearchBooksUIAction.class));
-        menuNumberToUIActionMap.put(5, findUIAction(uiActions, ProgramExitUIAction.class));
+        menuNumberToUIActionMap.put(5, findUIAction(uiActions, RegisterReaderUIAction.class));
+        menuNumberToUIActionMap.put(6, findUIAction(uiActions, PrintAllReadersUIAction.class));
+        menuNumberToUIActionMap.put(7, findUIAction(uiActions, ProgramExitUIAction.class));
     }
 
     private UIAction findUIAction(List<UIAction> uiActions, Class uiActionClass) {
@@ -32,12 +34,14 @@ public class ProgramMenu {
 
     public void printMenu() {
         System.out.println();
-        System.out.println("Program menu: ");
-        System.out.println("1. Add book to list: ");
-        System.out.println("2. Delete book from list: ");
-        System.out.println("3. Show all books in the list: ");
+        System.out.println("Program menu:");
+        System.out.println("1. Add book to list");
+        System.out.println("2. Delete book from list");
+        System.out.println("3. Show all books in the list");
         System.out.println("4. Search books");
-        System.out.println("5. Exit program");
+        System.out.println("5. Register reader");
+        System.out.println("6. Show all readers in the list");
+        System.out.println("7. Exit program");
         System.out.println();
     }
 

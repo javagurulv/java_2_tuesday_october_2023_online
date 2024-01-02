@@ -1,7 +1,5 @@
 package fitness_club.core.requests;
 
-import fitness_club.core.domain.ClientAgeGroups;
-
 
 public class ChangeClientAgeGroupRequest {
 

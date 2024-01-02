@@ -1,5 +1,7 @@
 package fitness_club.core.requests;
 
+
+
 public class SearchClientRequest {
 
     private String firstName;
@@ -34,6 +36,12 @@ public class SearchClientRequest {
         this.lastName = lastName;
         this.ordering = ordering;
         this.paging = paging;
+    }
+
+    public SearchClientRequest(String firstName, String lastName, String personalCode) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.personaCode = personalCode;
     }
 
     public String getFirstName() {

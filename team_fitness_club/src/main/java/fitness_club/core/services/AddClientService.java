@@ -4,18 +4,20 @@ import fitness_club.core.database.ClientRepository;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.AddClientResponse;
-import fitness_club.core.services.data_vlidation.AddClientRequestValidator;
+import fitness_club.core.services.vlidators.AddClientRequestValidator;
 import fitness_club.core.responses.CoreError;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
+@Transactional
 public class AddClientService {
 
     @Autowired
@@ -30,14 +32,17 @@ public class AddClientService {
             return new AddClientResponse(errors);
         }
 
-        Client client = new Client(request.getFirstName(), request.getLastName(), request.getPersonalCode());
+        Client client = new Client(
+                request.getFirstName(),
+                request.getLastName(),
+                request.getPersonalCode());
         clientRepository.save(client);
 
         return new AddClientResponse(client);
     }
 
    /* private AddClientResponse buildErrorResponse(List<CoreError> errors) {
-        return new AddClientResponse(errors);
+        return new AddCl b  ientResponse(errors);
     }
 
     private AddClientResponse addNewClient(AddClientRequest request) {

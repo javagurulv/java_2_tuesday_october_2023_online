@@ -60,16 +60,16 @@ public class AddProductRequestValidatorTest {
     }
 
     @Test
-    public void shouldReturnErrorWhenPriceInStockIsNull() {
+    public void shouldReturnErrorWhenPriceIsNull() {
         AddProductRequest request = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getErrorCode(), "priceInStock");
+        assertEquals(errors.get(0).getErrorCode(), "price");
         assertEquals(errors.get(0).getMessage(), "Must be greater than 0.00!");
     }
 
     @Test
-    public void shouldReturnErrorsWhenProductNameProductBrandProductModeAndProductQuantityIsNull() {
+    public void shouldReturnErrorsWhenProductNameProductBrandProductModeAndProductQuantityAndPriceIsNull() {
         AddProductRequest request = new AddProductRequest(null, null, null, 0, new BigDecimal("0.00"));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 5);

@@ -13,11 +13,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PersonDTO {
+
     private String personFirstName;
 
     private String personLastName;
 
     private Date personBirthDate;
+
+    private String medicalRiskLimitLevel;
 
     private List<RiskDTO> risks;
 }

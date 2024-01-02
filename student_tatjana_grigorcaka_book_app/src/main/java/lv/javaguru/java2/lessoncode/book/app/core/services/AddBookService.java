@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.util.List;
-
 @Component
+@Transactional
 public class AddBookService {
     @Autowired private BookRepository bookRepository;
     @Autowired private AddBookRequestValidator validator;
 
-    @Transactional
+
     public AddBookResponse execute(AddBookRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {

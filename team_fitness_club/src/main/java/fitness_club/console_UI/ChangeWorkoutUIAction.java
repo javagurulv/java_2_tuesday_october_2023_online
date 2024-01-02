@@ -23,7 +23,7 @@ public class ChangeWorkoutUIAction implements UIAction {
         String clientPersonalCode = scanner.nextLine();
 
         System.out.println("Choose client workout: ");
-        printEnumValues(Workouts.values());
+        //printEnumValues(Workouts.values());
         Long newWorkout = Long.parseLong(scanner.nextLine());
 
         ChangeClientWorkoutRequest request = new ChangeClientWorkoutRequest(clientPersonalCode, newWorkout);

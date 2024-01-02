@@ -1,19 +1,25 @@
 package fitness_club.core.services;
 
-import fitness_club.core.domain.FitnessCentre;
+import fitness_club.core.domain.FitnessCentres;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+@Component
+@Transactional
 public class GetFitnessCentreService {
 
-    public static FitnessCentre getFitnessCentre(int id) {
-        FitnessCentre selectedFitnessCentre = null;
+   /* public static FitnessCentres getFitnessCentre(int id) {
+        FitnessCentres selectedFitnessCentre = null;
         switch (id) {
-            case 1 -> selectedFitnessCentre = FitnessCentre.AKROPOLE;
-            case 2 -> selectedFitnessCentre = FitnessCentre.IMANTA;
-            case 3 -> selectedFitnessCentre = FitnessCentre.RIGA_PLAZA;
-            case 4 -> selectedFitnessCentre = FitnessCentre.SAGA;
-            case 5 -> selectedFitnessCentre = FitnessCentre.ZOLITUDE;
+            case 1 -> selectedFitnessCentre = FitnessCentres.AKROPOLE;
+            case 2 -> selectedFitnessCentre = FitnessCentres.IMANTA;
+            case 3 -> selectedFitnessCentre = FitnessCentres.RIGA_PLAZA;
+            case 4 -> selectedFitnessCentre = FitnessCentres.SAGA;
+            case 5 -> selectedFitnessCentre = FitnessCentres.ZOLITUDE;
             default -> System.out.println("No such fitness centre.");
         }
         return selectedFitnessCentre;
     }
+
+    */
 }

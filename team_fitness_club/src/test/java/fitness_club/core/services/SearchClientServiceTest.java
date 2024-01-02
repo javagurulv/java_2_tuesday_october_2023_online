@@ -6,7 +6,7 @@ import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
-import fitness_club.core.services.data_vlidation.SearchClientRequestValidator;
+import fitness_club.core.services.vlidators.SearchClientRequestValidator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

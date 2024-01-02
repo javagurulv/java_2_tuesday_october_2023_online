@@ -73,7 +73,7 @@ public class SearchProductsServiceTest {
         assertEquals(response.getProducts().get(0).getProductBrand(), "Apple");
         assertEquals(response.getProducts().get(0).getProductModel(), "iPhone 15");
         assertEquals(response.getProducts().get(0).getProductQuantity(), Integer.valueOf(1));
-        assertEquals(response.getProducts().get(0).getPriceInStock(), new BigDecimal("1000.00"));
+        assertEquals(response.getProducts().get(0).getPrice(), new BigDecimal("1000.00"));
 
     }
 
@@ -93,7 +93,7 @@ public class SearchProductsServiceTest {
         assertEquals(response.getProducts().get(0).getProductBrand(), "Apple");
         assertEquals(response.getProducts().get(0).getProductModel(), "iPhone 15");
         assertEquals(response.getProducts().get(0).getProductQuantity(), Integer.valueOf(1));
-        assertEquals(response.getProducts().get(0).getPriceInStock(), new BigDecimal("1000.00"));
+        assertEquals(response.getProducts().get(0).getPrice(), new BigDecimal("1000.00"));
 
     }
 
@@ -113,7 +113,7 @@ public class SearchProductsServiceTest {
         assertEquals(response.getProducts().get(0).getProductBrand(), "Apple");
         assertEquals(response.getProducts().get(0).getProductModel(), "iPhone 15");
         assertEquals(response.getProducts().get(0).getProductQuantity(), Integer.valueOf(1));
-        assertEquals(response.getProducts().get(0).getPriceInStock(), new BigDecimal("1000.00"));
+        assertEquals(response.getProducts().get(0).getPrice(), new BigDecimal("1000.00"));
 
     }
 
@@ -195,7 +195,7 @@ public class SearchProductsServiceTest {
         assertEquals(response.getProducts().get(0).getProductBrand(), "Apple");
         assertEquals(response.getProducts().get(0).getProductModel(), "iPhone 14");
         assertEquals(response.getProducts().get(0).getProductQuantity(), Integer.valueOf(1));
-        assertEquals(response.getProducts().get(0).getPriceInStock(), new BigDecimal("900.00"));
+        assertEquals(response.getProducts().get(0).getPrice(), new BigDecimal("900.00"));
 
     }
 
@@ -217,7 +217,7 @@ public class SearchProductsServiceTest {
         assertEquals(response.getProducts().get(0).getProductBrand(), "Apple");
         assertEquals(response.getProducts().get(0).getProductModel(), "iPhone 15");
         assertEquals(response.getProducts().get(0).getProductQuantity(), Integer.valueOf(1));
-        assertEquals(response.getProducts().get(0).getPriceInStock(), new BigDecimal("1000.00"));
+        assertEquals(response.getProducts().get(0).getPrice(), new BigDecimal("1000.00"));
 
     }
 

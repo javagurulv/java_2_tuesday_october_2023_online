@@ -1,9 +1,7 @@
 package fitness_club.core.domain;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,33 +11,33 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class MemberCard {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "client_id")
-    private Long clientId;
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
+    @ManyToOne
     @Column(name = "age_group_id")
-    private Long ageGroupId;
+    private AgeGroups ageGroup;
 
+    @ManyToOne
     @Column(name = "workout_id")
-    private Long workoutId;
+    private Workouts workouts;
 
+    @ManyToOne
     @Column(name = "fitness_centre_id")
-    private Long fitnessCentreId;
+    private FitnessCentres fitnessCentre;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "term_of_contract")
     private Date termOfContract;
 
-    public MemberCard(Long clientId, Long ageGroupId, Long workoutId, Long fitnessCentreId, Date termOfContract) {
-        this.clientId = clientId;
-        this.ageGroupId = ageGroupId;
-        this.workoutId = workoutId;
-        this.fitnessCentreId = fitnessCentreId;
-        this.termOfContract = termOfContract;
-    }
+
 }

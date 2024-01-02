@@ -1,17 +1,17 @@
-insert into books(title, author, issue_year, genre)
-values ('The Little Prince', 'Antoine de Saint-Exupery', 1943, 'FABLE');
+insert into books(title, author, issue_year)
+values ('The Little Prince', 'Antoine de Saint-Exupery', 1943);
 
-insert into books(title, author, issue_year, genre)
-values ('The Alchemist', 'Paulo Coelho', 1988, 'ADVENTURE');
+insert into books(title, author, issue_year)
+values ('The Alchemist', 'Paulo Coelho', 1988);
 
-insert into books(title, author, issue_year, genre)
-values ('The Hunger Games', 'Suzanne Collins', 2012, 'SCIENCE_FICTION');
+insert into books(title, author, issue_year)
+values ('The Hunger Games', 'Suzanne Collins', 2012);
 
-insert into books(id, title, author, issue_year, genre)
-values (1005, 'Rich Dad Poor Dad', 'Robert Kiyosaki', 1997, 'PERSONAL_FINANCE');
+insert into books(id, title, author, issue_year)
+values (1005, 'Rich Dad Poor Dad', 'Robert Kiyosaki', 1997);
 
-insert into books(id, title, author, issue_year, genre)
-values (1012, 'Harry Potter and the Philosophers Stone', 'Joanne Rowling', 1997, 'FANTASY');
+insert into books(id, title, author, issue_year)
+values (1012, 'Harry Potter and the Philosophers Stone', 'Joanne Rowling', 1997);
 
 
 

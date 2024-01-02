@@ -8,10 +8,11 @@ import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.data_vlidation.SearchClientRequestValidator;
+import fitness_club.core.services.vlidators.SearchClientRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@Transactional
 public class SearchClientService {
     @Value("${search.ordering.enabled}")
     private boolean orderingEnabled;

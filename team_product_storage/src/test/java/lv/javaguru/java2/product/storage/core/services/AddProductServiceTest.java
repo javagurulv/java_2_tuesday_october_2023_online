@@ -133,27 +133,27 @@ public class AddProductServiceTest {
     }
 
     @Test
-    public void shouldReturnResponseWithErrorsWhenValidationFailsWhenPriceInStockIsNull() {
+    public void shouldReturnResponseWithErrorsWhenValidationFailsWhenPriceIsNull() {
         AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"));
-        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("priceInStock", "Must be greater than 0.00!")));
+        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("price", "Must be greater than 0.00!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertTrue(response.hasErrors());
     }
 
     @Test
-    public void shouldReturnResponseWithErrorsReceivedFromValidatorWhenPriceInStockIsNull() {
+    public void shouldReturnResponseWithErrorsReceivedFromValidatorWhenPriceIsNull() {
         AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"));
-        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("priceInStock", "Must be greater than 0.00!")));
+        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("price", "Must be greater than 0.00!")));
         AddProductResponse response = service.execute(notValidRequest);
         assertEquals(response.getErrors().size(), 1);
-        assertEquals(response.getErrors().get(0).getErrorCode(), "priceInStock");
+        assertEquals(response.getErrors().get(0).getErrorCode(), "price");
         assertEquals(response.getErrors().get(0).getMessage(), "Must be greater than 0.00!");
     }
 
     @Test
-    public void shouldNotInvokeDatabaseWhenRequestValidationFailsWhenPriceInStockIsNull() {
+    public void shouldNotInvokeDatabaseWhenRequestValidationFailsWhenPriceIsNull() {
         AddProductRequest notValidRequest = new AddProductRequest("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("0.00"));
-        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("priceInStock", "Must be greater than 0.00!")));
+        when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("price", "Must be greater than 0.00!")));
         service.execute(notValidRequest);
         verifyNoInteractions(productRepository);
     }
@@ -184,7 +184,7 @@ public class AddProductServiceTest {
         assertEquals(response.getNewProduct().getProductBrand(), validRequest.getProductBrand());
         assertEquals(response.getNewProduct().getProductModel(), validRequest.getProductModel());
         assertEquals(response.getNewProduct().getProductQuantity(), validRequest.getProductQuantity());
-        assertEquals(response.getNewProduct().getPriceInStock(), validRequest.getPriceInStock());
+        assertEquals(response.getNewProduct().getPrice(), validRequest.getPrice());
 
     }
 
