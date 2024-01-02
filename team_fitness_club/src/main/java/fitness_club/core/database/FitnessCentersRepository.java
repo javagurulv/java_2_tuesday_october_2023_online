@@ -4,8 +4,8 @@ import fitness_club.core.domain.FitnessCentres;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 
 @Component
 @Transactional
