@@ -1,7 +1,7 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.dto.UserSizes;
-import lv.avangardteen.core.dto.Wheelchair;
+import lv.avangardteen.core.domain.UserSizes;
+import lv.avangardteen.core.domain.Wheelchair;
 import org.springframework.stereotype.Component;
 
 @Component

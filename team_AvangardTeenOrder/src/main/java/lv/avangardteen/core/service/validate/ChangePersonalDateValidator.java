@@ -1,5 +1,7 @@
 package lv.avangardteen.core.service.validate;
 
+import lv.avangardteen.core.database.Database;
+import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.CoreError;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +12,10 @@ import java.util.List;
 
 @Component
 public class ChangePersonalDateValidator {
-
     @Autowired
-    private ClientIdValidator clientIdValidator;
+    private Database database;
+    @Autowired
+    private OrderIdValidator clientIdValidator;
     @Autowired
     private PersonalDateValidation personalDateValidation;
 
@@ -33,6 +36,15 @@ public class ChangePersonalDateValidator {
                 .validate(request.getUserRegistration()));
 
     }
+
+    private boolean clientIsPresentInDb(Client userRegistration) {
+        Client client = database.findBySurnameAndPersonalCode(userRegistration.getNameSurname(), userRegistration.getPersonalCode());
+        if (client != null) {
+            return true;
+        }
+        return false;
+    }
+
 }
 
 

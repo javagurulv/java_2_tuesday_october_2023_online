@@ -1,6 +1,6 @@
 package lv.avangardteen.core.request;
 
-import lv.avangardteen.core.dto.UserSizes;
+import lv.avangardteen.core.domain.UserSizes;
 
 public class ChangePersonalSizeRequest {
     public Long id;

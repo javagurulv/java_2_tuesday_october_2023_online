@@ -1,5 +1,6 @@
 package lv.avangardteen.UIAction;
 
+import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.request.UserRegistrationRequest;
 import lv.avangardteen.core.responce.UserRegistrationResponse;
 import lv.avangardteen.core.service.UserRegistrationService;
@@ -11,7 +12,7 @@ import java.util.Scanner;
 
 @Component
 public class UserRegistrationUIAction implements UIAction {
-
+@Autowired private Database database;
     @Autowired
     private UserRegistrationService service;
 
@@ -22,11 +23,13 @@ public class UserRegistrationUIAction implements UIAction {
             System.out.println("Введите Имя и Фамилию");
             String nameSurname = scan.nextLine();
             Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите персональный код");
+            Long personalCode = scanner.nextLong();
             System.out.println("Введите номер телефона");
             Long phoneNumber = scanner.nextLong();
             System.out.println("Введите свой адрес");
             String address = scan.nextLine();
-            UserRegistrationRequest request = new UserRegistrationRequest(nameSurname, phoneNumber, address);
+            UserRegistrationRequest request = new UserRegistrationRequest(nameSurname, personalCode, phoneNumber, address);
             UserRegistrationResponse response = service.execute(request);
             if (response.hasErrors()) {
                 response.getErrors().forEach(coreError ->

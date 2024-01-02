@@ -1,11 +1,9 @@
 package lv.avangardteen.core.service;
 
-
-import lv.avangardteen.core.data.Database;
-import lv.avangardteen.core.request.UserRegistrationRequest;
+import lv.avangardteen.core.database.UserSizeDb;
+import lv.avangardteen.core.database.WheelchairDB;
 import lv.avangardteen.core.request.UserSizeRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.core.responce.UserRegistrationResponse;
 import lv.avangardteen.core.responce.UserSizeRegistrationResponse;
 import lv.avangardteen.core.service.validate.PersonalSizeValidator;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +23,9 @@ class UserSizeRegistrationServiceTest {
     @Mock
     private PersonalSizeValidator validator;
     @Mock
-    private Database database;
+    private UserSizeDb userSizeDB;
+    @Mock
+    private WheelchairDB wheelchairDB;
     @Mock
     private CalculateDimensionsWheelchair calculateDimensionsWheelchair;
     @InjectMocks
@@ -56,8 +56,8 @@ class UserSizeRegistrationServiceTest {
         Mockito.when(validator.validate(request.getUserSizes())).thenReturn(List.of());
         UserSizeRegistrationResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        verify(database).addUserSize(any());
-        verify(database).addWheelchair(any());
+        verify(userSizeDB).addUserSize(any());
+        verify(wheelchairDB).addWheelchair(any());
     }
-
 }
+

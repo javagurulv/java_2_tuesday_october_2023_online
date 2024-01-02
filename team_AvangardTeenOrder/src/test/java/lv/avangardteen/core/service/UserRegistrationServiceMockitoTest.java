@@ -1,9 +1,10 @@
 package lv.avangardteen.core.service;
 
 
+
 import lv.avangardteen.core.request.UserRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.core.data.Database;
+import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.responce.UserRegistrationResponse;
 import lv.avangardteen.core.service.validate.PersonalDateValidation;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,10 +38,10 @@ class UserRegistrationServiceMockitoTest {
     @Test
     public void ClientServiceWithError() {
         UserRegistrationRequest notValidationRequest = new UserRegistrationRequest(
-                "Name", 12345l, "Riga");
+                "Name", 111l, 12345l, "Riga");
 
         Mockito.when(validator.validate(notValidationRequest.getUserRegistration())).thenReturn(List.of(
-                new CoreError("Client service", "Incorrect Clients request data!")));
+                new CoreError("Client service", "Incorrect Client request data!")));
 
         UserRegistrationResponse response = service.execute(notValidationRequest);
         assertTrue(response.hasErrors());
@@ -50,7 +51,7 @@ class UserRegistrationServiceMockitoTest {
     @Test
     public void ClientServiceWithoutError() {
         UserRegistrationRequest request = new UserRegistrationRequest(
-                "Name", 12345l, "Riga");
+                "Name", 111l, 12345l, "Riga");
         Mockito.when(validator.validate(request.getUserRegistration())).thenReturn(List.of());
         UserRegistrationResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -59,3 +60,4 @@ class UserRegistrationServiceMockitoTest {
     }
 
 }
+

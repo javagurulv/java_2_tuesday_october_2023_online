@@ -1,9 +1,8 @@
 package lv.avangardteen.core.responce;
 
 
-import lv.avangardteen.core.dto.Order;
-import lv.avangardteen.core.dto.UserSizes;
-import lv.avangardteen.core.dto.Wheelchair;
+import lv.avangardteen.core.domain.UserSizes;
+import lv.avangardteen.core.domain.Wheelchair;
 
 import java.util.List;
 
@@ -14,10 +13,7 @@ public class ChangePersonalSizeResponse extends  CoreResponse{
     public ChangePersonalSizeResponse(List<CoreError> errors) {
         super(errors);
     }
-    public ChangePersonalSizeResponse(UserSizes userSizes, Wheelchair wheelchair) {
-        this.userSizes = userSizes;
-        this.wheelchair = wheelchair;
-    }
+    public ChangePersonalSizeResponse() {}
 
 
 
@@ -25,7 +21,13 @@ public class ChangePersonalSizeResponse extends  CoreResponse{
         this.wheelchair = wheelchair;
     }
 
+    public UserSizes getUserSizes() {
+        return userSizes;
+    }
 
+    public Wheelchair getWheelchair() {
+        return wheelchair;
+    }
 
     public void setUserSizes(UserSizes userSizes) {
         this.userSizes = userSizes;

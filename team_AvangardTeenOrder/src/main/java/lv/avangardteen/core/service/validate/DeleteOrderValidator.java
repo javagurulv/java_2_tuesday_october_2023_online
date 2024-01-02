@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class IdOrderValidator {
+public class DeleteOrderValidator {
     @Autowired
-    private ClientIdValidator validatorId;
+    private OrderIdValidator validatorId;
 
     public List<CoreError> validate(DeleteOrderRequest request) {
         List<CoreError> errorsList = validatorId.validate(request.getId());

@@ -1,41 +1,50 @@
-package lv.avangardteen.core.dto;
+package lv.avangardteen.core.domain;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "components")
 public class Components {
-    private Long id;
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "category_key")
     private Category category;
-    private Integer index;
+
+    @Column(name = "marking", nullable = false)
     private String marking;
+
+    @Column(name = "information", nullable = false)
     private String information;
+
+    @Column(name = "price", nullable = false)
     private double price;
 
-    public Components(Category category, Integer index, String marking, String information, double price) {
+    public Components(){}
+
+    public Components(Integer id, Category category, String marking, String information, double price) {
+        this.id = id;
         this.category = category;
-        this.index = index;
         this.marking = marking;
         this.information = information;
         this.price = price;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setIndex(Integer index) {
-        this.index = index;
-    }
-
-    public Integer getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
+    public Category getCategory() {
+        return category;
     }
 
     public void setCategory(Category category) {
@@ -54,9 +63,6 @@ public class Components {
         this.price = price;
     }
 
-    public Category getCategory() {
-        return category;
-    }
 
     public String getMarking() {
         return marking;
@@ -72,7 +78,7 @@ public class Components {
 
     @Override
     public String toString() {
-        return  " индекс =" + index +
+        return " индекс =" + id +
                 ", марка компонента - '" + marking + '\'' +
                 ", характеристика:'" + information + '\'' +
                 ", цена=" + price +
@@ -83,12 +89,12 @@ public class Components {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Components component = (Components) o;
-        return index == component.index && Double.compare(component.price, price) == 0 && category == component.category && Objects.equals(marking, component.marking) && Objects.equals(information, component.information);
+        Components that = (Components) o;
+        return Double.compare(that.price, price) == 0 && Objects.equals(id, that.id) && Objects.equals(category, that.category) && Objects.equals(marking, that.marking) && Objects.equals(information, that.information);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(category, index, marking, information, price);
+        return Objects.hash(id, category, marking, information, price);
     }
 }

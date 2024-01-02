@@ -1,18 +1,19 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.dto.Client;
-import lv.avangardteen.core.dto.Order;
+import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.ChangePersonalDateResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChangePersonalDateValidator;
-import lv.avangardteen.core.data.Database;
+import lv.avangardteen.core.database.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component
+@Transactional
 public class ChangePersonalDateService {
     @Autowired
     private Database database;

@@ -1,16 +1,14 @@
-package lv.avangardteen.core.service;
+package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
-import lv.avangardteen.core.request.UserSizeRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChangePersonalSizeValidator;
-import lv.avangardteen.core.service.validate.ClientIdValidator;
+import lv.avangardteen.core.service.validate.OrderIdValidator;
 import lv.avangardteen.core.service.validate.PersonalSizeValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.List;
@@ -20,18 +18,16 @@ import static org.mockito.Mockito.when;
 
 class ChangePersonalSizeValidatorTest {
     @Mock
-    private ClientIdValidator idValidator;
+    private OrderIdValidator idValidator;
     @Mock
     private PersonalSizeValidator personalSizeValidator;
     @InjectMocks
     private ChangePersonalSizeValidator validator;
 
-
-    @BeforeEach
+   @BeforeEach
     public void init() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     public void shouldNotReturnErrorsWhenIdValidatorReturnNoErrors() {
@@ -41,7 +37,6 @@ class ChangePersonalSizeValidatorTest {
         when(idValidator.validate(request.getId())).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
-
     }
 
     @Test
@@ -52,7 +47,6 @@ class ChangePersonalSizeValidatorTest {
         when(idValidator.validate(request.getId())).thenReturn(List.of(new CoreError("errors", "message")));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-
     }
 
     @Test
@@ -62,8 +56,6 @@ class ChangePersonalSizeValidatorTest {
         when(personalSizeValidator.validate(request.getUserSizes())).thenReturn(List.of(new CoreError("error", "message")));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-
-
     }
 
     @Test

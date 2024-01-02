@@ -1,7 +1,7 @@
 package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.core.dto.UserSizes;
+import lv.avangardteen.core.domain.UserSizes;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

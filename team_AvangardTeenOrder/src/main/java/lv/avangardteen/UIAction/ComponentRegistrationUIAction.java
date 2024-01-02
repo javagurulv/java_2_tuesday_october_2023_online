@@ -1,10 +1,10 @@
 package lv.avangardteen.UIAction;
 
-import lv.avangardteen.core.data.DataComponents;
-import lv.avangardteen.core.data.Database;
-import lv.avangardteen.core.request.ChangeComponentRequest;
+import lv.avangardteen.core.database.DataComponents;
+import lv.avangardteen.core.database.WComponentsDB;
+import lv.avangardteen.core.database.WheelchairDB;
+import lv.avangardteen.core.database.WheelchairRepository;
 import lv.avangardteen.core.request.ComponentRegistrationRequest;
-import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.ComponentRegistrationResponse;
 import lv.avangardteen.core.service.ComponentRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,8 @@ import java.util.Scanner;
 public class ComponentRegistrationUIAction implements UIAction {
     @Autowired
     private DataComponents dataComponents;
+    @Autowired
+    private WheelchairDB wheelchairDB;
     @Autowired
     private ComponentRegistrationService service;
 
@@ -33,11 +35,11 @@ public class ComponentRegistrationUIAction implements UIAction {
             System.out.println(dataComponents.allBrakes().toString());
             System.out.println("Введите индекс выбранных тормозов");
             Integer brake = scan.nextInt();
-            System.out.println(dataComponents.allArmrest().toString());
+            System.out.println(dataComponents.allFootrest().toString());
             System.out.println("Введите индекс выбранной подножки");
-            Integer armrest = scan.nextInt();
+            Integer footrest = scan.nextInt();
             ComponentRegistrationRequest request = new ComponentRegistrationRequest(wheelFront, wheelBack,
-                    brake, armrest);
+                    brake, footrest);
             ComponentRegistrationResponse response = service.execute(request);
 
             if (response.hasErrors()) {
@@ -46,7 +48,7 @@ public class ComponentRegistrationUIAction implements UIAction {
                 System.out.println("Ваш выбор не сохранен");
             } else {
                 System.out.println("Ваш выбор сохранен");
-                System.out.println("Номер вашего заказа" + response.getWheelchairComponent().getId());
+                System.out.println("Номер вашего заказа" + wheelchairDB.getIdWheelchair());
             }
         } catch (InputMismatchException e) {
             System.out.println("Must input only digits!");

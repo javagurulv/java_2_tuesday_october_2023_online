@@ -1,21 +1,25 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.dto.Order;
+import lv.avangardteen.core.database.DataComponents;
+import lv.avangardteen.core.database.WComponentsDB;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChooseComponentValidator;
-import lv.avangardteen.core.data.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 
 @Component
+@Transactional
 public class ChangeComponentService {
+    /*@Autowired
+    private DataComponents dataComponents;*/
     @Autowired
-    private Database database;
+    private WComponentsDB wComponentsDB;
     @Autowired
     private ChooseComponentValidator validator;
 
@@ -28,11 +32,19 @@ public class ChangeComponentService {
     }
 
     private ChangeComponentResponse getResponse(ChangeComponentRequest request) {
-        WheelchairComponent wheelchairComponent = database.getWheelchairComponents(request.getId());
-        ChangeComponentResponse response = new ChangeComponentResponse(wheelchairComponent);
-        response.setWheelchairComponent(request.setWheelchairComponent());
-        database.updateWheelchairComponents(request.getId(), request.getWheelchairComponent());
 
+        ChangeComponentResponse response = new ChangeComponentResponse();
+
+        response.setWheelFrontChoose(request.getWheelFrontChoose());
+        response.setWheelBackChoose(request.getWheelBackChoose());
+        response.setBrakeChoose(request.getBrakeChoose());
+        response.setFootrestChoose(request.getFootrestChoose());
+
+        wComponentsDB.deleteWheelchairComponents(request.getId());
+        wComponentsDB.addWheelchairComponents(request.getId(), request.getWheelFrontChoose());
+        wComponentsDB.addWheelchairComponents(request.getId(), request.getWheelBackChoose());
+        wComponentsDB.addWheelchairComponents(request.getId(), request.getBrakeChoose());
+        wComponentsDB.addWheelchairComponents(request.getId(), request.getFootrestChoose());
 
         return response;
     }

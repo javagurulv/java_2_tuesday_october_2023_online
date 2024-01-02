@@ -1,9 +1,9 @@
-package lv.avangardteen.core.service;
+package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.ChangePersonalDateRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChangePersonalDateValidator;
-import lv.avangardteen.core.service.validate.ClientIdValidator;
+import lv.avangardteen.core.service.validate.OrderIdValidator;
 import lv.avangardteen.core.service.validate.PersonalDateValidation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 class ChangePersonalDateValidatorTest {
 
     @Mock
-    private ClientIdValidator idValidator;
+    private OrderIdValidator idValidator;
     @Mock
     private PersonalDateValidation personalDateValidation;
     @InjectMocks
@@ -35,7 +35,7 @@ class ChangePersonalDateValidatorTest {
     @Test
     public void shouldNotReturnErrorsWhenIdValidatorReturnNoErrors() {
         ChangePersonalDateRequest request = new ChangePersonalDateRequest(2l,
-                "Ivanov", 3343534l, "Lesnaja, 22");
+                "Ivanov", 111l, 3343534l, "Lesnaja, 22");
         when(idValidator.validate(request.getId())).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
@@ -44,7 +44,7 @@ class ChangePersonalDateValidatorTest {
     @Test
     public void shouldReturnErrorsWhenIdValidatorReturnErrors() {
         ChangePersonalDateRequest request = new ChangePersonalDateRequest(2l,
-                "Ivanov", 3343534l, "Lesnaja, 22");
+                "Ivanov", 111l, 3343534l, "Lesnaja, 22");
         when(idValidator.validate(request.getId())).thenReturn(List.of(
                 new CoreError("errors", "message")));
 
@@ -55,7 +55,7 @@ class ChangePersonalDateValidatorTest {
     @Test
     public void shouldNotReturnErrorsWhenPersonalDateReturnNoErrors() {
         ChangePersonalDateRequest request = new ChangePersonalDateRequest(2l,
-                "Ivanov", 3343534l, "Lesnaja, 22");
+                "Ivanov", 111l, 3343534l, "Lesnaja, 22");
         when(personalDateValidation.validate(request.getUserRegistration())).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
@@ -64,7 +64,7 @@ class ChangePersonalDateValidatorTest {
     @Test
     public void shouldReturnErrorsWhenPersonalDateReturnErrors() {
         ChangePersonalDateRequest request = new ChangePersonalDateRequest(2l,
-                "Ivanov", 3343534l, "Lesnaja, 22");
+                "Ivanov", 111l, 3343534l, "Lesnaja, 22");
         when(personalDateValidation.validate(request.getUserRegistration())).thenReturn(List.of(
                 new CoreError("errors", "message")));
         List<CoreError> errors = validator.validate(request);
