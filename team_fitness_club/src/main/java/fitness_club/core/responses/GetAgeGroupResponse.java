@@ -4,11 +4,11 @@ import fitness_club.core.domain.AgeGroups;
 
 import java.util.List;
 
-public class GetClientAgeGroupResponse extends CoreResponse {
+public class GetAgeGroupResponse extends CoreResponse {
 
     private List<AgeGroups> ageGroups;
 
-    public GetClientAgeGroupResponse(List<AgeGroups> ageGroups) {
+    public GetAgeGroupResponse(List<AgeGroups> ageGroups) {
         this.ageGroups = ageGroups;
     }
 

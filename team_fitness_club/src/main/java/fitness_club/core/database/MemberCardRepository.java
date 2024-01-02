@@ -27,6 +27,8 @@ public class MemberCardRepository {
                 get(MemberCard.class, id);
     }
 
+
+
     public List<MemberCard> getAllWorkouts(Workouts workout) {
         Query<MemberCard> query = sessionFactory.getCurrentSession()
                 .createQuery("SELECT mc FROM MemberCard mc WHERE mc.workout = :workout ", MemberCard.class);

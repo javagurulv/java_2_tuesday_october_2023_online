@@ -41,7 +41,7 @@ public class AddMemberCardRequestValidator {
     }
 
     private Optional<CoreError> validateAgeGroupNotEmpty(AddMemberCardRequest request) {
-        return request.getClientAgeGroups() == null
+        return request.getAgeGroups() == null
                 ? Optional.of(new CoreError("personalCode", "Field personal code must not be empty!"))
                 : Optional.empty();
     }

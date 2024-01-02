@@ -1,5 +1,5 @@
 package fitness_club.core.requests;
 
-public class GetClientAgeGroupRequest {
+public class GetAgeGroupRequest {
 
 }

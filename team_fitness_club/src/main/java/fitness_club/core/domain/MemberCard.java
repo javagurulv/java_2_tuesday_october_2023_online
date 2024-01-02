@@ -9,7 +9,6 @@ import java.util.Date;
 @Entity
 @Table(name = "member_card")
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -25,7 +24,7 @@ public class MemberCard {
 
     @ManyToOne
     @Column(name = "age_group_id")
-    private AgeGroups ageGroup;
+    private AgeGroups ageGroups;
 
     @ManyToOne
     @Column(name = "workout_id")
@@ -40,4 +39,18 @@ public class MemberCard {
     private Date termOfContract;
 
 
+    public MemberCard(Client client,AgeGroups ageGroups, Workouts workouts, FitnessCentres fitnessCentre) {
+        this.client = client;
+        this.ageGroups = ageGroups;
+        this.workouts = workouts;
+        this.fitnessCentre = fitnessCentre;
+    }
+
+    public MemberCard(Client client){
+        this.client =client;
+    }
+
+
+    public MemberCard(Client client, AgeGroups ageGroups) {
+    }
 }

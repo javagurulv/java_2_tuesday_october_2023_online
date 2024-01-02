@@ -1,16 +1,14 @@
 package fitness_club.core.domain;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "age_groups")
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 
 public class AgeGroups {
@@ -21,9 +19,9 @@ public class AgeGroups {
     private Long id;
 
     @Column(name = "age_group", nullable = false)
-    private String ageGroup;
+    private AgeGroups ageGroup;
 
-    public AgeGroups(String ageGroup) {
+    public AgeGroups(AgeGroups ageGroup) {
         this.ageGroup =ageGroup;
     }
 }

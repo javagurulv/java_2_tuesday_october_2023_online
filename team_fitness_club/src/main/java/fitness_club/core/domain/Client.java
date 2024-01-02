@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -30,9 +31,9 @@ public class Client {
     private String personalCode;
 
     public Client(String firstName, String lastName, String personalCode) {
-    this.firstName=firstName;
-    this.lastName=lastName;
-    this.personalCode=personalCode;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.personalCode = personalCode;
     }
 
     @Override
@@ -43,9 +44,7 @@ public class Client {
         return Objects.equals(firstName, client.firstName)
                 && Objects.equals(lastName, client.lastName)
                 && Objects.equals(personalCode, client.personalCode);
-        //&& clientAgeGroup == client.clientAgeGroup
-        //  && fitnessCentre == client.fitnessCentre
-        //  && workouts == client.workouts;
+
     }
 
     @Override
@@ -60,9 +59,6 @@ public class Client {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", personalCode='" + personalCode + '\'' +
-                //", clientAgeGroup=" + clientAgeGroup +
-                //", workouts=" + workouts +
-                //", fitnessCentre=" + fitnessCentre +
                 '}';
     }
 }

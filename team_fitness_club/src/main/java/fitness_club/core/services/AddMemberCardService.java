@@ -1,7 +1,9 @@
 package fitness_club.core.services;
 
+import fitness_club.core.database.AgeGroupsRepository;
 import fitness_club.core.database.ClientRepository;
 import fitness_club.core.database.MemberCardRepository;
+import fitness_club.core.domain.AgeGroups;
 import fitness_club.core.domain.MemberCard;
 import fitness_club.core.requests.AddMemberCardRequest;
 import fitness_club.core.responses.AddMemberCardsResponse;
@@ -25,6 +27,8 @@ public class AddMemberCardService {
     @Autowired
     private ClientRepository clientRepository;
     @Autowired
+    private AgeGroupsRepository ageGroupsRepository;
+    @Autowired
     private AddMemberCardRequestValidator validator;
 
 
@@ -35,12 +39,12 @@ public class AddMemberCardService {
         }
 
         MemberCard memberCard = new MemberCard(
-                //request.getClient(),
-              // request.getClientAgeGroups(),
-               //request.getWorkouts(),
-             //   request.getFitnessCentre(),
-             //   request.getTermOfContract()
-        );
+                request.getClient(),
+            request.getAgeGroups());
+           //    request.getWorkouts(),
+            //  request.getFitnessCentre(),
+            // request.getTermOfContract()
+
         memberCardRepository.save(memberCard);
 
         return new AddMemberCardsResponse(memberCard);

@@ -1,6 +1,9 @@
 package fitness_club.core.requests;
 
+import fitness_club.core.domain.AgeGroups;
 import fitness_club.core.domain.Client;
+import fitness_club.core.domain.FitnessCentres;
+import fitness_club.core.domain.Workouts;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +16,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class AddMemberCardRequest {
     private Client client;
-    private String clientAgeGroups;
-    private String workouts;
-    private String fitnessCentre;
+    private AgeGroups ageGroups;
+    private Workouts workouts;
+    private FitnessCentres fitnessCentre;
     private Date termOfContract;
 }
