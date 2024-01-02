@@ -14,22 +14,23 @@ import java.util.List;
 @Transactional
 public class MemberCardRepository {
 
-    @Autowired private SessionFactory sessionFactory;
+    @Autowired
+    private SessionFactory sessionFactory;
 
 
-
-    public void save(MemberCard memberCard) { sessionFactory.getCurrentSession().save(memberCard); }
-
-
-    public MemberCard getByPersonalCode(String personalCode) {
-        return sessionFactory.getCurrentSession().get(MemberCard.class, personalCode);
+    public void save(MemberCard memberCard) {
+        sessionFactory.getCurrentSession().save(memberCard);
     }
 
+    public MemberCard getById(Long id) {
+        return sessionFactory.getCurrentSession().
+                get(MemberCard.class, id);
+    }
 
     public List<MemberCard> getAllWorkouts(Workouts workout) {
         Query<MemberCard> query = sessionFactory.getCurrentSession()
                 .createQuery("SELECT mc FROM MemberCard mc WHERE mc.workout = :workout ", MemberCard.class);
-                query.setParameter("workout",workout );
+        query.setParameter("workout", workout);
         return query.getResultList();
     }
 
