@@ -2,7 +2,6 @@ package lv.avangardteen.core.service;
 
 import lv.avangardteen.core.database.DataComponents;
 import lv.avangardteen.core.database.WComponentsDB;
-import lv.avangardteen.core.database.WheelchairComponentsRepository;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
@@ -17,8 +16,8 @@ import java.util.List;
 @Component
 @Transactional
 public class ChangeComponentService {
-    @Autowired
-    private DataComponents dataComponents;
+    /*@Autowired
+    private DataComponents dataComponents;*/
     @Autowired
     private WComponentsDB wComponentsDB;
     @Autowired

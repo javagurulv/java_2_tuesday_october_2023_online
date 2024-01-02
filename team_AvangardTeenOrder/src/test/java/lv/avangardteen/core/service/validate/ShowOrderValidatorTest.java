@@ -1,4 +1,4 @@
-package lv.avangardteen.core.service;
+package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.domain.Client;
@@ -34,18 +34,8 @@ class ShowOrderValidatorTest {
     public void notErrors() {
         ShowOrderRequest request = new ShowOrderRequest(1l);
         Mockito.when(idValidator.validate(request.getId())).thenReturn(List.of());
-        Mockito.when(database.getClientByOrderId(request.getId())).thenReturn(new Client());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
-    }
-
-    @Test
-    public void isErrors() {
-        ShowOrderRequest request = new ShowOrderRequest(1l);
-        Mockito.when(idValidator.validate(request.getId())).thenReturn(List.of());
-        Mockito.when(database.getClientByOrderId(request.getId())).thenReturn(null);
-        List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 1);
     }
 
     @Test
@@ -53,7 +43,6 @@ class ShowOrderValidatorTest {
         ShowOrderRequest request = new ShowOrderRequest(1l);
         Mockito.when(idValidator.validate(request.getId())).thenReturn(List.of(new CoreError(
                 "error", "message")));
-        Mockito.when(database.getClientByOrderId(request.getId())).thenReturn(new Client());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
     }

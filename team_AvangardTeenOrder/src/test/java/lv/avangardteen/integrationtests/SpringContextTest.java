@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-@Ignore
+
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {OrderListConfiguration.class})
 public class SpringContextTest {

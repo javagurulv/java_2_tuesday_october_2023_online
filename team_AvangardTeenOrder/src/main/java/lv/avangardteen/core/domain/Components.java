@@ -27,6 +27,14 @@ public class Components {
 
     public Components(){}
 
+    public Components(Integer id, Category category, String marking, String information, double price) {
+        this.id = id;
+        this.category = category;
+        this.marking = marking;
+        this.information = information;
+        this.price = price;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -1,5 +1,6 @@
 package lv.avangardteen.core.database;
 
+import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.domain.UserSizes;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -54,4 +55,11 @@ public class UserSizeRepositoryImpl implements UserSizeDb {
                 .createQuery("INSERT INTO Client_size c order_id = :id");
         query.setParameter("order_id", orderId);
     }
+
+  /*  @Override
+    public void setClientId(Query queryClient) {
+        Query query1 = sessionFactory.getCurrentSession()
+                .createQuery("INSERT INTO Client_size c client_id = :id");
+        query1.setParameter("client_id", queryClient);
+    }*/
 }

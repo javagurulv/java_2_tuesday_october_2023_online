@@ -2,8 +2,6 @@ package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.core.service.validate.OrderIdValidator;
-import lv.avangardteen.core.service.validate.DeleteOrderValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,7 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
-class IdOrderValidatorTest {
+class DeleteOrderValidatorTest {
 
     @Mock
     private OrderIdValidator validatorId;

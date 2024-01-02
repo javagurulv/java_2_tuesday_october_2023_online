@@ -50,7 +50,7 @@ public class OrmClientRepository implements Database {
     }
 
     @Override
-    public Client getClientByOrderId(Long idOrder){
+    public Client getClientByOrderId(Long idOrder) {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "select c FROM Client c where order_id = :idOrder", Client.class);
         query.setParameter("idOrder", idOrder);
@@ -67,9 +67,17 @@ public class OrmClientRepository implements Database {
         return (Client) query.getSingleResult();
     }
 
+    @Override
     public void setOrderId(Long orderId) {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("INSERT INTO Clients c order_id = :id");
         query.setParameter("order_id", orderId);
+    }
+
+    @Override
+    public Query getIdClient() {
+        return sessionFactory.getCurrentSession()
+                .createQuery("SELECT LAST_INSERT_ID()");
+
     }
 }

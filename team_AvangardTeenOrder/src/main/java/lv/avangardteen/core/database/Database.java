@@ -1,6 +1,7 @@
 package lv.avangardteen.core.database;
 
 import lv.avangardteen.core.domain.Client;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface Database {
     Client findBySurnameAndPersonalCode(String surname, Long personalCode);
 
     void setOrderId(Long orderId);
+
+    Query getIdClient();
 }

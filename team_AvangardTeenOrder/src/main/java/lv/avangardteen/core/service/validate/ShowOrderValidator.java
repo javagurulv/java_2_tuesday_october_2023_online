@@ -14,8 +14,6 @@ public class ShowOrderValidator {
 
     @Autowired
     private OrderIdValidator idValidator;
-    @Autowired
-    private Database database;
 
     public List<CoreError> validate(ShowOrderRequest request) {
         List<CoreError> errors = idValidator.validate(request.getId());

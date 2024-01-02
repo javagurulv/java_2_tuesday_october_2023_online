@@ -1,5 +1,6 @@
 package lv.avangardteen.UIAction;
 
+import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.request.UserRegistrationRequest;
 import lv.avangardteen.core.responce.UserRegistrationResponse;
 import lv.avangardteen.core.service.UserRegistrationService;
@@ -11,7 +12,7 @@ import java.util.Scanner;
 
 @Component
 public class UserRegistrationUIAction implements UIAction {
-
+@Autowired private Database database;
     @Autowired
     private UserRegistrationService service;
 

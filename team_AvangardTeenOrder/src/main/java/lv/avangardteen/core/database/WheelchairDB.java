@@ -11,4 +11,5 @@ public interface WheelchairDB {
     Wheelchair getWheelchair(Long id);
     Long getIdWheelchair();
     Double getPrice(Long id);
+
 }

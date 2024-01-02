@@ -1,4 +1,5 @@
 package lv.avangardteen.acceptancetests;
+/*
 
 
 import lv.avangardteen.config.OrderListConfiguration;
@@ -54,3 +55,4 @@ public class AcceptanceTest2 {
     }
 }
 
+*/

@@ -15,16 +15,16 @@ public class UserSizes {
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
-    @Column(name = "pelvisWidth")
+    @Column(name = "pelvisWidth", nullable = false)
     private Integer pelvisWidth;
 
-    @Column(name = "thighLength")
+    @Column(name = "thighLength", nullable = false)
     private Integer thighLength;
 
-    @Column(name = "backHeight")
+    @Column(name = "backHeight", nullable = false)
     private Integer backHeight;
 
-    @Column(name = "shinLength")
+    @Column(name = "shinLength", nullable = false)
     private Integer shinLength;
 
     @Column(name = "order_id")
