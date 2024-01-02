@@ -1,6 +1,6 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.ClientRepository;
+import fitness_club.core.database.ClientRepositoryImpl;
 import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.services.vlidators.AddClientRequestValidator;
 import fitness_club.core.requests.AddClientRequest;
@@ -26,7 +26,7 @@ public class AddClientServiceTest {
     @Mock
     private AddClientRequestValidator validator;
     @Mock
-    private ClientRepository clientRepository;
+    private ClientRepositoryImpl clientRepositoryImpl;
     @InjectMocks
     private AddClientService service;
 
@@ -59,7 +59,7 @@ public class AddClientServiceTest {
         when(validator.validate(request)).thenReturn(List.of());
         AddClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        verify(clientRepository).save(any());
+        verify(clientRepositoryImpl).save(any());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class AddClientServiceTest {
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("firstName",
                 "Field first name must not be empty or contain symbols or numbers!")));
         service.execute(notValidRequest);
-        verifyNoInteractions(clientRepository);
+        verifyNoInteractions(clientRepositoryImpl);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class AddClientServiceTest {
         AddClientRequest validRequest = new AddClientRequest("Andrey", "Pupkin", "1212");
         when(validator.validate(validRequest)).thenReturn(List.of());
         service.execute(validRequest);
-        verify(clientRepository).save(argThat(new ClientMatcher("Andrey", "Pupkin", "1212")));
+        verify(clientRepositoryImpl).save(argThat(new ClientMatcher("Andrey", "Pupkin", "1212")));
     }
 
     @Test

@@ -23,7 +23,7 @@ import java.util.List;
 public class AddClientService {
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientRepositoryImpl clientRepositoryImp;
     @Autowired
     private AddClientRequestValidator validator;
 
@@ -35,7 +35,7 @@ public class AddClientService {
         }
 
         Client client = new Client(request.getFirstName(), request.getLastName(), request.getPersonalCode());
-        clientRepository.save(client);
+        clientRepositoryImp.save(client);
 
         return new AddClientResponse(client);
     }
