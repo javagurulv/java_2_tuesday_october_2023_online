@@ -1,8 +1,7 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.database.Database;
-import lv.avangardteen.core.database.UserSizeRepository;
-import lv.avangardteen.core.database.WheelchairRepository;
+import lv.avangardteen.core.database.UserSizeDb;
+import lv.avangardteen.core.database.WheelchairDB;
 import lv.avangardteen.core.domain.Wheelchair;
 import lv.avangardteen.core.request.UserSizeRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
@@ -18,9 +17,9 @@ import java.util.List;
 @Transactional
 public class UserSizeRegistrationService {
     @Autowired
-    private UserSizeRepository userSizeRepository;
+    private UserSizeDb userSizeDb;
     @Autowired
-    private WheelchairRepository wheelchairRepository;
+    private WheelchairDB wheelchairDB;
     @Autowired
     private PersonalSizeValidator validator;
     @Autowired
@@ -39,8 +38,8 @@ public class UserSizeRegistrationService {
         Wheelchair wheelchair = dimensionsWheelchair.setDimensions(request.getUserSizes());
         response.setUserSizes(response.getUserSizes());
         response.setWheelchair(wheelchair);
-        userSizeRepository.addUserSize(request.getUserSizes());
-        wheelchairRepository.addWheelchair(wheelchair);
+        userSizeDb.addUserSize(request.getUserSizes());
+        wheelchairDB.addWheelchair(wheelchair);
 
         return response;
     }

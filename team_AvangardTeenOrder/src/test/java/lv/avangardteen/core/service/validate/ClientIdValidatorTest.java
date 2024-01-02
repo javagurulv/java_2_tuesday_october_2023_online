@@ -29,8 +29,9 @@ class ClientIdValidatorTest {
     public void idIsZero() {
         database = Mockito.mock(Database.class);
         orderIdValidator = new OrderIdValidator();
+        when(database.getClientByOrderId(0l)).thenReturn(null);
         List<CoreError> coreErrors = orderIdValidator.validate(0l);
-        assertEquals(coreErrors, List.of(new CoreError("idClient", "Must not be empty!")));
+        assertEquals(coreErrors, List.of(new CoreError("idOrder", "Must not be empty!")));
     }
 
     @Test
@@ -38,13 +39,13 @@ class ClientIdValidatorTest {
         database = Mockito.mock(Database.class);
         orderIdValidator = new OrderIdValidator();
         List<CoreError> coreErrors = orderIdValidator.validate(null);
-        assertEquals(coreErrors, List.of(new CoreError("idClient", "Must not be empty!")));
+        assertEquals(coreErrors, List.of(new CoreError("idOrder", "Must not be empty!")));
     }
 
     @Test
     public void idIsAbsent() {
         when(database.getClientByOrderId(5l)).thenReturn(null);
-        List<CoreError> errors = List.of(new CoreError("idClient", "Order with this id not found!"));
+        List<CoreError> errors = List.of(new CoreError("idOrder", "Order with this id not found!"));
         List<CoreError> coreErrors = orderIdValidator.validate(5l);
 
         assertEquals(coreErrors, errors);

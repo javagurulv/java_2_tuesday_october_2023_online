@@ -1,5 +1,4 @@
-package lv.avangardteen.core.service;
-/*
+package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.responce.CoreError;
@@ -25,12 +24,10 @@ class ChangePersonalSizeValidatorTest {
     @InjectMocks
     private ChangePersonalSizeValidator validator;
 
-
-    @BeforeEach
+   @BeforeEach
     public void init() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     public void shouldNotReturnErrorsWhenIdValidatorReturnNoErrors() {
@@ -40,7 +37,6 @@ class ChangePersonalSizeValidatorTest {
         when(idValidator.validate(request.getId())).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
-
     }
 
     @Test
@@ -51,7 +47,6 @@ class ChangePersonalSizeValidatorTest {
         when(idValidator.validate(request.getId())).thenReturn(List.of(new CoreError("errors", "message")));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-
     }
 
     @Test
@@ -61,8 +56,6 @@ class ChangePersonalSizeValidatorTest {
         when(personalSizeValidator.validate(request.getUserSizes())).thenReturn(List.of(new CoreError("error", "message")));
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
-
-
     }
 
     @Test
@@ -74,4 +67,4 @@ class ChangePersonalSizeValidatorTest {
         assertEquals(errors.size(), 0);
 
     }
-}*/
+}

@@ -43,7 +43,6 @@ CREATE UNIQUE INDEX client_size_type_index ON client_size(order_id);
 
 CREATE TABLE IF NOT EXISTS  `wheelchair` (
 `id` BIGINT NOT NULL  PRIMARY KEY AUTO_INCREMENT,
-`client_id` BIGINT NOT NULL,
 `seatWidth` INT NOT NULL,
 `seatDepth` INT NOT NULL,
 `footrestLength` INT NOT NULL,
@@ -89,7 +88,7 @@ CREATE UNIQUE INDEX category_type_index ON category(title);
 
 CREATE TABLE IF NOT EXISTS `components` (
 `id` INT NOT NULL AUTO_INCREMENT,
-`category_key` VARCHAR(20) NOT NULL,
+`category_key` BIGINT  NOT NULL,
 `marking` VARCHAR (20) NOT NULL UNIQUE,
 `information` VARCHAR (2000) NOT NULL,
 `price` DOUBLE,
@@ -101,7 +100,7 @@ AUTO_INCREMENT = 1;
 
 ALTER TABLE `components`
 ADD FOREIGN KEY (`category_key`)
-REFERENCES `category` (`title`);
+REFERENCES `category` (`id`);
 
 CREATE UNIQUE INDEX category_key_index ON components(category_key);
 

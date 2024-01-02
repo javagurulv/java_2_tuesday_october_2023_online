@@ -1,6 +1,8 @@
 package lv.avangardteen.UIAction;
 
 import lv.avangardteen.core.database.DataComponents;
+import lv.avangardteen.core.database.WComponentsDB;
+import lv.avangardteen.core.database.WheelchairDB;
 import lv.avangardteen.core.database.WheelchairRepository;
 import lv.avangardteen.core.request.ComponentRegistrationRequest;
 import lv.avangardteen.core.responce.ComponentRegistrationResponse;
@@ -16,7 +18,7 @@ public class ComponentRegistrationUIAction implements UIAction {
     @Autowired
     private DataComponents dataComponents;
     @Autowired
-    private WheelchairRepository wheelchairRepository;
+    private WheelchairDB wheelchairDB;
     @Autowired
     private ComponentRegistrationService service;
 
@@ -46,7 +48,7 @@ public class ComponentRegistrationUIAction implements UIAction {
                 System.out.println("Ваш выбор не сохранен");
             } else {
                 System.out.println("Ваш выбор сохранен");
-                System.out.println("Номер вашего заказа" + wheelchairRepository.getIdWheelchair());
+                System.out.println("Номер вашего заказа" + wheelchairDB.getIdWheelchair());
             }
         } catch (InputMismatchException e) {
             System.out.println("Must input only digits!");

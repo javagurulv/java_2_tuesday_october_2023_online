@@ -1,6 +1,6 @@
 package lv.avangardteen.core.service;
 
-/*
+
 
 import lv.avangardteen.core.request.UserRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
@@ -41,7 +41,7 @@ class UserRegistrationServiceMockitoTest {
                 "Name", 111l, 12345l, "Riga");
 
         Mockito.when(validator.validate(notValidationRequest.getUserRegistration())).thenReturn(List.of(
-                new CoreError("Client service", "Incorrect Clients request data!")));
+                new CoreError("Client service", "Incorrect Client request data!")));
 
         UserRegistrationResponse response = service.execute(notValidationRequest);
         assertTrue(response.hasErrors());
@@ -60,4 +60,4 @@ class UserRegistrationServiceMockitoTest {
     }
 
 }
-*/
+

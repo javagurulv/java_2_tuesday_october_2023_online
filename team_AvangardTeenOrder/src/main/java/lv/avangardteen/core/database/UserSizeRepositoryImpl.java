@@ -11,23 +11,24 @@ import java.util.List;
 
 @Component
 @Transactional
-public class UserSizeRepository {
+public class UserSizeRepositoryImpl implements UserSizeDb {
 
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Override
     public List<UserSizes> getUserSizesOrders() {
-      return sessionFactory.getCurrentSession()
+        return sessionFactory.getCurrentSession()
                 .createQuery("SELECT us FROM Client_size us", UserSizes.class)
                 .getResultList();
     }
 
-
+    @Override
     public void addUserSize(UserSizes userSizes) {
         sessionFactory.getCurrentSession().save(userSizes);
     }
 
-
+    @Override
     public void updateUserSize(Long id, UserSizes userSizes) {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("UPDATE Client_size us where order_id = :id");
@@ -38,7 +39,7 @@ public class UserSizeRepository {
         query.setParameter("shinLength", userSizes.getShinLength());
     }
 
-
+    @Override
     public UserSizes getUserSizeByOrderId(Long id) {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "select us FROM Client_size where order_id = :id");
@@ -47,6 +48,7 @@ public class UserSizeRepository {
 
     }
 
+    @Override
     public void setOrderId(Long orderId) {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("INSERT INTO Client_size c order_id = :id");

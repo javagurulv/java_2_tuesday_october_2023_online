@@ -1,11 +1,12 @@
 package lv.avangardteen.core.service;
 
+import lv.avangardteen.core.database.DataComponents;
+import lv.avangardteen.core.database.WComponentsDB;
 import lv.avangardteen.core.database.WheelchairComponentsRepository;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChooseComponentValidator;
-import lv.avangardteen.core.database.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,9 @@ import java.util.List;
 @Transactional
 public class ChangeComponentService {
     @Autowired
-    private WheelchairComponentsRepository componentsRepository;
+    private DataComponents dataComponents;
+    @Autowired
+    private WComponentsDB wComponentsDB;
     @Autowired
     private ChooseComponentValidator validator;
 
@@ -38,12 +41,11 @@ public class ChangeComponentService {
         response.setBrakeChoose(request.getBrakeChoose());
         response.setFootrestChoose(request.getFootrestChoose());
 
-        componentsRepository.deleteWheelchairComponents(request.getId());
-        componentsRepository.addWheelchairComponents(request.getId(), request.getWheelFrontChoose());
-        componentsRepository.addWheelchairComponents(request.getId(), request.getWheelBackChoose());
-        componentsRepository.addWheelchairComponents(request.getId(), request.getBrakeChoose());
-        componentsRepository.addWheelchairComponents(request.getId(), request.getFootrestChoose());
-
+        wComponentsDB.deleteWheelchairComponents(request.getId());
+        wComponentsDB.addWheelchairComponents(request.getId(), request.getWheelFrontChoose());
+        wComponentsDB.addWheelchairComponents(request.getId(), request.getWheelBackChoose());
+        wComponentsDB.addWheelchairComponents(request.getId(), request.getBrakeChoose());
+        wComponentsDB.addWheelchairComponents(request.getId(), request.getFootrestChoose());
 
         return response;
     }

@@ -1,4 +1,5 @@
 package lv.avangardteen.core.database;
+/*
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,3 +15,4 @@ public class CategoryRepository {
 
 
 }
+*/

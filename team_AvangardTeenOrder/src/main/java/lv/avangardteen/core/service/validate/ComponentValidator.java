@@ -1,5 +1,6 @@
 package lv.avangardteen.core.service.validate;
 
+
 import lv.avangardteen.core.database.DataComponents;
 import lv.avangardteen.core.request.ComponentRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
@@ -74,3 +75,4 @@ public class ComponentValidator {
     }
 
 }
+

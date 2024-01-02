@@ -16,18 +16,28 @@ import java.util.List;
 @Transactional
 public class OrmDataComponentsImpl implements DataComponents {
 
-@Autowired
-private SessionFactory sessionFactory;
+    @Autowired
+    private SessionFactory sessionFactory;
 
-
+    @Override
     public void addCategory(Category category) {
         sessionFactory.getCurrentSession().save(category);
     }
 
+    @Override
+    public List<Category> getCategories() {
+        return sessionFactory.getCurrentSession()
+                .createQuery("SELECT c FROM Category", Category.class)
+                .getResultList();
+    }
 
     @Override
-    public void addComponent(Components component) {
-        sessionFactory.getCurrentSession().save(component);
+    public void addComponent(String categoryTitle, String marking, String information, Double price) {
+
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("INSERT INTO Components c SELECT FROM Category category_key = :category.id" +
+                        "WHERE category.title = :title");
+        query.setParameter("title", categoryTitle);
     }
 
     @Override
@@ -56,32 +66,41 @@ private SessionFactory sessionFactory;
     @Override
     public List<Components> allFrontWheels() {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Components WHERE category_key = : titleCategory");
-        query.setParameter("category_key", "FRONT-WHEEL");
+                .createQuery("SELECT c FROM Components " +
+                        "JOIN Category ON category.id  = components.category_key" +
+                        "WHERE category.title = title");
+        query.setParameter("title", "FRONT-WHEEL");
+
         return query.getResultList();
     }
 
     @Override
     public List<Components> allFootrest() {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Components WHERE category_key = : titleCategory");
-        query.setParameter("category_key", "FOOTREST");
+                .createQuery("SELECT c FROM Components " +
+                        "JOIN Category ON category.id  = components.category_key" +
+                        "WHERE category.title = title");
+        query.setParameter("title", "FOOTREST");
         return query.getResultList();
     }
 
     @Override
     public List<Components> allBrakes() {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Components WHERE category_key = : titleCategory");
-        query.setParameter("category_key", "BRAKE");
+                .createQuery("SELECT c FROM Components " +
+                        "JOIN Category ON category.id  = components.category_key" +
+                        "WHERE category.title = title");
+        query.setParameter("title", "BRAKE");
         return query.getResultList();
     }
 
     @Override
     public List<Components> allBackWheels() {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Components WHERE category_key = : titleCategory");
-        query.setParameter("category_key", "BACK-WHEEL");
+                .createQuery("SELECT c FROM Components " +
+                        "JOIN Category ON category.id  = components.category_key" +
+                        "WHERE category.title = title");
+        query.setParameter("title", "BACK-WHEEL");
         return query.getResultList();
     }
 

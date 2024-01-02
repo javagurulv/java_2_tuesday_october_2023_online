@@ -37,7 +37,7 @@ public class ProgramMenu {
     }
 
 
-    public static void printProgramMenu() {
+    public void printProgramMenu() {
         System.out.println();
         System.out.println("Заказ на инвалидное кресло Avangard Teen");
         System.out.println("1. Регистрация");
@@ -52,7 +52,7 @@ public class ProgramMenu {
         System.out.println();
     }
 
-    public static int getMenuNumberFromUser() {
+    public int getMenuNumberFromUser() {
         System.out.println("Enter menu item number to execute:");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();

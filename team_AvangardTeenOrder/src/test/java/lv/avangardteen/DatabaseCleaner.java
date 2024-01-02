@@ -22,9 +22,10 @@ public class DatabaseCleaner {
 
     private List<String> getTableNames() {
         List<String> tableNames = new ArrayList<>();
-        tableNames.add("reader_books");
-        tableNames.add("readers");
-        tableNames.add("books");
+        tableNames.add("wheelchair");
+        tableNames.add("client_size");
+        tableNames.add("clients");
+        tableNames.add("order_components");
         return tableNames;
     }
 

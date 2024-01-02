@@ -12,10 +12,6 @@ public class Wheelchair {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @OneToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
-
     @Column(name = "seatWidth", nullable = false)
     Integer seatWidth;
 
@@ -31,7 +27,8 @@ public class Wheelchair {
     @Column(name = "price", nullable = false)
     double price;
 
-
+    public Wheelchair() {
+    }
 
     public Long getId() {
         return id;

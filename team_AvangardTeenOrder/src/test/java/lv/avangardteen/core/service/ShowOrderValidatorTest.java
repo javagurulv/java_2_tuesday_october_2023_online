@@ -1,10 +1,7 @@
 package lv.avangardteen.core.service;
 
-/*
-
 import lv.avangardteen.core.database.Database;
-import lv.avangardteen.core.domain.UserSizes;
-import lv.avangardteen.core.domain.Wheelchair;
+import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.OrderIdValidator;
@@ -35,25 +32,30 @@ class ShowOrderValidatorTest {
 
     @Test
     public void notErrors() {
-        Mockito.when(database.getUserSize(1L)).thenReturn(new UserSizes());
-        Mockito.when(database.getWheelchair(1L)).thenReturn(new Wheelchair());
-        Mockito.when(database.getWheelchairComponents(1L)).thenReturn(new WheelchairComponent());
-        ShowOrderRequest request = new ShowOrderRequest(1L);
+        ShowOrderRequest request = new ShowOrderRequest(1l);
         Mockito.when(idValidator.validate(request.getId())).thenReturn(List.of());
+        Mockito.when(database.getClientByOrderId(request.getId())).thenReturn(new Client());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
 
     @Test
     public void isErrors() {
-        Mockito.when(database.getUserSize(1L)).thenReturn(new UserSizes());
-        Mockito.when(database.getWheelchair(1L)).thenReturn(new Wheelchair());
-        Mockito.when(database.getWheelchairComponents(1L)).thenReturn(new WheelchairComponent());
-        ShowOrderRequest request = new ShowOrderRequest(1L);
-        Mockito.when(idValidator.validate(request.getId())).thenReturn(List.of(
-                new CoreError("errors", "message")));
+        ShowOrderRequest request = new ShowOrderRequest(1l);
+        Mockito.when(idValidator.validate(request.getId())).thenReturn(List.of());
+        Mockito.when(database.getClientByOrderId(request.getId())).thenReturn(null);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
     }
 
-}*/
+    @Test
+    public void orderIsAbsent() {
+        ShowOrderRequest request = new ShowOrderRequest(1l);
+        Mockito.when(idValidator.validate(request.getId())).thenReturn(List.of(new CoreError(
+                "error", "message")));
+        Mockito.when(database.getClientByOrderId(request.getId())).thenReturn(new Client());
+        List<CoreError> errors = validator.validate(request);
+        assertEquals(errors.size(), 1);
+    }
+
+}

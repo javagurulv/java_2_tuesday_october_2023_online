@@ -50,11 +50,12 @@ public class OrmClientRepository implements Database {
     }
 
     @Override
-    public Client getClientByOrderId(Long idOrder) {
+    public Client getClientByOrderId(Long idOrder){
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select c FROM Client c where order_id = :id");
-        query.setParameter("id", idOrder);
-        return (Client) query.getSingleResult();
+                "select c FROM Client c where order_id = :idOrder", Client.class);
+        query.setParameter("idOrder", idOrder);
+        Client client = (Client) query.getSingleResult();
+        return client;
     }
 
     @Override

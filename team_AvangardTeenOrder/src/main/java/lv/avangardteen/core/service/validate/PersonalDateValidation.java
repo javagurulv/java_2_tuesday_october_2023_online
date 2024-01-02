@@ -1,17 +1,13 @@
 package lv.avangardteen.core.service.validate;
 
-import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.responce.CoreError;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 @Component
 public class PersonalDateValidation {
-    @Autowired
-    private Database database;
 
     public List<CoreError> validate(Client userRegistration) {
         List<CoreError> errors = new ArrayList<>();
@@ -27,9 +23,6 @@ public class PersonalDateValidation {
         }
         if (addressIsNull(userRegistration)) {
             errors.add(new CoreError("address", "Must not be empty!"));
-        }
-        if(clientIsPresentInDb(userRegistration)) {
-            errors.add(new CoreError("client", "Client is present in database"));
         }
 
         return errors;
@@ -54,11 +47,5 @@ public class PersonalDateValidation {
         return (userRegistration.getAddress() == null || userRegistration.getAddress().equals(""));
     }
 
-    private boolean clientIsPresentInDb(Client userRegistration) {
-        Client client = database.findBySurnameAndPersonalCode(userRegistration.getNameSurname(), userRegistration.getPersonalCode());
-        if (client != null) {
-            return true;
-        }
-        return false;
-    }
+
 }

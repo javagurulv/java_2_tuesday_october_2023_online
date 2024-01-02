@@ -14,7 +14,7 @@ public class Components {
 
     @ManyToOne
     @JoinColumn(name = "category_key")
-    private String title_category;
+    private Category category;
 
     @Column(name = "marking", nullable = false)
     private String marking;
@@ -35,7 +35,13 @@ public class Components {
         this.id = id;
     }
 
+    public Category getCategory() {
+        return category;
+    }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public void setMarking(String marking) {
         this.marking = marking;
@@ -49,13 +55,6 @@ public class Components {
         this.price = price;
     }
 
-    public String getTitle_category() {
-        return title_category;
-    }
-
-    public void setTitle_category(String title_category) {
-        this.title_category = title_category;
-    }
 
     public String getMarking() {
         return marking;
@@ -83,11 +82,11 @@ public class Components {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Components that = (Components) o;
-        return Double.compare(that.price, price) == 0 && Objects.equals(id, that.id) && Objects.equals(title_category, that.title_category) && Objects.equals(marking, that.marking) && Objects.equals(information, that.information);
+        return Double.compare(that.price, price) == 0 && Objects.equals(id, that.id) && Objects.equals(category, that.category) && Objects.equals(marking, that.marking) && Objects.equals(information, that.information);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title_category, marking, information, price);
+        return Objects.hash(id, category, marking, information, price);
     }
 }

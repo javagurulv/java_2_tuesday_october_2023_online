@@ -1,11 +1,14 @@
 package lv.avangardteen.core.database;
 
+import lv.avangardteen.core.domain.Category;
 import lv.avangardteen.core.domain.Components;
 
 import java.util.List;
 
 public interface DataComponents {
-    void addComponent(Components component);
+    void addCategory(Category category);
+    List<Category> getCategories();
+    void addComponent(String categoryTitle,String marking, String information, Double price);
     List<Components> getAllComponents();
     Components getComponent(Integer index);
     List<Integer> getAllIndex();

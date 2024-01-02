@@ -10,19 +10,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PersonalDateValidationTest {
 
+
     private PersonalDateValidation personalDateValidation;
+
 
     @Test
     public void surnameIsEmpty() {
         personalDateValidation = new PersonalDateValidation();
-       Client client = new Client();
-       client.setNameSurname(null);
-       client.setPersonalCode(11111l);
+        Client client = new Client();
+        client.setNameSurname(null);
+        client.setPersonalCode(11111l);
         client.setPhone(343434l);
         client.setAddress("Lesnaja, 22");
         List<CoreError> errors = personalDateValidation.validate(client);
         assertEquals(errors, List.of(new CoreError("surname", "Must not be empty!")));
     }
+
     @Test
     public void phoneIsEmpty() {
         personalDateValidation = new PersonalDateValidation();
@@ -34,6 +37,7 @@ class PersonalDateValidationTest {
         List<CoreError> errors = personalDateValidation.validate(client);
         assertEquals(errors, List.of(new CoreError("phone", "Must not be empty!")));
     }
+
     @Test
     public void addressIsEmpty() {
         personalDateValidation = new PersonalDateValidation();
@@ -45,6 +49,7 @@ class PersonalDateValidationTest {
         List<CoreError> errors = personalDateValidation.validate(client);
         assertEquals(errors, List.of(new CoreError("address", "Must not be empty!")));
     }
+
     @Test
     public void SurnameAndAddressAreEmpty() {
         personalDateValidation = new PersonalDateValidation();

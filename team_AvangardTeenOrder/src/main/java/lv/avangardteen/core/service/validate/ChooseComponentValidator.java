@@ -1,5 +1,6 @@
 package lv.avangardteen.core.service.validate;
 
+
 import lv.avangardteen.core.database.DataComponents;
 import lv.avangardteen.core.domain.Components;
 import lv.avangardteen.core.request.ChangeComponentRequest;
@@ -82,3 +83,4 @@ public class ChooseComponentValidator {
     }
 
 }
+

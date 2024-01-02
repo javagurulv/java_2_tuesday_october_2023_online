@@ -11,19 +11,21 @@ import java.util.List;
 
 @Component
 @Transactional
-public class WheelchairComponentsRepository {
+public class WheelchairComponentsRepository implements WComponentsDB {
 
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Override
     public List<WheelchairComponents> getChooseComponents(Long id) {
-        Query query =  sessionFactory.getCurrentSession()
+        Query query = sessionFactory.getCurrentSession()
                 .createQuery("SELECT wc FROM WheelchairComponents WHERE wheelchair_id = :id");
         query.setParameter("wheelchair_id", id);
-        return  query.getResultList();
+        return query.getResultList();
 
     }
 
+    @Override
     public void addWheelchairComponents(Long idWheelchair, Integer chooseComponent) {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("INSERT INTO order_components WHERE wheelchair_id = :wheelchair.id" +
@@ -32,6 +34,7 @@ public class WheelchairComponentsRepository {
         query.setParameter("component_id", chooseComponent);
     }
 
+    @Override
     public boolean deleteWheelchairComponents(Long id) {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "delete order_components wc where wheelchair_id = :id");
@@ -40,12 +43,15 @@ public class WheelchairComponentsRepository {
         return result == 1;
 
     }
+
+    @Override
     public List<WheelchairComponents> getAllWheelchairComponents() {
         return sessionFactory.getCurrentSession()
                 .createQuery("SELECT wc FROM order_components wc", WheelchairComponents.class)
                 .getResultList();
     }
 
+    @Override
     public Double getPriceComponents(Long idWheelchair) {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("SELECT Sum(price) FROM Order_components" +
