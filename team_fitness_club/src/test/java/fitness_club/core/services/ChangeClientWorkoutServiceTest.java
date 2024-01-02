@@ -1,7 +1,7 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.ClientRepository;
-import fitness_club.core.services.vlidators.ChangeClientWorkoutsValidator;
+import fitness_club.core.services.vlidators.workout.ChangeClientWorkoutsValidator;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

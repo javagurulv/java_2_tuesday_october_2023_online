@@ -5,7 +5,7 @@ import fitness_club.core.database.MemberCardRepository;
 import fitness_club.core.requests.ChangeClientFitnessCentreRequest;
 import fitness_club.core.responses.ChangeClientFitnessCentreResponse;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.vlidators.ChangeClientFitnessCentreValidator;
+import fitness_club.core.services.vlidators.fitnessCenter.ChangeClientFitnessCentreValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

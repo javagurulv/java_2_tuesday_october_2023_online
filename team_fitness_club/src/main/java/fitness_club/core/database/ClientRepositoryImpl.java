@@ -77,4 +77,13 @@ public class ClientRepositoryImpl implements ClientRepository {
         query.setParameter("lastName", lastName);
         return query.getResultList();
     }
+
+    @Override
+    public boolean findUniqueClient(String personalCode) {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "SELECT Client WHERE personal_code = :personalCode");
+        query.setParameter("personalCode", personalCode);
+        int result = query.executeUpdate();
+        return result == 1;
+    }
 }

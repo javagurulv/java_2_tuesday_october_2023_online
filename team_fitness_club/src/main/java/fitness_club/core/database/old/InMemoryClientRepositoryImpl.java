@@ -124,6 +124,11 @@ public class InMemoryClientRepositoryImpl implements ClientRepository {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public boolean findUniqueClient(String personalCode) {
+        return false;
+    }
+
     private void updateClientIds(List<Client> clients) {
         for (int i = 0; i < clients.size(); i++) {
             clients.get(i).setId((long) (i + 1));

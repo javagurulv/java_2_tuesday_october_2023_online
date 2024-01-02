@@ -20,4 +20,6 @@ public interface ClientRepository {
     List<Client> findByFirstNameAndLastName(String firstName, String lastName);
 
     List<Client> findByPersonalCode(String personalCode);
+
+    boolean findUniqueClient (String personalCode);
 }

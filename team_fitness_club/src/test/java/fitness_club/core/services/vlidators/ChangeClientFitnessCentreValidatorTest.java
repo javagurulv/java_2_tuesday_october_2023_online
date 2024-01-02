@@ -2,6 +2,7 @@ package fitness_club.core.services.vlidators;
 
 import fitness_club.core.requests.ChangeClientFitnessCentreRequest;
 import fitness_club.core.responses.CoreError;
+import fitness_club.core.services.vlidators.fitnessCenter.ChangeClientFitnessCentreValidator;
 import org.junit.Test;
 import org.mockito.Mockito;
 

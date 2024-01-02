@@ -52,7 +52,9 @@ class JdbcClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Long getClientIdByPersonalCode(String personalCode){return 0L;}
+    public Long getClientIdByPersonalCode(String personalCode) {
+        return 0L;
+    }
 
     /*@Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
@@ -133,6 +135,13 @@ class JdbcClientRepositoryImpl implements ClientRepository {
         String sql = "SELECT * FROM clients WHERE personal_code = ?";
         Object[] args = new Object[]{personalCode};
         return jdbcTemplate.query(sql, new ClientRowMapper(), args);
+    }
+
+    @Override
+    public boolean findUniqueClient(String personalCode) {
+        String sql = "SELECT FROM Clients WHERE personal_code = ?";
+        Object[] args = new Object[]{personalCode};
+        return jdbcTemplate.update(sql, args) == 1;
     }
 
   /*  private void updateClientIds(List<Client> clients) {

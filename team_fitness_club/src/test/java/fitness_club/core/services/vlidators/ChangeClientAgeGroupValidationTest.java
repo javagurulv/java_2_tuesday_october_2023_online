@@ -2,6 +2,7 @@ package fitness_club.core.services.vlidators;
 
 import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import fitness_club.core.responses.CoreError;
+import fitness_club.core.services.vlidators.ageGroup.ChangeClientAgeGroupValidator;
 import org.junit.Test;
 
 import java.util.List;

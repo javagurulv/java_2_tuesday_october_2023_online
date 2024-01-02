@@ -3,7 +3,7 @@ package fitness_club.core.services;
 import fitness_club.core.database.ClientRepository;
 import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.requests.RemoveClientRequest;
-import fitness_club.core.services.vlidators.RemoveClientRequestValidator;
+import fitness_club.core.services.vlidators.client.RemoveClientRequestValidator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

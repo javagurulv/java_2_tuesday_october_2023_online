@@ -5,6 +5,7 @@ import fitness_club.core.database.ClientRepositoryImpl;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.services.AddClientService;
+import fitness_club.core.services.vlidators.client.AddClientRequestValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

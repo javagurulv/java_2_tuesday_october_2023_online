@@ -2,7 +2,7 @@ package fitness_club.core.services;
 
 import fitness_club.core.database.ClientRepositoryImpl;
 import fitness_club.core.responses.AddClientResponse;
-import fitness_club.core.services.vlidators.AddClientRequestValidator;
+import fitness_club.core.services.vlidators.client.AddClientRequestValidator;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.matchers.ClientMatcher;
@@ -99,7 +99,7 @@ public class AddClientServiceTest {
     }
 
     @Test
-    public void shouldReturnResponseWithBookWhenRequestIsValid() {
+    public void shouldReturnResponseWithClientWhenRequestIsValid() {
        AddClientRequest validRequest = new AddClientRequest("Andrey", "Pupkin", "1212");
         when(validator.validate(validRequest)).thenReturn(List.of());
         AddClientResponse response = service.execute(validRequest);

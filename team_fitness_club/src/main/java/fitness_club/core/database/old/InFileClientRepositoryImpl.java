@@ -157,6 +157,11 @@ public class InFileClientRepositoryImpl implements ClientRepository {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public boolean findUniqueClient(String personalCode) {
+        return false;
+    }
+
     private void loadClientsFromFile() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
             List<Client> loadedClients = (List<Client>) ois.readObject();

@@ -21,7 +21,6 @@ public class RemoveClientUIAction implements UIAction {
         String clientPersonalCode = scanner.nextLine();
         RemoveClientRequest request = new RemoveClientRequest(clientPersonalCode);
         RemoveClientResponse response = deleteClientService.execute(request);
-        deleteClientService.execute(request);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Alarm: " + coreError.getField() + " " + coreError.getMessage()));

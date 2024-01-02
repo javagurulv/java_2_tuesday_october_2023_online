@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "age_groups")
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -23,4 +22,8 @@ public class AgeGroups {
 
     @Column(name = "age_group", nullable = false)
     private String ageGroup;
+
+    public AgeGroups(String ageGroup) {
+        this.ageGroup =ageGroup;
+    }
 }

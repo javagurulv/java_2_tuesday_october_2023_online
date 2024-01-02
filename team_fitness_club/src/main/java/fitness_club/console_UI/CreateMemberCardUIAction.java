@@ -4,7 +4,13 @@ import fitness_club.core.database.AgeGroupsRepository;
 import fitness_club.core.database.ClientRepository;
 import fitness_club.core.database.WorkoutsRepository;
 import fitness_club.core.domain.FitnessCentres;
+import fitness_club.core.requests.FindUniqueClientRequest;
+import fitness_club.core.requests.GetClientAgeGroupRequest;
+import fitness_club.core.responses.FindUniqueClientResponse;
+import fitness_club.core.responses.GetClientAgeGroupResponse;
 import fitness_club.core.services.AddMemberCardService;
+import fitness_club.core.services.FindUniqueClientService;
+import fitness_club.core.services.GetClientAgeGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +23,7 @@ import java.util.Scanner;
 public class CreateMemberCardUIAction implements UIAction {
 
     @Autowired
-    private AddMemberCardService service;
+    private AddMemberCardService addMemberCardService;
 
     @Autowired
     private ClientRepository clientRepository;
@@ -31,16 +37,42 @@ public class CreateMemberCardUIAction implements UIAction {
     @Autowired
     private FitnessCentres fitnessCentres;
 
+    @Autowired
+    private FindUniqueClientService findUniqueClientService;
+
+    @Autowired
+    private GetClientAgeGroupService getClientAgeGroupService;
 
 
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter existing client personal code: ");
+        System.out.println("Enter client personal code: ");
         String clientPersonalCode = scanner.nextLine();
+        FindUniqueClientRequest uniqueClientRequest = new FindUniqueClientRequest(clientPersonalCode);
+        FindUniqueClientResponse uniqueClientResponse = findUniqueClientService.execute(uniqueClientRequest);
 
-        System.out.println("Choose client age group: ");
+        if (uniqueClientResponse.hasErrors()) {
+            uniqueClientResponse.getErrors().forEach(coreError -> System.out.println("Alarm: " + coreError.getField() + " " + coreError.getMessage()));
+        } else {
+            if (uniqueClientResponse.isClientFound()) {
+
+                System.out.println("Client is found.");
+                System.out.println("Choose client age group: ");
+                GetClientAgeGroupRequest ageGroupRequest = new GetClientAgeGroupRequest();
+                GetClientAgeGroupResponse ageGroupResponse = getClientAgeGroupService.execute(ageGroupRequest);
+                ageGroupResponse.getAgeGroups();
+
+            } else {
+                System.out.println("Client is not found!");
+            }
+        }
+        System.out.println("Choose client age group ID: ");
+
+        GetClientAgeGroupRequest ageGroupRequest = new GetClientAgeGroupRequest();
+        GetClientAgeGroupResponse ageGroupResponse = getClientAgeGroupService.execute(ageGroupRequest);
+        ageGroupResponse.getAgeGroups();
         //printEnumValues(AgeGroups.values());
         //String clientAgeGroup = String.valueOf(AgeGroups.values()[Integer.parseInt(scanner.nextLine())]);
 

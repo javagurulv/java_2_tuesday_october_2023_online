@@ -1,9 +1,12 @@
-package fitness_club.core.services.vlidators;
+package fitness_club.core.services.vlidators.client;
 
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.CoreError;
+import fitness_club.core.services.vlidators.OrderingValidator;
+import fitness_club.core.services.vlidators.PagingValidator;
+import fitness_club.core.services.vlidators.client.SearchClientRequestFieldValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

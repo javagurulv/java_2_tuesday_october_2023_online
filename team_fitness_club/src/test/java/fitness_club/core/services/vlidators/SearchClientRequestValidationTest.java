@@ -4,6 +4,8 @@ import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.CoreError;
+import fitness_club.core.services.vlidators.client.SearchClientRequestFieldValidator;
+import fitness_club.core.services.vlidators.client.SearchClientRequestValidator;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;

@@ -1,4 +1,4 @@
-package fitness_club.core.services.vlidators;
+package fitness_club.core.services.vlidators.client;
 
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.CoreError;

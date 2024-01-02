@@ -2,6 +2,7 @@ package fitness_club.core.services.vlidators;
 
 import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.responses.CoreError;
+import fitness_club.core.services.vlidators.client.RemoveClientRequestValidator;
 import org.junit.Test;
 import java.util.List;
 import static org.junit.Assert.*;

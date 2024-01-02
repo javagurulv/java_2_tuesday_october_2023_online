@@ -3,6 +3,8 @@ package fitness_club.core.services.vlidators;
 import fitness_club.core.requests.ChangeClientWorkoutRequest;
 import fitness_club.core.responses.CoreError;
 import java.util.List;
+
+import fitness_club.core.services.vlidators.workout.ChangeClientWorkoutsValidator;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
