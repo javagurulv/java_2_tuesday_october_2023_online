@@ -1,31 +1,29 @@
 package lv.avangardteen.UIAction;
 
-import lv.avangardteen.core.data.DataComponents;
+import lv.avangardteen.core.database.DataComponents;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.service.ChangeComponentService;
-import lv.avangardteen.core.data.DataComponentsImpl;
-import lv.avangardteen.core.data.DataOrders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 @Component
+@Transactional
 public class ChangeComponentsUIAction implements UIAction {
+
     @Autowired
-    DataOrders dataOrders;
+    private DataComponents dataComponents;
     @Autowired
-    DataComponents dataComponents;
-    @Autowired
-    ChangeComponentService service;
+    private ChangeComponentService service;
 
 
     @Override
     public void execute() {
         try {
-
 
             System.out.println("Введите номер заказа");
             Scanner scanner = new Scanner(System.in);
@@ -40,7 +38,7 @@ public class ChangeComponentsUIAction implements UIAction {
             System.out.println(dataComponents.allBrakes().toString());
             System.out.println("Введите индекс выбранных тормозов");
             Integer brake = scan.nextInt();
-            System.out.println(dataComponents.allArmrest().toString());
+            System.out.println(dataComponents.allFootrest().toString());
             System.out.println("Введите индекс выбранной подножки");
             Integer armrest = scan.nextInt();
             ChangeComponentRequest request = new ChangeComponentRequest(id, wheelFront, wheelBack,

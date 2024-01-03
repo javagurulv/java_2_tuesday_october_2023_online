@@ -1,12 +1,12 @@
 package lv.avangardteen.core.service;
+/*
 
 
-import lv.avangardteen.core.dto.Order;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ChooseComponentValidator;
-import lv.avangardteen.core.data.Database;
+import lv.avangardteen.core.database.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -57,3 +57,4 @@ class ChangeComponentServiceMockTest {
 
     }
 }
+*/

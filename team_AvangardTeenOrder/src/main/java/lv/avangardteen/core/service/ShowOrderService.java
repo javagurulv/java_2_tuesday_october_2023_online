@@ -1,22 +1,31 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.dto.Client;
-import lv.avangardteen.core.dto.UserSizes;
-import lv.avangardteen.core.dto.Wheelchair;
+import lv.avangardteen.core.database.*;
+import lv.avangardteen.core.domain.Client;
+import lv.avangardteen.core.domain.UserSizes;
+import lv.avangardteen.core.domain.Wheelchair;
+import lv.avangardteen.core.domain.WheelchairComponents;
 import lv.avangardteen.core.request.ShowOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.ShowOrderResponse;
 import lv.avangardteen.core.service.validate.ShowOrderValidator;
-import lv.avangardteen.core.data.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component
+@Transactional
 public class ShowOrderService {
     @Autowired
     private Database database;
+    @Autowired
+    private UserSizeDb userSizeDb;
+    @Autowired
+    private WheelchairDB wheelchairDB;
+    @Autowired
+    private WComponentsDB wComponentsDB;
     @Autowired
     private ShowOrderValidator validator;
 
@@ -28,15 +37,18 @@ public class ShowOrderService {
     }
 
     private ShowOrderResponse getShowOrderResponse(ShowOrderRequest request) {
-        Client client = database.getClient(request.getId());
-        UserSizes userSizes = database.getUserSize(request.getId());
-        Wheelchair wheelchair = database.getWheelchair(request.getId());
-        WheelchairComponent wheelchairComponent = database.getWheelchairComponents(request.getId());
+        Client client = database.getClientByOrderId(request.getId());
+        UserSizes userSizes = userSizeDb.getUserSizeByOrderId(request.getId());
+        Wheelchair wheelchair = wheelchairDB.getWheelchair(request.getId());
+        List<WheelchairComponents> wheelchairComponent = wComponentsDB.getChooseComponents(request.getId());
         ShowOrderResponse response = new ShowOrderResponse();
         response.setClient(client);
         response.setUserSizes(userSizes);
         response.setWheelchair(wheelchair);
-        response.setWheelchairComponent(wheelchairComponent);
+        response.setWheelchairComponents(wheelchairComponent);
+        response.setPriceWheelchair(wheelchairDB.getPrice(request.getId()));
+        response.setPriceComponents(wComponentsDB.getPriceComponents(request.getId()));
+        response.setPriceOrder(wheelchairDB.getPrice(request.getId()) + wComponentsDB.getPriceComponents(request.getId()));
 
         return response;
     }

@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 //@Component
 class JdbcIngredientRepositoryImpl implements IngredientRepository {
@@ -20,6 +21,9 @@ class JdbcIngredientRepositoryImpl implements IngredientRepository {
 				ingredient.getType(), ingredient.getTaste()
 		);
 	}
+
+	@Override
+	public Optional<Ingredient> getById(Long id) { return Optional.empty(); }
 
 	@Override
 	public boolean deleteById(Long id) {

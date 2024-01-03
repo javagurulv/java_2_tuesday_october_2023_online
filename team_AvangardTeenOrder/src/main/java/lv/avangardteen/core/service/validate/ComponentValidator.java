@@ -1,70 +1,78 @@
 package lv.avangardteen.core.service.validate;
 
+
+import lv.avangardteen.core.database.DataComponents;
+import lv.avangardteen.core.request.ComponentRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.core.service.WheelchairComponent;
-import lv.avangardteen.core.dto.Category;
-import lv.avangardteen.core.dto.Components;
+import lv.avangardteen.core.domain.Components;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class ComponentValidator {
 
-    public List<CoreError> validate(WheelchairComponent wheelchairComponent) {
+    @Autowired
+    private DataComponents dataComponents;
+
+    public List<CoreError> validate(ComponentRegistrationRequest request) {
         List<CoreError> errors = new ArrayList<>();
-        if (indexWheelFrontIsAbsent(wheelchairComponent)) {
+        if (indexWheelFrontIsAbsent(request)) {
             errors.add(new CoreError("indexFrontWheel", "This index is absent!"));
         }
-        if (indexBackWheelIsAbsent(wheelchairComponent)) {
+        if (indexBackWheelIsAbsent(request)) {
             errors.add(new CoreError("indexBackWheel", "This index is absent!"));
         }
-        if (indexBrakeIsAbsent(wheelchairComponent)) {
+        if (indexBrakeIsAbsent(request)) {
             errors.add(new CoreError("indexBrake", "This index is absent!"));
         }
-        if (indexArmrestIsAbsent(wheelchairComponent)) {
-            errors.add(new CoreError("indexArmrest", "This index is absent!"));
+        if (indexFootrestIsAbsent(request)) {
+            errors.add(new CoreError("indexFootrest", "This index is absent!"));
         }
         return errors;
     }
 
-    private boolean indexWheelFrontIsAbsent(WheelchairComponent wheelchairComponent) {
-
-        Map<Category, Components> componentMap = wheelchairComponent.getComponents();
-        Components componentWheelFront = componentMap.get(Category.FRONT_WHEEL);
-        if (componentWheelFront != null) {
-            return false;
+    private boolean indexWheelFrontIsAbsent(ComponentRegistrationRequest request) {
+        List<Components> componentWheelFront = dataComponents.allFrontWheels();
+        for (Components components : componentWheelFront) {
+            if (components.getId() == request.getWheelFrontChoose()) {
+                return false;
+            }
         }
         return true;
     }
 
-    private boolean indexBackWheelIsAbsent(WheelchairComponent wheelchairComponent) {
-        Map<Category, Components> componentMap = wheelchairComponent.getComponents();
-        Components componentWheelBack = componentMap.get(Category.BACK_WHEEL);
-        if (componentWheelBack != null) {
-            return false;
+    private boolean indexBackWheelIsAbsent(ComponentRegistrationRequest request) {
+        List<Components> componentBackWheel = dataComponents.allBackWheels();
+        for (Components components : componentBackWheel) {
+            if (components.getId() == request.getWheelBackChoose()) {
+                return false;
+            }
         }
         return true;
     }
 
-    private boolean indexBrakeIsAbsent(WheelchairComponent wheelchairComponent) {
-        Map<Category, Components> componentMap = wheelchairComponent.getComponents();
-        Components componentBrake = componentMap.get(Category.BRAKE);
-        if (componentBrake != null) {
-            return false;
+    private boolean indexBrakeIsAbsent(ComponentRegistrationRequest request) {
+        List<Components> componentBrake = dataComponents.allBrakes();
+        for (Components components : componentBrake) {
+            if (components.getId() == request.getBrakeChoose()) {
+                return false;
+            }
         }
         return true;
     }
 
-    private boolean indexArmrestIsAbsent(WheelchairComponent wheelchairComponent) {
-        Map<Category, Components> componentMap = wheelchairComponent.getComponents();
-        Components componentArmrest = componentMap.get(Category.ARMREST);
-        if (componentArmrest != null) {
-            return false;
+    private boolean indexFootrestIsAbsent(ComponentRegistrationRequest request) {
+        List<Components> componentFootrest = dataComponents.allFootrest();
+        for (Components components : componentFootrest) {
+            if (components.getId() == request.getFootrestChoose()) {
+                return false;
+            }
         }
         return true;
     }
 
 }
+

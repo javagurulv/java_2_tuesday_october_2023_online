@@ -1,6 +1,6 @@
 package lv.avangardteen.core.responce;
 
-import lv.avangardteen.core.dto.Client;
+import lv.avangardteen.core.domain.Client;
 
 import java.util.List;
 

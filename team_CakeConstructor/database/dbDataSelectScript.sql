@@ -1,14 +1,14 @@
 SELECT * FROM ingredients;
 SELECT * FROM cakes;
-SELECT * FROM ingredients_cake;
+SELECT * FROM cake_ingredients;
 
 SELECT * FROM ingredients WHERE id = 1002;
 SELECT * FROM cakes WHERE id = 1005;
-SELECT * FROM ingredients_cake WHERE id = 1004;
+SELECT * FROM cake_ingredients WHERE id = 1004;
 
 SELECT type, taste FROM ingredients WHERE id = 1002;
 SELECT cake_name FROM cakes WHERE id = 1005;
-SELECT ingredient_id FROM ingredients_cake WHERE cake_id = 1002;
+SELECT ingredient_id FROM cake_ingredients WHERE cake_id = 1002;
 
 SELECT * FROM ingredients WHERE type = "Biscuit";
 Select * FROM cakes WHERE cake_name = "Lemon Cheese Cake";

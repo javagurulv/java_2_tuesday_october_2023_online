@@ -1,17 +1,19 @@
 package lv.avangardteen.core.request;
 
-import lv.avangardteen.core.dto.Client;
+import lv.avangardteen.core.domain.Client;
 
 public class ChangePersonalDateRequest {
     private Long id;
     private String nameSurname;
+    private Long personalCode;
     private Long phoneNumber;
     private String userAddress;
     Client userRegistration = new Client();
 
-    public ChangePersonalDateRequest(Long id, String nameSurname, Long phoneNumber, String userAddress) {
+    public ChangePersonalDateRequest(Long id, String nameSurname, Long personalCode, Long phoneNumber, String userAddress) {
         this.id = id;
         this.nameSurname = nameSurname;
+        this.personalCode = personalCode;
         this.phoneNumber = phoneNumber;
         this.userAddress = userAddress;
     }
@@ -27,8 +29,9 @@ public class ChangePersonalDateRequest {
 
     public Client setUserRegistration() {
         userRegistration.setNameSurname(nameSurname);
-        userRegistration.setPhoneNumber(phoneNumber);
-        userRegistration.setUserAddress(userAddress);
+        userRegistration.setPersonalCode(personalCode);
+        userRegistration.setPhone(phoneNumber);
+        userRegistration.setAddress(userAddress);
         return userRegistration;
     }
 }

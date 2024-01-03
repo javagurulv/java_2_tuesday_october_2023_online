@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Transactional
@@ -18,6 +19,16 @@ public class OrmIngredientRepositoryImpl implements IngredientRepository {
 	@Override
 	public void save(Ingredient ingredient) {
 		sessionFactory.getCurrentSession().save(ingredient);
+	}
+
+	@Override
+	public Optional<Ingredient> getById(Long id) {
+		Ingredient ingredient = sessionFactory.getCurrentSession().get(Ingredient.class, id);
+		if (ingredient == null) {
+			return Optional.empty();
+		} else {
+			return Optional.of(ingredient);
+		}
 	}
 
 	@Override

@@ -1,11 +1,9 @@
 package lv.avangardteen;
 
-import lv.avangardteen.UIAction.*;
+import lv.avangardteen.UIAction.ProgramMenu;
 import lv.avangardteen.config.OrderListConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.Scanner;
 
 public class OrderApplication {
 

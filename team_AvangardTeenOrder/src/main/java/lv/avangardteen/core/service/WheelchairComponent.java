@@ -1,10 +1,11 @@
 package lv.avangardteen.core.service;
+/*
 
-import lv.avangardteen.core.data.DataComponents;
-import lv.avangardteen.core.data.DataComponentsImpl;
-import lv.avangardteen.core.dto.Category;
-import lv.avangardteen.core.dto.Components;
-import lv.avangardteen.core.dto.Wheelchair;
+import lv.avangardteen.core.database.DataComponents;
+
+import lv.avangardteen.core.domain.Categories;
+import lv.avangardteen.core.domain.Components;
+import lv.avangardteen.core.domain.Wheelchair;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,25 +13,25 @@ import java.util.Map;
 import java.util.Objects;
 
 public class WheelchairComponent extends Wheelchair {
-    private DataComponents dataComponents = new DataComponentsImpl();
-    private Map<Category, Components> components = new HashMap<>();
+    private DataComponents dataComponents ;
+    private Map<Categories, Components> components = new HashMap<>();
 
     public void addComponents(Integer index) {
         List<Components> componentList = dataComponents.getAllComponents();
         for (Components component : componentList) {
-            if (component.getIndex() == index) {
+            if (component.getId() == index) {
                 components.put(component.getCategory(), component);
             }
         }
     }
 
-    public Map<Category, Components> getComponents() {
+    public Map<Categories, Components> getComponents() {
         return this.components;
     }
 
     private double getPriceComponent() {
         double priceComponents = 0.0;
-        for (Map.Entry<Category, Components> component : components.entrySet()) {
+        for (Map.Entry<Categories, Components> component : components.entrySet()) {
             priceComponents += component.getValue().getPrice();
         }
         return priceComponents;
@@ -60,3 +61,4 @@ public class WheelchairComponent extends Wheelchair {
         return Objects.hash(dataComponents, components);
     }
 }
+*/

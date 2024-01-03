@@ -17,8 +17,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
+@Transactional
 public class SearchIngredientsService {
 
     @Value("${search.ordering.enabled}")
