@@ -48,9 +48,9 @@ AUTO_INCREMENT = 1002;
 CREATE TABLE IF NOT EXISTS `member_card` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
 `client_id` BIGINT NOT NULL,
-`age_group_id` VARCHAR(50) NOT NULL,
-`workout_id` VARCHAR(50) NOT NULL,
-`fitness_centre_id` VARCHAR(50) NOT NULL,
+`age_group_id` BIGINT NOT NULL,
+`workout_id` BIGINT NOT NULL,
+`fitness_centre_id` BIGINT NOT NULL,
 `term_of_contract` DATETIME NOT NULL,
 PRIMARY KEY (`id`)
 )
