@@ -16,8 +16,6 @@ import java.util.Optional;
 
 
 @Component
-@NoArgsConstructor
-@AllArgsConstructor
 public class AddMemberCardRequestValidator {
 
     @Autowired

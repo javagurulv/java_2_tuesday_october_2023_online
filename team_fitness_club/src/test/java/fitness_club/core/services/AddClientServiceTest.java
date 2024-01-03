@@ -1,6 +1,6 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.ClientRepositoryImpl;
+import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.services.vlidators.client.AddClientRequestValidator;
 import fitness_club.core.requests.AddClientRequest;
@@ -19,14 +19,13 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-
 @RunWith(MockitoJUnitRunner.class)
 public class AddClientServiceTest {
 
     @Mock
     private AddClientRequestValidator validator;
     @Mock
-    private ClientRepositoryImpl clientRepositoryImpl;
+    private JpaClientRepository clientRepository;
     @InjectMocks
     private AddClientService service;
 
@@ -59,7 +58,7 @@ public class AddClientServiceTest {
         when(validator.validate(request)).thenReturn(List.of());
         AddClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        verify(clientRepositoryImpl).save(any());
+        verify(clientRepository).save(any());
     }
 
     @Test
@@ -79,7 +78,7 @@ public class AddClientServiceTest {
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("firstName",
                 "Field first name must not be empty or contain symbols or numbers!")));
         service.execute(notValidRequest);
-        verifyNoInteractions(clientRepositoryImpl);
+        verifyNoInteractions(clientRepository);
     }
 
     @Test
@@ -87,7 +86,7 @@ public class AddClientServiceTest {
         AddClientRequest validRequest = new AddClientRequest("Andrey", "Pupkin", "1212");
         when(validator.validate(validRequest)).thenReturn(List.of());
         service.execute(validRequest);
-        verify(clientRepositoryImpl).save(argThat(new ClientMatcher("Andrey", "Pupkin", "1212")));
+        verify(clientRepository).save(argThat(new ClientMatcher("Andrey", "Pupkin", "1212")));
     }
 
     @Test

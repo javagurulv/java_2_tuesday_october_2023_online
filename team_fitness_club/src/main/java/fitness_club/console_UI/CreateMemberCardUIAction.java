@@ -6,11 +6,14 @@ import fitness_club.core.database.WorkoutsRepository;
 import fitness_club.core.domain.FitnessCentres;
 import fitness_club.core.requests.FindUniqueClientRequest;
 import fitness_club.core.requests.GetAgeGroupRequest;
+import fitness_club.core.requests.SetAgeGroupToClientRequest;
 import fitness_club.core.responses.FindUniqueClientResponse;
 import fitness_club.core.responses.GetAgeGroupResponse;
+import fitness_club.core.responses.SetAgeGroupToClientResponse;
 import fitness_club.core.services.AddMemberCardService;
 import fitness_club.core.services.FindUniqueClientService;
 import fitness_club.core.services.GetAgeGroupService;
+import fitness_club.core.services.SetAgeGroupToClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +31,9 @@ public class CreateMemberCardUIAction implements UIAction {
     @Autowired
     private GetAgeGroupService getClientAgeGroupService;
 
+    @Autowired
+    private SetAgeGroupToClientService setAgeGroupToClientService;
+
 
     @Override
     public void execute() {
@@ -44,7 +50,7 @@ public class CreateMemberCardUIAction implements UIAction {
             if (uniqueClientResponse.isClientFound()) {
 
                 // System.out.println("Client is found.");
-                System.out.println("Choose client age group ID: ");
+                System.out.println("Client age groups: ");
                 GetAgeGroupRequest ageGroupRequest = new GetAgeGroupRequest();
                 GetAgeGroupResponse ageGroupResponse = getClientAgeGroupService.execute(ageGroupRequest);
                 ageGroupResponse.getAgeGroups().forEach(System.out::println);
@@ -53,7 +59,17 @@ public class CreateMemberCardUIAction implements UIAction {
                 System.out.println("Client is not found!");
             }
         }
-        System.out.println("Choose client age group ID: ");
+        System.out.println("Choose client age group: ");
+        SetAgeGroupToClientRequest ageGroupToClientRequest = new SetAgeGroupToClientRequest();
+        SetAgeGroupToClientResponse ageGroupToClientResponse = setAgeGroupToClientService.execute(ageGroupToClientRequest);
+        if (ageGroupToClientResponse.hasErrors()) {
+            ageGroupToClientResponse.getErrors().forEach(coreError ->
+                    System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage())
+            );
+        } else {
+                    System.out.println("Age group was added to client member card.");
+        }
+
         //printEnumValues(AgeGroups.values());
         //String clientAgeGroup = String.valueOf(AgeGroups.values()[Integer.parseInt(scanner.nextLine())]);
 

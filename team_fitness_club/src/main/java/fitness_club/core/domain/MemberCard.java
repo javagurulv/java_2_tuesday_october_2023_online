@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "member_card")
+@Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

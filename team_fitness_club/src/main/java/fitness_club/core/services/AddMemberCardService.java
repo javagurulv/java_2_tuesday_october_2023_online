@@ -16,8 +16,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-@AllArgsConstructor
-@NoArgsConstructor
 @Component
 @Transactional
 public class AddMemberCardService {

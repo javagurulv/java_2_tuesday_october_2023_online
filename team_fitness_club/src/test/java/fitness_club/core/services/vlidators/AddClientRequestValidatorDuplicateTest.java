@@ -1,6 +1,7 @@
 package fitness_club.core.services.vlidators;
 
 import fitness_club.core.database.ClientRepository;
+import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.CoreError;
@@ -12,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.time.chrono.JapaneseChronology;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -20,7 +22,7 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class AddClientRequestValidatorDuplicateTest {
     @Mock
-    private ClientRepository clientRepository;
+    private JpaClientRepository clientRepository;
     @InjectMocks
     private AddClientRequestValidator validator;
 
@@ -28,11 +30,11 @@ public class AddClientRequestValidatorDuplicateTest {
     public void shouldReturnErrorWhenDuplicateFound() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
                 "12-12");
-        clientRepository = Mockito.mock(ClientRepository.class);
+        clientRepository = Mockito.mock(JpaClientRepository.class);
         validator = new AddClientRequestValidator(clientRepository);
         Client client = new Client("Andrey", "Pupkin",
                 "12-12");
-        Mockito.when(clientRepository.findByPersonalCode("12-12")).thenReturn(List.of(client));
+        Mockito.when(clientRepository.findByPersonalCodeLike("12-12")).thenReturn(List.of(client));
         List<CoreError> errors = validator.validate(request);
         assertTrue(!errors.isEmpty());
         assertEquals(errors.get(0).getField(), "uniqueClient");
@@ -43,9 +45,9 @@ public class AddClientRequestValidatorDuplicateTest {
     public void shouldNotReturnErrorWhenDuplicateNotFound() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
                 "12-12");
-        clientRepository = Mockito.mock(ClientRepository.class);
+        clientRepository = Mockito.mock(JpaClientRepository.class);
         validator = new AddClientRequestValidator(clientRepository);
-        Mockito.when(clientRepository.findByPersonalCode("12-12")).thenReturn(List.of());
+        Mockito.when(clientRepository.findByPersonalCodeLike("12-12")).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }

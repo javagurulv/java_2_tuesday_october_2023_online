@@ -27,26 +27,7 @@ public class AddClientUIAction implements UIAction {
                 toUpperCase().concat(clientLastName.substring(1)) : clientLastName;
         System.out.println("Enter client personal code: ");
         String clientPersonalCode = scanner.nextLine();
-        /*System.out.println("Choose client age group: ");
-        System.out.println("1. Child");
-        System.out.println("2. Adult");
-        System.out.println("3. Senior");
-        ClientAgeGroups clientAgeGroups = GetClientAgeGroupService.getClientAgeGroup(Integer.parseInt(scanner.nextLine()));
-        System.out.println("Choose client workout.");
-        System.out.println("1. GYM");
-        System.out.println("2. Swimming Pool");
-        System.out.println("3. Group Classes");
-        Workouts clientWorkout = GetWorkoutService.getWorkout(Integer.parseInt(scanner.nextLine()));
-        System.out.println("Choose new fitness centre.");
-        System.out.println("1. Akropole Riga");
-        System.out.println("2. Imanta");
-        System.out.println("3. Riga Plaza");
-        System.out.println("4. Saga");
-        System.out.println("5. Zolitude");
-        FitnessCentre fitnessCentre = GetFitnessCentreService.getFitnessCentre(Integer.parseInt(scanner.nextLine()));
 
-
-         */
         AddClientRequest request = new AddClientRequest(clientFirstName, clientLastName, clientPersonalCode);
         AddClientResponse response = service.execute(request);
 
