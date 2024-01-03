@@ -8,7 +8,6 @@ import fitness_club.core.services.vlidators.client.AddClientRequestValidator;
 import fitness_club.core.responses.CoreError;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,9 +19,9 @@ import java.util.List;
 public class AddClientService {
 
     @Autowired
-       private JpaClientRepository clientRepository;
+    private JpaClientRepository clientRepository;
     @Autowired
-      private AddClientRequestValidator validator;
+    private AddClientRequestValidator validator;
 
 
     public AddClientResponse execute(AddClientRequest request) {
