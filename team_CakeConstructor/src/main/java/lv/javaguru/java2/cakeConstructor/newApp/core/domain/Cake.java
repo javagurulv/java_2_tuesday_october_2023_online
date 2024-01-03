@@ -15,7 +15,7 @@ public class Cake {
     @Column(name="cake_name", nullable = false)
     private String cakeName;
 
-    @Column(name="weight", nullable = false)
+    @Column(name="weight")
     private double weight;
 
     public Cake() { }

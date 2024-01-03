@@ -22,6 +22,11 @@ public class InMemoryIngredientRepositoryImpl implements IngredientRepository {
     }
 
     @Override
+    public Optional<Ingredient> getById(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
     public boolean deleteById(Long id) {
         boolean isIngredientDeleted = false;
         Optional<Ingredient> ingredientToDeleteOpt = ingredients.stream()
