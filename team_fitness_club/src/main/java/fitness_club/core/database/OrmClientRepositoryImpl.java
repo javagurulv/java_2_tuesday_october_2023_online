@@ -5,20 +5,29 @@ import fitness_club.core.domain.Client;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 //@Component
 //@Transactional
-public class ClientRepositoryImpl implements ClientRepository {
+public class OrmClientRepositoryImpl implements ClientRepository {
 
     @Autowired private SessionFactory sessionFactory;
 
     @Override
     public void save(Client client) {
         sessionFactory.getCurrentSession().save(client);
+    }
+
+    @Override
+    public Optional<Client> findClintById(Long id) {
+              Client client = sessionFactory.getCurrentSession().get(Client.class, id);
+            if (client== null) {
+                return Optional.empty();
+            } else {
+                return Optional.of(client);
+            }
     }
 
     @Override

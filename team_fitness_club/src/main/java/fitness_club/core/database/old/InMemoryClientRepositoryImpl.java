@@ -20,6 +20,11 @@ public class InMemoryClientRepositoryImpl implements ClientRepository {
         clients.add(client);
     }
 
+    @Override
+    public Optional<Client> findClintById(Long id) {
+        return Optional.empty();
+    }
+
     public boolean deleteByPersonalCode(String personalCode) {
         boolean isClientDeleted = false;
         Optional<Client> clientToDeleteOpt = clients.stream()

@@ -26,6 +26,11 @@ public class InFileClientRepositoryImpl implements ClientRepository {
         saveClient(clients);
     }
 
+    @Override
+    public Optional<Client> findClintById(Long id) {
+        return Optional.empty();
+    }
+
     public boolean deleteByPersonalCode(String personalCode) {
         boolean isClientDeleted = false;
         Optional<Client> clientToDeleteOpt = clients.stream()
