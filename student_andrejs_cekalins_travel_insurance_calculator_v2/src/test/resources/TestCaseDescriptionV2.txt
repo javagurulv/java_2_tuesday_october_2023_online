@@ -76,11 +76,11 @@ Response: error code = ERROR_CODE_8.
 
 Test_case_20:
 Request:  selectedRisks is not supported (one risk), RISK_TYPE - TRAVEL_MEDICAL.
-Response: multiple error codes = ERROR_CODE_5.
+Response: multiple error codes = ERROR_CODE_9
 
 Test_case_21:
 Request:  selectedRisks is not supported (two risks), RISK_TYPE - TRAVEL_MEDICAL.
-Response: multiple error codes = ERROR_CODE_8.
+Response: multiple error codes = ERROR_CODE_9.
 
 Test_case_22:
 Request: country is empty, RISK_TYPE - TRAVEL_MEDICAL.
