@@ -110,9 +110,23 @@ Test_case_28:
 Request: first person medicalRiskLimitLevel is null, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_13.
 
-Test_case_28:
+Test_case_29:
 Request: multiple persons medicalRiskLimitLevel is null, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_13.
+
+Test_case_30:
+Request: country is not supported, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_15.
+
+Test_case_31:
+Request: medicalRiskLimitLevel value not supported
+for one person, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_14.
+
+Test_case_32:
+Request: medicalRiskLimitLevel value not supported
+for multiple persons, RISK_TYPE - TRAVEL_MEDICAL.
+Response: multiple error codes = ERROR_CODE_14.
 
 
 
