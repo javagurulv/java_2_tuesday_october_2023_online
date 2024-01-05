@@ -1,8 +1,6 @@
 package lv.avangardteen.UIAction;
 
-import lv.avangardteen.core.request.ChangePersonalSizeRequest;
 import lv.avangardteen.core.request.UserSizeRegistrationRequest;
-import lv.avangardteen.core.responce.ChangePersonalSizeResponse;
 import lv.avangardteen.core.responce.UserSizeRegistrationResponse;
 import lv.avangardteen.core.service.UserSizeRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;

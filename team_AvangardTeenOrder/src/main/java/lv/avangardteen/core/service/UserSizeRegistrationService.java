@@ -1,15 +1,12 @@
 package lv.avangardteen.core.service;
 
-import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.database.UserSizeDb;
 import lv.avangardteen.core.database.WheelchairDB;
-import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.domain.Wheelchair;
 import lv.avangardteen.core.request.UserSizeRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.UserSizeRegistrationResponse;
 import lv.avangardteen.core.service.validate.PersonalSizeValidator;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
