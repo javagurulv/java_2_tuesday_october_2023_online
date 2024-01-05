@@ -14,8 +14,12 @@ public class EmptySelectedRiskValidation extends TravelAgreementFieldValidationI
     private ValidationErrorFactory errorFactory;
 
     public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {
-        return (agreement.getSelectedRisks() == null || agreement.getSelectedRisks().isEmpty())
+        return (selectedRiskIsNullOrBlank(agreement))
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_8"))
                 : Optional.empty();
+    }
+
+    private boolean selectedRiskIsNullOrBlank(AgreementDTO agreement) {
+        return agreement.getSelectedRisks() == null || agreement.getSelectedRisks().isEmpty();
     }
 }
