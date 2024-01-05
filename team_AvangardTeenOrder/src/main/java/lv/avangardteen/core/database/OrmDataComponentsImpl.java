@@ -1,6 +1,5 @@
 package lv.avangardteen.core.database;
 
-import lv.avangardteen.core.domain.Category;
 import lv.avangardteen.core.domain.Components;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -20,24 +19,8 @@ public class OrmDataComponentsImpl implements DataComponents {
     private SessionFactory sessionFactory;
 
     @Override
-    public void addCategory(Category category) {
-        sessionFactory.getCurrentSession().save(category);
-    }
-
-    @Override
-    public List<Category> getCategories() {
-        return sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Category", Category.class)
-                .getResultList();
-    }
-
-    @Override
-    public void addComponent(String categoryTitle, String marking, String information, Double price) {
-
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("INSERT INTO Components c SELECT FROM Category category_key = :category.id" +
-                        "WHERE category.title = :title");
-        query.setParameter("title", categoryTitle);
+    public void addComponent(Components components) {
+        sessionFactory.getCurrentSession().save(components);
     }
 
     @Override

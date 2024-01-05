@@ -22,6 +22,12 @@ public class WheelchairComponents {
 
     public WheelchairComponents() {}
 
+    public WheelchairComponents(Long id, Wheelchair wheelchair, Components components) {
+        this.id = id;
+        this.wheelchair = wheelchair;
+        this.components = components;
+    }
+
     public Long getId() {
         return id;
     }
@@ -29,7 +35,6 @@ public class WheelchairComponents {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public Wheelchair getWheelchair() {
         return wheelchair;
@@ -64,8 +69,8 @@ public class WheelchairComponents {
     public String toString() {
         return "WheelchairComponents{" +
                 "id=" + id +
-                ", wheelchair=" + wheelchair +
-                ", components=" + components +
+                ", wheelchair =" + wheelchair +
+                ", components =" + components +
                 '}';
     }
 }

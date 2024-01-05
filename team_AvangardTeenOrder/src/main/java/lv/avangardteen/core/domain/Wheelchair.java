@@ -12,6 +12,10 @@ public class Wheelchair {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @OneToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
+
     @Column(name = "seatWidth", nullable = false)
     Integer seatWidth;
 
@@ -30,12 +34,30 @@ public class Wheelchair {
     public Wheelchair() {
     }
 
+    public Wheelchair(Long id, Client client, Integer seatWidth, Integer seatDepth, Integer footrestLength, Integer bachHeight, double price) {
+        this.id = id;
+        this.client = client;
+        this.seatWidth = seatWidth;
+        this.seatDepth = seatDepth;
+        this.footrestLength = footrestLength;
+        this.bachHeight = bachHeight;
+        this.price = price;
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Integer getSeatWidth() {
@@ -70,12 +92,11 @@ public class Wheelchair {
         this.bachHeight = bachHeight;
     }
 
-    public double getPriceWheelchair() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPriceWheelchair(double price) {
-
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -84,16 +105,12 @@ public class Wheelchair {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Wheelchair that = (Wheelchair) o;
-        return Double.compare(that.price, price) == 0 && Objects.equals(id, that.id)
-                && Objects.equals(seatWidth, that.seatWidth)
-                && Objects.equals(seatDepth, that.seatDepth)
-                && Objects.equals(footrestLength, that.footrestLength)
-                && Objects.equals(bachHeight, that.bachHeight);
+        return Double.compare(that.price, price) == 0 && Objects.equals(id, that.id) && Objects.equals(client, that.client) && Objects.equals(seatWidth, that.seatWidth) && Objects.equals(seatDepth, that.seatDepth) && Objects.equals(footrestLength, that.footrestLength) && Objects.equals(bachHeight, that.bachHeight);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, seatWidth, seatDepth, footrestLength, bachHeight, price);
+        return Objects.hash(id, client, seatWidth, seatDepth, footrestLength, bachHeight, price);
     }
 
     @Override
@@ -103,8 +120,10 @@ public class Wheelchair {
                 " глубина сиденья = " + getSeatDepth() + '\n' +
                 " длина подставки для ног = " + getFootrestLength() + '\n' +
                 " высота спинки = " + getBachHeight() + '\n' +
-                " стоимость = " + price + '\n';
+                " стоимость = " + price + ';';
 
     }
+
+
 }
 

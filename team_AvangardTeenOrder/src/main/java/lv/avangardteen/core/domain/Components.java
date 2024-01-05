@@ -12,9 +12,8 @@ public class Components {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "category_key")
-    private Category category;
+    @Column(name = "category", nullable = false)
+    private String category;
 
     @Column(name = "marking", nullable = false)
     private String marking;
@@ -25,14 +24,7 @@ public class Components {
     @Column(name = "price", nullable = false)
     private double price;
 
-    public Components(){}
-
-    public Components(Integer id, Category category, String marking, String information, double price) {
-        this.id = id;
-        this.category = category;
-        this.marking = marking;
-        this.information = information;
-        this.price = price;
+    public Components() {
     }
 
     public Integer getId() {
@@ -43,46 +35,36 @@ public class Components {
         this.id = id;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getMarking() {
+        return marking;
     }
 
     public void setMarking(String marking) {
         this.marking = marking;
     }
 
-    public void setInformation(String information) {
-        this.information = information;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-
-    public String getMarking() {
-        return marking;
-    }
-
     public String getInformation() {
         return information;
+    }
+
+    public void setInformation(String information) {
+        this.information = information;
     }
 
     public double getPrice() {
         return price;
     }
 
-    @Override
-    public String toString() {
-        return " индекс =" + id +
-                ", марка компонента - '" + marking + '\'' +
-                ", характеристика:'" + information + '\'' +
-                ", цена=" + price +
-                '}' + '\n';
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
@@ -97,4 +79,14 @@ public class Components {
     public int hashCode() {
         return Objects.hash(id, category, marking, information, price);
     }
+
+    @Override
+    public String toString() {
+        return " индекс = " + id +
+                ", характеристика: " + information +
+                ", цена = " + price +
+                ';' + '\n';
+    }
+
+
 }
