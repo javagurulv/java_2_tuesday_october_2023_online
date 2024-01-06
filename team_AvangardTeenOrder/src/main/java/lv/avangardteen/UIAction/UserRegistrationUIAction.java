@@ -37,6 +37,7 @@ public class UserRegistrationUIAction implements UIAction {
                 System.out.println("Ваши данные не сохранены");
             } else {
                 System.out.println("Ваши данные сохранены");
+
             }
         } catch (InputMismatchException e) {
             System.out.println("Must input only digits!");

@@ -1,6 +1,7 @@
 package lv.avangardteen.core.service;
 
 import lv.avangardteen.core.database.*;
+import lv.avangardteen.core.domain.Components;
 import lv.avangardteen.core.request.ComponentRegistrationRequest;
 import lv.avangardteen.core.responce.ComponentRegistrationResponse;
 import lv.avangardteen.core.responce.CoreError;
@@ -15,9 +16,7 @@ import java.util.List;
 @Transactional
 public class ComponentRegistrationService {
     @Autowired
-    private Database database;
-    @Autowired
-    private UserSizeDb userSizeDb;
+    private DataComponents dataComponents;
     @Autowired
     private WheelchairDB wheelchairDB;
     @Autowired
@@ -35,18 +34,27 @@ public class ComponentRegistrationService {
     }
 
     private ComponentRegistrationResponse getResponse(ComponentRegistrationRequest request) {
+
         ComponentRegistrationResponse response = new ComponentRegistrationResponse();
+
         response.setWheelFrontChoose(request.getWheelFrontChoose());
         response.setWheelBackChoose(request.getWheelBackChoose());
         response.setBrakeChoose(request.getBrakeChoose());
         response.setFootrestChoose(request.getFootrestChoose());
+
         Long idWheelchair = wheelchairDB.getIdWheelchair();
-        wComponentsDB.addWheelchairComponents(idWheelchair, request.getWheelFrontChoose());
-        wComponentsDB.addWheelchairComponents(idWheelchair, request.getWheelBackChoose());
-        wComponentsDB.addWheelchairComponents(idWheelchair, request.getBrakeChoose());
-        wComponentsDB.addWheelchairComponents(idWheelchair, request.getFootrestChoose());
-        database.setOrderId(idWheelchair);
-        userSizeDb.setOrderId(idWheelchair);
+        wComponentsDB.deleteWheelchairComponents(idWheelchair);
+
+        Components componentFrontWheel = dataComponents.getComponent(request.getWheelFrontChoose());
+        Components componentBackWheel = dataComponents.getComponent(request.getWheelBackChoose());
+        Components componentBrake = dataComponents.getComponent(request.getBrakeChoose());
+        Components componentFootrest = dataComponents.getComponent(request.getFootrestChoose());
+
+        wComponentsDB.addWheelchairComponents(wheelchairDB.getWheelchair(idWheelchair), componentFrontWheel);
+        wComponentsDB.addWheelchairComponents(wheelchairDB.getWheelchair(idWheelchair), componentBackWheel);
+        wComponentsDB.addWheelchairComponents(wheelchairDB.getWheelchair(idWheelchair), componentBrake);
+        wComponentsDB.addWheelchairComponents(wheelchairDB.getWheelchair(idWheelchair), componentFootrest);
+
         return response;
     }
 

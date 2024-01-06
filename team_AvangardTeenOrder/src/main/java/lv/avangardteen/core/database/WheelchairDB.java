@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface WheelchairDB {
     List<Wheelchair> getWheelchair();
-    void addWheelchair(Wheelchair wheelchair);
+    Long addWheelchair(Wheelchair wheelchair);
     void updateWheelchair(Long id, Wheelchair wheelchair);
     Wheelchair getWheelchair(Long id);
     Long getIdWheelchair();

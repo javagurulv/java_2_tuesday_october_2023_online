@@ -48,11 +48,13 @@ public class OrmDataComponentsImpl implements DataComponents {
 
     @Override
     public List<Components> allFrontWheels() {
+
+
         Query query = sessionFactory.getCurrentSession()
+
                 .createQuery("SELECT c FROM Components " +
-                        "JOIN Category ON category.id  = components.category_key" +
-                        "WHERE category.title = title");
-        query.setParameter("title", "FRONT-WHEEL");
+                        "WHERE category = FRONT-WHEEL");
+       // query.setParameter("category", "FRONT-WHEEL");
 
         return query.getResultList();
     }
@@ -61,9 +63,8 @@ public class OrmDataComponentsImpl implements DataComponents {
     public List<Components> allFootrest() {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("SELECT c FROM Components " +
-                        "JOIN Category ON category.id  = components.category_key" +
-                        "WHERE category.title = title");
-        query.setParameter("title", "FOOTREST");
+                        "WHERE category = :category");
+        query.setParameter("category", "FOOTREST");
         return query.getResultList();
     }
 
@@ -71,9 +72,8 @@ public class OrmDataComponentsImpl implements DataComponents {
     public List<Components> allBrakes() {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("SELECT c FROM Components " +
-                        "JOIN Category ON category.id  = components.category_key" +
-                        "WHERE category.title = title");
-        query.setParameter("title", "BRAKE");
+                        "WHERE category = :category");
+        query.setParameter("category", "BRAKE");
         return query.getResultList();
     }
 
@@ -81,9 +81,8 @@ public class OrmDataComponentsImpl implements DataComponents {
     public List<Components> allBackWheels() {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("SELECT c FROM Components " +
-                        "JOIN Category ON category.id  = components.category_key" +
-                        "WHERE category.title = title");
-        query.setParameter("title", "BACK-WHEEL");
+                        "WHERE category = :category");
+        query.setParameter("category", "BACK-WHEEL");
         return query.getResultList();
     }
 

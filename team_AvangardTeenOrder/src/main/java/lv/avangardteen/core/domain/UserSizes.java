@@ -29,9 +29,7 @@ public class UserSizes {
 
       public UserSizes() {}
 
-    public UserSizes(Long id, Client client, Integer pelvisWidth, Integer thighLength, Integer backHeight, Integer shinLength) {
-        this.id = id;
-        this.client = client;
+    public UserSizes( Client client, Integer pelvisWidth, Integer thighLength, Integer backHeight, Integer shinLength) {this.client = client;
         this.pelvisWidth = pelvisWidth;
         this.thighLength = thighLength;
         this.backHeight = backHeight;

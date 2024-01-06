@@ -34,8 +34,15 @@ public class Wheelchair {
     public Wheelchair() {
     }
 
-    public Wheelchair(Long id, Client client, Integer seatWidth, Integer seatDepth, Integer footrestLength, Integer bachHeight, double price) {
-        this.id = id;
+    public Wheelchair(Integer seatWidth, Integer seatDepth, Integer footrestLength, Integer bachHeight) {
+        this.seatWidth = seatWidth;
+        this.seatDepth = seatDepth;
+        this.footrestLength = footrestLength;
+        this.bachHeight = bachHeight;
+
+    }
+
+    public Wheelchair(Client client, Integer seatWidth, Integer seatDepth, Integer footrestLength, Integer bachHeight, double price) {
         this.client = client;
         this.seatWidth = seatWidth;
         this.seatDepth = seatDepth;

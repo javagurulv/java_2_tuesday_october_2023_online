@@ -37,7 +37,7 @@ public class ShowOrderService {
     }
 
     private ShowOrderResponse getShowOrderResponse(ShowOrderRequest request) {
-        Client client = database.getClientByOrderId(request.getId());
+        Client client = database.getClientById(request.getId());
         UserSizes userSizes = userSizeDb.getUserSizeByOrderId(request.getId());
         Wheelchair wheelchair = wheelchairDB.getWheelchair(request.getId());
         List<WheelchairComponents> wheelchairComponent = wComponentsDB.getChooseComponents(request.getId());

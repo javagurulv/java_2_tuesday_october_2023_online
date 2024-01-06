@@ -29,35 +29,35 @@ class OrderIdValidatorTest {
 
     @Test
     public void getIdIsAbsent() {
-        Mockito.when(database.getClientByOrderId(1l)).thenReturn(new Client());
+        Mockito.when(database.getClientById(1l)).thenReturn(new Client());
         List<CoreError> errors = idValidator.validate(null);
         assertEquals(errors.size(), 1);
     }
 
     @Test
     public void getIdIsNull() {
-        Mockito.when(database.getClientByOrderId(1l)).thenReturn(new Client());
+        Mockito.when(database.getClientById(1l)).thenReturn(new Client());
         List<CoreError> errors = idValidator.validate(0l);
         assertEquals(errors.size(), 1);
     }
 
     @Test
     public void getClientIsAbsent() {
-        Mockito.when(database.getClientByOrderId(1l)).thenReturn(null);
+        Mockito.when(database.getClientById(1l)).thenReturn(null);
         List<CoreError> errors = idValidator.validate(1l);
         assertEquals(errors.size(), 1);
     }
 
     @Test
     public void getClientIsPresent() {
-        Mockito.when(database.getClientByOrderId(1l)).thenReturn(new Client());
+        Mockito.when(database.getClientById(1l)).thenReturn(new Client());
         List<CoreError> errors = idValidator.validate(1l);
         assertEquals(errors.size(), 0);
     }
 
     @Test
     public void getClientIsNull() {
-        Mockito.when(database.getClientByOrderId(1l)).thenReturn(new Client());
+        Mockito.when(database.getClientById(1l)).thenReturn(new Client());
         List<CoreError> errors = idValidator.validate(2l);
         assertEquals(errors.size(), 1);
     }

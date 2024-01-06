@@ -33,7 +33,7 @@ public class OrderIdValidator {
     }
 
     private boolean validateOrder(Long id) {
-        Client client = database.getClientByOrderId(id);
+        Client client = database.getClientById(id);
         if (!isEmpty(id)
         && client == null) {
             return true;

@@ -35,6 +35,7 @@ public class UserRegistrationService {
     private UserRegistrationResponse getResponse(UserRegistrationRequest request) {
         Client userRegistration = request.getUserRegistration();
         database.addUser(userRegistration);
+        System.out.println("id = " + database.addUser(userRegistration));
         return new UserRegistrationResponse(userRegistration);
     }
 }

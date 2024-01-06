@@ -18,13 +18,14 @@ public class ComponentRegistrationUIAction implements UIAction {
     @Autowired
     private DataComponents dataComponents;
     @Autowired
-    private WheelchairDB wheelchairDB;
-    @Autowired
     private ComponentRegistrationService service;
 
     @Override
     public void execute() {
         try {
+            System.out.println("Введите номер заказа");
+            Scanner scanner = new Scanner(System.in);
+            long id = scanner.nextLong();
             System.out.println(dataComponents.allFrontWheels().toString());
             Scanner scan = new Scanner(System.in);
             System.out.println("Введите индекс передних колес коляски");
@@ -38,7 +39,7 @@ public class ComponentRegistrationUIAction implements UIAction {
             System.out.println(dataComponents.allFootrest().toString());
             System.out.println("Введите индекс выбранной подножки");
             Integer footrest = scan.nextInt();
-            ComponentRegistrationRequest request = new ComponentRegistrationRequest(wheelFront, wheelBack,
+            ComponentRegistrationRequest request = new ComponentRegistrationRequest(id, wheelFront, wheelBack,
                     brake, footrest);
             ComponentRegistrationResponse response = service.execute(request);
 
@@ -48,7 +49,6 @@ public class ComponentRegistrationUIAction implements UIAction {
                 System.out.println("Ваш выбор не сохранен");
             } else {
                 System.out.println("Ваш выбор сохранен");
-                System.out.println("Номер вашего заказа" + wheelchairDB.getIdWheelchair());
             }
         } catch (InputMismatchException e) {
             System.out.println("Must input only digits!");

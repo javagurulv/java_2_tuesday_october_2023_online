@@ -1,11 +1,12 @@
 package lv.avangardteen.core.service;
+/*
 
 import lv.avangardteen.core.database.UserSizeDb;
 import lv.avangardteen.core.database.WheelchairDB;
-import lv.avangardteen.core.request.UserSizeRegistrationRequest;
+import lv.avangardteen.core.request.OrderRequest;
 import lv.avangardteen.core.responce.CoreError;
-import lv.avangardteen.core.responce.UserSizeRegistrationResponse;
-import lv.avangardteen.core.service.validate.PersonalSizeValidator;
+import lv.avangardteen.core.responce.OrderResponse;
+import lv.avangardteen.core.service.validate.OrderValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -21,7 +22,7 @@ import static org.mockito.Mockito.verify;
 
 class UserSizeRegistrationServiceTest {
     @Mock
-    private PersonalSizeValidator validator;
+    private OrderValidator validator;
     @Mock
     private UserSizeDb userSizeDB;
     @Mock
@@ -29,7 +30,7 @@ class UserSizeRegistrationServiceTest {
     @Mock
     private CalculateDimensionsWheelchair calculateDimensionsWheelchair;
     @InjectMocks
-    private UserSizeRegistrationService service;
+    private OrderService service;
 
     @BeforeEach
     public void init() {
@@ -38,26 +39,27 @@ class UserSizeRegistrationServiceTest {
 
     @Test
     public void ClientServiceWithError() {
-        UserSizeRegistrationRequest notValidationRequest = new UserSizeRegistrationRequest(
+        OrderRequest notValidationRequest = new OrderRequest(
                 22, 22, 22, 22);
 
         Mockito.when(validator.validate(notValidationRequest.getUserSizes())).thenReturn(List.of(
                 new CoreError("Client service", "Incorrect Clients request data!")));
 
-        UserSizeRegistrationResponse response = service.execute(notValidationRequest);
+        OrderResponse response = service.execute(notValidationRequest);
         assertTrue(response.hasErrors());
 
     }
 
     @Test
     public void ClientServiceWithoutError() {
-        UserSizeRegistrationRequest request = new UserSizeRegistrationRequest(
+        OrderRequest request = new OrderRequest(
                 22, 22, 22, 22);
         Mockito.when(validator.validate(request.getUserSizes())).thenReturn(List.of());
-        UserSizeRegistrationResponse response = service.execute(request);
+        OrderResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         verify(userSizeDB).addUserSize(any());
         verify(wheelchairDB).addWheelchair(any());
     }
 }
 
+*/

@@ -54,11 +54,9 @@ CREATE TABLE IF NOT EXISTS  `order_components` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 1;
 
-ALTER TABLE `order_components`
-add foreign key (component_id) REFERENCES `components` (id);
+ALTER TABLE `order_components` ADD foreign key (component_id) REFERENCES `components` (id);
 
-ALTER TABLE `order_components`
-add foreign key (wheelchair_id) REFERENCES `wheelchair` (id)  ON DELETE CASCADE;
+ALTER TABLE `order_components` ADD foreign key (wheelchair_id) REFERENCES `wheelchair` (id)  ON DELETE CASCADE;
 
 CREATE UNIQUE INDEX order_components_wheelchair_index ON order_components(wheelchair_id);
 

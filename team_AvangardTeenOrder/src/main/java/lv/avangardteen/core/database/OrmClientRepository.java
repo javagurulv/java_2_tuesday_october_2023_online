@@ -25,8 +25,18 @@ public class OrmClientRepository implements Database {
     }
 
     @Override
-    public void addUser(Client client) {
-        sessionFactory.getCurrentSession().save(client);
+    public Long addUser(Client client) {
+        Long id = (Long)sessionFactory.getCurrentSession().save(client);
+        return id;
+    }
+
+    @Override
+    public Client getClientById(Long id) {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "select c FROM Client c where id = :id", Client.class);
+        query.setParameter("id", id);
+        Client client = (Client) query.getSingleResult();
+        return client;
     }
 
     @Override
@@ -49,14 +59,7 @@ public class OrmClientRepository implements Database {
         return result == 1;
     }
 
-    @Override
-    public Client getClientByOrderId(Long idOrder) {
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "select c FROM Client c where order_id = :idOrder", Client.class);
-        query.setParameter("idOrder", idOrder);
-        Client client = (Client) query.getSingleResult();
-        return client;
-    }
+
 
     @Override
     public Client findBySurnameAndPersonalCode(String surname, Long personalCode) {
@@ -64,6 +67,9 @@ public class OrmClientRepository implements Database {
                 "select c FROM Client c where name_surname = :surname AND personal_code = :personalCode");
         query.setParameter("name_surname", surname);
         query.setParameter("personal_code", personalCode);
+        if(query.getSingleResult() == null) {
+            return null;
+        }
         return (Client) query.getSingleResult();
     }
 

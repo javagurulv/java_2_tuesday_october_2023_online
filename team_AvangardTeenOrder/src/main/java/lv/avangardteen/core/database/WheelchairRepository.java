@@ -24,8 +24,9 @@ public class WheelchairRepository implements WheelchairDB {
     }
 
     @Override
-    public void addWheelchair(Wheelchair wheelchair) {
-        sessionFactory.getCurrentSession().save(wheelchair);
+    public Long addWheelchair(Wheelchair wheelchair) {
+        Long id = (Long)sessionFactory.getCurrentSession().save(wheelchair);
+        return id;
 
     }
 

@@ -1,9 +1,9 @@
 package lv.avangardteen.UIAction;
+/*
 
 import lv.avangardteen.core.database.DataComponents;
 import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.responce.ChangeComponentResponse;
-import lv.avangardteen.core.service.ChangeComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,3 +60,4 @@ public class ChangeComponentsUIAction implements UIAction {
 }
 
 
+*/

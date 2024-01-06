@@ -25,9 +25,8 @@ public class Client {
 
      public Client(){}
 
-    public Client(Long id, String nameSurname, Long personalCode, Long phone, String address) {
-        this.id = id;
-        this.nameSurname = nameSurname;
+    public Client(String nameSurname, Long personalCode, Long phone, String address) {
+         this.nameSurname = nameSurname;
         this.personalCode = personalCode;
         this.phone = phone;
         this.address = address;

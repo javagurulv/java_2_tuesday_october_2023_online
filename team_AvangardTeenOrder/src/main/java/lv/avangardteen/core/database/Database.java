@@ -9,13 +9,13 @@ public interface Database {
 
     List<Client> getClients();
 
-    void addUser(Client client);
+    Long addUser(Client client);
 
     void updateUser(Long id, Client client);
 
     boolean deleteClientByOrderId(Long id);
 
-    Client getClientByOrderId(Long idOrder);
+    Client getClientById(Long id);
 
     Client findBySurnameAndPersonalCode(String surname, Long personalCode);
 

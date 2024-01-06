@@ -1,5 +1,7 @@
 package lv.avangardteen.core.database;
 
+import lv.avangardteen.core.domain.Components;
+import lv.avangardteen.core.domain.Wheelchair;
 import lv.avangardteen.core.domain.WheelchairComponents;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -26,12 +28,12 @@ public class WheelchairComponentsRepository implements WComponentsDB {
     }
 
     @Override
-    public void addWheelchairComponents(Long idWheelchair, Integer chooseComponent) {
+    public void addWheelchairComponents(Wheelchair wheelchair, Components components) {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("INSERT INTO order_components WHERE wheelchair_id = :wheelchair.id" +
                         "AND components_id = :components.id");
-        query.setParameter("wheelchair_id", idWheelchair);
-        query.setParameter("component_id", chooseComponent);
+        query.setParameter("wheelchair_id", wheelchair);
+        query.setParameter("component_id", components);
     }
 
     @Override

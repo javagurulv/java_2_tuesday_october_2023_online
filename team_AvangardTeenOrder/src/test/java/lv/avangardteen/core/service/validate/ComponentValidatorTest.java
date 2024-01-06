@@ -1,54 +1,73 @@
 package lv.avangardteen.core.service.validate;
 /*
 
+
+import lv.avangardteen.DatabaseCleaner;
+import lv.avangardteen.config.OrderListConfiguration;
 import lv.avangardteen.core.database.DataComponents;
 import lv.avangardteen.core.database.OrmDataComponentsImpl;
-import lv.avangardteen.core.domain.Category;
+import lv.avangardteen.core.database.WComponentsDB;
 import lv.avangardteen.core.domain.Components;
-import lv.avangardteen.core.request.ChangeComponentRequest;
 import lv.avangardteen.core.request.ComponentRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
-@Ignore
-class ComponentValidatorTest {
-    @Mock
-    private DataComponents components;
-    @InjectMocks
-    private ComponentValidator validator;
 
-    @BeforeEach
-    public void init() {
-        MockitoAnnotations.openMocks(this);
+
+@Ignore
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {DataComponents.class})
+@Sql({"/schema.sql"})
+class ComponentValidatorTest {
+    @Autowired
+    private DatabaseCleaner databaseCleaner;
+    @Autowired
+    private ComponentValidator componentValidator;
+    @Autowired
+    private OrmDataComponentsImpl dataComponents;
+
+    @Before
+    public void setup() {
+        databaseCleaner.clean();
     }
 
     @Test
     public void wheelFrontChooseIsAbsent() {
-
+        dataComponents.addComponent(new Components("FRONT_WHEEL", "MH01", "INFORMATION", 1.1));
+        dataComponents.addComponent(new Components("BACK_WHEEL", "MN01", "INFORMATION1", 2.2));
+        dataComponents.addComponent(new Components("BRAKE", "MF01", "INFORMATION2", 3.3));
+        dataComponents.addComponent(new Components("FOOTREST", "MK01", "INFORMATION3", 4.4));
         ComponentRegistrationRequest request = new ComponentRegistrationRequest(0, 21, 31, 41);
-        when(components.allFrontWheels()).thenReturn(List.of(new Components(11, new Category(), "mmm", "nnn", 9.9)));
-        when(components.allBackWheels()).thenReturn(List.of(new Components(21, new Category(), "mmm", "nnn", 9.9)));
-        when(components.allBrakes()).thenReturn(List.of(new Components(31, new Category(), "mmm", "nnn", 9.9)));
-        when(components.allFootrest()).thenReturn(List.of(new Components(41, new Category(), "mmm", "nnn", 9.9)));
-        validator = new ComponentValidator();
-        List<CoreError> errors = validator.validate(request);
+        componentValidator = new ComponentValidator();
+
+        Components components = dataComponents.getComponent(1);
+        assertEquals(1, components.getId());
+
+
+
+
+       */
+/* List<CoreError> errors = componentValidator.validate(request);
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "indexFrontWheel");
-        assertEquals(errors.get(0).getMessage(), "This index is absent!");
+        assertEquals(errors.get(0).getMessage(), "This index is absent!");*//*
+
     }
 
-    @Test
+   */
+/* @Test
     public void indexBackWheelIsAbsent() {
         ComponentRegistrationRequest request = new ComponentRegistrationRequest(11, 0, 31, 41);
         validator = new ComponentValidator();
@@ -62,7 +81,7 @@ class ComponentValidatorTest {
 
     @Test
     public void indexBrakeIsAbsent() {
-        ComponentRegistrationRequest request = new ComponentRegistrationRequest( 11, 21, 0, 41);
+        ComponentRegistrationRequest request = new ComponentRegistrationRequest(11, 21, 0, 41);
         validator = new ComponentValidator();
         List<CoreError> errors = validator.validate(request);
         assertFalse(errors.isEmpty());
@@ -97,6 +116,8 @@ class ComponentValidatorTest {
         assertEquals(errors.get(1).getField(), "indexArmrest");
         assertEquals(errors.get(1).getMessage(), "This index is absent!");
 
-    }
+    }*//*
+
 }
+
 */

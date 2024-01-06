@@ -7,20 +7,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class CalculateDimensionsWheelchair {
 
-    private UserSizes userSizes;
+    Wheelchair wheelchair = new Wheelchair();
 
-    private Wheelchair wheelchair = new Wheelchair();
-
-    public Wheelchair setDimensions(UserSizes userSizes) {
-        wheelchair.setSeatWidth(findSeatWidth(userSizes));
-        wheelchair.setSeatDepth(findSeatDepth(userSizes));
-        wheelchair.setFootrestLength(findFootrestLength(userSizes));
-        wheelchair.setBachHeight(userSizes.getBackHeight());
+    public Wheelchair setDimensions(Integer pelvisWidth, Integer thighLength,
+                                    Integer shinLength, Integer backHeight) {
+        wheelchair.setSeatWidth(findSeatWidth(pelvisWidth));
+        wheelchair.setSeatDepth(findSeatDepth(thighLength));
+        wheelchair.setFootrestLength(findFootrestLength(shinLength));
+        wheelchair.setBachHeight(backHeight);
         return wheelchair;
     }
 
-    private Integer findSeatWidth(UserSizes userSizes) {
-        int seatWidth = userSizes.getPelvisWidth() + 4;
+    private Integer findSeatWidth(Integer pelvisWidth) {
+        int seatWidth = pelvisWidth + 4;
         if (seatWidth <= 22) {
             seatWidth = 22;
         }
@@ -49,8 +48,8 @@ public class CalculateDimensionsWheelchair {
     }
 
     //глубина сиденья
-    private Integer findSeatDepth(UserSizes userSizes) {
-        int seatDepth = userSizes.getThighLength() - 2;
+    private Integer findSeatDepth(Integer thighLength ) {
+        int seatDepth = thighLength - 2;
         if (seatDepth <= 24) {
             seatDepth = 24;
         }
@@ -82,8 +81,8 @@ public class CalculateDimensionsWheelchair {
     }
 
     //длинна подножки
-    private Integer findFootrestLength(UserSizes userSizes) {
-        int footrestLength = userSizes.getShinLength();
+    private Integer findFootrestLength(Integer shinLength) {
+        int footrestLength = shinLength;
         if (footrestLength <= 40) {
             footrestLength = 40;
         }

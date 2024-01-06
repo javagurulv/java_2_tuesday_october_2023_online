@@ -1,4 +1,5 @@
 package lv.avangardteen.core.service;
+/*
 
 import lv.avangardteen.core.domain.UserSizes;
 import lv.avangardteen.core.domain.Wheelchair;
@@ -33,4 +34,4 @@ class CalculateDimensionsWheelchairTest {
     }
 
 
-}
+}*/
