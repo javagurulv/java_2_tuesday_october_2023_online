@@ -10,8 +10,7 @@ import java.util.List;
 
 public class ShowOrderResponse extends CoreResponse {
 
-    Client client;
-    UserSizes userSizes;
+
     Wheelchair wheelchair;
     List<WheelchairComponents> wheelchairComponents;
     Double priceWheelchair;
@@ -47,22 +46,6 @@ public class ShowOrderResponse extends CoreResponse {
     }
 
     public ShowOrderResponse() {}
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public UserSizes getUserSizes() {
-        return userSizes;
-    }
-
-    public void setUserSizes(UserSizes userSizes) {
-        this.userSizes = userSizes;
-    }
 
     public Wheelchair getWheelchair() {
         return wheelchair;

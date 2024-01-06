@@ -25,9 +25,9 @@ public class OrmClientRepository implements Database {
     }
 
     @Override
-    public Long addUser(Client client) {
-        Long id = (Long)sessionFactory.getCurrentSession().save(client);
-        return id;
+    public void addUser(Client client) {
+        sessionFactory.getCurrentSession().save(client);
+
     }
 
     @Override
@@ -44,8 +44,8 @@ public class OrmClientRepository implements Database {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("UPDATE Client c where id = :id");
         query.setParameter("id", id);
-        query.setParameter("name_surname", client.getNameSurname());
-        query.setParameter("personal_code", client.getPersonalCode());
+        query.setParameter("nameSurname", client.getNameSurname());
+        query.setParameter("personalCode", client.getPersonalCode());
         query.setParameter("phone", client.getPhone());
         query.setParameter("address", client.getAddress());
     }
@@ -64,9 +64,9 @@ public class OrmClientRepository implements Database {
     @Override
     public Client findBySurnameAndPersonalCode(String surname, Long personalCode) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select c FROM Client c where name_surname = :surname AND personal_code = :personalCode");
-        query.setParameter("name_surname", surname);
-        query.setParameter("personal_code", personalCode);
+                "select c FROM Client c where nameSurname = :nameSurname AND personalCode = :personalCode");
+        query.setParameter("nameSurname", surname);
+        query.setParameter("personalCode", personalCode);
         if(query.getSingleResult() == null) {
             return null;
         }
@@ -80,10 +80,5 @@ public class OrmClientRepository implements Database {
         query.setParameter("order_id", orderId);
     }
 
-    @Override
-    public Query getIdClient() {
-        return sessionFactory.getCurrentSession()
-                .createQuery("SELECT LAST_INSERT_ID()");
 
-    }
 }

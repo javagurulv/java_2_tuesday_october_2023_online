@@ -7,8 +7,8 @@ USE `avangard_teen_order` ;
 
 CREATE TABLE IF NOT EXISTS  `clients` (
 `id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT ,
-`name_surname` VARCHAR (200) NOT NULL,
-`personal_code` BIGINT NOT NULL,
+`nameSurname` VARCHAR (200) NOT NULL,
+`personalCode` BIGINT NOT NULL,
 `phone` BIGINT NOT NULL,
 `address` VARCHAR (300) NOT NULL
 
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS  `clients` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 10;
 
-CREATE UNIQUE INDEX clients_type_index ON clients(name_surname, personal_code);
+CREATE UNIQUE INDEX clients_type_index ON clients(nameSurname, personalCode);
 
 CREATE TABLE IF NOT EXISTS  `parameters` (
 `id` BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -29,6 +29,9 @@ CREATE TABLE IF NOT EXISTS  `parameters` (
 )
 ENGINE = InnoDB
 AUTO_INCREMENT = 10;
+
+ALTER TABLE `parameters`
+add foreign key (client_id) REFERENCES clients (id);
 
 CREATE TABLE IF NOT EXISTS  `wheelchair` (
 `id` BIGINT NOT NULL  PRIMARY KEY AUTO_INCREMENT,
@@ -43,7 +46,7 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 10;
 
 ALTER TABLE `wheelchair`
-add foreign key (client_id) REFERENCES clients (id)  ON DELETE CASCADE;
+add foreign key (client_id) REFERENCES clients (id);
 
 CREATE TABLE IF NOT EXISTS  `order_components` (
 `id` BIGINT NOT NULL PRIMARY KEY auto_increment,

@@ -25,7 +25,7 @@ public class WheelchairRepository implements WheelchairDB {
 
     @Override
     public Long addWheelchair(Wheelchair wheelchair) {
-        Long id = (Long)sessionFactory.getCurrentSession().save(wheelchair);
+        Long id = (Long) sessionFactory.getCurrentSession().save(wheelchair);
         return id;
 
     }
@@ -65,9 +65,14 @@ public class WheelchairRepository implements WheelchairDB {
 
     }
 
-}
-// $mysqli->insert_id)
+    @Override
+    public boolean deleteWheelchairById(Long id) {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "delete Wheelchair where id = :id");
+        query.setParameter("id", id);
+        int result = query.executeUpdate();
+        return result == 1;
+    }
 
-/*
-    SHOW INDEX FROM presort.final_conf_score_mld_run2
-        WHERE Key_name = 'PRIMARY';*/
+}
+

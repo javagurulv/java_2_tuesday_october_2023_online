@@ -23,9 +23,10 @@ public class DatabaseCleaner {
     private List<String> getTableNames() {
         List<String> tableNames = new ArrayList<>();
         tableNames.add("wheelchair");
-        tableNames.add("client_size");
+        tableNames.add("parameters");
         tableNames.add("clients");
         tableNames.add("order_components");
+        tableNames.add("components");
         return tableNames;
     }
 

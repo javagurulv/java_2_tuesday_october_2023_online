@@ -18,10 +18,7 @@ import java.util.List;
 @Component
 @Transactional
 public class ShowOrderService {
-    @Autowired
-    private Database database;
-    @Autowired
-    private UserSizeDb userSizeDb;
+
     @Autowired
     private WheelchairDB wheelchairDB;
     @Autowired
@@ -37,15 +34,14 @@ public class ShowOrderService {
     }
 
     private ShowOrderResponse getShowOrderResponse(ShowOrderRequest request) {
-        Client client = database.getClientById(request.getId());
-        UserSizes userSizes = userSizeDb.getUserSizeByOrderId(request.getId());
+
         Wheelchair wheelchair = wheelchairDB.getWheelchair(request.getId());
+
         List<WheelchairComponents> wheelchairComponent = wComponentsDB.getChooseComponents(request.getId());
         ShowOrderResponse response = new ShowOrderResponse();
-        response.setClient(client);
-        response.setUserSizes(userSizes);
         response.setWheelchair(wheelchair);
         response.setWheelchairComponents(wheelchairComponent);
+
         response.setPriceWheelchair(wheelchairDB.getPrice(request.getId()));
         response.setPriceComponents(wComponentsDB.getPriceComponents(request.getId()));
         response.setPriceOrder(wheelchairDB.getPrice(request.getId()) + wComponentsDB.getPriceComponents(request.getId()));

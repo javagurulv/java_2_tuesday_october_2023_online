@@ -11,10 +11,10 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name = "name_surname", nullable = false)
+    @Column(name = "nameSurname", nullable = false)
     String nameSurname;
 
-    @Column(name = "personal_code", nullable = false)
+    @Column(name = "personalCode", nullable = false)
     Long personalCode;
 
     @Column(name = "phone", nullable = false)

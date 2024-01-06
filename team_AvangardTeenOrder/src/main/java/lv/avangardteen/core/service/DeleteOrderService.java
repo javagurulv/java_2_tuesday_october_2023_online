@@ -1,5 +1,6 @@
 package lv.avangardteen.core.service;
 
+import lv.avangardteen.core.database.WheelchairDB;
 import lv.avangardteen.core.request.DeleteOrderRequest;
 
 import lv.avangardteen.core.responce.CoreError;
@@ -17,7 +18,7 @@ import java.util.List;
 @Transactional
 public class DeleteOrderService {
     @Autowired
-    private Database database;
+    private WheelchairDB wheelchairDB;
     @Autowired
     private DeleteOrderValidator validator;
 
@@ -30,7 +31,7 @@ public class DeleteOrderService {
     }
 
     private DeleteOrderResponse getDeleteOrderResponse(DeleteOrderRequest request) {
-        boolean isOrderRemove = database.deleteClientByOrderId(request.getId());
+        boolean isOrderRemove = wheelchairDB.deleteWheelchairById(request.getId());
         return new DeleteOrderResponse(isOrderRemove);
     }
 }

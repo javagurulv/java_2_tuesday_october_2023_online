@@ -9,7 +9,7 @@ public interface Database {
 
     List<Client> getClients();
 
-    Long addUser(Client client);
+    void addUser(Client client);
 
     void updateUser(Long id, Client client);
 
@@ -21,5 +21,5 @@ public interface Database {
 
     void setOrderId(Long orderId);
 
-    Query getIdClient();
+
 }

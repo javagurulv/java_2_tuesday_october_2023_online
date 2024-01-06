@@ -14,6 +14,7 @@ public class OrderValidator {
 
     @Autowired
     private Database database;
+
     public List<CoreError> validate(OrderRequest request) {
         List<CoreError> errors = new ArrayList<>();
         if (pelvisWidthIsNull(request)) {
@@ -28,7 +29,7 @@ public class OrderValidator {
         if (shinLengthIsNull(request)) {
             errors.add(new CoreError("shinLength", "Must not be empty!"));
         }
-        if(clientIsEmpty(request)) {
+        if(clientIsAbsent(request)) {
             errors.add(new CoreError("clientAbsent", "Client must be registered!"));
         }
         return errors;
@@ -50,8 +51,8 @@ public class OrderValidator {
         return (request.getShinLength() == null || request.getShinLength() <= 0);
     }
 
-    private boolean clientIsEmpty(OrderRequest request) {
-        return (database.findBySurnameAndPersonalCode(request.getUserName(), request.getUserPersonalCode()) == null);
+    private boolean clientIsAbsent(OrderRequest request) {
+        return database.findBySurnameAndPersonalCode(request.getUserName(), request.getUserPersonalCode()) == null;
     }
 
 }
