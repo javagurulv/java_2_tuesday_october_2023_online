@@ -26,13 +26,13 @@ public class RiskLimitLevelValidationIntegrationTest {
 
     @Autowired private TravelAgreementValidator validator;
 
-    @Test
+   @Test
     public void shouldReturnErrorWhenMedicalRiskLimitLevelIsNull() {
         AgreementDTO agreement = createAgreement()
                 .withDateFrom(createDate("31.12.2032"))
                 .withDateTo(createDate("31.12.2052"))
                 .withCountry("SPAIN")
-                .withSelectedRisk("TRAVEL_MEDICAL")
+                .withSelectedRisks("TRAVEL_MEDICAL")
                 .withPerson(createPersonDTO()
                         .withFirstName("Vasja")
                         .withLastName("Pupkin")
@@ -51,7 +51,7 @@ public class RiskLimitLevelValidationIntegrationTest {
                 .withDateFrom(createDate("31.12.2032"))
                 .withDateTo(createDate("31.12.2052"))
                 .withCountry("SPAIN")
-                .withSelectedRisk("TRAVEL_MEDICAL")
+                .withSelectedRisks("TRAVEL_MEDICAL")
                 .withPerson(createPersonDTO()
                         .withFirstName("Vasja")
                         .withLastName("Pupkin")
@@ -64,13 +64,14 @@ public class RiskLimitLevelValidationIntegrationTest {
         assertEquals(errors.get(0).getDescription(), "Field medicalRiskLimitLevel must not be empty!");
     }
 
+
     @Test
     public void shouldReturnErrorWhenMedicalRiskLimitLevelIsNotSupported() {
         AgreementDTO agreement = createAgreement()
                 .withDateFrom(createDate("31.12.2032"))
                 .withDateTo(createDate("31.12.2052"))
                 .withCountry("SPAIN")
-                .withSelectedRisk("TRAVEL_MEDICAL")
+                .withSelectedRisks("TRAVEL_MEDICAL")
                 .withPerson(createPersonDTO()
                         .withFirstName("Vasja")
                         .withLastName("Pupkin")

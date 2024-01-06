@@ -10,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,14 +20,14 @@ import static lv.javaguru.travel.insurance.core.api.dto.PersonDTOBuilder.createP
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
-//@SpringBootTest
+@SpringBootTest
 @AutoConfigureMockMvc
 public class SelectedRisksValidationIntegrationTest {
 
     @Autowired
     private TravelAgreementValidator validator;
 
-    /*@Test
+    @Test
     public void shouldReturnErrorWhenAgreementSelectedRiskIsNull() {
         AgreementDTO agreement = createAgreement()
                 .withDateFrom(createDate("31.12.2032"))
@@ -66,15 +65,14 @@ public class SelectedRisksValidationIntegrationTest {
         assertEquals(errors.get(0).getDescription(), "Field selectRisk must not be empty!");
     }
 
-     */
 
-   /* @Test
+   @Test
     public void shouldReturnErrorWhenAgreementSelectedRiskIsNotSupported() {
         AgreementDTO agreement = createAgreement()
                 .withDateFrom(createDate("31.12.2032"))
                 .withDateTo(createDate("31.12.2052"))
                 .withCountry("SPAIN")
-                .withSelectedRisk("{NOT_EXISTING_RISK_TYPE}")
+                .withSelectedRisks("{NOT_EXISTING_RISK_TYPE}")
                 .withPerson(createPersonDTO()
                         .withFirstName("Vasja")
                         .withLastName("Pupkin")
@@ -95,5 +93,5 @@ public class SelectedRisksValidationIntegrationTest {
         }
     }
 
-    */
+
 }
