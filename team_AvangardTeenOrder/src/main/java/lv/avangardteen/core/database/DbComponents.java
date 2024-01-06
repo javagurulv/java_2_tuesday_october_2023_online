@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.util.List;
 
+@Component
+@Transactional
+public class DbComponents implements DataComponents{
 
-
-public class OrmDataComponentsImpl implements DataComponents {
-@Autowired SessionFactory sessionFactory;
-
+    @Autowired
+    private SessionFactory sessionFactory;
 
     @Override
     public void addComponent(Components components) {
@@ -30,22 +30,23 @@ public class OrmDataComponentsImpl implements DataComponents {
 
     @Override
     public Components getComponent(Integer id) {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("Select c FROM Components WHERE id = :id", Components.class);
-        query.setParameter("id", id);
-        return (Components) query.getSingleResult();
+        return sessionFactory.getCurrentSession()
+                .get(Components.class, id);
 
+
+             /*   createQuery("Select * FROM Components WHERE id = :id", Components.class);
+        query.setParameter("id", id);
+        return (Components) query.getSingleResult();*/
     }
 
     @Override
     public List<Components> allFrontWheels() {
 
-
         Query query = sessionFactory.getCurrentSession()
 
                 .createQuery("SELECT c FROM Components " +
-                        "WHERE category = FRONT-WHEEL");
-       // query.setParameter("category", "FRONT-WHEEL");
+                        "WHERE category = :FRONT-WHEEL");
+        // query.setParameter("category", "FRONT-WHEEL");
 
         return query.getResultList();
     }
@@ -76,5 +77,4 @@ public class OrmDataComponentsImpl implements DataComponents {
         query.setParameter("category", "BACK-WHEEL");
         return query.getResultList();
     }
-
 }

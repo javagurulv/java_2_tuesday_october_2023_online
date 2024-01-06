@@ -90,7 +90,7 @@ public class Components {
     @Override
     public String toString() {
         return " индекс = " + id +
-                ", характеристика: " + information +
+                ", описание: " + information +
                 ", цена = " + price +
                 ';' + '\n';
     }

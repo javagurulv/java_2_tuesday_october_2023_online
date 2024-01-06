@@ -52,7 +52,7 @@ public class OrderValidator {
     }
 
     private boolean clientIsAbsent(OrderRequest request) {
-        return database.findBySurnameAndPersonalCode(request.getUserName(), request.getUserPersonalCode()) == null;
+        return (database.findBySurnameAndPersonalCode(request.getUserName(), request.getUserPersonalCode()) == null);
     }
 
 }

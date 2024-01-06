@@ -1,6 +1,6 @@
 package lv.avangardteen.core.service.validate;
 
-/*
+
 import lv.avangardteen.DatabaseCleaner;
 import lv.avangardteen.config.OrderListConfiguration;
 import lv.avangardteen.core.database.DataComponents;
@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Ignore
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {DataComponents.class})
+@ContextConfiguration(classes = {OrderListConfiguration.class})
 @Sql({"/schema.sql"})
 class ComponentValidatorTest {
     @Autowired
@@ -33,7 +33,7 @@ class ComponentValidatorTest {
     @Autowired
     private ComponentValidator componentValidator;
     @Autowired
-    private OrmDataComponentsImpl dataComponents;
+    private DataComponents dataComponents;
 
     @Before
     public void setup() {
@@ -46,20 +46,27 @@ class ComponentValidatorTest {
         dataComponents.addComponent(new Components("BACK_WHEEL", "MN01", "INFORMATION1", 2.2));
         dataComponents.addComponent(new Components("BRAKE", "MF01", "INFORMATION2", 3.3));
         dataComponents.addComponent(new Components("FOOTREST", "MK01", "INFORMATION3", 4.4));
-        ComponentRegistrationRequest request = new ComponentRegistrationRequest(0, 4, 1, 2, 3);
-        componentValidator = new ComponentValidator();
 
         Components components = dataComponents.getComponent(1);
-        assertEquals(1, components.getId());
+        System.out.println(components.toString());
+        assertEquals("MH01", components.getMarking());
+
+
+       /*
+        ComponentRegistrationRequest request = new ComponentRegistrationRequest(1L, 4, 1, 2, 3);
+       componentValidator = new ComponentValidator();
+
 
 
         List<CoreError> errors = componentValidator.validate(request);
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "indexFrontWheel");
-        assertEquals(errors.get(0).getMessage(), "This index is absent!");
+        assertEquals(errors.get(0).getMessage(), "This index is absent!");*/
 
-    }*/
+    }
+}
+
 
 
    /* @Test

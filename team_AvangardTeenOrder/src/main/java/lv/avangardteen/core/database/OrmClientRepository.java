@@ -39,16 +39,7 @@ public class OrmClientRepository implements Database {
         return client;
     }
 
-    @Override
-    public void updateUser(Long id, Client client) {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("UPDATE Client c where id = :id");
-        query.setParameter("id", id);
-        query.setParameter("nameSurname", client.getNameSurname());
-        query.setParameter("personalCode", client.getPersonalCode());
-        query.setParameter("phone", client.getPhone());
-        query.setParameter("address", client.getAddress());
-    }
+
 
     @Override
     public boolean deleteClientByOrderId(Long id) {
@@ -64,7 +55,7 @@ public class OrmClientRepository implements Database {
     @Override
     public Client findBySurnameAndPersonalCode(String surname, Long personalCode) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select c FROM Client c where nameSurname = :nameSurname AND personalCode = :personalCode");
+                "SELECT c FROM Clients c WHERE nameSurname = :nameSurname AND personalCode = :personalCode");
         query.setParameter("nameSurname", surname);
         query.setParameter("personalCode", personalCode);
         if(query.getSingleResult() == null) {
@@ -72,13 +63,5 @@ public class OrmClientRepository implements Database {
         }
         return (Client) query.getSingleResult();
     }
-
-    @Override
-    public void setOrderId(Long orderId) {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("INSERT INTO Clients c order_id = :id");
-        query.setParameter("order_id", orderId);
-    }
-
 
 }

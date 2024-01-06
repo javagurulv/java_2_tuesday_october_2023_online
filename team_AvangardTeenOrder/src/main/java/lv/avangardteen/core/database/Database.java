@@ -11,15 +11,10 @@ public interface Database {
 
     void addUser(Client client);
 
-    void updateUser(Long id, Client client);
-
     boolean deleteClientByOrderId(Long id);
 
     Client getClientById(Long id);
 
     Client findBySurnameAndPersonalCode(String surname, Long personalCode);
-
-    void setOrderId(Long orderId);
-
 
 }

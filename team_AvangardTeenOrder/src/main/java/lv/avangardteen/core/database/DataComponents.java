@@ -8,8 +8,7 @@ public interface DataComponents {
 
     void addComponent(Components components);
     List<Components> getAllComponents();
-    Components getComponent(Integer index);
-    List<Integer> getAllIndex();
+    Components getComponent(Integer id);
     List<Components> allFrontWheels();
     List<Components> allFootrest();
     List<Components> allBrakes();
