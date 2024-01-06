@@ -35,8 +35,8 @@ public class OrmClientRepository implements Database {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "select c FROM Client c where id = :id", Client.class);
         query.setParameter("id", id);
-        Client client = (Client) query.getSingleResult();
-        return client;
+
+        return (Client) query.getSingleResult();
     }
 
 

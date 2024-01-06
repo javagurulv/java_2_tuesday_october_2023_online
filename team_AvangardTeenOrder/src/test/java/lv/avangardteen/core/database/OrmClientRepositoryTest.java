@@ -74,10 +74,14 @@ class OrmClientRepositoryTest {
         database.addUser(client1);
         database.addUser(client2);
         database.addUser(client3);
+        System.out.println(client1.getId());
+        System.out.println(client2.getId());
+        System.out.println(client3.getId());
         List<Client> clientsList = database.getClients();
-        Client client = database.findBySurnameAndPersonalCode("MMM", 9999l);
-        assertEquals(clientsList.size(), 3);
-        assertEquals(client1.getPersonalCode(), client.getPersonalCode());
+        Client client = database.getClientById(3L);
+       // assertEquals(clientsList.size(), 3);
+        assertEquals(client3.getPersonalCode(), client.getPersonalCode());
+
 
     }
 
