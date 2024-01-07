@@ -19,13 +19,15 @@ public class AddPersonalDateIUAction implements UIAction{
     public void execute() {
 
         Scanner scan = new Scanner(System.in);
-        System.out.println("введите Имя и фамилию");
-        String nameSurname = scan.nextLine();
+        System.out.println("введите Имя");
+        String firstName = scan.nextLine();
+        System.out.println("введите Фамилию");
+        String secondName = scan.nextLine();
         System.out.println("введите номер телефона");
         String phoneNumber = scan.nextLine();
         System.out.println("введите е-маил, на который Вам придет выбранная детализация");
         String userEmail = scan.nextLine();
-        AddPersonalDataRequest request = new AddPersonalDataRequest(nameSurname,phoneNumber,userEmail);
+        AddPersonalDataRequest request = new AddPersonalDataRequest(firstName,secondName,phoneNumber,userEmail);
         AddPersonalDateResponce responce = servis.addUzer(request);
         if (responce.hasErrors()){
             List<CoreError> errors = responce.getErrorList();

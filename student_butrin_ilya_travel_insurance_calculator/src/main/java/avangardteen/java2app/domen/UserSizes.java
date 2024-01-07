@@ -1,14 +1,23 @@
-package avangardteen.java2app;
+package avangardteen.java2app.domen;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class
 UserSizes {
+    int id;
     public int pelvisWidth; //ширина таза
     public int thighLength; //длинна бедра
     public int backHeight; //высота спины
-    public int shinLength; //длинна голени
+    public int shinLength; //длинна голен
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     //ширина сиденья
     public int findSeatWidth() {

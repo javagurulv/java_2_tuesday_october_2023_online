@@ -1,11 +1,6 @@
 package avangardteen.java2app.data;
 
-import avangardteen.java2app.Client;
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
-@Component
+/*@Component
 public class DataUsers {
     List<Client> clients = new ArrayList<>();
     int id=0;
@@ -19,3 +14,4 @@ public class DataUsers {
         clients.add(client);
     }
 }
+*/

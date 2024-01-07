@@ -1,12 +1,22 @@
-package classWork;
+package classWork.domen;
 
+import javax.persistence.*;
 import java.util.Objects;
 
-public class Book {
-    private String title;
 
-    private String author;
+
+@Entity
+@Table(name="books")
+public class Book {
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column (name = "title")
+    private String title;
+    @Column(name = "author")
+    private String author;
+
 
     public Long getId() {
         return id;

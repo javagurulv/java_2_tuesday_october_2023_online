@@ -1,6 +1,6 @@
 package avangardteen.java2app.responce;
 
-import avangardteen.java2app.UserSizes;
+import avangardteen.java2app.domen.UserSizes;
 
 public class ShowDataSizeResponse {
     UserSizes userSizes;

@@ -1,14 +1,5 @@
 package classWork.dependency_injection;
 
-import classWork.consoleUI.*;
-import classWork.core.database.Database;
-import classWork.core.database.InMemoryDatabaseImpl;
-import classWork.core.service.AddBookService;
-import classWork.core.service.GetAllBookService;
-import classWork.core.service.RemoveBookService;
-import classWork.core.service.SearchBooksService;
-import classWork.core.service.valigators.*;
-
 import java.util.HashMap;
 import java.util.Map;
 

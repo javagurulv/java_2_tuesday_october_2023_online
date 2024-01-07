@@ -1,12 +1,20 @@
-package avangardteen.java2app;
+package avangardteen.java2app.domen;
 
 public class Client {
-    private String nameSurname;
+    private String firstName;
+
+
+
+    private String lastName;
     private String phoneNumber;
     private String e_mail;
     private int id;
     Wheelchair wheelchair;
     UserSizes userSizes;
+
+    public Client() {
+    }
+
     public Wheelchair getWheelchair() {
         return wheelchair;
     }
@@ -16,6 +24,17 @@ public class Client {
         this.userSizes = userSizes;
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getE_mail() {
+        return e_mail;
+    }
     public void setWheelchair(Wheelchair wheelchair) {
         this.wheelchair = wheelchair;
     }
@@ -36,12 +55,12 @@ public class Client {
         this.id = id;
     }
 
-    public String getNameSurname() {
-        return nameSurname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setNameSurname(String nameSurname) {
-        this.nameSurname = nameSurname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getPhoneNumber() {
@@ -52,9 +71,6 @@ public class Client {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getUserEmail() {
-        return e_mail;
-    }
 
     public void setUserEmail(String userAddress) {
         this.e_mail = userAddress;

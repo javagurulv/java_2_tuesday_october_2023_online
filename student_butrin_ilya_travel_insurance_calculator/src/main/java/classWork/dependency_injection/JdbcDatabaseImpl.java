@@ -1,15 +1,17 @@
-package classWork.vihicleDatabase;
+package classWork.dependency_injection;
 
-import classWork.Book;
-import classWork.core.database.Database;
+import classWork.core.database.BookRepository;
+import classWork.domen.Book;
+import classWork.vihicleDatabase.BookRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 
-@Component
-public class JdbcDatabaseImpl implements Database {
+//@Component
+public class JdbcDatabaseImpl implements BookRepository {
     @Autowired private JdbcTemplate jdbcTemplate;
     @Override
     public void addBook(Book book) {
