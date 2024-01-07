@@ -1,7 +1,9 @@
 package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.database.Database;
+import lv.avangardteen.core.database.WheelchairDB;
 import lv.avangardteen.core.domain.Client;
+import lv.avangardteen.core.domain.Wheelchair;
 import lv.avangardteen.core.responce.CoreError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,7 +15,7 @@ import java.util.List;
 public class OrderIdValidator {
 
     @Autowired
-    private Database database;
+    private WheelchairDB wheelchairDB;
 
     public List<CoreError> validate(Long id) {
         List<CoreError> errors = new ArrayList<>();
@@ -33,9 +35,9 @@ public class OrderIdValidator {
     }
 
     private boolean validateOrder(Long id) {
-        Client client = database.getClientById(id);
+        Wheelchair wheelchair = wheelchairDB.getWheelchair(id);
         if (!isEmpty(id)
-        && client == null) {
+        && wheelchair == null) {
             return true;
         }
         return false;

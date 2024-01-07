@@ -16,12 +16,10 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
-import java.util.Optional;
-
 import static org.junit.Assert.assertEquals;
 
 
-//@Ignore
+@Ignore
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {OrderListConfiguration.class})
 @Sql({"/schema.sql"})
@@ -67,7 +65,7 @@ class OrmClientRepositoryTest {
     }
 
     @Test
-    public void getClientByNameAndSurname() {
+    public void getClientsList() {
         Client client1 = new Client("MMM", 9999l, 9999l, "LLLL");
         Client client2 = new Client("MMM", 1111l, 9999l, "LLLL");
         Client client3 = new Client("MMM", 2222l, 9999l, "LLLL");
@@ -79,8 +77,23 @@ class OrmClientRepositoryTest {
         System.out.println(client3.getId());
         List<Client> clientsList = database.getClients();
         Client client = database.getClientById(3L);
-       // assertEquals(clientsList.size(), 3);
+       assertEquals(clientsList.size(), 3);
         assertEquals(client3.getPersonalCode(), client.getPersonalCode());
+
+
+    }
+
+    @Test
+    public void getClientByNameAndSurname() {
+        Client client1 = new Client("MMM", 9999l, 9999l, "LLLL");
+        Client client2 = new Client("MMM", 1111l, 9999l, "LLLL");
+        Client client3 = new Client("MMM", 2222l, 9999l, "LLLL");
+        database.addUser(client1);
+        database.addUser(client2);
+        database.addUser(client3);
+        Client client = database.findBySurnameAndPersonalCode("MMM", 1111l);
+
+        assertEquals(client3.getPhone(), client.getPhone());
 
 
     }

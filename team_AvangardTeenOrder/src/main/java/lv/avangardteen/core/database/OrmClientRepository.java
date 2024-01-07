@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 
@@ -35,7 +36,11 @@ public class OrmClientRepository implements Database {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "select c FROM Client c where id = :id", Client.class);
         query.setParameter("id", id);
-
+        try {
+            query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
         return (Client) query.getSingleResult();
     }
 
@@ -55,10 +60,12 @@ public class OrmClientRepository implements Database {
     @Override
     public Client findBySurnameAndPersonalCode(String surname, Long personalCode) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "SELECT c FROM Clients c WHERE nameSurname = :nameSurname AND personalCode = :personalCode");
+                "FROM Client c WHERE nameSurname = :nameSurname AND personalCode = :personalCode");
         query.setParameter("nameSurname", surname);
         query.setParameter("personalCode", personalCode);
-        if(query.getSingleResult() == null) {
+        try {
+           query.getSingleResult();
+        } catch (NoResultException e) {
             return null;
         }
         return (Client) query.getSingleResult();

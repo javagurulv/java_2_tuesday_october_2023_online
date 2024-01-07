@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Component
@@ -19,7 +20,7 @@ public class WheelchairRepository implements WheelchairDB {
     @Override
     public List<Wheelchair> getWheelchair() {
         return sessionFactory.getCurrentSession()
-                .createQuery("SELECT w FROM Wheelchair w", Wheelchair.class)
+                .createQuery("FROM Wheelchair w", Wheelchair.class)
                 .getResultList();
     }
 
@@ -44,8 +45,13 @@ public class WheelchairRepository implements WheelchairDB {
     @Override
     public Wheelchair getWheelchair(Long id) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select c FROM Wheelchair c where id = :id");
+                "FROM Wheelchair c where id = :id");
         query.setParameter("id", id);
+        try {
+            query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
         return (Wheelchair) query.getSingleResult();
     }
 
@@ -53,7 +59,7 @@ public class WheelchairRepository implements WheelchairDB {
     public Long getIdWheelchair() {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "SHOW id FROM Wheelchair where id = `PRIMARY KEY`");
-        return (Long) query.getSingleResult();
+        return (Long) query.getSingleResult(); //удалить, метод не работает
     }
 
     @Override

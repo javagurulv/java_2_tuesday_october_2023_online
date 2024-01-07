@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Component
@@ -20,7 +21,7 @@ public class UserSizeRepositoryImpl implements UserSizeDb {
     @Override
     public List<UserSizes> getUserSizesOrders() {
         return sessionFactory.getCurrentSession()
-                .createQuery("SELECT us FROM Client_size us", UserSizes.class)
+                .createQuery("FROM UserSize us", UserSizes.class)
                 .getResultList();
     }
 
@@ -32,7 +33,7 @@ public class UserSizeRepositoryImpl implements UserSizeDb {
     @Override
     public void updateUserSize(Long id, UserSizes userSizes) {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("UPDATE Client_size us where order_id = :id");
+                .createQuery("UPDATE UserSize us where order_id = :id");
         query.setParameter("order_id", id);
         query.setParameter("pelvisWidth", userSizes.getPelvisWidth());
         query.setParameter("thighLength", userSizes.getThighLength());
@@ -43,8 +44,13 @@ public class UserSizeRepositoryImpl implements UserSizeDb {
     @Override
     public UserSizes getUserSizeByOrderId(Long id) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select us FROM Client_size where order_id = :id");
+                "FROM UserSize where order_id = :id");
         query.setParameter("order_id", id);
+        try {
+            query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
         return (UserSizes) query.getSingleResult();
 
     }
@@ -52,7 +58,7 @@ public class UserSizeRepositoryImpl implements UserSizeDb {
     @Override
     public void setOrderId(Long orderId) {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("INSERT INTO Client_size c order_id = :id");
+                .createQuery("INSERT INTO UserSize c order_id = :id");
         query.setParameter("order_id", orderId);
     }
 
