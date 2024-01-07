@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
 //@Component
 class JdbcProductRepositoryImpl implements ProductRepository {
@@ -19,6 +20,9 @@ class JdbcProductRepositoryImpl implements ProductRepository {
 				product.getProductName(), product.getProductBrand(), product.getProductModel(), product.getProductQuantity(), product.getPrice()
 		);
 	}
+
+	@Override
+	public Optional<Product> getById(Long id) { return Optional.empty(); }
 
 	@Override
 	public boolean deleteById(Long id) {

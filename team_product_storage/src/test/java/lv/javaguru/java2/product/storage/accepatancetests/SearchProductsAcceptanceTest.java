@@ -1,7 +1,7 @@
 package lv.javaguru.java2.product.storage.accepatancetests;
 
 import lv.javaguru.java2.product.storage.DatabaseCleaner;
-import lv.javaguru.java2.product.storage.config.StorageConfiguration;
+import lv.javaguru.java2.product.storage.config.SpringCoreConfiguration;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.requests.Ordering;
 import lv.javaguru.java2.product.storage.core.requests.Paging;
@@ -25,7 +25,7 @@ import static org.junit.Assert.assertEquals;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {StorageConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 @Sql({"/schema.sql"})
 public class SearchProductsAcceptanceTest {
 

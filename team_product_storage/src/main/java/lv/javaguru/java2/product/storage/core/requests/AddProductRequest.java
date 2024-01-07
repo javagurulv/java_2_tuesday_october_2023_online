@@ -13,6 +13,8 @@ public class AddProductRequest {
 
     private BigDecimal price;
 
+    public AddProductRequest() {
+    }
 
     public AddProductRequest(String productName, String productBrand, String productModel, Integer productQuantity, BigDecimal price) {
         this.productName = productName;
@@ -40,6 +42,25 @@ public class AddProductRequest {
         return price;
     }
 
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setProductBrand(String productBrand) {
+        this.productBrand = productBrand;
+    }
+
+    public void setProductModel(String productModel) {
+        this.productModel = productModel;
+    }
+
+    public void setProductQuantity(Integer productQuantity) {
+        this.productQuantity = productQuantity;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 }
 
 

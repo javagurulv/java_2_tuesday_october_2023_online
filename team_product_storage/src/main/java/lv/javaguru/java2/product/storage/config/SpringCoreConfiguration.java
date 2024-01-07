@@ -23,7 +23,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = "lv.javaguru.java2.product.storage")
 @PropertySource(value = "classpath:application.properties")
 @EnableTransactionManagement
-public class StorageConfiguration {
+public class SpringCoreConfiguration {
 
     @Value("${jdbc.url}")
     private String jdbcUrl;

@@ -7,7 +7,7 @@ import lv.javaguru.java2.product.storage.core.responses.AddProductResponse;
 import lv.javaguru.java2.product.storage.core.responses.SearchProductsResponse;
 import lv.javaguru.java2.product.storage.core.services.AddProductService;
 import lv.javaguru.java2.product.storage.core.services.SearchProductsService;
-import lv.javaguru.java2.product.storage.config.StorageConfiguration;
+import lv.javaguru.java2.product.storage.config.SpringCoreConfiguration;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {StorageConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 @Sql({"/schema.sql"})
 public class AddProductAcceptanceTest {
 
