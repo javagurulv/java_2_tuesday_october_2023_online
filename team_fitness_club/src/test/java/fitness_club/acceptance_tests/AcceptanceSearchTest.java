@@ -1,8 +1,7 @@
 package fitness_club.acceptance_tests;
 
-import fitness_club.ClientWorkoutsApplication;
 import fitness_club.DatabaseCleaner;
-import fitness_club.config.WorkoutsConfiguration;
+import fitness_club.config.SpringCoreConfiguration;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
@@ -13,7 +12,6 @@ import fitness_club.core.services.SearchClientService;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,7 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.Assert.assertEquals;
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {WorkoutsConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 @Sql({"/schema.sql"})
 public class AcceptanceSearchTest {
     @Autowired private AddClientService addClientService;

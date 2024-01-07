@@ -1,6 +1,6 @@
 package fitness_club.acceptance_tests;
 
-import fitness_club.config.WorkoutsConfiguration;
+import fitness_club.config.SpringCoreConfiguration;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.springframework.context.ApplicationContext;
@@ -14,7 +14,7 @@ public class ChangeWorkoutsTest {
 
     @Before
     public void setup() {
-        applicationContext = new AnnotationConfigApplicationContext(WorkoutsConfiguration.class);
+        applicationContext = new AnnotationConfigApplicationContext(SpringCoreConfiguration.class);
     }
 
 

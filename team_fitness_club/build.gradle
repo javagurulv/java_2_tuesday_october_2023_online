@@ -17,12 +17,9 @@ dependencies {
 		exclude (group: 'ch.qos.logback', module: 'logback-classic')
 	}
 
-
 	compileOnly('org.projectlombok:lombok:1.18.24')
 	annotationProcessor('org.projectlombok:lombok:1.18.24')
 
-
-	
 	testCompileOnly('org.projectlombok:lombok:1.18.24')
 	testAnnotationProcessor('org.projectlombok:lombok:1.18.24')
 
@@ -31,7 +28,4 @@ dependencies {
 	testImplementation('org.springframework:spring-test:5.3.23')
 	testImplementation('com.h2database:h2:1.4.200')
 	testImplementation ('org.junit.jupiter:junit-jupiter:5.8.1')
-
-
-
 }

@@ -1,12 +1,12 @@
 package fitness_club.acceptance_tests;
 
-import fitness_club.config.WorkoutsConfiguration;
+import fitness_club.config.SpringCoreConfiguration;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.DeleteClientService;
-import org.junit.Before;;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -21,7 +21,7 @@ public class RemoveClientAcceptanceTests {
 
     @Before
     public void setup() {
-        applicationContext = new AnnotationConfigApplicationContext(WorkoutsConfiguration.class);
+        applicationContext = new AnnotationConfigApplicationContext(SpringCoreConfiguration.class);
     }
 
     @Test
