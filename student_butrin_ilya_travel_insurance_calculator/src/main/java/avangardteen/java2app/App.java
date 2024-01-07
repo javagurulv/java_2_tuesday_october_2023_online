@@ -9,6 +9,7 @@ public class
 App {
 
     public static void main(String[] args) {
+
         ApplicationContext applicationContext = applicationContext();
         while (true) {
             ProgramMenu menu = applicationContext.getBean(ProgramMenu.class);
@@ -19,5 +20,6 @@ App {
         private static ApplicationContext applicationContext () {
          return new AnnotationConfigApplicationContext(AppConfiguration.class);
         }
+
     }
 

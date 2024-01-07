@@ -15,6 +15,21 @@ public class ComponentWheelchair {
         this.price = price;
     }
 
+    public void setComponentID(String componentID) {
+        this.componentID = componentID;
+    }
+
+    public void setInformation(String information) {
+        this.information = information;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public ComponentWheelchair() {
+    }
+
     public void setCategory(Category category) {
         this.category = category;
     }

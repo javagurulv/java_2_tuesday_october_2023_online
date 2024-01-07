@@ -1,13 +1,11 @@
 package classWork.consoleUI;
 
-import classWork.Book;
 import classWork.core.requests.Ordering;
 import classWork.core.requests.Paging;
 import classWork.core.response.SearchBooksResponse;
 import classWork.core.CoreError;
 import classWork.core.requests.SearchBooksRequest;
 import classWork.core.service.SearchBooksService;
-import classWork.dependency_injection.DIComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

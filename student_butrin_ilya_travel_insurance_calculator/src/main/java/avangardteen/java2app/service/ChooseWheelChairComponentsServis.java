@@ -1,18 +1,25 @@
 package avangardteen.java2app.service;
 
 import avangardteen.java2app.ComponentWheelchair;
-import avangardteen.java2app.data.DataComponents;
-import avangardteen.java2app.Wheelchair;
+import avangardteen.java2app.data.DatabaseWheelchair;
+import avangardteen.java2app.domen.Wheelchair;
+import avangardteen.java2app.data.DatabaseComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.ChooseWheelchairComponensRequest;
 import avangardteen.java2app.responce.ChooseWheelchairComponensResponce;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
 @Component
 public class ChooseWheelChairComponentsServis {
 
-  @Autowired DataComponents data;
+  @Autowired
+  DatabaseComponent data;
+  @Autowired
+  DatabaseWheelchair databaseWheelchair;
   @Autowired Wheelchair wheelchair;
 
 
@@ -55,6 +62,8 @@ public class ChooseWheelChairComponentsServis {
         addBreaks(request.getChooseBreaks());
         addBackWheels(request.getChooseBackWheels());
         addBackWheelsSize(request.getChooseBackWheelSize());
+        databaseWheelchair.addWheelchairComponent(wheelchair.getComponents());
+        System.out.println(wheelchair.getId());
         return new ChooseWheelchairComponensResponce();
     }
     public void addFrontWheels(int choose) {

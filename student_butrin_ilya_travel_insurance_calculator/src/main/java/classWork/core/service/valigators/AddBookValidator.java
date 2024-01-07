@@ -1,7 +1,7 @@
 package classWork.core.service.valigators;
 
 import classWork.core.CoreError;
-import classWork.core.database.Database;
+import classWork.core.database.BookRepository;
 import classWork.core.requests.AddBookRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ import java.util.Optional;
 @Component
 public class AddBookValidator {
     @Autowired
-    Database data;
+    BookRepository data;
 
 
     public List<CoreError> errorlist (AddBookRequest request){

@@ -1,0 +1,86 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=1;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=1;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+CREATE SCHEMA IF NOT EXISTS avangardeTeen
+DEFAULT CHARACTER SET utf8;
+USE avangardeTeen;
+
+
+CREATE TABLE IF NOT EXISTS components (
+Category varchar(50) NOT NULL,
+id VARCHAR(50) NOT NULL,
+information varchar(1000)not NULL,
+price int,
+PRIMARY KEY (id))
+ENGINE = InnoDB;
+
+create table if not exists wheelChair (
+id bigint not null auto_increment,
+seatWidth int NOT NULL,
+SeatDepth int NOT NULL,
+footrestLength int NOT NULL,
+FRONT_WHEEL varchar(10) not null,
+BRAKE varchar(10) not null,
+BACK_WHEEL_SIZE varchar(10) not null,
+BACK_WHEEL varchar(10) not null,
+ARMREST varchar(10) not null,
+price int not null,
+PRIMARY KEY (id))
+ENGINE = InnoDB;
+alter table wheelchair
+add foreign key (FRONT_WHEEL) REFERENCES Components(id);
+alter table wheelchair
+add foreign key (BRAKE ) REFERENCES Components(id);
+alter table wheelchair
+add foreign key (BACK_WHEEL_SIZE) REFERENCES Components(id);
+alter table wheelchair
+add foreign key (BACK_WHEEL) REFERENCES Components(id);
+alter table wheelchair
+add foreign key (ARMREST) REFERENCES Components(id);
+
+
+create table if not exists antropometric (
+id bigint not null auto_increment,
+pelvisWidth int NOT NULL,
+thighLength int NOT NULL,
+backHeight int NOT NULL,
+shinLength int NOT NULL,
+primary key (id))
+ENGINE = InnoDB;
+
+create table if not exists client (
+id bigint not null auto_increment,
+first_name varchar(50) NOT NULL,
+last_name varchar(50) NOT NULL,
+phone bigint NOT NULL,
+e_mail varchar(30) not null,
+wheelchair bigint not null,
+antropometricSizes bigint,
+PRIMARY KEY (id))
+ENGINE = InnoDB;
+alter table client
+add foreign key (wheelchair) REFERENCES wheelchair(id);
+alter table client
+add foreign key (antropometricSizes) REFERENCES antropometric(id);
+
+
+ALTER TABLE client
+MODIFY COLUMN wheelchair bigint;
+ALTER TABLE client
+MODIFY COLUMN antropometricSizes bigint;
+
+ALTER TABLE wheelchair
+MODIFY COLUMN seatWidth int,
+MODIFY COLUMN SeatDepth int,
+MODIFY COLUMN footrestLength int,
+MODIFY COLUMN FRONT_WHEEL varchar(10),
+MODIFY COLUMN BRAKE varchar(10),
+MODIFY COLUMN BACK_WHEEL_SIZE varchar(10),
+MODIFY COLUMN BACK_WHEEL varchar(10),
+MODIFY COLUMN ARMREST varchar(10),
+MODIFY COLUMN price int;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

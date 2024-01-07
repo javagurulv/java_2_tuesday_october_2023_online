@@ -1,8 +1,9 @@
 package avangardteen.java2app.service;
 
 import avangardteen.java2app.*;
-import avangardteen.java2app.data.DataComponents;
 //import org.springframework.stereotype.Component;
+import avangardteen.java2app.data.DatabaseComponent;
+import avangardteen.java2app.domen.Wheelchair;
 import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.ChangeComponentsRequest;
 import avangardteen.java2app.responce.ChangeCompanentsResponce;
@@ -17,8 +18,10 @@ import static avangardteen.java2app.Category.BACK_WHEEL_SIZE;
 @Component
 public class ChangeComponentServise {
 
- @Autowired  DataComponents components;
-   @Autowired Wheelchair wheelchair;
+ @Autowired
+ DatabaseComponent components;
+   @Autowired
+   Wheelchair wheelchair;
    @Autowired WheelchairValigator valigator;
 
 

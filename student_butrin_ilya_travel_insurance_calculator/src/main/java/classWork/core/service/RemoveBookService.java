@@ -1,11 +1,10 @@
 package classWork.core.service;
 
 import classWork.core.CoreError;
-import classWork.core.database.Database;
+import classWork.core.database.BookRepository;
 import classWork.core.requests.RemoveBookReques;
 import classWork.core.response.RemoveBookResponce;
 import classWork.core.service.valigators.RemoveBookValidators;
-import classWork.dependency_injection.DIComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +14,8 @@ import java.util.List;
 @Component
 public class RemoveBookService {
 
-    @Autowired Database data;
+    @Autowired
+    BookRepository data;
     @Autowired RemoveBookValidators validators;
 
     public RemoveBookResponce execute (RemoveBookReques reques) {
