@@ -8,7 +8,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import lv.javaguru.java2.lessoncode.book.app.config.BookListConfiguration;
+import lv.javaguru.java2.lessoncode.book.app.config.SpringCoreConfiguration;
 
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.GetAllBooksRequest;
@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {BookListConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 @Sql({"/schema.sql"})
 public class GetAllBooksAcceptanceTest {
 

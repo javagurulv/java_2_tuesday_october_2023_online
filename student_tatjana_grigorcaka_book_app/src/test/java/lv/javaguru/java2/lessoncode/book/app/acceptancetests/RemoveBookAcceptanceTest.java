@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import lv.javaguru.java2.lessoncode.book.app.config.BookListConfiguration;
+import lv.javaguru.java2.lessoncode.book.app.config.SpringCoreConfiguration;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.RemoveBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.RemoveBookResponse;
 import lv.javaguru.java2.lessoncode.book.app.core.services.RemoveBookService;
@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {BookListConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 @Sql({"/schema.sql"})
 public class RemoveBookAcceptanceTest {
 

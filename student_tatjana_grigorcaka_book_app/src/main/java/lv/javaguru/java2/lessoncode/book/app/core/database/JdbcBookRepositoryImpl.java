@@ -2,6 +2,7 @@ package lv.javaguru.java2.lessoncode.book.app.core.database;
 
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,6 +20,11 @@ class JdbcBookRepositoryImpl implements BookRepository {
 						+ "VALUES (?, ?, ?)",
 				book.getTitle(), book.getAuthor(), book.getIssueYear()
 		);
+	}
+
+	@Override
+	public Optional<Book> getById(Long id) {
+		return Optional.empty();
 	}
 
 	@Override

@@ -40,8 +40,9 @@ public class ProgramMenu {
         System.out.println("3. Show all books in the list");
         System.out.println("4. Search books");
         System.out.println("5. Register reader");
-        System.out.println("6. Show all readers in the list");
-        System.out.println("7. Exit program");
+        System.out.println("6. Show all readers");
+        System.out.println("7. Search readers");
+        System.out.println("8. Exit program");
         System.out.println();
     }
 

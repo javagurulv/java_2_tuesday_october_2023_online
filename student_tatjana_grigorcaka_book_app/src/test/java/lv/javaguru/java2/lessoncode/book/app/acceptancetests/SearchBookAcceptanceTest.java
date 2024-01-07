@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import lv.javaguru.java2.lessoncode.book.app.config.BookListConfiguration;
+import lv.javaguru.java2.lessoncode.book.app.config.SpringCoreConfiguration;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Ordering;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Paging;
@@ -23,7 +23,7 @@ import lv.javaguru.java2.lessoncode.book.app.core.services.SearchBooksService;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {BookListConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 @Sql({"/schema.sql"})
 public class SearchBookAcceptanceTest {
 

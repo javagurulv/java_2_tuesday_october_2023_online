@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 //@Component
-public class InMemoryBookRepositoryImpl implements BookRepository {
+class InMemoryBookRepositoryImpl implements BookRepository {
 
     private Long nextId = 1L;
     private List<Book> books = new ArrayList<>();
@@ -18,6 +18,11 @@ public class InMemoryBookRepositoryImpl implements BookRepository {
         book.setId(nextId);
         nextId++;
         books.add(book);
+    }
+
+    @Override
+    public Optional<Book> getById(Long id) {
+        return Optional.empty();
     }
 
     @Override

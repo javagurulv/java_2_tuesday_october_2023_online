@@ -11,7 +11,7 @@ insert into books(id, title, author, issue_year)
 values (1005, 'Rich Dad Poor Dad', 'Robert Kiyosaki', 1997);
 
 insert into books(id, title, author, issue_year)
-values (1012, 'Harry Potter and the Philosophers Stone', 'Joanne Rowling', 1997);
+values (1012, "Harry Potter and the Philosopher's Stone", 'Joanne Rowling', 1997);
 
 
 
