@@ -1,5 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.core.database;
 
+import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Reader;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Transactional
@@ -22,6 +24,16 @@ public class OrmReaderRepositoryImpl implements ReaderRepository {
 
 	@Override
 	public Reader findById(Long id) { return sessionFactory.getCurrentSession().get(Reader.class, id); }
+
+	@Override
+	public Optional<Reader> getById(Long id) {
+		Reader reader = sessionFactory.getCurrentSession().get(Reader.class, id);
+		if (reader == null) {
+			return Optional.empty();
+		} else {
+			return Optional.of(reader);
+		}
+	}
 
 	@Override
 	public boolean deleteById(Long id) {

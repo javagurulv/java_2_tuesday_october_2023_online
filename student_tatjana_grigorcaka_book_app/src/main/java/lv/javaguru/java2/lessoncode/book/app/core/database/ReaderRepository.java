@@ -1,14 +1,18 @@
 package lv.javaguru.java2.lessoncode.book.app.core.database;
 
+import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Reader;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ReaderRepository {
 
     void save(Reader reader);
 
     Reader findById(Long id);
+
+    Optional<Reader> getById(Long id);
 
     boolean deleteById(Long id);
 

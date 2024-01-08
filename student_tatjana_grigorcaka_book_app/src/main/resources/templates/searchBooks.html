@@ -37,6 +37,7 @@
             <td>ID:</td>
             <td>Title:</td>
             <td>Author:</td>
+            <td>Issue year:</td>
         </tr>
 
         <td th:if="${books != null}">
@@ -44,6 +45,7 @@
                 <td th:text="${book.id}" />
                 <td th:text="${book.title}" />
                 <td th:text="${book.author}" />
+                <td th:text="${book.issueYear}" />
             </tr>
         </td>
 
