@@ -128,5 +128,23 @@ Request: medicalRiskLimitLevel value not supported
 for multiple persons, RISK_TYPE - TRAVEL_MEDICAL.
 Response: multiple error codes = ERROR_CODE_14.
 
+Test_case_33:
+Request: first person personCode is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_16.
+
+
+Test_case_34:
+Request: first person personCode is empty, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_16.
+
+
+Test_case_35:
+Request: multiple persons personCode is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: multiple errors with code = ERROR_CODE_16.
+
+
+Test_case_36:
+Request: multiple persons personCode is empty, RISK_TYPE - TRAVEL_MEDICAL.
+Response: multiple errors with code = ERROR_CODE_16.
 
 

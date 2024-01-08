@@ -36,6 +36,7 @@ public class RiskLimitLevelValidationIntegrationTest {
                 .withPerson(createPersonDTO()
                         .withFirstName("Vasja")
                         .withLastName("Pupkin")
+                        .withPersonCode("11a11")
                         .withBirthDate(createDate("01.01.1991"))
                         .withMedicalRiskLimitLevel(null)
                 ).build();
@@ -55,6 +56,7 @@ public class RiskLimitLevelValidationIntegrationTest {
                 .withPerson(createPersonDTO()
                         .withFirstName("Vasja")
                         .withLastName("Pupkin")
+                        .withPersonCode("11a11")
                         .withBirthDate(createDate("01.01.1991"))
                         .withMedicalRiskLimitLevel("")
                 ).build();
@@ -75,6 +77,7 @@ public class RiskLimitLevelValidationIntegrationTest {
                 .withPerson(createPersonDTO()
                         .withFirstName("Vasja")
                         .withLastName("Pupkin")
+                        .withPersonCode("11a11")
                         .withBirthDate(createDate("01.01.1991"))
                         .withMedicalRiskLimitLevel("NOT SUPPORTED")
                 ).build();

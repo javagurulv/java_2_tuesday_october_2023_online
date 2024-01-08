@@ -86,4 +86,13 @@ Test Case 22:
 Request: country is empty, RISK_TYPE - TRAVEL_EVACUATION.
 Response: error code = ERROR_CODE_10.
 
+Test_case_23:
+Request: first person personCode is null, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_16.
+
+
+Test_case_24:
+Request: first person personCode is empty, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_16.
+
 

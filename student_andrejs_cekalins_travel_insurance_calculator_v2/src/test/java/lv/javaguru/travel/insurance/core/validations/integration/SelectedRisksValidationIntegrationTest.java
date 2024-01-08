@@ -37,6 +37,7 @@ public class SelectedRisksValidationIntegrationTest {
                 .withPerson(createPersonDTO()
                         .withFirstName("Vasja")
                         .withLastName("Pupkin")
+                        .withPersonCode("11a11")
                         .withBirthDate(createDate("01.01.1991"))
                         .withMedicalRiskLimitLevel("LEVEL_10000")
                 ).build();
@@ -56,6 +57,7 @@ public class SelectedRisksValidationIntegrationTest {
                 .withPerson(createPersonDTO()
                         .withFirstName("Vasja")
                         .withLastName("Pupkin")
+                        .withPersonCode("11a11")
                         .withBirthDate(createDate("01.01.1991"))
                         .withMedicalRiskLimitLevel("LEVEL_10000")
                 ).build();
@@ -76,6 +78,7 @@ public class SelectedRisksValidationIntegrationTest {
                 .withPerson(createPersonDTO()
                         .withFirstName("Vasja")
                         .withLastName("Pupkin")
+                        .withPersonCode("11a11")
                         .withBirthDate(createDate("01.01.1991"))
                         .withMedicalRiskLimitLevel("LEVEL_10000")
                 ).build();

@@ -7,6 +7,7 @@ import java.util.List;
 public class PersonDTOBuilder {
     private String personFirstName;
     private String personLastName;
+    private String personCode;
     private Date personBirthDate;
     private String medicalRiskLimitLevel;
     private List<RiskDTO> risks = new ArrayList<>();
@@ -19,6 +20,7 @@ public class PersonDTOBuilder {
         PersonDTO personDTO = new PersonDTO();
         personDTO.setPersonFirstName(personFirstName);
         personDTO.setPersonLastName(personLastName);
+        personDTO.setPersonCode(personCode);
         personDTO.setPersonBirthDate(personBirthDate);
         personDTO.setMedicalRiskLimitLevel(medicalRiskLimitLevel);
         personDTO.setRisks(risks);
@@ -32,6 +34,11 @@ public class PersonDTOBuilder {
 
     public PersonDTOBuilder withLastName(String personLastName) {
         this.personLastName = personLastName;
+        return this;
+    }
+
+    public PersonDTOBuilder withPersonCode(String personCode) {
+        this.personCode = personCode;
         return this;
     }
 
