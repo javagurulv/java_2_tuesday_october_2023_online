@@ -1,0 +1,66 @@
+package lv.avangardteen.core.database;
+
+import lv.avangardteen.DatabaseCleaner;
+import lv.avangardteen.config.OrderListConfiguration;
+import lv.avangardteen.core.domain.Client;
+import lv.avangardteen.core.domain.UserSizes;
+import lv.avangardteen.core.service.UserRegistrationService;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+
+@Ignore
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {OrderListConfiguration.class})
+@Sql({"/schema.sql"})
+class ParametersRepositoryTest {
+    @Autowired
+    private DatabaseCleaner databaseCleaner;
+    @Autowired
+    private UserRegistrationService userRegistrationService;
+    @Autowired
+    private Database database;
+    @Autowired
+    private UserSizeDb userSizeDb;
+
+    @Before
+    public void setup() {
+        databaseCleaner.clean();
+    }
+
+    @Test
+    public void saveUserSize() {
+        Client client1 = new Client("MMM", 9999l, 9999l, "LLLL");
+        Client client2 = new Client("MMM", 1111l, 9999l, "LLLL");
+        Client client3 = new Client("MMM", 2222l, 9999l, "LLLL");
+        database.addUser(client1);
+        database.addUser(client2);
+        database.addUser(client3);
+        List<Client> clientsList = database.getClients();
+        assertEquals(clientsList.size(), 3);
+        UserSizes userSizes = new UserSizes();
+        userSizes.setClient(client1);
+        userSizes.setThighLength(22);
+        userSizes.setPelvisWidth(22);
+        userSizes.setBackHeight(22);
+        userSizes.setShinLength(22);
+
+        userSizeDb.addUserSize(userSizes);
+        List<UserSizes> userSizesList = userSizeDb.getUserSizesOrders();
+        assertEquals(userSizesList.size(), 1);
+        System.out.println(userSizesList.toString());
+
+
+
+    }
+
+}

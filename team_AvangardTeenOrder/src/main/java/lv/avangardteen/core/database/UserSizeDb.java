@@ -10,8 +10,8 @@ public interface UserSizeDb {
 
     List<UserSizes> getUserSizesOrders();
     void addUserSize(UserSizes userSizes);
-    void updateUserSize(Long id, UserSizes userSizes);
+
     UserSizes getUserSizeByOrderId(Long id);
-    void setOrderId(Long orderId);
-   /* void setClientId(Query query);*/
+
+
 }
