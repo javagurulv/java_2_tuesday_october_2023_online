@@ -6,13 +6,13 @@ public class AddBookRequest {
     private String author;
     private Integer issueYear;
 
+    public AddBookRequest() {
+    }
 
     public AddBookRequest(String title, String author, Integer issueYear) {
         this.title = title;
         this.author = author;
         this.issueYear = issueYear;
-
-
     }
 
     public String getTitle() {
@@ -23,6 +23,17 @@ public class AddBookRequest {
     }
     public Integer getIssueYear() { return issueYear; }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setIssueYear(Integer issueYear) {
+        this.issueYear = issueYear;
+    }
 }
 
 

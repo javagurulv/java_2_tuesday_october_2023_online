@@ -1,10 +1,10 @@
 package classWork.core.service;
 
 import classWork.core.CoreError;
-import classWork.core.database.Database;
+import classWork.core.database.BookRepository;
 import classWork.core.response.AddBookResponse;
 import classWork.core.requests.AddBookRequest;
-import classWork.Book;
+import classWork.domen.Book;
 
 import classWork.core.service.valigators.AddBookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,8 @@ import java.util.List;
 
 @Component
 public class AddBookService {
-    @Autowired Database data;
+    @Autowired
+    BookRepository data;
     @Autowired AddBookValidator validator;
 
     public AddBookResponse execute(AddBookRequest request) {

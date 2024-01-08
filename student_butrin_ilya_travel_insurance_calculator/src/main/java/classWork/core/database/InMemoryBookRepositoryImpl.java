@@ -1,13 +1,11 @@
 package classWork.core.database;
 
-import classWork.Book;
-import classWork.dependency_injection.DIComponent;
-import org.springframework.stereotype.Component;
+import classWork.domen.Book;
 
 import java.util.ArrayList;
 import java.util.List;
 //@Component
-public class InMemoryDatabaseImpl implements Database {
+public class InMemoryBookRepositoryImpl implements BookRepository {
     List<Book> books = new ArrayList<>();
     Long id = 1l;
 

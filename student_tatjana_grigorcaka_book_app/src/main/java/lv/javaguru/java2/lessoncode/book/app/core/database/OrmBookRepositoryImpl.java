@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Transactional
@@ -18,6 +19,16 @@ public class OrmBookRepositoryImpl implements BookRepository {
 	@Override
 	public void save(Book book) {
 		sessionFactory.getCurrentSession().save(book);
+	}
+
+	@Override
+	public Optional<Book> getById(Long id) {
+		Book book = sessionFactory.getCurrentSession().get(Book.class, id);
+		if (book == null) {
+			return Optional.empty();
+		} else {
+			return Optional.of(book);
+		}
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package avangardteen.java2app.service;
 
-import avangardteen.java2app.UserSizes;
+import avangardteen.java2app.domen.UserSizes;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.ShowDataSizeRequest;

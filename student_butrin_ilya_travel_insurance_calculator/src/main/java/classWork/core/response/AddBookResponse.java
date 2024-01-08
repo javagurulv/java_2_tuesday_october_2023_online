@@ -1,6 +1,6 @@
 package classWork.core.response;
 
-import classWork.Book;
+import classWork.domen.Book;
 import classWork.core.CoreError;
 import classWork.core.CoreResponse;
 
@@ -17,7 +17,7 @@ public class AddBookResponse extends CoreResponse {
         Book = book;
     }
 
-    public classWork.Book getBook() {
+    public classWork.domen.Book getBook() {
         return Book;
     }
 }

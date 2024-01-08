@@ -1,10 +1,10 @@
 package classWork.core.database;
 
-import classWork.Book;
+import classWork.domen.Book;
 
 import java.util.List;
 
-public interface Database {
+public interface BookRepository {
     List<Book>  getBooks();
     void addBook(Book book);
     boolean deleteBook(Long id);

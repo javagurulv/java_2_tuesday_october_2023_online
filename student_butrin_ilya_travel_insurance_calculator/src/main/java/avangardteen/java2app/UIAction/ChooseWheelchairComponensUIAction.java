@@ -1,7 +1,6 @@
 package avangardteen.java2app.UIAction;
 
 import avangardteen.java2app.ComponentWheelchair;
-import avangardteen.java2app.data.DataComponents;
 import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.ChooseWheelchairComponensRequest;
 import avangardteen.java2app.responce.ChooseWheelchairComponensResponce;
@@ -16,8 +15,6 @@ import java.util.Scanner;
 public class ChooseWheelchairComponensUIAction implements UIAction {
   @Autowired
   ChooseWheelChairComponentsServis servis;
-
-    DataComponents armrestList = new DataComponents();
 
     @Override
     public void execute() {

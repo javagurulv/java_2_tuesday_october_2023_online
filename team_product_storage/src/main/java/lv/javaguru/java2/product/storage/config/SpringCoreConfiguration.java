@@ -1,4 +1,6 @@
-package fitness_club.config;
+package lv.javaguru.java2.product.storage.config;
+
+import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
@@ -13,15 +15,16 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Properties;
 
+
 @Configuration
-@ComponentScan(basePackages = "fitness_club")
+@ComponentScan(basePackages = "lv.javaguru.java2.product.storage")
 @PropertySource(value = "classpath:application.properties")
 @EnableTransactionManagement
-public class WorkoutsConfiguration {
+public class SpringCoreConfiguration {
+
     @Value("${jdbc.url}")
     private String jdbcUrl;
 
@@ -73,8 +76,10 @@ public class WorkoutsConfiguration {
         sessionFactoryBean.afterPropertiesSet();
         return sessionFactoryBean.getObject();
     }
+
     @Bean
-    public PlatformTransactionManager transactionManager(org.hibernate.SessionFactory sessionFactory) {
+    public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
         return new HibernateTransactionManager(sessionFactory);
     }
+
 }

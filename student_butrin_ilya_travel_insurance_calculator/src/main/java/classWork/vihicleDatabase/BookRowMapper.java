@@ -2,7 +2,7 @@ package classWork.vihicleDatabase;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
-import classWork.Book;
+import classWork.domen.Book;
 public class BookRowMapper implements RowMapper<Book> {
 
         @Override

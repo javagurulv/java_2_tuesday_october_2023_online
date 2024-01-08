@@ -2,8 +2,7 @@ package avangardteen.java2app.service.valigation;
 
 import avangardteen.java2app.Category;
 import avangardteen.java2app.CoreError;
-import avangardteen.java2app.Wheelchair;
-import org.springframework.stereotype.Component;
+import avangardteen.java2app.domen.Wheelchair;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

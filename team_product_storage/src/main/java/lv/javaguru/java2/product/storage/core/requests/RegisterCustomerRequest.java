@@ -5,6 +5,9 @@ public class RegisterCustomerRequest {
 	private String customerName;
 	private String registrationCode;
 
+	public RegisterCustomerRequest() {
+	}
+
 	public RegisterCustomerRequest(String customerName, String registrationCode) {
 		this.customerName = customerName;
 		this.registrationCode = registrationCode;

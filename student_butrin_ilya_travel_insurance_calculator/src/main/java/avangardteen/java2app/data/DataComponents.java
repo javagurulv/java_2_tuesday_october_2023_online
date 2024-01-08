@@ -1,4 +1,4 @@
-package avangardteen.java2app.data;
+/*package avangardteen.java2app.data;
 
 import avangardteen.java2app.Category;
 import avangardteen.java2app.ComponentWheelchair;
@@ -83,8 +83,8 @@ public class DataComponents {
         List<ComponentWheelchair> allBackWheelFor22size = new ArrayList<>();
         for (int i = 0; i < getAllComponents().size(); i++) {
             if (getAllComponents().get(i).getComponentID().equals("MG 06") ||
-           getAllComponents().get(i).getComponentID().equals("MG 15") ||
-           getAllComponents().get(i).getComponentID().equals("MG 80")) {
+                    getAllComponents().get(i).getComponentID().equals("MG 15") ||
+                    getAllComponents().get(i).getComponentID().equals("MG 80")) {
                 allBackWheelFor22size.add(getAllComponents().get(i));
             }
         }
@@ -97,7 +97,7 @@ public class DataComponents {
                 allBackWheelFor24Size.add(getAllComponents().get(i));
             }
         }
-            allBackWheelFor24Size.remove(0);
+        allBackWheelFor24Size.remove(0);
         return allBackWheelFor24Size;
     }
     public List<ComponentWheelchair> allBackWheels() {
@@ -107,8 +107,8 @@ public class DataComponents {
                 allBackWheel.add(getAllComponents().get(i));
             }
         }
-            return allBackWheel;
-        }
+        return allBackWheel;
+    }
     public List<ComponentWheelchair> allBackWheelsSize() {
         List<ComponentWheelchair> allBackWheelSize = new ArrayList<>();
         for (int i = 0; i < getAllComponents().size(); i++) {
@@ -118,5 +118,5 @@ public class DataComponents {
         }
         return allBackWheelSize;
     }
-    }
-
+}
+*/

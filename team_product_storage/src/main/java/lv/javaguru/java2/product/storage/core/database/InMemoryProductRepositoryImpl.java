@@ -18,6 +18,12 @@ public class InMemoryProductRepositoryImpl implements ProductRepository {
         nextId++;
         products.add(product);
     }
+
+    @Override
+    public Optional<Product> getById(Long id) {
+        return Optional.empty();
+    }
+
     @Override
     public boolean deleteById(Long id) {
         boolean isProductDeleted = false;

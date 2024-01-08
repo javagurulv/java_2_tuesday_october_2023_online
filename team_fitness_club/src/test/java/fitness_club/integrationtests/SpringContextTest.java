@@ -1,7 +1,7 @@
 package fitness_club.integrationtests;
 
 import static org.junit.Assert.assertNotNull;
-import fitness_club.config.WorkoutsConfiguration;
+import fitness_club.config.SpringCoreConfiguration;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {WorkoutsConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 
 public class SpringContextTest {
     @Autowired private ApplicationContext applicationContext;

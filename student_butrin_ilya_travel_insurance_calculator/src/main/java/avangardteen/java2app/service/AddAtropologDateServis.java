@@ -1,7 +1,8 @@
 package avangardteen.java2app.service;
 
 import avangardteen.java2app.CoreError;
-import avangardteen.java2app.UserSizes;
+import avangardteen.java2app.domen.UserSizes;
+import avangardteen.java2app.domen.Wheelchair;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.AddAnthropometricDataRequest;
@@ -12,7 +13,10 @@ import java.util.List;
 @Component
 public class AddAtropologDateServis {
   @Autowired UserSizes sizes;
+  @Autowired
+    Wheelchair wheelchair;
    @Autowired AddAntropologDateValigation valigation;
+
 
 
     public AddAnthropometricDataResponse execute (AddAnthropometricDataRequest request) {
@@ -24,6 +28,12 @@ public class AddAtropologDateServis {
         sizes.setPelvisWidth(request.getPelwicWidth());
         sizes.setThighLength(request.getThighLength());
         sizes.setShinLength(request.getShinLength());
+
+        wheelchair.setSeatWidth(sizes.findSeatWidth());
+        wheelchair.setSeatWidth(sizes.findSeatDepth());
+        wheelchair.setSeatWidth(sizes.findFootrestLength());
+
+
         return new AddAnthropometricDataResponse();
     }
     public void setShinLength(int choose) {

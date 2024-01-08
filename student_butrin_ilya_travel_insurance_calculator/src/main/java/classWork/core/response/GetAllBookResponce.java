@@ -1,6 +1,6 @@
 package classWork.core.response;
 
-import classWork.Book;
+import classWork.domen.Book;
 import classWork.core.CoreResponse;
 
 import java.util.List;

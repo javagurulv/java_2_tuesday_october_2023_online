@@ -10,11 +10,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import lv.javaguru.java2.product.storage.config.StorageConfiguration;
+import lv.javaguru.java2.product.storage.config.SpringCoreConfiguration;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {StorageConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 public class SpringContextTest {
 
 	@Autowired private ApplicationContext appContext;

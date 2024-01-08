@@ -9,6 +9,9 @@ public class SearchProductsRequest {
 
     private Paging paging;
 
+    public SearchProductsRequest() {
+    }
+
     public SearchProductsRequest(String productBrand, String productModel) {
         this.productBrand = productBrand;
         this.productModel = productModel;
@@ -57,6 +60,20 @@ public class SearchProductsRequest {
         return paging;
     }
 
+    public void setProductBrand(String productBrand) {
+        this.productBrand = productBrand;
+    }
 
+    public void setProductModel(String productModel) {
+        this.productModel = productModel;
+    }
+
+    public void setOrdering(Ordering ordering) {
+        this.ordering = ordering;
+    }
+
+    public void setPaging(Paging paging) {
+        this.paging = paging;
+    }
 }
 

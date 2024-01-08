@@ -1,7 +1,7 @@
 package lv.javaguru.java2.product.storage.accepatancetests;
 
 import lv.javaguru.java2.product.storage.DatabaseCleaner;
-import lv.javaguru.java2.product.storage.config.StorageConfiguration;
+import lv.javaguru.java2.product.storage.config.SpringCoreConfiguration;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.requests.RemoveProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.RemoveProductResponse;
@@ -24,7 +24,7 @@ import static org.junit.Assert.assertTrue;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {StorageConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 @Sql({"/schema.sql"})
 public class RemoveProductAcceptanceTest {
 

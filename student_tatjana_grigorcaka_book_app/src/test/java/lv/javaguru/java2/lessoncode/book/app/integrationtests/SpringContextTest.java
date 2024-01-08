@@ -1,6 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.integrationtests;
 
-import lv.javaguru.java2.lessoncode.book.app.config.BookListConfiguration;
+import lv.javaguru.java2.lessoncode.book.app.config.SpringCoreConfiguration;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {BookListConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 public class SpringContextTest {
 
 	@Autowired private ApplicationContext appContext;

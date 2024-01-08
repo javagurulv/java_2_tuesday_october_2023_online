@@ -1,7 +1,7 @@
 package classWork.core.service;
 
-import classWork.Book;
-import classWork.core.database.Database;
+import classWork.domen.Book;
+import classWork.core.database.BookRepository;
 import classWork.core.service.valigators.SearchBookValigator;
 import classWork.core.response.SearchBooksResponse;
 import classWork.core.CoreError;
@@ -15,7 +15,8 @@ import java.util.stream.Collectors;
 @Component
 public class SearchBooksService {
    @Autowired SearchBookValigator valigator;
-   @Autowired Database data;
+   @Autowired
+   BookRepository data;
     public SearchBooksResponse searchAndSort (SearchBooksRequest request) {
         List<CoreError> errorList = valigator.errorList(request);
         if (!errorList.isEmpty())

@@ -15,11 +15,12 @@ public class OrmReaderRepositoryImpl implements ReaderRepository {
 
 	@Autowired private SessionFactory sessionFactory;
 
-
+	@Override
 	public void save(Reader reader) {
 		sessionFactory.getCurrentSession().save(reader);
 	}
 
+	@Override
 	public Reader findById(Long id) { return sessionFactory.getCurrentSession().get(Reader.class, id); }
 
 	@Override

@@ -22,7 +22,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = "lv.javaguru.java2.lessoncode.book.app")
 @PropertySource(value = "classpath:application.properties")
 @EnableTransactionManagement
-public class BookListConfiguration {
+public class SpringCoreConfiguration {
 
     @Value("${jdbc.url}")
     private String jdbcUrl;

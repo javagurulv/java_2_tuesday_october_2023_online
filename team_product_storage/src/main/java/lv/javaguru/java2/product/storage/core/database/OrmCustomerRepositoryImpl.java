@@ -15,11 +15,12 @@ public class OrmCustomerRepositoryImpl implements CustomerRepository {
 
 	@Autowired private SessionFactory sessionFactory;
 
-
+	@Override
 	public void save(Customer customer) {
 		sessionFactory.getCurrentSession().save(customer);
 	}
 
+	@Override
 	public Customer findById(Long id) { return sessionFactory.getCurrentSession().get(Customer.class, id); }
 
 	@Override

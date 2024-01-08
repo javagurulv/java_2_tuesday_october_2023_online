@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS `books` (
   `title` VARCHAR(200) NOT NULL,
   `author` VARCHAR(100) NOT NULL,
   `issue_year` INT NOT NULL,
-  `genre` VARCHAR(100),
   PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB
@@ -29,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `readers` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
 
-CREATE UNIQUE INDEX `ix_readers_personal_code`
-ON `readers` (`personal_code`);
+CREATE UNIQUE INDEX `ix_readers_first_name_last_name_personal_code`
+ON readers (first_name, last_name, personal_code);
 
 
 CREATE TABLE IF NOT EXISTS `reader_books` (
@@ -50,4 +49,11 @@ ADD FOREIGN KEY (`book_id`) REFERENCES `books`(`id`);
 
 ALTER TABLE `reader_books`
 ADD FOREIGN KEY (`reader_id`) REFERENCES `readers`(`id`);
+
+
+CREATE INDEX ix_reader_books_reader_id
+ON reader_books (reader_id);
+
+CREATE INDEX ix_reader_books_book_id
+ON reader_books (book_id);
 

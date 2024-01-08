@@ -12,7 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import lv.javaguru.java2.lessoncode.book.app.DatabaseCleaner;
 
-import lv.javaguru.java2.lessoncode.book.app.config.BookListConfiguration;
+import lv.javaguru.java2.lessoncode.book.app.config.SpringCoreConfiguration;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.AddBookResponse;
@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {BookListConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 @Sql({"/schema.sql"})
 public class AddBookAcceptanceTest {
 
