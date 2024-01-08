@@ -1,6 +1,7 @@
 package lv.avangardteen.core.domain;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 @Entity
 @Table(name="clients")
@@ -22,6 +23,12 @@ public class Client {
 
     @Column(name = "address", nullable = false)
     String address;
+
+    @OneToMany(mappedBy="client", fetch=FetchType.LAZY)
+    private List<UserSizes> userSizesList;
+
+    @OneToMany(mappedBy="client", fetch=FetchType.LAZY)
+    private List<Wheelchair> wheelchairList;
 
      public Client(){}
 
@@ -70,6 +77,22 @@ public class Client {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public List<UserSizes> getUserSizesList() {
+        return userSizesList;
+    }
+
+    public void setUserSizesList(List<UserSizes> userSizesList) {
+        this.userSizesList = userSizesList;
+    }
+
+    public List<Wheelchair> getWheelchairList() {
+        return wheelchairList;
+    }
+
+    public void setWheelchairList(List<Wheelchair> wheelchairList) {
+        this.wheelchairList = wheelchairList;
     }
 
     @Override

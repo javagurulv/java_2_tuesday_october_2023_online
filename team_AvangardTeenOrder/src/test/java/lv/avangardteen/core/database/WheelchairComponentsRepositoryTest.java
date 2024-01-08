@@ -47,7 +47,7 @@ class WheelchairComponentsRepositoryTest {
         database.addUser(client1);
 
         Wheelchair wheelchair = new Wheelchair();
-        wheelchair.setIdClient(1L);
+        wheelchair.setClient(client1);
         wheelchair.setPrice(177000.0);
         wheelchair.setBachHeight(22);
         wheelchair.setFootrestLength(22);

@@ -62,14 +62,5 @@ public class WheelchairRepository implements WheelchairDB {
         return result == 1;
     }
 
-    @Override
-    public List<WheelchairComponents> getChooseComponents(Wheelchair wheelchair) {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("FROM WheelchairComponents WHERE wheelchair_id = :id");
-        query.setParameter("id", wheelchair);
-        return query.getResultList();
-
-    }
-
 }
 

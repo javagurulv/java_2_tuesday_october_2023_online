@@ -45,7 +45,7 @@ class WheelchairRepositoryTest {
         database.addUser(client3);
 
         Wheelchair wheelchair = new Wheelchair();
-        wheelchair.setIdClient(1L);
+        wheelchair.setClient(client1);
         wheelchair.setPrice(177000.0);
         wheelchair.setBachHeight(22);
         wheelchair.setFootrestLength(22);
@@ -69,7 +69,7 @@ class WheelchairRepositoryTest {
         Client client1 = new Client("MMM", 9999l, 9999l, "LLLL");
         database.addUser(client1);
         Wheelchair wheelchair = new Wheelchair();
-        wheelchair.setIdClient(1L);
+        wheelchair.setClient(client1);
         wheelchair.setPrice(177000.0);
         wheelchair.setBachHeight(22);
         wheelchair.setFootrestLength(22);

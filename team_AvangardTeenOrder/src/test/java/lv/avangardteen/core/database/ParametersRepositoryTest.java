@@ -49,7 +49,7 @@ class ParametersRepositoryTest {
         List<Client> clientsList = database.getClients();
         assertEquals(clientsList.size(), 3);
         UserSizes userSizes = new UserSizes();
-        userSizes.setIdClient(client1.getId());
+        userSizes.setClient(client1);
         userSizes.setThighLength(22);
         userSizes.setPelvisWidth(22);
         userSizes.setBackHeight(22);
@@ -72,7 +72,7 @@ class ParametersRepositoryTest {
         database.addUser(client3);
 
         UserSizes userSizes = new UserSizes();
-        userSizes.setIdClient(client1.getId());
+        userSizes.setClient(client1);
         userSizes.setThighLength(22);
         userSizes.setPelvisWidth(22);
         userSizes.setBackHeight(22);
@@ -80,7 +80,7 @@ class ParametersRepositoryTest {
         userSizeDb.addUserSize(userSizes);
 
         UserSizes userSizes2 = new UserSizes();
-        userSizes2.setIdClient(client2.getId());
+        userSizes2.setClient(client2);
         userSizes2.setThighLength(33);
         userSizes2.setPelvisWidth(33);
         userSizes2.setBackHeight(33);

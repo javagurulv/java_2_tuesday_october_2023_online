@@ -11,6 +11,6 @@ public interface WheelchairDB {
     Wheelchair getWheelchair(Long id);
     Double getPrice(Long id);
     boolean deleteWheelchairById(Long id);
-    List<WheelchairComponents> getChooseComponents(Wheelchair wheelchair);
+
 
 }
