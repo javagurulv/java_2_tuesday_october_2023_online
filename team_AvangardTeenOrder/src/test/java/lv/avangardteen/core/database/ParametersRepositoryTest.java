@@ -15,6 +15,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
@@ -48,7 +49,7 @@ class ParametersRepositoryTest {
         List<Client> clientsList = database.getClients();
         assertEquals(clientsList.size(), 3);
         UserSizes userSizes = new UserSizes();
-        userSizes.setClient(client1);
+        userSizes.setIdClient(client1.getId());
         userSizes.setThighLength(22);
         userSizes.setPelvisWidth(22);
         userSizes.setBackHeight(22);
@@ -59,8 +60,36 @@ class ParametersRepositoryTest {
         assertEquals(userSizesList.size(), 1);
         System.out.println(userSizesList.toString());
 
-
-
     }
 
+    @Test
+    public void getUserSizeByClientId() {
+        Client client1 = new Client("MMM", 9999l, 9999l, "LLLL");
+        Client client2 = new Client("MMM", 1111l, 9999l, "LLLL");
+        Client client3 = new Client("MMM", 2222l, 9999l, "LLLL");
+        database.addUser(client1);
+        database.addUser(client2);
+        database.addUser(client3);
+
+        UserSizes userSizes = new UserSizes();
+        userSizes.setIdClient(client1.getId());
+        userSizes.setThighLength(22);
+        userSizes.setPelvisWidth(22);
+        userSizes.setBackHeight(22);
+        userSizes.setShinLength(22);
+        userSizeDb.addUserSize(userSizes);
+
+        UserSizes userSizes2 = new UserSizes();
+        userSizes2.setIdClient(client2.getId());
+        userSizes2.setThighLength(33);
+        userSizes2.setPelvisWidth(33);
+        userSizes2.setBackHeight(33);
+        userSizes2.setShinLength(33);
+        userSizeDb.addUserSize(userSizes2);
+
+
+        UserSizes userSizes1 = userSizeDb.getUserSizeByClientId(2L);
+        assertEquals(Optional.ofNullable(userSizes2.getShinLength()), Optional.of(33));
+        System.out.println(userSizes1.toString());
+    }
 }

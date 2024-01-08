@@ -1,3 +1,61 @@
+insert into clients (
+nameSurname,
+personalCode,
+phone,
+address)
+VALUES(
+"Nikolaj Ivanov",
+22222,
+12345678,
+"Lesnaja 2_22");
+
+
+insert into wheelchair (
+client_id,
+seatWidth,
+seatDepth,
+footrestLength,
+bachHeight,
+price)
+select
+cl.id,
+22,
+22,
+22,
+22, 177000.0
+from clients as cl
+where cl.id = 1;
+
+
+ insert into `order_components`
+ (wheelchair_id,
+ component_id)
+ select
+ w.id,
+ c.id
+from wheelchair as w
+join components as c
+where w.id = 1
+and c.id = 1;
+
+insert into parameters (
+client_id,
+pelvisWidth,
+thighLength,
+backHeight,
+shinLength
+)
+select
+cl.id,
+22,
+22,
+22,
+22
+from clients as cl
+where cl.id = 1;
+
+
+
 INSERT INTO components (
 	category,
 	marking,

@@ -11,9 +11,8 @@ public class UserSizes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "client_id", nullable = false)
-    private Client client;
+    @Column(name = "client_id", nullable = false)
+    private Long idClient;
 
     @Column(name = "pelvisWidth", nullable = false)
     private Integer pelvisWidth;
@@ -29,7 +28,8 @@ public class UserSizes {
 
       public UserSizes() {}
 
-    public UserSizes( Client client, Integer pelvisWidth, Integer thighLength, Integer backHeight, Integer shinLength) {this.client = client;
+    public UserSizes( Long idClient, Integer pelvisWidth, Integer thighLength, Integer backHeight, Integer shinLength) {
+          this.idClient = idClient;
         this.pelvisWidth = pelvisWidth;
         this.thighLength = thighLength;
         this.backHeight = backHeight;
@@ -44,13 +44,21 @@ public class UserSizes {
         this.id = id;
     }
 
-    public Client getClient() {
+    public Long getIdClient() {
+        return idClient;
+    }
+
+    public void setIdClient(Long idClient) {
+        this.idClient = idClient;
+    }
+
+    /* public Client getClient() {
         return client;
     }
 
     public void setClient(Client client) {
         this.client = client;
-    }
+    }*/
 
     public Integer getPelvisWidth() {
         return pelvisWidth;
@@ -89,12 +97,12 @@ public class UserSizes {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserSizes userSizes = (UserSizes) o;
-        return Objects.equals(id, userSizes.id) && Objects.equals(client, userSizes.client) && Objects.equals(pelvisWidth, userSizes.pelvisWidth) && Objects.equals(thighLength, userSizes.thighLength) && Objects.equals(backHeight, userSizes.backHeight) && Objects.equals(shinLength, userSizes.shinLength);
+        return Objects.equals(id, userSizes.id) && Objects.equals(idClient, userSizes.idClient) && Objects.equals(pelvisWidth, userSizes.pelvisWidth) && Objects.equals(thighLength, userSizes.thighLength) && Objects.equals(backHeight, userSizes.backHeight) && Objects.equals(shinLength, userSizes.shinLength);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, client, pelvisWidth, thighLength, backHeight, shinLength);
+        return Objects.hash(id, idClient, pelvisWidth, thighLength, backHeight, shinLength);
     }
 
     @Override

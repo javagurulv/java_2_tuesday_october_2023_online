@@ -1,8 +1,6 @@
 package lv.avangardteen.core.service.validate;
 
-import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.database.WheelchairDB;
-import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.domain.Wheelchair;
 import lv.avangardteen.core.responce.CoreError;
 import org.springframework.beans.factory.annotation.Autowired;

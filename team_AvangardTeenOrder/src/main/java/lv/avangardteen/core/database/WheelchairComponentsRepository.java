@@ -19,21 +19,17 @@ public class WheelchairComponentsRepository implements WComponentsDB {
     private SessionFactory sessionFactory;
 
     @Override
-    public List<WheelchairComponents> getChooseComponents(Long id) {
+    public List<WheelchairComponents> getChooseComponents(Wheelchair wheelchair) {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("FROM WheelchairComponents WHERE wheelchair_id = :id");
-        query.setParameter("wheelchair_id", id);
+                .createQuery("FROM WheelchairComponents WHERE wheelchair_id = :wheelchair");
+        query.setParameter("wheelchair", wheelchair);
         return query.getResultList();
 
     }
 
     @Override
-    public void addWheelchairComponents(Wheelchair wheelchair, Components components) {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("INSERT INTO WheelchairComponents WHERE wheelchair_id = :wheelchair.id" +
-                        "AND components_id = :components.id");
-        query.setParameter("wheelchair_id", wheelchair);
-        query.setParameter("component_id", components);
+    public void addWheelchairComponents(WheelchairComponents wheelchairComponents) {
+        sessionFactory.getCurrentSession().save(wheelchairComponents);
     }
 
     @Override

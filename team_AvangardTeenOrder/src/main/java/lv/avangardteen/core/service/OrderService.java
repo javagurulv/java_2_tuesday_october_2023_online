@@ -1,10 +1,7 @@
 package lv.avangardteen.core.service;
 
 import lv.avangardteen.core.database.*;
-import lv.avangardteen.core.domain.Client;
-import lv.avangardteen.core.domain.Components;
-import lv.avangardteen.core.domain.UserSizes;
-import lv.avangardteen.core.domain.Wheelchair;
+import lv.avangardteen.core.domain.*;
 import lv.avangardteen.core.request.OrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.OrderResponse;
@@ -49,11 +46,13 @@ public class OrderService {
         Wheelchair wheelchair = dimensionsWheelchair.setDimensions(request.getPelvisWidth(),
                 request.getThighLength(), request.getShinLength(), request.getBackHeight());
 
-        userSizeDb.addUserSize(new UserSizes((client), request.getPelvisWidth(),
+        userSizeDb.addUserSize(new UserSizes((client.getId()), request.getPelvisWidth(),
                 request.getThighLength(), request.getShinLength(), request.getBackHeight()));
 
-        Long idWheelchair = wheelchairDB.addWheelchair(new Wheelchair(client, wheelchair.getSeatWidth(), wheelchair.getSeatDepth(),
-                wheelchair.getFootrestLength(), wheelchair.getBachHeight(), 177000.0));
+        Wheelchair wheelchairSaveToDb = new Wheelchair(client.getId(), wheelchair.getSeatWidth(), wheelchair.getSeatDepth(),
+                wheelchair.getFootrestLength(), wheelchair.getBachHeight(), 177000.0);
+
+         wheelchairDB.addWheelchair(wheelchairSaveToDb);
 
 
         List<Components> componentList = new ArrayList<>();
@@ -66,16 +65,29 @@ public class OrderService {
         componentList.add(componentsBrake);
         componentList.add(componentsFootrest);
 
-        componentsDB.addWheelchairComponents(wheelchairDB.getWheelchair(idWheelchair), componentsFrontWheel);
-        componentsDB.addWheelchairComponents(wheelchairDB.getWheelchair(idWheelchair), componentsBackWheel);
-        componentsDB.addWheelchairComponents(wheelchairDB.getWheelchair(idWheelchair), componentsBrake);
-        componentsDB.addWheelchairComponents(wheelchairDB.getWheelchair(idWheelchair), componentsFootrest);
+        WheelchairComponents wheelchairComponents1 = new WheelchairComponents();
+        wheelchairComponents1.setWheelchair(wheelchairSaveToDb);
+        wheelchairComponents1.setComponents(componentsFrontWheel);
+        WheelchairComponents wheelchairComponents2 = new WheelchairComponents();
+        wheelchairComponents2.setWheelchair(wheelchairSaveToDb);
+        wheelchairComponents2.setComponents(componentsBackWheel);
+        WheelchairComponents wheelchairComponents3 = new WheelchairComponents();
+        wheelchairComponents3.setWheelchair(wheelchairSaveToDb);
+        wheelchairComponents3.setComponents(componentsBrake);
+        WheelchairComponents wheelchairComponents4 = new WheelchairComponents();
+        wheelchairComponents4.setWheelchair(wheelchairSaveToDb);
+        wheelchairComponents4.setComponents(componentsFootrest);
 
-        response.setIdOrder(idWheelchair);
+        componentsDB.addWheelchairComponents(wheelchairComponents1);
+        componentsDB.addWheelchairComponents(wheelchairComponents2);
+        componentsDB.addWheelchairComponents(wheelchairComponents3);
+        componentsDB.addWheelchairComponents(wheelchairComponents4);
+
+        response.setIdOrder(wheelchairSaveToDb.getId());
         response.setClient(client);
-        response.setUserSizes(new UserSizes((client), request.getPelvisWidth(),
+        response.setUserSizes(new UserSizes((client.getId()), request.getPelvisWidth(),
                 request.getThighLength(), request.getShinLength(), request.getBackHeight()));
-        response.setWheelchair(new Wheelchair(client, wheelchair.getSeatWidth(), wheelchair.getSeatDepth(),
+        response.setWheelchair(new Wheelchair(client.getId(), wheelchair.getSeatWidth(), wheelchair.getSeatDepth(),
                 wheelchair.getFootrestLength(), wheelchair.getBachHeight(), 177000.0));
         response.setListComponents(componentList);
 

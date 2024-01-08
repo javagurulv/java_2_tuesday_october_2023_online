@@ -1,6 +1,7 @@
 package lv.avangardteen.core.database;
 
 import lv.avangardteen.core.domain.Wheelchair;
+import lv.avangardteen.core.domain.WheelchairComponents;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,28 +19,15 @@ public class WheelchairRepository implements WheelchairDB {
     private SessionFactory sessionFactory;
 
     @Override
-    public List<Wheelchair> getWheelchair() {
+    public List<Wheelchair> getWheelchairsList() {
         return sessionFactory.getCurrentSession()
                 .createQuery("FROM Wheelchair w", Wheelchair.class)
                 .getResultList();
     }
 
     @Override
-    public Long addWheelchair(Wheelchair wheelchair) {
-        Long id = (Long) sessionFactory.getCurrentSession().save(wheelchair);
-        return id;
-
-    }
-
-    @Override
-    public void updateWheelchair(Long id, Wheelchair wheelchair) {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("UPDATE Wheelchair c where id = :id");
-        query.setParameter("id", id);
-        query.setParameter("seatWidth", wheelchair.getSeatWidth());
-        query.setParameter("seatDepth", wheelchair.getSeatDepth());
-        query.setParameter("footrestLength", wheelchair.getFootrestLength());
-        query.setParameter("bachHeight", wheelchair.getBachHeight());
+    public void addWheelchair(Wheelchair wheelchair) {
+        sessionFactory.getCurrentSession().save(wheelchair);
     }
 
     @Override
@@ -55,12 +43,6 @@ public class WheelchairRepository implements WheelchairDB {
         return (Wheelchair) query.getSingleResult();
     }
 
-    @Override
-    public Long getIdWheelchair() {
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "SHOW id FROM Wheelchair where id = `PRIMARY KEY`");
-        return (Long) query.getSingleResult(); //удалить, метод не работает
-    }
 
     @Override
     public Double getPrice(Long id) {
@@ -78,6 +60,15 @@ public class WheelchairRepository implements WheelchairDB {
         query.setParameter("id", id);
         int result = query.executeUpdate();
         return result == 1;
+    }
+
+    @Override
+    public List<WheelchairComponents> getChooseComponents(Wheelchair wheelchair) {
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("FROM WheelchairComponents WHERE wheelchair_id = :id");
+        query.setParameter("id", wheelchair);
+        return query.getResultList();
+
     }
 
 }

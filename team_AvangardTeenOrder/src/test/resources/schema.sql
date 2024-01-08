@@ -64,5 +64,5 @@ ALTER TABLE `order_components` ADD foreign key (component_id) REFERENCES `compon
 
 ALTER TABLE `order_components` ADD foreign key (wheelchair_id) REFERENCES `wheelchair` (id)  ON DELETE CASCADE;
 
-CREATE UNIQUE INDEX order_components_wheelchair_index ON order_components(wheelchair_id);
+CREATE UNIQUE INDEX order_components_wheelchair_index ON order_components(wheelchair_id, component_id);
 

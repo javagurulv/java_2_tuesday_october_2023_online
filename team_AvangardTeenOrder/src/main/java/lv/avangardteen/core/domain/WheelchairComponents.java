@@ -12,15 +12,16 @@ public class WheelchairComponents {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "wheelchair_id")
+    @ManyToOne(optional=false, cascade=CascadeType.ALL)
+    @JoinColumn(name = "wheelchair_id", nullable = false)
     private Wheelchair wheelchair;
 
     @OneToOne
     @JoinColumn(name = "component_id")
     private Components components;
 
-    public WheelchairComponents() {}
+    public WheelchairComponents() {
+    }
 
     public WheelchairComponents(Long id, Wheelchair wheelchair, Components components) {
         this.id = id;
@@ -68,9 +69,7 @@ public class WheelchairComponents {
     @Override
     public String toString() {
         return "WheelchairComponents{" +
-                "id=" + id +
-                ", wheelchair =" + wheelchair +
-                ", components =" + components +
+                "components =" + components +
                 '}';
     }
 }

@@ -21,7 +21,7 @@ public class ParametersRepository implements UserSizeDb {
     @Override
     public List<UserSizes> getUserSizesOrders() {
         return sessionFactory.getCurrentSession()
-                .createQuery("FROM UserSize us", UserSizes.class)
+                .createQuery("FROM UserSizes us", UserSizes.class)
                 .getResultList();
     }
 
@@ -31,10 +31,10 @@ public class ParametersRepository implements UserSizeDb {
     }
 
     @Override
-    public UserSizes getUserSizeByOrderId(Long id) {
+    public UserSizes getUserSizeByClientId(Long id) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "FROM UserSize where order_id = :id");
-        query.setParameter("order_id", id);
+                "FROM UserSizes where client_id = :id");
+        query.setParameter("id", id);
         try {
             query.getSingleResult();
         } catch (NoResultException e) {

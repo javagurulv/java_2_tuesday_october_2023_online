@@ -1,16 +1,16 @@
 package lv.avangardteen.core.database;
 
 import lv.avangardteen.core.domain.Wheelchair;
+import lv.avangardteen.core.domain.WheelchairComponents;
 
 import java.util.List;
 
 public interface WheelchairDB {
-    List<Wheelchair> getWheelchair();
-    Long addWheelchair(Wheelchair wheelchair);
-    void updateWheelchair(Long id, Wheelchair wheelchair);
+    List<Wheelchair> getWheelchairsList();
+    void addWheelchair(Wheelchair wheelchair);
     Wheelchair getWheelchair(Long id);
-    Long getIdWheelchair();
     Double getPrice(Long id);
     boolean deleteWheelchairById(Long id);
+    List<WheelchairComponents> getChooseComponents(Wheelchair wheelchair);
 
 }

@@ -24,6 +24,9 @@ public class Components {
     @Column(name = "price", nullable = false)
     private double price;
 
+    @OneToOne (optional = true, mappedBy="components")
+    private WheelchairComponents wheelchairComponents;
+
     public Components() {
     }
 

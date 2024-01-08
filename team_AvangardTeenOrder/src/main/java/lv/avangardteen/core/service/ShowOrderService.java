@@ -1,8 +1,6 @@
 package lv.avangardteen.core.service;
 
 import lv.avangardteen.core.database.*;
-import lv.avangardteen.core.domain.Client;
-import lv.avangardteen.core.domain.UserSizes;
 import lv.avangardteen.core.domain.Wheelchair;
 import lv.avangardteen.core.domain.WheelchairComponents;
 import lv.avangardteen.core.request.ShowOrderRequest;
@@ -37,7 +35,7 @@ public class ShowOrderService {
 
         Wheelchair wheelchair = wheelchairDB.getWheelchair(request.getId());
 
-        List<WheelchairComponents> wheelchairComponent = wComponentsDB.getChooseComponents(request.getId());
+        List<WheelchairComponents> wheelchairComponent = wComponentsDB.getChooseComponents(wheelchair);
         ShowOrderResponse response = new ShowOrderResponse();
         response.setWheelchair(wheelchair);
         response.setWheelchairComponents(wheelchairComponent);
