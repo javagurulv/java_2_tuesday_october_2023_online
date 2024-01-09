@@ -39,21 +39,17 @@ public class OrmDataComponentsImpl implements DataComponents {
 
     @Override
     public List<Components> allFrontWheels() {
-
-
         Query query = sessionFactory.getCurrentSession()
-
-                .createQuery("SELECT c FROM Components " +
-                        "WHERE category = FRONT-WHEEL");
-       // query.setParameter("category", "FRONT-WHEEL");
-
+                .createQuery("FROM Components " +
+                        "WHERE category = category");
+        query.setParameter("category", "FRONT-WHEEL");
         return query.getResultList();
     }
 
     @Override
     public List<Components> allFootrest() {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Components " +
+                .createQuery("FROM Components " +
                         "WHERE category = :category");
         query.setParameter("category", "FOOTREST");
         return query.getResultList();
@@ -62,7 +58,7 @@ public class OrmDataComponentsImpl implements DataComponents {
     @Override
     public List<Components> allBrakes() {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Components " +
+                .createQuery("FROM Components " +
                         "WHERE category = :category");
         query.setParameter("category", "BRAKE");
         return query.getResultList();
@@ -71,7 +67,7 @@ public class OrmDataComponentsImpl implements DataComponents {
     @Override
     public List<Components> allBackWheels() {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Components " +
+                .createQuery("FROM Components " +
                         "WHERE category = :category");
         query.setParameter("category", "BACK-WHEEL");
         return query.getResultList();

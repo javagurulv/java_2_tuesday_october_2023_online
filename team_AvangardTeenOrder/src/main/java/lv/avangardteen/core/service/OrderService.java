@@ -72,15 +72,19 @@ public class OrderService {
         WheelchairComponents wheelchairComponents1 = new WheelchairComponents();
         wheelchairComponents1.setWheelchair(wheelchair);
         wheelchairComponents1.setComponents(componentsFrontWheel);
+        wheelchairComponents1.setPriceComponent(componentsFrontWheel.getPrice());
         WheelchairComponents wheelchairComponents2 = new WheelchairComponents();
         wheelchairComponents2.setWheelchair(wheelchair);
         wheelchairComponents2.setComponents(componentsBackWheel);
+        wheelchairComponents2.setPriceComponent(componentsBackWheel.getPrice());
         WheelchairComponents wheelchairComponents3 = new WheelchairComponents();
         wheelchairComponents3.setWheelchair(wheelchair);
         wheelchairComponents3.setComponents(componentsBrake);
+        wheelchairComponents3.setPriceComponent(componentsBrake.getPrice());
         WheelchairComponents wheelchairComponents4 = new WheelchairComponents();
         wheelchairComponents4.setWheelchair(wheelchair);
         wheelchairComponents4.setComponents(componentsFootrest);
+        wheelchairComponents4.setPriceComponent(componentsFootrest.getPrice());
 
         componentsDB.addWheelchairComponents(wheelchairComponents1);
         componentsDB.addWheelchairComponents(wheelchairComponents2);

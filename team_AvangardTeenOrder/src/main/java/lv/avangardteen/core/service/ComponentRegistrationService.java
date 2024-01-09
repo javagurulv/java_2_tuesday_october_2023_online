@@ -53,18 +53,25 @@ public class ComponentRegistrationService {
         Components componentBackWheel = dataComponents.getComponent(request.getWheelBackChoose());
         Components componentBrake = dataComponents.getComponent(request.getBrakeChoose());
         Components componentFootrest = dataComponents.getComponent(request.getFootrestChoose());
+
         WheelchairComponents wheelchairComponents1 = new WheelchairComponents();
         wheelchairComponents1.setWheelchair(wheelchair);
         wheelchairComponents1.setComponents(componentFrontWheel);
+        wheelchairComponents1.setPriceComponent(componentFrontWheel.getPrice());
         WheelchairComponents wheelchairComponents2 = new WheelchairComponents();
-        wheelchairComponents1.setWheelchair(wheelchair);
-        wheelchairComponents1.setComponents(componentBackWheel);
+        wheelchairComponents2.setWheelchair(wheelchair);
+        wheelchairComponents2.setComponents(componentBackWheel);
+        wheelchairComponents2.setPriceComponent(componentBackWheel.getPrice());
+
         WheelchairComponents wheelchairComponents3 = new WheelchairComponents();
-        wheelchairComponents1.setWheelchair(wheelchair);
-        wheelchairComponents1.setComponents(componentBrake);
+        wheelchairComponents3.setWheelchair(wheelchair);
+        wheelchairComponents3.setComponents(componentBrake);
+        wheelchairComponents3.setPriceComponent(componentBrake.getPrice());
         WheelchairComponents wheelchairComponents4 = new WheelchairComponents();
-        wheelchairComponents1.setWheelchair(wheelchair);
-        wheelchairComponents1.setComponents(componentFootrest);
+        wheelchairComponents4.setWheelchair(wheelchair);
+        wheelchairComponents4.setComponents(componentFootrest);
+        wheelchairComponents4.setPriceComponent(componentFootrest.getPrice());
+
         wComponentsDB.addWheelchairComponents(wheelchairComponents1);
         wComponentsDB.addWheelchairComponents(wheelchairComponents2);
         wComponentsDB.addWheelchairComponents(wheelchairComponents3);

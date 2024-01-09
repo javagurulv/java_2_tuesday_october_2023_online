@@ -33,12 +33,12 @@ class DbComponentsTest {
 
     @Test
     public void getListComponentsWheelFront() {
-        dataComponents.addComponent(new Components("FRONT_WHEEL", "MH01", "INFORMATION", 1.1));
-        dataComponents.addComponent(new Components("BACK_WHEEL", "MN01", "INFORMATION1", 2.2));
+        dataComponents.addComponent(new Components("FRONT-WHEEL", "MH01", "INFORMATION", 1.1));
+        dataComponents.addComponent(new Components("BACK-WHEEL", "MN01", "INFORMATION1", 2.2));
         dataComponents.addComponent(new Components("BRAKE", "MF01", "INFORMATION2", 3.3));
         dataComponents.addComponent(new Components("FOOTREST", "MK01", "INFORMATION3", 4.4));
-        dataComponents.addComponent(new Components("FRONT_WHEEL", "MH02", "INFORMATION", 1.1));
-        dataComponents.addComponent(new Components("BACK_WHEEL", "MN03", "INFORMATION1", 2.2));
+        dataComponents.addComponent(new Components("FRONT-WHEEL", "MH02", "INFORMATION", 1.1));
+        dataComponents.addComponent(new Components("BACK-WHEEL", "MN03", "INFORMATION1", 2.2));
         dataComponents.addComponent(new Components("BRAKE", "MF02", "INFORMATION2", 3.3));
         dataComponents.addComponent(new Components("FOOTREST", "MK02", "INFORMATION3", 4.4));
 
@@ -50,12 +50,12 @@ class DbComponentsTest {
 
     @Test
     public void getListComponentsWheelBack() {
-        dataComponents.addComponent(new Components("FRONT_WHEEL", "MH01", "INFORMATION", 1.1));
-        dataComponents.addComponent(new Components("BACK_WHEEL", "MN01", "INFORMATION1", 2.2));
+        dataComponents.addComponent(new Components("FRONT-WHEEL", "MH01", "INFORMATION", 1.1));
+        dataComponents.addComponent(new Components("BACK-WHEEL", "MN01", "INFORMATION1", 2.2));
         dataComponents.addComponent(new Components("BRAKE", "MF01", "INFORMATION2", 3.3));
         dataComponents.addComponent(new Components("FOOTREST", "MK01", "INFORMATION3", 4.4));
-        dataComponents.addComponent(new Components("FRONT_WHEEL", "MH02", "INFORMATION", 1.1));
-        dataComponents.addComponent(new Components("BACK_WHEEL", "MN03", "INFORMATION1", 2.2));
+        dataComponents.addComponent(new Components("FRONT-WHEEL", "MH02", "INFORMATION", 1.1));
+        dataComponents.addComponent(new Components("BACK-WHEEL", "MN03", "INFORMATION1", 2.2));
         dataComponents.addComponent(new Components("BRAKE", "MF02", "INFORMATION2", 3.3));
         dataComponents.addComponent(new Components("FOOTREST", "MK02", "INFORMATION3", 4.4));
 
@@ -67,12 +67,12 @@ class DbComponentsTest {
 
     @Test
     public void getListComponentsBrake() {
-        dataComponents.addComponent(new Components("FRONT_WHEEL", "MH01", "INFORMATION", 1.1));
-        dataComponents.addComponent(new Components("BACK_WHEEL", "MN01", "INFORMATION1", 2.2));
+        dataComponents.addComponent(new Components("FRONT-WHEEL", "MH01", "INFORMATION", 1.1));
+        dataComponents.addComponent(new Components("BACK-WHEEL", "MN01", "INFORMATION1", 2.2));
         dataComponents.addComponent(new Components("BRAKE", "MF01", "INFORMATION2", 3.3));
         dataComponents.addComponent(new Components("FOOTREST", "MK01", "INFORMATION3", 4.4));
-        dataComponents.addComponent(new Components("FRONT_WHEEL", "MH02", "INFORMATION", 1.1));
-        dataComponents.addComponent(new Components("BACK_WHEEL", "MN03", "INFORMATION1", 2.2));
+        dataComponents.addComponent(new Components("FRONT-WHEEL", "MH02", "INFORMATION", 1.1));
+        dataComponents.addComponent(new Components("BACK-WHEEL", "MN03", "INFORMATION1", 2.2));
         dataComponents.addComponent(new Components("BRAKE", "MF02", "INFORMATION2", 3.3));
         dataComponents.addComponent(new Components("FOOTREST", "MK02", "INFORMATION3", 4.4));
 
@@ -84,12 +84,12 @@ class DbComponentsTest {
 
     @Test
     public void getListComponentsFootrest() {
-        dataComponents.addComponent(new Components("FRONT_WHEEL", "MH01", "INFORMATION", 1.1));
-        dataComponents.addComponent(new Components("BACK_WHEEL", "MN01", "INFORMATION1", 2.2));
+        dataComponents.addComponent(new Components("FRONT-WHEEL", "MH01", "INFORMATION", 1.1));
+        dataComponents.addComponent(new Components("BACK-WHEEL", "MN01", "INFORMATION1", 2.2));
         dataComponents.addComponent(new Components("BRAKE", "MF01", "INFORMATION2", 3.3));
         dataComponents.addComponent(new Components("FOOTREST", "MK01", "INFORMATION3", 4.4));
-        dataComponents.addComponent(new Components("FRONT_WHEEL", "MH02", "INFORMATION", 1.1));
-        dataComponents.addComponent(new Components("BACK_WHEEL", "MN03", "INFORMATION1", 2.2));
+        dataComponents.addComponent(new Components("FRONT-WHEEL", "MH02", "INFORMATION", 1.1));
+        dataComponents.addComponent(new Components("BACK-WHEEL", "MN03", "INFORMATION1", 2.2));
         dataComponents.addComponent(new Components("BRAKE", "MF02", "INFORMATION2", 3.3));
         dataComponents.addComponent(new Components("FOOTREST", "MK02", "INFORMATION3", 4.4));
 
@@ -101,12 +101,12 @@ class DbComponentsTest {
 
     @Test
     public void getListComponents() {
-        dataComponents.addComponent(new Components("FRONT_WHEEL", "MH01", "INFORMATION", 1.1));
-        dataComponents.addComponent(new Components("BACK_WHEEL", "MN01", "INFORMATION1", 2.2));
+        dataComponents.addComponent(new Components("FRONT-WHEEL", "MH01", "INFORMATION", 1.1));
+        dataComponents.addComponent(new Components("BACK-WHEEL", "MN01", "INFORMATION1", 2.2));
         dataComponents.addComponent(new Components("BRAKE", "MF01", "INFORMATION2", 3.3));
         dataComponents.addComponent(new Components("FOOTREST", "MK01", "INFORMATION3", 4.4));
-        dataComponents.addComponent(new Components("FRONT_WHEEL", "MH02", "INFORMATION", 1.1));
-        dataComponents.addComponent(new Components("BACK_WHEEL", "MN03", "INFORMATION1", 2.2));
+        dataComponents.addComponent(new Components("FRONT-WHEEL", "MH02", "INFORMATION", 1.1));
+        dataComponents.addComponent(new Components("BACK-WHEEL", "MN03", "INFORMATION1", 2.2));
         dataComponents.addComponent(new Components("BRAKE", "MF02", "INFORMATION2", 3.3));
         dataComponents.addComponent(new Components("FOOTREST", "MK02", "INFORMATION3", 4.4));
 
@@ -118,12 +118,12 @@ class DbComponentsTest {
 
     @Test
     public void getComponents() {
-        dataComponents.addComponent(new Components("FRONT_WHEEL", "MH01", "INFORMATION", 1.1));
-        dataComponents.addComponent(new Components("BACK_WHEEL", "MN01", "INFORMATION1", 2.2));
+        dataComponents.addComponent(new Components("FRONT-WHEEL", "MH01", "INFORMATION", 1.1));
+        dataComponents.addComponent(new Components("BACK-WHEEL", "MN01", "INFORMATION1", 2.2));
         dataComponents.addComponent(new Components("BRAKE", "MF01", "INFORMATION2", 3.3));
         dataComponents.addComponent(new Components("FOOTREST", "MK01", "INFORMATION3", 4.4));
-        dataComponents.addComponent(new Components("FRONT_WHEEL", "MH02", "INFORMATION", 1.1));
-        dataComponents.addComponent(new Components("BACK_WHEEL", "MN03", "INFORMATION1", 2.2));
+        dataComponents.addComponent(new Components("FRONT-WHEEL", "MH02", "INFORMATION", 1.1));
+        dataComponents.addComponent(new Components("BACK-WHEEL", "MN03", "INFORMATION1", 2.2));
         dataComponents.addComponent(new Components("BRAKE", "MF02", "INFORMATION2", 3.3));
         dataComponents.addComponent(new Components("FOOTREST", "MK02", "INFORMATION3", 4.4));
 

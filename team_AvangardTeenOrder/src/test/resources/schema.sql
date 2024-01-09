@@ -26,7 +26,7 @@ PRIMARY KEY (`id`)
 );
 
 ALTER TABLE `parameters`
-add foreign key (client_id) REFERENCES clients (id);
+add foreign key (client_id) REFERENCES clients (id) ON DELETE CASCADE;
 
 CREATE TABLE IF NOT EXISTS  `wheelchair` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `components` (
 `category` VARCHAR(20) NOT NULL,
 `marking` VARCHAR (20) NOT NULL UNIQUE,
 `information` VARCHAR (2000) NOT NULL,
-`price` DOUBLE,
+`price` DOUBLE NOT NULL,
 PRIMARY KEY (`id`)
 );
 
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS  `order_components` (
 `id` BIGINT NOT NULL PRIMARY KEY auto_increment,
 `wheelchair_id` BIGINT NOT NULL,
 `component_id` INT NOT NULL,
-`price_component` Double
+`price_component` DOUBLE NOT NULL
 
 );
 
@@ -64,5 +64,5 @@ ALTER TABLE `order_components` ADD foreign key (component_id) REFERENCES `compon
 
 ALTER TABLE `order_components` ADD foreign key (wheelchair_id) REFERENCES `wheelchair` (id)  ON DELETE CASCADE;
 
-CREATE UNIQUE INDEX order_components_wheelchair_index ON order_components(wheelchair_id, component_id);
+
 

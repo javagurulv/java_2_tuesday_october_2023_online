@@ -27,7 +27,9 @@ public class OrmClientRepository implements Database {
 
     @Override
     public void addUser(Client client) {
-        sessionFactory.getCurrentSession().save(client);
+        if(findBySurnameAndPersonalCode(client.getNameSurname(), client.getPersonalCode()) == null) {
+            sessionFactory.getCurrentSession().save(client);
+        }
 
     }
 

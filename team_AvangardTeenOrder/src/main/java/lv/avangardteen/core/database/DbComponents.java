@@ -39,7 +39,7 @@ public class DbComponents implements DataComponents{
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("FROM Components " +
                         "WHERE category = :category");
-        query.setParameter("category", "FRONT_WHEEL");
+        query.setParameter("category", "FRONT-WHEEL");
         return query.getResultList();
     }
 
@@ -66,7 +66,7 @@ public class DbComponents implements DataComponents{
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("FROM Components " +
                         "WHERE category = :category");
-        query.setParameter("category", "BACK_WHEEL");
+        query.setParameter("category", "BACK-WHEEL");
         return query.getResultList();
     }
 }
