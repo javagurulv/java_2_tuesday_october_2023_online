@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Transactional
@@ -21,7 +22,19 @@ public class OrmCustomerRepositoryImpl implements CustomerRepository {
 	}
 
 	@Override
-	public Customer findById(Long id) { return sessionFactory.getCurrentSession().get(Customer.class, id); }
+	public Customer findById(Long id) {
+		return sessionFactory.getCurrentSession().get(Customer.class, id);
+	}
+
+	@Override
+	public Optional<Customer> getById(Long id) {
+		Customer customer = sessionFactory.getCurrentSession().get(Customer.class, id);
+		if (customer == null) {
+			return Optional.empty();
+		} else {
+			return Optional.of(customer);
+		}
+	}
 
 	@Override
 	public boolean deleteById(Long id) {

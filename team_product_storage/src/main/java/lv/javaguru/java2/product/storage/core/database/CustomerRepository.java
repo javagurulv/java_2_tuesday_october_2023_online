@@ -1,14 +1,18 @@
 package lv.javaguru.java2.product.storage.core.database;
 
 import lv.javaguru.java2.product.storage.core.domain.Customer;
+import lv.javaguru.java2.product.storage.core.domain.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CustomerRepository {
 
     void save(Customer customer);
 
     Customer findById(Long id);
+
+    Optional<Customer> getById(Long id);
 
     boolean deleteById(Long id);
 

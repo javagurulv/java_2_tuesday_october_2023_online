@@ -41,7 +41,7 @@ public class RemoveProductServiceTest {
     }
 
     @Test
-    public void shouldDeleteBookWithIdFromDatabase() {
+    public void shouldDeleteProductWithIdFromDatabase() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
         Mockito.when(productRepository.deleteById(1L)).thenReturn(true);
         RemoveProductRequest request = new RemoveProductRequest(1L);
