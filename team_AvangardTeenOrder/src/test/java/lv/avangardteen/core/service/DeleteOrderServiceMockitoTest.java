@@ -1,8 +1,10 @@
 package lv.avangardteen.core.service;
-/*
 
 
+
+import lv.avangardteen.core.database.WheelchairDB;
 import lv.avangardteen.core.domain.Client;
+import lv.avangardteen.core.domain.Wheelchair;
 import lv.avangardteen.core.request.DeleteOrderRequest;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.DeleteOrderResponse;
@@ -23,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class DeleteOrderServiceMockitoTest {
 
     @Mock
-    private Database database;
+    private WheelchairDB wheelchairDB;
     @Mock
     private DeleteOrderValidator validator;
     @InjectMocks
@@ -48,12 +50,12 @@ class DeleteOrderServiceMockitoTest {
     public void DeleteOrderWithoutError() {
         DeleteOrderRequest request = new DeleteOrderRequest(1L);
         Mockito.when(validator.validate(request)).thenReturn(List.of());
-        Mockito.when(database.getClient(request.getId())).thenReturn(new Client());
+        Mockito.when(wheelchairDB.getWheelchair(request.getId())).thenReturn(new Wheelchair());
         DeleteOrderResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        Mockito.verify(database).deleteClientById(request.getId());
+        Mockito.verify(wheelchairDB).deleteWheelchairById(request.getId());
 
     }
 
 }
-*/
+

@@ -106,6 +106,8 @@ class ShowOrderServiceTest {
 
         ShowOrderRequest request = new ShowOrderRequest(1L);
         ShowOrderResponse response = service.execute(request);
+
+        assertEquals(response.getPriceComponents(), 11.0);
         System.out.println(response.toString());
         System.out.println(response.getWheelchair().toString());
         System.out.println(response.getWheelchairComponents().toString());
