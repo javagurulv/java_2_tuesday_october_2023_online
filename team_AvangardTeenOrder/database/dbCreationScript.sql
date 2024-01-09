@@ -51,7 +51,8 @@ add foreign key (client_id) REFERENCES clients (id);
 CREATE TABLE IF NOT EXISTS  `order_components` (
 `id` BIGINT NOT NULL PRIMARY KEY auto_increment,
 `wheelchair_id` BIGINT NOT NULL,
-`component_id` INT NOT NULL
+`component_id` INT NOT NULL,
+`price_component` Double
 
 )
 ENGINE = InnoDB

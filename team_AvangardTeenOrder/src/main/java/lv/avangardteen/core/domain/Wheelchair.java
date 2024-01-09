@@ -31,7 +31,7 @@ public class Wheelchair {
     Integer bachHeight;
 
     @Column(name = "price", nullable = false)
-    double price;
+    double price = 177000.0;
 
     @OneToMany(mappedBy="wheelchair", fetch=FetchType.EAGER)
     private List<WheelchairComponents> wheelchairComponents;
@@ -47,8 +47,8 @@ public class Wheelchair {
 
     }
 
-    public Wheelchair(Long id, Client client, Integer seatWidth, Integer seatDepth, Integer footrestLength, Integer bachHeight, double price, List<WheelchairComponents> wheelchairComponents) {
-        this.id = id;
+    public Wheelchair( Client client, Integer seatWidth, Integer seatDepth, Integer footrestLength, Integer bachHeight, double price, List<WheelchairComponents> wheelchairComponents) {
+
         this.client = client;
         this.seatWidth = seatWidth;
         this.seatDepth = seatDepth;
@@ -118,7 +118,7 @@ public class Wheelchair {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

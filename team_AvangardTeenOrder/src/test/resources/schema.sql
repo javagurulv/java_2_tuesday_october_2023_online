@@ -53,10 +53,10 @@ PRIMARY KEY (`id`)
 
 
 CREATE TABLE IF NOT EXISTS  `order_components` (
-`id` BIGINT NOT NULL auto_increment,
+`id` BIGINT NOT NULL PRIMARY KEY auto_increment,
 `wheelchair_id` BIGINT NOT NULL,
 `component_id` INT NOT NULL,
-PRIMARY KEY (`id`)
+`price_component` Double
 
 );
 

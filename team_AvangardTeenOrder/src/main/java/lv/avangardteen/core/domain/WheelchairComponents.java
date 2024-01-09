@@ -20,6 +20,9 @@ public class WheelchairComponents {
     @JoinColumn(name = "component_id")
     private Components components;
 
+    @Column(name = "price_component")
+    private Double priceComponent;
+
     public WheelchairComponents() {
     }
 
@@ -51,6 +54,14 @@ public class WheelchairComponents {
 
     public void setComponents(Components components) {
         this.components = components;
+    }
+
+    public Double getPriceComponent() {
+        return priceComponent;
+    }
+
+    public void setPriceComponent(Double priceComponent) {
+        this.priceComponent = priceComponent;
     }
 
     @Override

@@ -36,14 +36,23 @@ public class ShowOrderService {
         Wheelchair wheelchair = wheelchairDB.getWheelchair(request.getId());
 
         List<WheelchairComponents> wheelchairComponent = wComponentsDB.getChooseComponents(wheelchair);
+
         ShowOrderResponse response = new ShowOrderResponse();
         response.setWheelchair(wheelchair);
         response.setWheelchairComponents(wheelchairComponent);
 
         response.setPriceWheelchair(wheelchairDB.getPrice(request.getId()));
-        response.setPriceComponents(wComponentsDB.getPriceComponents(request.getId()));
-        response.setPriceOrder(wheelchairDB.getPrice(request.getId()) + wComponentsDB.getPriceComponents(request.getId()));
+        response.setPriceComponents(getPriceComponents(wheelchairComponent));
+        response.setPriceOrder(wheelchairDB.getPrice(request.getId()) + getPriceComponents(wheelchairComponent));
 
         return response;
+    }
+
+    private Double getPriceComponents(List<WheelchairComponents> wheelchairComponent) {
+        Double priceComponents = 0.0;
+        for(WheelchairComponents wheelchairComponents : wheelchairComponent) {
+            priceComponents = priceComponents + wheelchairComponents.getPriceComponent();
+        }
+        return priceComponents;
     }
 }

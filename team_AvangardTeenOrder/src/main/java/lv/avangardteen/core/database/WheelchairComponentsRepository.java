@@ -36,7 +36,7 @@ public class WheelchairComponentsRepository implements WComponentsDB {
     public boolean deleteWheelchairComponents(Long id) {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "delete WheelchairComponents wc where wheelchair_id = :id");
-        query.setParameter("wheelchair_id", id);
+        query.setParameter("id", id);
         int result = query.executeUpdate();
         return result == 1;
 
@@ -52,9 +52,9 @@ public class WheelchairComponentsRepository implements WComponentsDB {
     @Override
     public Double getPriceComponents(Long idWheelchair) {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT Sum(price) FROM WheelchairComponents" +
-                        "WHERE wheelchair_id = :id");
-        query.setParameter("wheelchair_id", idWheelchair);
+                .createQuery("Select priceComponent from WheelchairComponents" +
+                        "where wheelchair_id = id");
+        query.setParameter("id", idWheelchair);
         return (Double) query.getSingleResult();
     }
 
