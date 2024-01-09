@@ -1,6 +1,7 @@
 package lv.avangardteen.core.domain;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,8 +25,8 @@ public class Components {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @OneToOne (optional = true, mappedBy="components")
-    private WheelchairComponents wheelchairComponents;
+    @OneToMany(mappedBy="components", fetch=FetchType.LAZY )
+    private List<WheelchairComponents> wheelchairComponents;
 
     public Components() {
     }

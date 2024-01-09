@@ -55,8 +55,8 @@ class WheelchairComponentsRepositoryTest {
         wheelchair.setSeatWidth(22);
         wheelchairDB.addWheelchair(wheelchair);
 
-        Components components1 = new Components("FRONT_WHEEL", "MH01", "INFORMATION", 1.1);
-        Components components2 = new Components("BACK_WHEEL", "MN01", "INFORMATION1", 2.2);
+        Components components1 = new Components("FRONT-WHEEL", "MH01", "INFORMATION", 1.1);
+        Components components2 = new Components("BACK-WHEEL", "MN01", "INFORMATION1", 2.2);
         Components components3 = new Components("BRAKE", "MF01", "INFORMATION2", 3.3);
         Components components4 = new Components("FOOTREST", "MK01", "INFORMATION3", 4.4);
 
@@ -70,15 +70,19 @@ class WheelchairComponentsRepositoryTest {
         WheelchairComponents wheelchairComponents1 = new WheelchairComponents();
         wheelchairComponents1.setWheelchair(wheelchair);
         wheelchairComponents1.setComponents(components1);
+        wheelchairComponents1.setPriceComponent(components1.getPrice());
         WheelchairComponents wheelchairComponents2 = new WheelchairComponents();
         wheelchairComponents2.setWheelchair(wheelchair);
         wheelchairComponents2.setComponents(components2);
+        wheelchairComponents2.setPriceComponent(components2.getPrice());
         WheelchairComponents wheelchairComponents3 = new WheelchairComponents();
         wheelchairComponents3.setWheelchair(wheelchair);
         wheelchairComponents3.setComponents(components3);
+        wheelchairComponents3.setPriceComponent(components3.getPrice());
         WheelchairComponents wheelchairComponents4 = new WheelchairComponents();
         wheelchairComponents4.setWheelchair(wheelchair);
         wheelchairComponents4.setComponents(components4);
+        wheelchairComponents4.setPriceComponent(components4.getPrice());
 
         wComponentsDB.addWheelchairComponents(wheelchairComponents1);
         wComponentsDB.addWheelchairComponents(wheelchairComponents2);
@@ -88,10 +92,5 @@ class WheelchairComponentsRepositoryTest {
         System.out.println(wComponentsDB.getChooseComponents(wheelchair));
         List<WheelchairComponents> list = wComponentsDB.getChooseComponents(wheelchair);
         assertEquals(list.size(), 4);
-
-
-
     }
-
-
 }

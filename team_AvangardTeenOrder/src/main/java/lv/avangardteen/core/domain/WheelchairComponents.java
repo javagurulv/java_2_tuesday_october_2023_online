@@ -16,7 +16,7 @@ public class WheelchairComponents {
     @JoinColumn(name = "wheelchair_id", nullable = false)
     private Wheelchair wheelchair;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "component_id")
     private Components components;
 
