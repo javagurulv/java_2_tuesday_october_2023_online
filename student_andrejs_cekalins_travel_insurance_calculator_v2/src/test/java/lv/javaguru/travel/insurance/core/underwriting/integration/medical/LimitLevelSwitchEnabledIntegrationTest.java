@@ -45,7 +45,7 @@ public class LimitLevelSwitchEnabledIntegrationTest {
                 .withDateFrom(createDate("01.01.2033"))
                 .withDateTo(createDate("31.12.2033"))
                 .withCountry("SPAIN")
-                .withSelectedRisks("TRAVEL_MEDICAL")
+                .withSelectedRisk("TRAVEL_MEDICAL")
                 .withPerson(person)
                 .build();
 

@@ -27,7 +27,7 @@ class EmptySelectedRiskValidationTest {
     @Test
     void shouldReturnErrorWhenRiskIsNull() {
         AgreementDTO request = mock(AgreementDTO.class);
-        when(request.getSelectedRisks()).thenReturn(null);
+        when(request.getSelectedRisk()).thenReturn(null);
         ValidationErrorDTO validationError = mock(ValidationErrorDTO.class);
         when(errorFactory.buildError("ERROR_CODE_8")).thenReturn(validationError);
         Optional<ValidationErrorDTO> errorOpt = validation.validate(request);
@@ -38,7 +38,7 @@ class EmptySelectedRiskValidationTest {
     @Test
     void shouldReturnErrorWhenRiskIsEmpty() {
         AgreementDTO request = mock(AgreementDTO.class);
-        when(request.getSelectedRisks()).thenReturn(List.of());
+        when(request.getSelectedRisk()).thenReturn(List.of());
         ValidationErrorDTO validationError = mock(ValidationErrorDTO.class);
         when(errorFactory.buildError("ERROR_CODE_8")).thenReturn(validationError);
         Optional<ValidationErrorDTO> errorOpt = validation.validate(request);
@@ -49,7 +49,7 @@ class EmptySelectedRiskValidationTest {
     @Test
     void shouldNotReturnErrorWhenSelectedRisksIsNotEmpty() {
         AgreementDTO request = mock(AgreementDTO.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_CANCELLATION"));
+        when(request.getSelectedRisk()).thenReturn(List.of("TRAVEL_CANCELLATION"));
         Optional<ValidationErrorDTO> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isEmpty());
         verifyNoInteractions(errorFactory);

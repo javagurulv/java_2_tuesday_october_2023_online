@@ -73,7 +73,7 @@ public class DtoV1Converter {
         agreement.setAgreementDateFrom(request.getAgreementDateFrom());
         agreement.setAgreementDateTo(request.getAgreementDateTo());
         agreement.setCountry(request.getCountry());
-        agreement.setSelectedRisks(request.getSelectedRisks());
+        agreement.setSelectedRisk(request.getSelectedRisks());
 
         PersonDTO person = buildPerson(request);
         agreement.setPersons(List.of(person));

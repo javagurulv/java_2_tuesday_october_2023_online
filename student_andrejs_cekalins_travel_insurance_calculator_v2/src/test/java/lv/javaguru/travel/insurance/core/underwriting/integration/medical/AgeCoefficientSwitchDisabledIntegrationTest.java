@@ -46,7 +46,7 @@ public class AgeCoefficientSwitchDisabledIntegrationTest {
                 .withDateFrom(createDate("01.01.2030"))
                 .withDateTo(createDate("31.12.2030"))
                 .withCountry("SPAIN")
-                .withSelectedRisks("TRAVEL_MEDICAL")
+                .withSelectedRisk("TRAVEL_MEDICAL")
                 .withPerson(person)
                 .build();
 

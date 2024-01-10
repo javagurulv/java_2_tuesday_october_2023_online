@@ -43,7 +43,7 @@ class SelectedRisksPremiumCalculatorTest {
         when(riskPremiumCalculator1.getRiskIc()).thenReturn("TRAVEL_MEDICAL");
         when(riskPremiumCalculator1.calculatePremium(agreement, person)).thenReturn(BigDecimal.ONE);
 
-        when(agreement.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL"));
+        when(agreement.getSelectedRisk()).thenReturn(List.of("TRAVEL_MEDICAL"));
         List<RiskDTO> riskPremiums = calculator.calculatePremiumForAllRisks(agreement, person);
         assertEquals(riskPremiums.size(), 1);
         assertEquals(riskPremiums.get(0).getRiskIc(), "TRAVEL_MEDICAL");
@@ -61,7 +61,7 @@ class SelectedRisksPremiumCalculatorTest {
         when(riskPremiumCalculator1.calculatePremium(agreement, person)).thenReturn(BigDecimal.ONE);
         when(riskPremiumCalculator2.calculatePremium(agreement, person)).thenReturn(BigDecimal.ONE);
 
-        when(agreement.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL", "TRAVEL_EVACUATION"));
+        when(agreement.getSelectedRisk()).thenReturn(List.of("TRAVEL_MEDICAL", "TRAVEL_EVACUATION"));
         List<RiskDTO> riskPremiums = calculator.calculatePremiumForAllRisks(agreement, person);
         assertEquals(riskPremiums.size(), 2);
         assertEquals(riskPremiums.get(0).getRiskIc(), "TRAVEL_MEDICAL");
@@ -78,7 +78,7 @@ class SelectedRisksPremiumCalculatorTest {
         when(riskPremiumCalculator1.getRiskIc()).thenReturn("TRAVEL_MEDICAL");
         when(riskPremiumCalculator2.getRiskIc()).thenReturn("TRAVEL_EVACUATION");
 
-        when(agreement.getSelectedRisks()).thenReturn(List.of("NOT_SUPPORTED_RISK_TYPE"));
+        when(agreement.getSelectedRisk()).thenReturn(List.of("NOT_SUPPORTED_RISK_TYPE"));
 
         RuntimeException exception = assertThrows(RuntimeException.class,
                 () -> calculator.calculatePremiumForAllRisks(agreement, person));

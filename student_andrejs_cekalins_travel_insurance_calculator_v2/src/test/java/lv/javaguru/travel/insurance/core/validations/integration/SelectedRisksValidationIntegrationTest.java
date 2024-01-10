@@ -74,7 +74,7 @@ public class SelectedRisksValidationIntegrationTest {
                 .withDateFrom(createDate("31.12.2032"))
                 .withDateTo(createDate("31.12.2052"))
                 .withCountry("SPAIN")
-                .withSelectedRisks("{NOT_EXISTING_RISK_TYPE}")
+                .withSelectedRisk("{NOT_EXISTING_RISK_TYPE}")
                 .withPerson(createPersonDTO()
                         .withFirstName("Vasja")
                         .withLastName("Pupkin")

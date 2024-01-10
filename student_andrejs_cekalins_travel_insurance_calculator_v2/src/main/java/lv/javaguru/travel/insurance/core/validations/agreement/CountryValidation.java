@@ -27,8 +27,8 @@ public class CountryValidation extends TravelAgreementFieldValidationImpl {
     }
 
     private boolean containsTravelMedical(AgreementDTO request) {
-        return request.getSelectedRisks() != null
-                && request.getSelectedRisks().contains("TRAVEL_MEDICAL");
+        return request.getSelectedRisk() != null
+                && request.getSelectedRisk().contains("TRAVEL_MEDICAL");
     }
 
     private boolean countryIsNotBlank(AgreementDTO request) {

@@ -14,22 +14,33 @@ import java.util.stream.Collectors;
 
 @Component
 public class SelectedRisksValidation extends TravelAgreementFieldValidationImpl {
-    @Autowired private ClassifierValueRepository classifierValueRepository;
-    @Autowired private ValidationErrorFactory errorFactory;
+    @Autowired
+    private ClassifierValueRepository classifierValueRepository;
+    @Autowired
+    private ValidationErrorFactory errorFactory;
 
     @Override
     public List<ValidationErrorDTO> validateList(AgreementDTO agreement) {
-        return agreement.getSelectedRisks() != null
+        return agreement.getSelectedRisk() != null
                 ? validateSelectedRisks(agreement)
                 : List.of();
     }
 
+    private boolean selectedRiskIsNullOrEmpty(AgreementDTO agreement) {
+        return agreement.getSelectedRisk().get(0) == null
+                || agreement.getSelectedRisk().get(0).isBlank();
+
+    }
+
     private List<ValidationErrorDTO> validateSelectedRisks(AgreementDTO agreement) {
-        return agreement.getSelectedRisks().stream()
+        return selectedRiskIsNullOrEmpty(agreement)
+                ? List.of(errorFactory.buildError("ERROR_CODE_8"))
+                : agreement.getSelectedRisk().stream()
                 .map(this::validateRiskIc)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(Collectors.toList());
+
     }
 
     private Optional<ValidationErrorDTO> validateRiskIc(String riskIc) {
