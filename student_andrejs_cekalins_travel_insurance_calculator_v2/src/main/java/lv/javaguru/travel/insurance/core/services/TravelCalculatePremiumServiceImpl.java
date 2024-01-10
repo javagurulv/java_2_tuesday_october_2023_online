@@ -6,6 +6,8 @@ import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.api.dto.RiskDTO;
 import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
+import lv.javaguru.travel.insurance.core.services.entities.AgreementEntityFactory;
+import lv.javaguru.travel.insurance.core.services.entities.PersonEntityFactory;
 import lv.javaguru.travel.insurance.core.underwriting.TravelPremiumCalculationResult;
 import lv.javaguru.travel.insurance.core.underwriting.TravelPremiumUnderwriting;
 import lv.javaguru.travel.insurance.core.validations.TravelAgreementValidator;
@@ -24,7 +26,8 @@ public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremium
     @Autowired
     private TravelPremiumUnderwriting premiumUnderwriting;
 
-    @Autowired private PersonSaver personSaver;
+    @Autowired
+    private AgreementEntityFactory agreementEntityFactory;
 
     @Override
     public TravelCalculatePremiumCoreResult calculatePremium(TravelCalculatePremiumCoreCommand command) {
@@ -39,19 +42,16 @@ public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremium
     }
 
     private TravelCalculatePremiumCoreResult buildResponse(AgreementDTO agreement) {
-        saveAllPersons(agreement);
         calculateRiskPremiumsForAllPersons(agreement);
 
         BigDecimal totalAgreementPremium = calculateTotalAgreementPremium(agreement);
         agreement.setAgreementPremium(totalAgreementPremium);
 
+        agreementEntityFactory.createAgreementEntity(agreement);
+
         TravelCalculatePremiumCoreResult coreResult = new TravelCalculatePremiumCoreResult();
         coreResult.setAgreement(agreement);
         return coreResult;
-    }
-
-    private void saveAllPersons(AgreementDTO agreement) {
-        agreement.getPersons().forEach(personDTO -> personSaver.savePerson(personDTO));
     }
 
     private void calculateRiskPremiumsForAllPersons(AgreementDTO agreement) {

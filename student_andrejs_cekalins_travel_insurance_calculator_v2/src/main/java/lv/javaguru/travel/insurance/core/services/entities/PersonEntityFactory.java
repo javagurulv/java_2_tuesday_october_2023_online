@@ -1,19 +1,19 @@
-package lv.javaguru.travel.insurance.core.services;
+package lv.javaguru.travel.insurance.core.services.entities;
 
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
-import lv.javaguru.travel.insurance.core.domain.PersonEntity;
-import lv.javaguru.travel.insurance.core.repositories.PersonEntityRepository;
+import lv.javaguru.travel.insurance.core.domain.entities.PersonEntity;
+import lv.javaguru.travel.insurance.core.repositories.entities.PersonEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @Component
-public class PersonSaver {
+public class PersonEntityFactory {
     @Autowired
     private PersonEntityRepository repository;
 
-    PersonEntity savePerson(PersonDTO personDTO) {
+    public PersonEntity createPersonEntity(PersonDTO personDTO) {
         Optional<PersonEntity> personOpt = repository.findBy(
                 personDTO.getPersonFirstName(),
                 personDTO.getPersonLastName(),
