@@ -77,8 +77,22 @@ CREATE TABLE selected_risks (
   id BIGINT NOT NULL AUTO_INCREMENT,
   agreement_id BIGINT NOT NULL,
   risk_ic VARCHAR(200) NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (agreement_id) REFERENCES agreements(id)
 );
 
 CREATE UNIQUE INDEX ix_selected_risks_agreement_id_risk_ic
 ON selected_risks (agreement_id, risk_ic);
+
+CREATE TABLE agreement_persons (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  agreement_id BIGINT NOT NULL,
+  person_id BIGINT NOT NULL,
+  medical_risk_limit_level VARCHAR(200) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY(agreement_id) REFERENCES agreements(id),
+  FOREIGN KEY(person_id) REFERENCES persons(id)
+);
+
+CREATE UNIQUE INDEX ix_agreement_persons_agreement_id_person_id
+ON agreement_persons (agreement_id, person_id);
