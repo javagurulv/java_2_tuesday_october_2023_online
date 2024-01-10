@@ -19,7 +19,7 @@ public class UpdateProductUIAction implements UIAction {
     public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product id to update: ");
-        Long ingredientId = Long.parseLong(scanner.nextLine());
+        Long productId = Long.parseLong(scanner.nextLine());
         System.out.println("Enter new product name: ");
         String newProductName = scanner.nextLine();
         System.out.println("Enter new product brand: ");
@@ -30,7 +30,7 @@ public class UpdateProductUIAction implements UIAction {
         Integer newProductQuantity = scanner.nextInt();
         System.out.println("Enter new price: ");
         BigDecimal newPrice = scanner.nextBigDecimal();
-        UpdateProductRequest request = new UpdateProductRequest(ingredientId, newProductName, newProductBrand, newProductModel, newProductQuantity, newPrice);
+        UpdateProductRequest request = new UpdateProductRequest(productId, newProductName, newProductBrand, newProductModel, newProductQuantity, newPrice);
         UpdateProductResponse response = updateProductService.execute(request);
 
         if (response.hasErrors()) {
@@ -38,7 +38,7 @@ public class UpdateProductUIAction implements UIAction {
                     System.out.println("Error: " + coreError.getErrorCode() + " " + coreError.getMessage())
             );
         } else {
-            System.out.println("Your ingredient was updated" + response.getUpdatedProduct());
+            System.out.println("Your product was updated" + response.getUpdatedProduct());
 
         }
     }
