@@ -57,7 +57,7 @@ CREATE TABLE persons (
   id BIGINT NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(200) NOT NULL,
   last_name VARCHAR(200) NOT NULL,
-  person_code VARCHAR(200) NOT NULL,
+  person_code VARCHAR(100) NOT NULL,
   birth_date TIMESTAMP NOT NULL,
   PRIMARY KEY (id)
 );
@@ -68,7 +68,7 @@ CREATE TABLE agreements (
   id BIGINT NOT NULL AUTO_INCREMENT,
   date_from TIMESTAMP NOT NULL,
   date_to TIMESTAMP NOT NULL,
-  country VARCHAR(200) NOT NULL,
+  country VARCHAR(100) NOT NULL,
   premium DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (id)
 );
@@ -76,7 +76,7 @@ CREATE TABLE agreements (
 CREATE TABLE selected_risks (
   id BIGINT NOT NULL AUTO_INCREMENT,
   agreement_id BIGINT NOT NULL,
-  risk_ic VARCHAR(200) NOT NULL,
+  risk_ic VARCHAR(100) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (agreement_id) REFERENCES agreements(id)
 );
@@ -88,7 +88,7 @@ CREATE TABLE agreement_persons (
   id BIGINT NOT NULL AUTO_INCREMENT,
   agreement_id BIGINT NOT NULL,
   person_id BIGINT NOT NULL,
-  medical_risk_limit_level VARCHAR(200) NOT NULL,
+  medical_risk_limit_level VARCHAR(100) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY(agreement_id) REFERENCES agreements(id),
   FOREIGN KEY(person_id) REFERENCES persons(id)
@@ -96,3 +96,16 @@ CREATE TABLE agreement_persons (
 
 CREATE UNIQUE INDEX ix_agreement_persons_agreement_id_person_id
 ON agreement_persons (agreement_id, person_id);
+
+
+CREATE TABLE agreement_person_risks (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  agreement_person_id BIGINT NOT NULL,
+  risk_ic VARCHAR(100) NOT NULL,
+  premium DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (agreement_person_id) REFERENCES agreement_persons(id)
+);
+
+CREATE UNIQUE INDEX ix_agreement_person_risks_agreement_person_id_risk_ic
+ON agreement_person_risks (agreement_person_id, risk_ic);
