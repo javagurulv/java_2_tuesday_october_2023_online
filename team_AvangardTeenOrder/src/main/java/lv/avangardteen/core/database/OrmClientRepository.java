@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 
@@ -26,19 +27,26 @@ public class OrmClientRepository implements Database {
 
     @Override
     public void addUser(Client client) {
-        sessionFactory.getCurrentSession().save(client);
+        if(findBySurnameAndPersonalCode(client.getNameSurname(), client.getPersonalCode()) == null) {
+            sessionFactory.getCurrentSession().save(client);
+        }
+
     }
 
     @Override
-    public void updateUser(Long id, Client client) {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("UPDATE Client c where id = :id");
+    public Client getClientById(Long id) {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "select c FROM Client c where id = :id", Client.class);
         query.setParameter("id", id);
-        query.setParameter("name_surname", client.getNameSurname());
-        query.setParameter("personal_code", client.getPersonalCode());
-        query.setParameter("phone", client.getPhone());
-        query.setParameter("address", client.getAddress());
+        try {
+            query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+        return (Client) query.getSingleResult();
     }
+
+
 
     @Override
     public boolean deleteClientByOrderId(Long id) {
@@ -49,35 +57,20 @@ public class OrmClientRepository implements Database {
         return result == 1;
     }
 
-    @Override
-    public Client getClientByOrderId(Long idOrder) {
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "select c FROM Client c where order_id = :idOrder", Client.class);
-        query.setParameter("idOrder", idOrder);
-        Client client = (Client) query.getSingleResult();
-        return client;
-    }
+
 
     @Override
     public Client findBySurnameAndPersonalCode(String surname, Long personalCode) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select c FROM Client c where name_surname = :surname AND personal_code = :personalCode");
-        query.setParameter("name_surname", surname);
-        query.setParameter("personal_code", personalCode);
+                "FROM Client c WHERE nameSurname = :nameSurname AND personalCode = :personalCode");
+        query.setParameter("nameSurname", surname);
+        query.setParameter("personalCode", personalCode);
+        try {
+           query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
         return (Client) query.getSingleResult();
     }
 
-    @Override
-    public void setOrderId(Long orderId) {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("INSERT INTO Clients c order_id = :id");
-        query.setParameter("order_id", orderId);
-    }
-
-    @Override
-    public Query getIdClient() {
-        return sessionFactory.getCurrentSession()
-                .createQuery("SELECT LAST_INSERT_ID()");
-
-    }
 }

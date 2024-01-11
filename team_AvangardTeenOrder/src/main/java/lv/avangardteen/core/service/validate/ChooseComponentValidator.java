@@ -1,5 +1,6 @@
 package lv.avangardteen.core.service.validate;
 
+/*
 
 import lv.avangardteen.core.database.DataComponents;
 import lv.avangardteen.core.domain.Components;
@@ -18,6 +19,8 @@ public class ChooseComponentValidator {
 
     @Autowired
     private OrderIdValidator idValidator;
+    @Autowired
+    private ComponentValidator validator;
 
     public List<CoreError> validate(ChangeComponentRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -84,3 +87,4 @@ public class ChooseComponentValidator {
 
 }
 
+*/

@@ -4,14 +4,15 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "client_size")
+@Table(name = "parameters")
 public class UserSizes {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
@@ -27,27 +28,16 @@ public class UserSizes {
     @Column(name = "shinLength", nullable = false)
     private Integer shinLength;
 
-    @Column(name = "order_id")
-    private Long orderId;
-
-
     public UserSizes() {
     }
 
-    public Client getClient() {
-        return client;
-    }
+    public UserSizes(Client client, Integer pelvisWidth, Integer thighLength, Integer backHeight, Integer shinLength) {
 
-    public void setClient(Client client) {
         this.client = client;
-    }
-
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+        this.pelvisWidth = pelvisWidth;
+        this.thighLength = thighLength;
+        this.backHeight = backHeight;
+        this.shinLength = shinLength;
     }
 
     public Long getId() {
@@ -56,6 +46,15 @@ public class UserSizes {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Integer getPelvisWidth() {
@@ -95,20 +94,20 @@ public class UserSizes {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserSizes userSizes = (UserSizes) o;
-        return Objects.equals(id, userSizes.id) && Objects.equals(client, userSizes.client) && Objects.equals(pelvisWidth, userSizes.pelvisWidth) && Objects.equals(thighLength, userSizes.thighLength) && Objects.equals(backHeight, userSizes.backHeight) && Objects.equals(shinLength, userSizes.shinLength) && Objects.equals(orderId, userSizes.orderId);
+        return Objects.equals(id, userSizes.id) && Objects.equals(client, userSizes.client) && Objects.equals(pelvisWidth, userSizes.pelvisWidth) && Objects.equals(thighLength, userSizes.thighLength) && Objects.equals(backHeight, userSizes.backHeight) && Objects.equals(shinLength, userSizes.shinLength);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, client, pelvisWidth, thighLength, backHeight, shinLength, orderId);
+        return Objects.hash(id, client, pelvisWidth, thighLength, backHeight, shinLength);
     }
 
     @Override
     public String toString() {
-        return "ширина таза =" + pelvisWidth + '\n' +
-                " длинна бедра =" + thighLength + '\n' +
-                " высота спины =" + backHeight + '\n' +
-                " длинна голени =" + shinLength + '\n';
+        return "ширина таза = " + pelvisWidth +
+                ", длина бедра = " + thighLength +
+                ", высота спины = " + backHeight +
+                " длинна голени = " + shinLength + ";";
 
     }
 }

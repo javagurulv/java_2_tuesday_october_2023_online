@@ -1,19 +1,25 @@
 package lv.avangardteen.core.request;
 
 public class ComponentRegistrationRequest {
+    Long id;
     Integer wheelFrontChoose;
     Integer wheelBackChoose;
     Integer brakeChoose;
     Integer footrestChoose;
 
 
-    public ComponentRegistrationRequest(Integer wheelFrontChoose,
-                                  Integer wheelBackChoose, Integer brakeChoose,
-                                  Integer footrestChoose) {
+    public ComponentRegistrationRequest(Long id, Integer wheelFrontChoose,
+                                        Integer wheelBackChoose, Integer brakeChoose,
+                                        Integer footrestChoose) {
+        this.id = id;
         this.wheelFrontChoose = wheelFrontChoose;
         this.wheelBackChoose = wheelBackChoose;
         this.brakeChoose = brakeChoose;
         this.footrestChoose = footrestChoose;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Integer getWheelFrontChoose() {

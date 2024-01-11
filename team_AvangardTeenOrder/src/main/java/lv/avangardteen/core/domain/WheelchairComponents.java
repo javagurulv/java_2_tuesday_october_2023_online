@@ -12,15 +12,25 @@ public class WheelchairComponents {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "wheelchair_id")
+    @ManyToOne(optional=false, cascade=CascadeType.ALL)
+    @JoinColumn(name = "wheelchair_id", nullable = false)
     private Wheelchair wheelchair;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "component_id")
     private Components components;
 
-    public WheelchairComponents() {}
+    @Column(name = "price_component")
+    private Double priceComponent;
+
+    public WheelchairComponents() {
+    }
+
+    public WheelchairComponents(Long id, Wheelchair wheelchair, Components components) {
+        this.id = id;
+        this.wheelchair = wheelchair;
+        this.components = components;
+    }
 
     public Long getId() {
         return id;
@@ -29,7 +39,6 @@ public class WheelchairComponents {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public Wheelchair getWheelchair() {
         return wheelchair;
@@ -45,6 +54,14 @@ public class WheelchairComponents {
 
     public void setComponents(Components components) {
         this.components = components;
+    }
+
+    public Double getPriceComponent() {
+        return priceComponent;
+    }
+
+    public void setPriceComponent(Double priceComponent) {
+        this.priceComponent = priceComponent;
     }
 
     @Override
@@ -63,9 +80,7 @@ public class WheelchairComponents {
     @Override
     public String toString() {
         return "WheelchairComponents{" +
-                "id=" + id +
-                ", wheelchair=" + wheelchair +
-                ", components=" + components +
+                "components =" + components +
                 '}';
     }
 }

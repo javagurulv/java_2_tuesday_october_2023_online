@@ -26,8 +26,7 @@ public class ShowOrderUIAction implements UIAction {
                 response.getErrors().forEach(coreError ->
                         System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
             } else {
-                System.out.println(response.getClient().toString());
-                System.out.println(response.getUserSizes().toString());
+
                 System.out.println(response.getWheelchair().toString());
                 System.out.println(response.getWheelchairComponents().toString());
                 System.out.println("Стоимость Avangard Teen: " +
