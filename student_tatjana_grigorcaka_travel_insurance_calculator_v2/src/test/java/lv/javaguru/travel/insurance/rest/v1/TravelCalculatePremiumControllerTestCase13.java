@@ -2,7 +2,7 @@ package lv.javaguru.travel.insurance.rest.v1;
 
 import org.junit.jupiter.api.Test;
 
-public class TravelCalculatePremiumControllerTestCase13 extends TravelCalculatePremiumControllerTestCase {
+public class TravelCalculatePremiumControllerTestCase13 extends TravelCalculatePremiumControllerV1TestCase {
 
     @Test
     public void execute() throws Exception {
