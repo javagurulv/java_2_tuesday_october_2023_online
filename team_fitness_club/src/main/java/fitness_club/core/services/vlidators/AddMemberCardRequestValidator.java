@@ -5,8 +5,6 @@ import fitness_club.core.database.ClientRepository;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddMemberCardRequest;
 import fitness_club.core.responses.CoreError;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,54 +16,56 @@ import java.util.Optional;
 @Component
 public class AddMemberCardRequestValidator {
 
-    @Autowired
-    private ClientRepository clientRepository;
+  //  @Autowired
+   // private ClientRepository clientRepository;
 
     public List<CoreError> validate(AddMemberCardRequest request) {
         List<CoreError> errors = new ArrayList<>();
-        validatePersonalCodeNotEmpty(request).ifPresent(errors::add);
-        validateAgeGroupNotEmpty(request).ifPresent(errors::add);
-        validateWorkoutNotEmpty(request).ifPresent(errors::add);
-        validateFitnessCentreNotEmpty(request).ifPresent(errors::add);
+        validateClientNullOrEmpty(request).ifPresent(errors::add);
+        validateAgeGroupNullOrEmpty(request).ifPresent(errors::add);
+        validateWorkoutNullOrEmpty(request).ifPresent(errors::add);
+        validateFitnessCentreNullOrEmpty(request).ifPresent(errors::add);
         validateTermOfContractNotEmpty(request).ifPresent(errors::add);
-        validateClientExist(request).ifPresent(errors::add);
+      //  validateClientExist(request).ifPresent(errors::add);
         return errors;
     }
 
-    private Optional<CoreError> validatePersonalCodeNotEmpty(AddMemberCardRequest request) {
+    private Optional<CoreError> validateClientNullOrEmpty(AddMemberCardRequest request) {
         return request.getClient() == null
-                ? Optional.of(new CoreError("personalCode", "Field personal code must not be empty!"))
+                ? Optional.of(new CoreError("clientId", "Field client ID must not be empty!"))
                 : Optional.empty();
     }
 
-    private Optional<CoreError> validateAgeGroupNotEmpty(AddMemberCardRequest request) {
-        return request.getAgeGroups() == null
-                ? Optional.of(new CoreError("personalCode", "Field personal code must not be empty!"))
+    private Optional<CoreError> validateAgeGroupNullOrEmpty(AddMemberCardRequest request) {
+        return request.getAgeGroup() == null
+                ? Optional.of(new CoreError("ageGroupId", "Field age group ID must not be empty!"))
                 : Optional.empty();
     }
 
-    private Optional<CoreError> validateWorkoutNotEmpty(AddMemberCardRequest request) {
-        return request.getWorkouts() == null
-                ? Optional.of(new CoreError("personalCode", "Field personal code must not be empty!"))
+    private Optional<CoreError> validateWorkoutNullOrEmpty(AddMemberCardRequest request) {
+        return request.getWorkout()== null
+                ? Optional.of(new CoreError("workoutId", "Field workout ID must not be empty!"))
                 : Optional.empty();
     }
 
-    private Optional<CoreError> validateFitnessCentreNotEmpty(AddMemberCardRequest request) {
+    private Optional<CoreError> validateFitnessCentreNullOrEmpty(AddMemberCardRequest request) {
         return request.getFitnessCentre() == null
-                ? Optional.of(new CoreError("personalCode", "Field personal code must not be empty!"))
+                ? Optional.of(new CoreError("fitnessCenterId", "Field fitness center ID must not be empty!"))
                 : Optional.empty();
     }
 
     private Optional<CoreError> validateTermOfContractNotEmpty(AddMemberCardRequest request) {
         return request.getTermOfContract() == null
-                ? Optional.of(new CoreError("personalCode", "Field personal code must not be empty!"))
+                ? Optional.of(new CoreError("termOfContract", "Field term of contract must not be empty!"))
                 : Optional.empty();
     }
 
-    private Optional<CoreError> validateClientExist(AddMemberCardRequest request) {
+   /* private Optional<CoreError> validateClientExist(AddMemberCardRequest request) {
         List<Client> clients = clientRepository.findByPersonalCode(request.getClient().getPersonalCode());
         return (clients.isEmpty())
                 ? Optional.of(new CoreError("Client", "There is no such client in database!"))
                 : Optional.empty();
     }
+
+    */
 }

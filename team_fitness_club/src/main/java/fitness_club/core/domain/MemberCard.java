@@ -2,6 +2,7 @@ package fitness_club.core.domain;
 
 
 import lombok.*;
+import org.hibernate.boot.registry.classloading.spi.ClassLoaderService;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class MemberCard {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,34 +26,26 @@ public class MemberCard {
     private Client client;
 
     @ManyToOne
-    @Column(name = "age_group_id")
-    private AgeGroups ageGroups;
+    @JoinColumn(name = "age_group_id", nullable = false)
+    private AgeGroups ageGroup;
 
     @ManyToOne
-    @Column(name = "workout_id")
-    private Workouts workouts;
+    @JoinColumn(name = "workout_id", nullable = false)
+    private Workouts workout;
 
     @ManyToOne
-    @Column(name = "fitness_centre_id")
-    private FitnessCentres fitnessCentre;
+    @JoinColumn(name = "fitness_centre_id", nullable = false)
+    private FitnessCenters fitnessCentre;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "term_of_contract")
+    @Column(name = "term_of_contract", nullable = false)
     private Date termOfContract;
 
-
-    public MemberCard(Client client,AgeGroups ageGroups, Workouts workouts, FitnessCentres fitnessCentre) {
+    public MemberCard(Client client, AgeGroups ageGroup, Workouts workout, FitnessCenters fitnessCentre, Date termOfContract) {
         this.client = client;
-        this.ageGroups = ageGroups;
-        this.workouts = workouts;
+        this.ageGroup = ageGroup;
+        this.workout = workout;
         this.fitnessCentre = fitnessCentre;
-    }
-
-    public MemberCard(Client client){
-        this.client =client;
-    }
-
-
-    public MemberCard(Client client, AgeGroups ageGroups) {
+        this.termOfContract = termOfContract;
     }
 }

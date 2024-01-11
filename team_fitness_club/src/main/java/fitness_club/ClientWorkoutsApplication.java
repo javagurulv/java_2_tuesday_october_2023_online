@@ -16,12 +16,14 @@ public class ClientWorkoutsApplication {
 
     public static void main(String[] args) {
 
-        ConfigurableApplicationContext context = SpringApplication.run(SpringWebConfiguration.class);
-        ProgramMenu programMenu = context.getBean(ProgramMenu.class);
+       // ApplicationContext applicationContext = createApplicationContext();
 
+        ConfigurableApplicationContext context = SpringApplication.run(SpringWebConfiguration.class);
+
+        ProgramMenu programMenu = context.getBean(ProgramMenu.class);
         while (true) {
             programMenu.printProgramMenu();
-            int menuNumber = programMenu.getMenuNumber();
+            int menuNumber = programMenu.getMenuNumberFromUser();
             programMenu.executeSelectedMenuItem(menuNumber);
         }
     }

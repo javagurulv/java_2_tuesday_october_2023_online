@@ -50,7 +50,7 @@ public class ProgramMenu {
         System.out.println("");
     }
 
-    public static int getMenuNumber() {
+    public static int getMenuNumberFromUser() {
         System.out.println("Enter menu item number to execute: ");
         Scanner scanner = new Scanner(System.in);
         return Integer.parseInt(scanner.nextLine());

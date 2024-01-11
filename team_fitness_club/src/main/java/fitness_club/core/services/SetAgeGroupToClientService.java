@@ -31,12 +31,12 @@ public class SetAgeGroupToClientService {
         if (!errors.isEmpty()) {
             return new SetAgeGroupToClientResponse(errors);
         }
-        Client client = clientRepository.getReferenceById(request.getClientId());
-        AgeGroups ageGroup =ageGroupRepository.getReferenceById(request.getAgeGroupId());
+     //   Client client = clientRepository.getReferenceById(request.getClientId());
+       // AgeGroups ageGroup =ageGroupRepository.getReferenceById(request.getAgeGroupId());
 
         MemberCard memberCard = new MemberCard();
-        memberCard.setClient(client);
-        memberCard.setAgeGroups(ageGroup);
+       // memberCard.setClient(request.getClientId().);
+      //  memberCard.setAgeGroup(request.getAgeGroupId());
 
         memberCardRepository.save(memberCard);
 

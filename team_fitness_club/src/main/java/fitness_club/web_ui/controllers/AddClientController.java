@@ -1,4 +1,4 @@
-package fitness_club.web_ui.controller;
+package fitness_club.web_ui.controllers;
 
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.services.AddClientService;

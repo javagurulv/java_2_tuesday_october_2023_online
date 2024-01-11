@@ -1,21 +1,25 @@
 package fitness_club.core.responses;
 
 import fitness_club.core.domain.MemberCard;
-import java.util.List;
+import lombok.*;
 
+import java.util.Date;
+import java.util.List;
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class AddMemberCardsResponse extends CoreResponse {
 
-    private MemberCard newMemberCard;
+    private MemberCard memberCard;
+    private Long client;
+    private Long ageGroup;
+    private Long workout;
+    private Long fitnessCentre;
+    private Date termOfContract;
 
     public AddMemberCardsResponse(List<CoreError> errors) {
         super(errors);
     }
 
-    public AddMemberCardsResponse(MemberCard newMemberCard) {
-        this.newMemberCard = newMemberCard;
-    }
-
-    public MemberCard getNewMemberCard() {
-        return newMemberCard;
-    }
 }

@@ -1,6 +1,5 @@
 package fitness_club.core.services;
 
-import fitness_club.core.domain.FitnessCentres;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 

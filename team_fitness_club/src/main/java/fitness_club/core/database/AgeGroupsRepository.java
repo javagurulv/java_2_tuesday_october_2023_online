@@ -2,6 +2,7 @@ package fitness_club.core.database;
 
 import fitness_club.core.domain.AgeGroups;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,26 +10,34 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-//@Component
-//@Transactional
+@Component
+@Transactional
 public class AgeGroupsRepository {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void save(AgeGroups ageGroup) {
+    public List<AgeGroups> selectAgeGroup(AgeGroups ageGroup) {
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("FROM Age_groups WHERE age_group_id =: age_group");
+        query.setParameter("age_group", ageGroup);
+        return query.getResultList();
+    }
+
+    public void addAgeGroup(AgeGroups ageGroup) {
         sessionFactory.getCurrentSession().save(ageGroup);
     }
 
-    public AgeGroups findById(Long id) {
+    public AgeGroups getAgeGroupById(Long id) {
         return sessionFactory.getCurrentSession().
                 get(AgeGroups.class, id);
     }
 
     public List<AgeGroups> getAllAgeGroups() {
         return sessionFactory.getCurrentSession()
-                .createQuery("SELECT * FROM Age_groups", AgeGroups.class)
+                .createQuery("SELECT a  FROM Age_groups a", AgeGroups.class)
                 .getResultList();
     }
+
 
 }

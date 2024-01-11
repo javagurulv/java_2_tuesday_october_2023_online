@@ -1,5 +1,7 @@
 package fitness_club.core.database;
 
+import fitness_club.core.domain.AgeGroups;
+import fitness_club.core.domain.FitnessCenters;
 import fitness_club.core.domain.MemberCard;
 import fitness_club.core.domain.Workouts;
 import org.hibernate.SessionFactory;
@@ -10,32 +12,43 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-//@Component
-//@Transactional
+@Component
+@Transactional
 public class MemberCardRepository {
 
     @Autowired
     private SessionFactory sessionFactory;
 
 
-    public void save(MemberCard memberCard) {
+    public void AddMemberCard(MemberCard memberCard) {
         sessionFactory.getCurrentSession().save(memberCard);
     }
 
-    public MemberCard getById(Long id) {
+    public MemberCard getMemberCardById(Long id) {
         return sessionFactory.getCurrentSession().
                 get(MemberCard.class, id);
     }
 
 
-
     public List<MemberCard> getAllWorkouts(Workouts workout) {
         Query<MemberCard> query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT mc FROM MemberCard mc WHERE mc.workout = :workout ", MemberCard.class);
+                .createQuery("SELECT mc FROM MemberCard mc WHERE mc.workout_id = :workout ", MemberCard.class);
         query.setParameter("workout", workout);
         return query.getResultList();
     }
+    public List<MemberCard> getAllFitnessCenters(FitnessCenters fitnessCenter) {
+        Query<MemberCard> query = sessionFactory.getCurrentSession()
+                .createQuery("SELECT mc FROM MemberCard mc WHERE mc.fitness_center_id = :fitness_center", MemberCard.class);
+        query.setParameter("fitness_center", fitnessCenter);
+        return query.getResultList();
+    }
 
+    public List<MemberCard> getAllAgeGroups(AgeGroups ageGroup) {
+        Query<MemberCard> query = sessionFactory.getCurrentSession()
+                .createQuery("SELECT mc FROM MemberCard mc WHERE mc.age_group_id = :age_group", MemberCard.class);
+        query.setParameter("age_group", ageGroup);
+        return query.getResultList();
+    }
 
     public boolean isClientWorkoutsChangedByPersonalCode(Long clientId, Long newWorkout) {
         Query query = sessionFactory.getCurrentSession().createQuery(

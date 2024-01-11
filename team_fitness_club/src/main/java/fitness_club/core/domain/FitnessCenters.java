@@ -1,25 +1,28 @@
 package fitness_club.core.domain;
+
+
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "workouts")
+@Table(name = "fitness_centers")
 @Getter
 @EqualsAndHashCode
 @NoArgsConstructor
-public class Workouts {
+public class FitnessCenters {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "workout", nullable = false)
-    private Workouts workout;
+    @Column(name = "fitness_center", nullable = false)
+    private FitnessCenters fitnessCenter;
 
-    public Workouts(Workouts workout) {
-        this.workout = workout;
+    public FitnessCenters(FitnessCenters fitnessCenter) {
+        this.fitnessCenter = fitnessCenter;
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+//@Repository
 public interface JpaWorkoutsRepository extends JpaRepository<Workouts, Long> {
 
     List<Workouts>JpaWorkoutsTitle(String workoutsTitle);

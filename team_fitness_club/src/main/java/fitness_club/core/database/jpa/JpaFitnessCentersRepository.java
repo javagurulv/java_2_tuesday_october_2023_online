@@ -1,13 +1,12 @@
 package fitness_club.core.database.jpa;
 
-import fitness_club.core.domain.FitnessCentres;
+import fitness_club.core.domain.FitnessCenters;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface JpaFitnessCentersRepository extends JpaRepository<FitnessCentres, Long> {
+//@Repository
+public interface JpaFitnessCentersRepository extends JpaRepository<FitnessCenters, Long> {
 
-    List<FitnessCentres>findByFitnessCenterTitle(String fitnessCenterTitle);
+    List<FitnessCenters>findByFitnessCenterTitle(String fitnessCenterTitle);
 }

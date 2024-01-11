@@ -1,9 +1,6 @@
 package fitness_club.core.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -12,8 +9,9 @@ import java.util.Objects;
 @Table(name = "clients")
 @Getter
 @Setter
+@EqualsAndHashCode
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class Client {
 
     @Id
@@ -34,31 +32,5 @@ public class Client {
         this.firstName = firstName;
         this.lastName = lastName;
         this.personalCode = personalCode;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Client client = (Client) o;
-        return Objects.equals(firstName, client.firstName)
-                && Objects.equals(lastName, client.lastName)
-                && Objects.equals(personalCode, client.personalCode);
-
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, personalCode);
-    }
-
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", personalCode='" + personalCode + '\'' +
-                '}';
     }
 }

@@ -1,11 +1,9 @@
 package fitness_club.console_UI;
 
-import fitness_club.core.domain.FitnessCentres;
 import fitness_club.core.requests.ChangeClientFitnessCentreRequest;
 import fitness_club.core.responses.ChangeClientFitnessCentreResponse;
 import fitness_club.core.services.ChangeClientFitnessCentreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 //@Component

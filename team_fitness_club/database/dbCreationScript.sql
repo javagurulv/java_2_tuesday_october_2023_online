@@ -36,9 +36,9 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
 
 
-CREATE TABLE IF NOT EXISTS `fitness_centres` (
+CREATE TABLE IF NOT EXISTS `fitness_centers` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
-`fitness_centre` VARCHAR(50) NOT NULL,
+`fitness_center` VARCHAR(50) NOT NULL,
 PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `member_card` (
 `client_id` BIGINT NOT NULL,
 `age_group_id` BIGINT NOT NULL,
 `workout_id` BIGINT NOT NULL,
-`fitness_centre_id` BIGINT NOT NULL,
+`fitness_center_id` BIGINT NOT NULL,
 `term_of_contract` DATETIME NOT NULL,
 PRIMARY KEY (`id`)
 )
@@ -68,7 +68,7 @@ ALTER TABLE `member_card`
 ADD FOREIGN KEY (`workout_id`) REFERENCES `workouts`(`id`);
 
 ALTER TABLE `member_card`
-ADD FOREIGN KEY (`fitness_centre_id`) REFERENCES `fitness_centres`(`id`);
+ADD FOREIGN KEY (`fitness_center_id`) REFERENCES `fitness_centers`(`id`);
 
 
 CREATE INDEX ix_member_card_client_id
@@ -77,8 +77,8 @@ ON member_card (client_id);
 CREATE INDEX ix_member_card_age_group_id
 ON member_card (age_group_id);
 
-CREATE INDEX ix_member_card_fitness_centre_id
-ON member_card (fitness_centre_id);
+CREATE INDEX ix_member_card_fitness_center_id
+ON member_card (fitness_center_id);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
