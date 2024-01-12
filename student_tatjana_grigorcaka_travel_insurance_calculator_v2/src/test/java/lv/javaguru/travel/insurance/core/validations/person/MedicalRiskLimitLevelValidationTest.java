@@ -6,7 +6,6 @@ import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import lv.javaguru.travel.insurance.core.domain.ClassifierValue;
 import lv.javaguru.travel.insurance.core.repositories.ClassifierValueRepository;
 import lv.javaguru.travel.insurance.core.validations.ValidationErrorFactory;
-import lv.javaguru.travel.insurance.core.validations.person.MedicalRiskLimitLevelValidation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -69,7 +68,7 @@ class MedicalRiskLimitLevelValidationTest {
         when(classifierValueRepository.findByClassifierTitleAndIc("MEDICAL_RISK_LIMIT_LEVEL", "LEVEL_70000"))
                 .thenReturn(Optional.empty());
         ValidationErrorDTO validationError = mock(ValidationErrorDTO.class);
-        when(errorFactory.buildError("ERROR_CODE_14")).thenReturn(validationError);
+        when(errorFactory.buildError(eq("ERROR_CODE_14"), any())).thenReturn(validationError);
         Optional<ValidationErrorDTO> validationErrorOpt = validation.validate(agreement, person);
         assertTrue(validationErrorOpt.isPresent());
         assertSame(validationError, validationErrorOpt.get());

@@ -48,7 +48,7 @@ class CountryValidationTest {
         when(classifierValueRepository.findByClassifierTitleAndIc("COUNTRY", "SWITZERLAND"))
                 .thenReturn(Optional.empty());
         ValidationErrorDTO validationError = mock(ValidationErrorDTO.class);
-        when(errorFactory.buildError("ERROR_CODE_15")).thenReturn(validationError);
+        when(errorFactory.buildError(eq("ERROR_CODE_15"), any())).thenReturn(validationError);
         Optional<ValidationErrorDTO> validationErrorOpt = validation.validate(agreement);
         assertTrue(validationErrorOpt.isPresent());
         assertSame(validationError, validationErrorOpt.get());
