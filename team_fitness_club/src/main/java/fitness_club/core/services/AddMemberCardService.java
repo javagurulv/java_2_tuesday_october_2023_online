@@ -19,20 +19,7 @@ import java.util.List;
 public class AddMemberCardService {
 
     @Autowired
-    private AdminData adminData;
-    @Autowired
-    private MemberCardRepository memberCardRepository;
-    @Autowired
-    private ClientRepository clientRepository;
-    @Autowired
-    private AgeGroupsRepository ageGroupsRepository;
-    @Autowired
-    private FitnessCentersRepository fitnessCentersRepository;
-    @Autowired
-    private WorkoutsRepository workoutsRepository;
-    @Autowired
     private AddMemberCardRequestValidator validator;
-
 
     public AddMemberCardsResponse execute(AddMemberCardRequest request) {
         List<CoreError> errors = validator.validate(request);
@@ -41,14 +28,14 @@ public class AddMemberCardService {
                 : memberCard(request);
     }
 
-   private  AddMemberCardsResponse memberCard(AddMemberCardRequest request) {
+    private AddMemberCardsResponse memberCard(AddMemberCardRequest request) {
 
         AddMemberCardsResponse response = new AddMemberCardsResponse();
 
-       response.setClient(request.getClient());
-       response.setAgeGroup(request.getAgeGroup());
-       response.setWorkout(request.getWorkout());
-       response.setFitnessCentre(request.getFitnessCentre());
-       return response;
-   }
+        response.setClient(request.getClient());
+        response.setAgeGroup(request.getAgeGroup());
+        response.setWorkout(request.getWorkout());
+        response.setFitnessCentre(request.getFitnessCentre());
+        return response;
+    }
 }

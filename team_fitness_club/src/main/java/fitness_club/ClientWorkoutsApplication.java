@@ -16,8 +16,6 @@ public class ClientWorkoutsApplication {
 
     public static void main(String[] args) {
 
-       // ApplicationContext applicationContext = createApplicationContext();
-
         ConfigurableApplicationContext context = SpringApplication.run(SpringWebConfiguration.class);
 
         ProgramMenu programMenu = context.getBean(ProgramMenu.class);

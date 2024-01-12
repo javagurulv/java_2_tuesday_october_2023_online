@@ -3,8 +3,8 @@ package fitness_club.core.services;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-@Component
-@Transactional
+//@Component
+//@Transactional
 public class GetFitnessCentreService {
 
    /* public static FitnessCentres getFitnessCentre(int id) {

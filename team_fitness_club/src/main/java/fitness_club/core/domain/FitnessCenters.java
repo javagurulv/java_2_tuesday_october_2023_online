@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @Getter
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 public class FitnessCenters {
 
     @Id
@@ -20,9 +22,6 @@ public class FitnessCenters {
     private Long id;
 
     @Column(name = "fitness_center", nullable = false)
-    private FitnessCenters fitnessCenter;
+    private String fitnessCenter;
 
-    public FitnessCenters(FitnessCenters fitnessCenter) {
-        this.fitnessCenter = fitnessCenter;
-    }
 }

@@ -6,6 +6,7 @@ import org.hibernate.boot.registry.classloading.spi.ClassLoaderService;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "member_card")
@@ -40,6 +41,9 @@ public class MemberCard {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "term_of_contract", nullable = false)
     private Date termOfContract;
+
+    @OneToMany(mappedBy="workout", fetch=FetchType.EAGER)
+    private List<Workouts> workouts;
 
     public MemberCard(Client client, AgeGroups ageGroup, Workouts workout, FitnessCenters fitnessCentre, Date termOfContract) {
         this.client = client;

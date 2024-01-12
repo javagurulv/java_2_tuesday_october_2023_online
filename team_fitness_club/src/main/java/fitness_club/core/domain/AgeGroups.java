@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Getter
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 public class AgeGroups {
 
     @Id
@@ -21,9 +22,6 @@ public class AgeGroups {
     private Long id;
 
     @Column(name = "age_group", nullable = false)
-    private AgeGroups ageGroup;
+    private String ageGroup;
 
-    public AgeGroups(AgeGroups ageGroup) {
-        this.ageGroup = ageGroup;
-    }
 }

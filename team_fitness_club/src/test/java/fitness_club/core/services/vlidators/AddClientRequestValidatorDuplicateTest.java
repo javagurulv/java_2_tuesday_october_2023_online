@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class AddClientRequestValidatorDuplicateTest {
     @Mock
-    private JpaClientRepository clientRepository;
+    private ClientRepository clientRepository;
     @InjectMocks
     private AddClientRequestValidator validator;
 
@@ -30,11 +30,11 @@ public class AddClientRequestValidatorDuplicateTest {
     public void shouldReturnErrorWhenDuplicateFound() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
                 "12-12");
-        clientRepository = Mockito.mock(JpaClientRepository.class);
+        clientRepository = Mockito.mock(ClientRepository.class);
         validator = new AddClientRequestValidator(clientRepository);
         Client client = new Client("Andrey", "Pupkin",
                 "12-12");
-        Mockito.when(clientRepository.findByPersonalCodeLike("12-12")).thenReturn(List.of(client));
+        Mockito.when(clientRepository.findByPersonalCode("12-12")).thenReturn(List.of(client));
         List<CoreError> errors = validator.validate(request);
         assertTrue(!errors.isEmpty());
         assertEquals(errors.get(0).getField(), "uniqueClient");
@@ -45,9 +45,9 @@ public class AddClientRequestValidatorDuplicateTest {
     public void shouldNotReturnErrorWhenDuplicateNotFound() {
         AddClientRequest request = new AddClientRequest("Andrey", "Pupkin",
                 "12-12");
-        clientRepository = Mockito.mock(JpaClientRepository.class);
+        clientRepository = Mockito.mock(ClientRepository.class);
         validator = new AddClientRequestValidator(clientRepository);
-        Mockito.when(clientRepository.findByPersonalCodeLike("12-12")).thenReturn(List.of());
+        Mockito.when(clientRepository.findByPersonalCode("12-12")).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }

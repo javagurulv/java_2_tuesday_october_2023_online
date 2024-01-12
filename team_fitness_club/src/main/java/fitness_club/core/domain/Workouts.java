@@ -1,14 +1,19 @@
 package fitness_club.core.domain;
+
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "workouts")
 @Getter
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 public class Workouts {
 
     @Id
@@ -17,9 +22,7 @@ public class Workouts {
     private Long id;
 
     @Column(name = "workout", nullable = false)
-    private Workouts workout;
+    private String workout;
 
-    public Workouts(Workouts workout) {
-        this.workout = workout;
-    }
+
 }
