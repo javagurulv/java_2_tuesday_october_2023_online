@@ -1,10 +1,12 @@
-package lv.javaguru.travel.insurance.core.validations.agreement;
+package lv.javaguru.travel.insurance.core.validations.person;
 
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
+import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import lv.javaguru.travel.insurance.core.domain.ClassifierValue;
 import lv.javaguru.travel.insurance.core.repositories.ClassifierValueRepository;
 import lv.javaguru.travel.insurance.core.validations.ValidationErrorFactory;
+import lv.javaguru.travel.insurance.core.validations.person.MedicalRiskLimitLevelValidation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,8 +31,9 @@ class MedicalRiskLimitLevelValidationTest {
     @Test
     public void shouldNotReturnErrorWhenMedicalRiskLimitLevelIsNull() {
         AgreementDTO agreement = mock(AgreementDTO.class);
-        when(agreement.getMedicalRiskLimitLevel()).thenReturn(null);
-        Optional<ValidationErrorDTO> validationErrorOpt = validation.validate(agreement);
+        PersonDTO person = mock(PersonDTO.class);
+        when(person.getMedicalRiskLimitLevel()).thenReturn(null);
+        Optional<ValidationErrorDTO> validationErrorOpt = validation.validate(agreement, person);
         assertTrue(validationErrorOpt.isEmpty());
         verifyNoInteractions(classifierValueRepository, errorFactory);
     }
@@ -38,8 +41,9 @@ class MedicalRiskLimitLevelValidationTest {
     @Test
     public void shouldNotReturnErrorWhenMedicalRiskLimitLevelIsBlank() {
         AgreementDTO agreement = mock(AgreementDTO.class);
-        when(agreement.getMedicalRiskLimitLevel()).thenReturn("");
-        Optional<ValidationErrorDTO> validationErrorOpt = validation.validate(agreement);
+        PersonDTO person = mock(PersonDTO.class);
+        when(person.getMedicalRiskLimitLevel()).thenReturn("");
+        Optional<ValidationErrorDTO> validationErrorOpt = validation.validate(agreement, person);
         assertTrue(validationErrorOpt.isEmpty());
         verifyNoInteractions(classifierValueRepository, errorFactory);
     }
@@ -47,11 +51,12 @@ class MedicalRiskLimitLevelValidationTest {
     @Test
     public void shouldNotReturnErrorWhenMedicalRiskLimitLevelExistInDb() {
         AgreementDTO agreement = mock(AgreementDTO.class);
-        when(agreement.getMedicalRiskLimitLevel()).thenReturn("LEVEL_10000");
+        PersonDTO person = mock(PersonDTO.class);
+        when(person.getMedicalRiskLimitLevel()).thenReturn("LEVEL_10000");
         ClassifierValue classifierValue = mock(ClassifierValue.class);
         when(classifierValueRepository.findByClassifierTitleAndIc("MEDICAL_RISK_LIMIT_LEVEL", "LEVEL_10000"))
                 .thenReturn(Optional.of(classifierValue));
-        Optional<ValidationErrorDTO> validationErrorOpt = validation.validate(agreement);
+        Optional<ValidationErrorDTO> validationErrorOpt = validation.validate(agreement, person);
         assertTrue(validationErrorOpt.isEmpty());
         verifyNoInteractions(errorFactory);
     }
@@ -59,12 +64,13 @@ class MedicalRiskLimitLevelValidationTest {
     @Test
     public void shouldReturnError() {
         AgreementDTO agreement = mock(AgreementDTO.class);
-        when(agreement.getMedicalRiskLimitLevel()).thenReturn("LEVEL_70000");
+        PersonDTO person = mock(PersonDTO.class);
+        when(person.getMedicalRiskLimitLevel()).thenReturn("LEVEL_70000");
         when(classifierValueRepository.findByClassifierTitleAndIc("MEDICAL_RISK_LIMIT_LEVEL", "LEVEL_70000"))
                 .thenReturn(Optional.empty());
         ValidationErrorDTO validationError = mock(ValidationErrorDTO.class);
         when(errorFactory.buildError("ERROR_CODE_14")).thenReturn(validationError);
-        Optional<ValidationErrorDTO> validationErrorOpt = validation.validate(agreement);
+        Optional<ValidationErrorDTO> validationErrorOpt = validation.validate(agreement, person);
         assertTrue(validationErrorOpt.isPresent());
         assertSame(validationError, validationErrorOpt.get());
     }
