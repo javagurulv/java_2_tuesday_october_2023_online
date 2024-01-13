@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Avangard Teen order demo project">
+    <meta name="author" content="Avangard Teen order">
+    <title>Avangard Teen</title>
+</head>
+
+<body>
+
+<h3>User registration</h3>
+
+<table>
+    <tr>
+        <td>Surname:</td>
+        <td>Personal code:</td>
+        <td>Phone:</td>
+        <td>Address:</td>
+    </tr>
+
+    <tr>
+        <form action="/userRegistration" th:object="${request}" method="post">
+            <td><input type="text" th:field="${request.nameSurname}"/></td>
+            <td><input type="text" th:field="${request.personalCode}"/></td>
+            <td><input type="text" th:field="${request.phone}"/></td>
+            <td><input type="text" th:field="${request.address}"/></td>
+            <td>
+                <input type="submit" value="Add Client"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+</body>
+
+</html>

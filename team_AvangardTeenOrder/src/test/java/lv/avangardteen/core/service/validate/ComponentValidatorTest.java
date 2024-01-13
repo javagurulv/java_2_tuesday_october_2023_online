@@ -1,7 +1,7 @@
 package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.DatabaseCleaner;
-import lv.avangardteen.config.OrderListConfiguration;
+import lv.avangardteen.config.SpringCoreConfiguration;
 import lv.avangardteen.core.database.DataComponents;
 import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.domain.Components;
@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Ignore
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {OrderListConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 @Sql({"/schema.sql"})
 class ComponentValidatorTest {
     @Autowired

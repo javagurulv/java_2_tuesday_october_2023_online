@@ -2,18 +2,16 @@ package lv.avangardteen.core.service;
 
 
 import lv.avangardteen.DatabaseCleaner;
-import lv.avangardteen.config.OrderListConfiguration;
+import lv.avangardteen.config.SpringCoreConfiguration;
 import lv.avangardteen.core.database.*;
 import lv.avangardteen.core.domain.*;
 import lv.avangardteen.core.request.ShowOrderRequest;
-import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.responce.ShowOrderResponse;
 import lv.avangardteen.core.service.validate.ShowOrderValidator;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
@@ -25,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Ignore
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {OrderListConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 @Sql({"/schema.sql"})
 class ShowOrderServiceTest {
 

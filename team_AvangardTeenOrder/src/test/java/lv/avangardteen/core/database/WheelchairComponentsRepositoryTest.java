@@ -1,7 +1,7 @@
 package lv.avangardteen.core.database;
 
 import lv.avangardteen.DatabaseCleaner;
-import lv.avangardteen.config.OrderListConfiguration;
+import lv.avangardteen.config.SpringCoreConfiguration;
 import lv.avangardteen.core.domain.Client;
 import lv.avangardteen.core.domain.Components;
 import lv.avangardteen.core.domain.Wheelchair;
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Ignore
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {OrderListConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 @Sql({"/schema.sql"})
 class WheelchairComponentsRepositoryTest {
 

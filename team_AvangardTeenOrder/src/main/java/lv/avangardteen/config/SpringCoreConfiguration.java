@@ -18,10 +18,10 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = "lv.avangardteen")
+@ComponentScan(basePackages = "lv.avangardteen.core")
 @PropertySource(value = "classpath:application.properties")
 @EnableTransactionManagement
-public class OrderListConfiguration {
+public class SpringCoreConfiguration {
 
     @Value("${jdbc.url}")
     private String jdbcUrl;
