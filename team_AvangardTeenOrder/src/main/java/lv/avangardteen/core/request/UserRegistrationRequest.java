@@ -7,7 +7,7 @@ public class UserRegistrationRequest {
     private Long personalCode;
     private Long phoneNumber;
     private String userAddress;
-    Client userRegistration = new Client();
+
 
     public UserRegistrationRequest(){}
 
@@ -16,19 +16,6 @@ public class UserRegistrationRequest {
         this.personalCode = personalCode;
         this.phoneNumber = phoneNumber;
         this.userAddress = userAddress;
-    }
-
-
-    public Client getUserRegistration() {
-        return setUserRegistration();
-    }
-
-    public Client setUserRegistration() {
-        userRegistration.setNameSurname(nameSurname);
-        userRegistration.setPersonalCode(personalCode);
-        userRegistration.setPhone(phoneNumber);
-        userRegistration.setAddress(userAddress);
-        return userRegistration;
     }
 
     public String getNameSurname() {
@@ -61,9 +48,5 @@ public class UserRegistrationRequest {
 
     public void setUserAddress(String userAddress) {
         this.userAddress = userAddress;
-    }
-
-    public void setUserRegistration(Client userRegistration) {
-        this.userRegistration = userRegistration;
     }
 }

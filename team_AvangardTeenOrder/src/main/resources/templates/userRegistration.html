@@ -24,8 +24,8 @@
         <form action="/userRegistration" th:object="${request}" method="post">
             <td><input type="text" th:field="${request.nameSurname}"/></td>
             <td><input type="text" th:field="${request.personalCode}"/></td>
-            <td><input type="text" th:field="${request.phone}"/></td>
-            <td><input type="text" th:field="${request.address}"/></td>
+            <td><input type="text" th:field="${request.phoneNumber}"/></td>
+            <td><input type="text" th:field="${request.userAddress}"/></td>
             <td>
                 <input type="submit" value="Add Client"/>
                 <input type="reset" value="Clear"/>
