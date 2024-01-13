@@ -72,7 +72,7 @@ public class MemberCardRepository {
 
     public boolean isClientFitnessCentreChangedByPersonalCode(Long clientId, Long newFitnessCentre) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "update MemberCard set fitness_centre_id = :newFitnessCentre where client_id = :clientId");
+                "update MemberCard set fitness_center_id = :newFitnessCentre where client_id = :clientId");
         query.setParameter("newFitnessCentre", newFitnessCentre);
         query.setParameter("clientId", clientId);
         int result = query.executeUpdate();

@@ -35,7 +35,7 @@ public class MemberCard {
     private Workouts workout;
 
     @ManyToOne
-    @JoinColumn(name = "fitness_centre_id", nullable = false)
+    @JoinColumn(name = "fitness_center_id", nullable = false)
     private FitnessCenters fitnessCentre;
 
     @Temporal(TemporalType.TIMESTAMP)
