@@ -1,6 +1,6 @@
 package lv.avangardteen.core.database;
 
-import lv.avangardteen.DatabaseCleaner;
+import lv.avangardteen.core.DatabaseCleaner;
 import lv.avangardteen.config.SpringCoreConfiguration;
 import lv.avangardteen.core.domain.Components;
 import org.junit.Before;

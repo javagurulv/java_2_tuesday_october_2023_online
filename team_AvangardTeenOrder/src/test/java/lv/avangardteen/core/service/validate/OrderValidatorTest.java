@@ -1,6 +1,6 @@
 package lv.avangardteen.core.service.validate;
 
-import lv.avangardteen.DatabaseCleaner;
+import lv.avangardteen.core.DatabaseCleaner;
 import lv.avangardteen.config.SpringCoreConfiguration;
 import lv.avangardteen.core.database.Database;
 import lv.avangardteen.core.domain.Client;

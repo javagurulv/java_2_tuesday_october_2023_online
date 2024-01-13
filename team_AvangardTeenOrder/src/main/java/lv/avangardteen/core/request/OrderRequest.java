@@ -6,10 +6,12 @@ public class OrderRequest {
     public String userName;
     public long userPersonalCode;
     public Integer pelvisWidth; //ширина таза
-    public Integer thighLength; //длинна бедра
+    public Integer thighLength; //длина бедра
     public Integer backHeight; //высота спины
-    public Integer shinLength; //длинна голени
+    public Integer shinLength; //длина голени
 
+    public OrderRequest() {
+    }
 
     public OrderRequest(String userName, Long userPersonalCode,
                         Integer pelvisWidth, Integer thighLength,
