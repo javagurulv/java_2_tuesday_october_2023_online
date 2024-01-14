@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fitness club demo project">
+    <meta name="author" content="Fitness club team">
+    <title>Fitness Club</title>
+</head>
+
+<body>
+
+<h3>Search client</h3>
+
+<table>
+    <tr>
+        <td>Enter client first name:</td>
+        <td>Enter client last name:</td>
+        <td>Enter client personal code:</td>
+    </tr>
+
+    <tr>
+        <form action="/searchClient" th:object="${request}" method="post">
+            <td><input type="text" th:field="${request.firstName}"/></td>
+            <td><input type="text" th:field="${request.lastName}"/></td>
+            <td><input type="text" th:field="${request.personalCode}"/></td>
+            <td>
+                <input type="submit" value="Search Client"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+<td th:text="${error.field}"/>
+<td th:text="${error.message}"/>
+</tr>
+</td>
+
+</body>
+
+</html>

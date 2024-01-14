@@ -18,7 +18,7 @@ jar {
 dependencies {
 
 	implementation('org.reflections:reflections:0.9.12')
-	implementation('mysql:mysql-connector-java:8.0.22')
+	implementation('mysql:mysql-connector-java:8.0.33')
 	implementation('org.apache.commons:commons-dbcp2:2.8.0')
 	implementation('org.hibernate:hibernate-core:5.4.25.Final')
 

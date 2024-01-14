@@ -22,7 +22,7 @@ public class RemoveClientServiceTest {
     @Mock
     private RemoveClientRequestValidator validator;
     @InjectMocks
-    private DeleteClientService service;
+    private RemoveClientService service;
 
 
     @Test

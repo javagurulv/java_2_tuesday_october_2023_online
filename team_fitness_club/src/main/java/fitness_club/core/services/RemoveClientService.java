@@ -13,7 +13,7 @@ import java.util.List;
 
 @Component
 @Transactional
-public class DeleteClientService {
+public class RemoveClientService {
 
     @Autowired
     private ClientRepository clientRepository;

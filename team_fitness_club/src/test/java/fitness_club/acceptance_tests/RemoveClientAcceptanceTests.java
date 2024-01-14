@@ -5,7 +5,7 @@ import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.services.AddClientService;
-import fitness_club.core.services.DeleteClientService;
+import fitness_club.core.services.RemoveClientService;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -45,7 +45,7 @@ public class RemoveClientAcceptanceTests {
         return applicationContext.getBean(AddClientService.class);
     }
 
-    private DeleteClientService getDeleteClientService() {
-        return applicationContext.getBean(DeleteClientService.class);
+    private RemoveClientService getDeleteClientService() {
+        return applicationContext.getBean(RemoveClientService.class);
     }
 }

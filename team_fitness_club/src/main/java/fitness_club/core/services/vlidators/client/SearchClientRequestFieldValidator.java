@@ -12,7 +12,7 @@ public class SearchClientRequestFieldValidator {
 
     public List<CoreError> validate (SearchClientRequest request) {
         List<CoreError> errors = new ArrayList<>();
-        if (isEmpty(request.getFirstName()) && isEmpty(request.getLastName())) {
+        if (isEmpty(request.getFirstName()) && isEmpty(request.getLastName()) && isEmpty(request.getPersonaCode())) {
             errors.add(new CoreError("firstName", "Must not be empty!"));
             errors.add(new CoreError("lastName", "Must not be empty!"));
             errors.add(new CoreError("personalCode", "Must not be empty!"));

@@ -2,7 +2,7 @@ package fitness_club.console_UI;
 
 import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.responses.RemoveClientResponse;
-import fitness_club.core.services.DeleteClientService;
+import fitness_club.core.services.RemoveClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ import java.util.Scanner;
 @Component
 public class RemoveClientUIAction implements UIAction {
     @Autowired
-    private DeleteClientService deleteClientService;
+    private RemoveClientService deleteClientService;
 
 
     @Override
