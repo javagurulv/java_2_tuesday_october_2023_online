@@ -1,6 +1,7 @@
 package fitness_club.web_ui.controllers;
 
 import fitness_club.core.requests.AddClientRequest;
+import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.services.AddClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,8 +22,13 @@ public class AddClientController {
     }
 
     @PostMapping("/addNewClient")
-    public String processAddClientRequest(@ModelAttribute(value = "request") AddClientRequest request) {
-        addClientService.execute(request);
-        return "index";
+    public String processAddClientRequest(@ModelAttribute(value = "request") AddClientRequest request, ModelMap modelMap) {
+        AddClientResponse response = addClientService.execute(request);
+        if (response.hasErrors()) {
+            modelMap.addAttribute("errors", response.getErrors());
+            return "addNewClient";
+        } else {
+            return "index";
+        }
     }
 }

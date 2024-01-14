@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = "fitness_club")
+@ComponentScan(basePackages = "fitness_club.core")
 @PropertySource(value = "classpath:application.properties")
 @EnableTransactionManagement
 public class SpringCoreConfiguration {
@@ -73,8 +73,9 @@ public class SpringCoreConfiguration {
         sessionFactoryBean.afterPropertiesSet();
         return sessionFactoryBean.getObject();
     }
+
     @Bean
-    public PlatformTransactionManager transactionManager(org.hibernate.SessionFactory sessionFactory) {
+    public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
         return new HibernateTransactionManager(sessionFactory);
     }
 }

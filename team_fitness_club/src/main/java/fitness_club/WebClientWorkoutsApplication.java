@@ -11,22 +11,21 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @SpringBootApplication(exclude = HibernateJpaAutoConfiguration.class)
-public class ClientWorkoutsApplication {
+public class WebClientWorkoutsApplication {
 
 
     public static void main(String[] args) {
-
         ConfigurableApplicationContext context = SpringApplication.run(SpringWebConfiguration.class);
 
-        ProgramMenu programMenu = context.getBean(ProgramMenu.class);
-        while (true) {
-            programMenu.printProgramMenu();
-            int menuNumber = programMenu.getMenuNumberFromUser();
-            programMenu.executeSelectedMenuItem(menuNumber);
-        }
+    //    ProgramMenu programMenu = context.getBean(ProgramMenu.class);
+      //  while (true) {
+       //     programMenu.printProgramMenu();
+      //      int menuNumber = programMenu.getMenuNumberFromUser();
+      //      programMenu.executeSelectedMenuItem(menuNumber);
+       // }
     }
 
-    private static ApplicationContext createApplicationContext() {
-        return new AnnotationConfigApplicationContext(SpringCoreConfiguration.class);
-    }
+  // private static ApplicationContext createApplicationContext() {
+  //      return new AnnotationConfigApplicationContext(SpringCoreConfiguration.class);
+   // }
 }
