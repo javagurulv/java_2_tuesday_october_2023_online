@@ -21,8 +21,8 @@ public class InMemoryClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Optional<Client> findClintById(Long id) {
-        return Optional.empty();
+    public Client findClientById(Long id) {
+        return null;
     }
 
     public boolean deleteByPersonalCode(String personalCode) {
@@ -44,8 +44,7 @@ public class InMemoryClientRepositoryImpl implements ClientRepository {
         return clients;
     }
 
-    @Override
-    public Long getClientIdByPersonalCode(String personalCode){return 0L;}
+
     /*@Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         Optional<Client> clientToChangeAgeGroupOpt = clients.stream()
@@ -127,11 +126,6 @@ public class InMemoryClientRepositoryImpl implements ClientRepository {
         return getAllClients().stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public boolean findUniqueClient(String personalCode) {
-        return false;
     }
 
     private void updateClientIds(List<Client> clients) {

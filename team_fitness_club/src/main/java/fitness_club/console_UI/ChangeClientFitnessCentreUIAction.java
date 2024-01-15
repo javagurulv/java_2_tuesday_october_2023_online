@@ -1,29 +1,34 @@
 package fitness_club.console_UI;
 
-import fitness_club.core.requests.ChangeClientFitnessCentreRequest;
-import fitness_club.core.responses.ChangeClientFitnessCentreResponse;
-import fitness_club.core.services.ChangeClientFitnessCentreService;
+import fitness_club.core.database.MemberCardRepository;
+import fitness_club.core.requests.ChangeClientFitnessCenterRequest;
+import fitness_club.core.responses.ChangeClientFitnessCenterResponse;
+import fitness_club.core.services.ChangeClientFitnessCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Scanner;
+
 //@Component
 public class ChangeClientFitnessCentreUIAction implements UIAction {
     @Autowired
-    private ChangeClientFitnessCentreService service;
+    private ChangeClientFitnessCenterService service;
+
+    @Autowired
+    private MemberCardRepository memberCardRepository;
 
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Change client fitness centre: ");
-        System.out.println("Enter client personal code: ");
-        String clientPersonalCode = scanner.nextLine();
+        System.out.println("Enter client Id: ");
+        Long clientId = scanner.nextLong();
 
-        System.out.println("Choose new fitness centre.");
-       // printEnumValues(FitnessCentres.values());
+        System.out.println("Enter Id of fitness center: ");
+        // printEnumValues(FitnessCentres.values());
         Long newFitnessCentre = Long.parseLong(scanner.nextLine());
 
-        ChangeClientFitnessCentreRequest request = new ChangeClientFitnessCentreRequest(clientPersonalCode, newFitnessCentre);
-        ChangeClientFitnessCentreResponse response = service.execute(request);
+        ChangeClientFitnessCenterRequest request = new ChangeClientFitnessCenterRequest(clientId, newFitnessCentre);
+        ChangeClientFitnessCenterResponse response = service.execute(request);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Alarm: " + coreError.getField() + " " + coreError.getMessage()));
@@ -33,12 +38,6 @@ public class ChangeClientFitnessCentreUIAction implements UIAction {
             } else {
                 System.out.println("Client workout was not changed.");
             }
-        }
-    }
-
-    private void printEnumValues(Enum<?>[] values) {
-        for (int i = 0; i < values.length; i++) {
-            System.out.println((i + 1) + ". " + values[i]);
         }
     }
 }

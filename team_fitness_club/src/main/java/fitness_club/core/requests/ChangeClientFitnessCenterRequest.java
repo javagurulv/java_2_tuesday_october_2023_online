@@ -7,9 +7,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class ChangeClientWorkoutRequest {
+
+public class ChangeClientFitnessCenterRequest {
 
     private Long clientId;
-    private Long workoutId;
+    private Long fitnessCenterId;
 
 }

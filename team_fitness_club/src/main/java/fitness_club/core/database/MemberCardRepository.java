@@ -50,9 +50,9 @@ public class MemberCardRepository {
         return query.getResultList();
     }
 
-    public boolean isClientWorkoutsChangedByPersonalCode(Long clientId, Long newWorkout) {
+    public boolean isClientWorkoutsChangedById(Long clientId, Long newWorkout) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "update MemberCard set workout_id = :newWorkout where client_id = :clientId");
+                "UPDATE MemberCard set workout_id = :newWorkout where client_id = :clientId");
         query.setParameter("newWorkout", newWorkout);
         query.setParameter("clientId", clientId);
         int result = query.executeUpdate();
@@ -60,7 +60,7 @@ public class MemberCardRepository {
     }
 
 
-    public boolean isClientAgeGroupChangedByPersonalCode(Long clientId, Long newAgeGroup) {
+    public boolean isClientAgeGroupChangedById(Long clientId, Long newAgeGroup) {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "update MemberCard set age_group_id = :newAgeGroup where client_id = :clientId");
         query.setParameter("newAgeGroup", newAgeGroup);
@@ -70,7 +70,7 @@ public class MemberCardRepository {
     }
 
 
-    public boolean isClientFitnessCentreChangedByPersonalCode(Long clientId, Long newFitnessCentre) {
+    public boolean isClientFitnessCentreChangedById(Long clientId, Long newFitnessCentre) {
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "update MemberCard set fitness_center_id = :newFitnessCentre where client_id = :clientId");
         query.setParameter("newFitnessCentre", newFitnessCentre);

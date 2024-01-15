@@ -17,19 +17,8 @@ public class WorkoutsRepository {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void addWorkout(Workouts workout) {
-        sessionFactory.getCurrentSession().save(workout);
-    }
-
-    public List<Workouts> selectWorkout(Workouts workout) {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("FROM Workouts WHERE workout_id =: workout");
-        query.setParameter("workout", workout);
-        return query.getResultList();
-    }
-
     public List<Workouts> getAllWorkouts() {
-        return  sessionFactory.getCurrentSession()
+        return sessionFactory.getCurrentSession()
                 .createQuery("SELECT w FROM Workouts w", Workouts.class)
                 .getResultList();
     }

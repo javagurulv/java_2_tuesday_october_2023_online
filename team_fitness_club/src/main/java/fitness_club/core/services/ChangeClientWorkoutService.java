@@ -7,8 +7,6 @@ import fitness_club.core.responses.ChangeClientWorkoutResponse;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.services.vlidators.workout.ChangeClientWorkoutsValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,8 +17,6 @@ public class ChangeClientWorkoutService {
     @Autowired
     private MemberCardRepository memberCardRepository;
     @Autowired
-    private ClientRepository clientRepository;
-    @Autowired
     private ChangeClientWorkoutsValidator validator;
 
     public ChangeClientWorkoutResponse execute(ChangeClientWorkoutRequest request) {
@@ -28,12 +24,7 @@ public class ChangeClientWorkoutService {
         if (!errors.isEmpty()) {
             return new ChangeClientWorkoutResponse(errors);
         }
-        boolean isClientWorkoutChanged = memberCardRepository.isClientWorkoutsChangedByPersonalCode(getClientId(request), request.getWorkout());
+        boolean isClientWorkoutChanged = memberCardRepository.isClientWorkoutsChangedById(request.getClientId(), request.getWorkoutId());
         return new ChangeClientWorkoutResponse(isClientWorkoutChanged);
     }
-
-    private Long getClientId(ChangeClientWorkoutRequest request) {
-        return clientRepository.getClientIdByPersonalCode(request.getPersonalCode());
-    }
-
 }

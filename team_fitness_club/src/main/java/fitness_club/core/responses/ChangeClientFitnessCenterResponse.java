@@ -2,16 +2,16 @@ package fitness_club.core.responses;
 
 import java.util.List;
 
-public class ChangeClientFitnessCentreResponse extends CoreResponse {
+public class ChangeClientFitnessCenterResponse extends CoreResponse {
 
     private boolean isClientFitnessCentreChanged;
 
 
-    public ChangeClientFitnessCentreResponse(List<CoreError> errors) {
+    public ChangeClientFitnessCenterResponse(List<CoreError> errors) {
         super(errors);
     }
 
-    public ChangeClientFitnessCentreResponse(boolean isClientFitnessCentreChanged) {
+    public ChangeClientFitnessCenterResponse(boolean isClientFitnessCentreChanged) {
         this.isClientFitnessCentreChanged = isClientFitnessCentreChanged;
     }
 

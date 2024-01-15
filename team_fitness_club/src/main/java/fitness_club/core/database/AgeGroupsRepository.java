@@ -17,20 +17,8 @@ public class AgeGroupsRepository {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public List<AgeGroups> selectAgeGroup(AgeGroups ageGroup) {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("FROM Age_groups WHERE age_group_id =: age_group");
-        query.setParameter("age_group", ageGroup);
-        return query.getResultList();
-    }
-
-    public void addAgeGroup(AgeGroups ageGroup) {
-        sessionFactory.getCurrentSession().save(ageGroup);
-    }
-
-    public AgeGroups getAgeGroupById(Long id) {
-        return sessionFactory.getCurrentSession().
-                get(AgeGroups.class, id);
+    public AgeGroups findById(Long id) {
+        return sessionFactory.getCurrentSession().get(AgeGroups.class, id);
     }
 
     public List<AgeGroups> getAllAgeGroups() {

@@ -27,8 +27,8 @@ public class InFileClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Optional<Client> findClintById(Long id) {
-        return Optional.empty();
+    public Client findClientById(Long id) {
+        return null;
     }
 
     public boolean deleteByPersonalCode(String personalCode) {
@@ -51,8 +51,7 @@ public class InFileClientRepositoryImpl implements ClientRepository {
         return clients;
     }
 
-    @Override
-    public Long getClientIdByPersonalCode(String personalCode){return 0L;}
+
     /*@Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         loadClientsFromFile();
@@ -109,7 +108,6 @@ public class InFileClientRepositoryImpl implements ClientRepository {
      */
 
 
-
     public void saveClient(List<Client> clients) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
             oos.writeObject(clients);
@@ -160,11 +158,6 @@ public class InFileClientRepositoryImpl implements ClientRepository {
         return getAllClients().stream()
                 .filter(client -> client.getPersonalCode().equals(personalCode))
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public boolean findUniqueClient(String personalCode) {
-        return false;
     }
 
     private void loadClientsFromFile() {

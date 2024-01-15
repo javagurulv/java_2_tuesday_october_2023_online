@@ -1,5 +1,6 @@
 package fitness_club.console_UI;
 
+import fitness_club.core.domain.Client;
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
@@ -21,10 +22,12 @@ public class SearchClientUIAction implements UIAction {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter client first name:");
+        System.out.println("Enter client first name: ");
         String firstName = scanner.nextLine();
-        System.out.println("Enter client last name:");
+        System.out.println("Enter client last name: ");
         String lastName = scanner.nextLine();
+        System.out.println("Enter client personal code: ");
+        String personalCode = scanner.nextLine();
         System.out.println();
 
         System.out.println("Enter orderBy client firstName or lastName): ");
@@ -39,13 +42,13 @@ public class SearchClientUIAction implements UIAction {
         Integer pageSize = Integer.parseInt(scanner.nextLine());
         Paging paging = new Paging(pageNumber, pageSize);
 
-        SearchClientRequest request = new SearchClientRequest(firstName, lastName, ordering, paging);
+        SearchClientRequest request = new SearchClientRequest(firstName, lastName, personalCode, ordering, paging);
         SearchClientResponse response = searchClientService.execute(request);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("BL Error: " + coreError.getField() + " " + coreError.getMessage()));
         } else {
-            response.getFoundClients().forEach(System.out::println);
+            response.getFoundClients().forEach(Client::toString);
         }
     }
 }

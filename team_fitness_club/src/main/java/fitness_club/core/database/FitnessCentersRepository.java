@@ -17,18 +17,6 @@ public class FitnessCentersRepository {
     @Autowired
     private SessionFactory sessionFactory;
 
-
-    public void addFitnessCenter(FitnessCenters fitnessCenter) {
-        sessionFactory.getCurrentSession().save(fitnessCenter);
-    }
-
-    public List<FitnessCenters> selectFitnessCenter(FitnessCenters fitnessCenter) {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("FROM Fitness_centres WHERE fitness_center_id =: fitness_center");
-        query.setParameter("fitness_center", fitnessCenter);
-        return query.getResultList();
-    }
-
     public List<FitnessCenters> getAllFitnessCenters() {
         return  sessionFactory.getCurrentSession()
                 .createQuery("SELECT fc FROM Fitness_centres fc", FitnessCenters.class)
