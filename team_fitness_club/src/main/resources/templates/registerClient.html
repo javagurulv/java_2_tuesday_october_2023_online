@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fitness club demo project">
+    <meta name="author" content="Fitness club team">
+    <title>Fitness Club</title>
+</head>
+
+<body>
+
+<h3>Client registration</h3>
+
+<table>
+    <tr>
+        <td>Enter client id number:</td>
+        <td>Enter age group id number:</td>
+        <td>Enter fitness center id number:</td>
+        <td>Enter workout id number:</td>
+    </tr>
+
+    <tr>
+        <form action="/clientRegistration" th:object="${request}" method="post">
+            <td><input type="text" th:field="${request.getClient}"/></td>
+            <td><input type="text" th:field="${request.getAgeGroup"/></td>
+            <td><input type="text" th:field="${request.getFitnessCenter}"/></td>
+            <td><input type="text" th:field="${request.getWorkout}"/></td>
+            <td>
+                <input type="submit" value="Add Member Card"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+<td th:text="${error.field}"/>
+<td th:text="${error.message}"/>
+</tr>
+</td>
+
+</body>
+
+</html>

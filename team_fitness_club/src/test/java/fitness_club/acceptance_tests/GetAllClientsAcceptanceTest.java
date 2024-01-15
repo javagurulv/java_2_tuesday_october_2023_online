@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringCoreConfiguration.class)
 @Sql({"/schema.sql"})
-public class GetAllClientsTest {
+public class GetAllClientsAcceptanceTest {
 
     @Autowired
     private AddClientService addClientService;

@@ -5,7 +5,7 @@ import org.junit.Ignore;
 import static org.junit.Assert.assertEquals;
 
 @Ignore
-public class ChangeClientAgeCroupTest {
+public class ChangeClientAgeCroupAcceptanceTest {
     /*private ApplicationContext applicationContext;
 
     @Before

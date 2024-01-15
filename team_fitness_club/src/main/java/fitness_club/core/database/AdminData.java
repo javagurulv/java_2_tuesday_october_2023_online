@@ -1,9 +1,9 @@
 package fitness_club.core.database;
 
-import fitness_club.core.domain.AgeGroups;
+import fitness_club.core.domain.AgeGroup;
 import fitness_club.core.domain.Client;
-import fitness_club.core.domain.FitnessCenters;
-import fitness_club.core.domain.Workouts;
+import fitness_club.core.domain.FitnessCenter;
+import fitness_club.core.domain.Workout;
 
 import java.util.List;
 
@@ -11,13 +11,13 @@ public interface AdminData {
 
     Client findClientById(Long id);
 
-    void addAgeGroup(AgeGroups ageGroup);
-    List<AgeGroups> getAllAgeGroups();
+    void addAgeGroup(AgeGroup ageGroup);
+    List<AgeGroup> getAllAgeGroups();
 
-    void addWorkout(Workouts workout);
+    void addWorkout(Workout workout);
 
-    List<Workouts> getAllWorkouts();
+    List<Workout> getAllWorkouts();
 
-    void addFitnessCenter(FitnessCenters fitnessCenter);
-    List<FitnessCenters> getAllFitnessCenters();
+    void addFitnessCenter(FitnessCenter fitnessCenter);
+    List<FitnessCenter> getAllFitnessCenters();
 }

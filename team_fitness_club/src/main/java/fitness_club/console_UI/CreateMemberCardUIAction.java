@@ -2,7 +2,7 @@ package fitness_club.console_UI;
 
 import fitness_club.core.database.AdminData;
 import fitness_club.core.requests.AddMemberCardRequest;
-import fitness_club.core.responses.AddMemberCardsResponse;
+import fitness_club.core.responses.AddMemberCardResponse;
 import fitness_club.core.services.AddMemberCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -48,7 +48,7 @@ public class CreateMemberCardUIAction implements UIAction {
 
         AddMemberCardRequest addMemberCardRequest = new AddMemberCardRequest(client, ageGroup,
                 workout, fitnessCenter, termOfContract);
-        AddMemberCardsResponse response = service.execute(addMemberCardRequest);
+        AddMemberCardResponse response = service.execute(addMemberCardRequest);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->
@@ -56,7 +56,7 @@ public class CreateMemberCardUIAction implements UIAction {
             );
             System.out.println("Member card not saved!");
         } else {
-            System.out.println("Client has a member card now! Member Card ID: " + response.getMemberCard().getId());
+            System.out.println("Client has a member card now! Member Card ID: " + response.getNewMemberCard().getId());
             System.out.println("Enjoy your fitness.");
         }
     }

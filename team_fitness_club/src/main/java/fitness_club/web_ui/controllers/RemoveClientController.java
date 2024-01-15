@@ -17,12 +17,12 @@ public class RemoveClientController {
 
     @Autowired private RemoveClientService removeClientService;
 
-    @GetMapping(value = "/removeClient")
+    @GetMapping(value = "/removeClientFromList")
     public String showRemoveClientPage(ModelMap modelMap) {
         modelMap.addAttribute("request", new RemoveClientRequest());
         return "removeClient";
     }
-    @PostMapping("/removeClient")
+    @PostMapping("/removeClientFromList")
     public String processRemoveClientRequest(@ModelAttribute(value = "request") RemoveClientRequest request, ModelMap modelMap) {
         RemoveClientResponse response = removeClientService.execute(request) ;
         if (response.hasErrors()) {

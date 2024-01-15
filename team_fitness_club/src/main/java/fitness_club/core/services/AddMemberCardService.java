@@ -1,13 +1,11 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.*;
-import fitness_club.core.domain.*;
+import fitness_club.core.domain.MemberCard;
 import fitness_club.core.requests.AddMemberCardRequest;
-import fitness_club.core.responses.AddMemberCardsResponse;
+import fitness_club.core.responses.AddMemberCardResponse;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.services.vlidators.AddMemberCardRequestValidator;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,25 +15,24 @@ import java.util.List;
 @Component
 @Transactional
 public class AddMemberCardService {
+    @Autowired private MemberCardRepository memberCardRepository;
 
     @Autowired
     private AddMemberCardRequestValidator validator;
 
-    public AddMemberCardsResponse execute(AddMemberCardRequest request) {
+    public AddMemberCardResponse execute(AddMemberCardRequest request) {
         List<CoreError> errors = validator.validate(request);
-        return (!errors.isEmpty())
-                ? new AddMemberCardsResponse(errors)
-                : memberCard(request);
-    }
+        if (!errors.isEmpty()) {
+            return new AddMemberCardResponse(errors);
+        }
 
-    private AddMemberCardsResponse memberCard(AddMemberCardRequest request) {
+        MemberCard memberCard = new MemberCard(
+                request.getClient(),
+                request.getAgeGroup(),
+                request.getFitnessCentre(),
+                request.getWorkout());
+        memberCardRepository.save(memberCard);
 
-        AddMemberCardsResponse response = new AddMemberCardsResponse();
-
-        response.setClient(request.getClient());
-        response.setAgeGroup(request.getAgeGroup());
-        response.setWorkout(request.getWorkout());
-        response.setFitnessCentre(request.getFitnessCentre());
-        return response;
+        return new AddMemberCardResponse(memberCard);
     }
 }

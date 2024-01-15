@@ -2,7 +2,6 @@ package fitness_club.core.domain;
 
 
 import lombok.*;
-import org.hibernate.boot.registry.classloading.spi.ClassLoaderService;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -28,28 +27,20 @@ public class MemberCard {
 
     @ManyToOne
     @JoinColumn(name = "age_group_id", nullable = false)
-    private AgeGroups ageGroup;
+    private AgeGroup ageGroup;
 
     @ManyToOne
     @JoinColumn(name = "workout_id", nullable = false)
-    private Workouts workout;
+    private Workout workout;
 
     @ManyToOne
     @JoinColumn(name = "fitness_center_id", nullable = false)
-    private FitnessCenters fitnessCentre;
+    private FitnessCenter fitnessCentre;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "term_of_contract", nullable = false)
     private Date termOfContract;
 
-    @OneToMany(mappedBy="workout", fetch=FetchType.EAGER)
-    private List<Workouts> workouts;
-
-    public MemberCard(Client client, AgeGroups ageGroup, Workouts workout, FitnessCenters fitnessCentre, Date termOfContract) {
-        this.client = client;
-        this.ageGroup = ageGroup;
-        this.workout = workout;
-        this.fitnessCentre = fitnessCentre;
-        this.termOfContract = termOfContract;
+    public MemberCard(Long client, Long ageGroup, Long fitnessCentre, Long workout) {
     }
 }

@@ -1,11 +1,8 @@
 package fitness_club.core.services.vlidators;
 
 
-import fitness_club.core.database.ClientRepository;
-import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddMemberCardRequest;
 import fitness_club.core.responses.CoreError;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

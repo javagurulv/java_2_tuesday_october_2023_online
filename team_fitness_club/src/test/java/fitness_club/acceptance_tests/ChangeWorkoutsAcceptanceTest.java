@@ -9,7 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import static org.junit.Assert.assertEquals;
 
 @Ignore
-public class ChangeWorkoutsTest {
+public class ChangeWorkoutsAcceptanceTest {
     private ApplicationContext applicationContext;
 
     @Before

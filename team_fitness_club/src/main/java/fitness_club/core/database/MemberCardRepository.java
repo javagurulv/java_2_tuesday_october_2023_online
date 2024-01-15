@@ -1,9 +1,9 @@
 package fitness_club.core.database;
 
-import fitness_club.core.domain.AgeGroups;
-import fitness_club.core.domain.FitnessCenters;
+import fitness_club.core.domain.AgeGroup;
+import fitness_club.core.domain.FitnessCenter;
 import fitness_club.core.domain.MemberCard;
-import fitness_club.core.domain.Workouts;
+import fitness_club.core.domain.Workout;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class MemberCardRepository {
     private SessionFactory sessionFactory;
 
 
-    public void AddMemberCard(MemberCard memberCard) {
+    public void save (MemberCard memberCard) {
         sessionFactory.getCurrentSession().save(memberCard);
     }
 
@@ -30,20 +30,20 @@ public class MemberCardRepository {
     }
 
 
-    public List<MemberCard> getAllWorkouts(Workouts workout) {
+    public List<MemberCard> getAllWorkouts(Workout workout) {
         Query<MemberCard> query = sessionFactory.getCurrentSession()
                 .createQuery("SELECT mc FROM MemberCard mc WHERE mc.workout_id = :workout ", MemberCard.class);
         query.setParameter("workout", workout);
         return query.getResultList();
     }
-    public List<MemberCard> getAllFitnessCenters(FitnessCenters fitnessCenter) {
+    public List<MemberCard> getAllFitnessCenters(FitnessCenter fitnessCenter) {
         Query<MemberCard> query = sessionFactory.getCurrentSession()
                 .createQuery("SELECT mc FROM MemberCard mc WHERE mc.fitness_center_id = :fitness_center", MemberCard.class);
         query.setParameter("fitness_center", fitnessCenter);
         return query.getResultList();
     }
 
-    public List<MemberCard> getAllAgeGroups(AgeGroups ageGroup) {
+    public List<MemberCard> getAllAgeGroups(AgeGroup ageGroup) {
         Query<MemberCard> query = sessionFactory.getCurrentSession()
                 .createQuery("SELECT mc FROM MemberCard mc WHERE mc.age_group_id = :age_group", MemberCard.class);
         query.setParameter("age_group", ageGroup);

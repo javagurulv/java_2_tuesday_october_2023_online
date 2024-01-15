@@ -1,8 +1,7 @@
 package fitness_club.core.database;
 
-import fitness_club.core.domain.Workouts;
+import fitness_club.core.domain.Workout;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,15 +16,15 @@ public class WorkoutsRepository {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public List<Workouts> getAllWorkouts() {
+    public List<Workout> getAllWorkouts() {
         return sessionFactory.getCurrentSession()
-                .createQuery("SELECT w FROM Workouts w", Workouts.class)
+                .createQuery("SELECT w FROM Workouts w", Workout.class)
                 .getResultList();
     }
 
-    public Workouts findWorkoutById(Long id) {
+    public Workout findWorkoutById(Long id) {
         return sessionFactory.getCurrentSession().
-                get(Workouts.class, id);
+                get(Workout.class, id);
     }
 
 }

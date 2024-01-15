@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS member_card CASCADE;
-DROP TABLE IF EXISTS fitness_centres CASCADE;
+DROP TABLE IF EXISTS fitness_centers CASCADE;
 DROP TABLE IF EXISTS workouts CASCADE;
 DROP TABLE IF EXISTS age_groups CASCADE;
 DROP TABLE IF EXISTS clients CASCADE;
@@ -27,9 +27,9 @@ PRIMARY KEY (`id`)
 );
 
 
-CREATE TABLE IF NOT EXISTS `fitness_centres` (
+CREATE TABLE IF NOT EXISTS `fitness_centers` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
-`fitness_centre` VARCHAR(50) NOT NULL,
+`fitness_center` VARCHAR(50) NOT NULL,
 PRIMARY KEY (`id`)
 );
 
@@ -55,5 +55,15 @@ ALTER TABLE `member_card`
 ADD FOREIGN KEY (`workout_id`) REFERENCES `workouts`(`id`);
 
 ALTER TABLE `member_card`
-ADD FOREIGN KEY (`fitness_center_id`) REFERENCES `fitness_centres`(`id`);
+ADD FOREIGN KEY (`fitness_center_id`) REFERENCES `fitness_centers`(`id`);
+
+
+CREATE INDEX ix_member_card_client_id
+ON member_card (client_id);
+
+CREATE INDEX ix_member_card_age_group_id
+ON member_card (age_group_id);
+
+CREATE INDEX ix_member_card_fitness_center_id
+ON member_card (fitness_center_id);
 

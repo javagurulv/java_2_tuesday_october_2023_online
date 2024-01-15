@@ -1,12 +1,10 @@
 package fitness_club.console_UI;
 
 import fitness_club.core.database.MemberCardRepository;
-import fitness_club.core.domain.AgeGroups;
 import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import fitness_club.core.responses.ChangeClientAgeGroupResponse;
 import fitness_club.core.services.ChangeClientAgeGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 
 import java.util.Scanner;

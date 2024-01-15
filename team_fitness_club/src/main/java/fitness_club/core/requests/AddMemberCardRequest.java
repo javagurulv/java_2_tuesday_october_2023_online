@@ -3,8 +3,6 @@ package fitness_club.core.requests;
 import fitness_club.core.domain.*;
 import lombok.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.sound.midi.MetaMessage;
 import java.util.Date;
 
 @Getter

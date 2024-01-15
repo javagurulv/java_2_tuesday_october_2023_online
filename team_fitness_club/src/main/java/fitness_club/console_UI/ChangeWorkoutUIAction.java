@@ -1,12 +1,10 @@
 package fitness_club.console_UI;
 
 import fitness_club.core.database.MemberCardRepository;
-import fitness_club.core.domain.Workouts;
 import fitness_club.core.requests.ChangeClientWorkoutRequest;
 import fitness_club.core.responses.ChangeClientWorkoutResponse;
 import fitness_club.core.services.ChangeClientWorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 

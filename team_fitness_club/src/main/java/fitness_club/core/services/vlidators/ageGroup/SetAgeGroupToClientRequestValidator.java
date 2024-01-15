@@ -2,7 +2,7 @@ package fitness_club.core.services.vlidators.ageGroup;
 
 import fitness_club.core.database.jpa.JpaAgeGroupRepository;
 import fitness_club.core.database.jpa.JpaClientRepository;
-import fitness_club.core.domain.AgeGroups;
+import fitness_club.core.domain.AgeGroup;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.SetAgeGroupToClientRequest;
 import fitness_club.core.responses.CoreError;
@@ -54,7 +54,7 @@ public class SetAgeGroupToClientRequestValidator {
     }
     private Optional<CoreError> validateAgeGroupIdExistInDb(SetAgeGroupToClientRequest request) {
         if (request.getAgeGroupId() != null) {
-            Optional<AgeGroups> ageGroupOpt = ageGroupsRepository.findById(request.getAgeGroupId());
+            Optional<AgeGroup> ageGroupOpt = ageGroupsRepository.findById(request.getAgeGroupId());
             return ageGroupOpt.isEmpty()
                     ? Optional.of(new CoreError("ageGroupId", "Not exist!"))
                     : Optional.empty();

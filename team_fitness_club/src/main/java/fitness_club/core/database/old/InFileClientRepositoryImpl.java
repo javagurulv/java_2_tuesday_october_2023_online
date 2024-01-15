@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 
 import fitness_club.core.database.ClientRepository;
 import fitness_club.core.domain.Client;
-import fitness_club.core.domain.AgeGroups;
+import fitness_club.core.domain.AgeGroup;
 
 public class InFileClientRepositoryImpl implements ClientRepository {
-    private AgeGroups ageGroups;
+    private AgeGroup ageGroups;
     private final String filename;
     private List<Client> clients = new ArrayList<>();
 

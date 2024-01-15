@@ -1,12 +1,11 @@
 package fitness_club.core.database;
 
-import fitness_club.core.domain.FitnessCenters;
+import fitness_club.core.domain.FitnessCenter;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import org.hibernate.query.Query;
 import java.util.List;
 
 
@@ -17,14 +16,14 @@ public class FitnessCentersRepository {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public List<FitnessCenters> getAllFitnessCenters() {
+    public List<FitnessCenter> getAllFitnessCenters() {
         return  sessionFactory.getCurrentSession()
-                .createQuery("SELECT fc FROM Fitness_centres fc", FitnessCenters.class)
+                .createQuery("SELECT fc FROM Fitness_centres fc", FitnessCenter.class)
                 .getResultList();
     }
 
-    public FitnessCenters getFitnessCenterById(Long id) {
+    public FitnessCenter getFitnessCenterById(Long id) {
         return sessionFactory.getCurrentSession()
-                .get(FitnessCenters.class, id);
+                .get(FitnessCenter.class, id);
     }
 }

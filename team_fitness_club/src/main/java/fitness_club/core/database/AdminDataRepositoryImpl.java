@@ -1,9 +1,9 @@
 package fitness_club.core.database;
 
-import fitness_club.core.domain.AgeGroups;
+import fitness_club.core.domain.AgeGroup;
 import fitness_club.core.domain.Client;
-import fitness_club.core.domain.FitnessCenters;
-import fitness_club.core.domain.Workouts;
+import fitness_club.core.domain.FitnessCenter;
+import fitness_club.core.domain.Workout;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,38 +23,38 @@ public class AdminDataRepositoryImpl implements AdminData {
     }
 
     @Override
-    public void addAgeGroup(AgeGroups ageGroup) {
+    public void addAgeGroup(AgeGroup ageGroup) {
         sessionFactory.getCurrentSession().save(ageGroup);
     }
 
     @Override
-    public List<AgeGroups> getAllAgeGroups() {
+    public List<AgeGroup> getAllAgeGroups() {
         return sessionFactory.getCurrentSession()
-                .createQuery("SELECT a  FROM Age_groups a", AgeGroups.class)
+                .createQuery("SELECT a  FROM Age_groups a", AgeGroup.class)
                 .getResultList();
     }
 
     @Override
-    public void addWorkout(Workouts workout) {
+    public void addWorkout(Workout workout) {
         sessionFactory.getCurrentSession().save(workout);
     }
 
     @Override
-    public List<Workouts> getAllWorkouts() {
+    public List<Workout> getAllWorkouts() {
         return  sessionFactory.getCurrentSession()
-                .createQuery("SELECT w FROM Workouts w", Workouts.class)
+                .createQuery("SELECT w FROM Workouts w", Workout.class)
                 .getResultList();
     }
 
     @Override
-    public void addFitnessCenter(FitnessCenters fitnessCenter) {
+    public void addFitnessCenter(FitnessCenter fitnessCenter) {
         sessionFactory.getCurrentSession().save(fitnessCenter);
     }
 
     @Override
-    public List<FitnessCenters> getAllFitnessCenters() {
+    public List<FitnessCenter> getAllFitnessCenters() {
         return  sessionFactory.getCurrentSession()
-                .createQuery("SELECT fc FROM Fitness_centres fc", FitnessCenters.class)
+                .createQuery("SELECT fc FROM Fitness_centres fc", FitnessCenter.class)
                 .getResultList();
     }
 }

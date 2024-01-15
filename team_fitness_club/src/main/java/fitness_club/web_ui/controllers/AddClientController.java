@@ -15,13 +15,13 @@ public class AddClientController {
     @Autowired
     private AddClientService addClientService;
 
-    @GetMapping(value = "/addNewClient")
+    @GetMapping(value = "/addClientToList")
     public String showAddClientPage(ModelMap modelMap) {
         modelMap.addAttribute("request", new AddClientRequest());
         return "addNewClient";
     }
 
-    @PostMapping("/addNewClient")
+    @PostMapping("/addClientToList")
     public String processAddClientRequest(@ModelAttribute(value = "request") AddClientRequest request, ModelMap modelMap) {
         AddClientResponse response = addClientService.execute(request);
         if (response.hasErrors()) {

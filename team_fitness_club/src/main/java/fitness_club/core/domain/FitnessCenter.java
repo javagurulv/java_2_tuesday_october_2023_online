@@ -14,7 +14,7 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class FitnessCenters {
+public class FitnessCenter {
 
     @Id
     @Column(name = "id")
