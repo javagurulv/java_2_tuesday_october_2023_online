@@ -18,13 +18,13 @@ public class UserRegistrationController {
 
 
     @GetMapping(value = "/userRegistration")
-    public String showAddBookPage(ModelMap modelMap) {
+    public String showUserRegistrationPage(ModelMap modelMap) {
         modelMap.addAttribute("request", new UserRegistrationRequest());
         return "userRegistration";
     }
 
     @PostMapping("/userRegistration")
-    public String processAddBookRequest(@ModelAttribute(value = "request") UserRegistrationRequest request, ModelMap modelMap) {
+    public String processUserRegistrationRequest(@ModelAttribute(value = "request") UserRegistrationRequest request, ModelMap modelMap) {
         UserRegistrationResponse response = service.execute(request);
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());

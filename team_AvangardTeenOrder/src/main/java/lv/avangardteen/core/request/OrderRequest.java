@@ -25,6 +25,30 @@ public class OrderRequest {
 
     }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setUserPersonalCode(long userPersonalCode) {
+        this.userPersonalCode = userPersonalCode;
+    }
+
+    public void setPelvisWidth(Integer pelvisWidth) {
+        this.pelvisWidth = pelvisWidth;
+    }
+
+    public void setThighLength(Integer thighLength) {
+        this.thighLength = thighLength;
+    }
+
+    public void setBackHeight(Integer backHeight) {
+        this.backHeight = backHeight;
+    }
+
+    public void setShinLength(Integer shinLength) {
+        this.shinLength = shinLength;
+    }
+
     public Integer getPelvisWidth() {
         return pelvisWidth;
     }
