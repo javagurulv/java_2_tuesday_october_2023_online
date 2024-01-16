@@ -1,7 +1,10 @@
 package fitness_club.core.requests;
 
 
-
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+@AllArgsConstructor
+@NoArgsConstructor
 public class SearchClientRequest {
 
     private String firstName;

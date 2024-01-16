@@ -1,11 +1,10 @@
 package fitness_club.console_UI;
 
-import fitness_club.core.domain.AgeGroups;
+import fitness_club.core.database.MemberCardRepository;
 import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import fitness_club.core.responses.ChangeClientAgeGroupResponse;
 import fitness_club.core.services.ChangeClientAgeGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 
 import java.util.Scanner;
@@ -15,19 +14,21 @@ public class ChangeClientAgeGroupUIAction implements UIAction {
     @Autowired
     private ChangeClientAgeGroupService service;
 
+    @Autowired private MemberCardRepository memberCardRepository;
+
 
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Change client age group: ");
-        System.out.println("Enter client personal code: ");
-        String clientPersonalCode = scanner.nextLine();
+        System.out.println("Enter client ID number: ");
+        Long clientId = scanner.nextLong();
 
-        System.out.println("Choose new age group.");
+        System.out.println("Enter Id of age group: ");
        // printEnumValues(AgeGroups.values());
         Long newClientAgeGroup = Long.parseLong(scanner.nextLine());
 
-        ChangeClientAgeGroupRequest request = new ChangeClientAgeGroupRequest(clientPersonalCode, newClientAgeGroup);
+        ChangeClientAgeGroupRequest request = new ChangeClientAgeGroupRequest(clientId, newClientAgeGroup);
         ChangeClientAgeGroupResponse response = service.execute(request);
 
         if (response.hasErrors()) {

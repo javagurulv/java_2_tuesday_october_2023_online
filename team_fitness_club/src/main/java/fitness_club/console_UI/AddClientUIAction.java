@@ -11,7 +11,7 @@ import java.util.Scanner;
 @Component
 public class AddClientUIAction implements UIAction {
     @Autowired
-    private AddClientService service;
+    private AddClientService addClientService;
 
 
     @Override
@@ -29,7 +29,7 @@ public class AddClientUIAction implements UIAction {
         String clientPersonalCode = scanner.nextLine();
 
         AddClientRequest request = new AddClientRequest(clientFirstName, clientLastName, clientPersonalCode);
-        AddClientResponse response = service.execute(request);
+        AddClientResponse response = addClientService.execute(request);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->

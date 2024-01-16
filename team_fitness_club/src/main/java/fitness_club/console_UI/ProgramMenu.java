@@ -11,7 +11,7 @@ import java.util.Scanner;
 @Component
 public class ProgramMenu {
 
-    private static Map<Integer, UIAction> menuNumberToUIActionMap;
+    private Map<Integer, UIAction> menuNumberToUIActionMap;
 
     @Autowired
     public ProgramMenu(List<UIAction> uiActions) {
@@ -35,7 +35,7 @@ public class ProgramMenu {
                 .get();
     }
 
-    public static void printProgramMenu() {
+    public void printProgramMenu() {
         System.out.println("");
         System.out.println("Program menu:");
         System.out.println("1. Add client to list");
@@ -50,13 +50,13 @@ public class ProgramMenu {
         System.out.println("");
     }
 
-    public static int getMenuNumber() {
+    public int getMenuNumberFromUser() {
         System.out.println("Enter menu item number to execute: ");
         Scanner scanner = new Scanner(System.in);
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static void executeSelectedMenuItem(int selectedMenu) {
+    public void executeSelectedMenuItem(int selectedMenu) {
         menuNumberToUIActionMap.get(selectedMenu).execute();
     }
 }

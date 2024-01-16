@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `member_card` (
 `client_id` BIGINT NOT NULL,
 `age_group_id` BIGINT NOT NULL,
 `workout_id` BIGINT NOT NULL,
-`fitness_centre_id` BIGINT NOT NULL,
+`fitness_center_id` BIGINT NOT NULL,
 `term_of_contract` DATETIME NOT NULL,
 PRIMARY KEY (`id`)
 )
@@ -63,7 +63,7 @@ ALTER TABLE `member_card`
 ADD FOREIGN KEY (`workout_id`) REFERENCES `workouts`(`id`);
 
 ALTER TABLE `member_card`
-ADD FOREIGN KEY (`fitness_centre_id`) REFERENCES `fitness_centres`(`id`);
+ADD FOREIGN KEY (`fitness_center_id`) REFERENCES `fitness_centres`(`id`);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

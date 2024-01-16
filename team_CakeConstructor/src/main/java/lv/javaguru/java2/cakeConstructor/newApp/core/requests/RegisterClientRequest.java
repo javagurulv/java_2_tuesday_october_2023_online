@@ -6,6 +6,9 @@ public class RegisterClientRequest {
 	private String lastName;
 	private String personalCode;
 
+	public RegisterClientRequest() {
+	}
+
 	public RegisterClientRequest(String firstName, String lastName, String personalCode) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -22,5 +25,17 @@ public class RegisterClientRequest {
 
 	public String getPersonalCode() {
 		return personalCode;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setPersonalCode(String personalCode) {
+		this.personalCode = personalCode;
 	}
 }

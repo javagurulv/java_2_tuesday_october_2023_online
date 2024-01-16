@@ -15,7 +15,6 @@ class TravelMedicalRiskPremiumCalculator implements TravelRiskPremiumCalculator 
     @Autowired private DayCountCalculator dayCountCalculator;
     @Autowired private CountryDefaultDayRateCalculator countryDefaultDayRateCalculator;
     @Autowired private AgeCoefficientCalculator ageCoefficientCalculator;
-
     @Autowired private RiskLimitLevelCalculator riskLimitLevelCalculator;
 
     @Override
@@ -23,7 +22,7 @@ class TravelMedicalRiskPremiumCalculator implements TravelRiskPremiumCalculator 
         var daysCount = dayCountCalculator.calculate(agreement);
         var countryDefaultRate = countryDefaultDayRateCalculator.calculate(agreement);
         var ageCoefficient = ageCoefficientCalculator.calculate(person);
-        var riskLimitLevel = riskLimitLevelCalculator.calculate(agreement);
+        var riskLimitLevel = riskLimitLevelCalculator.calculate(person);
         return countryDefaultRate
                 .multiply(daysCount)
                 .multiply(ageCoefficient)

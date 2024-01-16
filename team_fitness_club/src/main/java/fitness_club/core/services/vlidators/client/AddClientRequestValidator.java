@@ -1,6 +1,6 @@
 package fitness_club.core.services.vlidators.client;
 
-import fitness_club.core.database.jpa.JpaClientRepository;
+import fitness_club.core.database.ClientRepository;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.CoreError;
@@ -12,13 +12,12 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
 public class AddClientRequestValidator {
    @Autowired
-    private JpaClientRepository clientRepository;
+    private ClientRepository clientRepository;
 
     public List<CoreError> validate(AddClientRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -48,7 +47,7 @@ public class AddClientRequestValidator {
     }
 
     private Optional<CoreError> validatePersonalCodeNotDuplicate(AddClientRequest request) {
-        List<Client> clients = clientRepository.findByPersonalCodeLike(request.getPersonalCode());
+        List<Client> clients = clientRepository.findByPersonalCode(request.getPersonalCode());
         return (!clients.isEmpty())
                 ? Optional.of(new CoreError("uniqueClient", "Is duplicate! Client with such personal code is already in database!"))
                 : Optional.empty();

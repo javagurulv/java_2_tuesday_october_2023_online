@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fitness club demo project">
+    <meta name="author" content="Fitness club team">
+    <title>Fitness Club</title>
+</head>
+
+<body>
+
+<h3>Show all clients in the list</h3>
+
+<table>
+    <tr>
+        <td>First name:</td>
+        <td>Last name:</td>
+        <td>Personal code:</td>
+    </tr>
+
+    <td th:if="${clients != null}">
+        <tr th:each="client : ${clients}">
+    <td th:text=" ${client.first_name}">
+    <td th:text=" ${client.last_name}">
+    <td th:text=" ${client.personal_code}">
+        </tr>
+    </td>
+
+</table>
+
+<form action="/" method="get">
+    <input type="submit" value="Go to main page" name="Submit"/>
+</form>
+
+</body>
+
+</html>

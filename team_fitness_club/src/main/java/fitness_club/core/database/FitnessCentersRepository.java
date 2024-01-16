@@ -1,27 +1,29 @@
 package fitness_club.core.database;
 
-import fitness_club.core.domain.FitnessCentres;
+import fitness_club.core.domain.FitnessCenter;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 
-//@Component
-//@Transactional
+
+@Component
+@Transactional
 public class FitnessCentersRepository {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void save(FitnessCentres fitnessCentre) {
-
-        sessionFactory.getCurrentSession().save(fitnessCentre);
+    public List<FitnessCenter> getAllFitnessCenters() {
+        return  sessionFactory.getCurrentSession()
+                .createQuery("SELECT fc FROM Fitness_centres fc", FitnessCenter.class)
+                .getResultList();
     }
 
-    public FitnessCentres findById(Long id) {
-
+    public FitnessCenter getFitnessCenterById(Long id) {
         return sessionFactory.getCurrentSession()
-                .get(FitnessCentres.class, id);
+                .get(FitnessCenter.class, id);
     }
 }

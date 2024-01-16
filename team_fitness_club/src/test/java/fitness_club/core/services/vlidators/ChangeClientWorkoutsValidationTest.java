@@ -14,39 +14,39 @@ public class ChangeClientWorkoutsValidationTest {
     private ChangeClientWorkoutsValidator requestValidator = new ChangeClientWorkoutsValidator();
 
     @Test
-    public void shouldReturnErrorWhenClientPersonalCodeIsNull() {
+    public void shouldReturnErrorWhenClientIdIsNull() {
         ChangeClientWorkoutRequest request = mock(ChangeClientWorkoutRequest.class);
         {
-            when(request.getPersonalCode()).thenReturn(null);
-            when(request.getWorkout()).thenReturn(1L);
+            when(request.getClientId()).thenReturn(null);
+            when(request.getWorkoutId()).thenReturn(1L);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
-            assertEquals(errors.get(0).getField(), "personalCode");
-            assertEquals(errors.get(0).getMessage(), "Field personal code must not be empty!");
+            assertEquals(errors.get(0).getField(), "clientId");
+            assertEquals(errors.get(0).getMessage(), "Field client id must not be empty!");
         }
     }
 
     @Test
-    public void shouldReturnErrorWhenClientPersonaCodeIsEmpty() {
+    public void shouldReturnErrorWhenWorkoutIdIsNull() {
         ChangeClientWorkoutRequest request = mock(ChangeClientWorkoutRequest.class);
         {
-            when(request.getPersonalCode()).thenReturn("");
-            when(request.getWorkout()).thenReturn(1L);
+            when(request.getClientId()).thenReturn(1L);
+            when(request.getWorkoutId()).thenReturn(null);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
-            assertEquals(errors.get(0).getField(), "personalCode");
-            assertEquals(errors.get(0).getMessage(), "Field personal code must not be empty!");
+            assertEquals(errors.get(0).getField(), "workoutId");
+            assertEquals(errors.get(0).getMessage(), "Field workout id must not be empty!");
         }
     }
 
     @Test
-    public void shouldNotReturnErrorWhenPersonalCodeIsPresent() {
+    public void shouldNotReturnErrorWhenClientIdAndWorkoutIdIsPresent() {
         ChangeClientWorkoutRequest request = mock(ChangeClientWorkoutRequest.class);
         {
-            when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getWorkout()).thenReturn(1L);
+            when(request.getClientId()).thenReturn(1L);
+            when(request.getWorkoutId()).thenReturn(1L);
             List<CoreError> errors = requestValidator.validate(request);
             assertTrue(errors.isEmpty());
         }

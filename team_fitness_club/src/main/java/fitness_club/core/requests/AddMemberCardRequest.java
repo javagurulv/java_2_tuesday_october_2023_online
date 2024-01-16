@@ -1,23 +1,24 @@
 package fitness_club.core.requests;
 
-import fitness_club.core.domain.AgeGroups;
-import fitness_club.core.domain.Client;
-import fitness_club.core.domain.FitnessCentres;
-import fitness_club.core.domain.Workouts;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import fitness_club.core.domain.*;
+import lombok.*;
+
 import java.util.Date;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class AddMemberCardRequest {
-    private Client client;
-    private AgeGroups ageGroups;
-    private Workouts workouts;
-    private FitnessCentres fitnessCentre;
+
+    private MemberCard memberCard;
+    private Long client;
+    private Long ageGroup;
+    private Long workout;
+    private Long fitnessCentre;
     private Date termOfContract;
+
+    public AddMemberCardRequest(Long client, Long ageGroup, Long workout, Long fitnessCenter, Date termOfContract) {
+    }
 }

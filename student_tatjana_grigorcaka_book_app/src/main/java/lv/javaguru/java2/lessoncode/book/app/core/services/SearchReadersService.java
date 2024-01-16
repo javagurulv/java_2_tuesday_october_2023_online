@@ -51,7 +51,7 @@ public class SearchReadersService {
 
     private List<Reader> order (List < Reader > readers, Ordering ordering){
         if (orderingEnabled && (ordering != null)) {
-            Comparator<Reader> comparator = ordering.getOrderBy().equals("title")
+            Comparator<Reader> comparator = ordering.getOrderBy().equals("firstName")
                     ? Comparator.comparing(Reader::getFirstName)
                     : Comparator.comparing(Reader::getLastName);
             if (ordering.getOrderDirection().equals("DESCENDING")) {

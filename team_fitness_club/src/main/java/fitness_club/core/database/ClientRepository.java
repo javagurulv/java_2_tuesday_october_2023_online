@@ -8,13 +8,11 @@ import java.util.Optional;
 public interface ClientRepository {
     void save(Client client);
 
-    Optional<Client> findClintById(Long id);
+    Client findClientById(Long id);
 
     boolean deleteByPersonalCode(String personalCode);
 
     List<Client> getAllClients();
-
-    Long getClientIdByPersonalCode(String personalCode);
 
     List<Client> findByFirstName(String firsName);
 
@@ -24,5 +22,4 @@ public interface ClientRepository {
 
     List<Client> findByPersonalCode(String personalCode);
 
-    boolean findUniqueClient (String personalCode);
 }

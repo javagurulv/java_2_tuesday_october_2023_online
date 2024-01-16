@@ -25,7 +25,7 @@ public class DatabaseCleaner {
         tableNames.add("clients");
         tableNames.add("age_groups");
         tableNames.add("workouts");
-        tableNames.add("fitness_centres");
+        tableNames.add("fitness_centers");
         tableNames.add("member_card");
         return tableNames;
     }

@@ -2,7 +2,6 @@ package fitness_club.core.services.vlidators.workout;
 
 import fitness_club.core.requests.ChangeClientWorkoutRequest;
 import fitness_club.core.responses.CoreError;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +12,19 @@ public class ChangeClientWorkoutsValidator {
 
     public List<CoreError> validate(ChangeClientWorkoutRequest request) {
         List<CoreError> errors = new ArrayList<>();
-        validatePersonalCode(request).ifPresent(errors::add);
+        validateClientId(request).ifPresent(errors::add);
+        validateWorkoutId(request).ifPresent(errors::add);
         return errors;
     }
 
-    private Optional<CoreError> validatePersonalCode(ChangeClientWorkoutRequest request) {
-        return request.getPersonalCode() == null || request.getPersonalCode().isEmpty()
-                ? Optional.of(new CoreError("personalCode", "Field personal code must not be empty!"))
+    private Optional<CoreError> validateClientId(ChangeClientWorkoutRequest request) {
+        return request.getClientId() == null
+                ? Optional.of(new CoreError("clientId", "Field client id must not be empty!"))
+                : Optional.empty();
+    }
+    private Optional<CoreError> validateWorkoutId(ChangeClientWorkoutRequest request) {
+        return request.getWorkoutId() == null
+                ? Optional.of(new CoreError("workoutId", "Field workout id must not be empty!"))
                 : Optional.empty();
     }
 }

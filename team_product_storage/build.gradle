@@ -7,7 +7,7 @@ jar {
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
 	manifest {
-		attributes "Main-Class": "lv.javaguru.java2.library.WebProductStorageApplication"
+		attributes "Main-Class": "lv.javaguru.java2.product.storage.WebProductStorageApplication"
 	}
 
 	from {

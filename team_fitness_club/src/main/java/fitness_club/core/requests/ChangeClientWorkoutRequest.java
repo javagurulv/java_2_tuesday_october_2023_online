@@ -1,20 +1,15 @@
 package fitness_club.core.requests;
 
+import lombok.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class ChangeClientWorkoutRequest {
 
-    private String personalCode;
-    private Long workout;
+    private Long clientId;
+    private Long workoutId;
 
-    public String getPersonalCode() {
-        return personalCode;
-    }
-
-    public Long getWorkout() {
-        return workout;
-    }
-
-    public ChangeClientWorkoutRequest(String personalCode, Long workout) {
-        this.personalCode = personalCode;
-        this.workout = workout;
-    }
 }

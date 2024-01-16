@@ -1,16 +1,15 @@
 package fitness_club.core.database;
 
 import fitness_club.core.domain.Client;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
-
-//@Component
-//@Transactional
+@Component
+@Transactional
 public class OrmClientRepositoryImpl implements ClientRepository {
 
     @Autowired private SessionFactory sessionFactory;
@@ -21,19 +20,15 @@ public class OrmClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Optional<Client> findClintById(Long id) {
-              Client client = sessionFactory.getCurrentSession().get(Client.class, id);
-            if (client== null) {
-                return Optional.empty();
-            } else {
-                return Optional.of(client);
-            }
+    public Client findClientById(Long id) {
+        return sessionFactory.getCurrentSession().
+                get(Client.class, id);
     }
 
     @Override
     public boolean deleteByPersonalCode(String personalCode) {
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "delete Client where personal_code = :personalCode");
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("delete Client where personal_code = :personalCode");
         query.setParameter("personalCode", personalCode);
         int result = query.executeUpdate();
         return result == 1;
@@ -44,14 +39,6 @@ public class OrmClientRepositoryImpl implements ClientRepository {
         return sessionFactory.getCurrentSession()
                 .createQuery("SELECT * FROM Client ORDER BY last_name, id LIMIT 10 OFFSET 10", Client.class)
                 .getResultList();
-    }
-
-    @Override
-    public Long getClientIdByPersonalCode (String personalCode) {
-        return sessionFactory.getCurrentSession()
-                .createQuery("SELECT c.id FROM Client c WHERE c.personalCode = :personalCode", Long.class)
-                .setParameter("personalCode", personalCode)
-                .uniqueResult();
     }
 
     @Override
@@ -81,18 +68,9 @@ public class OrmClientRepositoryImpl implements ClientRepository {
     @Override
     public List<Client> findByFirstNameAndLastName(String firstName, String lastName) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select c FROM Client c where first_name = : firstName AND last_name = :lastName");
+                "select c FROM Client c where first_name = : firstName AND lastName = :lastName");
         query.setParameter("firstName", firstName);
         query.setParameter("lastName", lastName);
         return query.getResultList();
-    }
-
-    @Override
-    public boolean findUniqueClient(String personalCode) {
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "SELECT Client WHERE personal_code = :personalCode");
-        query.setParameter("personalCode", personalCode);
-        int result = query.executeUpdate();
-        return result == 1;
     }
 }

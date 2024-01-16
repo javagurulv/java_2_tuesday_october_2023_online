@@ -15,39 +15,39 @@ public class ChangeClientAgeGroupValidationTest {
     private ChangeClientAgeGroupValidator requestValidator = new ChangeClientAgeGroupValidator();
 
     @Test
-    public void shouldReturnErrorWhenClientPersonalCodeIsNull() {
+    public void shouldReturnErrorWhenClientIdIsNull() {
         ChangeClientAgeGroupRequest request = mock(ChangeClientAgeGroupRequest.class);
         {
-            when(request.getPersonalCode()).thenReturn(null);
-            when(request.getClientAgeGroup()).thenReturn(1L);
+            when(request.getClientId()).thenReturn(null);
+            when(request.getClientAgeGroupId()).thenReturn(1L);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
-            assertEquals(errors.get(0).getField(), "personalCode");
-            assertEquals(errors.get(0).getMessage(), "Field personal code must not be empty!");
+            assertEquals(errors.get(0).getField(), "clientId");
+            assertEquals(errors.get(0).getMessage(), "Field client Id must not be empty!");
         }
     }
 
     @Test
-    public void shouldReturnErrorWhenClientPersonaCodeIsEmpty() {
+    public void shouldReturnErrorWhenAgeGroupIdIsNull() {
         ChangeClientAgeGroupRequest request = mock(ChangeClientAgeGroupRequest.class);
         {
-            when(request.getPersonalCode()).thenReturn("");
-            when(request.getClientAgeGroup()).thenReturn(1L);
+            when(request.getClientId()).thenReturn(1L);
+            when(request.getClientAgeGroupId()).thenReturn(null);
             List<CoreError> errors = requestValidator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
-            assertEquals(errors.get(0).getField(), "personalCode");
-            assertEquals(errors.get(0).getMessage(), "Field personal code must not be empty!");
+            assertEquals(errors.get(0).getField(), "ageGroupId");
+            assertEquals(errors.get(0).getMessage(), "Field age group Id must not be empty!");
         }
     }
 
     @Test
-    public void shouldNotReturnErrorWhenPersonalCodeIsPresent() {
+    public void shouldNotReturnErrorWhenClientIdAndAgeGroupIdIsPresent() {
         ChangeClientAgeGroupRequest request = mock(ChangeClientAgeGroupRequest.class);
         {
-            when(request.getPersonalCode()).thenReturn("personalCode");
-            when(request.getClientAgeGroup()).thenReturn(1L);
+            when(request.getClientId()).thenReturn(1L);
+            when(request.getClientAgeGroupId()).thenReturn(1L);
             List<CoreError> errors = requestValidator.validate(request);
             assertTrue(errors.isEmpty());
         }

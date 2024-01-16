@@ -2,7 +2,6 @@ package fitness_club.core.services.vlidators.ageGroup;
 
 import fitness_club.core.requests.ChangeClientAgeGroupRequest;
 import fitness_club.core.responses.CoreError;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +12,20 @@ public class ChangeClientAgeGroupValidator {
 
     public List<CoreError> validate(ChangeClientAgeGroupRequest request) {
         List<CoreError> errors = new ArrayList<>();
-        validatePersonalCode(request).ifPresent(errors::add);
+        validateClientId(request).ifPresent(errors::add);
+        validateAgeGroupId(request).ifPresent(errors::add);
         return errors;
     }
 
-    private Optional<CoreError> validatePersonalCode(ChangeClientAgeGroupRequest request) {
-        return request.getPersonalCode() == null || request.getPersonalCode().isEmpty()
-                ? Optional.of(new CoreError("personalCode", "Field personal code must not be empty!"))
+    private Optional<CoreError> validateClientId(ChangeClientAgeGroupRequest request) {
+        return request.getClientId() == null 
+                ? Optional.of(new CoreError("clientId", "Field client Id must not be empty!"))
+                : Optional.empty();
+    }
+
+    private Optional<CoreError> validateAgeGroupId(ChangeClientAgeGroupRequest request) {
+        return request.getClientAgeGroupId() == null
+                ? Optional.of(new CoreError("ageGroupId", "Field age group Id must not be empty!"))
                 : Optional.empty();
     }
 }
