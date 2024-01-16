@@ -22,8 +22,10 @@ public class ProgramMenu {
         menuNumberToUIActionMap.put(4, findUIAction(uiActions, SearchIngredientsUIAction.class));
         menuNumberToUIActionMap.put(5, findUIAction(uiActions, UpdateIngredientUIAction.class));
         menuNumberToUIActionMap.put(6, findUIAction(uiActions, RegisterClientUIAction.class));
-        menuNumberToUIActionMap.put(7, findUIAction(uiActions, PrintAllClientsUIAction.class));
-        menuNumberToUIActionMap.put(8, findUIAction(uiActions, ExitUIAction.class));
+        menuNumberToUIActionMap.put(7, findUIAction(uiActions, RemoveClientUIAction.class));
+        menuNumberToUIActionMap.put(8, findUIAction(uiActions, PrintAllClientsUIAction.class));
+        menuNumberToUIActionMap.put(9, findUIAction(uiActions, SearchClientsUIAction.class));
+        menuNumberToUIActionMap.put(10, findUIAction(uiActions, ExitUIAction.class));
     }
 
     private UIAction findUIAction(List<UIAction> uiActions, Class uiActionClass) {
@@ -40,11 +42,12 @@ public class ProgramMenu {
         System.out.println("2. Delete ingredient from list");
         System.out.println("3. Show all ingredients in the list");
         System.out.println("4. Search ingredients");
-        System.out.println("5. Register new client");
-        System.out.println("6. Delete client");
-        System.out.println("7. Show all clients");
-        System.out.println("8. Search clients");
-        System.out.println("9. Exit");
+        System.out.println("5. Update ingredient");
+        System.out.println("6. Register new client");
+        System.out.println("7. Delete client");
+        System.out.println("8. Show all clients");
+        System.out.println("9. Search clients");
+        System.out.println("10. Exit");
         System.out.println();
     }
 
