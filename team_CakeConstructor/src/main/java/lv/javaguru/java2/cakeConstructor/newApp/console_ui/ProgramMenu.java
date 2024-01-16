@@ -36,14 +36,15 @@ public class ProgramMenu {
     public void printProgramMenu() {
         System.out.println();
         System.out.println("Program menu:");
-        System.out.println("1. Add ingredient");
-        System.out.println("2. Delete ingredient");
-        System.out.println("3. Show all ingredients");
+        System.out.println("1. Add ingredient to list");
+        System.out.println("2. Delete ingredient from list");
+        System.out.println("3. Show all ingredients in the list");
         System.out.println("4. Search ingredients");
-        System.out.println("5. Update ingredient");
-        System.out.println("6. Register new client");
+        System.out.println("5. Register new client");
+        System.out.println("6. Delete client");
         System.out.println("7. Show all clients");
-        System.out.println("8. Exit");
+        System.out.println("8. Search clients");
+        System.out.println("9. Exit");
         System.out.println();
     }
 

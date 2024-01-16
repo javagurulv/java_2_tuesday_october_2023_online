@@ -63,6 +63,15 @@ public class OrmClientRepositoryImpl implements ClientRepository {
 	}
 
 	@Override
+	public List<Client> findByFirstNameAndLastName(String firstName, String lastName) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"select c FROM Client c where firstName = : firstName AND lastName = : lastName");
+		query.setParameter("firstName", firstName);
+		query.setParameter("lastName", lastName);
+		return query.getResultList();
+	}
+
+	@Override
 	public List<Client> findByFirstNameAndLastNameAndPersonalCode(String firstName, String lastName, String personalCode) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"select c FROM Client c where firstName = : firstName AND lastName = : lastName AND personalCode = :personalCode");

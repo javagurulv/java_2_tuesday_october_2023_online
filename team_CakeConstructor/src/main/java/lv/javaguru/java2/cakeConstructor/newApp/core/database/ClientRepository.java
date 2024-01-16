@@ -21,6 +21,8 @@ public interface ClientRepository {
 
     List<Client> findByPersonalCode(String personalCode);
 
+    List<Client> findByFirstNameAndLastName(String firstName, String lastName);
+
     List<Client> findByFirstNameAndLastNameAndPersonalCode(String firstName, String lastName, String personalCode);
 
 
