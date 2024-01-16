@@ -23,6 +23,7 @@ public class CreateMemberCardUIAction implements UIAction {
 
     @Override
     public void execute() {
+
         System.out.println("Enter client personal code: ");
         Scanner scanner = new Scanner(System.in);
         String clientPersonalCode = scanner.nextLine();

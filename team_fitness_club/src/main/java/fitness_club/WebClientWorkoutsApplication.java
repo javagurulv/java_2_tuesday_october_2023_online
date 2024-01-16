@@ -17,12 +17,14 @@ public class WebClientWorkoutsApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(SpringWebConfiguration.class);
 
+/*
        ProgramMenu programMenu = context.getBean(ProgramMenu.class);
        while (true) {
           programMenu.printProgramMenu();
         int menuNumber = programMenu.getMenuNumberFromUser();
         programMenu.executeSelectedMenuItem(menuNumber);
        }
+*/
     }
 
   // private static ApplicationContext createApplicationContext() {
