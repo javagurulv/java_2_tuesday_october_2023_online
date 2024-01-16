@@ -1,6 +1,7 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.*;
+import fitness_club.core.domain.Client;
 import fitness_club.core.domain.MemberCard;
 import fitness_club.core.requests.AddMemberCardRequest;
 import fitness_club.core.responses.AddMemberCardResponse;

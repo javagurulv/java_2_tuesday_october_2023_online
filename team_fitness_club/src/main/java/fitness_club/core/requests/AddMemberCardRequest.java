@@ -21,4 +21,7 @@ public class AddMemberCardRequest {
 
     public AddMemberCardRequest(Long client, Long ageGroup, Long workout, Long fitnessCenter, Date termOfContract) {
     }
+
+    public AddMemberCardRequest(MemberCard memberCard) {
+    }
 }
