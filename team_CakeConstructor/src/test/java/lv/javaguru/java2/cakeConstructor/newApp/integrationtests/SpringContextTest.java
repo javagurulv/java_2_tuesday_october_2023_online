@@ -1,6 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.integrationtests;
 
-import lv.javaguru.java2.cakeConstructor.newApp.config.CakeConfiguration;
+import lv.javaguru.java2.cakeConstructor.newApp.config.SpringCoreConfiguration;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {CakeConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 public class SpringContextTest {
 
     @Autowired private ApplicationContext appContext;

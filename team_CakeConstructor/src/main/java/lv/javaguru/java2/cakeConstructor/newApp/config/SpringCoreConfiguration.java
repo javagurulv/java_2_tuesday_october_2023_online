@@ -19,10 +19,10 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = "lv.javaguru.java2.cakeConstructor.newApp")
+@ComponentScan(basePackages = "lv.javaguru.java2.cakeConstructor.newApp.core")
 @PropertySource(value = "classpath:application.properties")
 @EnableTransactionManagement
-public class CakeConfiguration {
+public class SpringCoreConfiguration {
 
     @Value("${jdbc.url}")
     private String jdbcUrl;
