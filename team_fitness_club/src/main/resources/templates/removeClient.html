@@ -14,14 +14,14 @@
 
 <table>
     <tr>
-        <td>Enter client personal code:</td>
+        <td>Enter client id:</td>
     </tr>
 
     <tr>
         <form action="/removeClientFromList" th:object="${request}" method="post">
-            <td><input type="text" th:field="${request.personalCode}"/></td>
+            <td><input type="text" th:field="${request.id}"/></td>
             <td>
-                <input type="submit" value="Remove Client"/>
+                <input type="submit" value="Remove client"/>
                 <input type="reset" value="Clear"/>
             </td>
         </form>

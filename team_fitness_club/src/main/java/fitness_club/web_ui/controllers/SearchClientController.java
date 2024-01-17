@@ -15,12 +15,12 @@ public class SearchClientController {
 
     @Autowired private SearchClientService searchClientService;
 
-    @GetMapping(value = "/searchClientsInDatabase")
+    @GetMapping(value = "/searchClient")
     public String showSearchClientPage(ModelMap modelMap) {
         modelMap.addAttribute("request", new SearchClientRequest());
         return "searchClient";
     }
-    @PostMapping("/searchClientsInDatabase")
+    @PostMapping("/searchClient")
     public String processSearchClientRequest(@ModelAttribute(value = "request") SearchClientRequest request, ModelMap modelMap) {
         SearchClientResponse response = searchClientService.execute(request);
         if (response.hasErrors()) {

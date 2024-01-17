@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fitness club demo project">
+    <meta name="author" content="Fitness club team">
+    <title>Fitness Club</title>
+</head>
+
+<body>
+
+<h3>Show all information in member card</h3>
+
+<table>
+    <tr>
+        <td>ID:</td>
+        <td>Client First Name:</td>
+        <td>Client Last Name:</td>
+        <td>Client Personal Code:</td>
+        <td>Client Age Group</td>
+        <td>Client Fitness Center</td>
+        <td>Client Workout</td>
+        <td>Workout Starting Date:</td>
+        <td>Workout End Date:</td>
+    </tr>
+
+    <td th:if="${memberCard != null}">
+        <tr th:each="memberCard : ${memberCards}">
+    <td th:text="${memberCard.id}" />
+    <td th:text="${memberCard.client.firstName}" />
+    <td th:text="${memberCard.client.lastName}" />
+    <td th:text="${memberCard.client.personalCode}" />
+    <td th:text="${memberCard.ageGroup.ageGroup}" />
+    <td th:text="${memberCard.fitnessCenter.fitnessCenter}" />
+    <td th:text="${memberCard.workout.workout}" />
+    <td th:text="${memberCard.startingDate}" />
+    <td th:text="${memberCard.endDate}" />
+    </tr>
+    </td>
+
+</table>
+
+<form action="/" method="get">
+    <input type="submit" value="Go to main page" name="Submit" />
+</form>
+
+</body>
+</html>
