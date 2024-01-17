@@ -8,7 +8,7 @@ import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.SearchClientResponse;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.vlidators.client.SearchClientRequestValidator;
+import fitness_club.core.services.validators.client.SearchClientRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

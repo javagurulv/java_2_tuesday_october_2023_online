@@ -2,10 +2,10 @@ package fitness_club.acceptance_tests;
 
 import fitness_club.config.SpringCoreConfiguration;
 import fitness_club.core.requests.AddClientRequest;
-import fitness_club.core.requests.RemoveClientRequest;
-import fitness_club.core.responses.RemoveClientResponse;
+import fitness_club.core.requests.DeleteClientByPersonalCodeRequest;
+import fitness_club.core.responses.DeleteClientByPersonalCodeResponse;
 import fitness_club.core.services.AddClientService;
-import fitness_club.core.services.RemoveClientService;
+import fitness_club.core.services.DeleteClientByPersonalCodeService;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -26,18 +26,18 @@ public class RemoveClientAcceptanceTests {
 
     @Test
     public void shouldReturnError() {
-        RemoveClientRequest request = new RemoveClientRequest("");
-        RemoveClientResponse response = getDeleteClientService().execute(request);
+        DeleteClientByPersonalCodeRequest request = new DeleteClientByPersonalCodeRequest("");
+        DeleteClientByPersonalCodeResponse response = getDeleteClientService().executeByPersonalCode(request);
         assertEquals(response.getErrors().get(0).getField(), "personalCode");
-        assertEquals(response.getErrors().get(0).getMessage(), "Field personal code must not be empty!");
+        assertEquals(response.getErrors().get(0).getMessage(), "Must not be empty!");
     }
 
     @Test
     public void shouldRemoveClient() {
         AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "123");
         getAddClientService().execute(addClientRequest);
-        RemoveClientRequest request = new RemoveClientRequest("123");
-        RemoveClientResponse response = getDeleteClientService().execute(request);
+        DeleteClientByPersonalCodeRequest request = new DeleteClientByPersonalCodeRequest("123");
+        DeleteClientByPersonalCodeResponse response = getDeleteClientService().executeByPersonalCode(request);
         assertTrue(response.isClientRemoved());
     }
 
@@ -45,7 +45,7 @@ public class RemoveClientAcceptanceTests {
         return applicationContext.getBean(AddClientService.class);
     }
 
-    private RemoveClientService getDeleteClientService() {
-        return applicationContext.getBean(RemoveClientService.class);
+    private DeleteClientByPersonalCodeService getDeleteClientService() {
+        return applicationContext.getBean(DeleteClientByPersonalCodeService.class);
     }
 }

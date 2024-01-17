@@ -1,10 +1,7 @@
 package fitness_club.web_ui.controllers;
 
-import fitness_club.core.requests.RemoveClientRequest;
 import fitness_club.core.requests.SearchClientRequest;
-import fitness_club.core.responses.RemoveClientResponse;
 import fitness_club.core.responses.SearchClientResponse;
-import fitness_club.core.services.RemoveClientService;
 import fitness_club.core.services.SearchClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

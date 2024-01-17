@@ -1,12 +1,12 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.*;
-import fitness_club.core.domain.Client;
+
+import fitness_club.core.database.MemberCardRepository;
 import fitness_club.core.domain.MemberCard;
 import fitness_club.core.requests.AddMemberCardRequest;
 import fitness_club.core.responses.AddMemberCardResponse;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.vlidators.AddMemberCardRequestValidator;
+import fitness_club.core.services.validators.memberCard.AddMemberCardRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

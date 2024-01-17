@@ -1,6 +1,6 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.AgeGroupsRepository;
+import fitness_club.core.database.AgeGroupRepositoryImpl;
 import fitness_club.core.domain.AgeGroup;
 import fitness_club.core.requests.GetAllAgeGroupsRequest;
 import fitness_club.core.responses.GetAllAgeGroupsResponse;
@@ -24,7 +24,7 @@ public class GetAllClientAgeGroupsServiceTest {
     private AgeGroup ageGroup3;
 
     @Mock
-    private AgeGroupsRepository ageGroupsRepository;
+    private AgeGroupRepositoryImpl ageGroupsRepository;
 
     @InjectMocks
     private GetAllAgeGroupsService service;

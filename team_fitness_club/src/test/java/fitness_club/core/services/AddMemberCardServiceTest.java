@@ -1,11 +1,11 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.MemberCardRepository;
+import fitness_club.core.database.MemberCardRepositoryImpl;
 import fitness_club.core.domain.*;
 import fitness_club.core.requests.AddMemberCardRequest;
 import fitness_club.core.responses.AddMemberCardResponse;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.vlidators.AddMemberCardRequestValidator;
+import fitness_club.core.services.validators.memberCard.AddMemberCardRequestValidator;
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -28,7 +28,7 @@ import static org.mockito.Mockito.*;
 public class AddMemberCardServiceTest {
 
     @Mock
-    private MemberCardRepository memberCardRepository;
+    private MemberCardRepositoryImpl memberCardRepository;
 
     @Mock
     private AddMemberCardRequestValidator validator;

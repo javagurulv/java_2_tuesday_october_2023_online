@@ -1,6 +1,6 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.FitnessCentersRepository;
+import fitness_club.core.database.FitnessCenterRepositoryImpl;
 import fitness_club.core.domain.FitnessCenter;
 import fitness_club.core.requests.GetAllFitnessCentersRequest;
 import fitness_club.core.responses.GetAllFitnessCentersResponse;
@@ -26,7 +26,7 @@ public class GetAllClientFitnessCentersServiceTest {
     private FitnessCenter fitnessCenter5;
 
     @Mock
-    private FitnessCentersRepository fitnessCentersRepository;
+    private FitnessCenterRepositoryImpl fitnessCentersRepository;
 
     @InjectMocks
     private GetAllFitnessCentresService service;

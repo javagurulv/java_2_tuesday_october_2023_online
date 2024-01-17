@@ -17,7 +17,7 @@ public class ProgramMenu {
     public ProgramMenu(List<UIAction> uiActions) {
         menuNumberToUIActionMap = new HashMap<>();
         menuNumberToUIActionMap.put(1, findUIAction(uiActions, AddClientUIAction.class));
-        menuNumberToUIActionMap.put(2, findUIAction(uiActions, RemoveClientUIAction.class));
+        menuNumberToUIActionMap.put(2, findUIAction(uiActions, DeleteClientUIAction.class));
         menuNumberToUIActionMap.put(3, findUIAction(uiActions, GetAllClientsUIAction.class));
         menuNumberToUIActionMap.put(4, findUIAction(uiActions, CreateMemberCardUIAction.class));
        // menuNumberToUIActionMap.put(5, findUIAction(uiActions, ChangeWorkoutUIAction.class));

@@ -8,9 +8,11 @@ import java.util.Optional;
 public interface ClientRepository {
     void save(Client client);
 
-    Client findClientById(Long id);
+    Optional<Client> getById(Long id);
 
     boolean deleteByPersonalCode(String personalCode);
+
+    boolean deleteById(Long id);
 
     List<Client> getAllClients();
 

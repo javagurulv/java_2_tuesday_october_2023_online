@@ -1,12 +1,8 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.AgeGroupsRepository;
-import fitness_club.core.database.WorkoutsRepository;
-import fitness_club.core.domain.AgeGroup;
+import fitness_club.core.database.WorkoutRepositoryImpl;
 import fitness_club.core.domain.Workout;
-import fitness_club.core.requests.GetAllAgeGroupsRequest;
 import fitness_club.core.requests.GetAllWorkoutsRequest;
-import fitness_club.core.responses.GetAllAgeGroupsResponse;
 import fitness_club.core.responses.GetAllWorkoutsResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +24,7 @@ public class GetAllWorkoutsServiceTest {
    private Workout workout3;
 
     @Mock
-    private WorkoutsRepository workoutsRepository;
+    private WorkoutRepositoryImpl workoutsRepository;
 
     @InjectMocks
     private GetAllWorkoutsService service;

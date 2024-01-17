@@ -1,6 +1,6 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.FitnessCentersRepository;
+import fitness_club.core.database.FitnessCenterRepositoryImpl;
 import fitness_club.core.domain.FitnessCenter;
 import fitness_club.core.requests.GetAllFitnessCentersRequest;
 import fitness_club.core.responses.GetAllFitnessCentersResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 public class GetAllFitnessCentresService {
 
     @Autowired
-    private FitnessCentersRepository fitnessCentersRepository;
+    private FitnessCenterRepositoryImpl fitnessCentersRepository;
 
     public GetAllFitnessCentersResponse execute(GetAllFitnessCentersRequest request) {
         List<FitnessCenter> fitnessCenters = fitnessCentersRepository.getAllFitnessCenters();
