@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Component
-@Transactional
+//@Component
+//@Transactional
 public class WorkoutRepositoryImpl implements WorkoutRepository {
 
     @Autowired

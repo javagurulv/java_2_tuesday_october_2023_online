@@ -10,18 +10,18 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class AddMemberCardRequest {
+public class MemberCardRegistrationRequest {
 
     private MemberCard memberCard;
     private Long client;
     private Long ageGroup;
     private Long workout;
-    private Long fitnessCentre;
+    private Long fitnessCenter;
     private Date termOfContract;
 
-    public AddMemberCardRequest(Long client, Long ageGroup, Long workout, Long fitnessCenter, Date termOfContract) {
+    public MemberCardRegistrationRequest(Long client, Long ageGroup, Long workout, Long fitnessCenter, Date termOfContract) {
     }
 
-    public AddMemberCardRequest(MemberCard memberCard) {
+    public MemberCardRegistrationRequest(MemberCard memberCard) {
     }
 }

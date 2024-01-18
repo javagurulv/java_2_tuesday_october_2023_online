@@ -1,9 +1,9 @@
 package fitness_club.console_UI;
 
 import fitness_club.core.database.AdminData;
-import fitness_club.core.requests.AddMemberCardRequest;
-import fitness_club.core.responses.AddMemberCardResponse;
-import fitness_club.core.services.AddMemberCardService;
+import fitness_club.core.requests.MemberCardRegistrationRequest;
+import fitness_club.core.responses.MemberCardRegistrationResponse;
+import fitness_club.core.services.MemberCardRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.text.ParseException;
@@ -18,7 +18,7 @@ public class CreateMemberCardUIAction implements UIAction {
     private AdminData adminData;
 
     @Autowired
-    private AddMemberCardService service;
+    private MemberCardRegistrationService service;
 
 
     @Override
@@ -47,9 +47,9 @@ public class CreateMemberCardUIAction implements UIAction {
         System.out.println("Enter a contract date (in format YYYY-MM-DD): ");
         Date termOfContract = parseDate(scanner.nextLine());
 
-        AddMemberCardRequest addMemberCardRequest = new AddMemberCardRequest(client, ageGroup,
+        MemberCardRegistrationRequest addMemberCardRequest = new MemberCardRegistrationRequest(client, ageGroup,
                 workout, fitnessCenter, termOfContract);
-        AddMemberCardResponse response = service.execute(addMemberCardRequest);
+        MemberCardRegistrationResponse response = service.execute(addMemberCardRequest);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->
@@ -57,7 +57,7 @@ public class CreateMemberCardUIAction implements UIAction {
             );
             System.out.println("Member card not saved!");
         } else {
-            System.out.println("Client has a member card now! Member Card ID: " + response.getNewMemberCard().getId());
+            System.out.println("Client has a member card now!");
             System.out.println("Enjoy your fitness.");
         }
     }

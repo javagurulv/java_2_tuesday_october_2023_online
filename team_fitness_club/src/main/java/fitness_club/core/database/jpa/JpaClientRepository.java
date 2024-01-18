@@ -7,8 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-//@Repository
+@Repository
 public interface JpaClientRepository extends JpaRepository<Client, Long> {
 
     List<Client> findByFirstName(String firstName);

@@ -1,5 +1,6 @@
 package fitness_club.core.requests;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,11 +8,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class SetAgeGroupToClientRequest {
+@NoArgsConstructor
+public class SearchAgeGroupRequest {
 
-    private Long clientId;
-    private Long ageGroupId;
+    private String ageGroup;
+
+    public boolean isAgeGroupProvided() {
+        return this.ageGroup != null;
+    }
 
 }

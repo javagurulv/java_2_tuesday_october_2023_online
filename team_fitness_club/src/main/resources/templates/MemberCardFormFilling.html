@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fitness club demo project">
+    <meta name="author" content="Fitness club team">
+    <title>Fitness Club</title>
+</head>
+
+<body>
+
+<h3>Member card form filling</h3>
+
+<form action="/memberCardFormFilling" th:object="${request}" method="post">
+    <table>
+        <tr>
+            <td>Client ID:</td>
+            <td><input type="text" th:field="${request.clientId}"/></td>
+        </tr>
+        <tr>
+            <td>AgeGroup ID:</td>
+            <td><input type="text" th:field="${request.ageGroupId}"/></td>
+        </tr>
+        <tr>
+            <td>
+        <tr>
+            <td>FitnessCenter ID:</td>
+            <td><input type="text" th:field="${request.fitnessCenterId}"/></td>
+        </tr>
+        <tr>
+            <td>Workout ID:</td>
+            <td><input type="text" th:field="${request.workoutId}"/></td>
+        </tr>
+
+        <input type="submit" value="Member card form filling "/>
+        <input type="reset" value="Clear"/>
+        </td>
+        </tr>
+    </table>
+</form>
+
+<h3>Search criteria (clients and workouts):</h3>
+
+<form action="/registeredWorkoutByClient/search" th:object="${searchRequest}" method="post">
+    <table>
+        <tr>
+            <td>Search by Client First Name:</td>
+            <td><input type="text" th:field="${searchRequest.clientFirstName}"/></td>
+        </tr>
+        <tr>
+            <td>Search by Client Last Name:</td>
+            <td><input type="text" th:field="${searchRequest.clientLastName}"/></td>
+        </tr>
+        <tr>
+            <td>Search by Client Personal Code:</td>
+            <td><input type="text" th:field="${searchRequest.clientPersonalCode}"/></td>
+        </tr>
+
+        <tr>
+            <td>Search by Workout:</td>
+            <td><input type="text" th:field="${searchRequest.workoutWorkout}"/></td>
+        </tr>
+        </tr>
+        <td>
+            <input type="submit" value="Search Clients And Workouts"/>
+            <input type="reset" value="Clear"/>
+        </td>
+        </tr>
+    </table>
+</form>
+
+<h3>Search results (clients):</h3>
+
+<table>
+    <tr>
+        <td>ID:</td>
+        <td>First Name:</td>
+        <td>Last Name:</td>
+    </tr>
+
+    <td th:if="${clients != null}">
+        <tr th:each="client : ${clients}">
+    <td th:text="${client.id}"/>
+    <td th:text="${client.firstName}"/>
+    <td th:text="${client.lastName}"/>
+    </tr>
+    </td>
+
+</table>
+
+<h3>Search results (workouts):</h3>
+
+<table>
+    <tr>
+        <td>ID:</td>
+        <td>Workout:</td>
+    </tr>
+
+    <td th:if="${workouts != null}">
+        <tr th:each="workout : ${workouts}">
+    <td th:text="${workout.id}"/>
+    <td th:text="${workout.workout}"/>
+    </tr>
+    </td>
+
+</table>
+
+
+<form action="/" method="get">
+    <input type="submit" value="Go to main page" name="Submit"/>
+</form>
+
+
+</body>
+
+</html>
