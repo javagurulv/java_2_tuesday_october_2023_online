@@ -16,10 +16,10 @@ public class RemoveClientController {
     @Autowired
     private RemoveClientByIdService deleteClientByIdService;
 
-    @GetMapping(value = "/deleteClientFromList")
+    @GetMapping(value = "/removeClientFromList")
     public String showRemoveClientPage(ModelMap modelMap) {
         modelMap.addAttribute("request", new RemoveClientByIdRequest());
-        return "deleteClient";
+        return "removeClient";
     }
 
     @PostMapping("/removeClientFromList")
