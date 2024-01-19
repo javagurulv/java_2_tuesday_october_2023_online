@@ -4,11 +4,11 @@ import fitness_club.core.requests.*;
 import fitness_club.core.responses.*;
 import fitness_club.core.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/client")
+@Controller
 public class MemberCardRegistrationFormController {
 
     @Autowired
@@ -25,21 +25,21 @@ public class MemberCardRegistrationFormController {
     @Autowired
     private SearchWorkoutService searchWorkoutService;
 
-    @GetMapping(value = "/memberCardFormFilling")
+    @GetMapping(value = "/memberCardRegistrationForm")
     public String showMemberCardFormFilling(ModelMap modelMap) {
         modelMap.addAttribute("request", new MemberCardRegistrationFormRequest());
         modelMap.addAttribute("searchRequest", new SearchMemberCardRequest());
-        return "memberCardFormFilling";
+        return "memberCardRegistrationForm";
     }
 
-    @PostMapping("/memberCardFormFilling")
+    @PostMapping("/memberCardRegistrationForm")
     public String processMemberCardFormFillingRequest(@ModelAttribute(value = "request")
                                                           MemberCardRegistrationFormRequest request,
                                                       ModelMap modelMap) {
         MemberCardRegistrationFormResponse response = memberCardRegistrationService.execute(request);
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());
-            return "memberCardFormFilling";
+            return "memberCardRegistrationForm";
         } else {
             return "redirect:/";
         }

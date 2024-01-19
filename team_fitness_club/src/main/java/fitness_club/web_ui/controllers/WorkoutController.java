@@ -1,17 +1,17 @@
-package fitness_club.web_ui.controllers.rest;
+package fitness_club.web_ui.controllers;
 
 import fitness_club.core.requests.GetWorkoutRequest;
 import fitness_club.core.responses.GetWorkoutResponse;
 import fitness_club.core.services.GetWorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/workout")
-public class WorkoutRestController {
+@Controller
+public class WorkoutController {
 
     @Autowired
     private GetWorkoutService getWorkoutService;

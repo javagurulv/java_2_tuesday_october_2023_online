@@ -1,24 +1,15 @@
 package fitness_club.web_ui.controllers.rest;
 
-import fitness_club.core.requests.AddClientRequest;
-import fitness_club.core.requests.GetClientRequest;
-import fitness_club.core.requests.RemoveClientByIdRequest;
-import fitness_club.core.requests.UpdateClientRequest;
-import fitness_club.core.responses.AddClientResponse;
-import fitness_club.core.responses.RemoveClientByIdResponse;
-import fitness_club.core.responses.GetClientResponse;
-import fitness_club.core.responses.UpdateClientResponse;
-import fitness_club.core.services.AddClientService;
-import fitness_club.core.services.GetClientService;
-import fitness_club.core.services.RemoveClientByIdService;
-import fitness_club.core.services.UpdateClientService;
+
+import fitness_club.core.requests.*;
+import fitness_club.core.responses.*;
+import fitness_club.core.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/client")
 public class ClientRestController {
-
     @Autowired
     private GetClientService getClientService;
     @Autowired
@@ -47,6 +38,7 @@ public class ClientRestController {
     public UpdateClientResponse updateClient(@RequestBody UpdateClientRequest request) {
         return updateClientService.execute(request);
     }
+
     @DeleteMapping(path = "/{id}", produces = "application/json")
     public RemoveClientByIdResponse deleteClient(@PathVariable Long id) {
         RemoveClientByIdRequest request = new RemoveClientByIdRequest(id);
