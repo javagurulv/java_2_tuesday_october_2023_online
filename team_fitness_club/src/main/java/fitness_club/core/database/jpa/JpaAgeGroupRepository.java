@@ -9,4 +9,7 @@ import java.util.List;
 public interface JpaAgeGroupRepository extends JpaRepository<AgeGroup, Long> {
 
     List<AgeGroup>findByAgeGroupTitle(String ageGroupTitle);
+
+
+
 }

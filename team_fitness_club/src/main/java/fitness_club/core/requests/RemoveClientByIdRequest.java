@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeleteClientByIdRequest {
+public class RemoveClientByIdRequest {
 
     private Long id;
 

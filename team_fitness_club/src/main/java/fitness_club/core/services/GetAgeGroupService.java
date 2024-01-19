@@ -1,6 +1,6 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.AgeGroupRepository;
+import fitness_club.core.database.jpa.JpaAgeGroupRepository;
 import fitness_club.core.requests.GetAgeGroupRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.responses.GetAgeGroupResponse;
@@ -16,7 +16,7 @@ import java.util.List;
 public class GetAgeGroupService {
 
     @Autowired
-    private AgeGroupRepository ageGroupsRepository;
+    private JpaAgeGroupRepository ageGroupRepository;
 
     @Autowired
     private GetAgeGroupRequestValidator validator;
@@ -26,7 +26,7 @@ public class GetAgeGroupService {
         if (!errors.isEmpty()) {
             return new GetAgeGroupResponse();
         }
-        return ageGroupsRepository.getById(request.getId())
+        return ageGroupRepository.findById(request.getId())
                 .map(GetAgeGroupResponse::new)
                 .orElseGet(()->{
                     errors.add(new CoreError("id", "Not found!"));

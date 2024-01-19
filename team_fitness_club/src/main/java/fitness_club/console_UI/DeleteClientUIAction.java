@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@Component
+//@Component
 public class DeleteClientUIAction implements UIAction {
     @Autowired
     private DeleteClientByPersonalCodeService deleteClientByPersonalCodeService;
@@ -16,7 +16,7 @@ public class DeleteClientUIAction implements UIAction {
 
     @Override
     public void execute() {
-        Scanner scanner = new Scanner(System.in);
+      /* Scanner scanner = new Scanner(System.in);
         System.out.println("Enter client personal code: ");
         String clientPersonalCode = scanner.nextLine();
         DeleteClientByPersonalCodeRequest request = new DeleteClientByPersonalCodeRequest(clientPersonalCode);
@@ -32,6 +32,8 @@ public class DeleteClientUIAction implements UIAction {
                 System.out.println("Client was not deleted from list.");
             }
         }
+
+       */
     }
 }
 

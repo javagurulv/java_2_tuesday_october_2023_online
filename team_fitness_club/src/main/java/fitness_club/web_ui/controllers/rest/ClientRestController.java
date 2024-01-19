@@ -2,15 +2,15 @@ package fitness_club.web_ui.controllers.rest;
 
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.requests.GetClientRequest;
-import fitness_club.core.requests.DeleteClientByIdRequest;
+import fitness_club.core.requests.RemoveClientByIdRequest;
 import fitness_club.core.requests.UpdateClientRequest;
 import fitness_club.core.responses.AddClientResponse;
-import fitness_club.core.responses.DeleteClientByIdResponse;
+import fitness_club.core.responses.RemoveClientByIdResponse;
 import fitness_club.core.responses.GetClientResponse;
 import fitness_club.core.responses.UpdateClientResponse;
 import fitness_club.core.services.AddClientService;
 import fitness_club.core.services.GetClientService;
-import fitness_club.core.services.DeleteClientByIdService;
+import fitness_club.core.services.RemoveClientByIdService;
 import fitness_club.core.services.UpdateClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,7 @@ public class ClientRestController {
     @Autowired
     private UpdateClientService updateClientService;
     @Autowired
-    private DeleteClientByIdService deleteClientService;
+    private RemoveClientByIdService deleteClientService;
 
     @GetMapping(path = "/{id}", produces = "application/json")
     public GetClientResponse getClient(@PathVariable Long id) {
@@ -48,8 +48,8 @@ public class ClientRestController {
         return updateClientService.execute(request);
     }
     @DeleteMapping(path = "/{id}", produces = "application/json")
-    public DeleteClientByIdResponse deleteClient(@PathVariable Long id) {
-        DeleteClientByIdRequest request = new DeleteClientByIdRequest(id);
-        return deleteClientService.executeByClientId(request);
+    public RemoveClientByIdResponse deleteClient(@PathVariable Long id) {
+        RemoveClientByIdRequest request = new RemoveClientByIdRequest(id);
+        return deleteClientService.execute(request);
     }
 }
