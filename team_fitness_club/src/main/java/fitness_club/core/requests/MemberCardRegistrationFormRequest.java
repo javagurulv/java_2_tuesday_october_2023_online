@@ -10,7 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class MemberCardRegistrationRequest {
+public class MemberCardRegistrationFormRequest {
 
     private MemberCard memberCard;
     private Long client;
@@ -19,9 +19,9 @@ public class MemberCardRegistrationRequest {
     private Long fitnessCenter;
     private Date termOfContract;
 
-    public MemberCardRegistrationRequest(Long client, Long ageGroup, Long workout, Long fitnessCenter, Date termOfContract) {
+    public MemberCardRegistrationFormRequest(Long client, Long ageGroup, Long workout, Long fitnessCenter, Date termOfContract) {
     }
 
-    public MemberCardRegistrationRequest(MemberCard memberCard) {
+    public MemberCardRegistrationFormRequest(MemberCard memberCard) {
     }
 }

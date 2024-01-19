@@ -2,10 +2,10 @@ package fitness_club.core.services;
 
 import fitness_club.core.database.jpa.JpaMemberCardRepository;
 import fitness_club.core.domain.*;
-import fitness_club.core.requests.MemberCardRegistrationRequest;
-import fitness_club.core.responses.MemberCardRegistrationResponse;
+import fitness_club.core.requests.MemberCardRegistrationFormRequest;
+import fitness_club.core.responses.MemberCardRegistrationFormResponse;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.validators.memberCard.MemberCardRegistrationRequestValidator;
+import fitness_club.core.services.validators.memberCard.MemberCardRegistrationFormRequestValidator;
 
 import org.junit.Test;
 
@@ -30,19 +30,19 @@ public class MemberCardRegistrationServiceTest {
     private JpaMemberCardRepository memberCardRepository;
 
     @Mock
-    private MemberCardRegistrationRequestValidator validator;
+    private MemberCardRegistrationFormRequestValidator validator;
     @InjectMocks
-    private MemberCardRegistrationService service;
+    private MemberCardRegistrationFormService service;
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidationFails() {
 
         MemberCard memberCard = new MemberCard(null, 1L, 2L, 1L);
 
-        MemberCardRegistrationRequest notValidRequest = new MemberCardRegistrationRequest(memberCard);
+        MemberCardRegistrationFormRequest notValidRequest = new MemberCardRegistrationFormRequest(memberCard);
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("clientId",
                 "Field client ID must not be empty!")));
-        MemberCardRegistrationResponse response = service.execute(notValidRequest);
+        MemberCardRegistrationFormResponse response = service.execute(notValidRequest);
         assertTrue(response.hasErrors());
     }
 
@@ -51,10 +51,10 @@ public class MemberCardRegistrationServiceTest {
 
         MemberCard memberCard = new MemberCard(null, 1L, 2L, 1L);
 
-        MemberCardRegistrationRequest notValidRequest = new MemberCardRegistrationRequest(memberCard);
+        MemberCardRegistrationFormRequest notValidRequest = new MemberCardRegistrationFormRequest(memberCard);
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("clientId",
                 "Field client ID must not be empty!")));
-        MemberCardRegistrationResponse response = service.execute(notValidRequest);
+        MemberCardRegistrationFormResponse response = service.execute(notValidRequest);
         assertEquals(response.getErrors().size(), 1);
         assertEquals(response.getErrors().get(0).getField(), "clientId");
         assertEquals(response.getErrors().get(0).getMessage(), "Field client ID must not be empty!");
@@ -78,7 +78,7 @@ public class MemberCardRegistrationServiceTest {
     public void shouldNotInvokeDatabaseWhenRequestValidationFails() {
         MemberCard memberCard = new MemberCard(null, 1L, 2L, 1L);
 
-        MemberCardRegistrationRequest notValidRequest = new MemberCardRegistrationRequest(memberCard);
+        MemberCardRegistrationFormRequest notValidRequest = new MemberCardRegistrationFormRequest(memberCard);
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("clientId",
                 "Field client ID must not be empty!")));
         service.execute(notValidRequest);

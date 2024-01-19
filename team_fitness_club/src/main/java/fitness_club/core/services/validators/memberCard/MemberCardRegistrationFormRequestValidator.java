@@ -9,7 +9,7 @@ import fitness_club.core.domain.AgeGroup;
 import fitness_club.core.domain.Client;
 import fitness_club.core.domain.FitnessCenter;
 import fitness_club.core.domain.Workout;
-import fitness_club.core.requests.MemberCardRegistrationRequest;
+import fitness_club.core.requests.MemberCardRegistrationFormRequest;
 import fitness_club.core.responses.CoreError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ import java.util.Optional;
 
 
 @Component
-public class MemberCardRegistrationRequestValidator {
+public class MemberCardRegistrationFormRequestValidator {
 
     @Autowired
     private ClientRepository clientRepository;
@@ -34,7 +34,7 @@ public class MemberCardRegistrationRequestValidator {
     @Autowired
     private WorkoutRepository workoutRepository;
 
-    public List<CoreError> validate(MemberCardRegistrationRequest request) {
+    public List<CoreError> validate(MemberCardRegistrationFormRequest request) {
         List<CoreError> errors = new ArrayList<>();
         validateClientNullOrEmpty(request).ifPresent(errors::add);
         validateAgeGroupNullOrEmpty(request).ifPresent(errors::add);
@@ -48,37 +48,37 @@ public class MemberCardRegistrationRequestValidator {
         return errors;
     }
 
-    private Optional<CoreError> validateClientNullOrEmpty(MemberCardRegistrationRequest request) {
+    private Optional<CoreError> validateClientNullOrEmpty(MemberCardRegistrationFormRequest request) {
         return request.getClient() == null
                 ? Optional.of(new CoreError("clientId", "Field client ID must not be empty!"))
                 : Optional.empty();
     }
 
-    private Optional<CoreError> validateAgeGroupNullOrEmpty(MemberCardRegistrationRequest request) {
+    private Optional<CoreError> validateAgeGroupNullOrEmpty(MemberCardRegistrationFormRequest request) {
         return request.getAgeGroup() == null
                 ? Optional.of(new CoreError("ageGroupId", "Field age group ID must not be empty!"))
                 : Optional.empty();
     }
 
-    private Optional<CoreError> validateWorkoutNullOrEmpty(MemberCardRegistrationRequest request) {
+    private Optional<CoreError> validateWorkoutNullOrEmpty(MemberCardRegistrationFormRequest request) {
         return request.getWorkout() == null
                 ? Optional.of(new CoreError("workoutId", "Field workout ID must not be empty!"))
                 : Optional.empty();
     }
 
-    private Optional<CoreError> validateFitnessCentreNullOrEmpty(MemberCardRegistrationRequest request) {
+    private Optional<CoreError> validateFitnessCentreNullOrEmpty(MemberCardRegistrationFormRequest request) {
         return request.getFitnessCenter() == null
                 ? Optional.of(new CoreError("fitnessCenterId", "Field fitness center ID must not be empty!"))
                 : Optional.empty();
     }
 
-    private Optional<CoreError> validateTermOfContractNotEmpty(MemberCardRegistrationRequest request) {
+    private Optional<CoreError> validateTermOfContractNotEmpty(MemberCardRegistrationFormRequest request) {
         return request.getTermOfContract() == null
                 ? Optional.of(new CoreError("termOfContract", "Field term of contract must not be empty!"))
                 : Optional.empty();
     }
 
-   private Optional<CoreError> validateClientIdExistIdInId(MemberCardRegistrationRequest request) {
+   private Optional<CoreError> validateClientIdExistIdInId(MemberCardRegistrationFormRequest request) {
         if (request.getClient() != null) {
             Optional<Client> clientOpt = clientRepository.getById(request.getClient());
             return (clientOpt.isEmpty())
@@ -88,7 +88,7 @@ public class MemberCardRegistrationRequestValidator {
             return Optional.empty();
         }
    }
-    private Optional<CoreError> validateAgeGroupIdExistIdInId(MemberCardRegistrationRequest request) {
+    private Optional<CoreError> validateAgeGroupIdExistIdInId(MemberCardRegistrationFormRequest request) {
         if (request.getAgeGroup() != null) {
             Optional<AgeGroup> ageGroupOpt = ageGroupRepository.getById(request.getAgeGroup());
             return (ageGroupOpt.isEmpty())
@@ -99,7 +99,7 @@ public class MemberCardRegistrationRequestValidator {
         }
     }
 
-    private Optional<CoreError> validateFitnessCenterIdExistIdInId(MemberCardRegistrationRequest request) {
+    private Optional<CoreError> validateFitnessCenterIdExistIdInId(MemberCardRegistrationFormRequest request) {
         if (request.getFitnessCenter() != null) {
             Optional<FitnessCenter> fitnessCenterOpt = fitnessCenterRepository.getById(request.getFitnessCenter());
             return (fitnessCenterOpt.isEmpty())
@@ -109,7 +109,7 @@ public class MemberCardRegistrationRequestValidator {
             return Optional.empty();
         }
     }
-    private Optional<CoreError> validateWorkoutIdExistIdInId(MemberCardRegistrationRequest request) {
+    private Optional<CoreError> validateWorkoutIdExistIdInId(MemberCardRegistrationFormRequest request) {
         if (request.getWorkout() != null) {
             Optional<Workout> workoutOpt = workoutRepository.getById(request.getWorkout());
             return (workoutOpt.isEmpty())

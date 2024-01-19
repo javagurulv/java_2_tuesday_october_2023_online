@@ -1,9 +1,9 @@
 package fitness_club.console_UI;
 
 import fitness_club.core.database.AdminData;
-import fitness_club.core.requests.MemberCardRegistrationRequest;
-import fitness_club.core.responses.MemberCardRegistrationResponse;
-import fitness_club.core.services.MemberCardRegistrationService;
+import fitness_club.core.requests.MemberCardRegistrationFormRequest;
+import fitness_club.core.responses.MemberCardRegistrationFormResponse;
+import fitness_club.core.services.MemberCardRegistrationFormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.text.ParseException;
@@ -18,7 +18,7 @@ public class CreateMemberCardUIAction implements UIAction {
     private AdminData adminData;
 
     @Autowired
-    private MemberCardRegistrationService service;
+    private MemberCardRegistrationFormService service;
 
 
     @Override
@@ -47,9 +47,9 @@ public class CreateMemberCardUIAction implements UIAction {
         System.out.println("Enter a contract date (in format YYYY-MM-DD): ");
         Date termOfContract = parseDate(scanner.nextLine());
 
-        MemberCardRegistrationRequest addMemberCardRequest = new MemberCardRegistrationRequest(client, ageGroup,
+        MemberCardRegistrationFormRequest addMemberCardRequest = new MemberCardRegistrationFormRequest(client, ageGroup,
                 workout, fitnessCenter, termOfContract);
-        MemberCardRegistrationResponse response = service.execute(addMemberCardRequest);
+        MemberCardRegistrationFormResponse response = service.execute(addMemberCardRequest);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->

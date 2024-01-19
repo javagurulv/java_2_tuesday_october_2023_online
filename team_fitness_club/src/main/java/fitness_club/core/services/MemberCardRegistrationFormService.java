@@ -1,13 +1,12 @@
 package fitness_club.core.services;
 
 
-import fitness_club.core.database.*;
 import fitness_club.core.database.jpa.*;
 import fitness_club.core.domain.*;
-import fitness_club.core.requests.MemberCardRegistrationRequest;
-import fitness_club.core.responses.MemberCardRegistrationResponse;
+import fitness_club.core.requests.MemberCardRegistrationFormRequest;
+import fitness_club.core.responses.MemberCardRegistrationFormResponse;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.validators.memberCard.MemberCardRegistrationRequestValidator;
+import fitness_club.core.services.validators.memberCard.MemberCardRegistrationFormRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @Component
 @Transactional
-public class MemberCardRegistrationService {
+public class MemberCardRegistrationFormService {
     @Autowired
     private JpaClientRepository clientRepository;
     @Autowired
@@ -30,12 +29,12 @@ public class MemberCardRegistrationService {
     private JpaMemberCardRepository memberCardRepository;
 
     @Autowired
-    private MemberCardRegistrationRequestValidator validator;
+    private MemberCardRegistrationFormRequestValidator validator;
 
-    public MemberCardRegistrationResponse execute(MemberCardRegistrationRequest request) {
+    public MemberCardRegistrationFormResponse execute(MemberCardRegistrationFormRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
-            return new MemberCardRegistrationResponse(errors);
+            return new MemberCardRegistrationFormResponse(errors);
         }
 
         Client client = clientRepository.getReferenceById(request.getClient());
@@ -50,6 +49,6 @@ public class MemberCardRegistrationService {
 
         memberCardRepository.save(memberCard);
 
-        return new MemberCardRegistrationResponse(null);
+        return new MemberCardRegistrationFormResponse(null);
     }
 }

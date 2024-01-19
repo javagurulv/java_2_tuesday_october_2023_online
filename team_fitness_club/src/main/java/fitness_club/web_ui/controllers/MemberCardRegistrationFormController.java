@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/client")
-public class MemberCardRegistrationController {
+public class MemberCardRegistrationFormController {
 
     @Autowired
-    private MemberCardRegistrationService memberCardRegistrationService;
+    private MemberCardRegistrationFormService memberCardRegistrationService;
 
     @Autowired
     private SearchClientService searchClientService;
@@ -27,16 +27,16 @@ public class MemberCardRegistrationController {
 
     @GetMapping(value = "/memberCardFormFilling")
     public String showMemberCardFormFilling(ModelMap modelMap) {
-        modelMap.addAttribute("request", new MemberCardRegistrationRequest());
+        modelMap.addAttribute("request", new MemberCardRegistrationFormRequest());
         modelMap.addAttribute("searchRequest", new SearchMemberCardRequest());
         return "memberCardFormFilling";
     }
 
     @PostMapping("/memberCardFormFilling")
     public String processMemberCardFormFillingRequest(@ModelAttribute(value = "request")
-                                                      MemberCardRegistrationRequest request,
+                                                          MemberCardRegistrationFormRequest request,
                                                       ModelMap modelMap) {
-        MemberCardRegistrationResponse response = memberCardRegistrationService.execute(request);
+        MemberCardRegistrationFormResponse response = memberCardRegistrationService.execute(request);
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());
             return "memberCardFormFilling";
@@ -61,7 +61,7 @@ public class MemberCardRegistrationController {
 
         SearchWorkoutResponse searchWorkoutResponse = searchWorkoutService.execute(searchWorkoutRequest);
         modelMap.addAttribute("workouts", searchWorkoutResponse.foundWorkouts());
-        modelMap.addAttribute("request", new MemberCardRegistrationRequest());
+        modelMap.addAttribute("request", new MemberCardRegistrationFormRequest());
 
 
         return "registeredWorkoutByClient";
