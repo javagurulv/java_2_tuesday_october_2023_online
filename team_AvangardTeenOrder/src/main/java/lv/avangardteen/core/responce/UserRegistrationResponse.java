@@ -8,6 +8,7 @@ public class UserRegistrationResponse extends CoreResponse{
 
     private Client userRegistration;
 
+
     public UserRegistrationResponse(List<CoreError> errors) {
         super(errors);
     }
@@ -15,6 +16,9 @@ public class UserRegistrationResponse extends CoreResponse{
         this.userRegistration = userRegistration;
     }
 
+    public void setUserRegistration(Client userRegistration) {
+        this.userRegistration = userRegistration;
+    }
 
     public Client getUserRegistration() {
         return userRegistration;
