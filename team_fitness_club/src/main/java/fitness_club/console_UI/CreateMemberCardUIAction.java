@@ -1,6 +1,8 @@
 package fitness_club.console_UI;
 
-import fitness_club.core.database.AdminData;
+import fitness_club.core.database.jpa.JpaAgeGroupRepository;
+import fitness_club.core.database.jpa.JpaFitnessCentersRepository;
+import fitness_club.core.database.jpa.JpaWorkoutsRepository;
 import fitness_club.core.requests.MemberCardRegistrationFormRequest;
 import fitness_club.core.responses.MemberCardRegistrationFormResponse;
 import fitness_club.core.services.MemberCardRegistrationFormService;
@@ -14,8 +16,11 @@ import java.util.Scanner;
 @Component
 public class CreateMemberCardUIAction implements UIAction {
 
-    @Autowired
-    private AdminData adminData;
+@Autowired private JpaAgeGroupRepository ageGroupRepository;
+
+@Autowired private JpaFitnessCentersRepository fitnessCentersRepository;
+@Autowired private JpaWorkoutsRepository workoutsRepository;
+
 
     @Autowired
     private MemberCardRegistrationFormService service;
@@ -32,17 +37,31 @@ public class CreateMemberCardUIAction implements UIAction {
         Scanner scanner2 = new Scanner(System.in);
         Long client = scanner2.nextLong();
 
-        System.out.println(adminData.getAllAgeGroups().toString());
+        System.out.println("ID, Age Group" +
+                            "1,   'CHILD" +
+                            "2,   'ADULT" +
+                            "3,   'SENIOR'");
+
         System.out.println("Enter ID of age group: ");
         Long ageGroup = scanner2.nextLong();
 
-        System.out.println(adminData.getAllWorkouts());
+        System.out.println(("ID, Fitness Center" +
+                "1, 'IMANTA'" +
+                "2,'AKROPOLE'" +
+                "3, 'SAGA'" +
+                "4, 'RIGA_PLAZA'" +
+                "5, 'ZOLITUDE'"));
+        System.out.println("Enter ID of fitness center: ");
+        Long fitnessCenter = scanner2.nextLong();
+
+        System.out.println(("ID, Workout" +
+                "1, 'GYM'" +
+                "2, 'SWIMMING_POOL'" +
+                "3, 'GROUP_CLASSES'"));
         System.out.println("Enter ID of workout: ");
         Long workout = scanner2.nextLong();
 
-        System.out.println(adminData.getAllFitnessCenters());
-        System.out.println("Enter ID of fitness center: ");
-        Long fitnessCenter = scanner2.nextLong();
+
 
         System.out.println("Enter a contract date (in format YYYY-MM-DD): ");
         Date termOfContract = parseDate(scanner.nextLine());

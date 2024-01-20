@@ -14,8 +14,6 @@ dependencies {
 		exclude (group: 'ch.qos.logback', module: 'logback-classic')
 	}
 
-	implementation ('org.liquibase:liquibase-core:4.2.2')
-
 	compileOnly('org.projectlombok:lombok:1.18.24')
 	annotationProcessor('org.projectlombok:lombok:1.18.24')
 

@@ -53,7 +53,7 @@ public class SearchAgeGroupService {
     private List<AgeGroup> search(SearchAgeGroupRequest request) {
         List<AgeGroup> foundAgeGroups = new ArrayList<>();
         if (request.isAgeGroupProvided()) {
-            foundAgeGroups = ageGroupRepository.findByAgeGroupTitle(request.getAgeGroup());
+            foundAgeGroups = ageGroupRepository.findByAgeGroup(request.getAgeGroup());
         }
         return foundAgeGroups;
     }

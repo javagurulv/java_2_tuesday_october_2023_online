@@ -44,7 +44,7 @@ public class SearchWorkoutService {
     private List<Workout> search(SearchWorkoutRequest request) {
         List<Workout> foundWorkouts = new ArrayList<>();
         if (request.isWorkoutProvided()) {
-            foundWorkouts = workoutsRepository.findByWorkoutTitle(request.getWorkout());
+            foundWorkouts = workoutsRepository.findByWorkout(request.getWorkout());
         }
         return foundWorkouts;
     }

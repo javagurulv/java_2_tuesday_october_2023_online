@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface JpaFitnessCentersRepository extends JpaRepository<FitnessCenter, Long> {
 
-    List<FitnessCenter>findByFitnessCenterTitle(String fitnessCenterTitle);
+    List<FitnessCenter>findByFitnessCenter(String fitnessCenter);
+
 }

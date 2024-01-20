@@ -1,10 +1,9 @@
 package fitness_club.core.services.validators.memberCard;
 
-
-import fitness_club.core.database.AgeGroupRepository;
-import fitness_club.core.database.ClientRepository;
-import fitness_club.core.database.FitnessCenterRepository;
-import fitness_club.core.database.WorkoutRepository;
+import fitness_club.core.database.jpa.JpaAgeGroupRepository;
+import fitness_club.core.database.jpa.JpaClientRepository;
+import fitness_club.core.database.jpa.JpaFitnessCentersRepository;
+import fitness_club.core.database.jpa.JpaWorkoutsRepository;
 import fitness_club.core.domain.AgeGroup;
 import fitness_club.core.domain.Client;
 import fitness_club.core.domain.FitnessCenter;
@@ -23,16 +22,16 @@ import java.util.Optional;
 public class MemberCardRegistrationFormRequestValidator {
 
     @Autowired
-    private ClientRepository clientRepository;
+    private JpaClientRepository clientRepository;
 
     @Autowired
-    private AgeGroupRepository ageGroupRepository;
+    private JpaAgeGroupRepository ageGroupRepository;
 
     @Autowired
-    private FitnessCenterRepository fitnessCenterRepository;
+    private JpaFitnessCentersRepository fitnessCenterRepository;
 
     @Autowired
-    private WorkoutRepository workoutRepository;
+    private JpaWorkoutsRepository workoutRepository;
 
     public List<CoreError> validate(MemberCardRegistrationFormRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -80,7 +79,7 @@ public class MemberCardRegistrationFormRequestValidator {
 
    private Optional<CoreError> validateClientIdExistIdInId(MemberCardRegistrationFormRequest request) {
         if (request.getClient() != null) {
-            Optional<Client> clientOpt = clientRepository.getById(request.getClient());
+            Optional<Client> clientOpt = clientRepository.findById(request.getClient());
             return (clientOpt.isEmpty())
                     ? Optional.of(new CoreError("clientId", "Not exist!"))
                     : Optional.empty();
@@ -90,7 +89,7 @@ public class MemberCardRegistrationFormRequestValidator {
    }
     private Optional<CoreError> validateAgeGroupIdExistIdInId(MemberCardRegistrationFormRequest request) {
         if (request.getAgeGroup() != null) {
-            Optional<AgeGroup> ageGroupOpt = ageGroupRepository.getById(request.getAgeGroup());
+            Optional<AgeGroup> ageGroupOpt = ageGroupRepository.findById(request.getAgeGroup());
             return (ageGroupOpt.isEmpty())
                     ? Optional.of(new CoreError("ageGroupId", "Not exist!"))
                     : Optional.empty();
@@ -101,7 +100,7 @@ public class MemberCardRegistrationFormRequestValidator {
 
     private Optional<CoreError> validateFitnessCenterIdExistIdInId(MemberCardRegistrationFormRequest request) {
         if (request.getFitnessCenter() != null) {
-            Optional<FitnessCenter> fitnessCenterOpt = fitnessCenterRepository.getById(request.getFitnessCenter());
+            Optional<FitnessCenter> fitnessCenterOpt = fitnessCenterRepository.findById(request.getFitnessCenter());
             return (fitnessCenterOpt.isEmpty())
                     ? Optional.of(new CoreError("fitnessCenterId", "Not exist!"))
                     : Optional.empty();
@@ -111,7 +110,7 @@ public class MemberCardRegistrationFormRequestValidator {
     }
     private Optional<CoreError> validateWorkoutIdExistIdInId(MemberCardRegistrationFormRequest request) {
         if (request.getWorkout() != null) {
-            Optional<Workout> workoutOpt = workoutRepository.getById(request.getWorkout());
+            Optional<Workout> workoutOpt = workoutRepository.findById(request.getWorkout());
             return (workoutOpt.isEmpty())
                     ? Optional.of(new CoreError("workoutId", "Not exist!"))
                     : Optional.empty();

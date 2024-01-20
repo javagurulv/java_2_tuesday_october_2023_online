@@ -1,6 +1,6 @@
 package fitness_club.core.services.validators.client;
 
-import fitness_club.core.database.ClientRepository;
+import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.CoreError;
@@ -17,7 +17,7 @@ import java.util.Optional;
 @Component
 public class AddClientRequestValidator {
    @Autowired
-    private ClientRepository clientRepository;
+    private JpaClientRepository clientRepository;
 
     public List<CoreError> validate(AddClientRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -47,7 +47,7 @@ public class AddClientRequestValidator {
     }
 
     private Optional<CoreError> validatePersonalCodeNotDuplicate(AddClientRequest request) {
-        List<Client> clients = clientRepository.findByPersonalCode(request.getPersonalCode());
+        List<Client> clients = clientRepository.findByPersonalCodeLike(request.getPersonalCode());
         return (!clients.isEmpty())
                 ? Optional.of(new CoreError("uniqueClient", "Is duplicate! Client with such personal code is already in database!"))
                 : Optional.empty();

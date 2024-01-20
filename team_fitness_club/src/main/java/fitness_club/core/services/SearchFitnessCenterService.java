@@ -43,7 +43,7 @@ public class SearchFitnessCenterService {
     private List<FitnessCenter> search(SearchFitnessCenterRequest request) {
         List<FitnessCenter> foundFitnessCenters = new ArrayList<>();
         if (request.isFitnessCenterProvided()) {
-            foundFitnessCenters = fitnessCentersRepository.findByFitnessCenterTitle(request.getFitnessCenter());
+            foundFitnessCenters = fitnessCentersRepository.findByFitnessCenter(request.getFitnessCenter());
         }
         return foundFitnessCenters;
     }
