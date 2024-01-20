@@ -1,6 +1,7 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.ClientRepository;
+import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.requests.GetClientRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.responses.GetClientResponse;
@@ -16,7 +17,7 @@ import java.util.List;
 public class GetClientService {
 
     @Autowired
-    private ClientRepository clientRepository;
+    private JpaClientRepository clientRepository;
 
     @Autowired
     private GetClientRequestValidator validator;
@@ -26,7 +27,7 @@ public class GetClientService {
         if (!errors.isEmpty()) {
             return new GetClientResponse();
         }
-        return clientRepository.getById(request.getId())
+        return clientRepository.findById(request.getId())
                 .map(GetClientResponse::new)
                 .orElseGet(()->{
                     errors.add(new CoreError("id", "Not found!"));

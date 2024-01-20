@@ -1,6 +1,7 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.MemberCardRepository;
+import fitness_club.core.database.jpa.JpaMemberCardRepository;
 import fitness_club.core.requests.GetMemberCardRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.responses.GetMemberCardResponse;
@@ -16,7 +17,7 @@ import java.util.List;
 public class GetMemberCardService {
 
     @Autowired
-    private MemberCardRepository memberCardRepository;
+    private JpaMemberCardRepository memberCardRepository;
 
     @Autowired
     private GetMemberCardRequestValidator validator;
@@ -26,7 +27,7 @@ public class GetMemberCardService {
         if (!errors.isEmpty()) {
             return new GetMemberCardResponse();
         }
-        return memberCardRepository.getById(request.getId())
+        return memberCardRepository.findById(request.getId())
                 .map(GetMemberCardResponse::new)
                 .orElseGet(()->{
                     errors.add(new CoreError("id", "Not found!"));

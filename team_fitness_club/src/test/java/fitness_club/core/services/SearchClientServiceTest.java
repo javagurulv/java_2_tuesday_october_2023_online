@@ -1,6 +1,7 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.ClientRepository;
+import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
@@ -25,7 +26,7 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class SearchClientServiceTest {
     @Mock
-    private ClientRepository clientRepository;
+    private JpaClientRepository clientRepository;
 
     @Mock
     private SearchClientRequestValidator validator;
@@ -72,7 +73,7 @@ public class SearchClientServiceTest {
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Ivan", "Petrov", "1234"));
 
-        Mockito.when(clientRepository.findByLastName("Petrov")).thenReturn(clients);
+        Mockito.when(clientRepository.findByFirstName("Petrov")).thenReturn(clients);
 
         SearchClientResponse response = service.execute(request);
         assertFalse(response.hasErrors());

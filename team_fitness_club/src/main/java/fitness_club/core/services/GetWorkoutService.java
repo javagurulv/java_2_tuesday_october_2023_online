@@ -1,6 +1,7 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.WorkoutRepository;
+import fitness_club.core.database.jpa.JpaWorkoutsRepository;
 import fitness_club.core.requests.GetWorkoutRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.responses.GetWorkoutResponse;
@@ -16,7 +17,7 @@ import java.util.List;
 public class GetWorkoutService {
 
     @Autowired
-    private WorkoutRepository workoutsRepository;
+    private JpaWorkoutsRepository workoutsRepository;
 
     @Autowired
     private GetWorkoutRequestValidator validator;
@@ -26,7 +27,7 @@ public class GetWorkoutService {
         if (!errors.isEmpty()) {
             return new GetWorkoutResponse();
         }
-        return workoutsRepository.getById(request.getId())
+        return workoutsRepository.findById(request.getId())
                 .map(GetWorkoutResponse::new)
                 .orElseGet(()->{
                     errors.add(new CoreError("id", "Not found!"));

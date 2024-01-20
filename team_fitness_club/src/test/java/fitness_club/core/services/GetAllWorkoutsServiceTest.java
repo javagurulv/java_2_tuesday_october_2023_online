@@ -1,6 +1,7 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.WorkoutRepositoryImpl;
+import fitness_club.core.database.jpa.JpaWorkoutsRepository;
 import fitness_club.core.domain.Workout;
 import fitness_club.core.requests.GetAllWorkoutsRequest;
 import fitness_club.core.responses.GetAllWorkoutsResponse;
@@ -24,7 +25,7 @@ public class GetAllWorkoutsServiceTest {
    private Workout workout3;
 
     @Mock
-    private WorkoutRepositoryImpl workoutsRepository;
+    private JpaWorkoutsRepository workoutsRepository;
 
     @InjectMocks
     private GetAllWorkoutsService service;
@@ -39,7 +40,7 @@ public class GetAllWorkoutsServiceTest {
 
         List<Workout> workouts = List.of(workout1,
                 workout2, workout3);
-        Mockito.when(workoutsRepository.getAllWorkouts()).thenReturn(workouts);
+        Mockito.when(workoutsRepository.findAll()).thenReturn(workouts);
         GetAllWorkoutsRequest request = new GetAllWorkoutsRequest();
         GetAllWorkoutsResponse response = service.execute(request);
         assertEquals(response.getWorkouts().size(), 3);
@@ -52,7 +53,7 @@ public class GetAllWorkoutsServiceTest {
         workout1 = new Workout(1L, "GYM");
         List<Workout> workouts = List.of(workout1);
 
-        Mockito.when(workoutsRepository.getAllWorkouts()).thenReturn(workouts);
+        Mockito.when(workoutsRepository.findAll()).thenReturn(workouts);
         GetAllWorkoutsRequest request = new GetAllWorkoutsRequest();
         GetAllWorkoutsResponse response = service.execute(request);
         assertEquals(response.getWorkouts().size(), 1);

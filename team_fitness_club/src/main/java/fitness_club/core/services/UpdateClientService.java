@@ -2,6 +2,7 @@ package fitness_club.core.services;
 
 import fitness_club.core.database.ClientRepository;
 
+import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.requests.UpdateClientRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.responses.UpdateClientResponse;
@@ -16,7 +17,7 @@ import java.util.List;
 @Transactional
 public class UpdateClientService {
     @Autowired
-    private ClientRepository clientRepository;
+    private JpaClientRepository clientRepository;
 
     @Autowired
     private UpdateClientRequestValidator validator;
@@ -26,7 +27,7 @@ public class UpdateClientService {
         if (!errors.isEmpty()) {
             return new UpdateClientResponse();
         }
-        return clientRepository.getById(request.getId())
+        return clientRepository.findById(request.getId())
                 .map(client -> {
                     client.setFirstName(request.getNewName());
                     client.setLastName(request.getNewLastName());

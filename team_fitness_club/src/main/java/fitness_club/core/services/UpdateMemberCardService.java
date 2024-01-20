@@ -2,6 +2,7 @@ package fitness_club.core.services;
 
 
 import fitness_club.core.database.MemberCardRepository;
+import fitness_club.core.database.jpa.JpaMemberCardRepository;
 import fitness_club.core.requests.UpdateMemberCardRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.responses.UpdateMemberCardResponse;
@@ -16,7 +17,7 @@ import java.util.List;
 @Transactional
 public class UpdateMemberCardService {
     @Autowired
-    private MemberCardRepository memberCardRepository;
+    private JpaMemberCardRepository memberCardRepository;
 
     @Autowired
     private UpdateMemberCardRequestValidator validator;
@@ -26,7 +27,7 @@ public class UpdateMemberCardService {
         if (!errors.isEmpty()) {
             return new UpdateMemberCardResponse();
         }
-        return memberCardRepository.getById(request.getId())
+        return memberCardRepository.findById(request.getId())
                 .map(memberCard -> {
                     memberCard.setClient(request.getNewClient());
                     memberCard.setAgeGroup(request.getNewAgeGroup());
