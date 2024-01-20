@@ -1,7 +1,7 @@
 package fitness_club.core.services.validators.memberCard;
 
 
-import fitness_club.core.database.ClientRepository;
+import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.requests.UpdateMemberCardRequest;
 import fitness_club.core.responses.CoreError;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class UpdateMemberCardRequestValidator {
 
     @Autowired
-    private ClientRepository clientRepository;
+    private JpaClientRepository clientRepository;
 
     public List<CoreError> validate(UpdateMemberCardRequest request) {
         List<CoreError> errors = new ArrayList<>();

@@ -14,7 +14,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import static org.junit.Assert.*;
 
-@Ignore
+
 public class RemoveClientAcceptanceTests {
     private ApplicationContext applicationContext;
 
@@ -27,7 +27,7 @@ public class RemoveClientAcceptanceTests {
     public void shouldReturnError() {
         RemoveClientByIdRequest request = new RemoveClientByIdRequest(null);
         RemoveClientByIdResponse response =getDeleteClientService().execute(request);
-        assertEquals(response.getErrors().get(0).getField(), "clientId");
+        assertEquals(response.getErrors().get(0).getField(), "Id");
         assertEquals(response.getErrors().get(0).getMessage(), "Must not be empty!");
     }
 

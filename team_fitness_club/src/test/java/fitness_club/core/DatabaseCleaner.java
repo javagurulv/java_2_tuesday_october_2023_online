@@ -1,4 +1,4 @@
-package fitness_club;
+package fitness_club.core;
 
 import java.util.ArrayList;
 import java.util.List;
