@@ -1,7 +1,6 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.jpa.JpaClientRepository;
-import fitness_club.core.database.jpa.JpaMemberCardRepository;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.AddClientResponse;
