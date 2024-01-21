@@ -1,5 +1,6 @@
 package fitness_club.core.responses;
 
+import fitness_club.core.domain.MemberCard;
 import lombok.*;
 
 import java.util.List;

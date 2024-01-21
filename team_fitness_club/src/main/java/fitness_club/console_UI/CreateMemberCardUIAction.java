@@ -27,7 +27,7 @@ public class CreateMemberCardUIAction implements UIAction {
 
 
     @Override
-    public void execute() {
+    public void execute() throws ParseException {
 
         System.out.println("Enter client ID number: ");
         Scanner scanner = new Scanner(System.in);
@@ -60,7 +60,7 @@ public class CreateMemberCardUIAction implements UIAction {
 
 
         System.out.println("Enter a contract date (in format YYYY-MM-DD): ");
-        Date termOfContract = parseDate(scanner.nextLine());
+        String termOfContract = scanner.nextLine();
 
         MemberCardRegistrationFormRequest addMemberCardRequest = new MemberCardRegistrationFormRequest(client, ageGroup,
                 workout, fitnessCenter, termOfContract);

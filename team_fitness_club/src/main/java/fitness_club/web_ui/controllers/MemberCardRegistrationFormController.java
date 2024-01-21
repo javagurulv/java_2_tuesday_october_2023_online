@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -53,10 +54,9 @@ public class MemberCardRegistrationFormController {
         return "memberCardRegistrationForm";
     }
 
-    @PostMapping("/memberCardRegistrationForm")
-    public String processMemberCardFormFillingRequest(@ModelAttribute(value = "request")
-                                                          MemberCardRegistrationFormRequest request,
-                                                      ModelMap modelMap) {
+    @PostMapping("/memberCardFormFilling")
+    public String processMemberCardFormFillingRequest(@ModelAttribute(value = "request") MemberCardRegistrationFormRequest request,
+                                                      ModelMap modelMap) throws ParseException {
         MemberCardRegistrationFormResponse response = memberCardRegistrationService.execute(request);
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());

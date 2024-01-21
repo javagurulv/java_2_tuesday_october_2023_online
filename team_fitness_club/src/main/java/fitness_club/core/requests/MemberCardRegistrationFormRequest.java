@@ -17,9 +17,9 @@ public class MemberCardRegistrationFormRequest {
     private Long ageGroup;
     private Long workout;
     private Long fitnessCenter;
-    private Date termOfContract;
+    private String termOfContract;
 
-    public MemberCardRegistrationFormRequest(Long client, Long ageGroup, Long workout, Long fitnessCenter, Date termOfContract) {
+    public MemberCardRegistrationFormRequest(Long client, Long ageGroup, Long workout, Long fitnessCenter, String termOfContract) {
     }
 
     public MemberCardRegistrationFormRequest(MemberCard memberCard) {

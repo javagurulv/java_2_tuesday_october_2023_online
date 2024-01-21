@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -31,21 +34,23 @@ public class MemberCardRegistrationFormService {
     @Autowired
     private MemberCardRegistrationFormRequestValidator validator;
 
-    public MemberCardRegistrationFormResponse execute(MemberCardRegistrationFormRequest request) {
+    public MemberCardRegistrationFormResponse execute(MemberCardRegistrationFormRequest request) throws ParseException {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new MemberCardRegistrationFormResponse(errors);
         }
 
-        Client client = clientRepository.getReferenceById(request.getClient());
+        Client client = clientRepository.findByPersonalCodeLike(request.getClient().toString()).get(0);
         AgeGroup ageGroup = ageGroupRepository.getReferenceById(request.getAgeGroup());
         FitnessCenter fitnessCenter = fitnessCenterRepository.getReferenceById(request.getFitnessCenter());
         Workout workout = workoutRepository.getReferenceById(request.getWorkout());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         MemberCard memberCard = new MemberCard();
         memberCard.setClient(client);
         memberCard.setAgeGroup(ageGroup);
         memberCard.setFitnessCentre(fitnessCenter);
         memberCard.setWorkout(workout);
+        memberCard.setTermOfContract(dateFormat.parse(request.getTermOfContract()));
 
         memberCardRepository.save(memberCard);
 
