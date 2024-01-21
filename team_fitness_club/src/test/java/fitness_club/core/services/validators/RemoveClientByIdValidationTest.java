@@ -1,6 +1,6 @@
 package fitness_club.core.services.validators;
 
-import fitness_club.core.requests.RemoveClientByIdRequest;
+import fitness_club.core.requests.RemoveClientByPersonalCodeRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.services.validators.client.RemoveClientByIdRequestValidator;
 import org.junit.Test;
@@ -16,13 +16,13 @@ public class RemoveClientByIdValidationTest {
 
     @Test
     public void shouldReturnErrorWhenClientPersonalCodeIsNull() {
-        RemoveClientByIdRequest request = mock(RemoveClientByIdRequest.class);
+        RemoveClientByPersonalCodeRequest request = mock(RemoveClientByPersonalCodeRequest.class);
         {
-            when(request.getId()).thenReturn(null);
+            when(request.getPersonalCode()).thenReturn(null);
             List<CoreError> errors = validator.validate(request);
             assertFalse(errors.isEmpty());
             assertEquals(errors.size(), 1);
-            assertEquals(errors.get(0).getField(), "Id");
+            assertEquals(errors.get(0).getField(), "PersonalCode");
             assertEquals(errors.get(0).getMessage(), "Must not be empty!");
         }
     }
@@ -30,9 +30,9 @@ public class RemoveClientByIdValidationTest {
 
     @Test
     public void shouldNotReturnErrorWhenPersonalCodeIsPresent() {
-        RemoveClientByIdRequest request = mock(RemoveClientByIdRequest.class);
+        RemoveClientByPersonalCodeRequest request = mock(RemoveClientByPersonalCodeRequest.class);
         {
-            when(request.getId()).thenReturn(1L);
+            when(request.getPersonalCode()).thenReturn("123");
             List<CoreError> errors = validator.validate(request);
             assertTrue(errors.isEmpty());
         }

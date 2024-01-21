@@ -17,7 +17,7 @@ public class ClientRestController {
     @Autowired
     private UpdateClientService updateClientService;
     @Autowired
-    private RemoveClientByIdService deleteClientService;
+    private RemoveClientByPersonalCodeService deleteClientService;
 
     @GetMapping(path = "/{id}", produces = "application/json")
     public GetClientResponse getClient(@PathVariable Long id) {
@@ -40,8 +40,8 @@ public class ClientRestController {
     }
 
     @DeleteMapping(path = "/{id}", produces = "application/json")
-    public RemoveClientByIdResponse deleteClient(@PathVariable Long id) {
-        RemoveClientByIdRequest request = new RemoveClientByIdRequest(id);
+    public RemoveClientByIdResponse deleteClient(@PathVariable String personalCode) {
+        RemoveClientByPersonalCodeRequest request = new RemoveClientByPersonalCodeRequest(personalCode);
         return deleteClientService.execute(request);
     }
 }

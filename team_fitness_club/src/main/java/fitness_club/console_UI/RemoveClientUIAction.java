@@ -1,8 +1,8 @@
 package fitness_club.console_UI;
 
-import fitness_club.core.requests.RemoveClientByIdRequest;
+import fitness_club.core.requests.RemoveClientByPersonalCodeRequest;
 import fitness_club.core.responses.RemoveClientByIdResponse;
-import fitness_club.core.services.RemoveClientByIdService;
+import fitness_club.core.services.RemoveClientByPersonalCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,17 +11,17 @@ import java.util.Scanner;
 @Component
 public class RemoveClientUIAction implements UIAction {
     @Autowired
-    private RemoveClientByIdService removeClientByIdService;
+    private RemoveClientByPersonalCodeService removeClientByPersonalCodeService;
 
 
     @Override
     public void execute() {
       Scanner scanner = new Scanner(System.in);
         System.out.println("Enter client id to remove: ");
-        Long clientId = Long.parseLong(scanner.nextLine());
-        RemoveClientByIdRequest request = new RemoveClientByIdRequest(clientId);
+        String personalCode = scanner.nextLine();
+        RemoveClientByPersonalCodeRequest request = new RemoveClientByPersonalCodeRequest(personalCode);
         RemoveClientByIdResponse response =
-                removeClientByIdService.execute(request);
+                removeClientByPersonalCodeService.execute(request);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Alarm: " + coreError.getField() + " " + coreError.getMessage()));

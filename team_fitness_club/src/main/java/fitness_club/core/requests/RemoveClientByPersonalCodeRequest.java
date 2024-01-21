@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RemoveClientByIdRequest {
+public class RemoveClientByPersonalCodeRequest {
 
-    private Long id;
+    private String personalCode;
 
 }

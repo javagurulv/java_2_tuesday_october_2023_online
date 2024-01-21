@@ -14,7 +14,7 @@ public class SearchMemberCardRequest {
 
     private String clientFirstName;
     private String clientLastName;
-    private String clientPersonaCode;
+    private String clientPersonalCode;
 
     private String ageGroupTitle;
 

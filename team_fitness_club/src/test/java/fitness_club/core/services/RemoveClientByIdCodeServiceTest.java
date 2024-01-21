@@ -1,7 +1,7 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.jpa.JpaClientRepository;
-import fitness_club.core.requests.RemoveClientByIdRequest;
+import fitness_club.core.requests.RemoveClientByPersonalCodeRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.responses.RemoveClientByIdResponse;
 import fitness_club.core.services.validators.client.RemoveClientByIdRequestValidator;
@@ -26,11 +26,11 @@ public class RemoveClientByIdCodeServiceTest {
     @Mock
     private RemoveClientByIdRequestValidator validator;
     @InjectMocks
-    private RemoveClientByIdService service;
+    private RemoveClientByPersonalCodeService service;
 
     @Test
     public void shouldReturnErrorWhenClientIdNotProvided() {
-        RemoveClientByIdRequest request = new RemoveClientByIdRequest(null);
+        RemoveClientByPersonalCodeRequest request = new RemoveClientByPersonalCodeRequest(null);
         List<CoreError> errors = new ArrayList<>();
         errors.add(new CoreError("clientId", "Must not be empty!"));
         Mockito.when(validator.validate(request)).thenReturn(errors);
@@ -44,7 +44,7 @@ public class RemoveClientByIdCodeServiceTest {
     @Test
     public void shouldDeleteClientWithIdFromDb() {
                   Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        RemoveClientByIdRequest request = new RemoveClientByIdRequest(1L);
+        RemoveClientByPersonalCodeRequest request = new RemoveClientByPersonalCodeRequest("123");
         RemoveClientByIdResponse response = service.execute(request);
             assertFalse(response.hasErrors());
             assertTrue(response.isClientRemoved());

@@ -50,7 +50,7 @@ public class MemberCardRegistrationFormController {
                                               SearchMemberCardRequest searchRequest,
                                               ModelMap modelMap) {
         SearchClientRequest searchClientRequest = new SearchClientRequest(
-                searchRequest.getClientFirstName(), searchRequest.getClientLastName(), searchRequest.getClientPersonaCode());
+                searchRequest.getClientFirstName(), searchRequest.getClientLastName(), searchRequest.getClientPersonalCode());
 
         SearchClientResponse searchClientResponse = searchClientService.execute(searchClientRequest);
         modelMap.addAttribute("clients", searchClientResponse.getFoundClients());

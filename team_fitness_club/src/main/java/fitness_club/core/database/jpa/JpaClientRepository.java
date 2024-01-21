@@ -19,6 +19,6 @@ public interface JpaClientRepository extends JpaRepository<Client, Long> {
     List<Client> findByFirstNameAndLastNameLike(@Param("firstName") String firstName,
                                                 @Param("lastName") String lastName);
 
-
+    void deleteByPersonalCode(String personalCode);
 
 }

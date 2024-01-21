@@ -18,7 +18,7 @@ public class AddClientController {
     @GetMapping(value = "/addClientToList")
     public String showAddClientPage(ModelMap modelMap) {
         modelMap.addAttribute("request", new AddClientRequest());
-        return "addNewClient";
+        return "addClient";
     }
 
     @PostMapping("/addClientToList")
@@ -26,9 +26,9 @@ public class AddClientController {
         AddClientResponse response = addClientService.execute(request);
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());
-            return "addNewClient";
+            return "addClient";
         } else {
-            return "index";
+            return "redirect:/";
         }
     }
 }
