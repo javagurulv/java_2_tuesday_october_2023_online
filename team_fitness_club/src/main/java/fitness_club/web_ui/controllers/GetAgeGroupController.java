@@ -8,13 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class AgeGroupController {
+public class GetAgeGroupController {
 
     @Autowired
     private GetAgeGroupService getAgeGroupService;
 
 
-    @GetMapping(path = "/{id}", produces = "application/json")
+    @GetMapping(path = "/getAgeGroup", produces = "application/json")
     public GetAgeGroupResponse getAgeGroup(@PathVariable Long id) {
         GetAgeGroupRequest request = new GetAgeGroupRequest(id);
         return getAgeGroupService.execute(request);

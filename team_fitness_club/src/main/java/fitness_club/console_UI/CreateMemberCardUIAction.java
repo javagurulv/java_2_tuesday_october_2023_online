@@ -29,13 +29,9 @@ public class CreateMemberCardUIAction implements UIAction {
     @Override
     public void execute() {
 
-        System.out.println("Enter client personal code: ");
-        Scanner scanner = new Scanner(System.in);
-        String clientPersonalCode = scanner.nextLine();
-
         System.out.println("Enter client ID number: ");
-        Scanner scanner2 = new Scanner(System.in);
-        Long client = scanner2.nextLong();
+        Scanner scanner = new Scanner(System.in);
+        Long client = scanner.nextLong();
 
         System.out.println("ID, Age Group" +
                             "1,   'CHILD" +
@@ -43,7 +39,7 @@ public class CreateMemberCardUIAction implements UIAction {
                             "3,   'SENIOR'");
 
         System.out.println("Enter ID of age group: ");
-        Long ageGroup = scanner2.nextLong();
+        Long ageGroup = scanner.nextLong();
 
         System.out.println(("ID, Fitness Center" +
                 "1, 'IMANTA'" +
@@ -52,14 +48,14 @@ public class CreateMemberCardUIAction implements UIAction {
                 "4, 'RIGA_PLAZA'" +
                 "5, 'ZOLITUDE'"));
         System.out.println("Enter ID of fitness center: ");
-        Long fitnessCenter = scanner2.nextLong();
+        Long fitnessCenter = scanner.nextLong();
 
         System.out.println(("ID, Workout" +
                 "1, 'GYM'" +
                 "2, 'SWIMMING_POOL'" +
                 "3, 'GROUP_CLASSES'"));
         System.out.println("Enter ID of workout: ");
-        Long workout = scanner2.nextLong();
+        Long workout = scanner.nextLong();
 
 
 

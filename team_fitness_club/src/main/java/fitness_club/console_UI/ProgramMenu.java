@@ -17,7 +17,7 @@ public class ProgramMenu {
     public ProgramMenu(List<UIAction> uiActions) {
         menuNumberToUIActionMap = new HashMap<>();
         menuNumberToUIActionMap.put(1, findUIAction(uiActions, AddClientUIAction.class));
-        menuNumberToUIActionMap.put(2, findUIAction(uiActions, DeleteClientUIAction.class));
+        menuNumberToUIActionMap.put(2, findUIAction(uiActions, RemoveClientUIAction.class));
         menuNumberToUIActionMap.put(3, findUIAction(uiActions, GetAllClientsUIAction.class));
         menuNumberToUIActionMap.put(4, findUIAction(uiActions, CreateMemberCardUIAction.class));
         menuNumberToUIActionMap.put(5, findUIAction(uiActions, SearchClientUIAction.class));
@@ -36,7 +36,7 @@ public class ProgramMenu {
         System.out.println("");
         System.out.println("Program menu:");
         System.out.println("1. Add client to list");
-        System.out.println("2. Delete client from list");
+        System.out.println("2. Remove client from list");
         System.out.println("3. Show all clients in the list");
         System.out.println("4. Create client member card");
         System.out.println("5. Search clients in database");

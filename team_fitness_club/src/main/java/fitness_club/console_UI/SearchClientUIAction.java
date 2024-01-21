@@ -17,8 +17,6 @@ public class SearchClientUIAction implements UIAction {
     @Autowired
     private SearchClientService searchClientService;
 
-
-
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
@@ -30,7 +28,7 @@ public class SearchClientUIAction implements UIAction {
         String personalCode = scanner.nextLine();
         System.out.println();
 
-        System.out.println("Enter orderBy client firstName or lastName): ");
+        System.out.println("Enter orderBy client firstName || lastName): ");
         String orderBy = scanner.nextLine();
         System.out.println("Enter orderDirection (ASCENDING||DESCENDING): ");
         String orderDirection = scanner.nextLine();
@@ -46,7 +44,7 @@ public class SearchClientUIAction implements UIAction {
         SearchClientResponse response = searchClientService.execute(request);
 
         if (response.hasErrors()) {
-            response.getErrors().forEach(coreError -> System.out.println("BL Error: " + coreError.getField() + " " + coreError.getMessage()));
+            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
         } else {
             response.getFoundClients().forEach(Client::toString);
         }
