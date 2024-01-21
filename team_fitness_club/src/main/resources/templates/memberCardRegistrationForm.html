@@ -19,23 +19,34 @@
             <td><input type="text" th:field="${request.client}"/></td>
         </tr>
         <tr>
-            <td>AgeGroup ID:</td>
-            <td><input type="text" th:field="${request.ageGroup}"/></td>
-        </tr>
-        <tr>
+            <td>Age Group:</td>
             <td>
-        <tr>
-            <td>FitnessCenter ID:</td>
-            <td><input type="text" th:field="${request.fitnessCenter}"/></td>
+                <select th:field="${request.ageGroup}">
+                    <option th:each="ageGroup : ${ageGroups}" th:value="${ageGroup.id}" th:text="${ageGroup.ageGroup}"></option>
+                </select>
+            </td>
         </tr>
         <tr>
-            <td>Workout ID:</td>
-            <td><input type="text" th:field="${request.workout}"/></td>
+            <td>Fitness Center:</td>
+            <td>
+                <select th:field="${request.fitnessCenter}">
+                    <option th:each="fitnessCenter : ${fitnessCenters}" th:value="${fitnessCenter.id}" th:text="${fitnessCenter.fitnessCenter}"></option>
+                </select>
+            </td>
         </tr>
-
-        <input type="submit" value="Member card form filling "/>
-        <input type="reset" value="Clear"/>
-        </td>
+        <tr>
+            <td>Workout:</td>
+            <td>
+                <select th:field="${request.workout}">
+                    <option th:each="workout : ${workouts}" th:value="${workout.id}" th:text="${workout.workout}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Member card form filling"/>
+                <input type="reset" value="Clear"/>
+            </td>
         </tr>
     </table>
 </form>
