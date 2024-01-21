@@ -21,6 +21,7 @@
 
     <td th:if="${clients != null}">
         <tr th:each="client : ${clients}">
+    <td th:text=" ${client.id}">
     <td th:text=" ${client.firstName}">
     <td th:text=" ${client.lastName}">
     <td th:text=" ${client.personalCode}">
