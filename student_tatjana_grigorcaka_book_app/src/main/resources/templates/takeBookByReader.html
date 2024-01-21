@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Book App demo project">
+    <meta name="author" content="JavaGuru">
+    <title>Book App</title>
+</head>
+
+<body>
+
+<h3>Take book by reader</h3>
+
+<form action="/takeBookByReader" th:object="${request}" method="post">
+    <table>
+        <tr>
+            <td>Reader ID:</td>
+            <td><input type="text" th:field="${request.readerId}"/></td>
+        </tr>
+        <tr>
+            <td>Book ID:</td>
+            <td><input type="text" th:field="${request.bookId}"/></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Take Book by Reader"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+<td th:text="${error.errorCode}"/>
+<td th:text="${error.errorMessage}"/>
+</tr>
+</td>
+
+
+
+
+<form action="/" method="get">
+    <input type="submit" value="Go to main page" name="Submit"/>
+</form>
+
+
+</body>
+
+</html>

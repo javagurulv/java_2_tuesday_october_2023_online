@@ -1,17 +1,12 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
-import lv.javaguru.java2.lessoncode.book.app.core.database.ReaderRepository;
-import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaReaderRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Reader;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Ordering;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Paging;
-import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.SearchReadersRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
-import lv.javaguru.java2.lessoncode.book.app.core.responses.SearchBooksResponse;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.SearchReadersResponse;
-import lv.javaguru.java2.lessoncode.book.app.core.services.validators.SearchBooksRequestValidator;
 import lv.javaguru.java2.lessoncode.book.app.core.services.validators.SearchReadersRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +28,7 @@ public class SearchReadersService {
     @Value("${search.paging.enabled}")
     private boolean pagingEnabled;
 
-    @Autowired private ReaderRepository readerRepository;
+    @Autowired private JpaReaderRepository readerRepository;
     @Autowired private SearchReadersRequestValidator validator;
 
     public SearchReadersResponse execute(SearchReadersRequest request) {
@@ -66,13 +61,13 @@ public class SearchReadersService {
     private List<Reader> search(SearchReadersRequest request) {
         List<Reader> readers = new ArrayList<>();
         if (request.isFirstNameProvided() && !request.isLastNameProvided()) {
-            readers = readerRepository.findByFirstName(request.getFirstName());
+            readers = readerRepository.findByFirstNameLike(request.getFirstName());
         }
         if (!request.isFirstNameProvided() && request.isLastNameProvided()) {
-            readers = readerRepository.findByLastName(request.getLastName());
+            readers = readerRepository.findByLastNameLike(request.getLastName());
         }
         if (request.isFirstNameProvided() && request.isLastNameProvided()) {
-            readers = readerRepository.findByFirstNameAndLastName(request.getFirstName(), request.getLastName());
+            readers = readerRepository.findByFirstNameAndLastNameLike(request.getFirstName(), request.getLastName());
         }
         return readers;
     }

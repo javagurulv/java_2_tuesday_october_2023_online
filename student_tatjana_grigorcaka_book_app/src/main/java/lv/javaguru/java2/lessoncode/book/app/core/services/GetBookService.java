@@ -1,6 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaBookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.GetBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.GetBookResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class GetBookService {
 
-	@Autowired private BookRepository bookRepository;
+	@Autowired private JpaBookRepository bookRepository;
 	@Autowired private GetBookValidator validator;
 
 	public GetBookResponse execute(GetBookRequest request) {
@@ -23,7 +23,7 @@ public class GetBookService {
 		if (!errors.isEmpty()) {
 			return new GetBookResponse(errors);
 		}
-		return bookRepository.getById(request.getId())
+		return bookRepository.findById(request.getId())
 				.map(GetBookResponse::new)
 				.orElseGet(() -> {
 					errors.add(new CoreError("id", "Not found!"));

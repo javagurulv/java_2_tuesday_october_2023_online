@@ -1,6 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.ReaderRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaReaderRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Reader;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.RegisterReaderRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
@@ -16,7 +16,7 @@ import java.util.List;
 @Transactional
 public class RegisterReaderService {
 
-	@Autowired private ReaderRepository readerRepository;
+	@Autowired private JpaReaderRepository readerRepository;
 	@Autowired private RegisterReaderRequestValidator validator;
 
 	public RegisterReaderResponse execute(RegisterReaderRequest request) {

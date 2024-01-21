@@ -2,6 +2,7 @@ package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
 import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.database.ReaderRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaReaderRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Reader;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
@@ -22,7 +23,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(MockitoJUnitRunner.class)
 public class RegisterReaderRequestValidatorTest {
 
-	@Mock private ReaderRepository readerRepository;
+	@Mock private JpaReaderRepository readerRepository;
 	@InjectMocks
 	private RegisterReaderRequestValidator validator;
 
@@ -71,7 +72,7 @@ public class RegisterReaderRequestValidatorTest {
 
 	@Test
 	public void shouldReturnErrorWhenDuplicateFound() {
-		readerRepository = Mockito.mock(ReaderRepository.class);
+		readerRepository = Mockito.mock(JpaReaderRepository.class);
 		Mockito.when(readerRepository.findByFirstNameAndLastNameAndPersonalCode("John", "Smith", "312345-67891")).thenReturn(List.of(new Reader("John", "Smith", "312345-67891")));
 		validator = new RegisterReaderRequestValidator(readerRepository);
 		RegisterReaderRequest request = new RegisterReaderRequest("John", "Smith", "312345-67891");
@@ -83,7 +84,7 @@ public class RegisterReaderRequestValidatorTest {
 
 	@Test
 	public void shouldNotReturnErrorWhenDuplicateNotFound() {
-		readerRepository = Mockito.mock(ReaderRepository.class);
+		readerRepository = Mockito.mock(JpaReaderRepository.class);
 		Mockito.when(readerRepository.findByFirstNameAndLastNameAndPersonalCode("John", "Smith", "312345-67891")).thenReturn(List.of());
 		validator = new RegisterReaderRequestValidator(readerRepository);
 		RegisterReaderRequest request = new RegisterReaderRequest("John", "Smith", "312345-67891");

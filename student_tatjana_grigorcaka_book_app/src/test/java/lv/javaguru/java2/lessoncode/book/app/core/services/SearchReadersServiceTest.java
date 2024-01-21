@@ -1,6 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.ReaderRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaReaderRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Reader;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Ordering;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.Paging;
@@ -26,7 +26,7 @@ import static org.mockito.ArgumentMatchers.any;
 @RunWith(MockitoJUnitRunner.class)
 public class SearchReadersServiceTest {
 
-    @Mock private ReaderRepository readerRepository;
+    @Mock private JpaReaderRepository readerRepository;
     @Mock private SearchReadersRequestValidator validator;
     @InjectMocks
     private SearchReadersService service;
@@ -61,7 +61,7 @@ public class SearchReadersServiceTest {
 
         List<Reader> readers = new ArrayList<>();
         readers.add(new Reader("John", "Smith", "31234567891"));
-        Mockito.when(readerRepository.findByFirstName("John")).thenReturn(readers);
+        Mockito.when(readerRepository.findByFirstNameLike("John")).thenReturn(readers);
 
         SearchReadersResponse response = service.execute(request);
         assertFalse(response.containsErrors());
@@ -78,7 +78,7 @@ public class SearchReadersServiceTest {
 
         List<Reader> readers = new ArrayList<>();
         readers.add(new Reader( "John", "Smith", "31234567891"));
-        Mockito.when(readerRepository.findByLastName("Smith")).thenReturn(readers);
+        Mockito.when(readerRepository.findByLastNameLike("Smith")).thenReturn(readers);
 
         SearchReadersResponse response = service.execute(request);
         assertFalse(response.containsErrors());
@@ -95,7 +95,7 @@ public class SearchReadersServiceTest {
 
         List<Reader> readers = new ArrayList<>();
         readers.add(new Reader("John", "Smith", "31234567891"));
-        Mockito.when(readerRepository.findByFirstNameAndLastName("John", "Smith")).thenReturn(readers);
+        Mockito.when(readerRepository.findByFirstNameAndLastNameLike("John", "Smith")).thenReturn(readers);
 
         SearchReadersResponse response = service.execute(request);
         assertFalse(response.containsErrors());
@@ -114,7 +114,7 @@ public class SearchReadersServiceTest {
         List<Reader> readers = new ArrayList<>();
         readers.add(new Reader( "John", "Smith2", "31234567891"));
         readers.add(new Reader("John", "Smith1", "31234567891"));
-        Mockito.when(readerRepository.findByFirstName("John")).thenReturn(readers);
+        Mockito.when(readerRepository.findByFirstNameLike("John")).thenReturn(readers);
 
         SearchReadersResponse response = service.execute(request);
         assertFalse(response.containsErrors());
@@ -136,7 +136,7 @@ public class SearchReadersServiceTest {
         List<Reader> readers = new ArrayList<>();
         readers.add(new Reader("John", "Smith1", "31234567891"));
         readers.add(new Reader( "John", "Smith2", "31234567891"));
-        Mockito.when(readerRepository.findByFirstName("John")).thenReturn(readers);
+        Mockito.when(readerRepository.findByFirstNameLike("John")).thenReturn(readers);
 
         SearchReadersResponse response = service.execute(request);
         assertFalse(response.containsErrors());
@@ -158,7 +158,7 @@ public class SearchReadersServiceTest {
         List<Reader> readers = new ArrayList<>();
         readers.add(new Reader("John", "Smith1", "31234567891"));
         readers.add(new Reader( "John", "Smith2", "31234567891"));
-        Mockito.when(readerRepository.findByFirstName("John")).thenReturn(readers);
+        Mockito.when(readerRepository.findByFirstNameLike("John")).thenReturn(readers);
 
         SearchReadersResponse response = service.execute(request);
         assertFalse(response.containsErrors());
@@ -177,7 +177,7 @@ public class SearchReadersServiceTest {
         List<Reader> readers = new ArrayList<>();
         readers.add(new Reader("John", "Smith1", "31234567891"));
         readers.add(new Reader("John", "Smith2", "31234567891"));
-        Mockito.when(readerRepository.findByFirstName("John")).thenReturn(readers);
+        Mockito.when(readerRepository.findByFirstNameLike("John")).thenReturn(readers);
 
         SearchReadersResponse response = service.execute(request);
         assertFalse(response.containsErrors());
