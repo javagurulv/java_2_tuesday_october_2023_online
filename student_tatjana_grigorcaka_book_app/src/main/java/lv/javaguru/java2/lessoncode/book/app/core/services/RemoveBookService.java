@@ -1,6 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaBookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.RemoveBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.RemoveBookResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class RemoveBookService {
 
-    @Autowired private BookRepository bookRepository;
+    @Autowired private JpaBookRepository bookRepository;
     @Autowired private RemoveBookRequestValidator validator;
 
 
@@ -24,8 +24,8 @@ public class RemoveBookService {
         if (!errors.isEmpty()) {
             return new RemoveBookResponse(errors);
         }
-        boolean isBookRemoved = bookRepository.deleteById(request.getBookIdToRemove());
-        return new RemoveBookResponse(isBookRemoved);
+        bookRepository.deleteById(request.getBookId());
+        return new RemoveBookResponse(true);
     }
 
 }

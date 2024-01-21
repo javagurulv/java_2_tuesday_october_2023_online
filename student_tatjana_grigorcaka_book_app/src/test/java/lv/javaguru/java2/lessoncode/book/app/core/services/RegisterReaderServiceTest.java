@@ -1,6 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.ReaderRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaReaderRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.RegisterReaderRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.RegisterReaderResponse;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class RegisterReaderServiceTest {
 
-    @Mock private ReaderRepository readerRepository;
+    @Mock private JpaReaderRepository readerRepository;
     @Mock private RegisterReaderRequestValidator validator;
     @InjectMocks
     private RegisterReaderService service;

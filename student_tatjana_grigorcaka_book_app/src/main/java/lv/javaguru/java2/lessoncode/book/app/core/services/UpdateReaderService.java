@@ -1,7 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.ReaderRepository;
-import lv.javaguru.java2.lessoncode.book.app.core.requests.UpdateBookRequest;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaReaderRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.UpdateReaderRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.UpdateReaderResponse;
@@ -16,7 +15,7 @@ import java.util.List;
 @Transactional
 public class UpdateReaderService {
 
-	@Autowired private ReaderRepository readerRepository;
+	@Autowired private JpaReaderRepository readerRepository;
 	@Autowired private UpdateReaderRequestValidator validator;
 
 	public UpdateReaderResponse execute(UpdateReaderRequest request) {
@@ -25,12 +24,12 @@ public class UpdateReaderService {
 			return new UpdateReaderResponse(errors);
 		}
 
-		return readerRepository.getById(request.getId())
-				.map(book -> {
-					book.setFirstName(request.getNewFirstName());
-					book.setLastName(request.getNewLastName());
-					book.setPersonalCode(request.getNewPersonalCode());
-					return new UpdateReaderResponse(book);
+		return readerRepository.findById(request.getId())
+				.map(reader -> {
+					reader.setFirstName(request.getNewFirstName());
+					reader.setLastName(request.getNewLastName());
+					reader.setPersonalCode(request.getNewPersonalCode());
+					return new UpdateReaderResponse(reader);
 				})
 				.orElseGet(() -> {
 					errors.add(new CoreError("id", "Not found!"));

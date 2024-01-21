@@ -18,7 +18,7 @@ public class RemoveReaderRequestValidator {
     }
 
     private Optional<CoreError> validateReaderId(RemoveReaderRequest request) {
-        return (request.getReaderIdToRemove() == null)
+        return (request.getReaderId() == null)
                 ? Optional.of(new CoreError("readerId", "Must not be empty!"))
                 : Optional.empty();
     }

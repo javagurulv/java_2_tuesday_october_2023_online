@@ -1,6 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaBookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.UpdateBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.UpdateBookResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class UpdateBookService {
 
-	@Autowired private BookRepository bookRepository;
+	@Autowired private JpaBookRepository bookRepository;
 	@Autowired private UpdateBookRequestValidator validator;
 
 	public UpdateBookResponse execute(UpdateBookRequest request) {
@@ -24,7 +24,7 @@ public class UpdateBookService {
 			return new UpdateBookResponse(errors);
 		}
 
-		return bookRepository.getById(request.getId())
+		return bookRepository.findById(request.getId())
 				.map(book -> {
 					book.setTitle(request.getNewTitle());
 					book.setAuthor(request.getNewAuthor());

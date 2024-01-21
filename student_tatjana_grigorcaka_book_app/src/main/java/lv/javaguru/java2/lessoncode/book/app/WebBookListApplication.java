@@ -8,21 +8,23 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.context.ConfigurableApplicationContext;
 import lv.javaguru.java2.lessoncode.book.app.web_ui.config.SpringWebConfiguration;
 
-@SpringBootApplication(exclude = HibernateJpaAutoConfiguration.class)
+@SpringBootApplication
 public class WebBookListApplication {
 
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(SpringWebConfiguration.class);
 
-        ProgramMenu programMenu = context.getBean(ProgramMenu.class);
-        while (true) {
-            programMenu.printMenu();
-            int userChoice = programMenu.getUserMenuChoice();
-            programMenu.executeSelectedMenuItem(userChoice);
-        }
+        //ProgramMenu programMenu = context.getBean(ProgramMenu.class);
+        //while (true) {
+        //programMenu.printMenu();
+        //int userChoice = programMenu.getUserMenuChoice();
+        //programMenu.executeSelectedMenuItem(userChoice);
+        //}
+
     }
 
-
 }
+
+
 
