@@ -1,12 +1,12 @@
 package lv.javaguru.java2.lessoncode.book.app.core.requests;
 
-public class DeleteBookRequest {
+public class DeleteReaderRequest {
 
 	private Long id;
 
-	public DeleteBookRequest() { }
+	public DeleteReaderRequest() { }
 
-	public DeleteBookRequest(Long id) {
+	public DeleteReaderRequest(Long id) {
 		this.id = id;
 	}
 
