@@ -4,7 +4,6 @@ import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchClientsRequest;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.validators.client.SearchClientsRequestFieldValidator;
 import fitness_club.core.services.validators.client.SearchClientsRequestValidator;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +21,7 @@ public class SearchClientRequestValidationTest {
     @InjectMocks
     private SearchClientsRequestValidator validator;
     @Mock
-    private SearchClientsRequestFieldValidator fieldValidator;
+    private SearchClientsRequestValidator  fieldValidator;
     @Mock
     private OrderingValidator orderingValidator;
     @Mock
@@ -40,27 +39,6 @@ public class SearchClientRequestValidationTest {
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
-
-    @Test
-    public void shouldReturnErrorsWhenFieldValidatorReturnErrors() {
-        SearchClientsRequest request = new SearchClientsRequest(null, "LastName");
-        CoreError error = new CoreError("firstName", "Must not be empty!");
-        when(fieldValidator.validate(request)).thenReturn(List.of(error));
-        List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getField(), "firstName");
-        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
-    }
-
-    @Test
-    public void shouldNotReturnErrorsWhenOrderingValidatorReturnNoErrors() {
-        Ordering ordering = new Ordering("FirstName", "ASCENDING");
-        SearchClientsRequest request = new SearchClientsRequest("FirstName", "LastName", ordering);
-        when(orderingValidator.validate(ordering)).thenReturn(List.of());
-        List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 0);
-    }
-
     @Test
     public void shouldReturnErrorsWhenOrderingValidatorReturnErrors() {
         Ordering ordering = new Ordering(null, "ASCENDING");

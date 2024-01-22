@@ -14,15 +14,29 @@
 
 <table>
     <tr>
-        <td>Enter client first name:</td>
-        <td>Enter client last name:</td>
-        <td>Enter client personal code:</td>
-    </tr>
+        <td>Search by First Name:</td>
+        <td>Search by Last Name:</td>
+          </tr>
 
     <tr>
         <form action="/searchClients" th:object="${request}" method="post">
             <td><input type="text" th:field="${request.firstName}"/></td>
             <td><input type="text" th:field="${request.lastName}"/></td>
+                  <td>
+                <input type="submit" value="Search clients"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>Search by Personal Code:</td>
+    </tr>
+
+    <tr>
+        <form action="/searchClients" th:object="${request}" method="post">
             <td><input type="text" th:field="${request.personalCode}"/></td>
             <td>
                 <input type="submit" value="Search clients"/>
@@ -36,24 +50,25 @@
 
 <table>
     <tr>
-        <td>ID:</td>
-        <td>First Name: </td>
-        <td>Last Name: </td>
-        <td>Personal Code: </td>
+        <td>Id:</td>
+        <td>First Name:</td>
+        <td>Last Name:</td>
+        <td>Personal Code:</td>
     </tr>
+
     <td th:if="${clients != null}">
         <tr th:each="client : ${clients}">
-    <td th:text="${client.id}" />
-    <td th:text="${client.firstName}" />
-    <td th:text="${client.lastName}" />
-    <td th:text="${client.personalCode}" />
+    <td th:text="${client.id}"/>
+    <td th:text="${client.firstName}"/>
+    <td th:text="${client.lastName}"/>
+    <td th:text="${client.personalCode}"/>
     </tr>
     </td>
 
 </table>
 
 <form action="/" method="get">
-    <input type="submit" value="Go to main page" name="Submit" />
+    <input type="submit" value="Go to main page" name="Submit"/>
 </form>
 
 

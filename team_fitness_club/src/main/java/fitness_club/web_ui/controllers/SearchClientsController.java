@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class SearchClientsController {
 
-    @Autowired private SearchClientsService searchClientService;
+    @Autowired private SearchClientsService searchClientsService;
 
     @GetMapping(value = "/searchClients")
     public String showSearchClientsPage(ModelMap modelMap) {
@@ -22,7 +22,7 @@ public class SearchClientsController {
     }
     @PostMapping("/searchClients")
     public String processSearchClientsRequest(@ModelAttribute(value = "request") SearchClientsRequest request, ModelMap modelMap) {
-        SearchClientsResponse response = searchClientService.execute(request);
+        SearchClientsResponse response = searchClientsService.execute(request);
         modelMap.addAttribute("clients", response.getFoundClients());
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());

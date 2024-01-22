@@ -15,9 +15,21 @@ public interface JpaClientRepository extends JpaRepository<Client, Long> {
     @Query("SELECT c FROM Client c WHERE c.personalCode LIKE %:personalCode%")
     List<Client> findByPersonalCodeLike(@Param("personalCode") String personalCode);
 
+    @Query("SELECT c FROM Client c WHERE c.firstName LIKE %:firstName%")
+    List<Client> findByFirstNameLike(@Param("firstName") String firstName);
+
+    @Query("SELECT c FROM Client c WHERE c.lastName LIKE %:lastName%")
+    List<Client> findBylLastNameLike(@Param("lastName") String lastName);
+
+
     @Query("SELECT c FROM Client c WHERE c.firstName LIKE %:firstName% AND c.lastName LIKE %:lastName%")
     List<Client> findByFirstNameAndLastNameLike(@Param("firstName") String firstName,
                                                 @Param("lastName") String lastName);
+
+   // @Query("SELECT c FROM Client c WHERE c.firstName LIKE %:firstName% AND c.lastName LIKE %:lastName%, AND c.lastName LIKE %:lastName%")
+   // List<Client> findByFirstNameLastNameLikeAndPersonalCode(@Param("firstName") String firstName,
+     //                                           @Param("lastName") String lastName,
+     //                                                       @Param("personalCode") String personalCode);
 
     void deleteByPersonalCode(String personalCode);
 

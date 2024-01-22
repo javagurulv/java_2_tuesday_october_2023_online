@@ -22,7 +22,9 @@
             <td>Age Group:</td>
             <td>
                 <select th:field="${request.ageGroup}">
-                    <option th:each="ageGroup : ${ageGroups}" th:value="${ageGroup.id}" th:text="${ageGroup.ageGroup}"></option>
+                    <option th:each="ageGroup : ${ageGroups}"
+                            th:value="${ageGroup.id}"
+                            th:text="${ageGroup.ageGroup}"></option>
                 </select>
             </td>
         </tr>

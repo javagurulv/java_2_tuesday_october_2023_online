@@ -56,6 +56,9 @@ public class SearchClientsService {
         if (request.isFirstNameProvided() && request.isLastNameProvided()) {
             foundClients = clientRepository.findByFirstNameAndLastNameLike(request.getFirstName(), request.getLastName());
         }
+       // if (request.isFirstNameProvided() && request.isLastNameProvided() && request.isPersonalCodeProvided()) {
+     //      foundClients = clientRepository.findByFirstNameLastNameLikeAndPersonalCode(request.getFirstName(), request.getLastName(), request.getPersonalCode());
+    //    }
         if (request.isPersonalCodeProvided()) {
             foundClients = clientRepository.findByPersonalCodeLike(request.getPersonalCode());
         }

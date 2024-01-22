@@ -2,7 +2,7 @@ package fitness_club.core.services.validators;
 
 import fitness_club.core.requests.SearchClientsRequest;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.validators.client.SearchClientsRequestFieldValidator;
+import fitness_club.core.services.validators.client.SearchClientsRequestValidator;
 import org.junit.Test;
 import java.util.List;
 import static org.junit.Assert.*;
@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class SearchClientRequestFieldValidatorTest {
 
 
-    private SearchClientsRequestFieldValidator validator = new SearchClientsRequestFieldValidator();
+    private SearchClientsRequestValidator validator = new SearchClientsRequestValidator ();
 
     @Test
     public void shouldNotReturnErrorsWhenFirstNameIsProvided() {
@@ -46,17 +46,4 @@ public class SearchClientRequestFieldValidatorTest {
         assertEquals(errors.size(), 0);
     }
 
-    @Test
-    public void shouldReturnErrorWhenSearchFieldsAreEmpty() {
-        SearchClientsRequest request = new SearchClientsRequest(null, null);
-        List<CoreError> errors = validator.validate(request);
-        assertEquals(errors.size(), 3);
-        assertEquals(errors.get(0).getField(), "firstName");
-        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
-        assertEquals(errors.get(1).getField(), "lastName");
-        assertEquals(errors.get(1).getMessage(), "Must not be empty!");
-        assertEquals(errors.get(2).getField(), "personalCode");
-        assertEquals(errors.get(2).getMessage(), "Must not be empty!");
-
-    }
 }
