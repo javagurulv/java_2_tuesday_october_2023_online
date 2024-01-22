@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class GetMemberCardInfInformationRequestValidator {
+public class GetMemberCardRequestValidator {
     public List<CoreError> validate(GetMemberCardRequest request) {
         List<CoreError> errors = new ArrayList<>();
         validateMemberCardId(request).ifPresent(errors::add);

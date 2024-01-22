@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fitness club demo project">
+    <meta name="author" content="Fitness club team">
+    <title>Fitness Club</title>
+</head>
+
+<body>
+
+<h3>Show all member cards</h3>
+
+<table>
+    <tr>
+        <td>Id:</td>
+        <td>First Name:</td>
+        <td>Last Name:</td>
+        <td>Personal Code:</td>
+        <td>Age Group:</td>
+        <td>Fitness Center:</td>
+        <td>Workout:</td>
+        <td>Date Of Contract:</td>
+    </tr>
+
+    <tr th:if="${memberCards != null}" th:each="memberCard : ${memberCards}">
+        <td th:text=" ${memberCard.id}">
+        <td th:text=" ${memberCard.client.firstName}">
+        <td th:text=" ${memberCard.client.lastName}">
+        <td th:text=" ${memberCard.client.personalCode}">
+        <td th:text=" ${memberCard.ageGroup.ageGroup}">
+        <td th:text=" ${memberCard.fitnessCenter.fitnessCenter}">
+        <td th:text=" ${memberCard.termOfContract}">
+    </tr>
+
+</table>
+
+<form action="/" method="get">
+    <input type="submit" value="Go to main page" name="Submit"/>
+</form>
+
+</body>
+
+</html>
