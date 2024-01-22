@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.core.services;
 
-import lv.javaguru.java2.product.storage.core.database.CustomerRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaCustomerRepository;
 import lv.javaguru.java2.product.storage.core.requests.GetCustomerRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 import lv.javaguru.java2.product.storage.core.responses.GetCustomerResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class GetCustomerService {
 
-	@Autowired private CustomerRepository customerRepository;
+	@Autowired private JpaCustomerRepository customerRepository;
 	@Autowired private GetCustomerValidator validator;
 
 	public GetCustomerResponse execute(GetCustomerRequest request) {
@@ -23,7 +23,7 @@ public class GetCustomerService {
 		if (!errors.isEmpty()) {
 			return new GetCustomerResponse(errors);
 		}
-		return customerRepository.getById(request.getId())
+		return customerRepository.findById(request.getId())
 				.map(GetCustomerResponse::new)
 				.orElseGet(() -> {
 					errors.add(new CoreError("id", "Not found!"));

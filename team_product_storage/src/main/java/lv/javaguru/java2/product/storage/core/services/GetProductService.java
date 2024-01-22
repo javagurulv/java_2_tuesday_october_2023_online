@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.core.services;
 
-import lv.javaguru.java2.product.storage.core.database.ProductRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaProductRepository;
 import lv.javaguru.java2.product.storage.core.requests.GetProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 import lv.javaguru.java2.product.storage.core.responses.GetProductResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class GetProductService {
 
-	@Autowired private ProductRepository productRepository;
+	@Autowired private JpaProductRepository productRepository;
 	@Autowired private GetProductValidator validator;
 
 	public GetProductResponse execute(GetProductRequest request) {
@@ -23,7 +23,7 @@ public class GetProductService {
 		if (!errors.isEmpty()) {
 			return new GetProductResponse(errors);
 		}
-		return productRepository.getById(request.getId())
+		return productRepository.findById(request.getId())
 				.map(GetProductResponse::new)
 				.orElseGet(() -> {
 					errors.add(new CoreError("id", "Not found!"));

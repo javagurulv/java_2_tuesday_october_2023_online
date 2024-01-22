@@ -1,8 +1,8 @@
 package lv.javaguru.java2.product.storage.core.services;
 
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaCustomerRepository;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 
-import lv.javaguru.java2.product.storage.core.database.CustomerRepository;
 import lv.javaguru.java2.product.storage.core.requests.RegisterCustomerRequest;
 import lv.javaguru.java2.product.storage.core.responses.RegisterCustomerResponse;
 import lv.javaguru.java2.product.storage.core.services.validators.RegisterCustomerRequestValidator;
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class RegisterCustomerServiceTest {
 
-    @Mock private CustomerRepository readerRepository;
+    @Mock private JpaCustomerRepository readerRepository;
     @Mock private RegisterCustomerRequestValidator validator;
     @InjectMocks
     private RegisterCustomerService service;

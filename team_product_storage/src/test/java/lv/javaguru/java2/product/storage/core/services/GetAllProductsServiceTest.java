@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import lv.javaguru.java2.product.storage.core.database.ProductRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaProductRepository;
 import lv.javaguru.java2.product.storage.core.domain.Product;
 import lv.javaguru.java2.product.storage.core.requests.GetAllProductsRequest;
 import lv.javaguru.java2.product.storage.core.responses.GetAllProductsResponse;
@@ -21,7 +21,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class GetAllProductsServiceTest {
 
-    @Mock private ProductRepository productRepository;
+    @Mock private JpaProductRepository productRepository;
     @InjectMocks
     private GetAllProductsService service;
 
@@ -29,7 +29,7 @@ public class GetAllProductsServiceTest {
     public void shouldGetProductsFromDb() {
         List<Product> products = new ArrayList<>();
         products.add(new Product("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00")));
-        Mockito.when(productRepository.getAllProducts()).thenReturn(products);
+        Mockito.when(productRepository.findAll()).thenReturn(products);
 
         GetAllProductsRequest request = new GetAllProductsRequest();
         GetAllProductsResponse response = service.execute(request);

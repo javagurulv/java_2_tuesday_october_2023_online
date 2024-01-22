@@ -2,13 +2,13 @@ package lv.javaguru.java2.product.storage.core.requests;
 
 public class RemoveProductRequest {
 
-    private Long productIdToRemove;
+    private Long productId;
 
-    public RemoveProductRequest(Long productIdToRemove) {
-        this.productIdToRemove = productIdToRemove;
+    public RemoveProductRequest(Long productId) {
+        this.productId = productId;
     }
 
-    public Long getProductIdToRemove() {
-        return productIdToRemove;
+    public Long getProductId() {
+        return productId;
     }
 }

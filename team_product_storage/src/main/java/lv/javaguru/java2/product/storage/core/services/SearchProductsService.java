@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.core.services;
 
-import lv.javaguru.java2.product.storage.core.database.ProductRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaProductRepository;
 import lv.javaguru.java2.product.storage.core.domain.Product;
 import lv.javaguru.java2.product.storage.core.requests.Ordering;
 import lv.javaguru.java2.product.storage.core.requests.Paging;
@@ -28,7 +28,7 @@ public class SearchProductsService {
     @Value("${search.paging.enabled}")
     private boolean pagingEnabled;
 
-    @Autowired private ProductRepository productRepository;
+    @Autowired private JpaProductRepository productRepository;
     @Autowired private SearchProductsRequestValidator validator;
 
 
@@ -62,13 +62,13 @@ public class SearchProductsService {
     private List<Product> search(SearchProductsRequest request) {
         List<Product> products = new ArrayList<>();
         if (request.isProductBrandProvided() && !request.isProductModelProvided()) {
-            products = productRepository.findByProductBrand(request.getProductBrand());
+            products = productRepository.findByProductBrandLike(request.getProductBrand());
         }
         if (!request.isProductBrandProvided() && request.isProductModelProvided()) {
-            products = productRepository.findByProductModel(request.getProductModel());
+            products = productRepository.findByProductModelLike(request.getProductModel());
         }
         if (request.isProductBrandProvided() && request.isProductModelProvided()) {
-            products = productRepository.findByProductBrandAndProductModel(request.getProductBrand(), request.getProductModel());
+            products = productRepository.findByProductBrandAndProductModelLike(request.getProductBrand(), request.getProductModel());
         }
         return products;
     }
