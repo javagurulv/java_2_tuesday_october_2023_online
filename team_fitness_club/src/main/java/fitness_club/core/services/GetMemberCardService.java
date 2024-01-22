@@ -1,11 +1,10 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.MemberCardRepository;
 import fitness_club.core.database.jpa.JpaMemberCardRepository;
 import fitness_club.core.requests.GetMemberCardRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.responses.GetMemberCardResponse;
-import fitness_club.core.services.validators.memberCard.GetMemberCardRequestValidator;
+import fitness_club.core.services.validators.memberCard.GetMemberCardInfInformationRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +19,7 @@ public class GetMemberCardService {
     private JpaMemberCardRepository memberCardRepository;
 
     @Autowired
-    private GetMemberCardRequestValidator validator;
+    private GetMemberCardInfInformationRequestValidator validator;
 
     public GetMemberCardResponse execute(GetMemberCardRequest request) {
         List<CoreError> errors = validator.validate(request);

@@ -21,21 +21,21 @@
         <td>Client Age Group</td>
         <td>Client Fitness Center</td>
         <td>Client Workout</td>
-        <td>Workout Starting Date:</td>
-        <td>Workout End Date:</td>
+        <td>Workout Contract Date:</td>
+
     </tr>
 
-    <td th:if="${memberCard != null}">
-        <tr th:each="memberCard : ${memberCards}">
+    <td th:if="${memberCardInformation != null}">
+        <tr th:each="memberCard : ${memberCardInformation}">
     <td th:text="${memberCard.id}" />
     <td th:text="${memberCard.client.firstName}" />
     <td th:text="${memberCard.client.lastName}" />
     <td th:text="${memberCard.client.personalCode}" />
-    <td th:text="${memberCard.ageGroup.ageGroup}" />
-    <td th:text="${memberCard.fitnessCenter.fitnessCenter}" />
-    <td th:text="${memberCard.workout.workout}" />
-    <td th:text="${memberCard.startingDate}" />
-    <td th:text="${memberCard.endDate}" />
+    <td th:text="${memberCard.ageGroup}" />
+    <td th:text="${memberCard.fitnessCenter}" />
+    <td th:text="${memberCard.workout}" />
+    <td th:text="${memberCard.termOfContract}" />
+
     </tr>
     </td>
 
