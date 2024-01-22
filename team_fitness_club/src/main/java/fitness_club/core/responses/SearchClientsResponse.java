@@ -4,9 +4,9 @@ import fitness_club.core.domain.Client;
 
 import java.util.List;
 
-public class SearchClientResponse extends CoreResponse {
+public class SearchClientsResponse extends CoreResponse {
     private List<Client> foundClients;
-    public SearchClientResponse(List<Client> foundClients, List<CoreError> errors) {
+    public SearchClientsResponse(List<Client> foundClients, List<CoreError> errors) {
         super(errors);
         this.foundClients = foundClients;
     }

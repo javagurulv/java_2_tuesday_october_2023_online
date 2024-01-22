@@ -29,7 +29,7 @@ public class MemberCardRegistrationFormController {
     @Autowired
     private JpaFitnessCentersRepository fitnessCentersRepository;
     @Autowired
-    private SearchClientService searchClientService;
+    private SearchClientsService searchClientService;
     @Autowired
     private SearchAgeGroupService searchAgeGroupService;
     @Autowired
@@ -70,10 +70,10 @@ public class MemberCardRegistrationFormController {
     public String processSearchClientsRequest(@ModelAttribute(value = "searchRequest")
                                               SearchMemberCardRequest searchRequest,
                                               ModelMap modelMap) {
-        SearchClientRequest searchClientRequest = new SearchClientRequest(
+        SearchClientsRequest searchClientRequest = new SearchClientsRequest(
                 searchRequest.getClientFirstName(), searchRequest.getClientLastName(), searchRequest.getClientPersonalCode());
 
-        SearchClientResponse searchClientResponse = searchClientService.execute(searchClientRequest);
+        SearchClientsResponse searchClientResponse = searchClientService.execute(searchClientRequest);
         modelMap.addAttribute("clients", searchClientResponse.getFoundClients());
 
 

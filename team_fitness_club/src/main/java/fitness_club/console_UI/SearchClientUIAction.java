@@ -3,9 +3,9 @@ package fitness_club.console_UI;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
-import fitness_club.core.requests.SearchClientRequest;
-import fitness_club.core.responses.SearchClientResponse;
-import fitness_club.core.services.SearchClientService;
+import fitness_club.core.requests.SearchClientsRequest;
+import fitness_club.core.responses.SearchClientsResponse;
+import fitness_club.core.services.SearchClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class SearchClientUIAction implements UIAction {
 
     @Autowired
-    private SearchClientService searchClientService;
+    private SearchClientsService searchClientService;
 
     @Override
     public void execute() {
@@ -40,8 +40,8 @@ public class SearchClientUIAction implements UIAction {
         Integer pageSize = Integer.parseInt(scanner.nextLine());
         Paging paging = new Paging(pageNumber, pageSize);
 
-        SearchClientRequest request = new SearchClientRequest(firstName, lastName, personalCode, ordering, paging);
-        SearchClientResponse response = searchClientService.execute(request);
+        SearchClientsRequest request = new SearchClientsRequest(firstName, lastName, personalCode, ordering, paging);
+        SearchClientsResponse response = searchClientService.execute(request);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));

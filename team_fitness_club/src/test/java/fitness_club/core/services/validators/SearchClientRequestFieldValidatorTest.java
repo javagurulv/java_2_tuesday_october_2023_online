@@ -1,8 +1,8 @@
 package fitness_club.core.services.validators;
 
-import fitness_club.core.requests.SearchClientRequest;
+import fitness_club.core.requests.SearchClientsRequest;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.validators.client.SearchClientRequestFieldValidator;
+import fitness_club.core.services.validators.client.SearchClientsRequestFieldValidator;
 import org.junit.Test;
 import java.util.List;
 import static org.junit.Assert.*;
@@ -10,45 +10,45 @@ import static org.junit.Assert.*;
 public class SearchClientRequestFieldValidatorTest {
 
 
-    private SearchClientRequestFieldValidator validator = new SearchClientRequestFieldValidator();
+    private SearchClientsRequestFieldValidator validator = new SearchClientsRequestFieldValidator();
 
     @Test
     public void shouldNotReturnErrorsWhenFirstNameIsProvided() {
-        SearchClientRequest request = new SearchClientRequest("FirstName", null);
+        SearchClientsRequest request = new SearchClientsRequest("FirstName", null);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
 
     @Test
     public void shouldNotReturnErrorsWhenLastNameIsProvided() {
-        SearchClientRequest request = new SearchClientRequest(null, "LastName");
+        SearchClientsRequest request = new SearchClientsRequest(null, "LastName");
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
     @Test
     public void shouldNotReturnErrorsWhenPersonalCodeIsProvided() {
-        SearchClientRequest request = new SearchClientRequest(null, "PersonalCode");
+        SearchClientsRequest request = new SearchClientsRequest(null, "PersonalCode");
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
 
     @Test
     public void shouldNotReturnErrorsWhenFirstNameAndLastNameIsProvided() {
-        SearchClientRequest request = new SearchClientRequest("FirstName", "LastName");
+        SearchClientsRequest request = new SearchClientsRequest("FirstName", "LastName");
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
 
     @Test
     public void shouldNotReturnErrorsWhenFirstNameLastNamePersonalCodeIsProvided() {
-        SearchClientRequest request = new SearchClientRequest("FirstName", "LastName", "PersonalCode");
+        SearchClientsRequest request = new SearchClientsRequest("FirstName", "LastName", "PersonalCode");
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
     }
 
     @Test
     public void shouldReturnErrorWhenSearchFieldsAreEmpty() {
-        SearchClientRequest request = new SearchClientRequest(null, null);
+        SearchClientsRequest request = new SearchClientsRequest(null, null);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 3);
         assertEquals(errors.get(0).getField(), "firstName");

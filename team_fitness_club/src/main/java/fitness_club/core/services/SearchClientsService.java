@@ -4,10 +4,10 @@ import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
-import fitness_club.core.requests.SearchClientRequest;
-import fitness_club.core.responses.SearchClientResponse;
+import fitness_club.core.requests.SearchClientsRequest;
+import fitness_club.core.responses.SearchClientsResponse;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.validators.client.SearchClientRequestValidator;
+import fitness_club.core.services.validators.client.SearchClientsRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Component
 @Transactional
-public class SearchClientService {
+public class SearchClientsService {
     @Value("${search.ordering.enabled}")
     private boolean orderingEnabled;
 
@@ -30,22 +30,22 @@ public class SearchClientService {
     @Autowired
     private JpaClientRepository clientRepository;
     @Autowired
-    private SearchClientRequestValidator validator;
+    private SearchClientsRequestValidator validator;
 
-    public SearchClientResponse execute(SearchClientRequest request) {
+    public SearchClientsResponse execute(SearchClientsRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
-            return new SearchClientResponse(null, errors);
+            return new SearchClientsResponse(null, errors);
         }
 
         List<Client> foundClients = search(request);
         foundClients = order(foundClients, request.getOrdering());
         foundClients = paging(foundClients, request.getPaging());
 
-        return new SearchClientResponse(foundClients, null);
+        return new SearchClientsResponse(foundClients, null);
     }
 
-    private List<Client> search(SearchClientRequest request) {
+    private List<Client> search(SearchClientsRequest request) {
         List<Client> foundClients = new ArrayList<>();
         if (request.isFirstNameProvided() && !request.isLastNameProvided()) {
             foundClients = clientRepository.findByFirstName(request.getFirstName());
@@ -57,7 +57,7 @@ public class SearchClientService {
             foundClients = clientRepository.findByFirstNameAndLastNameLike(request.getFirstName(), request.getLastName());
         }
         if (request.isPersonalCodeProvided()) {
-            foundClients = clientRepository.findByPersonalCodeLike(request.getPersonaCode());
+            foundClients = clientRepository.findByPersonalCodeLike(request.getPersonalCode());
         }
         return foundClients;
     }

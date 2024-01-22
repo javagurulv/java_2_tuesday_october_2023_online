@@ -14,12 +14,14 @@
 
 <table>
     <tr>
+        <td>Id:</td>
         <td>First name:</td>
         <td>Last name:</td>
         <td>Personal code:</td>
     </tr>
 
     <tr th:if="${clients != null}" th:each="client : ${clients}">
+        <td th:text=" ${client.id}">
         <td th:text=" ${client.firstName}">
         <td th:text=" ${client.lastName}">
         <td th:text=" ${client.personalCode}">

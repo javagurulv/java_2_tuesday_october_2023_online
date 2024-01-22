@@ -5,46 +5,46 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
-public class SearchClientRequest {
+public class SearchClientsRequest {
 
     private String firstName;
     private String lastName;
-    private String personaCode;
+    private String personalCode;
     private Ordering ordering;
     private Paging paging;
 
-    public SearchClientRequest(String firstName, String lastName) {
+    public SearchClientsRequest(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public SearchClientRequest(String personaCode) {
-        this.personaCode = personaCode;
+    public SearchClientsRequest(String personaCode) {
+        this.personalCode = personaCode;
     }
 
-    public SearchClientRequest(String firstName, String lastName, Ordering ordering) {
+    public SearchClientsRequest(String firstName, String lastName, Ordering ordering) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ordering = ordering;
     }
 
-    public SearchClientRequest(String firstName, String lastName, Paging paging) {
+    public SearchClientsRequest(String firstName, String lastName, Paging paging) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.paging = paging;
     }
 
-    public SearchClientRequest(String firstName, String lastName, Ordering ordering, Paging paging) {
+    public SearchClientsRequest(String firstName, String lastName, Ordering ordering, Paging paging) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ordering = ordering;
         this.paging = paging;
     }
 
-    public SearchClientRequest(String firstName, String lastName, String personalCode) {
+    public SearchClientsRequest(String firstName, String lastName, String personalCode) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.personaCode = personalCode;
+        this.personalCode = personalCode;
     }
 
     public String getFirstName() {
@@ -55,8 +55,8 @@ public class SearchClientRequest {
         return lastName;
     }
 
-    public String getPersonaCode() {
-        return personaCode;
+    public String getPersonalCode() {
+        return personalCode;
     }
 
     public boolean isFirstNameProvided() {
@@ -68,7 +68,7 @@ public class SearchClientRequest {
     }
 
     public boolean isPersonalCodeProvided() {
-        return this.personaCode != null && !this.personaCode.isEmpty();
+        return this.personalCode != null && !this.personalCode.isEmpty();
     }
 
     public Ordering getOrdering() {

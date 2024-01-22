@@ -3,13 +3,12 @@ package fitness_club.acceptance_tests;
 import fitness_club.core.DatabaseCleaner;
 import fitness_club.config.SpringCoreConfiguration;
 import fitness_club.core.requests.AddClientRequest;
-import fitness_club.core.requests.SearchClientRequest;
+import fitness_club.core.requests.SearchClientsRequest;
 import fitness_club.core.responses.AddClientResponse;
-import fitness_club.core.responses.SearchClientResponse;
+import fitness_club.core.responses.SearchClientsResponse;
 import fitness_club.core.services.AddClientService;
-import fitness_club.core.services.SearchClientService;
+import fitness_club.core.services.SearchClientsService;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class AddClientAcceptanceTest {
     @Autowired
     private AddClientService addClientService;
     @Autowired
-    private SearchClientService searchClientService;
+    private SearchClientsService searchClientService;
     @Autowired
     private DatabaseCleaner databaseCleaner;
 
@@ -65,7 +64,7 @@ public class AddClientAcceptanceTest {
     public void shouldReturnCorrectClient() {
         AddClientRequest addClientRequest = new AddClientRequest("FirstName", "LastName", "123");
         addClientService.execute(addClientRequest);
-        SearchClientResponse response = searchClientService.execute(new SearchClientRequest("FirstName", "LastName"));
+        SearchClientsResponse response = searchClientService.execute(new SearchClientsRequest("FirstName", "LastName"));
         assertEquals(response.getFoundClients().get(0).getFirstName(), "FirstName");
         assertEquals(response.getFoundClients().get(0).getLastName(), "LastName");
         assertEquals(response.getFoundClients().get(0).getPersonalCode(), "123");

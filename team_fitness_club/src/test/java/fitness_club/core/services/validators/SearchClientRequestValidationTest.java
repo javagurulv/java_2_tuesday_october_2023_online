@@ -2,10 +2,10 @@ package fitness_club.core.services.validators;
 
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
-import fitness_club.core.requests.SearchClientRequest;
+import fitness_club.core.requests.SearchClientsRequest;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.validators.client.SearchClientRequestFieldValidator;
-import fitness_club.core.services.validators.client.SearchClientRequestValidator;
+import fitness_club.core.services.validators.client.SearchClientsRequestFieldValidator;
+import fitness_club.core.services.validators.client.SearchClientsRequestValidator;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -20,9 +20,9 @@ import static org.mockito.Mockito.when;
 public class SearchClientRequestValidationTest {
 
     @InjectMocks
-    private SearchClientRequestValidator validator;
+    private SearchClientsRequestValidator validator;
     @Mock
-    private SearchClientRequestFieldValidator fieldValidator;
+    private SearchClientsRequestFieldValidator fieldValidator;
     @Mock
     private OrderingValidator orderingValidator;
     @Mock
@@ -35,7 +35,7 @@ public class SearchClientRequestValidationTest {
 
     @Test
     public void shouldNotReturnErrorsWhenFieldValidatorReturnNoErrors() {
-        SearchClientRequest request = new SearchClientRequest("FirstName", null);
+        SearchClientsRequest request = new SearchClientsRequest("FirstName", null);
         when(fieldValidator.validate(request)).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
@@ -43,7 +43,7 @@ public class SearchClientRequestValidationTest {
 
     @Test
     public void shouldReturnErrorsWhenFieldValidatorReturnErrors() {
-        SearchClientRequest request = new SearchClientRequest(null, "LastName");
+        SearchClientsRequest request = new SearchClientsRequest(null, "LastName");
         CoreError error = new CoreError("firstName", "Must not be empty!");
         when(fieldValidator.validate(request)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
@@ -55,7 +55,7 @@ public class SearchClientRequestValidationTest {
     @Test
     public void shouldNotReturnErrorsWhenOrderingValidatorReturnNoErrors() {
         Ordering ordering = new Ordering("FirstName", "ASCENDING");
-        SearchClientRequest request = new SearchClientRequest("FirstName", "LastName", ordering);
+        SearchClientsRequest request = new SearchClientsRequest("FirstName", "LastName", ordering);
         when(orderingValidator.validate(ordering)).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
@@ -64,7 +64,7 @@ public class SearchClientRequestValidationTest {
     @Test
     public void shouldReturnErrorsWhenOrderingValidatorReturnErrors() {
         Ordering ordering = new Ordering(null, "ASCENDING");
-        SearchClientRequest request = new SearchClientRequest("FirstName", "LastName", ordering);
+        SearchClientsRequest request = new SearchClientsRequest("FirstName", "LastName", ordering);
         CoreError error = new CoreError("orderBy", "Must not be empty!");
         when(orderingValidator.validate(ordering)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
@@ -75,7 +75,7 @@ public class SearchClientRequestValidationTest {
 
     @Test
     public void shouldNotInvokeOrderingValidatorWhenNoOrderingObjectPresentInRequest() {
-        SearchClientRequest request = new SearchClientRequest("FirstName", "LastName");
+        SearchClientsRequest request = new SearchClientsRequest("FirstName", "LastName");
         validator.validate(request);
         verifyNoMoreInteractions(orderingValidator);
     }
@@ -83,7 +83,7 @@ public class SearchClientRequestValidationTest {
     @Test
     public void shouldNotReturnErrorsWhenPagingValidatorReturnNoErrors() {
         Paging paging = new Paging(5, 5);
-        SearchClientRequest request = new SearchClientRequest("FirstName", "LastName", paging);
+        SearchClientsRequest request = new SearchClientsRequest("FirstName", "LastName", paging);
         when(pagingValidator.validate(paging)).thenReturn(List.of());
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 0);
@@ -92,7 +92,7 @@ public class SearchClientRequestValidationTest {
     @Test
     public void shouldReturnErrorsWhenPagingValidatorReturnErrors() {
         Paging paging = new Paging(null, 5);
-        SearchClientRequest request = new SearchClientRequest("FirstName", "LastName", paging);
+        SearchClientsRequest request = new SearchClientsRequest("FirstName", "LastName", paging);
         CoreError error = new CoreError("pageNumber", "Must not be empty!");
         when(pagingValidator.validate(paging)).thenReturn(List.of(error));
         List<CoreError> errors = validator.validate(request);
@@ -103,7 +103,7 @@ public class SearchClientRequestValidationTest {
 
     @Test
     public void shouldNotInvokePagingValidatorWhenNoPagingObjectPresentInRequest() {
-        SearchClientRequest request = new SearchClientRequest("FirstName", "LastName");
+        SearchClientsRequest request = new SearchClientsRequest("FirstName", "LastName");
         validator.validate(request);
         verifyNoMoreInteractions(pagingValidator);
     }

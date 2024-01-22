@@ -1,28 +1,19 @@
 package fitness_club.core.services;
 
 
-import fitness_club.core.database.ClientRepository;
 import fitness_club.core.database.jpa.JpaAgeGroupRepository;
 import fitness_club.core.domain.AgeGroup;
-import fitness_club.core.domain.Client;
-import fitness_club.core.requests.Ordering;
-import fitness_club.core.requests.Paging;
 import fitness_club.core.requests.SearchAgeGroupRequest;
-import fitness_club.core.requests.SearchClientRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.core.responses.SearchAgeGroupResponse;
-import fitness_club.core.responses.SearchClientResponse;
 import fitness_club.core.services.validators.ageGroup.SearchAgeGroupRequestValidator;
-import fitness_club.core.services.validators.client.SearchClientRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @Transactional

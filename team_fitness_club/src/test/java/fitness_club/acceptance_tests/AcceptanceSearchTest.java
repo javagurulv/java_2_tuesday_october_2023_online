@@ -5,12 +5,11 @@ import fitness_club.config.SpringCoreConfiguration;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
-import fitness_club.core.requests.SearchClientRequest;
-import fitness_club.core.responses.SearchClientResponse;
+import fitness_club.core.requests.SearchClientsRequest;
+import fitness_club.core.responses.SearchClientsResponse;
 import fitness_club.core.services.AddClientService;
-import fitness_club.core.services.SearchClientService;
+import fitness_club.core.services.SearchClientsService;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 @Sql({"/schema.sql"})
 public class AcceptanceSearchTest {
     @Autowired private AddClientService addClientService;
-    @Autowired private SearchClientService searchClientService;
+    @Autowired private SearchClientsService searchClientService;
     @Autowired private DatabaseCleaner databaseCleaner;
 
     @Before
@@ -43,8 +42,8 @@ public class AcceptanceSearchTest {
         AddClientRequest request2 = new AddClientRequest("Aaa", "Ddd", "1234");
         addClientService.execute(request2);
 
-        SearchClientRequest request3 = new SearchClientRequest("Aaa", null);
-        SearchClientResponse response = searchClientService.execute(request3);
+        SearchClientsRequest request3 = new SearchClientsRequest("Aaa", null);
+        SearchClientsResponse response = searchClientService.execute(request3);
 
         assertEquals(response.getFoundClients().size(), 2);
         assertEquals(response.getFoundClients().get(0).getFirstName(), "Aaa");
@@ -62,8 +61,8 @@ public class AcceptanceSearchTest {
         addClientService.execute(request2);
 
         Ordering ordering = new Ordering("lastName", "DESCENDING");
-        SearchClientRequest request3 = new SearchClientRequest("Aaa", null, ordering);
-        SearchClientResponse response = searchClientService.execute(request3);
+        SearchClientsRequest request3 = new SearchClientsRequest("Aaa", null, ordering);
+        SearchClientsResponse response = searchClientService.execute(request3);
 
         assertEquals(response.getFoundClients().size(), 2);
         assertEquals(response.getFoundClients().get(0).getFirstName(), "Aaa");
@@ -82,8 +81,8 @@ public class AcceptanceSearchTest {
 
         Ordering ordering = new Ordering("lastName", "ASCENDING");
 
-        SearchClientRequest request3 = new SearchClientRequest("Aaa", null, ordering);
-        SearchClientResponse response = searchClientService.execute(request3);
+        SearchClientsRequest request3 = new SearchClientsRequest("Aaa", null, ordering);
+        SearchClientsResponse response = searchClientService.execute(request3);
 
         assertEquals(response.getFoundClients().size(), 2);
         assertEquals(response.getFoundClients().get(0).getFirstName(), "Aaa");
@@ -104,8 +103,8 @@ public class AcceptanceSearchTest {
 
         Paging paging = new Paging(1,2);
 
-        SearchClientRequest request3 = new SearchClientRequest("Aaa", null, ordering, paging);
-        SearchClientResponse response = searchClientService.execute(request3);
+        SearchClientsRequest request3 = new SearchClientsRequest("Aaa", null, ordering, paging);
+        SearchClientsResponse response = searchClientService.execute(request3);
 
         assertEquals(response.getFoundClients().size(), 2);
         assertEquals(response.getFoundClients().get(0).getFirstName(), "Aaa");
