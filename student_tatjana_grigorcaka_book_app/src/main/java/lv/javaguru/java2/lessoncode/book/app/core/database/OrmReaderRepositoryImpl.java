@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Component
-@Transactional
+//@Component
+//@Transactional
 public class OrmReaderRepositoryImpl implements ReaderRepository {
 
 	@Autowired private SessionFactory sessionFactory;

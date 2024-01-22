@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
 `last_name` VARCHAR(50) NOT NULL,
 `personal_code` VARCHAR(50) NOT NULL,
 PRIMARY KEY (`id`)
-);
+)
 
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `age_groups` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
 `age_group` VARCHAR(50) NOT NULL,
 PRIMARY KEY (`id`)
-);
+)
 
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `workouts` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
 `workout` VARCHAR(50) NOT NULL,
 PRIMARY KEY (`id`)
-);
+)
 
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `fitness_centers` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
 `fitness_center` VARCHAR(50) NOT NULL,
 PRIMARY KEY (`id`)
-);
+)
 
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `member_card` (
 `fitness_center_id` BIGINT NOT NULL,
 `term_of_contract` DATETIME NOT NULL,
 PRIMARY KEY (`id`)
-);
+)
 
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;

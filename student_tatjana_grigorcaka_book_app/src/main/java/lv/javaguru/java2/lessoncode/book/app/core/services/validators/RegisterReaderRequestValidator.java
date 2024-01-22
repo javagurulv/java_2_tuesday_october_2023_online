@@ -2,7 +2,7 @@ package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lv.javaguru.java2.lessoncode.book.app.core.database.ReaderRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaReaderRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Reader;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.RegisterReaderRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
@@ -19,7 +19,7 @@ import java.util.Optional;
 public class RegisterReaderRequestValidator {
 
 	@Autowired
-	private ReaderRepository readerRepository;
+	private JpaReaderRepository readerRepository;
 
 	public List<CoreError> validate(RegisterReaderRequest request) {
 		List<CoreError> errors = new ArrayList<>();

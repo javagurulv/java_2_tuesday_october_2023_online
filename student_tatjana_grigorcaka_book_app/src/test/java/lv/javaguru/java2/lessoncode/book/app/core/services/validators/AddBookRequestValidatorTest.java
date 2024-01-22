@@ -1,6 +1,7 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
 import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaBookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
@@ -19,7 +20,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class AddBookRequestValidatorTest {
 
-    @Mock private BookRepository bookRepository;
+    @Mock private JpaBookRepository bookRepository;
     @InjectMocks
     private AddBookRequestValidator validator;
 
@@ -44,7 +45,7 @@ public class AddBookRequestValidatorTest {
 
     @Test
     public void shouldReturnErrorWhenIssueYearIsNull() {
-        AddBookRequest request = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 0);
+        AddBookRequest request = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", null);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "issueYear");
@@ -53,7 +54,7 @@ public class AddBookRequestValidatorTest {
 
     @Test
     public void shouldReturnErrorsWhenAuthorTitleYIssueYearIsNull() {
-        AddBookRequest request = new AddBookRequest(null, null, 0);
+        AddBookRequest request = new AddBookRequest(null, null, null);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 3);
     }
@@ -67,8 +68,8 @@ public class AddBookRequestValidatorTest {
 
     @Test
     public void shouldReturnErrorWhenDuplicateFound() {
-        bookRepository = Mockito.mock(BookRepository.class);
-        Mockito.when(bookRepository.findByTitleAndAuthor("The Little Prince", "Antoine de Saint-Exupery")).thenReturn(List.of(new Book("The Little Prince","Antoine de Saint-Exupery", 1943)));
+        bookRepository = Mockito.mock(JpaBookRepository.class);
+        Mockito.when(bookRepository.findByTitleAndAuthorAndIssueYear("The Little Prince", "Antoine de Saint-Exupery", 1943)).thenReturn(List.of(new Book("The Little Prince","Antoine de Saint-Exupery", 1943)));
         validator = new AddBookRequestValidator(bookRepository);
         AddBookRequest request = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943);
         List<CoreError> errors = validator.validate(request);
@@ -79,8 +80,8 @@ public class AddBookRequestValidatorTest {
 
     @Test
     public void shouldNotReturnErrorWhenDuplicateNotFound() {
-        bookRepository = Mockito.mock(BookRepository.class);
-        Mockito.when(bookRepository.findByTitleAndAuthor("The Little Prince", "Antoine de Saint-Exupery")).thenReturn(List.of());
+        bookRepository = Mockito.mock(JpaBookRepository.class);
+        Mockito.when(bookRepository.findByTitleAndAuthorAndIssueYear("The Little Prince", "Antoine de Saint-Exupery", 1943)).thenReturn(List.of());
         validator = new AddBookRequestValidator(bookRepository);
         AddBookRequest request = new AddBookRequest("The Little Prince", "Antoine de Saint-Exupery", 1943);
         List<CoreError> errors = validator.validate(request);

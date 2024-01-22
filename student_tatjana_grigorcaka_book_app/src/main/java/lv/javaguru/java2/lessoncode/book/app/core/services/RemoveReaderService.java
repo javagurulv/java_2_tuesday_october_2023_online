@@ -1,6 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.ReaderRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaReaderRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.RemoveReaderRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.RemoveReaderResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class RemoveReaderService {
 
-    @Autowired private ReaderRepository readerRepository;
+    @Autowired private JpaReaderRepository readerRepository;
     @Autowired private RemoveReaderRequestValidator validator;
 
 
@@ -24,8 +24,8 @@ public class RemoveReaderService {
         if (!errors.isEmpty()) {
             return new RemoveReaderResponse(errors);
         }
-        boolean isReaderRemoved = readerRepository.deleteById(request.getReaderIdToRemove());
-        return new RemoveReaderResponse(isReaderRemoved);
+        readerRepository.deleteById(request.getReaderId());
+        return new RemoveReaderResponse(true);
     }
 
 }

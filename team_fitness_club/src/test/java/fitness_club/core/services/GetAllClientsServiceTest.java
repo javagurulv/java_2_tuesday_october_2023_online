@@ -1,6 +1,7 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.ClientRepository;
+import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.requests.GetAllClientsRequest;
 import fitness_club.core.responses.GetAllClientsResponse;
 import fitness_club.core.domain.Client;
@@ -18,7 +19,7 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class GetAllClientsServiceTest {
    @Mock
-    private ClientRepository clientRepository;
+    private JpaClientRepository clientRepository;
     @InjectMocks
     private GetAllClientsService service;
 
@@ -27,7 +28,7 @@ public class GetAllClientsServiceTest {
 
         List<Client> clients = List.of(new Client("Andrey", "Pupkin",
                 "12-12"));
-        Mockito.when(clientRepository.getAllClients()).thenReturn(clients);
+        Mockito.when(clientRepository.findAll()).thenReturn(clients);
         GetAllClientsRequest request = new GetAllClientsRequest();
         GetAllClientsResponse response = service.execute(request);
         assertEquals(response.getClients().size(), 1);
@@ -38,7 +39,7 @@ public class GetAllClientsServiceTest {
 
         List<Client> clients = List.of(new Client("Andrey", "Pupkin",
                 "12-13"));
-        Mockito.when(clientRepository.getAllClients()).thenReturn(clients);
+        Mockito.when(clientRepository.findAll()).thenReturn(clients);
         GetAllClientsRequest request = new GetAllClientsRequest();
         GetAllClientsResponse response = service.execute(request);
         assertEquals(response.getClients().size(), 1);

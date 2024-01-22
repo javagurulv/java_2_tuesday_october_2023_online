@@ -41,6 +41,6 @@ public class MemberCard {
     @Column(name = "term_of_contract", nullable = false)
     private Date termOfContract;
 
-    public MemberCard(Long client, Long ageGroup, Long fitnessCentre, Long workout) {
+    public MemberCard(Long client, Long ageGroup, Long fitnessCentre, Long workout, Date termOfContract) {
     }
 }

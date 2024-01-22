@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Book App demo project">
+    <meta name="author" content="JavaGuru">
+    <title>Book App</title>
+</head>
+
+<body>
+
+<h3>Update book</h3>
+
+<table>
+    <tr>
+        <td>Book ID:</td>
+        <td>New Title:</td>
+        <td>New Author:</td>
+        <td>New Issue year:</td>
+    </tr>
+
+    <tr>
+        <form action="/updateBook" th:object="${request}" method="post">
+            <td><input type="text" th:field="${request.id}"/></td>
+            <td><input type="text" th:field="${request.newTitle}"/></td>
+            <td><input type="text" th:field="${request.newAuthor}"/></td>
+            <td><input type="text" th:field="${request.newIssueYear}"/></td>
+            <td>
+                <input type="submit" value="Update Book"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+<td th:text="${error.errorCode}" />
+<td th:text="${error.errorMessage}" />
+</tr>
+</td>
+
+</body>
+
+</html>

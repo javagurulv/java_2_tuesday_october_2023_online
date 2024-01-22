@@ -2,13 +2,13 @@ package lv.javaguru.java2.lessoncode.book.app.core.requests;
 
 public class RemoveReaderRequest {
 
-    private Long readerIdToRemove;
+    private Long readerId;
 
-    public RemoveReaderRequest(Long readerIdToRemove) {
-        this.readerIdToRemove = readerIdToRemove;
+    public RemoveReaderRequest(Long readerId) {
+        this.readerId = readerId;
     }
 
-    public Long getReaderIdToRemove() {
-        return readerIdToRemove;
+    public Long getReaderId() {
+        return readerId;
     }
 }

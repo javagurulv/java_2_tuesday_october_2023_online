@@ -2,8 +2,9 @@ package fitness_club.core.services;
 
 
 import fitness_club.core.database.ClientRepository;
+import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.responses.AddClientResponse;
-import fitness_club.core.services.vlidators.client.AddClientRequestValidator;
+import fitness_club.core.services.validators.client.AddClientRequestValidator;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.CoreError;
 import fitness_club.matchers.ClientMatcher;
@@ -26,7 +27,7 @@ public class AddClientServiceTest {
     @Mock
     private AddClientRequestValidator validator;
     @Mock
-    private ClientRepository clientRepository;
+    private JpaClientRepository clientRepository;
     @InjectMocks
     private AddClientService service;
 

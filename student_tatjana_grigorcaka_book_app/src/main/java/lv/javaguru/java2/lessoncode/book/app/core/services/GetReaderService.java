@@ -1,6 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.ReaderRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaReaderRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.GetReaderRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.GetReaderResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class GetReaderService {
 
-	@Autowired private ReaderRepository readerRepository;
+	@Autowired private JpaReaderRepository readerRepository;
 	@Autowired private GetReaderValidator validator;
 
 	public GetReaderResponse execute(GetReaderRequest request) {
@@ -23,7 +23,7 @@ public class GetReaderService {
 		if (!errors.isEmpty()) {
 			return new GetReaderResponse(errors);
 		}
-		return readerRepository.getById(request.getId())
+		return readerRepository.findById(request.getId())
 				.map(GetReaderResponse::new)
 				.orElseGet(() -> {
 					errors.add(new CoreError("id", "Not found!"));

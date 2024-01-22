@@ -21,11 +21,17 @@
         <form action="/removeClientFromList" th:object="${request}" method="post">
             <td><input type="text" th:field="${request.personalCode}"/></td>
             <td>
-                <input type="submit" value="Remove Client"/>
+                <input type="submit" value="Remove client"/>
                 <input type="reset" value="Clear"/>
             </td>
         </form>
+        <form action="/" method="get">
+            <input type="submit" value="Go to main page" name="Submit"/>
+        </form>
+
     </tr>
+
+
 </table>
 
 <td th:if="${errors != null}">

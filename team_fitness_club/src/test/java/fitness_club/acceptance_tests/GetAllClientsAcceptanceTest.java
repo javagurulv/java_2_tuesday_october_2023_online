@@ -1,6 +1,6 @@
 package fitness_club.acceptance_tests;
 
-import fitness_club.DatabaseCleaner;
+import fitness_club.core.DatabaseCleaner;
 import fitness_club.config.SpringCoreConfiguration;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.requests.GetAllClientsRequest;
@@ -18,7 +18,6 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.assertEquals;
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringCoreConfiguration.class)
 @Sql({"/schema.sql"})

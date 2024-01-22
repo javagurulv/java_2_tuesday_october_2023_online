@@ -2,7 +2,7 @@ package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaBookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @Component
 public class AddBookRequestValidator {
 
-    @Autowired private BookRepository bookRepository;
+    @Autowired private JpaBookRepository bookRepository;
 
 
     public List<CoreError> validate(AddBookRequest request) {
@@ -44,14 +44,14 @@ public class AddBookRequestValidator {
     }
 
     private Optional<CoreError> validateIssueYear(AddBookRequest request) {
-        return ((request.getIssueYear() <= 0))
+        return ((request.getIssueYear() == null))
                 ? Optional.of(new CoreError("issueYear", "Must be greater than 0!"))
                 : Optional.empty();
     }
 
 
     private Optional<CoreError> validateDuplicate(AddBookRequest request) {
-        List<Book> books = bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor());
+        List<Book> books = bookRepository.findByTitleAndAuthorAndIssueYear(request.getTitle(), request.getAuthor(), request.getIssueYear());
         return (!books.isEmpty())
                 ? Optional.of(new CoreError("duplicate", "Duplicate book not accepted!"))
                 : Optional.empty();

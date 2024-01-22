@@ -1,6 +1,6 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.AgeGroupsRepository;
+import fitness_club.core.database.jpa.JpaAgeGroupRepository;
 import fitness_club.core.domain.AgeGroup;
 import fitness_club.core.requests.GetAllAgeGroupsRequest;
 import fitness_club.core.responses.GetAllAgeGroupsResponse;
@@ -24,7 +24,7 @@ public class GetAllClientAgeGroupsServiceTest {
     private AgeGroup ageGroup3;
 
     @Mock
-    private AgeGroupsRepository ageGroupsRepository;
+    private JpaAgeGroupRepository ageGroupsRepository;
 
     @InjectMocks
     private GetAllAgeGroupsService service;
@@ -39,7 +39,7 @@ public class GetAllClientAgeGroupsServiceTest {
 
         List<AgeGroup> ageGroups = List.of(ageGroup1,
                 ageGroup2, ageGroup3);
-        Mockito.when(ageGroupsRepository.getAllAgeGroups()).thenReturn(ageGroups);
+        Mockito.when(ageGroupsRepository.findAll()).thenReturn(ageGroups);
         GetAllAgeGroupsRequest request = new GetAllAgeGroupsRequest();
         GetAllAgeGroupsResponse response = service.execute(request);
         assertEquals(response.getAgeGroups().size(), 3);
@@ -53,7 +53,7 @@ public class GetAllClientAgeGroupsServiceTest {
         ageGroup1 = new AgeGroup(1L, "CHILD");
         List<AgeGroup> ageGroups = List.of(ageGroup1);
 
-        Mockito.when(ageGroupsRepository.getAllAgeGroups()).thenReturn(ageGroups);
+        Mockito.when(ageGroupsRepository.findAll()).thenReturn(ageGroups);
         GetAllAgeGroupsRequest request = new GetAllAgeGroupsRequest();
         GetAllAgeGroupsResponse response = service.execute(request);
         assertEquals(response.getAgeGroups().size(), 1);

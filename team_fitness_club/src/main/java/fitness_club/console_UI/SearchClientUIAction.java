@@ -3,9 +3,9 @@ package fitness_club.console_UI;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
-import fitness_club.core.requests.SearchClientRequest;
-import fitness_club.core.responses.SearchClientResponse;
-import fitness_club.core.services.SearchClientService;
+import fitness_club.core.requests.SearchClientsRequest;
+import fitness_club.core.responses.SearchClientsResponse;
+import fitness_club.core.services.SearchClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +15,7 @@ import java.util.Scanner;
 public class SearchClientUIAction implements UIAction {
 
     @Autowired
-    private SearchClientService searchClientService;
-
-
+    private SearchClientsService searchClientService;
 
     @Override
     public void execute() {
@@ -30,7 +28,7 @@ public class SearchClientUIAction implements UIAction {
         String personalCode = scanner.nextLine();
         System.out.println();
 
-        System.out.println("Enter orderBy client firstName or lastName): ");
+        System.out.println("Enter orderBy client firstName || lastName): ");
         String orderBy = scanner.nextLine();
         System.out.println("Enter orderDirection (ASCENDING||DESCENDING): ");
         String orderDirection = scanner.nextLine();
@@ -42,11 +40,11 @@ public class SearchClientUIAction implements UIAction {
         Integer pageSize = Integer.parseInt(scanner.nextLine());
         Paging paging = new Paging(pageNumber, pageSize);
 
-        SearchClientRequest request = new SearchClientRequest(firstName, lastName, personalCode, ordering, paging);
-        SearchClientResponse response = searchClientService.execute(request);
+        SearchClientsRequest request = new SearchClientsRequest(firstName, lastName, personalCode, ordering, paging);
+        SearchClientsResponse response = searchClientService.execute(request);
 
         if (response.hasErrors()) {
-            response.getErrors().forEach(coreError -> System.out.println("BL Error: " + coreError.getField() + " " + coreError.getMessage()));
+            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
         } else {
             response.getFoundClients().forEach(Client::toString);
         }
