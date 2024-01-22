@@ -1,6 +1,7 @@
 package fitness_club.core.services;
 
 import fitness_club.core.database.ClientRepository;
+import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.GetAllClientsRequest;
 import fitness_club.core.responses.GetAllClientsResponse;
@@ -15,10 +16,10 @@ import java.util.List;
 public class GetAllClientsService {
 
    @Autowired
-   private ClientRepository clientRepository;
+   private JpaClientRepository clientRepository;
 
     public GetAllClientsResponse execute(GetAllClientsRequest request) {
-        List<Client> clients = clientRepository.getAllClients();
+        List<Client> clients = clientRepository.findAll();
         return new GetAllClientsResponse(clients);
     }
 }

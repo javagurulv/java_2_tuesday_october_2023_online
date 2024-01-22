@@ -5,11 +5,13 @@ import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.services.AddClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Scanner;
 
 @Component
 public class AddClientUIAction implements UIAction {
+
     @Autowired
     private AddClientService addClientService;
 

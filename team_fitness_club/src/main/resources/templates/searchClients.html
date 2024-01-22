@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fitness club demo project">
+    <meta name="author" content="Fitness club team">
+    <title>Fitness Club</title>
+</head>
+
+<body>
+
+<h3>Search clients</h3>
+
+<table>
+    <tr>
+        <td>Search by First Name:</td>
+        <td>Search by Last Name:</td>
+          </tr>
+
+    <tr>
+        <form action="/searchClients" th:object="${request}" method="post">
+            <td><input type="text" th:field="${request.firstName}"/></td>
+            <td><input type="text" th:field="${request.lastName}"/></td>
+                  <td>
+                <input type="submit" value="Search clients"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>Search by Personal Code:</td>
+    </tr>
+
+    <tr>
+        <form action="/searchClients" th:object="${request}" method="post">
+            <td><input type="text" th:field="${request.personalCode}"/></td>
+            <td>
+                <input type="submit" value="Search clients"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<h3>Search results:</h3>
+
+<table>
+    <tr>
+        <td>Id:</td>
+        <td>First Name:</td>
+        <td>Last Name:</td>
+        <td>Personal Code:</td>
+    </tr>
+
+    <td th:if="${clients != null}">
+        <tr th:each="client : ${clients}">
+    <td th:text="${client.id}"/>
+    <td th:text="${client.firstName}"/>
+    <td th:text="${client.lastName}"/>
+    <td th:text="${client.personalCode}"/>
+    </tr>
+    </td>
+
+</table>
+
+<form action="/" method="get">
+    <input type="submit" value="Go to main page" name="Submit"/>
+</form>
+
+
+</body>
+
+</html>

@@ -1,13 +1,9 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
-import lv.javaguru.java2.lessoncode.book.app.core.database.ReaderRepository;
-import lv.javaguru.java2.lessoncode.book.app.core.requests.RemoveBookRequest;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaReaderRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.RemoveReaderRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
-import lv.javaguru.java2.lessoncode.book.app.core.responses.RemoveBookResponse;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.RemoveReaderResponse;
-import lv.javaguru.java2.lessoncode.book.app.core.services.validators.RemoveBookRequestValidator;
 import lv.javaguru.java2.lessoncode.book.app.core.services.validators.RemoveReaderRequestValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +21,7 @@ import static org.mockito.ArgumentMatchers.any;
 @RunWith(MockitoJUnitRunner.class)
 public class RemoveReaderServiceTest {
     @Mock
-    private ReaderRepository readerRepository;
+    private JpaReaderRepository readerRepository;
     @Mock private RemoveReaderRequestValidator validator;
     @InjectMocks
     private RemoveReaderService service;
@@ -46,7 +42,6 @@ public class RemoveReaderServiceTest {
     @Test
     public void shouldDeleteReaderWithIdFromDatabase() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        Mockito.when(readerRepository.deleteById(1L)).thenReturn(true);
         RemoveReaderRequest request = new RemoveReaderRequest(1L);
         RemoveReaderResponse response = service.execute(request);
         assertFalse(response.containsErrors());

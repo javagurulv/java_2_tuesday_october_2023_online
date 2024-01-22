@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaBookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.GetAllBooksRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.GetAllBooksResponse;
@@ -20,7 +20,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class GetAllBooksServiceTest {
 
     @Mock
-    private BookRepository bookRepository;
+    private JpaBookRepository bookRepository;
     @InjectMocks
     private GetAllBooksService service;
 
@@ -28,7 +28,7 @@ public class GetAllBooksServiceTest {
     public void shouldGetBooksFromDb() {
         List<Book> books = new ArrayList<>();
         books.add(new Book("The Little Prince", "Antoine de Saint-Exupery", 1943));
-        Mockito.when(bookRepository.getAllBooks()).thenReturn(books);
+        Mockito.when(bookRepository.findAll()).thenReturn(books);
 
         GetAllBooksRequest request = new GetAllBooksRequest();
         GetAllBooksResponse response = service.execute(request);

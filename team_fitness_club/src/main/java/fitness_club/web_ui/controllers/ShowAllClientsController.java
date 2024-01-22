@@ -14,7 +14,7 @@ public class ShowAllClientsController {
     @Autowired
     private GetAllClientsService getAllClientsService;
 
-    @GetMapping (value = "/ showAllClients")
+    @GetMapping (value = "/showAllClients")
     public String showAllClients(ModelMap modelMap) {
         GetAllClientsResponse response = getAllClientsService.execute(
                 new GetAllClientsRequest()

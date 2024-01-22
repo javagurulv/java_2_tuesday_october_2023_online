@@ -8,7 +8,7 @@ INSERT INTO clients(first_name, last_name, personal_code)
 VALUES ('Dmitrij', 'Ivanov', 33333);
 
 INSERT INTO clients(first_name, last_name, personal_code)
-VALUES ('Viktor', 'Sidorov', 33A22);
+VALUES ('Viktor', 'Sidorov', 33222);
 
 
 INSERT INTO age_groups

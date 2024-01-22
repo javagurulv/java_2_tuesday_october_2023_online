@@ -41,17 +41,24 @@ class JdbcClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Client findClientById(Long id) {
-
-
-        return null;
+    public Optional<Client> getById(Long id) {
+        return Optional.empty();
     }
+
+
 
 
     @Override
     public boolean deleteByPersonalCode(String personalCode) {
         String sql = "DELETE FROM clients WHERE personal_code = ?";
         Object[] args = new Object[]{personalCode};
+        return jdbcTemplate.update(sql, args) == 1;
+    }
+
+    @Override
+    public boolean deleteById(Long id) {
+        String sql = "DELETE FROM clients WHERE id = ?";
+        Object[] args = new Object[]{id};
         return jdbcTemplate.update(sql, args) == 1;
     }
 

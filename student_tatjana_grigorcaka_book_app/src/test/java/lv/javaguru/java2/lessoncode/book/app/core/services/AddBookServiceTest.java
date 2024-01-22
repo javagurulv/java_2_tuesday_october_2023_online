@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaBookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.AddBookResponse;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
@@ -24,7 +24,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class AddBookServiceTest  {
 
-    @Mock private BookRepository bookRepository;
+    @Mock private JpaBookRepository bookRepository;
     @Mock private AddBookRequestValidator validator;
     @InjectMocks
     private AddBookService service;

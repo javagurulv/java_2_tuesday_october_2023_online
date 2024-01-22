@@ -1,6 +1,7 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.FitnessCentersRepository;
+import fitness_club.core.database.FitnessCenterRepositoryImpl;
+import fitness_club.core.database.jpa.JpaFitnessCentersRepository;
 import fitness_club.core.domain.FitnessCenter;
 import fitness_club.core.requests.GetAllFitnessCentersRequest;
 import fitness_club.core.responses.GetAllFitnessCentersResponse;
@@ -26,7 +27,7 @@ public class GetAllClientFitnessCentersServiceTest {
     private FitnessCenter fitnessCenter5;
 
     @Mock
-    private FitnessCentersRepository fitnessCentersRepository;
+    private JpaFitnessCentersRepository fitnessCentersRepository;
 
     @InjectMocks
     private GetAllFitnessCentresService service;
@@ -43,7 +44,7 @@ public class GetAllClientFitnessCentersServiceTest {
 
         List<FitnessCenter> fitnessCenters = List.of(fitnessCenter1,
                 fitnessCenter2, fitnessCenter3,fitnessCenter4,fitnessCenter5);
-        Mockito.when(fitnessCentersRepository.getAllFitnessCenters()).thenReturn(fitnessCenters);
+        Mockito.when(fitnessCentersRepository.findAll()).thenReturn(fitnessCenters);
         GetAllFitnessCentersRequest request = new GetAllFitnessCentersRequest();
         GetAllFitnessCentersResponse response = service.execute(request);
         assertEquals(response.getFitnessCenters().size(), 5);
@@ -59,7 +60,7 @@ public class GetAllClientFitnessCentersServiceTest {
         fitnessCenter1 = new FitnessCenter(1L, "IMANTA");
         List<FitnessCenter> fitnessCenters = List.of(fitnessCenter1);
 
-        Mockito.when(fitnessCentersRepository.getAllFitnessCenters()).thenReturn(fitnessCenters);
+        Mockito.when(fitnessCentersRepository.findAll()).thenReturn(fitnessCenters);
         GetAllFitnessCentersRequest request = new GetAllFitnessCentersRequest();
         GetAllFitnessCentersResponse response = service.execute(request);
         assertEquals(response.getFitnessCenters().size(), 1);

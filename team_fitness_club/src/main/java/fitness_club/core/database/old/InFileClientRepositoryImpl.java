@@ -13,7 +13,7 @@ import fitness_club.core.domain.AgeGroup;
 public class InFileClientRepositoryImpl implements ClientRepository {
     private AgeGroup ageGroups;
     private final String filename;
-    private List<Client> clients = new ArrayList<>();
+    private final List<Client> clients = new ArrayList<>();
 
     public InFileClientRepositoryImpl() {
         this.filename = ".\\team_fitness_club\\src\\main\\java\\fitness_club\\core\\database\\ClientsFile.bin";
@@ -26,10 +26,14 @@ public class InFileClientRepositoryImpl implements ClientRepository {
         saveClient(clients);
     }
 
+
     @Override
-    public Client findClientById(Long id) {
-        return null;
+    public Optional<Client> getById(Long id) {
+        return clients.stream()
+                .filter(client -> client.getId().equals(id))
+                .findFirst();
     }
+
 
     public boolean deleteByPersonalCode(String personalCode) {
         boolean isClientDeleted = false;
@@ -44,6 +48,21 @@ public class InFileClientRepositoryImpl implements ClientRepository {
         }
         return isClientDeleted;
 
+    }
+
+    @Override
+    public boolean deleteById(Long id) {
+        boolean isClientDeleted = false;
+        Optional<Client> clientToDeleteOpt = clients.stream()
+                .filter(client -> client.getId().equals(id))
+                .findFirst();
+        if (clientToDeleteOpt.isPresent()) {
+            Client clientToRemove = clientToDeleteOpt.get();
+            isClientDeleted = clients.remove(clientToRemove);
+            updateClientIds(clients);
+            saveClient(clients);
+        }
+        return isClientDeleted;
     }
 
     public List<Client> getAllClients() {
@@ -160,6 +179,7 @@ public class InFileClientRepositoryImpl implements ClientRepository {
                 .collect(Collectors.toList());
     }
 
+    @SuppressWarnings("unchecked")
     private void loadClientsFromFile() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
             List<Client> loadedClients = (List<Client>) ois.readObject();

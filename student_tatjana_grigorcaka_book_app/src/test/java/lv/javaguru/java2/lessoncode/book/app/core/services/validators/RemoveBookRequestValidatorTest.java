@@ -2,7 +2,6 @@ package lv.javaguru.java2.lessoncode.book.app.core.services.validators;
 
 import lv.javaguru.java2.lessoncode.book.app.core.requests.RemoveBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
-import lv.javaguru.java2.lessoncode.book.app.core.services.validators.RemoveBookRequestValidator;
 
 import org.junit.Test;
 

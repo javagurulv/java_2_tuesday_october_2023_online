@@ -1,6 +1,6 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaBookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.SearchBooksResponse;
@@ -29,7 +29,7 @@ public class SearchBooksService {
     @Value("${search.paging.enabled}")
     private boolean pagingEnabled;
 
-    @Autowired private BookRepository bookRepository;
+    @Autowired private JpaBookRepository bookRepository;
     @Autowired private SearchBooksRequestValidator validator;
 
     public SearchBooksResponse execute(SearchBooksRequest request) {
@@ -62,13 +62,13 @@ public class SearchBooksService {
     private List<Book> search(SearchBooksRequest request) {
         List<Book> books = new ArrayList<>();
         if (request.isTitleProvided() && !request.isAuthorProvided()) {
-            books = bookRepository.findByTitle(request.getTitle());
+            books = bookRepository.findByTitleLike(request.getTitle());
         }
         if (!request.isTitleProvided() && request.isAuthorProvided()) {
-            books = bookRepository.findByAuthor(request.getAuthor());
+            books = bookRepository.findByAuthorLike(request.getAuthor());
         }
         if (request.isTitleProvided() && request.isAuthorProvided()) {
-            books = bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor());
+            books = bookRepository.findByTitleAndAuthorLike(request.getTitle(), request.getAuthor());
         }
         return books;
     }

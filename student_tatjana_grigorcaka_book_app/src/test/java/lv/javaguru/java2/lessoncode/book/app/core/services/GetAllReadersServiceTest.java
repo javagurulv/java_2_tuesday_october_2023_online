@@ -1,12 +1,8 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
-import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
-import lv.javaguru.java2.lessoncode.book.app.core.database.ReaderRepository;
-import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaReaderRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Reader;
-import lv.javaguru.java2.lessoncode.book.app.core.requests.GetAllBooksRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.GetAllReadersRequest;
-import lv.javaguru.java2.lessoncode.book.app.core.responses.GetAllBooksResponse;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.GetAllReadersResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +21,7 @@ import static org.junit.Assert.assertFalse;
 public class GetAllReadersServiceTest {
 
     @Mock
-    private ReaderRepository readerRepository;
+    private JpaReaderRepository readerRepository;
     @InjectMocks
     private GetAllReadersService service;
 
@@ -33,7 +29,7 @@ public class GetAllReadersServiceTest {
     public void shouldGetReadersFromDb() {
         List<Reader> readers = new ArrayList<>();
         readers.add(new Reader("John", "Smith", "312345-67891"));
-        Mockito.when(readerRepository.getAllReaders()).thenReturn(readers);
+        Mockito.when(readerRepository.findAll()).thenReturn(readers);
 
         GetAllReadersRequest request = new GetAllReadersRequest();
         GetAllReadersResponse response = service.execute(request);

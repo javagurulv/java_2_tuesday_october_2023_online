@@ -1,12 +1,12 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.ClientRepository;
+import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.Ordering;
 import fitness_club.core.requests.Paging;
-import fitness_club.core.requests.SearchClientRequest;
-import fitness_club.core.responses.SearchClientResponse;
-import fitness_club.core.services.vlidators.client.SearchClientRequestValidator;
+import fitness_club.core.requests.SearchClientsRequest;
+import fitness_club.core.responses.SearchClientsResponse;
+import fitness_club.core.services.validators.client.SearchClientsRequestValidator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,13 +25,13 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class SearchClientServiceTest {
     @Mock
-    private ClientRepository clientRepository;
+    private JpaClientRepository clientRepository;
 
     @Mock
-    private SearchClientRequestValidator validator;
+    private SearchClientsRequestValidator validator;
 
     @InjectMocks
-    private SearchClientService service;
+    private SearchClientsService service;
 
     @Before
     public void setup() {
@@ -47,7 +47,7 @@ public class SearchClientServiceTest {
     @Test
     public void shouldSearchByFirstName() {
 
-        SearchClientRequest request = new SearchClientRequest("Dmitry", null);
+        SearchClientsRequest request = new SearchClientsRequest("Dmitry", null);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Client> clients = new ArrayList<>();
@@ -55,36 +55,38 @@ public class SearchClientServiceTest {
 
         Mockito.when(clientRepository.findByFirstName("Dmitry")).thenReturn(clients);
 
-        SearchClientResponse response = service.execute(request);
+        SearchClientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         assertEquals(response.getFoundClients().size(), 1);
         assertEquals(response.getFoundClients().get(0).getFirstName(), "Dmitry");
         assertEquals(response.getFoundClients().get(0).getLastName(), "Petrov");
+        assertEquals(response.getFoundClients().get(0).getPersonalCode(), "1234");
     }
 
     @Test
     public void shouldSearchByLastName() {
 
-        SearchClientRequest request = new SearchClientRequest(null, "Petrov");
+        SearchClientsRequest request = new SearchClientsRequest(null, "Petrov");
 
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Ivan", "Petrov", "1234"));
 
-        Mockito.when(clientRepository.findByLastName("Petrov")).thenReturn(clients);
+        Mockito.when(clientRepository.findByFirstName("Petrov")).thenReturn(clients);
 
-        SearchClientResponse response = service.execute(request);
+        SearchClientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         assertEquals(response.getFoundClients().size(), 1);
         assertEquals(response.getFoundClients().get(0).getFirstName(), "Ivan");
         assertEquals(response.getFoundClients().get(0).getLastName(), "Petrov");
+        assertEquals(response.getFoundClients().get(0).getPersonalCode(), "1234");
     }
 
     @Test
     public void shouldSearchByFirstNameWithOrderingAscending() {
         Ordering ordering = new Ordering("lastName", "ASCENDING");
-        SearchClientRequest request = new SearchClientRequest("Dmitry", null, ordering);
+        SearchClientsRequest request = new SearchClientsRequest("Dmitry", null, ordering);
 
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
@@ -94,17 +96,18 @@ public class SearchClientServiceTest {
 
         Mockito.when(clientRepository.findByFirstName("Dmitry")).thenReturn(clients);
 
-        SearchClientResponse response = service.execute(request);
+        SearchClientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         assertEquals(response.getFoundClients().size(), 2);
         assertEquals(response.getFoundClients().get(0).getLastName(), "Arbuzov");
         assertEquals(response.getFoundClients().get(1).getLastName(), "Bananov");
+
     }
 
     @Test
     public void shouldSearchByFirstNameWithOrderingDescending() {
         Ordering ordering = new Ordering("lastName", "DESCENDING");
-        SearchClientRequest request = new SearchClientRequest("Dmitry", null, ordering);
+        SearchClientsRequest request = new SearchClientsRequest("Dmitry", null, ordering);
 
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
@@ -114,7 +117,7 @@ public class SearchClientServiceTest {
 
         Mockito.when(clientRepository.findByFirstName("Dmitry")).thenReturn(clients);
 
-        SearchClientResponse response = service.execute(request);
+        SearchClientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         assertEquals(response.getFoundClients().size(), 2);
         assertEquals(response.getFoundClients().get(0).getLastName(), "Bananov");
@@ -124,7 +127,7 @@ public class SearchClientServiceTest {
     @Test
     public void shouldSearchByTitleWithPagingFirstPage() {
         Paging paging = new Paging(1, 1);
-        SearchClientRequest request = new SearchClientRequest("Dmitry", null, null, paging);
+        SearchClientsRequest request = new SearchClientsRequest("Dmitry", null, null, paging);
 
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
@@ -134,7 +137,7 @@ public class SearchClientServiceTest {
 
         Mockito.when(clientRepository.findByFirstName("Dmitry")).thenReturn(clients);
 
-        SearchClientResponse response = service.execute(request);
+        SearchClientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         assertEquals(response.getFoundClients().size(), 1);
         assertEquals(response.getFoundClients().get(0).getFirstName(), "Dmitry");
@@ -144,7 +147,7 @@ public class SearchClientServiceTest {
     @Test
     public void shouldSearchByTitleWithPagingSecondPage() {
         Paging paging = new Paging(2, 1);
-        SearchClientRequest request = new SearchClientRequest("Dmitry", null, null, paging);
+        SearchClientsRequest request = new SearchClientsRequest("Dmitry", null, null, paging);
 
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
@@ -154,7 +157,7 @@ public class SearchClientServiceTest {
 
         Mockito.when(clientRepository.findByFirstName("Dmitry")).thenReturn(clients);
 
-        SearchClientResponse response = service.execute(request);
+        SearchClientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         assertEquals(response.getFoundClients().size(), 1);
         assertEquals(response.getFoundClients().get(0).getFirstName(), "Dmitry");
