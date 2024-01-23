@@ -1,9 +1,9 @@
 package lv.javaguru.java2.product.storage.core.services.validators;
 
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaCustomerRepository;
 import lv.javaguru.java2.product.storage.core.domain.Customer;
 import lv.javaguru.java2.product.storage.core.requests.RegisterCustomerRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
-import lv.javaguru.java2.product.storage.core.database.CustomerRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(MockitoJUnitRunner.class)
 public class RegisterCustomerRequestValidatorTest {
 
-	@Mock private CustomerRepository customerRepository;
+	@Mock private JpaCustomerRepository customerRepository;
 	@InjectMocks
 	private RegisterCustomerRequestValidator validator;
 
@@ -59,7 +59,7 @@ public class RegisterCustomerRequestValidatorTest {
 
 	@Test
 	public void shouldReturnErrorWhenDuplicateFound() {
-		customerRepository = Mockito.mock(CustomerRepository.class);
+		customerRepository = Mockito.mock(JpaCustomerRepository.class);
 		Mockito.when(customerRepository.findByCustomerNameAndRegistrationCode("Store Akropole Alfa", "12345678910")).thenReturn(List.of(new Customer("Store Akropole Alfa", "12345678910")));
 		validator = new RegisterCustomerRequestValidator(customerRepository);
 		RegisterCustomerRequest request = new RegisterCustomerRequest("Store Akropole Alfa", "12345678910");
@@ -71,7 +71,7 @@ public class RegisterCustomerRequestValidatorTest {
 
 	@Test
 	public void shouldNotReturnErrorWhenDuplicateNotFound() {
-		customerRepository = Mockito.mock(CustomerRepository.class);
+		customerRepository = Mockito.mock(JpaCustomerRepository.class);
 		Mockito.when(customerRepository.findByCustomerNameAndRegistrationCode("Store Akropole Alfa", "12345678910")).thenReturn(List.of());
 		validator = new RegisterCustomerRequestValidator(customerRepository);
 		RegisterCustomerRequest request = new RegisterCustomerRequest("Store Akropole Alfa", "12345678910");

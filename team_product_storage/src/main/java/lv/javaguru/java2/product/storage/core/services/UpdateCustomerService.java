@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.core.services;
 
-import lv.javaguru.java2.product.storage.core.database.CustomerRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaCustomerRepository;
 import lv.javaguru.java2.product.storage.core.requests.UpdateCustomerRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 import lv.javaguru.java2.product.storage.core.responses.UpdateCustomerResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class UpdateCustomerService {
 
-	@Autowired private CustomerRepository customerRepository;
+	@Autowired private JpaCustomerRepository customerRepository;
 	@Autowired private UpdateCustomerRequestValidator validator;
 
 	public UpdateCustomerResponse execute(UpdateCustomerRequest request) {
@@ -24,7 +24,7 @@ public class UpdateCustomerService {
 			return new UpdateCustomerResponse(errors);
 		}
 
-		return customerRepository.getById(request.getId())
+		return customerRepository.findById(request.getId())
 				.map(customer -> {
 					customer.setCustomerName(request.getNewCustomerName());
 					customer.setRegistrationCode(request.getNewRegistrationCode());

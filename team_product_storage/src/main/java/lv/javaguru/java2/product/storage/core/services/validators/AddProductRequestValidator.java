@@ -3,7 +3,7 @@ package lv.javaguru.java2.product.storage.core.services.validators;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import lv.javaguru.java2.product.storage.core.database.ProductRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaProductRepository;
 import lv.javaguru.java2.product.storage.core.domain.Product;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
@@ -20,8 +20,7 @@ import java.util.Optional;
 @Component
 public class AddProductRequestValidator {
 
-    @Autowired
-    private ProductRepository productRepository;
+    @Autowired private JpaProductRepository productRepository;
 
     public List<CoreError> validate(AddProductRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -54,14 +53,14 @@ public class AddProductRequestValidator {
     }
 
     private Optional<CoreError> validateProductQuantity(AddProductRequest request) {
-        return (request.getProductQuantity() <= 0 )
+        return (request.getProductQuantity() == null)
                 ? Optional.of(new CoreError("productQuantity", "Must be greater than 0!"))
                 : Optional.empty();
     }
 
     private Optional<CoreError> validatePrice(AddProductRequest request) {
         BigDecimal minPrice = new BigDecimal("0.01");
-        return (request.getPrice().compareTo(minPrice) <= 0.00)
+        return (request.getPrice() == null)
                 ? Optional.of(new CoreError("price", "Must be greater than 0.00!"))
                 : Optional.empty();
     }

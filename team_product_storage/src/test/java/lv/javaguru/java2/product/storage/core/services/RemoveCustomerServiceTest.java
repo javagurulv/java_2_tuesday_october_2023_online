@@ -1,11 +1,9 @@
 package lv.javaguru.java2.product.storage.core.services;
 
-import lv.javaguru.java2.product.storage.core.database.CustomerRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaCustomerRepository;
 import lv.javaguru.java2.product.storage.core.requests.RemoveCustomerRequest;
-import lv.javaguru.java2.product.storage.core.requests.RemoveProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 import lv.javaguru.java2.product.storage.core.responses.RemoveCustomerResponse;
-import lv.javaguru.java2.product.storage.core.responses.RemoveProductResponse;
 import lv.javaguru.java2.product.storage.core.services.validators.RemoveCustomerRequestValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 public class RemoveCustomerServiceTest {
 
     @Mock
-    private CustomerRepository customerRepository;
+    private JpaCustomerRepository customerRepository;
     @Mock private RemoveCustomerRequestValidator validator;
     @InjectMocks
     private RemoveCustomerService service;
@@ -45,7 +43,6 @@ public class RemoveCustomerServiceTest {
     @Test
     public void shouldDeleteCustomerWithIdFromDatabase() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        Mockito.when(customerRepository.deleteById(1L)).thenReturn(true);
         RemoveCustomerRequest request = new RemoveCustomerRequest(1L);
         RemoveCustomerResponse response = service.execute(request);
         assertFalse(response.hasErrors());

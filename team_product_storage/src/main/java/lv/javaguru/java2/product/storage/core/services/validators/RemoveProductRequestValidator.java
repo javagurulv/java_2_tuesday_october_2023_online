@@ -18,7 +18,7 @@ public class RemoveProductRequestValidator {
     }
 
     private Optional<CoreError> validateProductId(RemoveProductRequest request) {
-        return (request.getProductIdToRemove() == null)
+        return (request.getProductId() == null)
                 ? Optional.of(new CoreError("productId", "Must not be empty!"))
                 : Optional.empty();
     }

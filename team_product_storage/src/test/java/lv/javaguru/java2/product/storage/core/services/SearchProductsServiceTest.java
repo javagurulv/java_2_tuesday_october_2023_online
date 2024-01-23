@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaProductRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +17,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import lv.javaguru.java2.product.storage.core.database.ProductRepository;
 import lv.javaguru.java2.product.storage.core.domain.Product;
 import lv.javaguru.java2.product.storage.core.requests.SearchProductsRequest;
 import lv.javaguru.java2.product.storage.core.requests.Ordering;
@@ -29,7 +29,7 @@ import lv.javaguru.java2.product.storage.core.services.validators.SearchProducts
 @RunWith(MockitoJUnitRunner.class)
 public class SearchProductsServiceTest {
 
-    @Mock private ProductRepository productRepository;
+    @Mock private JpaProductRepository productRepository;
     @Mock private SearchProductsRequestValidator validator;
     @InjectMocks
     private SearchProductsService service;
@@ -64,7 +64,7 @@ public class SearchProductsServiceTest {
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00")));
-        Mockito.when(productRepository.findByProductBrand("Apple")).thenReturn(products);
+        Mockito.when(productRepository.findByProductBrandLike("Apple")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -84,7 +84,7 @@ public class SearchProductsServiceTest {
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00")));
-        Mockito.when(productRepository.findByProductModel("iPhone 15")).thenReturn(products);
+        Mockito.when(productRepository.findByProductModelLike("iPhone 15")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -104,7 +104,7 @@ public class SearchProductsServiceTest {
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00")));
-        Mockito.when(productRepository.findByProductBrandAndProductModel("Apple", "iPhone 15")).thenReturn(products);
+        Mockito.when(productRepository.findByProductBrandAndProductModelLike("Apple", "iPhone 15")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -126,7 +126,7 @@ public class SearchProductsServiceTest {
         List<Product> products = new ArrayList<>();
         products.add(new Product("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00")));
         products.add(new Product("Smartphone", "Apple", "iPhone 14", 1, new BigDecimal("900.00")));
-        Mockito.when(productRepository.findByProductBrand("Apple")).thenReturn(products);
+        Mockito.when(productRepository.findByProductBrandLike("Apple")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -156,7 +156,7 @@ public class SearchProductsServiceTest {
         List<Product> products = new ArrayList<>();
         products.add(new Product("Smartphone", "Apple", "iPhone 14", 1, new BigDecimal("900.00")));
         products.add(new Product("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00")));
-        Mockito.when(productRepository.findByProductBrand("Apple")).thenReturn(products);
+        Mockito.when(productRepository.findByProductBrandLike("Apple")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -186,7 +186,7 @@ public class SearchProductsServiceTest {
         List<Product> products = new ArrayList<>();
         products.add(new Product("Smartphone", "Apple", "iPhone 14", 1, new BigDecimal("900.00")));
         products.add(new Product("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00")));
-        Mockito.when(productRepository.findByProductBrand("Apple")).thenReturn(products);
+        Mockito.when(productRepository.findByProductBrandLike("Apple")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -208,7 +208,7 @@ public class SearchProductsServiceTest {
         List<Product> products = new ArrayList<>();
         products.add(new Product("Smartphone", "Apple", "iPhone 14", 1, new BigDecimal("900.00")));
         products.add(new Product("Smartphone", "Apple", "iPhone 15", 1, new BigDecimal("1000.00")));
-        Mockito.when(productRepository.findByProductBrand("Apple")).thenReturn(products);
+        Mockito.when(productRepository.findByProductBrandLike("Apple")).thenReturn(products);
 
         SearchProductsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
