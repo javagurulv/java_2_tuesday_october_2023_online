@@ -7,6 +7,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface JpaClientRepository extends JpaRepository<Client, Long> {
 
@@ -26,11 +28,18 @@ public interface JpaClientRepository extends JpaRepository<Client, Long> {
     List<Client> findByFirstNameAndLastNameLike(@Param("firstName") String firstName,
                                                 @Param("lastName") String lastName);
 
+    @Query("SELECT c FROM Client c WHERE c.personalCode = :personalCode")
+    Optional<Client> findByPersonalCodeOpt(@Param("personalCode") String personalCode);
+
    // @Query("SELECT c FROM Client c WHERE c.firstName LIKE %:firstName% AND c.lastName LIKE %:lastName%, AND c.lastName LIKE %:lastName%")
    // List<Client> findByFirstNameLastNameLikeAndPersonalCode(@Param("firstName") String firstName,
      //                                           @Param("lastName") String lastName,
      //                                                       @Param("personalCode") String personalCode);
 
     void deleteByPersonalCode(String personalCode);
+
+    Client findByPersonalCode(String personalCode);
+
+
 
 }

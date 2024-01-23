@@ -39,7 +39,7 @@ public class MemberCardRegistrationService {
             return new MemberCardRegistrationResponse(errors);
         }
 
-        Client client = clientRepository.findByPersonalCodeLike(request.getClient().toString()).get(0);
+        Client client = clientRepository.findByPersonalCode(request.getClient());
         AgeGroup ageGroup = ageGroupRepository.getReferenceById(request.getAgeGroup());
         FitnessCenter fitnessCenter = fitnessCenterRepository.getReferenceById(request.getFitnessCenter());
         Workout workout = workoutRepository.getReferenceById(request.getWorkout());

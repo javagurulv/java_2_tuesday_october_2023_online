@@ -79,9 +79,9 @@ public class MemberCardRegistrationRequestValidator {
 
    private Optional<CoreError> validateClientIdExistIdInId(MemberCardRegistrationRequest request) {
         if (request.getClient() != null) {
-            Optional<Client> clientOpt = clientRepository.findById(request.getClient());
+            Optional<Client> clientOpt = clientRepository.findByPersonalCodeOpt(request.getClient());
             return (clientOpt.isEmpty())
-                    ? Optional.of(new CoreError("clientId", "Not exist!"))
+                    ? Optional.of(new CoreError("personalCode", "Not exist!"))
                     : Optional.empty();
         } else {
             return Optional.empty();

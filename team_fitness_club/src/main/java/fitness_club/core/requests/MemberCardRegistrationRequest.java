@@ -11,13 +11,13 @@ import lombok.*;
 public class MemberCardRegistrationRequest {
 
     private MemberCard memberCard;
-    private Long client;
+    private String client;
     private Long ageGroup;
     private Long workout;
     private Long fitnessCenter;
     private String termOfContract;
 
-    public MemberCardRegistrationRequest(Long client, Long ageGroup, Long workout, Long fitnessCenter, String termOfContract) {
+    public MemberCardRegistrationRequest(String client, Long ageGroup, Long workout, Long fitnessCenter, String termOfContract) {
     }
 
     public MemberCardRegistrationRequest(MemberCard memberCard) {

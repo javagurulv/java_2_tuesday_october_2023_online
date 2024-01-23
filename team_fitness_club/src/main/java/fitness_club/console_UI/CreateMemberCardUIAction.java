@@ -29,9 +29,9 @@ public class CreateMemberCardUIAction implements UIAction {
     @Override
     public void execute() throws ParseException {
 
-        System.out.println("Enter client ID number: ");
+        System.out.println("Enter client personal code: ");
         Scanner scanner = new Scanner(System.in);
-        Long client = scanner.nextLong();
+        String client = scanner.nextLine();
 
         System.out.println("ID, Age Group" +
                             "1,   'CHILD" +
