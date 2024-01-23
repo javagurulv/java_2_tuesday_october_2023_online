@@ -5,10 +5,11 @@ import fitness_club.core.responses.GetAllMemberCardsResponse;
 import fitness_club.core.services.GetAllMemberCardsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Component
+@Controller
 public class ShowAllMemberCardsController {
     @Autowired
     private GetAllMemberCardsService getAllMemberCardsService;

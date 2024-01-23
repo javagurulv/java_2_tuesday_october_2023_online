@@ -40,7 +40,7 @@ public class MemberCardRegistrationRequestValidator {
         validateWorkoutNullOrEmpty(request).ifPresent(errors::add);
         validateFitnessCentreNullOrEmpty(request).ifPresent(errors::add);
         validateTermOfContractNotEmpty(request).ifPresent(errors::add);
-        validateClientIdExistIdInId(request).ifPresent(errors::add);
+        validateClientPersonalCodeExist(request).ifPresent(errors::add);
         validateAgeGroupIdExistIdInId(request).ifPresent(errors::add);
         validateFitnessCenterIdExistIdInId(request).ifPresent(errors::add);
         validateWorkoutIdExistIdInId(request).ifPresent(errors::add);
@@ -77,7 +77,7 @@ public class MemberCardRegistrationRequestValidator {
                 : Optional.empty();
     }
 
-   private Optional<CoreError> validateClientIdExistIdInId(MemberCardRegistrationRequest request) {
+   private Optional<CoreError> validateClientPersonalCodeExist(MemberCardRegistrationRequest request) {
         if (request.getClient() != null) {
             Optional<Client> clientOpt = clientRepository.findByPersonalCodeOpt(request.getClient());
             return (clientOpt.isEmpty())
