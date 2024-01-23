@@ -38,7 +38,7 @@ public class MemberCardRegistrationController {
     private SearchWorkoutService searchWorkoutService;
 
     @GetMapping(value = "/memberCardRegistration")
-    public String showMemberCardFormFilling(ModelMap modelMap) {
+    public String showMemberCardFilling(ModelMap modelMap) {
 
         List<AgeGroup> ageGroups = ageGroupRepository.findAll();
         modelMap.addAttribute("ageGroups", ageGroups);
@@ -55,12 +55,12 @@ public class MemberCardRegistrationController {
     }
 
     @PostMapping("/memberCardFormFilling")
-    public String processMemberCardFormFillingRequest(@ModelAttribute(value = "request") MemberCardRegistrationRequest request,
+    public String processMemberCardFillingRequest(@ModelAttribute(value = "request") MemberCardRegistrationRequest request,
                                                       ModelMap modelMap) throws ParseException {
         MemberCardRegistrationResponse response = memberCardRegistrationService.execute(request);
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());
-            return "memberCardRegistrationForm";
+            return "memberCardRegistration";
         } else {
             return "redirect:/";
         }
