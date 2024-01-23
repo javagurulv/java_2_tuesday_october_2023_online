@@ -21,7 +21,7 @@ public interface JpaClientRepository extends JpaRepository<Client, Long> {
     List<Client> findByFirstNameLike(@Param("firstName") String firstName);
 
     @Query("SELECT c FROM Client c WHERE c.lastName LIKE %:lastName%")
-    List<Client> findBylLastNameLike(@Param("lastName") String lastName);
+    List<Client> findByLastNameLike(@Param("lastName") String lastName);
 
 
     @Query("SELECT c FROM Client c WHERE c.firstName LIKE %:firstName% AND c.lastName LIKE %:lastName%")
@@ -31,10 +31,10 @@ public interface JpaClientRepository extends JpaRepository<Client, Long> {
     @Query("SELECT c FROM Client c WHERE c.personalCode = :personalCode")
     Optional<Client> findByPersonalCodeOpt(@Param("personalCode") String personalCode);
 
-   // @Query("SELECT c FROM Client c WHERE c.firstName LIKE %:firstName% AND c.lastName LIKE %:lastName%, AND c.lastName LIKE %:lastName%")
-   // List<Client> findByFirstNameLastNameLikeAndPersonalCode(@Param("firstName") String firstName,
-     //                                           @Param("lastName") String lastName,
-     //                                                       @Param("personalCode") String personalCode);
+    @Query("SELECT c FROM Client c WHERE c.firstName LIKE %:firstName% AND c.lastName LIKE %:lastName% AND c.personalCode LIKE %:personalCode%")
+    List<Client> findByFirstNameLastNameLikeAndPersonalCode(@Param("firstName") String firstName,
+                                                @Param("lastName") String lastName,
+                                                            @Param("personalCode") String personalCode);
 
     void deleteByPersonalCode(String personalCode);
 

@@ -2,9 +2,14 @@ package fitness_club.core.requests;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class SearchClientsRequest {
 
     private String firstName;
@@ -17,6 +22,7 @@ public class SearchClientsRequest {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
 
     public SearchClientsRequest(String personaCode) {
         this.personalCode = personaCode;
@@ -79,4 +85,13 @@ public class SearchClientsRequest {
         return paging;
     }
 
+    @Override
+    public String toString() {
+        return "SearchClientsRequest{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", personalCode='" + personalCode + '\'' +
+                '}';
+    }
 }
+
