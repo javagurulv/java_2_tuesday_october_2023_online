@@ -22,7 +22,6 @@ public class SearchClientsController {
     }
     @PostMapping("/searchClients")
     public String processSearchClientsRequest(@ModelAttribute(value = "request") SearchClientsRequest request, ModelMap modelMap) {
-        System.out.println("Received request: " + request.toString());
         SearchClientsResponse response = searchClientsService.execute(request);
         modelMap.addAttribute("clients", response.getFoundClients());
         if (response.hasErrors()) {
