@@ -15,24 +15,27 @@
 <table>
     <tr>
         <td>Id:</td>
-        <td>First Name:</td>
-        <td>Last Name:</td>
-        <td>Personal Code:</td>
-        <td>Age Group:</td>
+        <td>Client First Name:</td>
+        <td>Client Last Name:</td>
+        <td>Client Personal Code:</td>
+        <td>Client Age Group:</td>
         <td>Fitness Center:</td>
         <td>Workout:</td>
         <td>Date Of Contract:</td>
     </tr>
 
-    <tr th:if="${memberCards != null}" th:each="memberCard : ${memberCards}">
+    <td th:if="${memberCard != null}">
+    <tr th:each="memberCard : ${memberCard}">
         <td th:text=" ${memberCard.id}">
         <td th:text=" ${memberCard.client.firstName}">
         <td th:text=" ${memberCard.client.lastName}">
         <td th:text=" ${memberCard.client.personalCode}">
         <td th:text=" ${memberCard.ageGroup.ageGroup}">
         <td th:text=" ${memberCard.fitnessCenter.fitnessCenter}">
+        <td th:text=" ${memberCard.workout.workout}">
         <td th:text=" ${memberCard.termOfContract}">
     </tr>
+    </td>
 
 </table>
 

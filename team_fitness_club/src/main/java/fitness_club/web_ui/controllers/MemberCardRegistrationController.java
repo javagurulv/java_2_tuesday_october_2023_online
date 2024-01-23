@@ -40,14 +40,12 @@ public class MemberCardRegistrationController {
     @GetMapping(value = "/memberCardRegistration")
     public String showMemberCardFilling(ModelMap modelMap) {
 
-        List<AgeGroup> ageGroups = ageGroupRepository.findAll();
-        modelMap.addAttribute("ageGroups", ageGroups);
+        modelMap.addAttribute("ageGroups", ageGroupRepository.findAll());
 
-        List<Workout> workouts = workoutsRepository.findAll();
-        modelMap.addAttribute("workouts", workouts);
+        modelMap.addAttribute("fitnessCenters", fitnessCentersRepository.findAll());
 
-        List<FitnessCenter> fitnessCenters = fitnessCentersRepository.findAll();
-        modelMap.addAttribute("fitnessCenters", fitnessCenters);
+        modelMap.addAttribute("workouts", workoutsRepository.findAll());
+
 
         modelMap.addAttribute("request", new MemberCardRegistrationRequest());
         modelMap.addAttribute("searchRequest", new SearchMemberCardRequest());
@@ -56,7 +54,7 @@ public class MemberCardRegistrationController {
 
     @PostMapping("/memberCardFormFilling")
     public String processMemberCardFillingRequest(@ModelAttribute(value = "request") MemberCardRegistrationRequest request,
-                                                      ModelMap modelMap) throws ParseException {
+                                                  ModelMap modelMap) throws ParseException {
         MemberCardRegistrationResponse response = memberCardRegistrationService.execute(request);
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());

@@ -31,7 +31,7 @@ public class UpdateMemberCardService {
                 .map(memberCard -> {
                     memberCard.setClient(request.getNewClient());
                     memberCard.setAgeGroup(request.getNewAgeGroup());
-                    memberCard.setFitnessCentre(request.getNewFitnessCenter());
+                    memberCard.setFitnessCenter(request.getNewFitnessCenter());
                     memberCard.setWorkout(request.getNewWorkout());
                     return new UpdateMemberCardResponse(memberCard);
                 })

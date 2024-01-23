@@ -47,7 +47,7 @@ public class MemberCardRegistrationService {
         MemberCard memberCard = new MemberCard();
         memberCard.setClient(client);
         memberCard.setAgeGroup(ageGroup);
-        memberCard.setFitnessCentre(fitnessCenter);
+        memberCard.setFitnessCenter(fitnessCenter);
         memberCard.setWorkout(workout);
         memberCard.setTermOfContract(dateFormat.parse(request.getTermOfContract()));
 

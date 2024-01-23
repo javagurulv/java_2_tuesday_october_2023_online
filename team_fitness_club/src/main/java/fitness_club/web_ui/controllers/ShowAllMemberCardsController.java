@@ -18,7 +18,7 @@ public class ShowAllMemberCardsController {
         GetAllMemberCardsResponse response = getAllMemberCardsService.execute(
                 new GetAllMemberCardsRequest()
         );
-        modelMap.addAttribute("memberCards", response.getMemberCards());
+        modelMap.addAttribute("memberCard", response.getMemberCards());
         return "/showAllMemberCards";
     }
 }

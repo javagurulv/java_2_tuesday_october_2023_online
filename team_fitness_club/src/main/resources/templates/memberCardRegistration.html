@@ -32,7 +32,9 @@
             <td>Fitness Center:</td>
             <td>
                 <select th:field="${request.fitnessCenter}">
-                    <option th:each="fitnessCenter : ${fitnessCenters}" th:value="${fitnessCenter.id}" th:text="${fitnessCenter.fitnessCenter}"></option>
+                    <option th:each="fitnessCenter : ${fitnessCenters}"
+                            th:value="${fitnessCenter.id}"
+                            th:text="${fitnessCenter.fitnessCenter}"></option>
                 </select>
             </td>
         </tr>
@@ -40,7 +42,9 @@
             <td>Workout:</td>
             <td>
                 <select th:field="${request.workout}">
-                    <option th:each="workout : ${workouts}" th:value="${workout.id}" th:text="${workout.workout}"></option>
+                    <option th:each="workout : ${workouts}"
+                            th:value="${workout.id}"
+                            th:text="${workout.workout}"></option>
                 </select>
             </td>
         </tr>

@@ -30,17 +30,17 @@ public class MemberCard {
     private AgeGroup ageGroup;
 
     @ManyToOne
-    @JoinColumn(name = "workout_id", nullable = false)
-    private Workout workout;
+    @JoinColumn(name = "fitness_center_id", nullable = false)
+    private FitnessCenter fitnessCenter;
 
     @ManyToOne
-    @JoinColumn(name = "fitness_center_id", nullable = false)
-    private FitnessCenter fitnessCentre;
+    @JoinColumn(name = "workout_id", nullable = false)
+    private Workout workout;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "term_of_contract", nullable = false)
     private Date termOfContract;
 
-    public MemberCard(Long client, Long ageGroup, Long fitnessCentre, Long workout, Date termOfContract) {
+    public MemberCard(Long client, Long ageGroup, Long fitnessCenter, Long workout, Date termOfContract) {
     }
 }
