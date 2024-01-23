@@ -3,14 +3,12 @@ package fitness_club.core.requests;
 import fitness_club.core.domain.*;
 import lombok.*;
 
-import java.util.Date;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class MemberCardRegistrationFormRequest {
+public class MemberCardRegistrationRequest {
 
     private MemberCard memberCard;
     private Long client;
@@ -19,9 +17,9 @@ public class MemberCardRegistrationFormRequest {
     private Long fitnessCenter;
     private String termOfContract;
 
-    public MemberCardRegistrationFormRequest(Long client, Long ageGroup, Long workout, Long fitnessCenter, String termOfContract) {
+    public MemberCardRegistrationRequest(Long client, Long ageGroup, Long workout, Long fitnessCenter, String termOfContract) {
     }
 
-    public MemberCardRegistrationFormRequest(MemberCard memberCard) {
+    public MemberCardRegistrationRequest(MemberCard memberCard) {
     }
 }

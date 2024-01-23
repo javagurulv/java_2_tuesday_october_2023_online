@@ -18,10 +18,10 @@ import java.text.ParseException;
 import java.util.List;
 
 @Controller
-public class MemberCardRegistrationFormController {
+public class MemberCardRegistrationController {
 
     @Autowired
-    private MemberCardRegistrationFormService memberCardRegistrationService;
+    private MemberCardRegistrationService memberCardRegistrationService;
     @Autowired
     private JpaWorkoutsRepository workoutsRepository;
     @Autowired
@@ -37,7 +37,7 @@ public class MemberCardRegistrationFormController {
     @Autowired
     private SearchWorkoutService searchWorkoutService;
 
-    @GetMapping(value = "/memberCardRegistrationForm")
+    @GetMapping(value = "/memberCardRegistration")
     public String showMemberCardFormFilling(ModelMap modelMap) {
 
         List<AgeGroup> ageGroups = ageGroupRepository.findAll();
@@ -49,15 +49,15 @@ public class MemberCardRegistrationFormController {
         List<FitnessCenter> fitnessCenters = fitnessCentersRepository.findAll();
         modelMap.addAttribute("fitnessCenters", fitnessCenters);
 
-        modelMap.addAttribute("request", new MemberCardRegistrationFormRequest());
+        modelMap.addAttribute("request", new MemberCardRegistrationRequest());
         modelMap.addAttribute("searchRequest", new SearchMemberCardRequest());
-        return "memberCardRegistrationForm";
+        return "memberCardRegistration";
     }
 
     @PostMapping("/memberCardFormFilling")
-    public String processMemberCardFormFillingRequest(@ModelAttribute(value = "request") MemberCardRegistrationFormRequest request,
+    public String processMemberCardFormFillingRequest(@ModelAttribute(value = "request") MemberCardRegistrationRequest request,
                                                       ModelMap modelMap) throws ParseException {
-        MemberCardRegistrationFormResponse response = memberCardRegistrationService.execute(request);
+        MemberCardRegistrationResponse response = memberCardRegistrationService.execute(request);
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());
             return "memberCardRegistrationForm";
@@ -82,7 +82,7 @@ public class MemberCardRegistrationFormController {
 
         SearchWorkoutResponse searchWorkoutResponse = searchWorkoutService.execute(searchWorkoutRequest);
         modelMap.addAttribute("workouts", searchWorkoutResponse.foundWorkouts());
-        modelMap.addAttribute("request", new MemberCardRegistrationFormRequest());
+        modelMap.addAttribute("request", new MemberCardRegistrationRequest());
 
 
         return "registeredWorkoutByClient";
