@@ -4,13 +4,13 @@ personalCode,
 phone,
 address)
 VALUES(
-"Nikolaj Ivanov",
+"Ivanov",
 22222,
 12345678,
 "Lesnaja 2_22");
 
 
-insert into wheelchair (
+insert into wheelchairs (
 client_id,
 seatWidth,
 seatDepth,
@@ -24,7 +24,7 @@ cl.id,
 22,
 22, 177000.0
 from clients as cl
-where cl.id = 1;
+where cl.id = 10;
 
 
  insert into `order_components`
@@ -35,8 +35,43 @@ where cl.id = 1;
  c.id
 from wheelchair as w
 join components as c
-where w.id = 1
+where w.id = 10
 and c.id = 1;
+
+insert into `order_components`
+ (wheelchair_id,
+ component_id, price_component)
+ select
+ w.id,
+ c.id,
+ c.price
+from wheelchairs as w
+join components as c
+where w.id = 10
+and c.id = 5;
+
+ insert into `order_components`
+ (wheelchair_id,
+ component_id, price_component)
+ select
+ w.id,
+ c.id,
+ c.price
+from wheelchairs as w
+join components as c
+where w.id = 10
+and c.id = 16;
+
+ insert into `order_components`
+ (wheelchair_id,
+ component_id, price_component)
+ select
+ w.id,
+ c.id, c.price
+from wheelchairs as w
+join components as c
+where w.id = 10
+and c.id = 11;
 
 insert into parameters (
 client_id,
@@ -52,7 +87,7 @@ cl.id,
 22,
 22
 from clients as cl
-where cl.id = 1;
+where cl.id = 10;
 
 
 
