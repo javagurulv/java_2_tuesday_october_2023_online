@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.core.services;
 
-import lv.javaguru.java2.product.storage.core.database.CustomerRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaCustomerRepository;
 import lv.javaguru.java2.product.storage.core.domain.Customer;
 import lv.javaguru.java2.product.storage.core.requests.RegisterCustomerRequest;
 import lv.javaguru.java2.product.storage.core.responses.RegisterCustomerResponse;
@@ -16,7 +16,7 @@ import java.util.List;
 @Transactional
 public class RegisterCustomerService {
 
-	@Autowired private CustomerRepository customerRepository;
+	@Autowired private JpaCustomerRepository customerRepository;
 	@Autowired private RegisterCustomerRequestValidator validator;
 
 	public RegisterCustomerResponse execute(RegisterCustomerRequest request) {

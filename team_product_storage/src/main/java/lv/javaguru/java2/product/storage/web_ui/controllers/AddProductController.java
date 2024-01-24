@@ -27,7 +27,7 @@ public class AddProductController {
 		AddProductResponse response = addProductService.execute(request);
 		if (response.hasErrors()) {
 			modelMap.addAttribute("errors", response.getErrors());
-			return "addBookToList";
+			return "addProductToList";
 		} else {
 			return "redirect:/";
 		}

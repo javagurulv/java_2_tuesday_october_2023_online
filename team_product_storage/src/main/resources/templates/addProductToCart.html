@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Product Storage demo project">
+    <meta name="author" content="JavaGuru">
+    <title>Product Storage</title>
+</head>
+
+<body>
+
+<h3>Add product to cart</h3>
+
+<form action="/addProductToCart" th:object="${request}" method="post">
+    <table>
+        <tr>
+            <td>Order ID:</td>
+            <td><input type="text" th:field="${request.orderId}"/></td>
+        </tr>
+        <tr>
+            <td>Product ID:</td>
+            <td><input type="text" th:field="${request.productId}"/></td>
+        </tr>
+        <tr>
+            <td>Quantity:</td>
+            <td><input type="text" th:field="${request.quantity}"/></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Add product to cart"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+<td th:text="${error.errorCode}"/>
+<td th:text="${error.message}"/>
+</tr>
+</td>
+
+
+
+
+<form action="/" method="get">
+    <input type="submit" value="Go to main page" name="Submit"/>
+</form>
+
+
+</body>
+
+</html>

@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Component
-@Transactional
+//@Component
+//@Transactional
 public class OrmCustomerRepositoryImpl implements CustomerRepository {
 
 	@Autowired private SessionFactory sessionFactory;

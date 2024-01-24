@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.core.services;
 
-import lv.javaguru.java2.product.storage.core.database.CustomerRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaCustomerRepository;
 import lv.javaguru.java2.product.storage.core.domain.Customer;
 import lv.javaguru.java2.product.storage.core.requests.Ordering;
 import lv.javaguru.java2.product.storage.core.requests.Paging;
@@ -28,7 +28,7 @@ public class SearchCustomersService {
     @Value("${search.paging.enabled}")
     private boolean pagingEnabled;
 
-    @Autowired private CustomerRepository customerRepository;
+    @Autowired private JpaCustomerRepository customerRepository;
     @Autowired private SearchCustomersRequestValidator validator;
 
 
@@ -62,13 +62,13 @@ public class SearchCustomersService {
     private List<Customer> search(SearchCustomersRequest request) {
         List<Customer> customers = new ArrayList<>();
         if (request.isCustomerNameProvided() && !request.isRegistrationCodeProvided()) {
-            customers = customerRepository.findByCustomerName(request.getCustomerName());
+            customers = customerRepository.findByCustomerNameLike(request.getCustomerName());
         }
         if (!request.isCustomerNameProvided() && request.isRegistrationCodeProvided()) {
-            customers = customerRepository.findByRegistrationCode(request.getRegistrationCode());
+            customers = customerRepository.findByRegistrationCodeLike(request.getRegistrationCode());
         }
         if (request.isCustomerNameProvided() && request.isRegistrationCodeProvided()) {
-            customers = customerRepository.findByCustomerNameAndRegistrationCode(request.getCustomerName(), request.getRegistrationCode());
+            customers = customerRepository.findByCustomerNameAndRegistrationCodeLike(request.getCustomerName(), request.getRegistrationCode());
         }
         return customers;
     }

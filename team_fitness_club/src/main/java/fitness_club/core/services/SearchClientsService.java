@@ -47,18 +47,19 @@ public class SearchClientsService {
 
     private List<Client> search(SearchClientsRequest request) {
         List<Client> foundClients = new ArrayList<>();
+
         if (request.isFirstNameProvided() && !request.isLastNameProvided()) {
-            foundClients = clientRepository.findByFirstName(request.getFirstName());
+            foundClients = clientRepository.findByFirstNameLike(request.getFirstName());
         }
         if (!request.isFirstNameProvided() && request.isLastNameProvided()) {
-            foundClients = clientRepository.findByFirstName(request.getLastName());
+            foundClients = clientRepository.findByLastNameLike(request.getLastName());
         }
         if (request.isFirstNameProvided() && request.isLastNameProvided()) {
             foundClients = clientRepository.findByFirstNameAndLastNameLike(request.getFirstName(), request.getLastName());
         }
-       // if (request.isFirstNameProvided() && request.isLastNameProvided() && request.isPersonalCodeProvided()) {
-     //      foundClients = clientRepository.findByFirstNameLastNameLikeAndPersonalCode(request.getFirstName(), request.getLastName(), request.getPersonalCode());
-    //    }
+        if (request.isFirstNameProvided() && request.isLastNameProvided() && request.isPersonalCodeProvided()) {
+           foundClients = clientRepository.findByFirstNameLastNameLikeAndPersonalCode(request.getFirstName(), request.getLastName(), request.getPersonalCode());
+        }
         if (request.isPersonalCodeProvided()) {
             foundClients = clientRepository.findByPersonalCodeLike(request.getPersonalCode());
         }

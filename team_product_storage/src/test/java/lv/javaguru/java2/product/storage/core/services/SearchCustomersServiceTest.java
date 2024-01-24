@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.core.services;
 
-import lv.javaguru.java2.product.storage.core.database.CustomerRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaCustomerRepository;
 import lv.javaguru.java2.product.storage.core.domain.Customer;
 import lv.javaguru.java2.product.storage.core.requests.Ordering;
 import lv.javaguru.java2.product.storage.core.requests.Paging;
@@ -27,7 +27,7 @@ import static org.mockito.ArgumentMatchers.any;
 @RunWith(MockitoJUnitRunner.class)
 public class SearchCustomersServiceTest {
 
-    @Mock private CustomerRepository customerRepository;
+    @Mock private JpaCustomerRepository customerRepository;
     @Mock private SearchCustomersRequestValidator validator;
     @InjectMocks
     private SearchCustomersService service;
@@ -62,7 +62,7 @@ public class SearchCustomersServiceTest {
 
         List<Customer> customers = new ArrayList<>();
         customers.add(new Customer("Store Akropole Alfa", "123456A"));
-        Mockito.when(customerRepository.findByCustomerName("Store Akropole Alfa")).thenReturn(customers);
+        Mockito.when(customerRepository.findByCustomerNameLike("Store Akropole Alfa")).thenReturn(customers);
 
         SearchCustomersResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -79,7 +79,7 @@ public class SearchCustomersServiceTest {
 
         List<Customer> customers = new ArrayList<>();
         customers.add(new Customer("Store Akropole Alfa", "123456A"));
-        Mockito.when(customerRepository.findByRegistrationCode("123456A")).thenReturn(customers);
+        Mockito.when(customerRepository.findByRegistrationCodeLike("123456A")).thenReturn(customers);
 
         SearchCustomersResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -96,7 +96,7 @@ public class SearchCustomersServiceTest {
 
         List<Customer> customers = new ArrayList<>();
         customers.add(new Customer("Store Akropole Alfa", "123456A"));
-        Mockito.when(customerRepository.findByCustomerNameAndRegistrationCode("Store Akropole Alfa", "123456A")).thenReturn(customers);
+        Mockito.when(customerRepository.findByCustomerNameAndRegistrationCodeLike("Store Akropole Alfa", "123456A")).thenReturn(customers);
 
         SearchCustomersResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -115,7 +115,7 @@ public class SearchCustomersServiceTest {
         List<Customer> customers = new ArrayList<>();
         customers.add(new Customer("Store Akropole Alfa", "123456A"));
         customers.add(new Customer("Store Akropole Alfa", "123456B"));
-        Mockito.when(customerRepository.findByCustomerName("Store Akropole Alfa")).thenReturn(customers);
+        Mockito.when(customerRepository.findByCustomerNameLike("Store Akropole Alfa")).thenReturn(customers);
 
         SearchCustomersResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -138,7 +138,7 @@ public class SearchCustomersServiceTest {
         List<Customer> customers = new ArrayList<>();
         customers.add(new Customer("Store Akropole Alfa", "123456A"));
         customers.add(new Customer("Store Akropole Alfa", "123456B"));
-        Mockito.when(customerRepository.findByCustomerName("Store Akropole Alfa")).thenReturn(customers);
+        Mockito.when(customerRepository.findByCustomerNameLike("Store Akropole Alfa")).thenReturn(customers);
 
         SearchCustomersResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -162,7 +162,7 @@ public class SearchCustomersServiceTest {
         List<Customer> customers = new ArrayList<>();
         customers.add(new Customer("Store Akropole Alfa", "123456A"));
         customers.add(new Customer("Store Akropole Alfa", "123456B"));
-        Mockito.when(customerRepository.findByCustomerName("Store Akropole Alfa")).thenReturn(customers);
+        Mockito.when(customerRepository.findByCustomerNameLike("Store Akropole Alfa")).thenReturn(customers);
 
         SearchCustomersResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -181,7 +181,7 @@ public class SearchCustomersServiceTest {
         List<Customer> customers = new ArrayList<>();
         customers.add(new Customer("Store Akropole Alfa", "123456A"));
         customers.add(new Customer("Store Akropole Alfa", "123456B"));
-        Mockito.when(customerRepository.findByCustomerName("Store Akropole Alfa")).thenReturn(customers);
+        Mockito.when(customerRepository.findByCustomerNameLike("Store Akropole Alfa")).thenReturn(customers);
 
         SearchCustomersResponse response = service.execute(request);
         assertFalse(response.hasErrors());

@@ -18,10 +18,10 @@ import java.text.ParseException;
 import java.util.List;
 
 @Controller
-public class MemberCardRegistrationFormController {
+public class MemberCardRegistrationController {
 
     @Autowired
-    private MemberCardRegistrationFormService memberCardRegistrationService;
+    private MemberCardRegistrationService memberCardRegistrationService;
     @Autowired
     private JpaWorkoutsRepository workoutsRepository;
     @Autowired
@@ -37,30 +37,28 @@ public class MemberCardRegistrationFormController {
     @Autowired
     private SearchWorkoutService searchWorkoutService;
 
-    @GetMapping(value = "/memberCardRegistrationForm")
-    public String showMemberCardFormFilling(ModelMap modelMap) {
+    @GetMapping(value = "/memberCardRegistration")
+    public String showMemberCardFilling(ModelMap modelMap) {
 
-        List<AgeGroup> ageGroups = ageGroupRepository.findAll();
-        modelMap.addAttribute("ageGroups", ageGroups);
+        modelMap.addAttribute("ageGroups", ageGroupRepository.findAll());
 
-        List<Workout> workouts = workoutsRepository.findAll();
-        modelMap.addAttribute("workouts", workouts);
+        modelMap.addAttribute("fitnessCenters", fitnessCentersRepository.findAll());
 
-        List<FitnessCenter> fitnessCenters = fitnessCentersRepository.findAll();
-        modelMap.addAttribute("fitnessCenters", fitnessCenters);
+        modelMap.addAttribute("workouts", workoutsRepository.findAll());
 
-        modelMap.addAttribute("request", new MemberCardRegistrationFormRequest());
+
+        modelMap.addAttribute("request", new MemberCardRegistrationRequest());
         modelMap.addAttribute("searchRequest", new SearchMemberCardRequest());
-        return "memberCardRegistrationForm";
+        return "memberCardRegistration";
     }
 
     @PostMapping("/memberCardFormFilling")
-    public String processMemberCardFormFillingRequest(@ModelAttribute(value = "request") MemberCardRegistrationFormRequest request,
-                                                      ModelMap modelMap) throws ParseException {
-        MemberCardRegistrationFormResponse response = memberCardRegistrationService.execute(request);
+    public String processMemberCardFillingRequest(@ModelAttribute(value = "request") MemberCardRegistrationRequest request,
+                                                  ModelMap modelMap) throws ParseException {
+        MemberCardRegistrationResponse response = memberCardRegistrationService.execute(request);
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());
-            return "memberCardRegistrationForm";
+            return "memberCardRegistration";
         } else {
             return "redirect:/";
         }
@@ -82,7 +80,7 @@ public class MemberCardRegistrationFormController {
 
         SearchWorkoutResponse searchWorkoutResponse = searchWorkoutService.execute(searchWorkoutRequest);
         modelMap.addAttribute("workouts", searchWorkoutResponse.foundWorkouts());
-        modelMap.addAttribute("request", new MemberCardRegistrationFormRequest());
+        modelMap.addAttribute("request", new MemberCardRegistrationRequest());
 
 
         return "registeredWorkoutByClient";

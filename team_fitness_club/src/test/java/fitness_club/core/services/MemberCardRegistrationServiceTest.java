@@ -1,28 +1,16 @@
 package fitness_club.core.services;
 
-import fitness_club.core.database.jpa.JpaMemberCardRepository;
-import fitness_club.core.domain.*;
-import fitness_club.core.requests.MemberCardRegistrationFormRequest;
-import fitness_club.core.responses.MemberCardRegistrationFormResponse;
-import fitness_club.core.responses.CoreError;
-import fitness_club.core.services.validators.memberCard.MemberCardRegistrationFormRequestValidator;
-
 import org.junit.Ignore;
-import org.junit.Test;
 
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+
 @Ignore
 @RunWith(MockitoJUnitRunner.class)
 public class MemberCardRegistrationServiceTest {
