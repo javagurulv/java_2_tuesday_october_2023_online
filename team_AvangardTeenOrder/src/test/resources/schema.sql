@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS clients CASCADE;
 DROP TABLE IF EXISTS parameters CASCADE;
-DROP TABLE IF EXISTS wheelchair CASCADE;
+DROP TABLE IF EXISTS wheelchairs CASCADE;
 DROP TABLE IF EXISTS order_components CASCADE;
 DROP TABLE IF EXISTS components CASCADE;
 
@@ -28,7 +28,7 @@ PRIMARY KEY (`id`)
 ALTER TABLE `parameters`
 add foreign key (client_id) REFERENCES clients (id) ON DELETE CASCADE;
 
-CREATE TABLE IF NOT EXISTS  `wheelchair` (
+CREATE TABLE IF NOT EXISTS  `wheelchairs` (
 `id` BIGINT NOT NULL AUTO_INCREMENT,
 `client_id` BIGINT NOT NULL,
 `seatWidth` INT NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS  `wheelchair` (
 PRIMARY KEY (`id`)
 );
 
-ALTER TABLE `wheelchair`
+ALTER TABLE `wheelchairs`
 add foreign key (client_id) REFERENCES clients (id);
 
 CREATE TABLE IF NOT EXISTS `components` (
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS  `order_components` (
 
 ALTER TABLE `order_components` ADD foreign key (component_id) REFERENCES `components` (id);
 
-ALTER TABLE `order_components` ADD foreign key (wheelchair_id) REFERENCES `wheelchair` (id)  ON DELETE CASCADE;
+ALTER TABLE `order_components` ADD foreign key (wheelchair_id) REFERENCES `wheelchairs` (id)  ON DELETE CASCADE;
 
 
 

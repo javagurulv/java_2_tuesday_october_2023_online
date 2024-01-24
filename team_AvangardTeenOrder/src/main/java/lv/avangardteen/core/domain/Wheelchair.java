@@ -5,14 +5,13 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "wheelchair")
+@Table(name = "wheelchairs")
 public class Wheelchair {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id", nullable = false)
