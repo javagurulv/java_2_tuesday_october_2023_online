@@ -9,9 +9,13 @@ public class DeleteOrderRequest {
 
     }
 
+    public DeleteOrderRequest(){}
+
     public Long getId() {
         return id;
     }
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

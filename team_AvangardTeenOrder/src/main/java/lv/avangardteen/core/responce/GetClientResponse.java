@@ -15,6 +15,7 @@ public class GetClientResponse extends CoreResponse{
     public GetClientResponse(Client client) {
         this.client = client;
     }
+    public GetClientResponse(){}
 
     public Client getClient() {
         return client;

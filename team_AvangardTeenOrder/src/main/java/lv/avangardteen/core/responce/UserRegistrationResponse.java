@@ -15,7 +15,7 @@ public class UserRegistrationResponse extends CoreResponse{
     public UserRegistrationResponse(Client userRegistration) {
         this.userRegistration = userRegistration;
     }
-
+    public UserRegistrationResponse(){}
     public void setUserRegistration(Client userRegistration) {
         this.userRegistration = userRegistration;
     }
