@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Product Storage demo project">
+    <meta name="author" content="JavaGuru">
+    <title>Product Storage</title>
+</head>
+
+<body>
+
+    <h3>Show all orders</h3>
+
+    <table>
+        <tr>
+            <td>ID:</td>
+            <td>Customer name:</td>
+            <td>Registration code:</td>
+            <td>Order date:</td>
+            <td>Total amount:</td>
+        </tr>
+
+        <td th:if="${orders != null}">
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}" />
+                <td th:text="${order.customer.customerName}" />
+                <td th:text="${order.customer.registrationCode}" />
+                <td th:text="${order.orderDate}" />
+                <td th:text="${order.totalAmount}" />
+            </tr>
+        </td>
+
+    </table>
+
+    <form action="/" method="get">
+        <input type="submit" value="Go to main page" name="Submit" />
+    </form>
+
+</body>
+
+</html>

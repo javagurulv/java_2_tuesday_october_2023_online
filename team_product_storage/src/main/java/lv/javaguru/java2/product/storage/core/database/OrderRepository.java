@@ -2,35 +2,23 @@ package lv.javaguru.java2.product.storage.core.database;
 
 import lv.javaguru.java2.product.storage.core.domain.Customer;
 import lv.javaguru.java2.product.storage.core.domain.Order;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
-//@Component
-//@Transactional
-public class OrderRepository {
+public interface OrderRepository {
+    void save(Order order);
 
-	@Autowired
-	private SessionFactory sessionFactory;
+    Order findById(Long id);
 
-	public void save(Order order) {
-		sessionFactory.getCurrentSession().save(order);
-	}
+    Optional<Order> getById(Long id);
 
-	public Order getById(Long id) {
-		return sessionFactory.getCurrentSession()
-				.get(Order.class, id);
-	}
+    boolean deleteById(Long id);
 
-	public List<Order> getAllOrders(Customer customer) {
-		Query<Order> query = sessionFactory.getCurrentSession()
-				.createQuery("SELECT o FROM Order o where o.customer = :customer", Order.class);
-		query.setParameter("customer", customer);
-		return query.getResultList();
-	}
+    List<Order> getAllOrders(Customer customer);
+
 
 }
+
+
+

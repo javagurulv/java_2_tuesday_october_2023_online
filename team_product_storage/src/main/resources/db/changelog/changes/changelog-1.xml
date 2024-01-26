@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <changeSet author = "TG" id = "1">
+        <createTable tableName="products">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="product_name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_brand" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_model" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_quantity" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="products"
+                       cascadeConstraints="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="TG" id="2">
+        <createIndex indexName="ix_products_product_brand_product_model"
+                     tableName="products"
+                     unique="true">
+            <column name="product_brand"/>
+            <column name="product_model"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>
