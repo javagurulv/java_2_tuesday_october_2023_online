@@ -1,0 +1,25 @@
+<configuration>
+
+    <property name="LOGS" value="./logs"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{ISO8601} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+
+    </root>
+
+   <!-- <logger name="lv.avangardteen.web_ui.controllers.rest.UserRegistrationRequestLogger" level="INFO">
+        <appender-ref ref="REQUEST_RESPONSE_FILE_APPENDER"/>
+    </logger>
+    <logger name="lv.avangardteen.web_ui.controllers.rest.UserRegistrationResponseLogger" level="INFO">
+        <appender-ref ref="REQUEST_RESPONSE_FILE_APPENDER"/>
+    </logger>-->
+
+</configuration>
