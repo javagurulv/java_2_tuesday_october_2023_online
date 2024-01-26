@@ -30,7 +30,7 @@
                                  referencedColumnNames="id"/>
     </changeSet>
 
-    <changeSet author="javaguru" id="5">
+    <changeSet author="andrejsC" id="5">
         <createIndex indexName="ix_classifier_values_ic"
                      tableName="classifier_values"
                      unique="true">

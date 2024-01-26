@@ -11,23 +11,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class ReturnBookByReaderController {
+public class ReturnBookController {
 
 	@Autowired private ReturnBookService returnBookService;
 
 
-	@GetMapping(value = "/returnBookByReader")
-	public String showReturnBookByReaderPage(ModelMap modelMap) {
+	@GetMapping(value = "/returnBook")
+	public String showReturnBookPage(ModelMap modelMap) {
 		modelMap.addAttribute("request", new ReturnBookRequest());
-		return "returnBookByReader";
+		return "returnBook";
 	}
 
-	@PostMapping("/returnBookByReader")
-	public String processReturnBookByReaderRequest(@ModelAttribute(value = "request") ReturnBookRequest request, ModelMap modelMap) {
+	@PostMapping("/returnBook")
+	public String processReturnBookRequest(@ModelAttribute(value = "request") ReturnBookRequest request, ModelMap modelMap) {
 		ReturnBookResponse response = returnBookService.execute(request);
 		if (response.containsErrors()) {
 			modelMap.addAttribute("errors", response.getErrors());
-			return "returnBookByReader";
+			return "returnBook";
 		} else {
 			return "redirect:/";
 		}
