@@ -40,6 +40,6 @@ public class UserRegistrationService {
         client.setAddress(request.getUserAddress());
         UserRegistrationResponse response = new UserRegistrationResponse(client);
         database.addUser(client);
-        return new UserRegistrationResponse(client);
+        return response;
     }
 }

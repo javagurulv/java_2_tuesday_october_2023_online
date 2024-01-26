@@ -1,0 +1,24 @@
+package lv.avangardteen.web_ui.controllers.rest;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lv.avangardteen.core.request.UserRegistrationRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+@Component
+public class UserRegistrationRequestLogger {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserRegistrationRequestLogger.class);
+
+    void setLogger(UserRegistrationRequest request) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            String json = objectMapper.writeValueAsString(request);
+            logger.info("REQUEST: " + json);
+        } catch (JsonProcessingException e) {
+            logger.error("Error to convert request to JSON", e);
+        }
+    }
+}

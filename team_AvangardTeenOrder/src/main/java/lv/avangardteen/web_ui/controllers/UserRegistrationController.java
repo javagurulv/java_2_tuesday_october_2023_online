@@ -30,7 +30,8 @@ public class UserRegistrationController {
             modelMap.addAttribute("errors", response.getErrors());
             return "userRegistration";
         } else {
-            return "redirect:/";
+            modelMap.addAttribute("idNumber", response.getUserRegistration().getId());
+            return "redirect:/userRegistration/idClient";
         }
     }
 

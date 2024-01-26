@@ -14,7 +14,7 @@ public class DeleteOrderResponse extends CoreResponse {
         this.removeOrder = removeOrder;
 
     }
-
+    public DeleteOrderResponse(){}
     public boolean isOrderRemoved() {
         return removeOrder;
     }

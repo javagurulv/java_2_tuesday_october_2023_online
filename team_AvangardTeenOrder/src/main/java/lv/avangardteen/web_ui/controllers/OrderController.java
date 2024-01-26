@@ -37,7 +37,7 @@ public class OrderController {
             return "order";
         } else {
             modelMap.addAttribute("idOrder", response.getIdOrder());
-            return "order";
+            return "redirect:/order/numberOrder";
         }
     }
 
