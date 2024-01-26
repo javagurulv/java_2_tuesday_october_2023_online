@@ -41,12 +41,12 @@ public class ProgramMenu {
         System.out.println("Menu: ");
         System.out.println("1. Add product to list");
         System.out.println("2. Remove product from list");
-        System.out.println("3. Display all products in the list");
+        System.out.println("3. Show all products in the list");
         System.out.println("4. Search products");
         System.out.println("5. Update product");
         System.out.println("6. Register customer");
         System.out.println("7. Remove customer");
-        System.out.println("8. Display all customers");
+        System.out.println("8. Show all customers");
         System.out.println("9. Search customers");
         System.out.println("10. Update customer");
         System.out.println("11. Exit from program");
