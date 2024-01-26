@@ -93,11 +93,13 @@ public class Components {
 
     @Override
     public String toString() {
-        return " индекс = " + id +
-                ", описание: " + information +
-                ", цена = " + price +
-                ';' + '\n';
+        return "Components{" +
+                "id=" + id +
+                ", category='" + category + '\'' +
+                ", marking='" + marking + '\'' +
+                ", information='" + information + '\'' +
+                ", price=" + price +
+                ", wheelchairComponents=" + wheelchairComponents +
+                '}';
     }
-
-
 }

@@ -18,10 +18,7 @@ public class GetClientRestController {
     @Autowired private UserRegistrationResponseLogger responseLogger;
     @Autowired private GetClientRequestLogger getClientRequestLogger;
     @Autowired private GetClientResponseLogger getClientResponseLogger;
-    @Autowired
-    private GetClientService getClientService;
-
-
+    @Autowired private GetClientService getClientService;
     @Autowired private UserRegistrationService userRegistrationService;
 
     @GetMapping(path = "/{id}", produces = "application/json")

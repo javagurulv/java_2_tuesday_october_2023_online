@@ -38,6 +38,22 @@
     </tr>
 </table>
 
+<table>
+    <tr>
+        <td>Your registration number order</td>
+    </tr>
+    <tr>
+        <td th:text="${idOrder}"></td>
+    </tr>
+</table>
+
+<h4>Вы можете просмотреть комплектацию заказа</h4>
+
+<form action="/showOrder" method="get">
+    <input type="submit" value="Go to show order page" name="Submit"/>
+</form>
+
+
 <td th:if="${errors != null}">
     <tr th:each="error : ${errors}">
         <td th:text="${error.field}"/>

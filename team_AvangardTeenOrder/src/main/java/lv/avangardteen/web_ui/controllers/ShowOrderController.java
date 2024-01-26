@@ -29,16 +29,13 @@ public class ShowOrderController {
         ShowOrderResponse response = service.execute(request);
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());
-            return "showOrder";
         } else {
-            modelMap.addAttribute("order", response.getWheelchair());
-            modelMap.addAttribute("components", response.getWheelchairComponents());
-            modelMap.addAttribute("price wheelchair", response.getPriceWheelchair());
-            modelMap.addAttribute("price components", response.getWheelchairComponents());
-            modelMap.addAttribute("price order", response.getPriceOrder());
-            return "redirect:/showOrder/userOrder";
-        }
+            modelMap.addAttribute("wheelchairs", response.getWheelchair());
+            modelMap.addAttribute("componentList", response.getWheelchairComponents());
+            modelMap.addAttribute("price", response.getPriceOrder());
 
+        }
+        return "showOrder";
     }
 
 

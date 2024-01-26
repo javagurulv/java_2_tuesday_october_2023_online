@@ -34,6 +34,15 @@
     </tr>
 </table>
 
+<table>
+    <tr>
+        <td>Your registration number</td>
+    </tr>
+    <tr>
+        <td th:text="${idNumber}"></td>
+    </tr>
+</table>
+
 <td th:if="${errors != null}">
     <tr th:each="error : ${errors}">
         <td th:text="${error.field}"/>
@@ -41,6 +50,10 @@
         <br>
     </tr>
 </td>
+
+<form action="/order" method="get">
+    <input type="submit" value="Make an order" name="Submit"/>
+</form>
 
 </body>
 
