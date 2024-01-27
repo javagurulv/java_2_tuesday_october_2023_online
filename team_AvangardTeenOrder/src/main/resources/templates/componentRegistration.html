@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Avangard Teen order demo project">
+    <meta name="author" content="Avangard Teen order">
+    <title>Avangard Teen</title>
+</head>
+
+<body style="background-color: powderblue;">
+
+<h3>Change components in order</h3>
+<!--
+
+<form action="/componentRegistration" th:object="${request}" method="post">
+    <table>
+        <tr>
+            <td>Order ID:</td>
+            <td><input type="id" th:field="${request.id}"/></td>
+        </tr>
+
+        <tr>
+            <td>Front wheel ID:</td>
+            <select th:field="${request.wheelFrontChoose}">
+                <option th:each="components : ${allFrontWheel}"
+                        th:value="${components.id}"
+                        th:text="${components.information}"></option>
+            </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Back wheel ID:</td>
+            <select th:field="${request.wheelBackChoose}">
+                <option th:each="components : ${allBackWheels}"
+                        th:value="${components.id}"
+                        th:text="${components.information}"></option>
+            </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Brake ID:</td>
+            <select th:field="${request.brakeChoose}">
+                <option th:each="components : ${allBrakes}"
+                        th:value="${components.id}"
+                        th:text="${components.information}"></option>
+            </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Footrest ID:</td>
+            <select th:field="${request.footrestChoose}">
+                <option th:each="components : ${allFootrests}"
+                        th:value="${components.id}"
+                        th:text="${components.information}"></option>
+            </select>
+            </td>
+        </tr>
+
+
+        <td>
+            <input type="submit" value="Input"/>
+            <input type="reset" value="Clear"/>
+        </td>
+
+        </tr>
+    </table>
+</form>
+
+-->
+<!--
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+        <td th:text="${error.field}"/>
+        <td th:text="${error.message}"/>
+        <br>
+    </tr>
+</td>
+
+-->
+<!--
+
+<h3>You can check your changes in the order</h3>
+
+<form action="/showOrder" method="get">
+    <input type="submit" value="View the changed order" name="Submit"/>
+</form><br><br>
+
+<h3>Agree with the choice and return to the main menu</h3>
+
+<form action="/" method="get">
+    <input type="submit" value="Go to main menu " name="Submit"/>
+</form>
+-->
+
+</body>
+
+</html>
+
+
+
+<!--
+<table>
+    <tr>
+        <td>seat Width:</td>
+        <td>seat Depth:</td>
+        <td>footrest Length:</td>
+        <td>bach Heigh:</td>
+        <td>price:</td>
+    </tr>
+
+    <td th:if="${wheelchairs != null}">
+        <tr th:each="wheelchair : ${wheelchairs}">
+            <td th:text="${wheelchair.seatWidth}"/>
+            <td th:text="${wheelchair.seatDepth}"/>
+            <td th:text="${wheelchair.footrestLength}"/>
+            <td th:text="${wheelchair.bachHeight}"/>
+            <td th:text="${wheelchair.price}"/>
+
+        </tr>
+    </td>
+</table>
+
+<h4>Wheelchair components from the manufacturer</h4>
+
+<table>
+    <tr>
+        <td>category:</td>
+        <td>Information:</td>
+        <td>Price:</td>
+    </tr>
+
+    <td th:if="${componentList != null}">
+        <tr th:each="wheelchairComponent : ${componentList}">
+            <td th:text="${wheelchairComponent.getComponents.category}"/>
+            <td th:text="${wheelchairComponent.getComponents.information}"/>
+            <td th:text="${wheelchairComponent.getComponents.price}"/>
+        </tr>
+    </td>
+</table>
+
+
+<table>
+    <tr>
+        <td>Price order:</td>
+    </tr>
+    <tr>
+        <td th:text="${price}"/>
+    </tr>
+</table>
+-->
