@@ -45,7 +45,7 @@ class DbComponentsTest {
         List<Components> componentsList = dataComponents.allFrontWheels();
         assertEquals(componentsList.size(), 2);
 
-        System.out.println(componentsList.toString());
+
     }
 
     @Test
@@ -62,7 +62,7 @@ class DbComponentsTest {
         List<Components> componentsList = dataComponents.allBackWheels();
         assertEquals(componentsList.size(), 2);
 
-        System.out.println(componentsList.toString());
+
     }
 
     @Test
@@ -79,7 +79,7 @@ class DbComponentsTest {
         List<Components> componentsList = dataComponents.allBrakes();
         assertEquals(componentsList.size(), 2);
 
-        System.out.println(componentsList.toString());
+
     }
 
     @Test
@@ -96,7 +96,7 @@ class DbComponentsTest {
         List<Components> componentsList = dataComponents.allFootrest();
         assertEquals(componentsList.size(), 2);
 
-        System.out.println(componentsList.toString());
+
     }
 
     @Test
@@ -113,7 +113,7 @@ class DbComponentsTest {
         List<Components> componentsList = dataComponents.getAllComponents();
         assertEquals(componentsList.size(), 8);
 
-        System.out.println(componentsList.toString());
+
     }
 
     @Test
@@ -130,6 +130,6 @@ class DbComponentsTest {
         Components components = dataComponents.getComponent(3);
         assertEquals(components.getCategory(),"BRAKE");
 
-        System.out.println(components.toString());
+
     }
 }

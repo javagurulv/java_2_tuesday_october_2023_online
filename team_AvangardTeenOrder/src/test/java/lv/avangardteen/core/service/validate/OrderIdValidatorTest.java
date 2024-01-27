@@ -41,21 +41,21 @@ class OrderIdValidatorTest {
     }
 
     @Test
-    public void getClientIsAbsent() {
+    public void getWheelchairIsAbsent() {
         Mockito.when(wheelchairDB.getWheelchair(1l)).thenReturn(null);
         List<CoreError> errors = idValidator.validate(1l);
         assertEquals(errors.size(), 1);
     }
 
     @Test
-    public void getClientIsPresent() {
+    public void getWheelchairIsPresent() {
         Mockito.when(wheelchairDB.getWheelchair(1l)).thenReturn(new Wheelchair());
         List<CoreError> errors = idValidator.validate(1l);
         assertEquals(errors.size(), 0);
     }
 
     @Test
-    public void getClientIsNull() {
+    public void getWheelchairIsNull() {
         Mockito.when(wheelchairDB.getWheelchair(1l)).thenReturn(new Wheelchair());
         List<CoreError> errors = idValidator.validate(2l);
         assertEquals(errors.size(), 1);

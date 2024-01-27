@@ -29,13 +29,12 @@ public class OrderIdValidator {
 
 
     private boolean isEmpty(Long id) {
-        return id == null || id <= 0;
+        return (id == null);
     }
 
     private boolean validateOrder(Long id) {
         Wheelchair wheelchair = wheelchairDB.getWheelchair(id);
-        if (!isEmpty(id)
-        && wheelchair == null) {
+        if (!isEmpty(id) && wheelchair == null) {
             return true;
         }
         return false;
