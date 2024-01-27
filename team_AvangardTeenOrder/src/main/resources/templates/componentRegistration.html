@@ -11,67 +11,73 @@
 <body style="background-color: powderblue;">
 
 <h3>Change components in order</h3>
-<!--
 
 <form action="/componentRegistration" th:object="${request}" method="post">
     <table>
         <tr>
             <td>Order ID:</td>
-            <td><input type="id" th:field="${request.id}"/></td>
+            <td><input type="text" th:field="${request.id}"/></td>
         </tr>
+    </table>
 
+    <table>
         <tr>
-            <td>Front wheel ID:</td>
+            <td>Front wheel:</td>
+        </tr>
+        <tr>
             <select th:field="${request.wheelFrontChoose}">
-                <option th:each="components : ${allFrontWheel}"
+                <option th:each="components : ${allFrontWheels}"
                         th:value="${components.id}"
                         th:text="${components.information}"></option>
             </select>
-            </td>
-        </tr>
 
+        </tr>
+    </table>
+
+    <table>
         <tr>
-            <td>Back wheel ID:</td>
+            <td>Back wheel:</td>
             <select th:field="${request.wheelBackChoose}">
                 <option th:each="components : ${allBackWheels}"
                         th:value="${components.id}"
                         th:text="${components.information}"></option>
             </select>
-            </td>
-        </tr>
 
+        </tr>
+    </table>
+
+    <table>
         <tr>
-            <td>Brake ID:</td>
+            <td>Brake:</td>
             <select th:field="${request.brakeChoose}">
                 <option th:each="components : ${allBrakes}"
                         th:value="${components.id}"
                         th:text="${components.information}"></option>
             </select>
-            </td>
-        </tr>
 
+        </tr>
+    </table>
+
+    <table>
         <tr>
-            <td>Footrest ID:</td>
+            <td>Footrest:</td>
             <select th:field="${request.footrestChoose}">
                 <option th:each="components : ${allFootrests}"
                         th:value="${components.id}"
                         th:text="${components.information}"></option>
             </select>
-            </td>
-        </tr>
-
-
-        <td>
-            <input type="submit" value="Input"/>
-            <input type="reset" value="Clear"/>
-        </td>
 
         </tr>
     </table>
+
+    <td>
+        <input type="submit" value="Input"/>
+        <input type="reset" value="Clear"/>
+    </td>
+
+
 </form>
 
--->
-<!--
 
 <td th:if="${errors != null}">
     <tr th:each="error : ${errors}">
@@ -81,26 +87,23 @@
     </tr>
 </td>
 
--->
-<!--
 
 <h3>You can check your changes in the order</h3>
 
 <form action="/showOrder" method="get">
     <input type="submit" value="View the changed order" name="Submit"/>
-</form><br><br>
+</form>
+<br><br>
 
 <h3>Agree with the choice and return to the main menu</h3>
 
 <form action="/" method="get">
     <input type="submit" value="Go to main menu " name="Submit"/>
 </form>
--->
 
 </body>
 
 </html>
-
 
 
 <!--

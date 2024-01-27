@@ -41,7 +41,7 @@ public class OrmDataComponentsImpl implements DataComponents {
     public List<Components> allFrontWheels() {
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("FROM Components " +
-                        "WHERE category = category");
+                        "WHERE category = :category");
         query.setParameter("category", "FRONT-WHEEL");
         return query.getResultList();
     }

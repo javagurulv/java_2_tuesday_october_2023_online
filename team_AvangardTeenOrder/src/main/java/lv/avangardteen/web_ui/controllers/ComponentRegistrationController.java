@@ -4,6 +4,7 @@ import lv.avangardteen.core.database.DataComponents;
 import lv.avangardteen.core.domain.Components;
 import lv.avangardteen.core.request.ComponentRegistrationRequest;
 import lv.avangardteen.core.responce.ComponentRegistrationResponse;
+import lv.avangardteen.core.responce.GetClientResponse;
 import lv.avangardteen.core.service.ComponentRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,13 +13,15 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 
 @Controller
 public class ComponentRegistrationController {
+
+    @Autowired private ComponentRegistrationRequestLogger registrationRequestLogger;
+    @Autowired private ComponentRegistrationResponseLogger registrationResponseLogger;
     @Autowired
     private DataComponents dataComponents;
     @Autowired
@@ -45,7 +48,8 @@ public class ComponentRegistrationController {
     @PostMapping(value = "/componentRegistration")
     public String getListComponents(@ModelAttribute(value = "request") ComponentRegistrationRequest request,
                                        ModelMap modelMap) {
-        ComponentRegistrationResponse response = componentRegistrationService.execute(request);
+        ComponentRegistrationResponse response = processRequest(request);
+
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());
 
@@ -53,5 +57,12 @@ public class ComponentRegistrationController {
         return "componentRegistration";
 
 
+    }
+
+    private ComponentRegistrationResponse processRequest(ComponentRegistrationRequest request) {
+        registrationRequestLogger.setLogger(request);
+        ComponentRegistrationResponse response = componentRegistrationService.execute(request);
+        registrationResponseLogger.setLogger(response);
+        return response;
     }
 }
