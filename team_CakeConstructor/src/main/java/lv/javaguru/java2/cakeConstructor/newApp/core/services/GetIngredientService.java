@@ -1,6 +1,7 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
 
 import lv.javaguru.java2.cakeConstructor.newApp.core.database.IngredientRepository;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaIngredientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.GetIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.GetIngredientResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
@@ -15,7 +16,7 @@ import java.util.List;
 @Transactional
 public class GetIngredientService {
 
-	@Autowired private IngredientRepository ingredientRepository;
+	@Autowired private JpaIngredientRepository ingredientRepository;
 	@Autowired private GetIngredientValidator validator;
 
 	public GetIngredientResponse execute(GetIngredientRequest request) {
@@ -23,7 +24,7 @@ public class GetIngredientService {
 		if (!errors.isEmpty()) {
 			return new GetIngredientResponse(errors);
 		}
-		return ingredientRepository.getById(request.getId())
+		return ingredientRepository.findById(request.getId())
 				.map(GetIngredientResponse::new)
 				.orElseGet(() -> {
 					errors.add(new CoreError("id", "Not found!"));

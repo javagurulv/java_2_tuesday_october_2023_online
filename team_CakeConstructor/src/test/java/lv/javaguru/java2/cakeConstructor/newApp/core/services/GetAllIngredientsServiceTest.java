@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaIngredientRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.IngredientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Ingredient;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.GetAllIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.GetAllIngredientsResponse;
@@ -21,7 +21,7 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.response.GetAllIngredientsR
 public class GetAllIngredientsServiceTest {
 
     @Mock
-    private IngredientRepository ingredientRepository;
+    private JpaIngredientRepository ingredientRepository;
     @InjectMocks
     private GetAllIngredientsService service;
 
@@ -29,7 +29,7 @@ public class GetAllIngredientsServiceTest {
     public void shouldGetIngredientsFromDb() {
         List<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(new Ingredient("Biscuit", "Vanilla"));
-        Mockito.when(ingredientRepository.getAllIngredients()).thenReturn(ingredients);
+        Mockito.when(ingredientRepository.findAll()).thenReturn(ingredients);
 
         GetAllIngredientsRequest request = new GetAllIngredientsRequest();
         GetAllIngredientsResponse response = service.execute(request);

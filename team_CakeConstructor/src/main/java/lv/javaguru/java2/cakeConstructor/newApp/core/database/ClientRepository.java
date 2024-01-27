@@ -4,12 +4,15 @@ import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Client;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ClientRepository {
 
     void save(Client client);
 
     Client findById(Long id);
+
+    Optional<Client> getById(Long id);
 
     boolean deleteById(Long id);
 

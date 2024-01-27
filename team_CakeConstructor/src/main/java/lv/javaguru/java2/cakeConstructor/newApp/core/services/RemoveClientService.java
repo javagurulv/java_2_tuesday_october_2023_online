@@ -1,6 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
-
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.ClientRepository;
+;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaClientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.RemoveClientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.RemoveClientResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class RemoveClientService {
 
-    @Autowired private ClientRepository clientRepository;
+    @Autowired private JpaClientRepository clientRepository;
     @Autowired private RemoveClientRequestValidator validator;
 
 
@@ -24,7 +24,7 @@ public class RemoveClientService {
         if (!errors.isEmpty()) {
             return new RemoveClientResponse(errors);
         }
-        boolean isClientRemoved = clientRepository.deleteById(request.getClientIdToRemove());
-        return new RemoveClientResponse(isClientRemoved);
+        clientRepository.deleteById(request.getClientId());
+        return new RemoveClientResponse(true);
     }
 }

@@ -6,7 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import java.util.ArrayList;
 import java.util.List;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.IngredientRepository;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaIngredientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.RemoveIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.RemoveIngredientResponse;
@@ -21,7 +21,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class RemoveIngredientServiceTest {
 
-    @Mock private IngredientRepository ingredientRepository;
+    @Mock private JpaIngredientRepository ingredientRepository;
     @Mock private RemoveIngredientRequestValidator validator;
     @InjectMocks private RemoveIngredientService service;
 
@@ -41,7 +41,6 @@ public class RemoveIngredientServiceTest {
     @Test
     public void shouldDeleteIngredientWithIdFromDatabase() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        Mockito.when(ingredientRepository.deleteById(1L)).thenReturn(true);
         RemoveIngredientRequest request = new RemoveIngredientRequest(1L);
         RemoveIngredientResponse response = service.execute(request);
         assertFalse(response.hasErrors());

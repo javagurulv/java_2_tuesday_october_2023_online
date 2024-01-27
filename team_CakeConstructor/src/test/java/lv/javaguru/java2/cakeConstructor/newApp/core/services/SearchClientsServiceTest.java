@@ -1,9 +1,9 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
 
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaClientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Client;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchClientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.SearchClientsResponse;
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.ClientRepository;
 
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Ordering;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.Paging;
@@ -27,7 +27,7 @@ import static org.mockito.ArgumentMatchers.any;
 @RunWith(MockitoJUnitRunner.class)
 public class SearchClientsServiceTest {
 
-    @Mock private ClientRepository clientRepository;
+    @Mock private JpaClientRepository clientRepository;
     @Mock private SearchClientsRequestValidator validator;
     @InjectMocks
     private SearchClientsService service;
@@ -62,7 +62,7 @@ public class SearchClientsServiceTest {
 
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Liza", "Muller", "31234567891"));
-        Mockito.when(clientRepository.findByFirstName("Liza")).thenReturn(clients);
+        Mockito.when(clientRepository.findByFirstNameLike("Liza")).thenReturn(clients);
 
         SearchClientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -79,7 +79,7 @@ public class SearchClientsServiceTest {
 
         List<Client> clients = new ArrayList<>();
         clients.add(new Client( "Liza", "Muller", "31234567891"));
-        Mockito.when(clientRepository.findByLastName("Muller")).thenReturn(clients);
+        Mockito.when(clientRepository.findByLastNameLike("Muller")).thenReturn(clients);
 
         SearchClientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -96,7 +96,7 @@ public class SearchClientsServiceTest {
 
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Liza", "Muller", "31234567891"));
-        Mockito.when(clientRepository.findByFirstNameAndLastName("Liza", "Muller")).thenReturn(clients);
+        Mockito.when(clientRepository.findByFirstNameAndLastNameLike("Liza", "Muller")).thenReturn(clients);
 
         SearchClientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -115,7 +115,7 @@ public class SearchClientsServiceTest {
         List<Client> clients = new ArrayList<>();
         clients.add(new Client( "Liza", "Muller2", "31234567891"));
         clients.add(new Client("Liza", "Muller1", "31234567891"));
-        Mockito.when(clientRepository.findByFirstName("Liza")).thenReturn(clients);
+        Mockito.when(clientRepository.findByFirstNameLike("Liza")).thenReturn(clients);
 
         SearchClientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -137,7 +137,7 @@ public class SearchClientsServiceTest {
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Liza", "Muller1", "31234567891"));
         clients.add(new Client( "Liza", "Muller2", "31234567891"));
-        Mockito.when(clientRepository.findByFirstName("Liza")).thenReturn(clients);
+        Mockito.when(clientRepository.findByFirstNameLike("Liza")).thenReturn(clients);
 
         SearchClientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -159,7 +159,7 @@ public class SearchClientsServiceTest {
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Liza", "Muller1", "31234567891"));
         clients.add(new Client( "Liza", "Muller2", "31234567891"));
-        Mockito.when(clientRepository.findByFirstName("Liza")).thenReturn(clients);
+        Mockito.when(clientRepository.findByFirstNameLike("Liza")).thenReturn(clients);
 
         SearchClientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -178,7 +178,7 @@ public class SearchClientsServiceTest {
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Liza", "Muller1", "31234567891"));
         clients.add(new Client("Liza", "Muller2", "31234567891"));
-        Mockito.when(clientRepository.findByFirstName("Liza")).thenReturn(clients);
+        Mockito.when(clientRepository.findByFirstNameLike("Liza")).thenReturn(clients);
 
         SearchClientsResponse response = service.execute(request);
         assertFalse(response.hasErrors());

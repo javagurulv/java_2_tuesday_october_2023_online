@@ -47,7 +47,8 @@ public class ProgramMenu {
         System.out.println("7. Delete client");
         System.out.println("8. Show all clients");
         System.out.println("9. Search clients");
-        System.out.println("10. Exit");
+        System.out.println("10. Update client");
+        System.out.println("11. Exit");
         System.out.println();
     }
 
