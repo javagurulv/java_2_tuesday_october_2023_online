@@ -6,16 +6,18 @@ import lv.avangardteen.core.request.ComponentRegistrationRequest;
 import lv.avangardteen.core.responce.ComponentRegistrationResponse;
 import lv.avangardteen.core.service.ComponentRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 
-@Component
+@Controller
 public class ComponentRegistrationController {
     @Autowired
     private DataComponents dataComponents;
@@ -23,8 +25,8 @@ public class ComponentRegistrationController {
     private ComponentRegistrationService componentRegistrationService;
 
     @GetMapping(value = "/componentRegistration")
-    public String showComponents() {
-       /* List<Components> allFrontWheels = dataComponents.allFrontWheels();
+    public String showComponents(ModelMap modelMap) {
+        List<Components> allFrontWheels = dataComponents.allFrontWheels();
         modelMap.addAttribute("allFrontWheels", allFrontWheels);
 
         List<Components> allFootrests = dataComponents.allFootrest();
@@ -34,12 +36,12 @@ public class ComponentRegistrationController {
         modelMap.addAttribute("allBrakes", allBrakes);
 
         List<Components> allBackWheels = dataComponents.allBackWheels();
-        modelMap.addAttribute("allBackWheels", allBackWheels);*/
+        modelMap.addAttribute("allBackWheels", allBackWheels);
 
-      //  modelMap.addAttribute("request", new ComponentRegistrationRequest());
+        modelMap.addAttribute("request", new ComponentRegistrationRequest());
         return "componentRegistration";
     }
-/*
+
     @PostMapping(value = "/componentRegistration")
     public String getListComponents(@ModelAttribute(value = "request") ComponentRegistrationRequest request,
                                        ModelMap modelMap) {
@@ -51,5 +53,5 @@ public class ComponentRegistrationController {
         return "componentRegistration";
 
 
-    }*/
+    }
 }

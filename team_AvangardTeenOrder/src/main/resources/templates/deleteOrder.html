@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Avangard Teen order demo project">
+    <meta name="author" content="Avangard Teen order">
+    <title>Avangard Teen</title>
+
+</head>
+
+<body style = "background-color: powderblue;">
+
+
+<h3>Delete order</h3>
+
+<table>
+    <tr>
+        <td>Search by id:</td>
+    </tr>
+
+    <tr>
+        <form action="/deleteOrder" th:object="${request}" method="post">
+            <td><input type="text" th:field="${request.id}"/></td>
+            <td>
+                <input type="submit" value="Delete order"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+</body>
+
+</html>
