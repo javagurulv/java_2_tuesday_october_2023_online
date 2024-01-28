@@ -13,7 +13,7 @@ public class RemoveIngredientRequestValidatorTest {
     private RemoveIngredientRequestValidator validator = new RemoveIngredientRequestValidator();
 
     @Test
-    public void shouldReturnErrorWhenIngredientIdIsNull() {
+    public void shouldReturnErrorWhenTitleIsNull() {
         RemoveIngredientRequest request = new RemoveIngredientRequest(null);
         List<CoreError> errors = validator.validate(request);
         assertEquals(errors.size(), 1);

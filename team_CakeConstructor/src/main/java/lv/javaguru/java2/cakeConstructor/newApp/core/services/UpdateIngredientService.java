@@ -1,6 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaIngredientRepository;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.IngredientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.UpdateIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.UpdateIngredientResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class UpdateIngredientService {
 
-	@Autowired private JpaIngredientRepository ingredientRepository;
+	@Autowired private IngredientRepository ingredientRepository;
 	@Autowired private UpdateIngredientRequestValidator validator;
 
 	public UpdateIngredientResponse execute(UpdateIngredientRequest request) {
@@ -24,7 +24,7 @@ public class UpdateIngredientService {
 			return new UpdateIngredientResponse(errors);
 		}
 
-		return ingredientRepository.findById(request.getId())
+		return ingredientRepository.getById(request.getId())
 				.map(ingredient -> {
 					ingredient.setType(request.getNewType());
 					ingredient.setTaste(request.getNewTaste());

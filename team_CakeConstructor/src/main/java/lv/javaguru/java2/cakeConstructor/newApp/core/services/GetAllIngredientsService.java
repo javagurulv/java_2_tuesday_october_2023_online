@@ -1,6 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaIngredientRepository;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.IngredientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Ingredient;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.GetAllIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.GetAllIngredientsResponse;
@@ -14,11 +14,11 @@ import java.util.List;
 @Transactional
 public class GetAllIngredientsService {
 
-    @Autowired private JpaIngredientRepository ingredientRepository;
+    @Autowired private IngredientRepository ingredientRepository;
 
 
     public GetAllIngredientsResponse execute(GetAllIngredientsRequest request){
-        List<Ingredient> ingredients = ingredientRepository.findAll();
+        List<Ingredient> ingredients = ingredientRepository.getAllIngredients();
         return new GetAllIngredientsResponse(ingredients);
     }
 }
