@@ -1,12 +1,12 @@
-package classWork.dependency_injection;
-
-import java.util.List;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.stream.Collectors;
-
-public class DIComponentFilter {
-    public List<Class> filter(List<Class> classes){
-        List<Class>filter = classes.stream().filter(p->p.isAnnotationPresent(DIComponent.class)).collect(Collectors.toList());
-        return filter;
-    }
-}
+//package classWork.dependency_injection;
+//
+//import java.util.List;
+//import java.util.concurrent.LinkedBlockingDeque;
+//import java.util.stream.Collectors;
+//
+//public class DIComponentFilter {
+//    public List<Class> filter(List<Class> classes){
+//        List<Class>filter = classes.stream().filter(p->p.isAnnotationPresent(DIComponent.class)).collect(Collectors.toList());
+//        return filter;
+//    }
+//}

@@ -5,7 +5,7 @@ import classWork.core.CoreError;
 import classWork.core.requests.AddBookRequest;
 import classWork.core.response.AddBookResponse;
 import classWork.core.service.AddBookService;
-import classWork.dependency_injection.DIComponent;
+//import classWork.dependency_injection.DIComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

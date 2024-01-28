@@ -1,6 +1,6 @@
 package avangardteen.java2app.UIAction;
 
-import avangardteen.java2app.ComponentWheelchair;
+import avangardteen.java2app.domen.ComponentWheelchair;
 import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.ChooseWheelchairComponensRequest;
 import avangardteen.java2app.responce.ChooseWheelchairComponensResponce;

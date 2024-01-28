@@ -1,14 +1,14 @@
 package avangardteen.java2app.service;
 
 import avangardteen.java2app.*;
-//import org.springframework.stereotype.Component;
+import avangardteen.java2app.domen.ComponentWheelchair;
+import org.springframework.stereotype.Component;
 import avangardteen.java2app.data.DatabaseComponent;
 import avangardteen.java2app.domen.Wheelchair;
 import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.request.ChangeComponentsRequest;
 import avangardteen.java2app.responce.ChangeCompanentsResponce;
 import avangardteen.java2app.service.valigation.WheelchairValigator;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,15 +103,15 @@ public class ChangeComponentServise {
         ComponentWheelchair comp = wheelchair.getComponents().get(BACK_WHEEL_SIZE);
         if (comp.getComponentID().equals("MG 04")) {
             info = new ArrayList<>();
-            info.addAll(components.allBackWheelsFor20size());
+            info.addAll(components.allBackWheelsBySize("MG 04"));
         }
         if (comp.getComponentID().equals("MG 01")) {
             info = new ArrayList<>();
-            info.addAll(components.allBackWheelsFor22size());
+            info.addAll(components.allBackWheelsBySize("MG 01"));
         }
         if (comp.getComponentID().equals("MG 02")) {
             info = new ArrayList<>();
-            info.addAll(components.allBackWheelsFor24Size());
+            info.addAll(components.allBackWheelsBySize("MG 02"));
         }
         return info;
 

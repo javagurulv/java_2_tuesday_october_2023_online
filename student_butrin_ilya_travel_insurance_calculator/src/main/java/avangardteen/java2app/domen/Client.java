@@ -1,15 +1,35 @@
 package avangardteen.java2app.domen;
 
+import org.hibernate.annotations.Entity;
+
+import javax.persistence.*;
+
+
+@Entity
+@Table(name="client")
 public class Client {
+    @Column(name="first_Name")
     private String firstName;
-
-
-
+    @Column(name="last_Name")
     private String lastName;
+    @Column(name="phoneNumber")
     private String phoneNumber;
+    @Column(name="e-mail")
     private String e_mail;
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name="wheelchair")
+
     Wheelchair wheelchair;
+
+    public void setE_mail(String e_mail) {
+        this.e_mail = e_mail;
+    }
+
+    @Column(name="antropometricSizes")
+
     UserSizes userSizes;
 
     public Client() {

@@ -1,7 +1,7 @@
 package avangardteen.java2app.UIAction;
 
 import avangardteen.java2app.Category;
-import avangardteen.java2app.ComponentWheelchair;
+import avangardteen.java2app.domen.ComponentWheelchair;
 import org.springframework.beans.factory.annotation.Autowired;
 import avangardteen.java2app.service.ShowAllComponentsServis;
 import org.springframework.stereotype.Component;
