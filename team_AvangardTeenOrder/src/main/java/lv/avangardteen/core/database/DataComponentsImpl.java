@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-//@Component
-public class DataComponentsImpl implements DataComponents{
+
+public class DataComponentsImpl {
 
     List<Components> allComponents = List.of(
             new Components(Categories.BRAKE, 31, "MH 01", "На уровне колен пользователя, стандарт", 0.0),

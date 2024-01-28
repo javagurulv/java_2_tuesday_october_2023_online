@@ -1,4 +1,5 @@
 package lv.avangardteen.core.service;
+/*
 
 import lv.avangardteen.core.database.DataComponents;
 import lv.avangardteen.core.database.WComponentsDB;
@@ -16,8 +17,10 @@ import java.util.List;
 @Component
 @Transactional
 public class ChangeComponentService {
-    /*@Autowired
-    private DataComponents dataComponents;*/
+    */
+/*@Autowired
+    private DataComponents dataComponents;*//*
+
     @Autowired
     private WComponentsDB wComponentsDB;
     @Autowired
@@ -49,3 +52,4 @@ public class ChangeComponentService {
         return response;
     }
 }
+*/

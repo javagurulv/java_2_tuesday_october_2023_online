@@ -5,13 +5,15 @@ import fitness_club.core.responses.AddClientResponse;
 import fitness_club.core.services.AddClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Scanner;
 
 @Component
 public class AddClientUIAction implements UIAction {
+
     @Autowired
-    private AddClientService service;
+    private AddClientService addClientService;
 
 
     @Override
@@ -29,7 +31,7 @@ public class AddClientUIAction implements UIAction {
         String clientPersonalCode = scanner.nextLine();
 
         AddClientRequest request = new AddClientRequest(clientFirstName, clientLastName, clientPersonalCode);
-        AddClientResponse response = service.execute(request);
+        AddClientResponse response = addClientService.execute(request);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->

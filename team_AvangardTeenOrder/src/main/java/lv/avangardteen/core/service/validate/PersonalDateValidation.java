@@ -1,6 +1,7 @@
 package lv.avangardteen.core.service.validate;
 
 import lv.avangardteen.core.domain.Client;
+import lv.avangardteen.core.request.UserRegistrationRequest;
 import lv.avangardteen.core.responce.CoreError;
 import org.springframework.stereotype.Component;
 
@@ -9,42 +10,42 @@ import java.util.List;
 @Component
 public class PersonalDateValidation {
 
-    public List<CoreError> validate(Client userRegistration) {
+    public List<CoreError> validate(UserRegistrationRequest request) {
         List<CoreError> errors = new ArrayList<>();
-        if (surnameIsNull(userRegistration)) {
+        if (surnameIsNull(request)) {
             errors.add(new CoreError("surname", "Must not be empty!"));
         }
-        if(personalCodeIsNull(userRegistration)) {
+        if(personalCodeIsNull(request)) {
             errors.add((new CoreError("personalCode", "Must not be empty!")));
         }
-        if (isEmptyPhone(userRegistration)) {
+        if (isEmptyPhone(request)) {
             errors.add(new CoreError("phone", "Must not be empty!"));
 
         }
-        if (addressIsNull(userRegistration)) {
+        if (addressIsNull(request)) {
             errors.add(new CoreError("address", "Must not be empty!"));
         }
 
         return errors;
     }
 
-    private boolean surnameIsNull(Client userRegistration) {
+    private boolean surnameIsNull(UserRegistrationRequest request) {
 
-        return (userRegistration.getNameSurname() == null || userRegistration.getNameSurname().equals(""));
+        return (request.getNameSurname() == null || request.getNameSurname().equals(""));
     }
 
-    private boolean personalCodeIsNull(Client userRegistration) {
+    private boolean personalCodeIsNull(UserRegistrationRequest request) {
 
-        return (userRegistration.getPersonalCode() == null || userRegistration.getPersonalCode().equals(""));
+        return (request.getPersonalCode() == null || request.getPersonalCode().equals(""));
     }
 
-    private boolean isEmptyPhone(Client userRegistration) {
-        return userRegistration.getPhone() == null || userRegistration.getPhone() <= 0;
+    private boolean isEmptyPhone(UserRegistrationRequest request) {
+        return request.getPhoneNumber() == null || request.getPhoneNumber() <= 0;
     }
 
-    private boolean addressIsNull(Client userRegistration)
+    private boolean addressIsNull(UserRegistrationRequest request)
     {
-        return (userRegistration.getAddress() == null || userRegistration.getAddress().equals(""));
+        return (request.getUserAddress() == null || request.getUserAddress().equals(""));
     }
 
 

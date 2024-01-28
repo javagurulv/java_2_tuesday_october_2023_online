@@ -20,9 +20,13 @@ public class ProgramMenu {
         menuNumberToUIActionMap.put(2, findUIAction(uiActions, RemoveBookUIAction.class));
         menuNumberToUIActionMap.put(3, findUIAction(uiActions, PrintAllBooksUIAction.class));
         menuNumberToUIActionMap.put(4, findUIAction(uiActions, SearchBooksUIAction.class));
-        menuNumberToUIActionMap.put(5, findUIAction(uiActions, RegisterReaderUIAction.class));
-        menuNumberToUIActionMap.put(6, findUIAction(uiActions, PrintAllReadersUIAction.class));
-        menuNumberToUIActionMap.put(7, findUIAction(uiActions, ProgramExitUIAction.class));
+        menuNumberToUIActionMap.put(5, findUIAction(uiActions, UpdateBookUIAction.class));
+        menuNumberToUIActionMap.put(6, findUIAction(uiActions, RegisterReaderUIAction.class));
+        menuNumberToUIActionMap.put(7, findUIAction(uiActions, RemoveReaderUIAction.class));
+        menuNumberToUIActionMap.put(8, findUIAction(uiActions, PrintAllReadersUIAction.class));
+        menuNumberToUIActionMap.put(9, findUIAction(uiActions, SearchReadersUIAction.class));
+        menuNumberToUIActionMap.put(10, findUIAction(uiActions, UpdateReaderUIAction.class));
+        menuNumberToUIActionMap.put(11, findUIAction(uiActions, ProgramExitUIAction.class));
     }
 
     private UIAction findUIAction(List<UIAction> uiActions, Class uiActionClass) {

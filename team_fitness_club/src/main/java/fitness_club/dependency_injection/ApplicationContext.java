@@ -7,6 +7,8 @@ public class ApplicationContext {
 
     private Map<Class, Object> beans = new HashMap<>();
 
+    public ApplicationContext() { }
+
     public void addBean(Class beanClass, Object beanInstance) {
         beans.put(beanClass, beanInstance);
         Class[] instanceInterfaces = beanClass.getInterfaces();

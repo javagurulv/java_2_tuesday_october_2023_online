@@ -7,11 +7,12 @@
   ],
   "personFirstName": null,
   "personLastName": null,
+  "personCode": null,
   "personBirthDate": null,
   "agreementDateFrom": null,
   "agreementDateTo": null,
   "country": null,
-  "medicalRiskLimitLevel" : null,
+  "medicalRiskLimitLevel": null,
   "agreementPremium": null,
   "risks": null
 }

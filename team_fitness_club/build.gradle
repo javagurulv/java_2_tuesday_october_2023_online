@@ -8,10 +8,7 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-data-jpa:2.7.5') {
 		exclude (group: 'ch.qos.logback', module: 'logback-classic')
 	}
-
-	implementation('org.springframework.boot:spring-boot-starter-web:2.7.5') {
-		exclude (group: 'ch.qos.logback', module: 'logback-classic')
-	}
+	implementation('org.springframework.boot:spring-boot-starter-web:2.7.5')
 
 	implementation('org.springframework.boot:spring-boot-starter-thymeleaf:2.7.5') {
 		exclude (group: 'ch.qos.logback', module: 'logback-classic')
@@ -20,12 +17,14 @@ dependencies {
 	compileOnly('org.projectlombok:lombok:1.18.24')
 	annotationProcessor('org.projectlombok:lombok:1.18.24')
 
-	testCompileOnly('org.projectlombok:lombok:1.18.24')
-	testAnnotationProcessor('org.projectlombok:lombok:1.18.24')
+	implementation ('org.liquibase:liquibase-core:4.2.2')
 
-    testImplementation ('junit:junit:4.13.1')
 	testImplementation('org.mockito:mockito-core:3.6.0')
 	testImplementation('org.springframework:spring-test:5.3.23')
 	testImplementation('com.h2database:h2:1.4.200')
-	testImplementation ('org.junit.jupiter:junit-jupiter:5.8.1')
+
+	testCompileOnly('org.projectlombok:lombok:1.18.24')
+	testAnnotationProcessor('org.projectlombok:lombok:1.18.24')
+
+	testImplementation('junit:junit:4.13.1')
 }

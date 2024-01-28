@@ -4,6 +4,7 @@ import lv.avangardteen.core.domain.Client;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface Database {
 
@@ -11,15 +12,12 @@ public interface Database {
 
     void addUser(Client client);
 
-    void updateUser(Long id, Client client);
-
     boolean deleteClientByOrderId(Long id);
 
-    Client getClientByOrderId(Long idOrder);
+    Client getClientById(Long id);
 
     Client findBySurnameAndPersonalCode(String surname, Long personalCode);
 
-    void setOrderId(Long orderId);
+    Optional<Client> findClientById(Long id);
 
-    Query getIdClient();
 }

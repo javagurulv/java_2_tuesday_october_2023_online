@@ -41,9 +41,12 @@ class JdbcClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Optional<Client> findClintById(Long id) {
+    public Optional<Client> getById(Long id) {
         return Optional.empty();
     }
+
+
+
 
     @Override
     public boolean deleteByPersonalCode(String personalCode) {
@@ -52,15 +55,18 @@ class JdbcClientRepositoryImpl implements ClientRepository {
         return jdbcTemplate.update(sql, args) == 1;
     }
 
+    @Override
+    public boolean deleteById(Long id) {
+        String sql = "DELETE FROM clients WHERE id = ?";
+        Object[] args = new Object[]{id};
+        return jdbcTemplate.update(sql, args) == 1;
+    }
+
     public List<Client> getAllClients() {
         String sql = "SELECT * FROM clients";
         return jdbcTemplate.query(sql, new ClientRowMapper());
     }
 
-    @Override
-    public Long getClientIdByPersonalCode(String personalCode) {
-        return 0L;
-    }
 
     /*@Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
@@ -119,44 +125,27 @@ class JdbcClientRepositoryImpl implements ClientRepository {
     public List<Client> findByFirstName(String firstName) {
         String sql = "SELECT * FROM clients WHERE first_name = ?";
         Object[] args = new Object[]{firstName};
-        return jdbcTemplate.query(sql, new ClientRowMapper(), args);
+        return jdbcTemplate.query(sql, args, new ClientRowMapper());
     }
 
     @Override
     public List<Client> findByLastName(String lastName) {
         String sql = "SELECT * FROM clients WHERE last_name = ?";
         Object[] args = new Object[]{lastName};
-        return jdbcTemplate.query(sql, new ClientRowMapper(), args);
+        return jdbcTemplate.query(sql, args, new ClientRowMapper());
     }
 
     @Override
     public List<Client> findByFirstNameAndLastName(String firstName, String lastName) {
         String sql = "SELECT * FROM clients WHERE first_name = ? AND last_name = ?";
         Object[] args = new Object[]{firstName, lastName};
-        return jdbcTemplate.query(sql, new ClientRowMapper(), args);
+        return jdbcTemplate.query(sql, args, new ClientRowMapper());
     }
 
     @Override
     public List<Client> findByPersonalCode(String personalCode) {
         String sql = "SELECT * FROM clients WHERE personal_code = ?";
         Object[] args = new Object[]{personalCode};
-        return jdbcTemplate.query(sql, new ClientRowMapper(), args);
+        return jdbcTemplate.query(sql, args, new ClientRowMapper());
     }
-
-    @Override
-    public boolean findUniqueClient(String personalCode) {
-        String sql = "SELECT FROM Clients WHERE personal_code = ?";
-        Object[] args = new Object[]{personalCode};
-        return jdbcTemplate.update(sql, args) == 1;
-    }
-
-  /*  private void updateClientIds(List<Client> clients) {
-        for (int i = 0; i < clients.size(); i++) {
-            clients.get(i).setId((long) (i + 1));
-        }
-    }
-
-   */
-
-
 }

@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Component
 public class RiskLimitLevelCalculator {
 
-    @Value("${medical.risk.age.coefficient.enabled:false}")
+    @Value("${medical.risk.limit.level.enabled:false}")
     private Boolean medicalRiskLimitLevelEnabled;
 
     @Autowired

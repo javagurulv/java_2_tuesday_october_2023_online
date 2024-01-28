@@ -1,26 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Fitness club demo project">
     <meta name="author" content="Fitness club team">
     <title>Fitness Club</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
 
 <h3>Program menu</h3>
 
-<a href="/addClientToList">Add client to list</a> <br>
-<a href="/removeClientFromList">Remove client from list</a> <br>
-<a href="/showAllClient">Show all clients in the list</a> <br>
-<a href="/registerClient"> Add client, age group, workout and fitness center in the member card</a> <br>
-<a href="/changeAgeGroup">Change client age group in the member card</a> <br>
-<a href="/changeWorkout">Change client workout in the member card</a> <br>
-<a href="/changeFitnessCenter">Change client fitness center in the member card</a> <br>
-<a href="/searchClients">Search clients</a> <br>
-
+<a href="/addClientToList">Add client to list</a>
+<a href="/removeClientFromList">Remove client from list</a>
+<a href="/showAllClients">Show all clients in the list</a>
+<a href="/memberCardRegistration"> Member Card registration</a>
+<a href="/changeMemberCard"> Change Member Card</a>
+<a href="/showAllMemberCards">Show all member cards</a>
+<a href="/searchClients">Search clients</a>
 
 </body>
 

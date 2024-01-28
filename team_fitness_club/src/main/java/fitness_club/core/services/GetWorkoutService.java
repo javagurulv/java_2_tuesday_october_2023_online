@@ -1,22 +1,37 @@
 package fitness_club.core.services;
-import fitness_club.core.domain.Workouts;
+
+import fitness_club.core.database.WorkoutRepository;
+import fitness_club.core.database.jpa.JpaWorkoutsRepository;
+import fitness_club.core.requests.GetWorkoutRequest;
+import fitness_club.core.responses.CoreError;
+import fitness_club.core.responses.GetWorkoutResponse;
+import fitness_club.core.services.validators.workout.GetWorkoutRequestValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Component
 @Transactional
 public class GetWorkoutService {
 
-    /*public static Workouts getWorkout(int id) {
-        Workouts selectedWorkout = null;
-        switch (id) {
-            case 1 -> selectedWorkout = Workouts.GYM;
-            case 2 -> selectedWorkout = Workouts.SWIMMING_POOL;
-            case 3 -> selectedWorkout = Workouts.GROUP_CLASSES;
-            default -> System.out.println("No such workout option");
-        }
-        return selectedWorkout;
-    }
+    @Autowired
+    private JpaWorkoutsRepository workoutsRepository;
 
-     */
+    @Autowired
+    private GetWorkoutRequestValidator validator;
+
+    public GetWorkoutResponse execute(GetWorkoutRequest request) {
+        List<CoreError> errors = validator.validate(request);
+        if (!errors.isEmpty()) {
+            return new GetWorkoutResponse();
+        }
+        return workoutsRepository.findById(request.getId())
+                .map(GetWorkoutResponse::new)
+                .orElseGet(()->{
+                    errors.add(new CoreError("id", "Not found!"));
+                            return new GetWorkoutResponse(errors);
+                        });
+    }
 }

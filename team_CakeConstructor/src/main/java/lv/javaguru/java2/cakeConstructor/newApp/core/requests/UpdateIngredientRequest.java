@@ -22,4 +22,16 @@ public class UpdateIngredientRequest {
 	public String getNewTaste() {
 		return newTaste;
 	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
+
+	public void setNewType(String newType) {
+		this.newType = newType;
+	}
+
+	public void setNewTaste(String newTaste) {
+		this.newTaste = newTaste;
+	}
 }

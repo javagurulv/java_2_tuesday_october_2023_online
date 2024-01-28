@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "member_card")
@@ -14,6 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class MemberCard {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,34 +26,21 @@ public class MemberCard {
     private Client client;
 
     @ManyToOne
-    @Column(name = "age_group_id")
-    private AgeGroups ageGroups;
+    @JoinColumn(name = "age_group_id", nullable = false)
+    private AgeGroup ageGroup;
 
     @ManyToOne
-    @Column(name = "workout_id")
-    private Workouts workouts;
+    @JoinColumn(name = "fitness_center_id", nullable = false)
+    private FitnessCenter fitnessCenter;
 
     @ManyToOne
-    @Column(name = "fitness_centre_id")
-    private FitnessCentres fitnessCentre;
+    @JoinColumn(name = "workout_id", nullable = false)
+    private Workout workout;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "term_of_contract")
+    @Column(name = "term_of_contract", nullable = false)
     private Date termOfContract;
 
-
-    public MemberCard(Client client,AgeGroups ageGroups, Workouts workouts, FitnessCentres fitnessCentre) {
-        this.client = client;
-        this.ageGroups = ageGroups;
-        this.workouts = workouts;
-        this.fitnessCentre = fitnessCentre;
-    }
-
-    public MemberCard(Client client){
-        this.client =client;
-    }
-
-
-    public MemberCard(Client client, AgeGroups ageGroups) {
+    public MemberCard(Long client, Long ageGroup, Long fitnessCenter, Long workout, Date termOfContract) {
     }
 }

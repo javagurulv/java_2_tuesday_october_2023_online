@@ -18,7 +18,9 @@ public class ComponentValidator {
     private DataComponents dataComponents;
 
     public List<CoreError> validate(ComponentRegistrationRequest request) {
+
         List<CoreError> errors = new ArrayList<>();
+
         if (indexWheelFrontIsAbsent(request)) {
             errors.add(new CoreError("indexFrontWheel", "This index is absent!"));
         }

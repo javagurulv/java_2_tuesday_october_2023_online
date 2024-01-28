@@ -8,9 +8,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
-@Component
-@Transactional
+//@Component
+//@Transactional
 public class OrmClientRepositoryImpl implements ClientRepository {
 
 	@Autowired private SessionFactory sessionFactory;
@@ -21,6 +22,16 @@ public class OrmClientRepositoryImpl implements ClientRepository {
 
 	@Override
 	public Client findById(Long id) { return sessionFactory.getCurrentSession().get(Client.class, id); }
+
+	@Override
+	public Optional<Client> getById(Long id) {
+		Client client = sessionFactory.getCurrentSession().get(Client.class, id);
+		if (client == null) {
+			return Optional.empty();
+		} else {
+			return Optional.of(client);
+		}
+	}
 
 	@Override
 	public boolean deleteById(Long id) {
@@ -59,6 +70,15 @@ public class OrmClientRepositoryImpl implements ClientRepository {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"select c FROM Client c where personalCode = :personalCode");
 		query.setParameter("personalCode", personalCode);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Client> findByFirstNameAndLastName(String firstName, String lastName) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"select c FROM Client c where firstName = : firstName AND lastName = : lastName");
+		query.setParameter("firstName", firstName);
+		query.setParameter("lastName", lastName);
 		return query.getResultList();
 	}
 

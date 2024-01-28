@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Product Storage demo project">
+    <meta name="author" content="JavaGuru">
+    <title>Product Storage</title>
+</head>
+
+<body>
+
+<h3>Update product</h3>
+
+<table>
+    <tr>
+        <td>Product ID:</td>
+        <td>New Product Name:</td>
+        <td>New Product Brand:</td>
+        <td>New Product Model:</td>
+        <td>New Product Quantity:</td>
+        <td>New Price:</td>
+    </tr>
+
+    <tr>
+        <form action="/updateProduct" th:object="${request}" method="post">
+            <td><input type="text" th:field="${request.id}"/></td>
+            <td><input type="text" th:field="${request.newProductName}"/></td>
+            <td><input type="text" th:field="${request.newProductBrand}"/></td>
+            <td><input type="text" th:field="${request.newProductModel}"/></td>
+            <td><input type="text" th:field="${request.newProductQuantity}"/></td>
+            <td><input type="text" th:field="${request.newPrice}"/></td>
+            <td>
+                <input type="submit" value="Update Product"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+<td th:text="${error.errorCode}" />
+<td th:text="${error.message}" />
+</tr>
+</td>
+
+</body>
+
+</html>

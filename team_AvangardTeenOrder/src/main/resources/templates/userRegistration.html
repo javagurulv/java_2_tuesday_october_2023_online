@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Avangard Teen order demo project">
+    <meta name="author" content="Avangard Teen order">
+    <title>Avangard Teen</title>
+</head>
+
+<body style="background-color: powderblue;">
+
+<h3>User registration</h3>
+
+<table>
+    <tr>
+        <td>Surname:</td>
+        <td>Personal code:</td>
+        <td>Phone:</td>
+        <td>Address:</td>
+    </tr>
+
+    <tr>
+        <form action="/userRegistration" th:object="${request}" method="post">
+            <td><input type="text" th:field="${request.nameSurname}"/></td>
+            <td><input type="number" th:field="${request.personalCode}"/></td>
+            <td><input type="tel" th:field="${request.phoneNumber}"/></td>
+            <td><input type="text" th:field="${request.userAddress}"/></td>
+            <td>
+                <input type="submit" value="Add Client"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>Your registration number</td>
+    </tr>
+    <tr>
+        <td th:text="${idNumber}"></td>
+    </tr>
+</table>
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+        <td th:text="${error.field}"/>
+        <td th:text="${error.message}"/>
+        <br>
+    </tr>
+</td>
+
+<form action="/order" method="get">
+    <input type="submit" value="Make an order" name="Submit"/>
+</form>
+
+</body>
+
+</html>

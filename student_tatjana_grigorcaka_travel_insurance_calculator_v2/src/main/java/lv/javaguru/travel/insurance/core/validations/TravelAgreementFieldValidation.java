@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface TravelAgreementFieldValidation {
 
-    Optional<ValidationErrorDTO> validate(AgreementDTO request);
+    Optional<ValidationErrorDTO> validate(AgreementDTO agreement);
 
-    List<ValidationErrorDTO> validateList(AgreementDTO request);
+    List<ValidationErrorDTO> validateList(AgreementDTO agreement);
 }

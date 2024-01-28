@@ -9,6 +9,9 @@ public class SearchIngredientsRequest {
     private Ordering ordering;
     private Paging paging;
 
+    public SearchIngredientsRequest() {
+    }
+
     public SearchIngredientsRequest(String type, String taste) {
         this.type = type;
         this.taste = taste;
@@ -55,5 +58,21 @@ public class SearchIngredientsRequest {
 
     public Paging getPaging() {
         return paging;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setTaste(String taste) {
+        this.taste = taste;
+    }
+
+    public void setOrdering(Ordering ordering) {
+        this.ordering = ordering;
+    }
+
+    public void setPaging(Paging paging) {
+        this.paging = paging;
     }
 }

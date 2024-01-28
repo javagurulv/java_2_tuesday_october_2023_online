@@ -2,35 +2,22 @@ package lv.javaguru.java2.cakeConstructor.newApp.core.database;
 
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Cake;
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.CakeIngredient;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
-@Component
-@Transactional
-public class CakeIngredientRepository {
+public interface CakeIngredientRepository {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+    void save(CakeIngredient cakeIngredient);
 
-	public void save(CakeIngredient cakeIngredient) {
-		sessionFactory.getCurrentSession().save(cakeIngredient);
-	}
+    Optional<CakeIngredient> getById(Long id);
 
-	public CakeIngredient getById(Long id) {
-		return sessionFactory.getCurrentSession()
-				.get(CakeIngredient.class, id);
-	}
+    boolean deleteById(Long id);
 
-	public List<CakeIngredient> getAllCakeIngredients(Cake cake) {
-		Query<CakeIngredient> query = sessionFactory.getCurrentSession()
-				.createQuery("SELECT ci FROM CakeIngredient ci where ci.cake = :cake", CakeIngredient.class);
-		query.setParameter("cake", cake);
-		return query.getResultList();
-	}
+    List<CakeIngredient> getAllCakeIngredients(Cake cake);
+
 
 }
+
+
+

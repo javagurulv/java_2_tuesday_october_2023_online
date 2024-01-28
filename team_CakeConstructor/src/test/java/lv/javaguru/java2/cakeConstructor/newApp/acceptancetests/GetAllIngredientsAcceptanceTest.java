@@ -1,7 +1,7 @@
 package lv.javaguru.java2.cakeConstructor.newApp.acceptancetests;
 
 import lv.javaguru.java2.cakeConstructor.newApp.DatabaseCleaner;
-import lv.javaguru.java2.cakeConstructor.newApp.config.CakeConfiguration;
+import lv.javaguru.java2.cakeConstructor.newApp.config.SpringCoreConfiguration;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.GetAllIngredientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.GetAllIngredientsResponse;
@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {CakeConfiguration.class})
+@ContextConfiguration(classes = {SpringCoreConfiguration.class})
 @Sql({"/schema.sql"})
 public class GetAllIngredientsAcceptanceTest {
 

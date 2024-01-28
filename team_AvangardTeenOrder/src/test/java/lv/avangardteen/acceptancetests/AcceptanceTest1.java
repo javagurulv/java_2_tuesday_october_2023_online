@@ -2,7 +2,7 @@ package lv.avangardteen.acceptancetests;
 
 /*
 
-import lv.avangardteen.DatabaseCleaner;
+import lv.avangardteen.core.DatabaseCleaner;
 import lv.avangardteen.config.OrderListConfiguration;
 import lv.avangardteen.core.request.ComponentRegistrationRequest;
 import lv.avangardteen.core.request.ShowOrderRequest;

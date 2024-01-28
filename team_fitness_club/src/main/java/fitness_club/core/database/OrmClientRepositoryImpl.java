@@ -1,10 +1,11 @@
 package fitness_club.core.database;
 
 import fitness_club.core.domain.Client;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,20 +22,31 @@ public class OrmClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Optional<Client> findClintById(Long id) {
-              Client client = sessionFactory.getCurrentSession().get(Client.class, id);
-            if (client== null) {
-                return Optional.empty();
-            } else {
-                return Optional.of(client);
-            }
+    public Optional<Client> getById(Long id) {
+        Client client = sessionFactory.getCurrentSession()
+                .get(Client.class, id);
+        if(client == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(client);
+        }
     }
+
 
     @Override
     public boolean deleteByPersonalCode(String personalCode) {
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "delete Client where personal_code = :personalCode");
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("delete Client where personal_code = :personalCode");
         query.setParameter("personalCode", personalCode);
+        int result = query.executeUpdate();
+        return result == 1;
+    }
+
+    @Override
+    public boolean deleteById(Long id) {
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("delete Client where id = :id");
+        query.setParameter("id", id);
         int result = query.executeUpdate();
         return result == 1;
     }
@@ -46,14 +58,7 @@ public class OrmClientRepositoryImpl implements ClientRepository {
                 .getResultList();
     }
 
-    @Override
-    public Long getClientIdByPersonalCode (String personalCode) {
-        return sessionFactory.getCurrentSession()
-                .createQuery("SELECT c.id FROM Client c WHERE c.personalCode = :personalCode", Long.class)
-                .setParameter("personalCode", personalCode)
-                .uniqueResult();
-    }
-
+    @SuppressWarnings("unchecked")
     @Override
     public List<Client> findByFirstName(String firsName) {
         Query query = sessionFactory.getCurrentSession().createQuery(
@@ -62,6 +67,7 @@ public class OrmClientRepositoryImpl implements ClientRepository {
         return query.getResultList();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Client> findByLastName(String lastName) {
         Query query = sessionFactory.getCurrentSession().createQuery(
@@ -70,6 +76,7 @@ public class OrmClientRepositoryImpl implements ClientRepository {
         return query.getResultList();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Client> findByPersonalCode(String personalCode) {
         Query query = sessionFactory.getCurrentSession().createQuery(
@@ -78,21 +85,13 @@ public class OrmClientRepositoryImpl implements ClientRepository {
         return query.getResultList();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Client> findByFirstNameAndLastName(String firstName, String lastName) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "select c FROM Client c where first_name = : firstName AND last_name = :lastName");
+                "select c FROM Client c where first_name = : firstName AND lastName = :lastName");
         query.setParameter("firstName", firstName);
         query.setParameter("lastName", lastName);
         return query.getResultList();
-    }
-
-    @Override
-    public boolean findUniqueClient(String personalCode) {
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "SELECT Client WHERE personal_code = :personalCode");
-        query.setParameter("personalCode", personalCode);
-        int result = query.executeUpdate();
-        return result == 1;
     }
 }

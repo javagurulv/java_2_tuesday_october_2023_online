@@ -1,5 +1,7 @@
 package lv.avangardteen.core.database;
 
+import lv.avangardteen.core.domain.Components;
+import lv.avangardteen.core.domain.Wheelchair;
 import lv.avangardteen.core.domain.WheelchairComponents;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -17,28 +19,24 @@ public class WheelchairComponentsRepository implements WComponentsDB {
     private SessionFactory sessionFactory;
 
     @Override
-    public List<WheelchairComponents> getChooseComponents(Long id) {
+    public List<WheelchairComponents> getChooseComponents(Wheelchair wheelchair) {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT wc FROM WheelchairComponents WHERE wheelchair_id = :id");
-        query.setParameter("wheelchair_id", id);
+                .createQuery("FROM WheelchairComponents WHERE wheelchair_id = :wheelchair");
+        query.setParameter("wheelchair", wheelchair);
         return query.getResultList();
 
     }
 
     @Override
-    public void addWheelchairComponents(Long idWheelchair, Integer chooseComponent) {
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("INSERT INTO order_components WHERE wheelchair_id = :wheelchair.id" +
-                        "AND components_id = :components.id");
-        query.setParameter("wheelchair_id", idWheelchair);
-        query.setParameter("component_id", chooseComponent);
+    public void addWheelchairComponents(WheelchairComponents wheelchairComponents) {
+        sessionFactory.getCurrentSession().save(wheelchairComponents);
     }
 
     @Override
     public boolean deleteWheelchairComponents(Long id) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "delete order_components wc where wheelchair_id = :id");
-        query.setParameter("wheelchair_id", id);
+                "delete WheelchairComponents wc where wheelchair_id = :id");
+        query.setParameter("id", id);
         int result = query.executeUpdate();
         return result == 1;
 
@@ -47,16 +45,16 @@ public class WheelchairComponentsRepository implements WComponentsDB {
     @Override
     public List<WheelchairComponents> getAllWheelchairComponents() {
         return sessionFactory.getCurrentSession()
-                .createQuery("SELECT wc FROM order_components wc", WheelchairComponents.class)
+                .createQuery("FROM WheelchairComponents wc", WheelchairComponents.class)
                 .getResultList();
     }
 
     @Override
     public Double getPriceComponents(Long idWheelchair) {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT Sum(price) FROM Order_components" +
-                        "WHERE wheelchair_id = : id");
-        query.setParameter("wheelchair_id", idWheelchair);
+                .createQuery("Select priceComponent from WheelchairComponents" +
+                        "where wheelchair_id = id");
+        query.setParameter("id", idWheelchair);
         return (Double) query.getSingleResult();
     }
 

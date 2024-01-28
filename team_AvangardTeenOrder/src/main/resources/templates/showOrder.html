@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Avangard Teen order demo project">
+    <meta name="author" content="Avangard Teen order">
+    <title>Avangard Teen</title>
+</head>
+
+<body style="background-color: powderblue;">
+
+<h3>Show order</h3>
+
+<table>
+    <tr>
+        <form action="/showOrder" th:object="${request}" method="post">
+            <td><input type="number" th:field="${request.id}"/></td>
+            <td>
+                <input type="submit" value="Show order"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<h4>Avangard Teen wheelchair</h4>
+<table>
+    <tr>
+        <td>seat Width:</td>
+        <td>seat Depth:</td>
+        <td>footrest Length:</td>
+        <td>bach Heigh:</td>
+        <td>price:</td>
+    </tr>
+
+    <td th:if="${wheelchairs != null}">
+        <tr th:each="wheelchair : ${wheelchairs}">
+            <td th:text="${wheelchair.seatWidth}"/>
+            <td th:text="${wheelchair.seatDepth}"/>
+            <td th:text="${wheelchair.footrestLength}"/>
+            <td th:text="${wheelchair.bachHeight}"/>
+            <td th:text="${wheelchair.price}"/>
+
+        </tr>
+    </td>
+</table>
+
+<h4>Wheelchair components from the manufacturer</h4>
+
+<table>
+    <tr>
+        <td>category:</td>
+        <td>Information:</td>
+        <td>Price:</td>
+    </tr>
+
+    <td th:if="${componentList != null}">
+        <tr th:each="wheelchairComponent : ${componentList}">
+            <td th:text="${wheelchairComponent.getComponents.category}"/>
+            <td th:text="${wheelchairComponent.getComponents.information}"/>
+            <td th:text="${wheelchairComponent.getComponents.price}"/>
+        </tr>
+    </td>
+</table>
+
+
+<table>
+    <tr>
+        <td>Price order:</td>
+    </tr>
+    <tr>
+        <td th:text="${price}"/>
+    </tr>
+</table>
+
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+        <td th:text="${error.field}"/>
+        <td th:text="${error.message}"/>
+        <br>
+    </tr>
+</td>
+
+
+<h5>You can change the suggested components</h5>
+
+
+<form action="/componentRegistration" method="get">
+    <input type="submit" value="Change components" name="Submit"/>
+</form>
+
+<form action="/" method="get">
+    <input type="submit" value="Go to main menu " name="Submit"/>
+</form>
+
+</body>
+
+</html>

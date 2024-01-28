@@ -14,7 +14,7 @@ public class SelectedRisksPremiumCalculator {
     @Autowired
     private List<TravelRiskPremiumCalculator> riskPremiumCalculators;
     public List<RiskDTO> calculatePremiumForAllRisks(AgreementDTO agreement, PersonDTO person) {
-        return agreement.getSelectedRisks().stream()
+        return agreement.getSelectedRisk().stream()
                 .map(riskIc -> new RiskDTO(riskIc, calculatePremiumForRisk(riskIc, agreement, person)))
                 .toList();
     }

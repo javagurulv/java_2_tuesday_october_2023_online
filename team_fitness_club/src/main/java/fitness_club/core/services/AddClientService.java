@@ -4,7 +4,7 @@ import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.domain.Client;
 import fitness_club.core.requests.AddClientRequest;
 import fitness_club.core.responses.AddClientResponse;
-import fitness_club.core.services.vlidators.client.AddClientRequestValidator;
+import fitness_club.core.services.validators.client.AddClientRequestValidator;
 import fitness_club.core.responses.CoreError;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @Component
 @Transactional
-public class AddClientService {
+public class AddClientService  {
 
     @Autowired
     private JpaClientRepository clientRepository;
@@ -29,7 +29,6 @@ public class AddClientService {
         if (!errors.isEmpty()) {
             return new AddClientResponse(errors);
         }
-
         Client client = new Client(
                 request.getFirstName(),
                 request.getLastName(),

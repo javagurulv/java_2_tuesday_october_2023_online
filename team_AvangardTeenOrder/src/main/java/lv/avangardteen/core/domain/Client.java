@@ -1,6 +1,7 @@
 package lv.avangardteen.core.domain;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 @Entity
 @Table(name="clients")
@@ -11,10 +12,10 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name = "name_surname", nullable = false)
+    @Column(name = "nameSurname", nullable = false)
     String nameSurname;
 
-    @Column(name = "personal_code", nullable = false)
+    @Column(name = "personalCode", nullable = false)
     Long personalCode;
 
     @Column(name = "phone", nullable = false)
@@ -23,18 +24,19 @@ public class Client {
     @Column(name = "address", nullable = false)
     String address;
 
-    @Column(name = "order_id")
-    private Long orderId;
+    @OneToMany(mappedBy="client", fetch=FetchType.LAZY)
+    private List<UserSizes> userSizesList;
 
+    @OneToMany(mappedBy="client", fetch=FetchType.LAZY)
+    private List<Wheelchair> wheelchairList;
 
-    public Client(){}
+     public Client(){}
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    public Client(String nameSurname, Long personalCode, Long phone, String address) {
+         this.nameSurname = nameSurname;
+        this.personalCode = personalCode;
+        this.phone = phone;
+        this.address = address;
     }
 
     public Long getId() {
@@ -53,20 +55,20 @@ public class Client {
         this.nameSurname = nameSurname;
     }
 
-    public Long getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Long phone) {
-        this.phone = phone;
-    }
-
     public Long getPersonalCode() {
         return personalCode;
     }
 
     public void setPersonalCode(Long personalCode) {
         this.personalCode = personalCode;
+    }
+
+    public Long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Long phone) {
+        this.phone = phone;
     }
 
     public String getAddress() {
@@ -77,28 +79,42 @@ public class Client {
         this.address = address;
     }
 
+    public List<UserSizes> getUserSizesList() {
+        return userSizesList;
+    }
+
+    public void setUserSizesList(List<UserSizes> userSizesList) {
+        this.userSizesList = userSizesList;
+    }
+
+    public List<Wheelchair> getWheelchairList() {
+        return wheelchairList;
+    }
+
+    public void setWheelchairList(List<Wheelchair> wheelchairList) {
+        this.wheelchairList = wheelchairList;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return Objects.equals(id, client.id) && Objects.equals(nameSurname, client.nameSurname) && Objects.equals(personalCode, client.personalCode) && Objects.equals(phone, client.phone) && Objects.equals(address, client.address) && Objects.equals(orderId, client.orderId);
+        return Objects.equals(id, client.id) && Objects.equals(nameSurname, client.nameSurname) && Objects.equals(personalCode, client.personalCode) && Objects.equals(phone, client.phone) && Objects.equals(address, client.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nameSurname, personalCode, phone, address, orderId);
+        return Objects.hash(id, nameSurname, personalCode, phone, address);
     }
 
     @Override
     public String toString() {
         return "Client{" +
-                "id=" + id +
-                ", nameSurname='" + nameSurname + '\'' +
-                ", personalCode=" + personalCode +
-                ", phone=" + phone +
-                ", address='" + address + '\'' +
-                ", orderId=" + orderId +
+                "nameSurname: " + nameSurname + '\n' +
+                ", personalCode: " + personalCode + '\n' +
+                ", phone: " + phone + '\n' +
+                ", address: " + address + '\n' +
                 '}';
     }
 }

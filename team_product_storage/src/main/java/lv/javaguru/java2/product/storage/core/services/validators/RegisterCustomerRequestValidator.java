@@ -2,7 +2,7 @@ package lv.javaguru.java2.product.storage.core.services.validators;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lv.javaguru.java2.product.storage.core.database.CustomerRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaCustomerRepository;
 import lv.javaguru.java2.product.storage.core.domain.Customer;
 import lv.javaguru.java2.product.storage.core.requests.RegisterCustomerRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
@@ -18,8 +18,7 @@ import java.util.Optional;
 @Component
 public class RegisterCustomerRequestValidator {
 
-	@Autowired
-	private CustomerRepository customerRepository;
+	@Autowired private JpaCustomerRepository customerRepository;
 
 	public List<CoreError> validate(RegisterCustomerRequest request) {
 		List<CoreError> errors = new ArrayList<>();

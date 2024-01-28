@@ -1,6 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.ClientRepository;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaClientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Client;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.RegisterClientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.RegisterClientResponse;
@@ -16,7 +16,7 @@ import java.util.List;
 @Transactional
 public class RegisterClientService {
 
-	@Autowired private ClientRepository clientRepository;
+	@Autowired private JpaClientRepository clientRepository;
 	@Autowired private RegisterClientRequestValidator validator;
 
 	public RegisterClientResponse execute(RegisterClientRequest request) {

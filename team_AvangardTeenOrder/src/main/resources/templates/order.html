@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Avangard Teen order demo project">
+    <meta name="author" content="Avangard Teen order">
+    <title>Avangard Teen</title>
+</head>
+
+<body style="background-color: powderblue;">
+
+<h3>Order</h3>
+
+<table>
+    <tr>
+        <td>Surname:</td>
+        <td>Personal code:</td>
+        <td>Pelvis width:</td>
+        <td>Thigh length:</td>
+        <td>Back height:</td>
+        <td>Shin length:</td>
+    </tr>
+
+    <tr>
+        <form action="/order" th:object="${request}" method="post">
+            <td><input type="text" th:field="${request.userName}"/></td>
+            <td><input type="number" th:field="${request.userPersonalCode}"/></td>
+            <td><input type="number" th:field="${request.pelvisWidth}"/></td>
+            <td><input type="number" th:field="${request.thighLength}"/></td>
+            <td><input type="number" th:field="${request.backHeight}"/></td>
+            <td><input type="number" th:field="${request.shinLength}"/></td>
+            <td>
+                <input type="submit" value="Order"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>Your registration number order</td>
+    </tr>
+    <tr>
+        <td th:text="${idOrder}"></td>
+    </tr>
+</table>
+
+<h4>Вы можете просмотреть комплектацию заказа</h4>
+
+<form action="/showOrder" method="get">
+    <input type="submit" value="Go to show order page" name="Submit"/>
+</form>
+
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+        <td th:text="${error.field}"/>
+        <td th:text="${error.message}"/>
+    </tr>
+</td>
+
+
+</body>
+
+</html>

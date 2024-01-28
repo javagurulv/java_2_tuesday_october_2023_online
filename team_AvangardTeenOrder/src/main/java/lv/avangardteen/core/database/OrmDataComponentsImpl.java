@@ -1,6 +1,5 @@
 package lv.avangardteen.core.database;
 
-import lv.avangardteen.core.domain.Category;
 import lv.avangardteen.core.domain.Components;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -12,32 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-@Component
-@Transactional
+
 public class OrmDataComponentsImpl implements DataComponents {
+@Autowired SessionFactory sessionFactory;
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    @Override
-    public void addCategory(Category category) {
-        sessionFactory.getCurrentSession().save(category);
-    }
 
     @Override
-    public List<Category> getCategories() {
-        return sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Category", Category.class)
-                .getResultList();
-    }
-
-    @Override
-    public void addComponent(String categoryTitle, String marking, String information, Double price) {
-
-        Query query = sessionFactory.getCurrentSession()
-                .createQuery("INSERT INTO Components c SELECT FROM Category category_key = :category.id" +
-                        "WHERE category.title = :title");
-        query.setParameter("title", categoryTitle);
+    public void addComponent(Components components) {
+        sessionFactory.getCurrentSession().save(components);
     }
 
     @Override
@@ -57,50 +38,38 @@ public class OrmDataComponentsImpl implements DataComponents {
     }
 
     @Override
-    public List getAllIndex() {
-        return sessionFactory.getCurrentSession()
-                .createQuery("Select id FROM Components c").getResultList();
-
-    }
-
-    @Override
     public List<Components> allFrontWheels() {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Components " +
-                        "JOIN Category ON category.id  = components.category_key" +
-                        "WHERE category.title = title");
-        query.setParameter("title", "FRONT-WHEEL");
-
+                .createQuery("FROM Components " +
+                        "WHERE category = :category");
+        query.setParameter("category", "FRONT-WHEEL");
         return query.getResultList();
     }
 
     @Override
     public List<Components> allFootrest() {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Components " +
-                        "JOIN Category ON category.id  = components.category_key" +
-                        "WHERE category.title = title");
-        query.setParameter("title", "FOOTREST");
+                .createQuery("FROM Components " +
+                        "WHERE category = :category");
+        query.setParameter("category", "FOOTREST");
         return query.getResultList();
     }
 
     @Override
     public List<Components> allBrakes() {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Components " +
-                        "JOIN Category ON category.id  = components.category_key" +
-                        "WHERE category.title = title");
-        query.setParameter("title", "BRAKE");
+                .createQuery("FROM Components " +
+                        "WHERE category = :category");
+        query.setParameter("category", "BRAKE");
         return query.getResultList();
     }
 
     @Override
     public List<Components> allBackWheels() {
         Query query = sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM Components " +
-                        "JOIN Category ON category.id  = components.category_key" +
-                        "WHERE category.title = title");
-        query.setParameter("title", "BACK-WHEEL");
+                .createQuery("FROM Components " +
+                        "WHERE category = :category");
+        query.setParameter("category", "BACK-WHEEL");
         return query.getResultList();
     }
 

@@ -1,6 +1,7 @@
 package lv.avangardteen.core.domain;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -12,9 +13,8 @@ public class Components {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "category_key")
-    private Category category;
+    @Column(name = "category", nullable = false)
+    private String category;
 
     @Column(name = "marking", nullable = false)
     private String marking;
@@ -23,12 +23,15 @@ public class Components {
     private String information;
 
     @Column(name = "price", nullable = false)
-    private double price;
+    private Double price;
 
-    public Components(){}
+    @OneToMany(mappedBy="components", fetch=FetchType.LAZY )
+    private List<WheelchairComponents> wheelchairComponents;
 
-    public Components(Integer id, Category category, String marking, String information, double price) {
-        this.id = id;
+    public Components() {
+    }
+
+    public Components(String category, String marking, String information, Double price) {
         this.category = category;
         this.marking = marking;
         this.information = information;
@@ -43,46 +46,36 @@ public class Components {
         this.id = id;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getMarking() {
+        return marking;
     }
 
     public void setMarking(String marking) {
         this.marking = marking;
     }
 
-    public void setInformation(String information) {
-        this.information = information;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-
-    public String getMarking() {
-        return marking;
-    }
-
     public String getInformation() {
         return information;
     }
 
-    public double getPrice() {
+    public void setInformation(String information) {
+        this.information = information;
+    }
+
+    public Double getPrice() {
         return price;
     }
 
-    @Override
-    public String toString() {
-        return " индекс =" + id +
-                ", марка компонента - '" + marking + '\'' +
-                ", характеристика:'" + information + '\'' +
-                ", цена=" + price +
-                '}' + '\n';
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     @Override
@@ -96,5 +89,16 @@ public class Components {
     @Override
     public int hashCode() {
         return Objects.hash(id, category, marking, information, price);
+    }
+
+    @Override
+    public String toString() {
+        return "Components{" +
+                "id=" + id +
+                ", category='" + category + '\'' +
+                ", marking='" + marking + '\'' +
+                ", information='" + information + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

@@ -25,7 +25,7 @@ public class UserRegistrationService {
 
 
     public UserRegistrationResponse execute(UserRegistrationRequest request) {
-        List<CoreError> errors = validator.validate(request.getUserRegistration());
+        List<CoreError> errors = validator.validate(request);
         return (!errors.isEmpty())
                 ? new UserRegistrationResponse(errors)
                 : getResponse(request);
@@ -33,8 +33,13 @@ public class UserRegistrationService {
     }
 
     private UserRegistrationResponse getResponse(UserRegistrationRequest request) {
-        Client userRegistration = request.getUserRegistration();
-        database.addUser(userRegistration);
-        return new UserRegistrationResponse(userRegistration);
+        Client client = new Client();
+        client.setNameSurname(request.getNameSurname());
+        client.setPersonalCode(request.getPersonalCode());
+        client.setPhone(request.getPhoneNumber());
+        client.setAddress(request.getUserAddress());
+        UserRegistrationResponse response = new UserRegistrationResponse(client);
+        database.addUser(client);
+        return response;
     }
 }

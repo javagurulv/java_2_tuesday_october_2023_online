@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.core.services;
 
-import lv.javaguru.java2.product.storage.core.database.ProductRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaProductRepository;
 import lv.javaguru.java2.product.storage.core.domain.Product;
 import lv.javaguru.java2.product.storage.core.requests.AddProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.AddProductResponse;
@@ -16,7 +16,7 @@ import java.util.List;
 @Transactional
 public class AddProductService {
 
-    @Autowired private ProductRepository productRepository;
+    @Autowired private JpaProductRepository productRepository;
     @Autowired private AddProductRequestValidator validator;
 
     public AddProductResponse execute(AddProductRequest request) {

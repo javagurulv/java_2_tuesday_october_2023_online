@@ -1,9 +1,9 @@
 package lv.javaguru.java2.lessoncode.book.app.core.services;
 
+import lv.javaguru.java2.lessoncode.book.app.core.database.jpa.JpaBookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.domain.Book;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.CoreError;
 import lv.javaguru.java2.lessoncode.book.app.core.services.validators.AddBookRequestValidator;
-import lv.javaguru.java2.lessoncode.book.app.core.database.BookRepository;
 import lv.javaguru.java2.lessoncode.book.app.core.requests.AddBookRequest;
 import lv.javaguru.java2.lessoncode.book.app.core.responses.AddBookResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.util.List;
 @Component
 @Transactional
 public class AddBookService {
-    @Autowired private BookRepository bookRepository;
+    @Autowired private JpaBookRepository bookRepository;
     @Autowired private AddBookRequestValidator validator;
 
 

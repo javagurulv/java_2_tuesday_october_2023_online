@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.core.services;
 
-import lv.javaguru.java2.product.storage.core.database.ProductRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaProductRepository;
 import lv.javaguru.java2.product.storage.core.requests.UpdateProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 import lv.javaguru.java2.product.storage.core.responses.UpdateProductResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class UpdateProductService {
 
-	@Autowired private ProductRepository productRepository;
+	@Autowired private JpaProductRepository productRepository;
 	@Autowired private UpdateProductRequestValidator validator;
 
 	public UpdateProductResponse execute(UpdateProductRequest request) {
@@ -24,7 +24,7 @@ public class UpdateProductService {
 			return new UpdateProductResponse(errors);
 		}
 
-		return productRepository.getById(request.getId())
+		return productRepository.findById(request.getId())
 				.map(product -> {
 					product.setProductName(request.getNewProductName());
 					product.setProductBrand(request.getNewProductBrand());

@@ -1,18 +1,19 @@
 package fitness_club.core.responses;
 
-import fitness_club.core.domain.AgeGroups;
+import fitness_club.core.domain.AgeGroup;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class GetAgeGroupResponse extends CoreResponse {
+    private AgeGroup ageGroup;
 
-    private List<AgeGroups> ageGroups;
-
-    public GetAgeGroupResponse(List<AgeGroups> ageGroups) {
-        this.ageGroups = ageGroups;
-    }
-
-    public List<AgeGroups> getAgeGroups() {
-        return ageGroups;
+    public GetAgeGroupResponse(List<CoreError> errors) {
+        super(errors);
     }
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lv.javaguru.java2.product.storage.core.database.ProductRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaProductRepository;
 import lv.javaguru.java2.product.storage.core.requests.RemoveProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 import lv.javaguru.java2.product.storage.core.responses.RemoveProductResponse;
@@ -22,7 +23,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class RemoveProductServiceTest {
 
     @Mock
-    private ProductRepository productRepository;
+    private JpaProductRepository productRepository;
     @Mock private RemoveProductRequestValidator validator;
     @InjectMocks
     private RemoveProductService service;
@@ -41,9 +42,8 @@ public class RemoveProductServiceTest {
     }
 
     @Test
-    public void shouldDeleteBookWithIdFromDatabase() {
+    public void shouldDeleteProductWithIdFromDatabase() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        Mockito.when(productRepository.deleteById(1L)).thenReturn(true);
         RemoveProductRequest request = new RemoveProductRequest(1L);
         RemoveProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());

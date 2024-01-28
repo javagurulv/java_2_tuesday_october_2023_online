@@ -3,6 +3,7 @@ package fitness_club.console_UI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,7 @@ import java.util.Scanner;
 @Component
 public class ProgramMenu {
 
-    private static Map<Integer, UIAction> menuNumberToUIActionMap;
+    private Map<Integer, UIAction> menuNumberToUIActionMap;
 
     @Autowired
     public ProgramMenu(List<UIAction> uiActions) {
@@ -20,11 +21,8 @@ public class ProgramMenu {
         menuNumberToUIActionMap.put(2, findUIAction(uiActions, RemoveClientUIAction.class));
         menuNumberToUIActionMap.put(3, findUIAction(uiActions, GetAllClientsUIAction.class));
         menuNumberToUIActionMap.put(4, findUIAction(uiActions, CreateMemberCardUIAction.class));
-       // menuNumberToUIActionMap.put(5, findUIAction(uiActions, ChangeWorkoutUIAction.class));
-       // menuNumberToUIActionMap.put(6, findUIAction(uiActions, ChangeClientAgeGroupUIAction.class));
-       // menuNumberToUIActionMap.put(7, findUIAction(uiActions, ChangeClientFitnessCentreUIAction.class));
-        menuNumberToUIActionMap.put(8, findUIAction(uiActions, SearchClientUIAction.class));
-        menuNumberToUIActionMap.put(9, findUIAction(uiActions, ExitUIAction.class));
+        menuNumberToUIActionMap.put(5, findUIAction(uiActions, SearchClientUIAction.class));
+        menuNumberToUIActionMap.put(6, findUIAction(uiActions, ExitUIAction.class));
     }
 
 
@@ -35,28 +33,25 @@ public class ProgramMenu {
                 .get();
     }
 
-    public static void printProgramMenu() {
+    public void printProgramMenu() {
         System.out.println("");
         System.out.println("Program menu:");
         System.out.println("1. Add client to list");
-        System.out.println("2. Delete client from list");
+        System.out.println("2. Remove client from list");
         System.out.println("3. Show all clients in the list");
         System.out.println("4. Create client member card");
-        //System.out.println("5. Change client workout");
-       // System.out.println("6. Change client age group");
-      //  System.out.println("7. Change client fitness centre");
-        System.out.println("8. Search clients in database");
-        System.out.println("9. Exit");
+        System.out.println("5. Search clients in database");
+        System.out.println("6. Exit");
         System.out.println("");
     }
 
-    public static int getMenuNumber() {
+    public int getMenuNumberFromUser() {
         System.out.println("Enter menu item number to execute: ");
         Scanner scanner = new Scanner(System.in);
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static void executeSelectedMenuItem(int selectedMenu) {
+    public void executeSelectedMenuItem(int selectedMenu) throws ParseException {
         menuNumberToUIActionMap.get(selectedMenu).execute();
     }
 }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Product Storage demo project">
+    <meta name="author" content="JavaGuru">
+    <title>Product Storage</title>
+</head>
+
+<body>
+
+<h3>Create order</h3>
+
+<form action="/createOrder" th:object="${request}" method="post">
+    <table>
+        <tr>
+            <td>Customer ID:</td>
+            <td><input type="text" th:field="${request.customerId}"/></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Create order"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+<td th:text="${error.errorCode}"/>
+<td th:text="${error.message}"/>
+</tr>
+</td>
+
+
+<h3>Search criteria (customers):</h3>
+
+<form action="/createOrder/search" th:object="${searchRequest}" method="post">
+    <table>
+        <tr>
+            <td>Search by Customer Name:</td>
+            <td><input type="text" th:field="${searchRequest.customerName}"/></td>
+        </tr>
+        <tr>
+            <td>Search by Registration Code:</td>
+            <td><input type="text" th:field="${searchRequest.registrationCode}"/></td>
+        </tr>
+        </tr>
+        <td>
+            <input type="submit" value="Search Customers"/>
+            <input type="reset" value="Clear"/>
+        </td>
+        </tr>
+    </table>
+</form>
+
+<h3>Search results (customers):</h3>
+
+<table>
+    <tr>
+        <td>ID:</td>
+        <td>Customer Name:</td>
+        <td>Registration Code:</td>
+    </tr>
+
+    <td th:if="${customers != null}">
+        <tr th:each="customer : ${customers}">
+    <td th:text="${customer.id}"/>
+    <td th:text="${customer.customerName}"/>
+    <td th:text="${customer.registrationCode}"/>
+    </tr>
+    </td>
+
+</table>
+
+
+<form action="/" method="get">
+    <input type="submit" value="Go to main page" name="Submit"/>
+</form>
+
+
+</body>
+
+</html>

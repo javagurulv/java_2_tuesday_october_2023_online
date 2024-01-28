@@ -1,6 +1,6 @@
 package lv.javaguru.java2.product.storage.core.services;
 
-import lv.javaguru.java2.product.storage.core.database.ProductRepository;
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaProductRepository;
 import lv.javaguru.java2.product.storage.core.requests.RemoveProductRequest;
 import lv.javaguru.java2.product.storage.core.responses.CoreError;
 import lv.javaguru.java2.product.storage.core.responses.RemoveProductResponse;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class RemoveProductService {
 
-    @Autowired private ProductRepository productRepository;
+    @Autowired private JpaProductRepository productRepository;
     @Autowired private RemoveProductRequestValidator validator;
 
 
@@ -24,7 +24,7 @@ public class RemoveProductService {
         if (!errors.isEmpty()) {
             return new RemoveProductResponse(errors);
         }
-        boolean isProductRemoved = productRepository.deleteById(request.getProductIdToRemove());
-        return new RemoveProductResponse(isProductRemoved);
+        productRepository.deleteById(request.getProductId());
+        return new RemoveProductResponse(true);
     }
 }

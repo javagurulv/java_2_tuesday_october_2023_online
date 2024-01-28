@@ -34,7 +34,7 @@ class CountryValidationTest {
     @Test
     public void shouldNotReturnErrorWhenNotContainTravelMedicalRisk() {
         AgreementDTO request = mock(AgreementDTO.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_EVACUATION"));
+        when(request.getSelectedRisk()).thenReturn(List.of("TRAVEL_EVACUATION"));
         Optional<ValidationErrorDTO> validationErrorOpt = validation.validate(request);
         assertTrue(validationErrorOpt.isEmpty());
         verifyNoInteractions(classifierValueRepository, errorFactory);
@@ -42,7 +42,7 @@ class CountryValidationTest {
     @Test
     public void shouldReturnNoErrorWhenSelectedRisksIsNull() {
         AgreementDTO request = mock(AgreementDTO.class);
-        when(request.getSelectedRisks()).thenReturn(null);
+        when(request.getSelectedRisk()).thenReturn(null);
         Optional<ValidationErrorDTO> errorOpt = validation.validate(request);
         assertTrue(errorOpt.isEmpty());
     }
@@ -50,7 +50,7 @@ class CountryValidationTest {
     @Test
     public void shouldNotReturnErrorWhenContainTravelMedicalRiskAndCountryIsBlank() {
         AgreementDTO request = mock(AgreementDTO.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL"));
+        when(request.getSelectedRisk()).thenReturn(List.of("TRAVEL_MEDICAL"));
         when(request.getCountry()).thenReturn("");
         Optional<ValidationErrorDTO> validationErrorOpt = validation.validate(request);
         assertTrue(validationErrorOpt.isEmpty());
@@ -59,7 +59,7 @@ class CountryValidationTest {
     @Test
     public void shouldNotReturnErrorWhenContainTravelMedicalRiskAndCountryIsNull() {
         AgreementDTO request = mock(AgreementDTO.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL"));
+        when(request.getSelectedRisk()).thenReturn(List.of("TRAVEL_MEDICAL"));
         when(request.getCountry()).thenReturn(null);
         Optional<ValidationErrorDTO> validationErrorOpt = validation.validate(request);
         assertTrue(validationErrorOpt.isEmpty());
@@ -69,7 +69,7 @@ class CountryValidationTest {
     @Test
     public void shouldReturnErrorWhenCountryNotExistInDb() {
         AgreementDTO request = mock(AgreementDTO.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL"));
+        when(request.getSelectedRisk()).thenReturn(List.of("TRAVEL_MEDICAL"));
         when(request.getCountry()).thenReturn("LATVIA");
         when(classifierValueRepository.findByClassifierTitleAndIc("COUNTRY", "LATVIA"))
                 .thenReturn(Optional.empty());
@@ -83,7 +83,7 @@ class CountryValidationTest {
     @Test
     public void shouldNotReturnErrorWhenCountryExistInDb() {
         AgreementDTO request = mock(AgreementDTO.class);
-        when(request.getSelectedRisks()).thenReturn(List.of("TRAVEL_MEDICAL"));
+        when(request.getSelectedRisk()).thenReturn(List.of("TRAVEL_MEDICAL"));
         when(request.getCountry()).thenReturn("LATVIA");
         ClassifierValue classifierValue = mock(ClassifierValue.class);
         when(classifierValueRepository.findByClassifierTitleAndIc("COUNTRY", "LATVIA"))

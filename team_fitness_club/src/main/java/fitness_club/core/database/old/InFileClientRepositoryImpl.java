@@ -8,12 +8,12 @@ import java.util.stream.Collectors;
 
 import fitness_club.core.database.ClientRepository;
 import fitness_club.core.domain.Client;
-import fitness_club.core.domain.AgeGroups;
+import fitness_club.core.domain.AgeGroup;
 
 public class InFileClientRepositoryImpl implements ClientRepository {
-    private AgeGroups ageGroups;
+    private AgeGroup ageGroups;
     private final String filename;
-    private List<Client> clients = new ArrayList<>();
+    private final List<Client> clients = new ArrayList<>();
 
     public InFileClientRepositoryImpl() {
         this.filename = ".\\team_fitness_club\\src\\main\\java\\fitness_club\\core\\database\\ClientsFile.bin";
@@ -26,10 +26,14 @@ public class InFileClientRepositoryImpl implements ClientRepository {
         saveClient(clients);
     }
 
+
     @Override
-    public Optional<Client> findClintById(Long id) {
-        return Optional.empty();
+    public Optional<Client> getById(Long id) {
+        return clients.stream()
+                .filter(client -> client.getId().equals(id))
+                .findFirst();
     }
+
 
     public boolean deleteByPersonalCode(String personalCode) {
         boolean isClientDeleted = false;
@@ -46,13 +50,27 @@ public class InFileClientRepositoryImpl implements ClientRepository {
 
     }
 
+    @Override
+    public boolean deleteById(Long id) {
+        boolean isClientDeleted = false;
+        Optional<Client> clientToDeleteOpt = clients.stream()
+                .filter(client -> client.getId().equals(id))
+                .findFirst();
+        if (clientToDeleteOpt.isPresent()) {
+            Client clientToRemove = clientToDeleteOpt.get();
+            isClientDeleted = clients.remove(clientToRemove);
+            updateClientIds(clients);
+            saveClient(clients);
+        }
+        return isClientDeleted;
+    }
+
     public List<Client> getAllClients() {
         loadClientsFromFile();
         return clients;
     }
 
-    @Override
-    public Long getClientIdByPersonalCode(String personalCode){return 0L;}
+
     /*@Override
     public boolean clientAgeGroupChangedByPersonalCode(String personalCode, ClientAgeGroups newAgeGroup) {
         loadClientsFromFile();
@@ -109,7 +127,6 @@ public class InFileClientRepositoryImpl implements ClientRepository {
      */
 
 
-
     public void saveClient(List<Client> clients) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
             oos.writeObject(clients);
@@ -162,11 +179,7 @@ public class InFileClientRepositoryImpl implements ClientRepository {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public boolean findUniqueClient(String personalCode) {
-        return false;
-    }
-
+    @SuppressWarnings("unchecked")
     private void loadClientsFromFile() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
             List<Client> loadedClients = (List<Client>) ois.readObject();

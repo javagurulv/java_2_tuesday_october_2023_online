@@ -18,7 +18,7 @@ public class RemoveBookRequestValidator {
     }
 
     private Optional<CoreError> validateBookId(RemoveBookRequest request) {
-        return (request.getBookIdToRemove() == null)
+        return (request.getBookId() == null)
                 ? Optional.of(new CoreError("bookId", "Must not be empty!"))
                 : Optional.empty();
     }

@@ -1,10 +1,11 @@
 package fitness_club.core.responses;
 
 import fitness_club.core.domain.MemberCard;
-import fitness_club.core.domain.MemberCardDto;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 public class GetAllMemberCardsResponse extends CoreResponse {
 
     private List<MemberCard> memberCards;
@@ -13,7 +14,4 @@ public class GetAllMemberCardsResponse extends CoreResponse {
         this.memberCards = memberCards;
     }
 
-    public List<MemberCard> getMemberCards() {
-        return memberCards;
-    }
 }
