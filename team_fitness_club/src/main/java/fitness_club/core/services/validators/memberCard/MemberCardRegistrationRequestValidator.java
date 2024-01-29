@@ -48,8 +48,8 @@ public class MemberCardRegistrationRequestValidator {
     }
 
     private Optional<CoreError> validateClientNullOrEmpty(MemberCardRegistrationRequest request) {
-        return request.getClient() == null
-                ? Optional.of(new CoreError("clientId", "Field client ID must not be empty!"))
+        return request.getClient() == null || request.getClient().isBlank()
+                ? Optional.of(new CoreError("personalCode", "Field client personal code must not be empty!"))
                 : Optional.empty();
     }
 

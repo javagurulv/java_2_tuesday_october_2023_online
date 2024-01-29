@@ -17,8 +17,7 @@ import java.util.Optional;
 public class SearchClientsRequestValidator {
 
     public List<CoreError> validate(SearchClientsRequest request) {
-        List<CoreError> errors = new ArrayList<>();
-        errors.addAll(validateSearchFields(request));
+        List<CoreError> errors = new ArrayList<>(validateSearchFields(request));
         if (request.getOrdering() != null) {
             validateOrderBy(request.getOrdering()).ifPresent(errors::add);
             validateOrderDirection(request.getOrdering()).ifPresent(errors::add);

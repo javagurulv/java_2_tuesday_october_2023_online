@@ -1,10 +1,9 @@
 package fitness_club.core.requests;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -53,18 +52,6 @@ public class SearchClientsRequest {
         this.personalCode = personalCode;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getPersonalCode() {
-        return personalCode;
-    }
-
     public boolean isFirstNameProvided() {
         return this.firstName != null && !this.firstName.isEmpty();
     }
@@ -77,21 +64,27 @@ public class SearchClientsRequest {
         return this.personalCode != null && !this.personalCode.isEmpty();
     }
 
-    public Ordering getOrdering() {
-        return ordering;
-    }
-
-    public Paging getPaging() {
-        return paging;
-    }
 
     @Override
     public String toString() {
         return "SearchClientsRequest{" +
-                "firstName='" + firstName + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", personalCode='" + personalCode + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SearchClientsRequest that = (SearchClientsRequest) o;
+        return Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(personalCode, that.personalCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, personalCode);
     }
 }
 

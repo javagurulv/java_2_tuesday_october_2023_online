@@ -18,6 +18,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 
@@ -136,27 +138,6 @@ public class SearchClientServiceTest {
         assertEquals(response.getFoundClients().get(0).getPersonalCode(), "1234");
     }
 
-    /*@Test
-    public void shouldSearchByFirstNameLastNameAndPersonalCode() {
-
-        SearchClientsRequest request = new SearchClientsRequest("Ivan", "Petrov", "1234");
-
-        Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
-
-        List<Client> clients = new ArrayList<>();
-        clients.add(new Client("Ivan", "Petrov", "1234"));
-
-        Mockito.when(clientRepository.findByFirstNameLastNameAndPersonalCodeLike("Ivan", "Petrov", "1234")).thenReturn(clients);
-
-        SearchClientsResponse response = service.execute(request);
-        assertFalse(response.hasErrors());
-        assertEquals(response.getFoundClients().size(), 1);
-        assertEquals(response.getFoundClients().get(0).getFirstName(), "Ivan");
-        assertEquals(response.getFoundClients().get(0).getLastName(), "Petrov");
-        assertEquals(response.getFoundClients().get(0).getPersonalCode(), "1234");
-    }
-
-     */
     @Test
     public void shouldSearchByFirstNameWithOrderingAscending() {
         Ordering ordering = new Ordering("lastName", "ASCENDING");
@@ -201,7 +182,7 @@ public class SearchClientServiceTest {
     @Test
     public void shouldSearchByFirstNameWithPagingFirstPage() {
         Paging paging = new Paging(1, 1);
-        SearchClientsRequest request = new SearchClientsRequest("Dmitry", null, null, paging);
+        SearchClientsRequest request = new SearchClientsRequest("Dmitry", null, paging);
 
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
@@ -221,7 +202,7 @@ public class SearchClientServiceTest {
     @Test
     public void shouldSearchByFirstNameWithPagingSecondPage() {
         Paging paging = new Paging(2, 1);
-        SearchClientsRequest request = new SearchClientsRequest("Dmitry", null, null, paging);
+        SearchClientsRequest request = new SearchClientsRequest("Dmitry", null, paging);
 
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 

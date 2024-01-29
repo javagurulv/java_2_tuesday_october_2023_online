@@ -48,19 +48,16 @@ public class SearchClientsService {
     private List<Client> search(SearchClientsRequest request) {
         List<Client> foundClients = new ArrayList<>();
 
-        if (request.isFirstNameProvided() && !request.isLastNameProvided()) {
+        if (request.isFirstNameProvided() && !request.isLastNameProvided() && !request.isPersonalCodeProvided()) {
             foundClients = clientRepository.findByFirstNameLike(request.getFirstName());
         }
-        if (!request.isFirstNameProvided() && request.isLastNameProvided()) {
+        if (!request.isFirstNameProvided() && request.isLastNameProvided() && !request.isPersonalCodeProvided()) {
             foundClients = clientRepository.findByLastNameLike(request.getLastName());
         }
-        if (request.isFirstNameProvided() && request.isLastNameProvided()) {
+        if (request.isFirstNameProvided() && request.isLastNameProvided() && !request.isPersonalCodeProvided()) {
             foundClients = clientRepository.findByFirstNameAndLastNameLike(request.getFirstName(), request.getLastName());
         }
-        if (request.isFirstNameProvided() && request.isLastNameProvided() && request.isPersonalCodeProvided()) {
-           foundClients = clientRepository.findByFirstNameLastNameAndPersonalCodeLike(request.getFirstName(), request.getLastName(), request.getPersonalCode());
-        }
-        if (request.isPersonalCodeProvided()) {
+        if (!request.isFirstNameProvided() && !request.isLastNameProvided() && request.isPersonalCodeProvided()) {
             foundClients = clientRepository.findByPersonalCodeLike(request.getPersonalCode());
         }
         return foundClients;
@@ -81,7 +78,7 @@ public class SearchClientsService {
     }
 
 
-   private List<Client> paging(List<Client> clients, Paging paging) {
+    private List<Client> paging(List<Client> clients, Paging paging) {
         if (pagingEnabled && (paging != null)) {
             int skip = (paging.getPageNumber() - 1) * paging.getPageSize();
             return clients.stream()
