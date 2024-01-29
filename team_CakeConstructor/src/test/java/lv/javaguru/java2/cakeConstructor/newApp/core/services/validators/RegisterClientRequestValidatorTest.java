@@ -1,6 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services.validators;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.ClientRepository;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaClientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Client;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.RegisterClientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(MockitoJUnitRunner.class)
 public class RegisterClientRequestValidatorTest {
 
-	@Mock private ClientRepository userRepository;
+	@Mock private JpaClientRepository clientRepository;
 	@InjectMocks
 	private RegisterClientRequestValidator validator;
 
@@ -68,21 +68,21 @@ public class RegisterClientRequestValidatorTest {
 
 	@Test
 	public void shouldReturnErrorWhenDuplicateFound() {
-		userRepository = Mockito.mock(ClientRepository.class);
-		Mockito.when(userRepository.findByFirstNameAndLastNameAndPersonalCode("Liza", "Muller", "31234567891")).thenReturn(List.of(new Client("Liza", "Muller", "31234567891")));
-		validator = new RegisterClientRequestValidator(userRepository);
+		clientRepository = Mockito.mock(JpaClientRepository.class);
+		Mockito.when(clientRepository.findByFirstNameAndLastNameAndPersonalCode("Liza", "Muller", "31234567891")).thenReturn(List.of(new Client("Liza", "Muller", "31234567891")));
+		validator = new RegisterClientRequestValidator(clientRepository);
 		RegisterClientRequest request = new RegisterClientRequest("Liza", "Muller", "31234567891");
 		List<CoreError> errors = validator.validate(request);
 		assertTrue(!errors.isEmpty());
 		assertEquals(errors.get(0).getField(), "duplicate");
-		assertEquals(errors.get(0).getMessage(), "Duplicate user not accepted!");
+		assertEquals(errors.get(0).getMessage(), "Duplicate client not accepted!");
 	}
 
 	@Test
 	public void shouldNotReturnErrorWhenDuplicateNotFound() {
-		userRepository = Mockito.mock(ClientRepository.class);
-		Mockito.when(userRepository.findByFirstNameAndLastNameAndPersonalCode("Liza", "Muller", "31234567891")).thenReturn(List.of());
-		validator = new RegisterClientRequestValidator(userRepository);
+		clientRepository = Mockito.mock(JpaClientRepository.class);
+		Mockito.when(clientRepository.findByFirstNameAndLastNameAndPersonalCode("Liza", "Muller", "31234567891")).thenReturn(List.of());
+		validator = new RegisterClientRequestValidator(clientRepository);
 		RegisterClientRequest request = new RegisterClientRequest("Liza", "Muller", "31234567891");
 		List<CoreError> errors = validator.validate(request);
 		assertEquals(errors.size(), 0);

@@ -1,6 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.IngredientRepository;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaIngredientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Ingredient;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.AddIngredientResponse;
@@ -16,7 +16,7 @@ import java.util.List;
 @Transactional
 public class AddIngredientService {
 
-    @Autowired private IngredientRepository ingredientRepository;
+    @Autowired private JpaIngredientRepository ingredientRepository;
     @Autowired private AddIngredientRequestValidator validator;
 
 

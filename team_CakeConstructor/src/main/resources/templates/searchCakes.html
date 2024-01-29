@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Cake Constructor demo project">
+    <meta name="author" content="JavaGuru">
+    <title>Cake Constructor</title>
+</head>
+
+<body>
+
+    <h3>Search criteria (cakes):</h3>
+
+    <table>
+        <tr>
+            <td>Search by Cake Name:</td>
+            <td>Search by Weight:</td>
+        </tr>
+
+        <tr>
+            <form action="/searchCakes" th:object="${request}" method="post">
+                <td><input type="text" th:field="${request.cakeName}"/></td>
+                <td><input type="text" th:field="${request.weight}"/></td>
+                <td>
+                    <input type="submit" value="Search Cakes"/>
+                    <input type="reset" value="Clear"/>
+                </td>
+            </form>
+        </tr>
+    </table>
+
+    <h3>Search results:</h3>
+
+    <table>
+        <tr>
+            <td>ID:</td>
+            <td>Cake Name:</td>
+            <td>Weight:</td>
+        </tr>
+
+        <td th:if="${cakes != null}">
+            <tr th:each="cake : ${cakes}">
+                <td th:text="${cake.id}" />
+                <td th:text="${cake.cakeName}" />
+                <td th:text="${cake.weight}" />
+            </tr>
+        </td>
+
+    </table>
+
+    <form action="/" method="get">
+        <input type="submit" value="Go to main page" name="Submit" />
+    </form>
+
+</body>
+
+</html>

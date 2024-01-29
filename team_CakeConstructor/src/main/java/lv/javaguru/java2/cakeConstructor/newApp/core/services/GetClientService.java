@@ -1,6 +1,5 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.ClientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaClientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.GetClientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;

@@ -8,13 +8,13 @@ import static org.mockito.Mockito.when;
 
 import java.util.List;
 
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaIngredientRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.InMemoryIngredientRepositoryImpl;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.AddIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.AddIngredientResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
@@ -25,7 +25,7 @@ import lv.javaguru.java2.cakeConstructor.newApp.matchers.IngredientMatcher;
 public class AddIngredientServiceTest {
 
     @Mock
-    private InMemoryIngredientRepositoryImpl inMemoryDatabaseImpl;
+    private JpaIngredientRepository ingredientRepository;
     @Mock private AddIngredientRequestValidator validator;
     @InjectMocks
     private AddIngredientService service;
@@ -53,7 +53,7 @@ public class AddIngredientServiceTest {
         AddIngredientRequest notValidRequest = new AddIngredientRequest(null, "Vanilla");
         when(validator.validate(notValidRequest)).thenReturn(List.of(new CoreError("type", "Must not be empty!")));
         service.execute(notValidRequest);
-        verifyNoInteractions(inMemoryDatabaseImpl);
+        verifyNoInteractions(ingredientRepository);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class AddIngredientServiceTest {
         AddIngredientRequest validRequest = new AddIngredientRequest("Biscuit", "Vanilla");
         when(validator.validate(validRequest)).thenReturn(List.of());
         service.execute(validRequest);
-        verify(inMemoryDatabaseImpl).save(argThat(new IngredientMatcher("Biscuit", "Vanilla")));
+        verify(ingredientRepository).save(argThat(new IngredientMatcher("Biscuit", "Vanilla")));
     }
 
     @Test

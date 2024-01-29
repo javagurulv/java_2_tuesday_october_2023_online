@@ -2,7 +2,7 @@ package lv.javaguru.java2.cakeConstructor.newApp.core.services.validators;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.ClientRepository;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaClientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Client;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.RegisterClientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
@@ -18,8 +18,7 @@ import java.util.Optional;
 @Component
 public class RegisterClientRequestValidator {
 
-	@Autowired
-	private ClientRepository userRepository;
+	@Autowired private JpaClientRepository clientRepository;
 
 	public List<CoreError> validate(RegisterClientRequest request) {
 		List<CoreError> errors = new ArrayList<>();
@@ -50,9 +49,9 @@ public class RegisterClientRequestValidator {
 	}
 
 	private Optional<CoreError> validateDuplicate(RegisterClientRequest request) {
-		List<Client> users = userRepository.findByFirstNameAndLastNameAndPersonalCode(request.getFirstName(), request.getLastName(), request.getPersonalCode());
-		return (!users.isEmpty())
-				? Optional.of(new CoreError("duplicate", "Duplicate user not accepted!"))
+		List<Client> clients = clientRepository.findByFirstNameAndLastNameAndPersonalCode(request.getFirstName(), request.getLastName(), request.getPersonalCode());
+		return (!clients.isEmpty())
+				? Optional.of(new CoreError("duplicate", "Duplicate client not accepted!"))
 				: Optional.empty();
 	}
 

@@ -31,7 +31,6 @@ public class OrmCakeIngredientRepositoryImpl implements CakeIngredientRepository
 			return Optional.of(cakeIngredient);
 		}
 	}
-
 	@Override
 	public boolean deleteById(Long id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(

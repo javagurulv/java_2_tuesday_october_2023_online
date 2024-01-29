@@ -1,6 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.ClientRepository;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaClientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.domain.Client;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.SearchClientsRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.SearchClientsResponse;
@@ -28,7 +28,7 @@ public class SearchClientsService {
     @Value("${search.paging.enabled}")
     private boolean pagingEnabled;
 
-    @Autowired private ClientRepository clientRepository;
+    @Autowired private JpaClientRepository clientRepository;
     @Autowired private SearchClientsRequestValidator validator;
 
     public SearchClientsResponse execute(SearchClientsRequest request) {
@@ -61,13 +61,13 @@ public class SearchClientsService {
     private List<Client> search(SearchClientsRequest request) {
         List<Client> clients = new ArrayList<>();
         if (request.isFirstNameProvided() && !request.isLastNameProvided()) {
-            clients = clientRepository.findByFirstName(request.getFirstName());
+            clients = clientRepository.findByFirstNameLike(request.getFirstName());
         }
         if (!request.isFirstNameProvided() && request.isLastNameProvided()) {
-            clients = clientRepository.findByLastName(request.getLastName());
+            clients = clientRepository.findByLastNameLike(request.getLastName());
         }
         if (request.isFirstNameProvided() && request.isLastNameProvided()) {
-            clients = clientRepository.findByFirstNameAndLastName(request.getFirstName(), request.getLastName());
+            clients = clientRepository.findByFirstNameAndLastNameLike(request.getFirstName(), request.getLastName());
         }
         return clients;
     }

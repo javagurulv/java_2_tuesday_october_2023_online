@@ -1,6 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.ClientRepository;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaClientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.RegisterClientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.RegisterClientResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.RegisterClientRequestValidator;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class RegisterClientServiceTest {
 
-    @Mock private ClientRepository clientRepository;
+    @Mock private JpaClientRepository clientRepository;
     @Mock private RegisterClientRequestValidator validator;
     @InjectMocks
     private RegisterClientService service;

@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface JpaClientRepository extends JpaRepository<Client, Long> {
 
+
     List<Client> findByFirstName(String firstName);
 
     @Query("SELECT c FROM Client c WHERE c.firstName LIKE %:firstName%")
@@ -27,15 +28,15 @@ public interface JpaClientRepository extends JpaRepository<Client, Long> {
     @Query("SELECT c FROM Client c WHERE c.personalCode LIKE %:personalCode%")
     List<Client> findByPersonalCodeLike(@Param("personalCode") String personalCode);
 
-    List<Client> findByFirstNameAndLastName(String fistName, String lastName);
+    List<Client> findByFirstNameAndLastName(String firstName, String lastName);
 
-    @Query("SELECT c FROM Client c WHERE c.firstName LIKE %:firstName% AND c.lastName LIKE %:lastName%")
+    @Query("SELECT c FROM Client c WHERE c.firstName LIKE %:firstName% AND c.lastName LIKE %:lastName")
     List<Client> findByFirstNameAndLastNameLike(@Param("firstName") String firstName,
                                                 @Param("lastName") String lastName);
 
-    List<Client> findByFirstNameAndLastNameAndPersonalCode(String firstName, String lastName, String registrationCode);
+    List<Client> findByFirstNameAndLastNameAndPersonalCode(String firstName, String lastName, String personalCode);
 
-    @Query("SELECT c FROM Client c WHERE c.firstName LIKE %:firstName% AND c.lastName LIKE %:lastName% AND c.personalCode LIKE %:personalCode")
+    @Query("SELECT c FROM Client c WHERE c.firstName LIKE %:firstName% AND c.lastName LIKE %:lastName AND c.personalCode LIKE %:personalCode")
     List<Client> findByFirstNameAndLastNameAndPersonalCodeLike(@Param("firstName") String firstName,
                                                                @Param("lastName") String lastName,
                                                                @Param("personalCode") String personalCode);

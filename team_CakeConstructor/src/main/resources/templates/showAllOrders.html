@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Cake Constructor demo project">
+    <meta name="author" content="JavaGuru">
+    <title>Cake Constructor</title>
+</head>
+
+<body>
+
+    <h3>Show all orders</h3>
+
+    <table>
+        <tr>
+            <td>ID:</td>
+            <td>Client first name:</td>
+            <td>Client last name:</td>
+            <td>Personal code:</td>
+            <td>Cake name:</td>
+            <td>Weight:</td>
+            <td>Order date:</td>
+        </tr>
+
+        <td th:if="${orders != null}">
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}" />
+                <td th:text="${order.client.firstName}" />
+                <td th:text="${order.client.lastName}" />
+                <td th:text="${order.client.personalCode}" />
+                <td th:text="${order.cake.cakeName}" />
+                <td th:text="${order.cake.weight}" />
+                <td th:text="${order.orderDate}" />
+            </tr>
+        </td>
+
+    </table>
+
+    <form action="/" method="get">
+        <input type="submit" value="Go to main page" name="Submit" />
+    </form>
+
+</body>
+
+</html>

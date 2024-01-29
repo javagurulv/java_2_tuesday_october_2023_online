@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Cake Constructor demo project">
+    <meta name="author" content="JavaGuru">
+    <title>Cake Constructor</title>
+</head>
+
+<body>
+
+<h3>Create order</h3>
+
+<form action="/createOrder" th:object="${request}" method="post">
+    <table>
+        <tr>
+            <td>Client ID:</td>
+            <td><input type="text" th:field="${request.clientId}"/></td>
+        </tr>
+        <tr>
+            <td>Cake ID:</td>
+            <td><input type="text" th:field="${request.cakeId}"/></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Create order"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+        <td th:text="${error.field}"/>
+        <td th:text="${error.message}"/>
+    </tr>
+</td>
+
+
+<h3>Search criteria (clients and cakes):</h3>
+
+<form action="/createOrder/search" th:object="${searchRequest}" method="post">
+    <table>
+        <tr>
+            <td>Search by First Name:</td>
+            <td><input type="text" th:field="${searchRequest.firstName}"/></td>
+        </tr>
+        <tr>
+            <td>Search by Last Name:</td>
+            <td><input type="text" th:field="${searchRequest.lastName}"/></td>
+        </tr>
+        <tr>
+            <td>Search by Cake Name:</td>
+            <td><input type="text" th:field="${searchRequest.cakeName}"/></td>
+        </tr>
+        <tr>
+            <td>Search by Weight:</td>
+            <td><input type="text" th:field="${searchRequest.weight}"/></td>
+        </tr>
+        </tr>
+        <td>
+            <input type="submit" value="Search Clients And Cakes"/>
+            <input type="reset" value="Clear"/>
+        </td>
+        </tr>
+    </table>
+</form>
+
+<h3>Search results (clients):</h3>
+
+<table>
+    <tr>
+        <td>ID:</td>
+        <td>First Name:</td>
+        <td>Last Name:</td>
+    </tr>
+
+    <td th:if="${clients != null}">
+        <tr th:each="client : ${clients}">
+            <td th:text="${client.id}"/>
+            <td th:text="${client.firstName}"/>
+            <td th:text="${client.lastName}"/>
+        </tr>
+    </td>
+
+</table>
+
+
+<h3>Search results (cakes):</h3>
+
+<table>
+    <tr>
+        <td>ID:</td>
+        <td>Cake Name:</td>
+        <td>Weight:</td>
+    </tr>
+
+    <td th:if="${cakes != null}">
+        <tr th:each="cake : ${cakes}">
+            <td th:text="${cake.id}"/>
+            <td th:text="${cake.cakeName}"/>
+            <td th:text="${cake.weight}"/>
+        </tr>
+    </td>
+
+</table>
+
+
+<form action="/" method="get">
+    <input type="submit" value="Go to main page" name="Submit"/>
+</form>
+
+
+</body>
+
+</html>
