@@ -2,20 +2,40 @@ package avangardteen.java2app.domen;
 
 import org.springframework.stereotype.Component;
 
-@Component
-public class
-UserSizes {
-    int id;
-    public int pelvisWidth; //ширина таза
-    public int thighLength; //длинна бедра
-    public int backHeight; //высота спины
-    public int shinLength; //длинна голен
+import javax.persistence.*;
 
-    public int getId() {
+
+@Entity
+@Table(name = "antropometric")
+public class UserSizes {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "pelvisWidth")
+    private int pelvisWidth; //ширина таза
+    @Column(name = "thighLength")
+    private int thighLength; //длинна бедра
+    @Column(name = "backHeight")
+    private int backHeight; //высота спины
+    @Column(name = "shinLength")
+    private int shinLength; //длинна голен
+
+    public UserSizes() {
+    }
+
+    public UserSizes(int pelvisWidth, int thighLength, int backHeight, int shinLength) {
+        this.pelvisWidth = pelvisWidth;
+        this.thighLength = thighLength;
+        this.backHeight = backHeight;
+        this.shinLength = shinLength;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

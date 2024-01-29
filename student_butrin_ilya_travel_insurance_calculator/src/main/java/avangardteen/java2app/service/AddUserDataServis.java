@@ -15,7 +15,7 @@ import java.util.List;
 @Component public class AddUserDataServis {
   @Autowired
   DatabaseClient data;
-   @Autowired UserSizes sizes;
+//   @Autowired UserSizes sizes;
    @Autowired Wheelchair wheelchair;
    @Autowired WheelchairValigator valigator;
 
@@ -27,7 +27,7 @@ import java.util.List;
         if (!errors.isEmpty())
             return new AddPersonalDateResponce(errors);
         else {
-            Client client = new Client(wheelchair, sizes);
+            Client client = new Client();
             client.setFirstName(request.getFirstName());
             client.setLastName(request.getSecondName());
             client.setUserEmail(request.geteMail());

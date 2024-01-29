@@ -33,7 +33,7 @@ public class WheelchairRepository implements WheelchairDB {
     @Override
     public Wheelchair getWheelchair(Long id) {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "FROM Wheelchair c where id = :id");
+                "FROM Wheelchair w where id = :id");
         query.setParameter("id", id);
         try {
             query.getSingleResult();

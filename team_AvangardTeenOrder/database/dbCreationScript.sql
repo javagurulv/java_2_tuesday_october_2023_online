@@ -33,7 +33,7 @@ AUTO_INCREMENT = 10;
 ALTER TABLE `parameters`
 add foreign key (client_id) REFERENCES clients (id) ON DELETE CASCADE;
 
-CREATE TABLE IF NOT EXISTS  `wheelchair` (
+CREATE TABLE IF NOT EXISTS  `wheelchairs` (
 `id` BIGINT NOT NULL  PRIMARY KEY AUTO_INCREMENT,
 `client_id` BIGINT NOT NULL,
 `seatWidth` INT NOT NULL,
@@ -45,23 +45,8 @@ CREATE TABLE IF NOT EXISTS  `wheelchair` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 10;
 
-ALTER TABLE `wheelchair`
+ALTER TABLE `wheelchairs`
 add foreign key (client_id) REFERENCES clients (id);
-
-CREATE TABLE IF NOT EXISTS  `order_components` (
-`id` BIGINT NOT NULL PRIMARY KEY auto_increment,
-`wheelchair_id` BIGINT NOT NULL,
-`component_id` INT NOT NULL,
-`price_component` DOUBLE NOT NULL
-
-)
-ENGINE = InnoDB
-AUTO_INCREMENT = 1;
-
-ALTER TABLE `order_components` ADD foreign key (component_id) REFERENCES `components` (id);
-
-ALTER TABLE `order_components` ADD foreign key (wheelchair_id) REFERENCES `wheelchair` (id)  ON DELETE CASCADE;
-
 
 
 CREATE TABLE IF NOT EXISTS `components` (
@@ -75,6 +60,22 @@ PRIMARY KEY (`id`)
 
 ENGINE = InnoDB
 AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS  `order_components` (
+`id` BIGINT NOT NULL PRIMARY KEY auto_increment,
+`wheelchair_id` BIGINT NOT NULL,
+`component_id` INT NOT NULL,
+`price_component` DOUBLE NOT NULL
+
+)
+ENGINE = InnoDB
+AUTO_INCREMENT = 1;
+
+ALTER TABLE `order_components` ADD foreign key (component_id) REFERENCES `components` (id);
+
+ALTER TABLE `order_components` ADD foreign key (wheelchair_id) REFERENCES `wheelchairs` (id)  ON DELETE CASCADE;
+
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

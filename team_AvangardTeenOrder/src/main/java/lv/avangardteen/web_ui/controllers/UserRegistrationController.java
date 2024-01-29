@@ -26,12 +26,11 @@ public class UserRegistrationController {
     @PostMapping("/userRegistration")
     public String processUserRegistrationRequest(@ModelAttribute(value = "request") UserRegistrationRequest request, ModelMap modelMap) {
         UserRegistrationResponse response = service.execute(request);
+        modelMap.addAttribute("idNumber", response.getUserRegistration().getId());
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());
-            return "userRegistration";
-        } else {
-            return "redirect:/";
         }
+        return "userRegistration";
     }
 
 }

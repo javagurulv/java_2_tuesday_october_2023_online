@@ -79,7 +79,7 @@ class WheelchairRepositoryTest {
         Wheelchair wheelchair1 = wheelchairDB.getWheelchair(1L);
         System.out.println(wheelchair1.toString());
 
-       Boolean deleteWheelchair = wheelchairDB.deleteWheelchairById(1L);
+        Boolean deleteWheelchair = wheelchairDB.deleteWheelchairById(1L);
         assertTrue(deleteWheelchair);
 
     }

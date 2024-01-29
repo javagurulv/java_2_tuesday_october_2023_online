@@ -1,17 +1,14 @@
 package avangardteen.java2app.data;
 
-import avangardteen.java2app.ComponentWheelchair;
+
+
+import avangardteen.java2app.Category;
+import avangardteen.java2app.domen.ComponentWheelchair;
 
 import java.util.List;
 
 public interface DatabaseComponent {
     List<ComponentWheelchair> getAllComponents() ;
-    List<ComponentWheelchair> allFrontWheels();
-    List<ComponentWheelchair> allArmest();
-    List<ComponentWheelchair> allBrakes();
-    List<ComponentWheelchair> allBackWheelsFor20size();
-    List<ComponentWheelchair> allBackWheelsFor22size();
-    List<ComponentWheelchair> allBackWheelsFor24Size();
-    List<ComponentWheelchair> allBackWheels();
-    List<ComponentWheelchair> allBackWheelsSize();
+    List<ComponentWheelchair> allCathegoryComponent(Category category);
+    List<ComponentWheelchair> allBackWheelsBySize(String id);
 }

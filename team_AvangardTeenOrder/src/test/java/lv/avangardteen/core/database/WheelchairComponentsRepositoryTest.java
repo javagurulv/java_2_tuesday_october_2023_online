@@ -89,7 +89,7 @@ class WheelchairComponentsRepositoryTest {
         wComponentsDB.addWheelchairComponents(wheelchairComponents3);
         wComponentsDB.addWheelchairComponents(wheelchairComponents4);
 
-        System.out.println(wComponentsDB.getChooseComponents(wheelchair));
+
         List<WheelchairComponents> list = wComponentsDB.getChooseComponents(wheelchair);
         assertEquals(list.size(), 4);
     }

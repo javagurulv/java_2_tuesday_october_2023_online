@@ -20,9 +20,10 @@ public class CreateOrderRequest {
         this.totalAmount = totalAmount;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId()
+    { System.out.println("GET ID"); return id; }
+
+
 
     public void setId(Long id) {
         this.id = id;

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NoResultException;
 import java.util.List;
+import java.util.Optional;
 
 
 @Component
@@ -71,6 +72,16 @@ public class OrmClientRepository implements Database {
             return null;
         }
         return (Client) query.getSingleResult();
+    }
+
+    @Override
+    public Optional<Client> findClientById(Long id) {
+       Client client = sessionFactory.getCurrentSession().get(Client.class, id);
+        if (client == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(client);
+        }
     }
 
 }

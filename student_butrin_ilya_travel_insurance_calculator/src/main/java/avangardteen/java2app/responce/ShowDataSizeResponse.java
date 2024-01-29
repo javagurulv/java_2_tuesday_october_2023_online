@@ -9,6 +9,9 @@ public class ShowDataSizeResponse {
         this.userSizes = userSizes;
     }
 
+    public ShowDataSizeResponse() {
+    }
+
     public UserSizes getUserSizes() {
         return userSizes;
     }

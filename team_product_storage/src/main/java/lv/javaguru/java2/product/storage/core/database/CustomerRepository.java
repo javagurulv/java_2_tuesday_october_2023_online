@@ -1,7 +1,6 @@
 package lv.javaguru.java2.product.storage.core.database;
 
 import lv.javaguru.java2.product.storage.core.domain.Customer;
-import lv.javaguru.java2.product.storage.core.domain.Product;
 
 import java.util.List;
 import java.util.Optional;

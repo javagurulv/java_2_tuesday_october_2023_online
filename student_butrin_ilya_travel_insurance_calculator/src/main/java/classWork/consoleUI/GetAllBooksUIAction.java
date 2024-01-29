@@ -3,7 +3,7 @@ package classWork.consoleUI;
 
 import classWork.core.response.GetAllBookResponce;
 import classWork.core.service.GetAllBookService;
-import classWork.dependency_injection.DIComponent;
+//import classWork.dependency_injection.DIComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

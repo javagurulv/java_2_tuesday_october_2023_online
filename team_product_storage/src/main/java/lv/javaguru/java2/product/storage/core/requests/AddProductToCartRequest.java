@@ -1,5 +1,6 @@
 package lv.javaguru.java2.product.storage.core.requests;
 
+
 import java.math.BigDecimal;
 
 public class AddProductToCartRequest {
@@ -59,4 +60,6 @@ public class AddProductToCartRequest {
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
+
+
 }

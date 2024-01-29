@@ -6,7 +6,7 @@ public class ComponentRegistrationRequest {
     Integer wheelBackChoose;
     Integer brakeChoose;
     Integer footrestChoose;
-
+    public ComponentRegistrationRequest(){}
 
     public ComponentRegistrationRequest(Long id, Integer wheelFrontChoose,
                                         Integer wheelBackChoose, Integer brakeChoose,
@@ -36,5 +36,25 @@ public class ComponentRegistrationRequest {
 
     public Integer getFootrestChoose() {
         return footrestChoose;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setWheelFrontChoose(Integer wheelFrontChoose) {
+        this.wheelFrontChoose = wheelFrontChoose;
+    }
+
+    public void setWheelBackChoose(Integer wheelBackChoose) {
+        this.wheelBackChoose = wheelBackChoose;
+    }
+
+    public void setBrakeChoose(Integer brakeChoose) {
+        this.brakeChoose = brakeChoose;
+    }
+
+    public void setFootrestChoose(Integer footrestChoose) {
+        this.footrestChoose = footrestChoose;
     }
 }

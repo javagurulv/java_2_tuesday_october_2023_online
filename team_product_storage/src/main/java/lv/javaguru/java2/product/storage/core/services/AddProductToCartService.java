@@ -40,7 +40,7 @@ public class AddProductToCartService {
         orderItem.setOrder(order);
         orderItem.setProduct(product);
         orderItem.setQuantity(request.getQuantity());
-
+        orderItem.setAmount(orderItemRepository.multiplyAmount(request.getProductId(), request.getQuantity()));
         orderItemRepository.save(orderItem);
 
         return new AddProductToCartResponse(null);

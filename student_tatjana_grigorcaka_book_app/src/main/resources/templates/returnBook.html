@@ -10,17 +10,17 @@
 
 <body>
 
-<h3>Return book by reader</h3>
+<h3>Return book</h3>
 
-<form action="/returnBookByReader" th:object="${request}" method="post">
+<form action="/returnBook" th:object="${request}" method="post">
     <table>
         <tr>
-            <td>ReaderBook ID:</td>
+            <td>Enter ReaderBook ID:</td>
             <td><input type="text" th:field="${request.id}"/></td>
         </tr>
         <tr>
             <td>
-                <input type="submit" value="Return Book by Reader"/>
+                <input type="submit" value="Return Book"/>
                 <input type="reset" value="Clear"/>
             </td>
         </tr>

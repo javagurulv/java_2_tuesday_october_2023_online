@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface DatabaseAtropometric {
     void addAntropologDate(UserSizes sizes);
-
-    void AntropologDate(int id);
-
+    public void changeAntropologDate(String type, int newShoose);
+    void getAntropologDatedyId(long  id);
+    public void updateAntropologDate (long  id, int newChoose, String type);
     List<Client> getAllClients();
 
 }

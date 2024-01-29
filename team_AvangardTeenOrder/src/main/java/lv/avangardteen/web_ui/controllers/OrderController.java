@@ -32,13 +32,13 @@ public class OrderController {
     @PostMapping("/order")
     public String processOrderRequest(@ModelAttribute(value = "request") OrderRequest request, ModelMap modelMap) {
         OrderResponse response = service.execute(request);
+        modelMap.addAttribute("idOrder", response.getIdOrder());
+
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());
-            return "order";
-        } else {
-            modelMap.addAttribute("idOrder", response.getIdOrder());
-            return "order";
+
         }
+        return "order";
     }
 
 }

@@ -1,6 +1,7 @@
 package lv.javaguru.java2.product.storage.core.services;
 
 
+import lv.javaguru.java2.product.storage.core.database.jpa.JpaOrderItemRepository;
 import lv.javaguru.java2.product.storage.core.domain.Customer;
 
 import lv.javaguru.java2.product.storage.core.domain.Order;
@@ -24,6 +25,7 @@ public class CreateOrderService {
     @Autowired private CreateOrderRequestValidator validator;
     @Autowired private JpaCustomerRepository customerRepository;
     @Autowired private JpaOrderRepository orderRepository;
+    @Autowired private JpaOrderItemRepository orderItemRepository;
 
 
     public CreateOrderResponse execute(CreateOrderRequest request) {
@@ -37,8 +39,9 @@ public class CreateOrderService {
         Order order = new Order();
         order.setCustomer(customer);
         order.setOrderDate(new Date());
-
         orderRepository.save(order);
+
+
 
         return new CreateOrderResponse(null);
     }

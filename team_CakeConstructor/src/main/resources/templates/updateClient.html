@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Cake Constructor demo project">
+    <meta name="author" content="JavaGuru">
+    <title>Cake Constructor</title>
+</head>
+
+<body>
+
+<h3>Update client</h3>
+
+<table>
+    <tr>
+        <td>Client ID:</td>
+        <td>New First Name:</td>
+        <td>New Last Name:</td>
+        <td>New Personal Code:</td>
+    </tr>
+
+    <tr>
+        <form action="/updateClient" th:object="${request}" method="post">
+            <td><input type="text" th:field="${request.id}"/></td>
+            <td><input type="text" th:field="${request.newFirstName}"/></td>
+            <td><input type="text" th:field="${request.newLastName}"/></td>
+            <td><input type="text" th:field="${request.newPersonalCode}"/></td>
+            <td>
+                <input type="submit" value="Update Client"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+<td th:text="${error.field}" />
+<td th:text="${error.message}" />
+</tr>
+</td>
+
+</body>
+
+</html>

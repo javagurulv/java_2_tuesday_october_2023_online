@@ -8,30 +8,39 @@ import lv.avangardteen.core.request.ComponentRegistrationRequest;
 import lv.avangardteen.core.responce.ComponentRegistrationResponse;
 import lv.avangardteen.core.responce.CoreError;
 import lv.avangardteen.core.service.validate.ComponentValidator;
+import lv.avangardteen.core.service.validate.OrderIdValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 @Transactional
 public class ComponentRegistrationService {
-   @Autowired
-   private Database database;
+    @Autowired
+    private Database database;
     @Autowired
     private DataComponents dataComponents;
     @Autowired
     private WheelchairDB wheelchairDB;
     @Autowired
     private WComponentsDB wComponentsDB;
-
+    @Autowired
+    private OrderIdValidator orderIdValidator;
     @Autowired
     private ComponentValidator validator;
 
+
     public ComponentRegistrationResponse execute(ComponentRegistrationRequest request) {
+        List<CoreError> errorsList = new ArrayList<>();
+        List<CoreError> errorsId = orderIdValidator.validate(request.getId());
+        errorsList.addAll(errorsId);
         List<CoreError> errors = validator.validate(request);
-        return (!errors.isEmpty())
+        errorsList.addAll(errorsId);
+        errorsList.addAll(errors);
+        return (!errorsList.isEmpty())
                 ? new ComponentRegistrationResponse(errors)
                 : getResponse(request);
 

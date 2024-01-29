@@ -23,7 +23,7 @@ public class Components {
     private String information;
 
     @Column(name = "price", nullable = false)
-    private double price;
+    private Double price;
 
     @OneToMany(mappedBy="components", fetch=FetchType.LAZY )
     private List<WheelchairComponents> wheelchairComponents;
@@ -31,7 +31,7 @@ public class Components {
     public Components() {
     }
 
-    public Components(String category, String marking, String information, double price) {
+    public Components(String category, String marking, String information, Double price) {
         this.category = category;
         this.marking = marking;
         this.information = information;
@@ -70,11 +70,11 @@ public class Components {
         this.information = information;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -93,11 +93,12 @@ public class Components {
 
     @Override
     public String toString() {
-        return " индекс = " + id +
-                ", описание: " + information +
-                ", цена = " + price +
-                ';' + '\n';
+        return "Components{" +
+                "id=" + id +
+                ", category='" + category + '\'' +
+                ", marking='" + marking + '\'' +
+                ", information='" + information + '\'' +
+                ", price=" + price +
+                '}';
     }
-
-
 }

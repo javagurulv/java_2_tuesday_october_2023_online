@@ -44,6 +44,52 @@
 
 
 
+<h3>Search criteria (products):</h3>
+
+<form action="/addProductToCart/search" th:object="${searchRequest}" method="post">
+    <table>
+        <tr>
+            <td>Search by Product Brand:</td>
+            <td><input type="text" th:field="${searchRequest.productBrand}"/></td>
+        </tr>
+        <tr>
+            <td>Search by Product Model:</td>
+            <td><input type="text" th:field="${searchRequest.productModel}"/></td>
+        </tr>
+        </tr>
+        <td>
+            <input type="submit" value="Search Products"/>
+            <input type="reset" value="Clear"/>
+        </td>
+        </tr>
+    </table>
+</form>
+
+<h3>Search results (products):</h3>
+
+<table>
+    <tr>
+        <td>ID:</td>
+        <td>Product Name:</td>
+        <td>Product Brand:</td>
+        <td>Product Model:</td>
+        <td>Product Quantity:</td>
+        <td>Product Price:</td>
+    </tr>
+
+    <td th:if="${products != null}">
+        <tr th:each="product : ${products}">
+    <td th:text="${product.id}"/>
+    <td th:text="${product.productName}"/>
+    <td th:text="${product.productBrand}"/>
+    <td th:text="${product.productModel}"/>
+    <td th:text="${product.productQuantity}"/>
+    <td th:text="${product.price}"/>
+    </tr>
+    </td>
+
+</table>
+
 
 <form action="/" method="get">
     <input type="submit" value="Go to main page" name="Submit"/>

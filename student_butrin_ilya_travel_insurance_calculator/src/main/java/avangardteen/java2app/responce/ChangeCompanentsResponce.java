@@ -1,6 +1,7 @@
 package avangardteen.java2app.responce;
 
 import avangardteen.java2app.*;
+import avangardteen.java2app.domen.ComponentWheelchair;
 import avangardteen.java2app.domen.Wheelchair;
 
 import java.util.List;
