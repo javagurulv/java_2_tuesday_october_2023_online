@@ -18,7 +18,7 @@ public class RemoveClientRequestValidator {
     }
 
     private Optional<CoreError> validateClientId(RemoveClientRequest request) {
-        return (request.getClientIdToRemove() == null)
+        return (request.getClientId() == null)
                 ? Optional.of(new CoreError("clientId", "Must not be empty!"))
                 : Optional.empty();
     }

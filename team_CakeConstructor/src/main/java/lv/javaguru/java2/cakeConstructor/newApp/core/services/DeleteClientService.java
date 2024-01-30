@@ -1,9 +1,9 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
 
 import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaClientRepository;
+import lv.javaguru.java2.cakeConstructor.newApp.core.requests.DeleteClientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.CoreError;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.DeleteClientResponse;
-import lv.javaguru.java2.cakeConstructor.newApp.core.requests.DeleteClientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.DeleteClientValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

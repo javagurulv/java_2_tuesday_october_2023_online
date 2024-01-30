@@ -15,4 +15,5 @@ public class GetAllOrdersResponse extends CoreResponse {
     public List<Order> getOrders() {
         return orders;
     }
+
 }

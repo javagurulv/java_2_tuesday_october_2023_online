@@ -11,24 +11,20 @@ import java.util.List;
 @Repository
 public interface JpaIngredientRepository extends JpaRepository<Ingredient, Long> {
 
-	@Query(value = "select * from ingredients where type = :type", nativeQuery = true)
-	List<Ingredient> findByType(@Param("type") String type);
+    @Query(value = "select * from ingredients where type = :type", nativeQuery = true)
+    List<Ingredient> findByType(@Param("type") String type);
 
-	@Query("SELECT i FROM Ingredient i WHERE i.type LIKE %:type%")
-	List<Ingredient> findByTypeLike(@Param("type") String type);
+    @Query("SELECT i FROM Ingredient i WHERE i.type LIKE %:type%")
+    List<Ingredient> findByTypeLike(@Param("type") String type);
 
-	List<Ingredient> findByTaste(String taste);
+    List<Ingredient> findByTaste(String taste);
 
-	@Query("SELECT i FROM Ingredient i WHERE i.taste LIKE %:taste%")
-	List<Ingredient> findByTasteLike(@Param("taste") String taste);
+    @Query("SELECT i FROM Ingredient i WHERE i.taste LIKE %:taste%")
+    List<Ingredient> findByTasteLike(@Param("taste") String taste);
 
-	List<Ingredient> findByTypeAndTaste(String type, String taste);
+    List<Ingredient> findByTypeAndTaste(String type, String taste);
 
-	@Query("SELECT i FROM Ingredient i WHERE i.type LIKE %:type% AND i.taste LIKE %:taste%")
-	List<Ingredient> findByTypeAndTasteLike(@Param("type") String type,
-											@Param("taste") String taste);
-
+    @Query("SELECT i FROM Ingredient i WHERE i.type LIKE %:type% AND i.taste LIKE %:taste%")
+    List<Ingredient> findByTypeAndTasteLike(@Param("type") String type,
+                                            @Param("taste") String taste);
 }
-
-
-

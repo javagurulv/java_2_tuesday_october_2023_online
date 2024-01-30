@@ -7,18 +7,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderRepository {
-    void save(Order order);
 
-    Order findById(Long id);
+    void save(Order order);
 
     Optional<Order> getById(Long id);
 
     boolean deleteById(Long id);
 
     List<Order> getAllOrders(Client client);
-
-
 }
-
-
-

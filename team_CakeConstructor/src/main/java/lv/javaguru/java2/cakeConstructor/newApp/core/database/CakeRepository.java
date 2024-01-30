@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CakeRepository {
+
     void save(Cake cake);
 
     Optional<Cake> getById(Long id);
@@ -16,10 +17,7 @@ public interface CakeRepository {
 
     List<Cake> findByCakeName(String cakeName);
 
-    List<Cake> findByWeight(double weight);
+    List<Cake> findByWeight(Double weight);
 
-    List<Cake> findByCakeNameAndWeight(String cakeName, double weight);
+    List<Cake> findByCakeNameAndWeight(String cakeName, Double weight);
 }
-
-
-

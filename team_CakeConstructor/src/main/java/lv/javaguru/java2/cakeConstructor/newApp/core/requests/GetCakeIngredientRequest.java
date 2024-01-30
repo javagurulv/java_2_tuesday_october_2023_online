@@ -2,19 +2,15 @@ package lv.javaguru.java2.cakeConstructor.newApp.core.requests;
 
 public class GetCakeIngredientRequest {
 
-	private Long Id;
+	private Long id;
 
 	public GetCakeIngredientRequest() { }
 
 	public GetCakeIngredientRequest(Long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public Long getId() {
-		return Id;
-	}
-
-	public void setId(Long id) {
-		Id = id;
+		return id;
 	}
 }

@@ -6,8 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,11 +23,6 @@ public class OrmOrderRepositoryImpl implements OrderRepository{
 	}
 
 	@Override
-	public Order findById(Long id) {
-		return sessionFactory.getCurrentSession().get(Order.class, id);
-	}
-
-	@Override
 	public Optional<Order> getById(Long id) {
 		Order order = sessionFactory.getCurrentSession().get(Order.class, id);
 		if (order == null) {
@@ -36,7 +31,6 @@ public class OrmOrderRepositoryImpl implements OrderRepository{
 			return Optional.of(order);
 		}
 	}
-
 	@Override
 	public boolean deleteById(Long id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
@@ -49,7 +43,7 @@ public class OrmOrderRepositoryImpl implements OrderRepository{
 	@Override
 	public List<Order> getAllOrders(Client client) {
 		Query<Order> query = sessionFactory.getCurrentSession()
-				.createQuery("SELECT o FROM Order o where o.client = :client", Order.class);
+				.createQuery("SELECT i FROM Order o where o.client = :client", Order.class);
 		query.setParameter("client", client);
 		return query.getResultList();
 	}

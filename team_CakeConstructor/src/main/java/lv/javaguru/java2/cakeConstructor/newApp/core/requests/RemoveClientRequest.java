@@ -2,13 +2,13 @@ package lv.javaguru.java2.cakeConstructor.newApp.core.requests;
 
 public class RemoveClientRequest {
 
-    private Long clientIdToRemove;
+    private Long clientId;
 
-    public RemoveClientRequest(Long clientIdToRemove) {
-        this.clientIdToRemove = clientIdToRemove;
+    public RemoveClientRequest(Long clientId) {
+        this.clientId = clientId;
     }
 
-    public Long getClientIdToRemove() {
-        return clientIdToRemove;
+    public Long getClientId() {
+        return clientId;
     }
 }

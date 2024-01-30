@@ -5,8 +5,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,7 +56,7 @@ public class OrmCakeRepositoryImpl implements CakeRepository {
 	}
 
 	@Override
-	public List<Cake> findByWeight(double weight) {
+	public List<Cake> findByWeight(Double weight) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"select c FROM Cake c where weight = :weight");
 		query.setParameter("weight", weight);
@@ -64,9 +64,9 @@ public class OrmCakeRepositoryImpl implements CakeRepository {
 	}
 
 	@Override
-	public List<Cake> findByCakeNameAndWeight(String cakeName, double weight) {
+	public List<Cake> findByCakeNameAndWeight(String cakeName, Double weight) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"select c FROM Cake c where cakeName = : cakeName AND weight = :weight");
+				"select c FROM Cake c where cakeName = :cakeName AND weight = :weight");
 		query.setParameter("cakeName", cakeName);
 		query.setParameter("weight", weight);
 		return query.getResultList();

@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Component
-@Transactional
+//@Component
+//@Transactional
 public class OrmIngredientRepositoryImpl implements IngredientRepository {
 
 	@Autowired private SessionFactory sessionFactory;
@@ -66,7 +66,7 @@ public class OrmIngredientRepositoryImpl implements IngredientRepository {
 	@Override
 	public List<Ingredient> findByTypeAndTaste(String type, String taste) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"select i FROM Ingredient i where type = : type AND taste = :taste");
+				"select i FROM Ingredient i where type = :type AND taste = :taste");
 		query.setParameter("type", type);
 		query.setParameter("taste", taste);
 		return query.getResultList();

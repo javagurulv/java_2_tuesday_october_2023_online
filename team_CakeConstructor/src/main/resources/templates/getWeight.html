@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Cake Constructor demo project">
+    <meta name="author" content="JavaGuru">
+    <title>Cake Constructor</title>
+</head>
+
+<body>
+
+<h3>Get Weight</h3>
+
+<form action="/getWeight" th:object="${request}" method="post">
+    <table>
+        <tr>
+            <td>Cake ID:</td>
+            <td><input type="text" th:field="${request.id}"/></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Get Weight"/>
+                <input type="reset" value="Clear"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<td th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+<td th:text="${error.field}"/>
+<td th:text="${error.Message}"/>
+</tr>
+</td>
+
+
+
+<form action="/" method="get">
+    <input type="submit" value="Go to main page" name="Submit"/>
+</form>
+
+
+</body>
+
+</html>

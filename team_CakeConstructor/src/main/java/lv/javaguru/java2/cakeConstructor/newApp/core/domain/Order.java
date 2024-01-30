@@ -25,15 +25,6 @@ public class Order {
     @Column(name = "order_date", nullable = false)
     private Date orderDate;
 
-    public Order() {
-    }
-
-    public Order(Client client, Cake cake, Date orderDate) {
-        this.client = client;
-        this.cake = cake;
-        this.orderDate = orderDate;
-    }
-
     public Long getId() {
         return id;
     }

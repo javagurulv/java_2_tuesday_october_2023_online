@@ -16,15 +16,16 @@ public class Cake {
     private String cakeName;
 
     @Column(name="weight")
-    private double weight;
+    private Double weight;
 
     public Cake() { }
 
-    public Cake(Long id, String cakeName, double weight) {
-        this.id = id;
+
+    public Cake(String cakeName, Double weight) {
         this.cakeName = cakeName;
         this.weight = weight;
     }
+
 
     public Long getId() {
         return id;
@@ -42,11 +43,11 @@ public class Cake {
         this.cakeName = cakeName;
     }
 
-    public double getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 

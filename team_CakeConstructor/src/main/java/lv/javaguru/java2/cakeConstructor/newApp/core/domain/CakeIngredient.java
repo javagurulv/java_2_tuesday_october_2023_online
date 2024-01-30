@@ -21,16 +21,7 @@ public class CakeIngredient {
     private Ingredient ingredient;
 
     @Column(name = "quantity", nullable = false)
-    private double quantity;
-
-    public CakeIngredient() {
-    }
-
-    public CakeIngredient(Cake cake, Ingredient ingredient, double quantity) {
-        this.cake = cake;
-        this.ingredient = ingredient;
-        this.quantity = quantity;
-    }
+    private Double quantity;
 
     public Long getId() {
         return id;
@@ -56,11 +47,11 @@ public class CakeIngredient {
         this.ingredient = ingredient;
     }
 
-    public double getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 
@@ -68,7 +59,7 @@ public class CakeIngredient {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CakeIngredient that)) return false;
-        return Double.compare(getQuantity(), that.getQuantity()) == 0 && Objects.equals(getId(), that.getId()) && Objects.equals(getCake(), that.getCake()) && Objects.equals(getIngredient(), that.getIngredient());
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getCake(), that.getCake()) && Objects.equals(getIngredient(), that.getIngredient()) && Objects.equals(getQuantity(), that.getQuantity());
     }
 
     @Override

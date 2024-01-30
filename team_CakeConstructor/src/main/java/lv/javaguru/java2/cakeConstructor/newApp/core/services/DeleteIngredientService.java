@@ -1,6 +1,6 @@
 package lv.javaguru.java2.cakeConstructor.newApp.core.services;
 
-import lv.javaguru.java2.cakeConstructor.newApp.core.database.IngredientRepository;
+import lv.javaguru.java2.cakeConstructor.newApp.core.database.jpa.JpaIngredientRepository;
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.DeleteIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.DeleteIngredientResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.validators.DeleteIngredientValidator;
@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class DeleteIngredientService {
 
-	@Autowired private IngredientRepository ingredientRepository;
+	@Autowired private JpaIngredientRepository ingredientRepository;
 	@Autowired private DeleteIngredientValidator validator;
 
 	public DeleteIngredientResponse execute(DeleteIngredientRequest request) {
@@ -23,7 +23,7 @@ public class DeleteIngredientService {
 		if (!errors.isEmpty()) {
 			return new DeleteIngredientResponse(errors);
 		}
-		return ingredientRepository.getById(request.getId())
+		return ingredientRepository.findById(request.getId())
 				.map(ingredient -> {
 					ingredientRepository.deleteById(request.getId());
 					return new DeleteIngredientResponse(ingredient);

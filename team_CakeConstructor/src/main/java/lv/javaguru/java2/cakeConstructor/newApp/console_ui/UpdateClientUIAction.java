@@ -1,11 +1,8 @@
 package lv.javaguru.java2.cakeConstructor.newApp.console_ui;
 
 import lv.javaguru.java2.cakeConstructor.newApp.core.requests.UpdateClientRequest;
-import lv.javaguru.java2.cakeConstructor.newApp.core.requests.UpdateIngredientRequest;
 import lv.javaguru.java2.cakeConstructor.newApp.core.response.UpdateClientResponse;
-import lv.javaguru.java2.cakeConstructor.newApp.core.response.UpdateIngredientResponse;
 import lv.javaguru.java2.cakeConstructor.newApp.core.services.UpdateClientService;
-import lv.javaguru.java2.cakeConstructor.newApp.core.services.UpdateIngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

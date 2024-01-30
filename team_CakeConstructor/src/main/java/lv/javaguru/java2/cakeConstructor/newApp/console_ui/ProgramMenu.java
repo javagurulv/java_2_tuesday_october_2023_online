@@ -25,7 +25,8 @@ public class ProgramMenu {
         menuNumberToUIActionMap.put(7, findUIAction(uiActions, RemoveClientUIAction.class));
         menuNumberToUIActionMap.put(8, findUIAction(uiActions, PrintAllClientsUIAction.class));
         menuNumberToUIActionMap.put(9, findUIAction(uiActions, SearchClientsUIAction.class));
-        menuNumberToUIActionMap.put(10, findUIAction(uiActions, ExitUIAction.class));
+        menuNumberToUIActionMap.put(10, findUIAction(uiActions, UpdateClientUIAction.class));
+        menuNumberToUIActionMap.put(11, findUIAction(uiActions, ExitUIAction.class));
     }
 
     private UIAction findUIAction(List<UIAction> uiActions, Class uiActionClass) {
@@ -47,7 +48,8 @@ public class ProgramMenu {
         System.out.println("7. Delete client");
         System.out.println("8. Show all clients");
         System.out.println("9. Search clients");
-        System.out.println("10. Exit");
+        System.out.println("10. Update client");
+        System.out.println("11. Exit");
         System.out.println();
     }
 
