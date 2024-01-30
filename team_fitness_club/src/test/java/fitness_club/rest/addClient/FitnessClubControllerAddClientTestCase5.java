@@ -1,9 +1,9 @@
-package fitness_club.rest;
+package fitness_club.rest.addClient;
 
 import org.junit.jupiter.api.Test;
 
-public class FitnessClubControllerTestCase1 extends
-        FitnessClubControllerTestCase {
+public class FitnessClubControllerAddClientTestCase5 extends
+        FitnessClubControllerAddClientTestCase {
     @Test
     public void execute() throws Exception {
         executeAndCompare();
@@ -11,6 +11,6 @@ public class FitnessClubControllerTestCase1 extends
 
     @Override
     protected String getTestCaseFolderName() {
-        return "test_case_1";
+        return "add_client_test_case_5";
     }
 }

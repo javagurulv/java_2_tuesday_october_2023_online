@@ -1,7 +1,7 @@
 package fitness_club.web_ui.controllers;
 
 import fitness_club.core.requests.RemoveClientByPersonalCodeRequest;
-import fitness_club.core.responses.RemoveClientByIdResponse;
+import fitness_club.core.responses.RemoveClientByPersonalCodeResponse;
 import fitness_club.core.services.RemoveClientByPersonalCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ public class RemoveClientController {
 
     @PostMapping("/removeClientFromList")
     public String processRemoveClientRequest(@ModelAttribute(value = "request") RemoveClientByPersonalCodeRequest request, ModelMap modelMap) {
-        RemoveClientByIdResponse response = deleteClientByPersonalCodeService.execute(request);
+        RemoveClientByPersonalCodeResponse response = deleteClientByPersonalCodeService.execute(request);
         if (response.hasErrors()) {
             modelMap.addAttribute("errors", response.getErrors());
             return "removeClient";

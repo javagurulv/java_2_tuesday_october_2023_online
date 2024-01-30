@@ -1,5 +1,6 @@
-package fitness_club.rest;
+package fitness_club.rest.deleteClient;
 
+import fitness_club.rest.JsonFileReader;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -10,28 +11,28 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static uk.org.webcompere.modelassert.json.JsonAssertions.assertJson;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public abstract class FitnessClubControllerTestCase {
+public abstract class FitnessClubControllerSuccessfulDeleteClientTestCase {
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private JsonFileReader jsonFileReader;
 
-    private static final String BASE_URL = "/client/";
+    private static final String BASE_URL = "/client/1111";
 
     protected abstract String getTestCaseFolderName();
 
     protected void executeAndCompare() throws Exception {
         executeAndCompare(
-                "rest/" + getTestCaseFolderName() + "/request.json",
-                "rest/" + getTestCaseFolderName() + "/response.json"
+                "rest/deleteClient/" + getTestCaseFolderName() + "/request.json",
+                "rest/deleteClient/" + getTestCaseFolderName() + "/response.json"
         );
     }
 
@@ -39,7 +40,7 @@ public abstract class FitnessClubControllerTestCase {
                                      String jsonResponseFilePath) throws Exception {
         String jsonRequest = jsonFileReader.readJsonFromFile(jsonRequestFilePath);
 
-        MvcResult result = mockMvc.perform(post(BASE_URL)
+        MvcResult result = mockMvc.perform(delete(BASE_URL)
                         .content(jsonRequest)
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())

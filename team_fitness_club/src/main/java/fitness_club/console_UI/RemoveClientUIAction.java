@@ -1,7 +1,7 @@
 package fitness_club.console_UI;
 
 import fitness_club.core.requests.RemoveClientByPersonalCodeRequest;
-import fitness_club.core.responses.RemoveClientByIdResponse;
+import fitness_club.core.responses.RemoveClientByPersonalCodeResponse;
 import fitness_club.core.services.RemoveClientByPersonalCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ public class RemoveClientUIAction implements UIAction {
         System.out.println("Enter client id to remove: ");
         String personalCode = scanner.nextLine();
         RemoveClientByPersonalCodeRequest request = new RemoveClientByPersonalCodeRequest(personalCode);
-        RemoveClientByIdResponse response =
+        RemoveClientByPersonalCodeResponse response =
                 removeClientByPersonalCodeService.execute(request);
 
         if (response.hasErrors()) {

@@ -24,7 +24,6 @@ public class AddClientRequestValidator {
         validateFirstName(request).ifPresent(errors::add);
         validateLastName(request).ifPresent(errors::add);
         validatePersonalCodeNotEmpty(request).ifPresent(errors::add);
-        validatePersonalCodeNotDuplicate(request).ifPresent(errors::add);
         return errors;
     }
 
@@ -43,13 +42,6 @@ public class AddClientRequestValidator {
     private Optional<CoreError> validatePersonalCodeNotEmpty(AddClientRequest request) {
         return request.getPersonalCode() == null || request.getPersonalCode().isEmpty()
                 ? Optional.of(new CoreError("personalCode", "Must not be empty!"))
-                : Optional.empty();
-    }
-
-    private Optional<CoreError> validatePersonalCodeNotDuplicate(AddClientRequest request) {
-        List<Client> clients = clientRepository.findByPersonalCodeLike(request.getPersonalCode());
-        return (!clients.isEmpty())
-                ? Optional.of(new CoreError("uniqueClient", "Is duplicate! Client with such personal code is already in database!"))
                 : Optional.empty();
     }
 }

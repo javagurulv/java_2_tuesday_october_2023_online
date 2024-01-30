@@ -8,12 +8,12 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RemoveClientByIdResponse extends CoreResponse {
+public class RemoveClientByPersonalCodeResponse extends CoreResponse {
 
     private boolean removeClient;
 
 
-    public RemoveClientByIdResponse(List<CoreError> errors) {
+    public RemoveClientByPersonalCodeResponse(List<CoreError> errors) {
         super(errors);
     }
 

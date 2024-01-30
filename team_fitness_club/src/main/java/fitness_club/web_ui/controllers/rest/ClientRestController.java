@@ -39,8 +39,8 @@ public class ClientRestController {
         return updateClientService.execute(request);
     }
 
-    @DeleteMapping(path = "/{id}", produces = "application/json")
-    public RemoveClientByIdResponse deleteClient(@PathVariable String personalCode) {
+    @DeleteMapping(path = "/{personalCode}", produces = "application/json")
+    public RemoveClientByPersonalCodeResponse deleteClient(@PathVariable String personalCode) {
         RemoveClientByPersonalCodeRequest request = new RemoveClientByPersonalCodeRequest(personalCode);
         return deleteClientService.execute(request);
     }

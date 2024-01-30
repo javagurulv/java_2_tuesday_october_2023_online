@@ -1,0 +1,9 @@
+{
+  "errors": [
+    {
+      "field": "lastName",
+      "message": "Must not be empty!"
+    }
+  ],
+  "newClient": null
+}

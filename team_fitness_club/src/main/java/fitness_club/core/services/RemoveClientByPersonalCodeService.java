@@ -3,8 +3,8 @@ package fitness_club.core.services;
 import fitness_club.core.database.jpa.JpaClientRepository;
 import fitness_club.core.requests.RemoveClientByPersonalCodeRequest;
 import fitness_club.core.responses.CoreError;
-import fitness_club.core.responses.RemoveClientByIdResponse;
-import fitness_club.core.services.validators.client.RemoveClientByIdRequestValidator;
+import fitness_club.core.responses.RemoveClientByPersonalCodeResponse;
+import fitness_club.core.services.validators.client.RemoveClientByPersonalCodeRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,15 +18,15 @@ public class RemoveClientByPersonalCodeService {
     @Autowired
     private JpaClientRepository clientRepository;
     @Autowired
-    private RemoveClientByIdRequestValidator validator;
+    private RemoveClientByPersonalCodeRequestValidator validator;
 
-    public RemoveClientByIdResponse execute(RemoveClientByPersonalCodeRequest request) {
+    public RemoveClientByPersonalCodeResponse execute(RemoveClientByPersonalCodeRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
-            return new RemoveClientByIdResponse(errors);
+            return new RemoveClientByPersonalCodeResponse(errors);
         }
         clientRepository.deleteByPersonalCode(request.getPersonalCode());
-        return new RemoveClientByIdResponse(true);
+        return new RemoveClientByPersonalCodeResponse(true);
     }
 }
 
