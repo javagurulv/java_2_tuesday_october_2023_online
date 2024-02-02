@@ -35,7 +35,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "firstName");
-        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty or contain symbols!");
     }
 
     @Test
@@ -47,7 +47,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "firstName");
-        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty or contain symbols!");
     }
 
     @Test
@@ -59,7 +59,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "lastName");
-        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty or contain symbols!");
     }
 
     @Test
@@ -71,7 +71,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "lastName");
-        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty or contain symbols!");
     }
 
     @Test
@@ -83,7 +83,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "firstName");
-        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty or contain symbols!");
     }
 
     @Test
@@ -95,7 +95,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "firstName");
-        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty or contain symbols!");
     }
 
     @Test
@@ -107,7 +107,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "lastName");
-        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty or contain symbols!");
     }
 
     @Test
@@ -119,7 +119,7 @@ public class AddClientRequestValidatorTest {
         assertFalse(errors.isEmpty());
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getField(), "lastName");
-        assertEquals(errors.get(0).getMessage(), "Must not be empty!");
+        assertEquals(errors.get(0).getMessage(), "Must not be empty or contain symbols!");
     }
 
     @Test

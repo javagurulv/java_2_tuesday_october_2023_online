@@ -25,11 +25,11 @@ public class UpdateClientService {
     public UpdateClientResponse execute(UpdateClientRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
-            return new UpdateClientResponse();
+            return new UpdateClientResponse(errors);
         }
         return clientRepository.findById(request.getId())
                 .map(client -> {
-                    client.setFirstName(request.getNewName());
+                    client.setFirstName(request.getNewFirstName());
                     client.setLastName(request.getNewLastName());
                     client.setPersonalCode(request.getNewPersonalCode());
                     return new UpdateClientResponse(client);

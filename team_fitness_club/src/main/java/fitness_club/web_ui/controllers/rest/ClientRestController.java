@@ -32,7 +32,7 @@ public class ClientRestController {
         return addClientService.execute(request);
     }
 
-    @PostMapping(path = "/{id}",
+    @PutMapping(path = "/{id}",
             consumes = "application/json",
             produces = "application/json")
     public UpdateClientResponse updateClient(@RequestBody UpdateClientRequest request) {

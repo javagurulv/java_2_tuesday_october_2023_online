@@ -40,7 +40,7 @@ public class AddClientAcceptanceTest {
         AddClientRequest addClientRequest = new AddClientRequest("", "test", "12345");
         AddClientResponse response = addClientService.execute(addClientRequest);
         assertEquals(response.getErrors().get(0).getField(), "firstName");
-        assertEquals(response.getErrors().get(0).getMessage(), "Must not be empty!");
+        assertEquals(response.getErrors().get(0).getMessage(), "Must not be empty or contain symbols!");
     }
 
     @Test
@@ -48,7 +48,7 @@ public class AddClientAcceptanceTest {
         AddClientRequest addClientRequest = new AddClientRequest("test", "", "12345");
         AddClientResponse response = addClientService.execute(addClientRequest);
         assertEquals(response.getErrors().get(0).getField(), "lastName");
-        assertEquals(response.getErrors().get(0).getMessage(), "Must not be empty!");
+        assertEquals(response.getErrors().get(0).getMessage(), "Must not be empty or contain symbols!");
     }
 
     @Test

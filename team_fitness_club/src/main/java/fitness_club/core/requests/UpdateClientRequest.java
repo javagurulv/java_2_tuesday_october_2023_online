@@ -5,13 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 public class UpdateClientRequest {
 
-    private Long Id;
+    private Long id;
 
-    private String newName;
+    private String newFirstName;
 
     private String newLastName;
 

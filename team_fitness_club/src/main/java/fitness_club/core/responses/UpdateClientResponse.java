@@ -16,5 +16,4 @@ public class UpdateClientResponse extends CoreResponse {
         super(errors);
     }
 
-
 }
