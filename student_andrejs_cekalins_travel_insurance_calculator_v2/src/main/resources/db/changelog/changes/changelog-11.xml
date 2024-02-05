@@ -23,7 +23,7 @@
     </changeSet>
 
 
-    <changeSet author= "andresC" id="29">
+    <changeSet author= "andresC" id="30">
         <createIndex indexName="ix_agreement_person_risks_agreement_person_id_risk_ic"
                      tableName="agreement_person_risks"
                      unique="true">
@@ -32,7 +32,7 @@
         </createIndex>
     </changeSet>
 
-    <changeSet author="andrejsC" id="30">
+    <changeSet author="andrejsC" id="31">
         <addForeignKeyConstraint baseTableName="agreement_person_risks"
                                  baseColumnNames="agreement_person_id"
                                  constraintName="fk_agreement_person_risks_agreement_person_id"
