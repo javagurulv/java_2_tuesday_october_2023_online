@@ -15,7 +15,7 @@ public class TravelCalculatePremiumResponseLoggerV1 {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             String json = objectMapper.writeValueAsString(response);
-            logger.info("REQUEST: " + json);
+            logger.info("RESPONSE: " + json);
         } catch (JsonProcessingException e) {
             logger.error("Error to convert request to JSON", e);
         }
