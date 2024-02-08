@@ -53,10 +53,5 @@
       "description": "Field medicalRiskLimitLevel must not be empty!"
     }
 
-  ],
-  "agreementDateFrom": null,
-  "agreementDateTo": null,
-  "country": null,
-  "agreementPremium": null,
-  "persons": null
+  ]
 }
