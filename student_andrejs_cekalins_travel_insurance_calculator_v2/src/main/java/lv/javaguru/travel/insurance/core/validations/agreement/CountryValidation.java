@@ -3,10 +3,12 @@ package lv.javaguru.travel.insurance.core.validations.agreement;
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import lv.javaguru.travel.insurance.core.repositories.ClassifierValueRepository;
+import lv.javaguru.travel.insurance.core.util.Placeholder;
 import lv.javaguru.travel.insurance.core.validations.ValidationErrorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -19,20 +21,19 @@ public class CountryValidation extends TravelAgreementFieldValidationImpl {
 
     @Override
     public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {
-        return (containsTravelMedical(agreement)
-                && countryIsNotBlank(agreement))
+        return (isCountryNotBlank(agreement))
                 && !existInDatabase(agreement.getCountry())
-                ? Optional.of(errorFactory.buildError("ERROR_CODE_15"))
+                ? Optional.of(buildValidationError(agreement.getCountry()))
                 : Optional.empty();
     }
 
-    private boolean containsTravelMedical(AgreementDTO request) {
-        return request.getSelectedRisk() != null
-                && request.getSelectedRisk().contains("TRAVEL_MEDICAL");
+    private ValidationErrorDTO buildValidationError(String country) {
+        Placeholder placeholder = new Placeholder("NOT_SUPPORTED_COUNTRY", country);
+        return errorFactory.buildError("ERROR_CODE_15", List.of(placeholder));
     }
 
-    private boolean countryIsNotBlank(AgreementDTO request) {
-        return request.getCountry() != null && !request.getCountry().isBlank();
+    private boolean isCountryNotBlank(AgreementDTO agreement) {
+        return agreement.getCountry() != null && !agreement.getCountry().isBlank();
     }
 
     private boolean existInDatabase(String countryIc) {

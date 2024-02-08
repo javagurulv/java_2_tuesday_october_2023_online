@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
 
-    <changeSet author = "andrejsC" id = "32">
+    <changeSet author = "andrejsC" id ="32">
         <addColumn tableName="agreements">
             <column name="uuid" type="VARCHAR(255)">
                 <constraints nullable="false"/>

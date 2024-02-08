@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
 
-    <changeSet author = "andresC" id = "25">
+    <changeSet author = "andrejsC" id = "25">
         <createTable tableName="agreement_persons">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -23,7 +23,7 @@
     </changeSet>
 
 
-    <changeSet author= "andresC" id="26">
+    <changeSet author= "andrejsC" id="26">
         <createIndex indexName="ix_agreement_persons_agreement_id_person_id"
                      tableName="agreement_persons"
                      unique="true">

@@ -42,7 +42,7 @@ public class AgreementEntityFactory {
 
     private AgreementEntity saveAgreement(AgreementDTO agreementDTO) {
         AgreementEntity agreementEntity = new AgreementEntity();
-       // agreementEntity.setUuid(UUID.randomUUID().toString());
+        agreementEntity.setUuid(UUID.randomUUID().toString());
         agreementEntity.setAgreementDateFrom(agreementDTO.getAgreementDateFrom());
         agreementEntity.setAgreementDateTo(agreementDTO.getAgreementDateTo());
         agreementEntity.setCountry(agreementDTO.getCountry());
