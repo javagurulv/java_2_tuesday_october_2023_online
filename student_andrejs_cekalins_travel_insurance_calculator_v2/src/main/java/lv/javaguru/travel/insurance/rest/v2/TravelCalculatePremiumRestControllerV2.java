@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/insurance/travel/api/v2/")
-public class TravelCalculatePremiumControllerV2 {
+public class TravelCalculatePremiumRestControllerV2 {
 
     @Autowired
     private TravelCalculatePremiumRequestLoggerV2 requestLogger;
