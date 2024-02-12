@@ -20,6 +20,6 @@ public class EmptySelectedRiskValidation extends TravelAgreementFieldValidationI
     }
 
     private boolean selectedRiskIsNullOrEmpty(AgreementDTO agreement) {
-        return agreement.getSelectedRisk() == null || agreement.getSelectedRisk().isEmpty();
+        return agreement.getSelectedRisks() == null || agreement.getSelectedRisks().isEmpty();
     }
 }

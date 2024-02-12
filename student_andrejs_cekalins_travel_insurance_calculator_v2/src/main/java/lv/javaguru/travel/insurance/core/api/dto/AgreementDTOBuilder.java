@@ -10,7 +10,7 @@ public class AgreementDTOBuilder {
     private Date agreementDateFrom;
     private Date agreementDateTo;
     private String country;
-    private List<String> selectedRisk = new ArrayList<>();
+    private List<String> selectedRisks = new ArrayList<>();
     private List<PersonDTO> persons = new ArrayList<>();
     private BigDecimal agreementPremium;
 
@@ -24,7 +24,7 @@ public class AgreementDTOBuilder {
         agreementDTO.setAgreementDateFrom(agreementDateFrom);
         agreementDTO.setAgreementDateTo(agreementDateTo);
         agreementDTO.setCountry(country);
-        agreementDTO.setSelectedRisk(selectedRisk);
+        agreementDTO.setSelectedRisks(selectedRisks);
         agreementDTO.setPersons(persons);
         agreementDTO.setAgreementPremium(agreementPremium);
         return agreementDTO;
@@ -57,7 +57,7 @@ public class AgreementDTOBuilder {
     }
 
     public AgreementDTOBuilder withSelectedRisk(String selectedRisks) {
-        this.selectedRisk.add(selectedRisks);
+        this.selectedRisks.add(selectedRisks);
         return this;
     }
 

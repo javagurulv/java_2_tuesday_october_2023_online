@@ -33,8 +33,8 @@ public class EmptyMedicalRiskLimitLevelValidation extends TravelPersonFieldValid
     }
 
     private boolean containsTravelMedical(AgreementDTO agreement) {
-        return agreement.getSelectedRisk() != null
-                && agreement.getSelectedRisk().contains("TRAVEL_MEDICAL");
+        return agreement.getSelectedRisks() != null
+                && agreement.getSelectedRisks().contains("TRAVEL_MEDICAL");
     }
 
     private boolean isMedicalRiskLimitLevelIsNullOrBlank(PersonDTO person) {

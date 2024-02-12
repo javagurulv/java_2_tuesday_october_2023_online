@@ -10,6 +10,8 @@ import java.util.Optional;
 
 public interface AgreementEntityRepository extends JpaRepository<AgreementEntity, Long> {
 
+    Optional<AgreementEntity> findByUuid(String uuid);
+
     /*@Query("SELECT pae from AgreementEntity ae " +
             "where ae.agreementDateFrom = :agreementDateFrom " +
             "      and ae.agreementDateTo = :agreementDateTo " +

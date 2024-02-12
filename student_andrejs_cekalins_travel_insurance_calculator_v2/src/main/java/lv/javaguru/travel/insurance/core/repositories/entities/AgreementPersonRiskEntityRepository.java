@@ -1,8 +1,13 @@
 package lv.javaguru.travel.insurance.core.repositories.entities;
 
+import lv.javaguru.travel.insurance.core.domain.entities.AgreementEntity;
+import lv.javaguru.travel.insurance.core.domain.entities.AgreementPersonEntity;
 import lv.javaguru.travel.insurance.core.domain.entities.AgreementPersonRiskEntity;
+import lv.javaguru.travel.insurance.core.domain.entities.SelectedRisksEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AgreementPersonRiskEntityRepository extends JpaRepository<AgreementPersonRiskEntity, Long> {
+import java.util.List;
 
+public interface AgreementPersonRiskEntityRepository extends JpaRepository<AgreementPersonRiskEntity, Long> {
+    List<AgreementPersonRiskEntity> findByAgreementPerson(AgreementPersonEntity agreementPerson);
 }

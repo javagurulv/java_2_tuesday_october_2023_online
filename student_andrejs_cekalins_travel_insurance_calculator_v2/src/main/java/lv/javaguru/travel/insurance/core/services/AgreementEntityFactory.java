@@ -1,4 +1,4 @@
-package lv.javaguru.travel.insurance.core.services.entities;
+package lv.javaguru.travel.insurance.core.services;
 
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
@@ -52,7 +52,7 @@ public class AgreementEntityFactory {
 
     private void saveAllSelectedRisks(AgreementDTO agreementDTO,
                                       AgreementEntity agreementEntity) {
-        agreementDTO.getSelectedRisk().forEach(riscIc -> {
+        agreementDTO.getSelectedRisks().forEach(riscIc -> {
             SelectedRisksEntity risksEntity = new SelectedRisksEntity();
             risksEntity.setAgreement(agreementEntity);
             risksEntity.setRiskIc(riscIc);

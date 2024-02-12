@@ -21,21 +21,21 @@ public class SelectedRisksValidation extends TravelAgreementFieldValidationImpl 
 
     @Override
     public List<ValidationErrorDTO> validateList(AgreementDTO agreement) {
-        return agreement.getSelectedRisk() != null
+        return agreement.getSelectedRisks() != null
                 ? validateSelectedRisks(agreement)
                 : List.of();
     }
 
     private boolean selectedRiskIsNullOrEmpty(AgreementDTO agreement) {
-        return agreement.getSelectedRisk().get(0) == null
-                || agreement.getSelectedRisk().get(0).isBlank();
+        return agreement.getSelectedRisks().get(0) == null
+                || agreement.getSelectedRisks().get(0).isBlank();
 
     }
 
     private List<ValidationErrorDTO> validateSelectedRisks(AgreementDTO agreement) {
         return selectedRiskIsNullOrEmpty(agreement)
                 ? List.of(errorFactory.buildError("ERROR_CODE_8"))
-                : agreement.getSelectedRisk().stream()
+                : agreement.getSelectedRisks().stream()
                 .map(this::validateRiskIc)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
