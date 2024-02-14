@@ -6,6 +6,7 @@ import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.api.dto.RiskDTO;
 import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
+import lv.javaguru.travel.insurance.core.domain.entities.AgreementEntity;
 import lv.javaguru.travel.insurance.core.underwriting.TravelPremiumCalculationResult;
 import lv.javaguru.travel.insurance.core.underwriting.TravelPremiumUnderwriting;
 import lv.javaguru.travel.insurance.core.validations.TravelAgreementValidator;
@@ -21,13 +22,9 @@ import java.util.List;
 @Transactional
 public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
 
-    @Autowired
-    private TravelAgreementValidator agreementValidator;
-    @Autowired
-    private TravelPremiumUnderwriting premiumUnderwriting;
-
-    @Autowired
-    private AgreementEntityFactory agreementEntityFactory;
+    @Autowired private TravelAgreementValidator agreementValidator;
+    @Autowired private TravelPremiumUnderwriting premiumUnderwriting;
+    @Autowired private AgreementEntityFactory agreementEntityFactory;
 
     @Override
     public TravelCalculatePremiumCoreResult calculatePremium(TravelCalculatePremiumCoreCommand command) {
@@ -47,7 +44,8 @@ public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremium
         BigDecimal totalAgreementPremium = calculateTotalAgreementPremium(agreement);
         agreement.setAgreementPremium(totalAgreementPremium);
 
-        agreementEntityFactory.createAgreementEntity(agreement);
+        AgreementEntity agreementEntity = agreementEntityFactory.createAgreementEntity(agreement);
+        agreement.setUuid(agreementEntity.getUuid());
 
         TravelCalculatePremiumCoreResult coreResult = new TravelCalculatePremiumCoreResult();
         coreResult.setAgreement(agreement);
@@ -68,4 +66,5 @@ public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremium
                 .map(RiskDTO::getPremium)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
 }

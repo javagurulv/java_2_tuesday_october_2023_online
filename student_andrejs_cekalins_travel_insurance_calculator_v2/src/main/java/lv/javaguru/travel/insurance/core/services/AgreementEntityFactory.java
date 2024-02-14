@@ -53,7 +53,7 @@ public class AgreementEntityFactory {
     private void saveAllSelectedRisks(AgreementDTO agreementDTO,
                                       AgreementEntity agreementEntity) {
         agreementDTO.getSelectedRisks().forEach(riscIc -> {
-            SelectedRisksEntity risksEntity = new SelectedRisksEntity();
+            SelectedRiskEntity risksEntity = new SelectedRiskEntity();
             risksEntity.setAgreement(agreementEntity);
             risksEntity.setRiskIc(riscIc);
             selectedRiskEntityRepository.save(risksEntity);

@@ -10,13 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 @Component
 public class TravelAgreementUuidValidatorImpl implements TravelAgreementUuidValidator {
-    @Autowired
-    private ValidationErrorFactory errorFactory;
+    @Autowired private ValidationErrorFactory errorFactory;
+    @Autowired private AgreementEntityRepository agreementEntityRepository;
 
-    @Autowired
-    private AgreementEntityRepository agreementEntityRepository;
-
-    @Override
     public List<ValidationErrorDTO> validate(String uuid) {
         List<ValidationErrorDTO> errors = new ArrayList<>();
         if (uuid == null) {

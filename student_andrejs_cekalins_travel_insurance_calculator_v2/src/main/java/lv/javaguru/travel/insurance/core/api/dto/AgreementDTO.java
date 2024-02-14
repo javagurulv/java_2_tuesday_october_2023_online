@@ -14,8 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AgreementDTO {
-    private String uuid;
 
+    private String uuid;
     private Date agreementDateFrom;
 
     private Date agreementDateTo;
@@ -27,4 +27,5 @@ public class AgreementDTO {
     private List<PersonDTO> persons;
 
     private BigDecimal agreementPremium;
+
 }

@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SelectedRisksEntity {
+public class SelectedRiskEntity {
 
     @Id
     @Column(name = "id")

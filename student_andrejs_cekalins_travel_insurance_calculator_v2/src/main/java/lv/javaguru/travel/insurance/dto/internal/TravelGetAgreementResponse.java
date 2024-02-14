@@ -22,11 +22,10 @@ import java.util.List;
 public class TravelGetAgreementResponse extends CoreResponse {
 
     private String uuid;
-
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date agreementDateFrom;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date agreementDateTo;
 
     private String country;
@@ -37,5 +36,8 @@ public class TravelGetAgreementResponse extends CoreResponse {
     @JsonAlias("persons")
     private List<PersonResponseDTO> persons;
 
-    public TravelGetAgreementResponse (List<ValidationError> errors) {super(errors);}
+    public TravelGetAgreementResponse(List<ValidationError> errors) {
+        super(errors);
+    }
+
 }

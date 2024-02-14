@@ -17,7 +17,7 @@ public class TravelGetAgreementResponseLogger {
             String json = objectMapper.writeValueAsString(response);
             logger.info("RESPONSE: " + json);
         } catch (JsonProcessingException e) {
-            logger.error("Error to convert request to JSON", e);
+            logger.error("Error to convert response to JSON", e);
         }
     }
 }

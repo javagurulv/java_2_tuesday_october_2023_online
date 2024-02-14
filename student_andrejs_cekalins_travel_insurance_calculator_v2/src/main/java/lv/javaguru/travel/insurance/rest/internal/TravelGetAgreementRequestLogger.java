@@ -8,5 +8,8 @@ import org.springframework.stereotype.Component;
 public class TravelGetAgreementRequestLogger {
     private static final Logger logger = LoggerFactory.getLogger(TravelGetAgreementRequestLogger.class);
 
-    void log(String uuid) { logger.info("REQUEST: agreement uuid " + uuid);}
+    void log(String uuid) {
+        logger.info("REQUEST: agreement uuid = " + uuid);
+    }
+
 }

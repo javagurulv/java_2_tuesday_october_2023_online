@@ -5,7 +5,7 @@ import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.api.dto.RiskDTO;
 import lv.javaguru.travel.insurance.core.domain.entities.AgreementEntity;
 import lv.javaguru.travel.insurance.core.domain.entities.AgreementPersonEntity;
-import lv.javaguru.travel.insurance.core.domain.entities.SelectedRisksEntity;
+import lv.javaguru.travel.insurance.core.domain.entities.SelectedRiskEntity;
 import lv.javaguru.travel.insurance.core.repositories.entities.AgreementEntityRepository;
 import lv.javaguru.travel.insurance.core.repositories.entities.AgreementPersonEntityRepository;
 import lv.javaguru.travel.insurance.core.repositories.entities.AgreementPersonRiskEntityRepository;
@@ -18,36 +18,18 @@ import java.util.stream.Collectors;
 
 @Component
 public class AgreementDTOLoader {
-    @Autowired
-    private AgreementEntityRepository agreementEntityRepository;
-    @Autowired
-    private SelectedRiskEntityRepository selectedRiskEntityRepository;
-    @Autowired
-    private AgreementPersonRiskEntityRepository agreementPersonRiskEntityRepository;
-    @Autowired
-    private AgreementPersonEntityRepository agreementPersonEntityRepository;
+    @Autowired private AgreementEntityRepository agreementEntityRepository;
+    @Autowired private SelectedRiskEntityRepository selectedRiskEntityRepository;
+    @Autowired private AgreementPersonEntityRepository agreementPersonEntityRepository;
+    @Autowired private AgreementPersonRiskEntityRepository agreementPersonRiskEntityRepository;
 
-    AgreementDTO loader(String uuid) {
+    AgreementDTO load(String uuid) {
         AgreementDTO dto = new AgreementDTO();
         AgreementEntity agreement = agreementEntityRepository.findByUuid(uuid).get();
         loadAgreementFields(dto, agreement);
         loadSelectedRisks(dto, agreement);
         loadPersons(dto, agreement);
         return dto;
-    }
-
-    private void loadAgreementFields(AgreementDTO dto, AgreementEntity agreement) {
-        dto.setUuid(agreement.getUuid());
-        dto.setAgreementDateFrom(agreement.getAgreementDateFrom());
-        dto.setAgreementDateTo(agreement.getAgreementDateTo());
-        dto.setCountry(agreement.getCountry());
-        dto.setAgreementPremium(agreement.getAgreementPremium());
-    }
-
-    private void loadSelectedRisks(AgreementDTO dto, AgreementEntity agreement) {
-        dto.setSelectedRisks(selectedRiskEntityRepository.findByAgreement(agreement)
-                .stream().map(SelectedRisksEntity::getRiskIc)
-                .collect(Collectors.toList()));
     }
 
     private void loadPersons(AgreementDTO dto, AgreementEntity agreement) {
@@ -77,4 +59,19 @@ public class AgreementDTOLoader {
                 .collect(Collectors.toList());
         dto.setPersons(persons);
     }
+
+    private void loadSelectedRisks(AgreementDTO dto, AgreementEntity agreement) {
+        dto.setSelectedRisks(selectedRiskEntityRepository.findByAgreement(agreement)
+                .stream().map(SelectedRiskEntity::getRiskIc)
+                .collect(Collectors.toList()));
+    }
+
+    private void loadAgreementFields(AgreementDTO dto, AgreementEntity agreement) {
+        dto.setUuid(agreement.getUuid());
+        dto.setAgreementDateFrom(agreement.getAgreementDateFrom());
+        dto.setAgreementDateTo(agreement.getAgreementDateTo());
+        dto.setCountry(agreement.getCountry());
+        dto.setAgreementPremium(agreement.getAgreementPremium());
+    }
+
 }

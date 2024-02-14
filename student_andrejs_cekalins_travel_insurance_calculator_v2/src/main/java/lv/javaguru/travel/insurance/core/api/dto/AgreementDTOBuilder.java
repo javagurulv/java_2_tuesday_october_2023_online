@@ -35,7 +35,6 @@ public class AgreementDTOBuilder {
         return this;
     }
 
-
     public AgreementDTOBuilder withDateFrom(Date agreementDateFrom) {
         this.agreementDateFrom = agreementDateFrom;
         return this;
@@ -56,8 +55,8 @@ public class AgreementDTOBuilder {
         return this;
     }
 
-    public AgreementDTOBuilder withSelectedRisk(String selectedRisks) {
-        this.selectedRisks.add(selectedRisks);
+    public AgreementDTOBuilder withSelectedRisk(String selectedRisk) {
+        this.selectedRisks.add(selectedRisk);
         return this;
     }
 

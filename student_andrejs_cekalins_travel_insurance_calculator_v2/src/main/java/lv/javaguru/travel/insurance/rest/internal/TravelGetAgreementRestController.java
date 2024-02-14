@@ -7,26 +7,18 @@ import lv.javaguru.travel.insurance.core.api.comamnd.TravelGetAgreementCoreResul
 import lv.javaguru.travel.insurance.core.services.TravelGetAgreementService;
 import lv.javaguru.travel.insurance.dto.internal.GetAgreementDtoConverter;
 import lv.javaguru.travel.insurance.dto.internal.TravelGetAgreementResponse;
-import lv.javaguru.travel.insurance.rest.common.TravelCalculatePremiumRequestExecutionTimeLogger;
+import lv.javaguru.travel.insurance.rest.common.TravelRestRequestExecutionTimeLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 
 @RestController
 @RequestMapping("/insurance/travel/api/internal/agreement")
 public class TravelGetAgreementRestController {
-
-    @Autowired
-    private TravelGetAgreementRequestLogger requestLogger;
-    @Autowired
-    private TravelGetAgreementResponseLogger responseLogger;
-    @Autowired
-    private TravelCalculatePremiumRequestExecutionTimeLogger executionTimeLogger;
-    @Autowired
-    private TravelGetAgreementService getAgreementService;
-    @Autowired
-    private GetAgreementDtoConverter dtoConverter;
+    @Autowired private TravelGetAgreementRequestLogger requestLogger;
+    @Autowired private TravelGetAgreementResponseLogger responseLogger;
+    @Autowired private TravelRestRequestExecutionTimeLogger executionTimeLogger;
+    @Autowired private TravelGetAgreementService getAgreementService;
+    @Autowired private GetAgreementDtoConverter dtoConverter;
 
     @GetMapping(path = "/{uuid}",
             produces = "application/json")
@@ -39,13 +31,12 @@ public class TravelGetAgreementRestController {
 
     private TravelGetAgreementResponse processRequest(String uuid) {
         requestLogger.log(uuid);
-
         TravelGetAgreementCoreCommand coreCommand = dtoConverter.buildCoreCommand(uuid);
-        TravelGetAgreementCoreResult coreResult= getAgreementService.getAgreement(coreCommand);
+        TravelGetAgreementCoreResult coreResult = getAgreementService.getAgreement(coreCommand);
         TravelGetAgreementResponse response = dtoConverter.buildResponse(coreResult);
-
         responseLogger.log(response);
         return response;
     }
+
 
 }

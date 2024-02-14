@@ -15,8 +15,8 @@ public class TravelPremiumUnderwritingImpl implements TravelPremiumUnderwriting 
     @Autowired private SelectedRisksPremiumCalculator selectedRisksPremiumCalculator;
 
     @Override
-    public TravelPremiumCalculationResult calculatePremium(AgreementDTO agreement, PersonDTO person) {
-        List<RiskDTO> riskPremiums = calculateSelectedRisksPremium(agreement, person);
+    public TravelPremiumCalculationResult calculatePremium(AgreementDTO agreementDTO, PersonDTO person) {
+        List<RiskDTO> riskPremiums = calculateSelectedRisksPremium(agreementDTO, person);
         BigDecimal totalPremium = calculateTotalPremium(riskPremiums);
         return new TravelPremiumCalculationResult(totalPremium, riskPremiums);
     }
@@ -30,4 +30,5 @@ public class TravelPremiumUnderwritingImpl implements TravelPremiumUnderwriting 
                 .map(RiskDTO::getPremium)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
 }

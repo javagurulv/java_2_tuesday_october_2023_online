@@ -14,11 +14,8 @@ import java.util.List;
 @Transactional
 public class TravelGetAgreementServiceImpl implements TravelGetAgreementService {
 
-    @Autowired
-    private TravelAgreementUuidValidator agreementUuidValidator;
-
-    @Autowired
-    private AgreementDTOLoader agreementDTOLoader;
+    @Autowired private TravelAgreementUuidValidator agreementUuidValidator;
+    @Autowired private AgreementDTOLoader agreementDTOLoader;
 
     @Override
     public TravelGetAgreementCoreResult getAgreement(TravelGetAgreementCoreCommand command) {
@@ -34,7 +31,8 @@ public class TravelGetAgreementServiceImpl implements TravelGetAgreementService 
 
     private TravelGetAgreementCoreResult buildResponse(String agreementUuid) {
         TravelGetAgreementCoreResult coreResult = new TravelGetAgreementCoreResult();
-        coreResult.setAgreement(agreementDTOLoader.loader(agreementUuid));
+        coreResult.setAgreement(agreementDTOLoader.load(agreementUuid));
         return coreResult;
     }
+
 }
