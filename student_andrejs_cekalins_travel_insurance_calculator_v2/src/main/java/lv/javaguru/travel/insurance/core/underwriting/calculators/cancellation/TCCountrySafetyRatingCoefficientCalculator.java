@@ -10,12 +10,12 @@ import java.math.BigDecimal;
 
 @Component
 public class TCCountrySafetyRatingCoefficientCalculator {
-    @Autowired
-    private TCCountrySafetyRatingCoefficientRepository countryDefaultDayRateRepository;
+    @Autowired private TCCountrySafetyRatingCoefficientRepository countrySafetyRatingCoefficientRepository;
 
-    public BigDecimal calculate(AgreementDTO agreement) {
-        return countryDefaultDayRateRepository.findByCountryIc(agreement.getCountry())
+    BigDecimal calculate(AgreementDTO agreement) {
+        return countrySafetyRatingCoefficientRepository.findByCountryIc(agreement.getCountry())
                 .map(TravelCancellationCountrySafetyRatingCoefficient::getCoefficient)
                 .orElseThrow(() -> new RuntimeException("Country safety rating coefficient not found by country id = " + agreement.getCountry()));
     }
+
 }

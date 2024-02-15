@@ -8,8 +8,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
-public class TravelAgreementUuidValidatorImpl implements TravelAgreementUuidValidator {
+class TravelAgreementUuidValidatorImpl implements TravelAgreementUuidValidator {
+
     @Autowired private ValidationErrorFactory errorFactory;
     @Autowired private AgreementEntityRepository agreementEntityRepository;
 
@@ -25,4 +27,5 @@ public class TravelAgreementUuidValidatorImpl implements TravelAgreementUuidVali
         }
         return errors;
     }
+
 }

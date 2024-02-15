@@ -19,6 +19,7 @@ import static uk.org.webcompere.modelassert.json.JsonAssertions.assertJson;
 @SpringBootTest
 @AutoConfigureMockMvc
 public abstract class TravelCalculatePremiumControllerV2TestCase {
+
     @Autowired private MockMvc mockMvc;
 
     @Autowired private JsonFileReader jsonFileReader;

@@ -39,18 +39,16 @@ class TravelCancellationRiskPremiumCalculatorTest {
     @Test
     void shouldCalculatePremiumCorrectly() {
         BigDecimal travelCostCoefficient = BigDecimal.valueOf(10);
-        BigDecimal countrySafetyRatingCoefficient = BigDecimal.valueOf(20);
-        BigDecimal ageCoefficient = BigDecimal.valueOf(1.2);
+        BigDecimal ageCoefficient = BigDecimal.valueOf(20);
+        BigDecimal countrySafetyRatingCoefficient = BigDecimal.valueOf(1.2);
 
         when(travelCostCoefficientCalculator.calculate(person)).thenReturn(travelCostCoefficient);
-        when(countrySafetyRatingCoefficientCalculator.calculate(agreement)).thenReturn(countrySafetyRatingCoefficient);
         when(ageCoefficientCalculator.calculate(person)).thenReturn(ageCoefficient);
+        when(countrySafetyRatingCoefficientCalculator.calculate(agreement)).thenReturn(countrySafetyRatingCoefficient);
 
-
-        BigDecimal expectedPremium =
-                travelCostCoefficient.
-                        multiply(countrySafetyRatingCoefficient).
-                        multiply(ageCoefficient)
+        BigDecimal expectedPremium = travelCostCoefficient
+                .add(ageCoefficient)
+                .add(countrySafetyRatingCoefficient)
                 .setScale(2, RoundingMode.HALF_UP);
 
         BigDecimal result = calculator.calculatePremium(agreement, person);

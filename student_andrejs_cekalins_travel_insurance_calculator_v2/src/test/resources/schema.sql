@@ -124,6 +124,7 @@ CREATE TABLE IF NOT EXISTS travel_cost_coefficient (
   PRIMARY KEY (id)
 );
 
+
 ALTER TABLE age_coefficient
   RENAME TO travel_medical_age_coefficient;
 
@@ -136,7 +137,6 @@ ALTER TABLE country_default_day_rate
 ALTER TABLE medical_risk_limit_level
   RENAME TO travel_medical_risk_limit_level;
 
-
 CREATE TABLE IF NOT EXISTS travel_cancellation_age_coefficient (
   id BIGINT NOT NULL AUTO_INCREMENT,
   age_from INT NOT NULL,
@@ -145,9 +145,14 @@ CREATE TABLE IF NOT EXISTS travel_cancellation_age_coefficient (
   PRIMARY KEY (id)
 );
 
+
 CREATE TABLE travel_cancellation_country_safety_rating (
   id BIGINT NOT NULL AUTO_INCREMENT,
   country_ic VARCHAR(200) NOT NULL,
   coefficient NUMERIC(10,2) NOT NULL,
   PRIMARY KEY (id)
 );
+
+
+ALTER TABLE agreement_persons
+    ADD COLUMN travel_cost DECIMAL(10,2);

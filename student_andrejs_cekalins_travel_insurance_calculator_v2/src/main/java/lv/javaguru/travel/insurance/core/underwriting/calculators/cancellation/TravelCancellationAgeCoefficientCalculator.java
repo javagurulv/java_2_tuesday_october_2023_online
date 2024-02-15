@@ -21,14 +21,13 @@ public class TravelCancellationAgeCoefficientCalculator {
     @Autowired
     private DateTimeUtil dateTimeUtil;
     @Autowired
-    private TravelCancellationAgeCoefficientRepository TCAgeCoefficientRepository;
+    private TravelCancellationAgeCoefficientRepository ageCoefficientRepository;
 
-    public BigDecimal calculate(PersonDTO person) {
+    BigDecimal calculate(PersonDTO person) {
         int age = calculateAge(person);
-        return TCAgeCoefficientRepository.findCoefficient(age)
+        return ageCoefficientRepository.findCoefficient(age)
                 .map(TravelCancellationAgeCoefficient::getCoefficient)
-                .orElseThrow(() -> new RuntimeException("Age coefficient not found for age = " + age));
-    }
+                .orElseThrow(() -> new RuntimeException("Age coefficient not found for age = " + age));    }
 
     private Integer calculateAge(PersonDTO person) {
         LocalDate personBirthDate = toLocalDate(person.getPersonBirthDate());

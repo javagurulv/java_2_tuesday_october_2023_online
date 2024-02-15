@@ -8,7 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TravelGetAgreementResponseLogger {
+class TravelGetAgreementResponseLogger {
+
     private static final Logger logger = LoggerFactory.getLogger(TravelGetAgreementResponseLogger.class);
 
     void log(TravelGetAgreementResponse response) {
@@ -20,4 +21,5 @@ public class TravelGetAgreementResponseLogger {
             logger.error("Error to convert response to JSON", e);
         }
     }
+
 }

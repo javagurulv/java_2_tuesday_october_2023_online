@@ -13,7 +13,7 @@ public class PersonEntityFactory {
     @Autowired
     private PersonEntityRepository repository;
 
-    public PersonEntity createPersonEntity(PersonDTO personDTO) {
+    PersonEntity createPersonEntity(PersonDTO personDTO) {
         Optional<PersonEntity> personOpt = repository.findBy(
                 personDTO.getPersonFirstName(),
                 personDTO.getPersonLastName(),

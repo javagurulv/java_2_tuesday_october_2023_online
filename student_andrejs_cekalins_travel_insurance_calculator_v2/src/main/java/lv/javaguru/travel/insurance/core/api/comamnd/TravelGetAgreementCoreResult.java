@@ -26,4 +26,5 @@ public class TravelGetAgreementCoreResult {
     public TravelGetAgreementCoreResult(List<ValidationErrorDTO> errors) {
         this.errors = errors;
     }
+
 }

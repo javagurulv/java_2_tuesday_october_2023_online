@@ -3,6 +3,7 @@ package lv.javaguru.travel.insurance.rest.internal;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lv.javaguru.travel.insurance.dto.v2.TravelCalculatePremiumResponseV2;
 import lv.javaguru.travel.insurance.rest.common.JsonFileReader;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+@Disabled
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc

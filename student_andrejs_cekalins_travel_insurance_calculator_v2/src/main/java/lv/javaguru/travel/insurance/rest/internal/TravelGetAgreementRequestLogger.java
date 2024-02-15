@@ -5,7 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TravelGetAgreementRequestLogger {
+class TravelGetAgreementRequestLogger {
+
     private static final Logger logger = LoggerFactory.getLogger(TravelGetAgreementRequestLogger.class);
 
     void log(String uuid) {

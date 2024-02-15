@@ -15,17 +15,16 @@ public class TravelCancellationRiskPremiumCalculator implements TravelRiskPremiu
 
     @Autowired private TCTravelCostCoefficientCalculator travelCostCoefficientCalculator;
     @Autowired private TravelCancellationAgeCoefficientCalculator ageCoefficientCalculator;
-
     @Autowired private TCCountrySafetyRatingCoefficientCalculator countrySafetyRatingCoefficientCalculator;
 
     @Override
     public BigDecimal calculatePremium(AgreementDTO agreement, PersonDTO person) {
-       var travelCostCoefficient = travelCostCoefficientCalculator.calculate(person);
-       var ageCoefficient = ageCoefficientCalculator.calculate(person);
-       var countrySafetyRatingCoefficient = countrySafetyRatingCoefficientCalculator.calculate(agreement);
+        var travelCostCoefficient = travelCostCoefficientCalculator.calculate(person);
+        var ageCoefficient = ageCoefficientCalculator.calculate(person);
+        var countrySafetyRatingCoefficient = countrySafetyRatingCoefficientCalculator.calculate(agreement);
         return travelCostCoefficient
-                .multiply(ageCoefficient)
-                .multiply(countrySafetyRatingCoefficient)
+                .add(ageCoefficient)
+                .add(countrySafetyRatingCoefficient)
                 .setScale(2, RoundingMode.HALF_UP);
     }
 
@@ -33,4 +32,5 @@ public class TravelCancellationRiskPremiumCalculator implements TravelRiskPremiu
     public String getRiskIc() {
         return "TRAVEL_CANCELLATION";
     }
+
 }
