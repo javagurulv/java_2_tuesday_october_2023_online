@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
-class TravelCostCoefficientCalculator {
+class TCTravelCostCoefficientCalculator {
 
     @Autowired private TravelCancellationTravelCostCoefficientRepository TCTravelCostCoefficientRepository;
 

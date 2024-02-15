@@ -1,16 +1,32 @@
 package lv.javaguru.travel.insurance.core.underwriting.calculators.cancellation;
 
+
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.underwriting.TravelRiskPremiumCalculator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 @Component
 public class TravelCancellationRiskPremiumCalculator implements TravelRiskPremiumCalculator {
+
+    @Autowired private TCTravelCostCoefficientCalculator travelCostCoefficientCalculator;
+    @Autowired private TravelCancellationAgeCoefficientCalculator ageCoefficientCalculator;
+
+    @Autowired private TCCountrySafetyRatingCoefficientCalculator countrySafetyRatingCoefficientCalculator;
+
     @Override
     public BigDecimal calculatePremium(AgreementDTO agreement, PersonDTO person) {
-        return BigDecimal.ZERO;
+       var travelCostCoefficient = travelCostCoefficientCalculator.calculate(person);
+       var ageCoefficient = ageCoefficientCalculator.calculate(person);
+       var countrySafetyRatingCoefficient = countrySafetyRatingCoefficientCalculator.calculate(agreement);
+        return travelCostCoefficient
+                .multiply(ageCoefficient)
+                .multiply(countrySafetyRatingCoefficient)
+                .setScale(2, RoundingMode.HALF_UP);
     }
 
     @Override
