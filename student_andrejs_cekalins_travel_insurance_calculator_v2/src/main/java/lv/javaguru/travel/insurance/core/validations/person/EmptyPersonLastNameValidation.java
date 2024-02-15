@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class PersonLastNameValidation extends TravelPersonFieldValidationImpl {
+public class EmptyPersonLastNameValidation extends TravelPersonFieldValidationImpl {
     @Autowired
     private ValidationErrorFactory errorFactory;
 

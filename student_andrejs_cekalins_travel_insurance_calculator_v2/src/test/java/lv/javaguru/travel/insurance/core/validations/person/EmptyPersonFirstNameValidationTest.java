@@ -4,7 +4,6 @@ import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import lv.javaguru.travel.insurance.core.validations.ValidationErrorFactory;
-import lv.javaguru.travel.insurance.core.validations.person.PersonFirstNameValidation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,12 +17,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class PersonFirstNameValidationTest {
+class EmptyPersonFirstNameValidationTest {
     @Mock
     private ValidationErrorFactory errorFactory;
 
     @InjectMocks
-    private PersonFirstNameValidation validation;
+    private EmptyPersonFirstNameValidation validation;
 
     @Test
     public void shouldReturnErrorWhenPersonFirstNameIsNull() {

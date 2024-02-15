@@ -7,5 +7,5 @@
   "agreementDateTo" : null,
   "country" : "SPAIN",
   "medicalRiskLimitLevel": "LEVEL_10000",
-  "selected_risks":["TRAVEL_MEDICAL", "TRAVEL_CANCELLATION", "TRAVEL_LOSS_BAGGAGE"]
+  "selected_risks":["TRAVEL_MEDICAL"]
 }
