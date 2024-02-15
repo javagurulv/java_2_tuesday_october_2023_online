@@ -16,16 +16,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class MedicalRiskPremiumCalculatorTest {
+class TravelMedicalMedicalRiskPremiumCalculatorTest {
     @Mock
-    private AgeCoefficientCalculator ageCoefficientCalculator;
+    private TravelMedicalAgeCoefficientCalculator ageCoefficientCalculator;
     @Mock
-    private CountryDefaultDayRateCalculator countryDefaultDayRateCalculator;
+    private TravelMedicalCountryDefaultDayRateCalculator countryDefaultDayRateCalculator;
     @Mock
-    private DayCountCalculator dayCountCalculator;
+    private TravelMedicalDayCountCalculator dayCountCalculator;
 
     @Mock
-    private RiskLimitLevelCalculator riskLimitLevelCalculator;
+    private TravelMedicalRiskLimitLevelCalculator riskLimitLevelCalculator;
 
     @InjectMocks
     private TravelMedicalRiskPremiumCalculator calculator;

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
-public class DayCountCalculator {
+public class TravelMedicalDayCountCalculator {
     @Autowired
     DateTimeUtil dateTimeUtil;
 

@@ -24,14 +24,14 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class AgeCoefficientCalculatorTest {
+class TravelMedicalAgeCoefficientCalculatorTest {
     @Mock
     private DateTimeUtil dateTimeUtil;
     @Mock
     private TravelMedicalAgeCoefficientRepository ageCoefficientRepository;
 
     @InjectMocks
-    private AgeCoefficientCalculator calculator;
+    private TravelMedicalAgeCoefficientCalculator calculator;
 
     private PersonDTO person;
 

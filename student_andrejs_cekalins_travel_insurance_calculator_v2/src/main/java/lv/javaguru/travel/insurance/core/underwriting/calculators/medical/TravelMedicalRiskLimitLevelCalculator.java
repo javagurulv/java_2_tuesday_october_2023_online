@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
-public class RiskLimitLevelCalculator {
+public class TravelMedicalRiskLimitLevelCalculator {
 
     @Value("${medical.risk.limit.level.enabled:false}")
     private Boolean medicalRiskLimitLevelEnabled;

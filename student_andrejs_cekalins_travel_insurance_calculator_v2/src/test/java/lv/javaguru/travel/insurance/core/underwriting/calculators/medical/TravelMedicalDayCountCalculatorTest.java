@@ -18,11 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class DayCountCalculatorTest {
+class TravelMedicalDayCountCalculatorTest {
     @Mock
     private DateTimeUtil dateTimeUtil;
     @InjectMocks
-    private DayCountCalculator calculator;
+    private TravelMedicalDayCountCalculator calculator;
 
     private AgreementDTO agreement;
 

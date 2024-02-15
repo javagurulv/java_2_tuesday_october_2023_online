@@ -15,7 +15,7 @@ import java.time.ZoneId;
 import java.util.Date;
 
 @Component
-public class AgeCoefficientCalculator {
+public class TravelMedicalAgeCoefficientCalculator {
 
     @Value("${medical.risk.age.coefficient.enabled:false}")
     private Boolean medicalRiskAgeCoefficientEnabled;

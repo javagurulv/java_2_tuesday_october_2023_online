@@ -19,11 +19,11 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class CountryDefaultDayRateCalculatorTest {
+class TravelMedicalCountryDefaultDayRateCalculatorTest {
     @Mock
     private TravelMedicalCountryDefaultDayRateRepository countryDefaultDayRateRepository;
     @InjectMocks
-    private CountryDefaultDayRateCalculator calculator;
+    private TravelMedicalCountryDefaultDayRateCalculator calculator;
 
     private AgreementDTO agreement;
 
