@@ -8,31 +8,31 @@ public class RiskLevelV2TestCases extends TravelCalculatePremiumControllerV2Test
     @Test
     @DisplayName("Success case with [TRAVEL_MEDICAL, TRAVEL_CANCELLATION]")
     public void executeTestCase1() throws Exception {
-        executeAndCompare("test_case_1", true);
+        executeAndCompare("risks/test_case_1", true);
     }
 
     @Test
     @DisplayName("ERROR_CODE_8 selectedRisks is NULL, must not be empty")
     public void executeTestCase19() throws Exception {
-        executeAndCompare("test_case_19");
+        executeAndCompare("risks/test_case_19");
     }
 
     @Test
     @DisplayName("ERROR_CODE_8 selectedRisks is [], must not be empty")
     public void executeTestCase20() throws Exception {
-        executeAndCompare("test_case_20");
+        executeAndCompare("risks/test_case_20");
     }
 
     @Test
     @DisplayName("ERROR_CODE_9 one selectedRisks is not supported")
     public void executeTestCase21() throws Exception {
-        executeAndCompare("test_case_21");
+        executeAndCompare("risks/test_case_21");
     }
 
     @Test
     @DisplayName("ERROR_CODE_9 two selectedRisks is not supported")
     public void executeTestCase22() throws Exception {
-        executeAndCompare("test_case_22");
+        executeAndCompare("risks/test_case_22");
     }
 
 }

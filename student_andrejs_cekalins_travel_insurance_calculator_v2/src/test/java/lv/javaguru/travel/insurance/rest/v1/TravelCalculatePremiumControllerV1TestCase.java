@@ -25,8 +25,6 @@ public abstract class TravelCalculatePremiumControllerV1TestCase {
 
     private static final String BASE_URL = "/insurance/travel/api/v1/";
 
-
-
     protected void executeAndCompare(String testCaseFolderName) throws Exception {
         executeAndCompare(
                 "rest/v1/" + testCaseFolderName + "/request.json",

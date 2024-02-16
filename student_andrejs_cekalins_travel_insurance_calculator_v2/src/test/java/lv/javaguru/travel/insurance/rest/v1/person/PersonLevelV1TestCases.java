@@ -8,41 +8,41 @@ public class PersonLevelV1TestCases extends TravelCalculatePremiumControllerV1Te
     @Test
     @DisplayName("ERROR_CODE_1 personFirstName is NULL")
     public void executeTestCase2() throws Exception {
-        executeAndCompare("test_case_2");
+        executeAndCompare("person/test_case_2");
     }
     @Test
     @DisplayName("ERROR_CODE_1 personFirstName is empty")
     public void executeTestCase3() throws Exception {
-        executeAndCompare("test_case_3");
+        executeAndCompare("person/test_case_3");
     }
     @Test
     @DisplayName("ERROR_CODE_2 personLastName is NULL")
     public void executeTestCase4() throws Exception {
-        executeAndCompare("test_case_4");
+        executeAndCompare("person/test_case_4");
     }
     @Test
     @DisplayName("ERROR_CODE_2 personLastName is NULL")
     public void executeTestCase5() throws Exception {
-        executeAndCompare("test_case_5");
+        executeAndCompare("person/test_case_5");
     }
     @Test
     @DisplayName("ERROR_CODE_11 personBirthDate is NULL")
     public void executeTestCase6() throws Exception {
-        executeAndCompare("test_case_6");
+        executeAndCompare("person/test_case_6");
     }
     @Test
     @DisplayName("ERROR_CODE_12 personBirthDate in the future")
     public void executeTestCase7() throws Exception {
-        executeAndCompare("test_case_7");
+        executeAndCompare("person/test_case_7");
     }
     @Test
     @DisplayName("ERROR_CODE_16 personCode is NULL, must not be empty")
     public void executeTestCase23() throws Exception {
-        executeAndCompare("test_case_23");
+        executeAndCompare("person/test_case_23");
     }
     @Test
     @DisplayName("ERROR_CODE_16 personCode is empty, must not be empty")
     public void executeTestCase24() throws Exception {
-        executeAndCompare("test_case_24");
+        executeAndCompare("person/test_case_24");
     }
 }
