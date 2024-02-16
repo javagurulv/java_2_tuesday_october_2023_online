@@ -2,7 +2,11 @@
   "errors": [
     {
       "errorCode": "ERROR_CODE_14",
-      "description": "MedicalRiskLimitLevel value = {NOT_SUPPORTED_MEDICAL_RISK_LIMIT_LEVEL} not supported!"
+      "description": "MedicalRiskLimitLevel value = NOT_SUPPORTED_1 not supported!"
+    },
+    {
+      "errorCode": "ERROR_CODE_14",
+      "description": "MedicalRiskLimitLevel value = NOT_SUPPORTED_2 not supported!"
     }
   ]
 }

@@ -3,7 +3,7 @@ Request: All fields filled, RISK_TYPE - TRAVEL_MEDICAL.
 Response: success, without errors.
 
 Test_case_2:
-Request: personFirstName is null, RISK_TYPE - TRAVEL_MEDICAL.
+Request: personFirstName is NULL, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_1.
 
 Test_case_3:
@@ -11,7 +11,7 @@ Request: personFirstName is empty, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_1.
 
 Test_case_4:
-Request: personLastName is null, RISK_TYPE - TRAVEL_MEDICAL.
+Request: personLastName is NULL, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_2.
 
 Test_case_5:
@@ -19,7 +19,7 @@ Request: personLastName is empty, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_2.
 
 Test_case_6:
-Request: personBirthDate is null, RISK_TYPE - TRAVEL_MEDICAL.
+Request: personBirthDate is NULL, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_11.
 
 Test_case_7:
@@ -27,11 +27,11 @@ Request: personBirthDate is in the future, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_12.
 
 Test_case_8:
-Request: agreementDateFrom is null, RISK_TYPE - TRAVEL_MEDICAL.
+Request: agreementDateFrom is NULL, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_3.
 
 Test_case_9:
-Request: agreementDateTo is null, RISK_TYPE - TRAVEL_MEDICAL.
+Request: agreementDateTo is NULL, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_6.
 
 Test_case_10:
@@ -47,7 +47,7 @@ Request: agreementDateTo is less than agreementDateFrom, RISK_TYPE - TRAVEL_MEDI
 Response: error code = ERROR_CODE_5.
 
 Test_case_13:
-Request: selectedRisks is null, RISK_TYPE - TRAVEL_MEDICAL.
+Request: selectedRisks is NULL, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_8.
 
 Test_case_14:
@@ -67,7 +67,7 @@ Request: country is empty, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_10.
 
 Test_case_18:
-Request: country is null, RISK_TYPE - TRAVEL_MEDICAL.
+Request: country is NULL, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_10.
 
 Test_case_19:
@@ -79,7 +79,7 @@ Request: all fields not provided.
 Response: multiple error codes.
 
 Test Case 21:
-Request: country is null, RISK_TYPE - TRAVEL_EVACUATION.
+Request: country is NULL, RISK_TYPE - TRAVEL_EVACUATION.
 Response: error code = ERROR_CODE_10.
 
 Test Case 22:
@@ -87,7 +87,7 @@ Request: country is empty, RISK_TYPE - TRAVEL_EVACUATION.
 Response: error code = ERROR_CODE_10.
 
 Test_case_23:
-Request: first person personCode is null, RISK_TYPE - TRAVEL_MEDICAL.
+Request: first person personCode is NULL, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_16.
 
 
@@ -95,4 +95,6 @@ Test_case_24:
 Request: first person personCode is empty, RISK_TYPE - TRAVEL_MEDICAL.
 Response: error code = ERROR_CODE_16.
 
-
+Test_case_25:
+Request: travel cost is NULL, must not be empty, RISK_TYPE - TRAVEL_MEDICAL.
+Response: error code = ERROR_CODE_19.

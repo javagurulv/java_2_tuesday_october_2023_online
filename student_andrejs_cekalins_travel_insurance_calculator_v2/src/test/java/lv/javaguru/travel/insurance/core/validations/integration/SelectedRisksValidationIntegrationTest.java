@@ -28,26 +28,6 @@ public class SelectedRisksValidationIntegrationTest {
     private TravelAgreementValidator validator;
 
     @Test
-    public void shouldReturnErrorWhenAgreementSelectedRiskIsNull() {
-        AgreementDTO agreement = createAgreement()
-                .withDateFrom(createDate("31.12.2032"))
-                .withDateTo(createDate("31.12.2052"))
-                .withCountry("SPAIN")
-                .withSelectedRisk(null)
-                .withPerson(createPersonDTO()
-                        .withFirstName("Vasja")
-                        .withLastName("Pupkin")
-                        .withPersonCode("11a11")
-                        .withBirthDate(createDate("01.01.1991"))
-                        .withMedicalRiskLimitLevel("LEVEL_10000")
-                ).build();
-        List<ValidationErrorDTO> errors = validator.validate(agreement);
-        assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getErrorCode(), "ERROR_CODE_8");
-        assertEquals(errors.get(0).getDescription(), "Field selectRisk must not be empty!");
-    }
-
-    @Test
     public void shouldReturnErrorWhenAgreementSelectedRiskIsEmpty() {
         AgreementDTO agreement = createAgreement()
                 .withDateFrom(createDate("31.12.2032"))
@@ -63,8 +43,8 @@ public class SelectedRisksValidationIntegrationTest {
                 ).build();
         List<ValidationErrorDTO> errors = validator.validate(agreement);
         assertEquals(errors.size(), 1);
-        assertEquals(errors.get(0).getErrorCode(), "ERROR_CODE_8");
-        assertEquals(errors.get(0).getDescription(), "Field selectRisk must not be empty!");
+        assertEquals(errors.get(0).getErrorCode(), "ERROR_CODE_9");
+        assertEquals(errors.get(0).getDescription(), "Risk Type ic =  not supported!");
     }
 
 

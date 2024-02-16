@@ -14,10 +14,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class SelectedRisksValidation extends TravelAgreementFieldValidationImpl {
-    @Autowired
-    private ClassifierValueRepository classifierValueRepository;
-    @Autowired
-    private ValidationErrorFactory errorFactory;
+    @Autowired private ClassifierValueRepository classifierValueRepository;
+    @Autowired private ValidationErrorFactory errorFactory;
 
     @Override
     public List<ValidationErrorDTO> validateList(AgreementDTO agreement) {
@@ -26,21 +24,12 @@ public class SelectedRisksValidation extends TravelAgreementFieldValidationImpl 
                 : List.of();
     }
 
-    private boolean selectedRiskIsNullOrEmpty(AgreementDTO agreement) {
-        return agreement.getSelectedRisks().get(0) == null
-                || agreement.getSelectedRisks().get(0).isBlank();
-
-    }
-
     private List<ValidationErrorDTO> validateSelectedRisks(AgreementDTO agreement) {
-        return selectedRiskIsNullOrEmpty(agreement)
-                ? List.of(errorFactory.buildError("ERROR_CODE_8"))
-                : agreement.getSelectedRisks().stream()
+        return agreement.getSelectedRisks().stream()
                 .map(this::validateRiskIc)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(Collectors.toList());
-
     }
 
     private Optional<ValidationErrorDTO> validateRiskIc(String riskIc) {
@@ -57,5 +46,6 @@ public class SelectedRisksValidation extends TravelAgreementFieldValidationImpl 
     private boolean existInDatabase(String riskIc) {
         return classifierValueRepository.findByClassifierTitleAndIc("RISK_TYPE", riskIc).isPresent();
     }
+
 
 }

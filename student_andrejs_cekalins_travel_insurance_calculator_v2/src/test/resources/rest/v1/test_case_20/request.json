@@ -1,11 +1,11 @@
 {
-  "personFirstName": null,
-  "personLastName": null,
-  "personCode": null,
-  "personBirthDate": null,
-  "agreementDateFrom": null,
-  "agreementDateTo": null,
+  "personFirstName" : null,
+  "personLastName" : null,
+  "personCode" : null,
+  "personBirthDate" : null,
+  "agreementDateFrom" : null,
+  "agreementDateTo" : null,
   "country" : null,
-  "medicalRiskLimitLevel": null,
-  "selected_risks": null
+  "medicalRiskLimitLevel" : null,
+  "selected_risks" : null
 }

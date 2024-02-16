@@ -2,11 +2,7 @@
   "errors": [
     {
       "errorCode": "ERROR_CODE_9",
-      "description": "Risk Type ic = NOT_VALID_RISK_IC_1 not supported!"
-    },
-    {
-      "errorCode": "ERROR_CODE_9",
-      "description": "Risk Type ic = NOT_VALID_RISK_IC_2 not supported!"
+      "description": "Risk Type ic = NOT_SUPPORTED not supported!"
     }
   ]
 }

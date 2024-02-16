@@ -84,7 +84,7 @@ public class RiskLimitLevelValidationIntegrationTest {
         List<ValidationErrorDTO> errors = validator.validate(agreement);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "ERROR_CODE_14");
-        assertEquals(errors.get(0).getDescription(), "MedicalRiskLimitLevel value = {NOT_SUPPORTED_MEDICAL_RISK_LIMIT_LEVEL} not supported!");
+        assertEquals(errors.get(0).getDescription(), "MedicalRiskLimitLevel value = NOT SUPPORTED not supported!");
     }
 
 

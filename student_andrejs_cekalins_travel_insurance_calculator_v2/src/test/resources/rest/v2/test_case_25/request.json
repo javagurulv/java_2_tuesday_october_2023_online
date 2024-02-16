@@ -1,22 +1,22 @@
 {
-  "agreementDateFrom" : null,
-  "agreementDateTo" :null,
-  "country" : null,
-  "selected_risks": null,
+  "agreementDateFrom" : "2050-05-29",
+  "agreementDateTo" : "2060-05-29",
+  "country" : "NOT_SUPPORTED",
+  "selected_risks":["TRAVEL_MEDICAL"],
   "persons" : [
     {
-      "personFirstName" : null,
-      "personLastName" : null,
-      "personCode": null,
-      "personBirthDate" : null,
-      "medicalRiskLimitLevel" : null
+      "personFirstName" : "Vasja",
+      "personLastName" : "Pupkin",
+      "personCode" : "123456-12345",
+      "personBirthDate" : "2010-05-29",
+      "medicalRiskLimitLevel" : "LEVEL_10000"
     },
     {
-      "personFirstName" : null,
-      "personLastName" : null,
-      "personCode": null,
-      "personBirthDate" : null,
-      "medicalRiskLimitLevel" : null
+      "personFirstName" : "Petja",
+      "personLastName" : "Pupkin",
+      "personCode" : "123456-12345",
+      "personBirthDate" : "2010-02-29",
+      "medicalRiskLimitLevel" : "LEVEL_10000"
     }
   ]
 }
