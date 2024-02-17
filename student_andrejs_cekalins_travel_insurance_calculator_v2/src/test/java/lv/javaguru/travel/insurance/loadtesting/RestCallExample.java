@@ -1,5 +1,6 @@
 package lv.javaguru.travel.insurance.loadtesting;
 
+import com.google.common.base.Stopwatch;
 import lv.javaguru.travel.insurance.rest.common.JsonFileReader;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -23,13 +24,21 @@ public class RestCallExample {
     private static void executeV1Call(JsonFileReader jsonFileReader) {
         String jsonRequest = jsonFileReader.readJsonFromFile("rest/v1/risk_travel_medical/Success_case_with_TRAVEL_MEDICAL_risk_only/request.json");
         String jsonResponse = jsonFileReader.readJsonFromFile("rest/v1/risk_travel_medical/Success_case_with_TRAVEL_MEDICAL_risk_only/response.json");
+        Stopwatch stopwatch= Stopwatch.createStarted();
         executeRestCallAndCompareResults(jsonRequest, jsonResponse, CALCULATE_PREMIUM_V1_LOCAL_URL);
+        stopwatch.stop();
+        long elapsedMillis = stopwatch.elapsed().toMillis();
+        System.out.println("Request processing time (ms): " + elapsedMillis);
     }
 
     private static void executeV2Call(JsonFileReader jsonFileReader) {
         String jsonRequest = jsonFileReader.readJsonFromFile("rest/v2/risks/Success_TRAVEL_MEDICAL_TRAVEL_CANCELLATION/request.json");
         String jsonResponse = jsonFileReader.readJsonFromFile("rest/v2/risks/Success_TRAVEL_MEDICAL_TRAVEL_CANCELLATION/response.json");
+       Stopwatch stopwatch = Stopwatch.createStarted();
         executeRestCallAndCompareResults(jsonRequest, jsonResponse, CALCULATE_PREMIUM_V2_LOCAL_URL);
+        stopwatch.stop();
+        long elapsedMillis= stopwatch.elapsed().toMillis();
+        System.out.println("Request processing time (ms): " + elapsedMillis);
     }
 
     private static void executeRestCallAndCompareResults(String jsonRequest,
