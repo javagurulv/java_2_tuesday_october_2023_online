@@ -7,9 +7,13 @@ import lv.javaguru.travel.insurance.rest.common.JsonFileReader;
 public class V2Call extends CommonCall implements Runnable {
 
     private static final String CALCULATE_PREMIUM_V2_LOCAL_URL = "http://localhost:8080/insurance/travel/api/v2/";
+    private JsonFileReader jsonFileReader = new JsonFileReader();
 
+    private LoadTestingStatistic statistic;
 
-    JsonFileReader jsonFileReader = new JsonFileReader();
+    public V2Call(LoadTestingStatistic statistic) {
+        this.statistic = statistic;
+    }
 
     @Override
     public void run() {
@@ -20,5 +24,6 @@ public class V2Call extends CommonCall implements Runnable {
         stopwatch.stop();
         long elapsedMillis = stopwatch.elapsed().toMillis();
         System.out.println("Request processing time (ms): " + elapsedMillis);
+        statistic.addExecutionTime(elapsedMillis);
     }
 }
