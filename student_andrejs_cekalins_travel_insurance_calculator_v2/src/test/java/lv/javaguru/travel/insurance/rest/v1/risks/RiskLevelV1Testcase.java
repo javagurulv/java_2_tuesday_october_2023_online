@@ -8,22 +8,22 @@ public class RiskLevelV1Testcase extends TravelCalculatePremiumControllerV1TestC
     @Test
     @DisplayName("ERROR_CODE_8 selectedRisks is NULL, must not be empty")
     public void executeTestCase13() throws Exception {
-        executeAndCompare("risks/test_case_13");
+        executeAndCompare("risks/ERROR_CODE_8_selectedRisks_is_null");
     }
     @Test
     @DisplayName("ERROR_CODE_8 selectedRisks is [], must not be empty")
     public void executeTestCase14() throws Exception {
-        executeAndCompare("risks/test_case_14");
+        executeAndCompare("risks/ERROR_CODE_8_selectedRisks_is_empty");
     }
     @Test
     @DisplayName("ERROR_CODE_9 one invalid selected_risks ic not supported")
     public void executeTestCase15() throws Exception {
-        executeAndCompare("risks/test_case_15");
+        executeAndCompare("risks/ERROR_CODE_9_one_invalid_selectedRisk");
     }
     @Test
     @DisplayName("ERROR_CODE_9 two invalid selected_risks not supported")
     public void executeTestCase16() throws Exception {
-        executeAndCompare("risks/test_case_16");
+        executeAndCompare("risks/ERROR_CODE_9_two_invalid_selectedRisk");
     }
 
 

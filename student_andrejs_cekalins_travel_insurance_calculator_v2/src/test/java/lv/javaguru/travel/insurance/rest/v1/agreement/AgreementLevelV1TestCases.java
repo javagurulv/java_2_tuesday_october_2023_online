@@ -8,66 +8,66 @@ public class AgreementLevelV1TestCases extends TravelCalculatePremiumControllerV
     @Test
     @DisplayName("ERROR_CODE_3 agreementDateFrom is NULL")
     public void executeTestCase8() throws Exception {
-        executeAndCompare("agreement/test_case_8");
+        executeAndCompare("agreement/ERROR_CODE_3_agreementDateFrom_is_null");
     }
 
     @Test
     @DisplayName("ERROR_CODE_6 agreementDateTo is NULL")
     public void executeTestCase9() throws Exception {
-        executeAndCompare("agreement/test_case_9");
+        executeAndCompare("agreement/ERROR_CODE_6_agreementDateTo_is_null");
     }
 
     @Test
     @DisplayName("ERROR_CODE_4 agreementDateFrom must be in the future")
     public void executeTestCase10() throws Exception {
-        executeAndCompare("agreement/test_case_10");
+        executeAndCompare("agreement/ERROR_CODE_4_agreementDateFrom_must_be_in_the_future");
     }
 
     @Test
     @DisplayName("ERROR_CODE_7 agreementDateTo must be in the future")
     public void executeTestCase11() throws Exception {
-        executeAndCompare("agreement/test_case_11");
+        executeAndCompare("agreement/ERROR_CODE_7_agreementDateTo_must_be_in_the_future");
     }
 
     @Test
     @DisplayName("ERROR_CODE_5 agreementDateFrom must be less than agreementDateTo")
     public void executeTestCase12() throws Exception {
-        executeAndCompare("agreement/test_case_12");
+        executeAndCompare("agreement/ERROR_CODE_5_agreementDateFrom_must_be_less_then_agreementDateTo");
     }
 
     @Test
     @DisplayName("ERROR_CODE_10 TRAVEL_MEDICAL country is empty, must not be empty")
     public void executeTestCase17() throws Exception {
-        executeAndCompare("agreement/test_case_17");
+        executeAndCompare("agreement/ERROR_CODE_10_country_is_empty");
     }
 
     @Test
     @DisplayName("ERROR_CODE_10 TRAVEL_MEDICAL country is NULL, must not be empty")
     public void executeTestCase18() throws Exception {
-        executeAndCompare("agreement/test_case_18");
+        executeAndCompare("agreement/ERROR_CODE_10_country_is_null");
     }
 
     @Test
     @DisplayName("Multiple errors all field is NULL except selected_risks")
     public void executeTestCase19() throws Exception {
-        executeAndCompare("agreement/test_case_19");
+        executeAndCompare("agreement/Multiple_errors_all_all_fields_NULL_except_selectedRisks");
     }
 
     @Test
     @DisplayName("Multiple errors all field is NULL")
     public void executeTestCase20() throws Exception {
-        executeAndCompare("agreement/test_case_20");
+        executeAndCompare("agreement/Multiple_errors_all_all_fields_NULL");
     }
 
     @Test
     @DisplayName("ERROR_CODE_10 TRAVEL_EVACUATION country is NULL, must not be empty")
     public void executeTestCase21() throws Exception {
-        executeAndCompare("agreement/test_case_21");
+        executeAndCompare("agreement/ERROR_CODE_10_country_is_null");
     }
 
     @Test
     @DisplayName("ERROR_CODE_10 TRAVEL_EVACUATION country is empty, must not be empty")
     public void executeTestCase22() throws Exception {
-        executeAndCompare("agreement/test_case_22");
+        executeAndCompare("agreement/ERROR_CODE_10_country_is_empty");
     }
 }

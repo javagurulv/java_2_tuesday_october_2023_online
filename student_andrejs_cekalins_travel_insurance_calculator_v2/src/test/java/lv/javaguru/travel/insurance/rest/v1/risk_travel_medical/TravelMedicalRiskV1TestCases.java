@@ -8,7 +8,7 @@ public class TravelMedicalRiskV1TestCases extends TravelCalculatePremiumControll
     @Test
     @DisplayName("Success case with TRAVEL_MEDICAL risk only")
     public void executeTestCase1() throws Exception {
-        executeAndCompare("risk_travel_medical/test_case_1",true);
+        executeAndCompare("risk_travel_medical/Success_case_with_TRAVEL_MEDICAL_risk_only",true);
     }
 
 }
