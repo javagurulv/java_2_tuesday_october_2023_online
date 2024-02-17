@@ -6,18 +6,22 @@ import lv.javaguru.travel.insurance.rest.common.JsonFileReader;
 public class V1Call extends CommonCall implements  Runnable {
 
     private static final String CALCULATE_PREMIUM_V1_LOCAL_URL = "http://localhost:8080/insurance/travel/api/v1/";
-    private JsonFileReader jsonFileReader = new JsonFileReader();
+    private String jsonRequest;
+    private String jsonResponse;
     private LoadTestingStatistic statistic;
+
+    private Stopwatch stopwatch;
 
     public V1Call(LoadTestingStatistic statistic) {
         this.statistic = statistic;
+        JsonFileReader jsonFileReader = new JsonFileReader();
+        jsonRequest = jsonFileReader.readJsonFromFile("rest/v1/risk_travel_medical/Success_case_with_TRAVEL_MEDICAL_risk_only/request.json");
+        jsonResponse = jsonFileReader.readJsonFromFile("rest/v1/risk_travel_medical/Success_case_with_TRAVEL_MEDICAL_risk_only/response.json");
+        stopwatch = Stopwatch.createStarted();
     }
 
     @Override
     public void run() {
-        String jsonRequest = jsonFileReader.readJsonFromFile("rest/v1/risk_travel_medical/Success_case_with_TRAVEL_MEDICAL_risk_only/request.json");
-        String jsonResponse = jsonFileReader.readJsonFromFile("rest/v1/risk_travel_medical/Success_case_with_TRAVEL_MEDICAL_risk_only/response.json");
-        Stopwatch stopwatch = Stopwatch.createStarted();
         executeRestCallAndCompareResults(jsonRequest, jsonResponse, CALCULATE_PREMIUM_V1_LOCAL_URL);
         stopwatch.stop();
         long elapsedMillis = stopwatch.elapsed().toMillis();
