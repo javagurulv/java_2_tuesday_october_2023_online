@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LoadTestingSystem {
     public static void main(String[] args) {
-        new LoadTestingSystem().executeForAMinute(5, 5000);
+        new LoadTestingSystem().executeForAMinute(5, 1000);
     }
 
     public void executeForAMinute(int parallelThreadCount, int requestCount) {
