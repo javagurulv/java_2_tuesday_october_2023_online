@@ -5,10 +5,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class TravelMedicalRiskV1TestCases extends TravelCalculatePremiumControllerV1TestCase {
+
+    private static final String TEST_FILE_BASE_FOLDER = "risk_travel_medical";
     @Test
     @DisplayName("Success case with TRAVEL_MEDICAL risk only")
     public void executeTestCase1() throws Exception {
-        executeAndCompare("risk_travel_medical/Success_case_with_TRAVEL_MEDICAL_risk_only",true);
+        executeAndCompare(TEST_FILE_BASE_FOLDER + "/Success_case_with_TRAVEL_MEDICAL_risk_only",true);
     }
 
 }

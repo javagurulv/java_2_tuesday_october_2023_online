@@ -13,8 +13,9 @@ public class JsonFileReader {
         try {
             File file = ResourceUtils.getFile("classpath:" + filePath);
             return new String(Files.readAllBytes(file.toPath()));
-        } catch (Exception exception) {
-            throw new RuntimeException(exception);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
         }
     }
+
 }
