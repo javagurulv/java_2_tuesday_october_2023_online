@@ -17,9 +17,8 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
-import static lv.javaguru.travel.insurance.core.api.dto.AgreementDTOBuilder.createAgreement;
-import static lv.javaguru.travel.insurance.core.api.dto.PersonDTOBuilder.createPersonDTO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
@@ -34,19 +33,19 @@ public class LimitLevelSwitchDisabledIntegrationTest {
 
     @Test
     public void shouldBeEnabledMedicalRiskLimitLevel() {
-        PersonDTO person = createPersonDTO()
-                .withFirstName("Vasja")
-                .withLastName("Pupkin")
-                .withBirthDate(createDate("01.01.2000"))
-                .withMedicalRiskLimitLevel("LEVEL_20000")
+        PersonDTO person = PersonDTO.builder()
+                .personFirstName("Vasja")
+                .personLastName("Pupkin")
+                .personBirthDate(createDate("01.01.2000"))
+                .medicalRiskLimitLevel("LEVEL_20000")
                 .build();
 
-        AgreementDTO agreement = createAgreement()
-                .withDateFrom(createDate("01.01.2033"))
-                .withDateTo(createDate("31.12.2033"))
-                .withCountry("SPAIN")
-                .withSelectedRisk("TRAVEL_MEDICAL")
-                .withPerson(person)
+        AgreementDTO agreement = AgreementDTO.builder()
+                .agreementDateFrom(createDate("01.01.2030"))
+                .agreementDateTo(createDate("31.12.2030"))
+                .country("SPAIN")
+                .selectedRisks(List.of("TRAVEL_MEDICAL"))
+                .persons(List.of(person))
                 .build();
 
         TravelPremiumCalculationResult result = premiumUnderwriting.calculatePremium(agreement, person);

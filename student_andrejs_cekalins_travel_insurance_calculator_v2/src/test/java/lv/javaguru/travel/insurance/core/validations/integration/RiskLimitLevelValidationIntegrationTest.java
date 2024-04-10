@@ -1,6 +1,7 @@
 package lv.javaguru.travel.insurance.core.validations.integration;
 
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
+import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import lv.javaguru.travel.insurance.core.validations.TravelAgreementValidator;
 import org.junit.jupiter.api.Test;
@@ -15,8 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static lv.javaguru.travel.insurance.core.api.dto.AgreementDTOBuilder.createAgreement;
-import static lv.javaguru.travel.insurance.core.api.dto.PersonDTOBuilder.createPersonDTO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
@@ -28,18 +27,20 @@ public class RiskLimitLevelValidationIntegrationTest {
 
    @Test
     public void shouldReturnErrorWhenMedicalRiskLimitLevelIsNull() {
-        AgreementDTO agreement = createAgreement()
-                .withDateFrom(createDate("31.12.2032"))
-                .withDateTo(createDate("31.12.2052"))
-                .withCountry("SPAIN")
-                .withSelectedRisk("TRAVEL_MEDICAL")
-                .withPerson(createPersonDTO()
-                        .withFirstName("Vasja")
-                        .withLastName("Pupkin")
-                        .withPersonCode("11a11")
-                        .withBirthDate(createDate("01.01.1991"))
-                        .withMedicalRiskLimitLevel(null)
-                ).build();
+       AgreementDTO agreement = AgreementDTO.builder()
+               .agreementDateFrom(createDate("28.12.2030"))
+               .agreementDateTo(createDate("31.12.2052"))
+               .country("SPAIN")
+               .selectedRisks(List.of("TRAVEL_MEDICAL"))
+               .persons(List.of(PersonDTO.builder()
+                       .personFirstName("Vasja")
+                       .personLastName("Pupkin")
+                       .personCode("11a11")
+                       .personBirthDate(createDate("01.01.1991"))
+                       .medicalRiskLimitLevel(null)
+                       .build()
+
+               )).build();
         List<ValidationErrorDTO> errors = validator.validate(agreement);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "ERROR_CODE_13");
@@ -48,18 +49,20 @@ public class RiskLimitLevelValidationIntegrationTest {
 
     @Test
     public void shouldReturnErrorWhenMedicalRiskLimitLevelIsEmpty() {
-        AgreementDTO agreement = createAgreement()
-                .withDateFrom(createDate("31.12.2032"))
-                .withDateTo(createDate("31.12.2052"))
-                .withCountry("SPAIN")
-                .withSelectedRisk("TRAVEL_MEDICAL")
-                .withPerson(createPersonDTO()
-                        .withFirstName("Vasja")
-                        .withLastName("Pupkin")
-                        .withPersonCode("11a11")
-                        .withBirthDate(createDate("01.01.1991"))
-                        .withMedicalRiskLimitLevel("")
-                ).build();
+        AgreementDTO agreement = AgreementDTO.builder()
+                .agreementDateFrom(createDate("28.12.2030"))
+                .agreementDateTo(createDate("31.12.2052"))
+                .country("SPAIN")
+                .selectedRisks(List.of("TRAVEL_MEDICAL"))
+                .persons(List.of(PersonDTO.builder()
+                        .personFirstName("Vasja")
+                        .personLastName("Pupkin")
+                        .personCode("11a11")
+                        .personBirthDate(createDate("01.01.1991"))
+                        .medicalRiskLimitLevel("")
+                        .build()
+
+                )).build();
         List<ValidationErrorDTO> errors = validator.validate(agreement);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "ERROR_CODE_13");
@@ -69,22 +72,24 @@ public class RiskLimitLevelValidationIntegrationTest {
 
     @Test
     public void shouldReturnErrorWhenMedicalRiskLimitLevelIsNotSupported() {
-        AgreementDTO agreement = createAgreement()
-                .withDateFrom(createDate("31.12.2032"))
-                .withDateTo(createDate("31.12.2052"))
-                .withCountry("SPAIN")
-                .withSelectedRisk("TRAVEL_MEDICAL")
-                .withPerson(createPersonDTO()
-                        .withFirstName("Vasja")
-                        .withLastName("Pupkin")
-                        .withPersonCode("11a11")
-                        .withBirthDate(createDate("01.01.1991"))
-                        .withMedicalRiskLimitLevel("NOT SUPPORTED")
-                ).build();
+        AgreementDTO agreement = AgreementDTO.builder()
+                .agreementDateFrom(createDate("28.12.2030"))
+                .agreementDateTo(createDate("31.12.2052"))
+                .country("SPAIN")
+                .selectedRisks(List.of("TRAVEL_MEDICAL"))
+                .persons(List.of(PersonDTO.builder()
+                        .personFirstName("Vasja")
+                        .personLastName("Pupkin")
+                        .personCode("11a11")
+                        .personBirthDate(createDate("01.01.1991"))
+                        .medicalRiskLimitLevel("{NOT_SUPPORTED_MEDICAL_RISK_LIMIT_LEVEL}")
+                        .build()
+
+                )).build();
         List<ValidationErrorDTO> errors = validator.validate(agreement);
         assertEquals(errors.size(), 1);
         assertEquals(errors.get(0).getErrorCode(), "ERROR_CODE_14");
-        assertEquals(errors.get(0).getDescription(), "MedicalRiskLimitLevel value = NOT SUPPORTED not supported!");
+        assertEquals(errors.get(0).getDescription(), "MedicalRiskLimitLevel value = {NOT_SUPPORTED_MEDICAL_RISK_LIMIT_LEVEL} not supported!");
     }
 
 
