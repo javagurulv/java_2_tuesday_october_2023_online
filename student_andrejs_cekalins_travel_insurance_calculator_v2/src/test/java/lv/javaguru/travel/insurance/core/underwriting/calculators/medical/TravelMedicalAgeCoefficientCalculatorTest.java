@@ -31,7 +31,7 @@ class TravelMedicalAgeCoefficientCalculatorTest {
     private TMAgeCoefficientRepository ageCoefficientRepository;
 
     @InjectMocks
-    private TravelMedicalAgeCoefficientCalculator calculator;
+    private TMAgeCoefficientCalculator calculator;
 
     private PersonDTO person;
 

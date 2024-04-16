@@ -22,7 +22,7 @@ class TravelMedicalDayCountCalculatorTest {
     @Mock
     private DateTimeUtil dateTimeUtil;
     @InjectMocks
-    private TravelMedicalDayCountCalculator calculator;
+    private TMDayCountCalculator calculator;
 
     private AgreementDTO agreement;
 

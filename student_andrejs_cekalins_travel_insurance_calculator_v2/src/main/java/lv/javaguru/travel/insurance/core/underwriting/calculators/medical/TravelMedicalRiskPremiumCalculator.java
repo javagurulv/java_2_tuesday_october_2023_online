@@ -13,14 +13,14 @@ import java.math.RoundingMode;
 @Component
 public class TravelMedicalRiskPremiumCalculator implements TravelRiskPremiumCalculator {
     @Autowired
-    private TravelMedicalDayCountCalculator dayCountCalculator;
+    private TMDayCountCalculator dayCountCalculator;
     @Autowired
-    private TravelMedicalCountryDefaultDayRateCalculator countryDefaultDayRateCalculator;
+    private TMCountryDefaultDayRateCalculator countryDefaultDayRateCalculator;
     @Autowired
-    private TravelMedicalAgeCoefficientCalculator ageCoefficientCalculator;
+    private TMAgeCoefficientCalculator ageCoefficientCalculator;
 
     @Autowired
-    private TravelMedicalRiskLimitLevelCalculator riskLimitLevelCalculator;
+    private TMRiskLimitLevelCalculator riskLimitLevelCalculator;
 
     @Override
     public BigDecimal calculatePremium(AgreementDTO agreement, PersonDTO person) {

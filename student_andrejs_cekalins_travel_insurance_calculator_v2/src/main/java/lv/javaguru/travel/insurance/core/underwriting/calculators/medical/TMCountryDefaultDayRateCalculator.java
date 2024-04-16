@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
-public class TravelMedicalCountryDefaultDayRateCalculator {
+public class TMCountryDefaultDayRateCalculator {
     @Autowired
     private TMCountryDefaultDayRateRepository countryDefaultDayRateRepository;
 
