@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 @Table(name = "travel_cancellation_travel_cost_coefficient")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class TravelCancellationTravelCostCoefficient {
+@AllArgsConstructor
+public class TCTravelCostCoefficient {
 
     @Id
     @Column(name = "id")

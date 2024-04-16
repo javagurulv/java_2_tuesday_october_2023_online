@@ -9,12 +9,12 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "travel_medical_age_coefficient")
+@Table(name = "travel_cancellation_age_coefficient")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class TravelMedicalAgeCoefficient {
+@AllArgsConstructor
+public class TCAgeCoefficient {
 
     @Id
     @Column(name = "id")
@@ -22,11 +22,12 @@ public class TravelMedicalAgeCoefficient {
     private Long id;
 
     @Column(name = "age_from", nullable = false)
-    private int ageFrom;
+    private Integer ageFrom;
 
     @Column(name = "age_to", nullable = false)
-    private int ageTo;
+    private Integer ageTo;
 
     @Column(name = "coefficient", precision = 10, scale = 2, nullable = false)
     private BigDecimal coefficient;
+
 }

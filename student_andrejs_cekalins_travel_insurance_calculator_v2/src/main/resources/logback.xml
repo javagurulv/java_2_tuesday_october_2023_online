@@ -1,6 +1,6 @@
 <configuration>
 
-    <property name="LOGS" value="./logs"/>
+    <property name="LOGS" value="./logs" />
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -43,14 +43,14 @@
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE_APPENDER"/>
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE_APPENDER" />
     </root>
 
-    <logger name="lv.javaguru.travel.insurance.rest.TravelCalculatePremiumRequestLogger" level="INFO">
-        <appender-ref ref="REQUEST_RESPONSE_FILE_APPENDER"/>
+    <logger name="lv.javaguru.travel.insurance.rest.v1.TravelCalculatePremiumRequestLoggerV1" level="INFO">
+        <appender-ref ref="REQUEST_RESPONSE_FILE_APPENDER" />
     </logger>
-    <logger name="lv.javaguru.travel.insurance.rest.TravelCalculatePremiumResponseLogger" level="INFO">
+    <logger name="lv.javaguru.travel.insurance.rest.v1.TravelCalculatePremiumResponseLoggerV1" level="INFO">
         <appender-ref ref="REQUEST_RESPONSE_FILE_APPENDER" />
     </logger>
 

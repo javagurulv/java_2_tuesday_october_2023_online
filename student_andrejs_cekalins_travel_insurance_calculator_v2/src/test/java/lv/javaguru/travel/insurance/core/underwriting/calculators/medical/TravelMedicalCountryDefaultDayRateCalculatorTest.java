@@ -1,8 +1,8 @@
 package lv.javaguru.travel.insurance.core.underwriting.calculators.medical;
 
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
-import lv.javaguru.travel.insurance.core.domain.TravelMedicalCountryDefaultDayRate;
-import lv.javaguru.travel.insurance.core.repositories.TravelMedicalCountryDefaultDayRateRepository;
+import lv.javaguru.travel.insurance.core.domain.TMCountryDefaultDayRate;
+import lv.javaguru.travel.insurance.core.repositories.TMCountryDefaultDayRateRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class TravelMedicalCountryDefaultDayRateCalculatorTest {
     @Mock
-    private TravelMedicalCountryDefaultDayRateRepository countryDefaultDayRateRepository;
+    private TMCountryDefaultDayRateRepository countryDefaultDayRateRepository;
     @InjectMocks
     private TravelMedicalCountryDefaultDayRateCalculator calculator;
 
@@ -36,7 +36,7 @@ class TravelMedicalCountryDefaultDayRateCalculatorTest {
     @Test
     void shouldCalculateDayRateWhenCountryDayRateExists() {
         BigDecimal expectedDayRate = BigDecimal.valueOf(10.0);
-        TravelMedicalCountryDefaultDayRate countryDefaultDayRate = mock(TravelMedicalCountryDefaultDayRate.class);
+        TMCountryDefaultDayRate countryDefaultDayRate = mock(TMCountryDefaultDayRate.class);
         when(countryDefaultDayRate.getDefaultDayRate()).thenReturn(expectedDayRate);
         when(countryDefaultDayRateRepository.findByCountryIc(agreement.getCountry()))
                 .thenReturn(Optional.of(countryDefaultDayRate));

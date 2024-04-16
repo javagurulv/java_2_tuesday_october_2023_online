@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class RiskLevelV2TestCases extends TravelCalculatePremiumControllerV2TestCase {
     private static final String TEST_FILE_BASE_FOLDER = "risks";
-    @Disabled
+
     @Test
     @DisplayName("Success case with [TRAVEL_MEDICAL, TRAVEL_CANCELLATION]")
     public void executeTestCase1() throws Exception {

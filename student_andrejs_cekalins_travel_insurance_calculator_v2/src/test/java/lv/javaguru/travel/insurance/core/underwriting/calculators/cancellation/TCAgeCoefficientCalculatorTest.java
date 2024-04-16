@@ -1,9 +1,9 @@
 package lv.javaguru.travel.insurance.core.underwriting.calculators.cancellation;
 
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
-import lv.javaguru.travel.insurance.core.domain.TravelCancellationAgeCoefficient;
-import lv.javaguru.travel.insurance.core.repositories.TravelCancellationAgeCoefficientRepository;
 
+import lv.javaguru.travel.insurance.core.domain.TCAgeCoefficient;
+import lv.javaguru.travel.insurance.core.repositories.TCAgeCoefficientRepository;
 import lv.javaguru.travel.insurance.core.util.DateTimeUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ class TCAgeCoefficientCalculatorTest {
     @Mock
     private DateTimeUtil dateTimeUtil;
     @Mock
-    private TravelCancellationAgeCoefficientRepository TCageCoefficientRepository;
+    private TCAgeCoefficientRepository TCAgeCoefficientRepository;
 
     @InjectMocks
     private TravelCancellationAgeCoefficientCalculator calculator;
@@ -49,9 +49,9 @@ class TCAgeCoefficientCalculatorTest {
         BigDecimal expectedCoefficient = BigDecimal.valueOf(1.2);
 
         when(dateTimeUtil.getCurrentDateTime()).thenReturn(Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        TravelCancellationAgeCoefficient ageCoefficient = mock(TravelCancellationAgeCoefficient.class);
+        TCAgeCoefficient ageCoefficient = mock(TCAgeCoefficient.class);
         when(ageCoefficient.getCoefficient()).thenReturn(expectedCoefficient);
-        when(TCageCoefficientRepository.findCoefficient(age)).thenReturn(Optional.of(ageCoefficient));
+        when(TCAgeCoefficientRepository.findCoefficient(age)).thenReturn(Optional.of(ageCoefficient));
 
         BigDecimal result = calculator.calculate(person);
 
@@ -64,7 +64,7 @@ class TCAgeCoefficientCalculatorTest {
         int age = 23;
 
         when(dateTimeUtil.getCurrentDateTime()).thenReturn(Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        when(TCageCoefficientRepository.findCoefficient(age)).thenReturn(Optional.empty());
+        when(TCAgeCoefficientRepository.findCoefficient(age)).thenReturn(Optional.empty());
 
         RuntimeException exception = assertThrows(RuntimeException.class, () -> calculator.calculate(person));
 

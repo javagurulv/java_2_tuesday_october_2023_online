@@ -17,7 +17,8 @@ public class AgreementDateLessThanDateToValidation extends TravelAgreementFieldV
     public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {
         Date dateFrom = agreement.getAgreementDateFrom();
         Date dateTo = agreement.getAgreementDateTo();
-        return (dateFrom != null && dateTo != null && (dateFrom.equals(dateTo) || dateFrom.after(dateTo)))
+        return (dateFrom != null && dateTo != null
+                && (dateFrom.equals(dateTo) || dateFrom.after(dateTo)))
                 ? Optional.of(errorFactory.buildError("ERROR_CODE_5"))
                 : Optional.empty();
     }

@@ -5,7 +5,6 @@ import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import lv.javaguru.travel.insurance.core.domain.ClassifierValue;
 import lv.javaguru.travel.insurance.core.repositories.ClassifierValueRepository;
 import lv.javaguru.travel.insurance.core.validations.ValidationErrorFactory;
-import lv.javaguru.travel.insurance.core.validations.agreement.SelectedRisksValidation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

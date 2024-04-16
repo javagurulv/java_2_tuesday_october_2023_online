@@ -1,8 +1,8 @@
 package lv.javaguru.travel.insurance.core.underwriting.calculators.medical;
 
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
-import lv.javaguru.travel.insurance.core.domain.TravelMedicalAgeCoefficient;
-import lv.javaguru.travel.insurance.core.repositories.TravelMedicalAgeCoefficientRepository;
+import lv.javaguru.travel.insurance.core.domain.TMAgeCoefficient;
+import lv.javaguru.travel.insurance.core.repositories.TMAgeCoefficientRepository;
 import lv.javaguru.travel.insurance.core.util.DateTimeUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ class TravelMedicalAgeCoefficientCalculatorTest {
     @Mock
     private DateTimeUtil dateTimeUtil;
     @Mock
-    private TravelMedicalAgeCoefficientRepository ageCoefficientRepository;
+    private TMAgeCoefficientRepository ageCoefficientRepository;
 
     @InjectMocks
     private TravelMedicalAgeCoefficientCalculator calculator;
@@ -50,7 +50,7 @@ class TravelMedicalAgeCoefficientCalculatorTest {
         BigDecimal expectedCoefficient = BigDecimal.valueOf(1.2);
 
         when(dateTimeUtil.getCurrentDateTime()).thenReturn(Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        TravelMedicalAgeCoefficient ageCoefficient = mock(TravelMedicalAgeCoefficient.class);
+        TMAgeCoefficient ageCoefficient = mock(TMAgeCoefficient.class);
         when(ageCoefficient.getCoefficient()).thenReturn(expectedCoefficient);
         when(ageCoefficientRepository.findCoefficient(age)).thenReturn(Optional.of(ageCoefficient));
 

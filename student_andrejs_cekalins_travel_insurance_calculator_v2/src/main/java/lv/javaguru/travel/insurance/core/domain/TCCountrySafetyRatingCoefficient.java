@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TravelCancellationCountrySafetyRatingCoefficient {
+public class TCCountrySafetyRatingCoefficient {
 
     @Id
     @Column(name = "id")

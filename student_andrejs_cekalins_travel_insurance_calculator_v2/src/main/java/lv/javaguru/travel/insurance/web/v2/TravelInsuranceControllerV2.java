@@ -1,5 +1,6 @@
 package lv.javaguru.travel.insurance.web.v2;
 
+
 import lv.javaguru.travel.insurance.core.api.comamnd.TravelCalculatePremiumCoreCommand;
 import lv.javaguru.travel.insurance.core.api.comamnd.TravelCalculatePremiumCoreResult;
 import lv.javaguru.travel.insurance.core.services.TravelCalculatePremiumService;
@@ -15,9 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class TravelInsuranceControllerV2 {
-    @Autowired
-    private TravelCalculatePremiumService service;
 
+    @Autowired private TravelCalculatePremiumService service;
     @Autowired private DtoV2Converter dtoV2Converter;
 
     @GetMapping("/insurance/travel/web/v2")
@@ -36,4 +36,5 @@ public class TravelInsuranceControllerV2 {
         modelMap.addAttribute("response", response);
         return "travel-calculate-premium-v2";
     }
+
 }

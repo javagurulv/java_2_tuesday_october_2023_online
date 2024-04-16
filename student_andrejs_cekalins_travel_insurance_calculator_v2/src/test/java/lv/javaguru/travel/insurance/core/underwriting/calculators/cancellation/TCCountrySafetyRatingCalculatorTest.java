@@ -1,7 +1,7 @@
 package lv.javaguru.travel.insurance.core.underwriting.calculators.cancellation;
 
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
-import lv.javaguru.travel.insurance.core.domain.TravelCancellationCountrySafetyRatingCoefficient;
+import lv.javaguru.travel.insurance.core.domain.TCCountrySafetyRatingCoefficient;
 import lv.javaguru.travel.insurance.core.repositories.TCCountrySafetyRatingCoefficientRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ class TCCountrySafetyRatingCalculatorTest {
     @Test
     void shouldCalculateCountrySafetyRatingCoefficient() {
         BigDecimal coefficient = BigDecimal.valueOf(10.0);
-        TravelCancellationCountrySafetyRatingCoefficient countrySafetyRatingCoefficient = mock(TravelCancellationCountrySafetyRatingCoefficient.class);
+        TCCountrySafetyRatingCoefficient countrySafetyRatingCoefficient = mock(TCCountrySafetyRatingCoefficient.class);
         when(countrySafetyRatingCoefficient.getCoefficient()).thenReturn(coefficient);
         when(countrySafetyRatingCoefficientRepository.findByCountryIc(agreement.getCountry()))
                 .thenReturn(Optional.of(countrySafetyRatingCoefficient));

@@ -1,5 +1,6 @@
 package lv.javaguru.travel.insurance.core.services;
 
+
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.api.dto.RiskDTO;
@@ -17,7 +18,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class AgreementDTOLoader {
+class AgreementDTOLoader {
+
     @Autowired private AgreementEntityRepository agreementEntityRepository;
     @Autowired private SelectedRiskEntityRepository selectedRiskEntityRepository;
     @Autowired private AgreementPersonEntityRepository agreementPersonEntityRepository;
@@ -42,6 +44,7 @@ public class AgreementDTOLoader {
                     personDTO.setPersonCode(personEntity.getPerson().getPersonCode());
                     personDTO.setPersonBirthDate(personEntity.getPerson().getBirthDate());
                     personDTO.setMedicalRiskLimitLevel(personEntity.getMedicalRiskLimitLevel());
+                    personDTO.setTravelCost(personEntity.getTravelCost());
 
                     personDTO.setRisks(
                             agreementPersonRiskEntityRepository.findByAgreementPerson(personEntity)
