@@ -4,7 +4,6 @@ package lv.javaguru.travel.insurance.core.underwriting.calculators.cancellation;
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.underwriting.TravelRiskPremiumCalculator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -13,9 +12,17 @@ import java.math.RoundingMode;
 @Component
 public class TravelCancellationRiskPremiumCalculator implements TravelRiskPremiumCalculator {
 
-    @Autowired private TCTravelCostCoefficientCalculator travelCostCoefficientCalculator;
-    @Autowired private TravelCancellationAgeCoefficientCalculator ageCoefficientCalculator;
-    @Autowired private TCCountrySafetyRatingCoefficientCalculator countrySafetyRatingCoefficientCalculator;
+    private final TCTravelCostCoefficientCalculator travelCostCoefficientCalculator;
+    private final TravelCancellationAgeCoefficientCalculator ageCoefficientCalculator;
+    private final TCCountrySafetyRatingCoefficientCalculator countrySafetyRatingCoefficientCalculator;
+
+    public TravelCancellationRiskPremiumCalculator(TCTravelCostCoefficientCalculator travelCostCoefficientCalculator,
+                                                   TravelCancellationAgeCoefficientCalculator ageCoefficientCalculator,
+                                                   TCCountrySafetyRatingCoefficientCalculator countrySafetyRatingCoefficientCalculator) {
+        this.travelCostCoefficientCalculator = travelCostCoefficientCalculator;
+        this.ageCoefficientCalculator = ageCoefficientCalculator;
+        this.countrySafetyRatingCoefficientCalculator = countrySafetyRatingCoefficientCalculator;
+    }
 
     @Override
     public BigDecimal calculatePremium(AgreementDTO agreement, PersonDTO person) {

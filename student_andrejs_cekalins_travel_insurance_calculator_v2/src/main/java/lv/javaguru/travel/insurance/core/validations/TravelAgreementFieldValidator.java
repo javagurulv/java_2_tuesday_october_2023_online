@@ -1,5 +1,7 @@
 package lv.javaguru.travel.insurance.core.validations;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +15,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class TravelAgreementFieldValidator {
-    @Autowired
-    private List<TravelAgreementFieldValidation> agreementFieldValidations;
+
+    private final List<TravelAgreementFieldValidation> agreementFieldValidations;
 
 
     public List<ValidationErrorDTO> validate(AgreementDTO request) {

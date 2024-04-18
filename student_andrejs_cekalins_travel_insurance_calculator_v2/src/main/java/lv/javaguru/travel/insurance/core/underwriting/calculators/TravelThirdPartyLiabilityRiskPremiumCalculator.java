@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 @Component
-public class TravelThirdPartyLiabilityRiskPremiumCalculator implements TravelRiskPremiumCalculator {
+class TravelThirdPartyLiabilityRiskPremiumCalculator implements TravelRiskPremiumCalculator {
     @Override
     public BigDecimal calculatePremium(AgreementDTO agreement, PersonDTO person) {
         return BigDecimal.ZERO;

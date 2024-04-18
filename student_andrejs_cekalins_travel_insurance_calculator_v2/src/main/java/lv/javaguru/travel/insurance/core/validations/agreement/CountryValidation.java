@@ -12,12 +12,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class CountryValidation extends TravelAgreementFieldValidationImpl {
-    @Autowired
-    private ClassifierValueRepository classifierValueRepository;
+class CountryValidation extends TravelAgreementFieldValidationImpl {
+    private final ClassifierValueRepository classifierValueRepository;
+    private final ValidationErrorFactory errorFactory;
 
-    @Autowired
-    private ValidationErrorFactory errorFactory;
+    CountryValidation(ClassifierValueRepository classifierValueRepository,
+                             ValidationErrorFactory errorFactory) {
+        this.classifierValueRepository = classifierValueRepository;
+        this.errorFactory = errorFactory;
+    }
 
     @Override
     public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {

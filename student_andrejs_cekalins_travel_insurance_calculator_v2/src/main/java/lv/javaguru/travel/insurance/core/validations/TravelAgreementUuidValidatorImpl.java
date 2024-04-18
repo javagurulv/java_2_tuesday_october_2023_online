@@ -12,8 +12,13 @@ import java.util.List;
 @Component
 class TravelAgreementUuidValidatorImpl implements TravelAgreementUuidValidator {
 
-    @Autowired private ValidationErrorFactory errorFactory;
-    @Autowired private AgreementEntityRepository agreementEntityRepository;
+    private final ValidationErrorFactory errorFactory;
+    private final AgreementEntityRepository agreementEntityRepository;
+
+    TravelAgreementUuidValidatorImpl(ValidationErrorFactory errorFactory, AgreementEntityRepository agreementEntityRepository) {
+        this.errorFactory = errorFactory;
+        this.agreementEntityRepository = agreementEntityRepository;
+    }
 
     public List<ValidationErrorDTO> validate(String uuid) {
         List<ValidationErrorDTO> errors = new ArrayList<>();

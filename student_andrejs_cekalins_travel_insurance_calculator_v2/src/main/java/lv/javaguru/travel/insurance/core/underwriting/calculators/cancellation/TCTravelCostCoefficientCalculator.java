@@ -1,5 +1,7 @@
 package lv.javaguru.travel.insurance.core.underwriting.calculators.cancellation;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 
 import lv.javaguru.travel.insurance.core.domain.TCTravelCostCoefficient;
@@ -10,12 +12,13 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 class TCTravelCostCoefficientCalculator {
 
-    @Autowired private TCTravelCostCoefficientRepository tCTravelCostCoefficientRepository;
+    private final TCTravelCostCoefficientRepository tcTravelCostCoefficientRepository;
 
     BigDecimal calculate(PersonDTO person) {
-        return tCTravelCostCoefficientRepository.findCoefficient(person.getTravelCost())
+        return tcTravelCostCoefficientRepository.findCoefficient(person.getTravelCost())
                 .map(TCTravelCostCoefficient::getCoefficient)
                 .orElseThrow(() -> new RuntimeException("Travel Cost coefficient not found for travel cost = " + person.getTravelCost()));
     }

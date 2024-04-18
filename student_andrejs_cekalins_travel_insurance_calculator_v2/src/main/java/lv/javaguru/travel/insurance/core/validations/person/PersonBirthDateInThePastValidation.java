@@ -12,11 +12,15 @@ import java.util.Date;
 import java.util.Optional;
 
 @Component
-public class PersonBirthDateInThePastValidation extends TravelPersonFieldValidationImpl {
-    @Autowired
-    private DateTimeUtil dateTimeUtil;
-    @Autowired
-    private ValidationErrorFactory errorFactory;
+class PersonBirthDateInThePastValidation extends TravelPersonFieldValidationImpl {
+    private final DateTimeUtil dateTimeUtil;
+    private final ValidationErrorFactory errorFactory;
+
+    PersonBirthDateInThePastValidation(DateTimeUtil dateTimeUtil,
+                                              ValidationErrorFactory errorFactory) {
+        this.dateTimeUtil = dateTimeUtil;
+        this.errorFactory = errorFactory;
+    }
 
     @Override
     public Optional<ValidationErrorDTO> validate(AgreementDTO agreement, PersonDTO person) {

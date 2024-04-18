@@ -20,10 +20,20 @@ import java.util.stream.Collectors;
 @Component
 class AgreementDTOLoader {
 
-    @Autowired private AgreementEntityRepository agreementEntityRepository;
-    @Autowired private SelectedRiskEntityRepository selectedRiskEntityRepository;
-    @Autowired private AgreementPersonEntityRepository agreementPersonEntityRepository;
-    @Autowired private AgreementPersonRiskEntityRepository agreementPersonRiskEntityRepository;
+    private final AgreementEntityRepository agreementEntityRepository;
+    private final SelectedRiskEntityRepository selectedRiskEntityRepository;
+    private final AgreementPersonEntityRepository agreementPersonEntityRepository;
+    private final AgreementPersonRiskEntityRepository agreementPersonRiskEntityRepository;
+
+    AgreementDTOLoader(AgreementEntityRepository agreementEntityRepository,
+                       SelectedRiskEntityRepository selectedRiskEntityRepository,
+                       AgreementPersonEntityRepository agreementPersonEntityRepository,
+                       AgreementPersonRiskEntityRepository agreementPersonRiskEntityRepository) {
+        this.agreementEntityRepository = agreementEntityRepository;
+        this.selectedRiskEntityRepository = selectedRiskEntityRepository;
+        this.agreementPersonEntityRepository = agreementPersonEntityRepository;
+        this.agreementPersonRiskEntityRepository = agreementPersonRiskEntityRepository;
+    }
 
     AgreementDTO load(String uuid) {
         AgreementDTO dto = new AgreementDTO();

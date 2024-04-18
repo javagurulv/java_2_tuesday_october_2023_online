@@ -1,5 +1,7 @@
 package lv.javaguru.travel.insurance.core.validations.person;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
@@ -11,13 +13,13 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class EmptyMedicalRiskLimitLevelValidation extends TravelPersonFieldValidationImpl {
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+class EmptyMedicalRiskLimitLevelValidation extends TravelPersonFieldValidationImpl {
 
     @Value("${medical.risk.limit.level.enabled:false}")
     private Boolean medicalRiskLimitLevelEnabled;
 
-    @Autowired
-    private ValidationErrorFactory errorFactory;
+    private final ValidationErrorFactory errorFactory;
 
     @Override
     public Optional<ValidationErrorDTO> validate(AgreementDTO agreement, PersonDTO person) {

@@ -11,11 +11,15 @@ import java.util.Date;
 import java.util.Optional;
 
 @Component
-public class AgreementDateToInTheFutureValidation extends TravelAgreementFieldValidationImpl {
-    @Autowired
-    private DateTimeUtil dateTimeUtil;
-    @Autowired
-    private ValidationErrorFactory errorFactory;
+class AgreementDateToInTheFutureValidation extends TravelAgreementFieldValidationImpl {
+    private final DateTimeUtil dateTimeUtil;
+    private final ValidationErrorFactory errorFactory;
+
+    AgreementDateToInTheFutureValidation(DateTimeUtil dateTimeUtil,
+                                                ValidationErrorFactory errorFactory) {
+        this.dateTimeUtil = dateTimeUtil;
+        this.errorFactory = errorFactory;
+    }
 
     public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {
         Date dateTo = agreement.getAgreementDateTo();

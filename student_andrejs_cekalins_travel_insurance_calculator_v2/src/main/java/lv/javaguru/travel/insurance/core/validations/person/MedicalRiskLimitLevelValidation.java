@@ -12,11 +12,16 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 @Component
-public class MedicalRiskLimitLevelValidation extends TravelPersonFieldValidationImpl {
+class MedicalRiskLimitLevelValidation extends TravelPersonFieldValidationImpl {
 
-    @Autowired private ClassifierValueRepository classifierValueRepository;
-    @Autowired private ValidationErrorFactory errorFactory;
+    private final ClassifierValueRepository classifierValueRepository;
+    private final ValidationErrorFactory errorFactory;
 
+    MedicalRiskLimitLevelValidation(ClassifierValueRepository classifierValueRepository,
+                                           ValidationErrorFactory errorFactory) {
+        this.classifierValueRepository = classifierValueRepository;
+        this.errorFactory = errorFactory;
+    }
 
     @Override
     public Optional<ValidationErrorDTO> validate(AgreementDTO agreement, PersonDTO person) {

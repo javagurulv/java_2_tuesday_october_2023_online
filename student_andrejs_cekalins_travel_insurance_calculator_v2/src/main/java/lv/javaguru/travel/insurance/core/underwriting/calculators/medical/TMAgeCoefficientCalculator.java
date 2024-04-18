@@ -19,10 +19,14 @@ public class TMAgeCoefficientCalculator {
 
     @Value("${medical.risk.age.coefficient.enabled:false}")
     private Boolean medicalRiskAgeCoefficientEnabled;
-    @Autowired
-    private DateTimeUtil dateTimeUtil;
-    @Autowired
-    private TMAgeCoefficientRepository ageCoefficientRepository;
+    private final DateTimeUtil dateTimeUtil;
+    private final TMAgeCoefficientRepository ageCoefficientRepository;
+
+    public TMAgeCoefficientCalculator(DateTimeUtil dateTimeUtil,
+                                      TMAgeCoefficientRepository ageCoefficientRepository) {
+        this.dateTimeUtil = dateTimeUtil;
+        this.ageCoefficientRepository = ageCoefficientRepository;
+    }
 
     public BigDecimal calculate(PersonDTO person) {
         return medicalRiskAgeCoefficientEnabled

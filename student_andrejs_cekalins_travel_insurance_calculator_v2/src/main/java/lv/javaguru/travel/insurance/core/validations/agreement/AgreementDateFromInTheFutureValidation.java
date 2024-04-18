@@ -10,11 +10,16 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.Optional;
 @Component
-public class AgreementDateFromInTheFutureValidation extends TravelAgreementFieldValidationImpl {
-    @Autowired
-    private DateTimeUtil dateTimeUtil;
-    @Autowired
-    private ValidationErrorFactory errorFactory;
+class AgreementDateFromInTheFutureValidation extends TravelAgreementFieldValidationImpl {
+    private final DateTimeUtil dateTimeUtil;
+    private final ValidationErrorFactory errorFactory;
+
+    AgreementDateFromInTheFutureValidation(DateTimeUtil dateTimeUtil,
+                                                  ValidationErrorFactory errorFactory) {
+        this.dateTimeUtil = dateTimeUtil;
+        this.errorFactory = errorFactory;
+    }
+
     @Override
     public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {
         Date dateFrom = agreement.getAgreementDateFrom();

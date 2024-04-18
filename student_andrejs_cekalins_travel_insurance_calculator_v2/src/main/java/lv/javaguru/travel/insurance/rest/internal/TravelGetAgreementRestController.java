@@ -8,7 +8,6 @@ import lv.javaguru.travel.insurance.core.services.TravelGetAgreementService;
 import lv.javaguru.travel.insurance.dto.internal.GetAgreementDtoConverter;
 import lv.javaguru.travel.insurance.dto.internal.TravelGetAgreementResponse;
 import lv.javaguru.travel.insurance.rest.common.TravelRestRequestExecutionTimeLogger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +17,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/insurance/travel/api/internal/agreement")
 public class TravelGetAgreementRestController {
 
-	@Autowired private TravelGetAgreementRequestLogger requestLogger;
-	@Autowired private TravelGetAgreementResponseLogger responseLogger;
-	@Autowired private TravelRestRequestExecutionTimeLogger executionTimeLogger;
-	@Autowired private TravelGetAgreementService getAgreementService;
-	@Autowired private GetAgreementDtoConverter dtoConverter;
+private final TravelGetAgreementRequestLogger requestLogger;
+private final TravelGetAgreementResponseLogger responseLogger;
+private final TravelRestRequestExecutionTimeLogger executionTimeLogger;
+private final TravelGetAgreementService getAgreementService;
+private final GetAgreementDtoConverter dtoConverter;
+
+	TravelGetAgreementRestController(TravelGetAgreementRequestLogger requestLogger,
+											TravelGetAgreementResponseLogger responseLogger,
+											TravelRestRequestExecutionTimeLogger executionTimeLogger,
+											TravelGetAgreementService getAgreementService,
+											GetAgreementDtoConverter dtoConverter) {
+		this.requestLogger = requestLogger;
+		this.responseLogger = responseLogger;
+		this.executionTimeLogger = executionTimeLogger;
+		this.getAgreementService = getAgreementService;
+		this.dtoConverter = dtoConverter;
+	}
+
 
 	@GetMapping(path = "/{uuid}",
 			produces = "application/json")

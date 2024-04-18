@@ -1,5 +1,7 @@
 package lv.javaguru.travel.insurance.core.validations.agreement;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import lv.javaguru.travel.insurance.core.validations.ValidationErrorFactory;
@@ -10,9 +12,10 @@ import java.util.Date;
 import java.util.Optional;
 
 @Component
-public class AgreementDateLessThanDateToValidation extends TravelAgreementFieldValidationImpl {
-    @Autowired
-    private ValidationErrorFactory errorFactory;
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+class AgreementDateLessThanDateToValidation extends TravelAgreementFieldValidationImpl {
+
+    private final ValidationErrorFactory errorFactory;
 
     public Optional<ValidationErrorDTO> validate(AgreementDTO agreement) {
         Date dateFrom = agreement.getAgreementDateFrom();

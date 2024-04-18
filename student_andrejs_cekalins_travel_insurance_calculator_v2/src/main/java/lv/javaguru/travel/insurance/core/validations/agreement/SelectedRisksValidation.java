@@ -13,9 +13,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class SelectedRisksValidation extends TravelAgreementFieldValidationImpl {
-    @Autowired private ClassifierValueRepository classifierValueRepository;
-    @Autowired private ValidationErrorFactory errorFactory;
+class SelectedRisksValidation extends TravelAgreementFieldValidationImpl {
+    private final ClassifierValueRepository classifierValueRepository;
+    private final ValidationErrorFactory errorFactory;
+
+    SelectedRisksValidation(ClassifierValueRepository classifierValueRepository,
+                                   ValidationErrorFactory errorFactory) {
+        this.classifierValueRepository = classifierValueRepository;
+        this.errorFactory = errorFactory;
+    }
 
     @Override
     public List<ValidationErrorDTO> validateList(AgreementDTO agreement) {

@@ -1,5 +1,7 @@
 package lv.javaguru.travel.insurance.core.underwriting.calculators.medical;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.domain.TMMedicalRiskLimitLevel;
 import lv.javaguru.travel.insurance.core.repositories.TMMedicalRiskLimitLevelRepository;
@@ -10,13 +12,13 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class TMRiskLimitLevelCalculator {
 
     @Value("${medical.risk.limit.level.enabled:false}")
     private Boolean medicalRiskLimitLevelEnabled;
 
-    @Autowired
-    private TMMedicalRiskLimitLevelRepository riskLimitLevelRepository;
+    private final TMMedicalRiskLimitLevelRepository riskLimitLevelRepository;
 
     public BigDecimal calculate(PersonDTO person) {
         return medicalRiskLimitLevelEnabled

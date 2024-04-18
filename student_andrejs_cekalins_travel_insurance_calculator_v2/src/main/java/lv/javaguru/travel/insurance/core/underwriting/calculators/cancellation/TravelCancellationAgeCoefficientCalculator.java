@@ -16,8 +16,13 @@ import java.util.Date;
 @Component
 public class TravelCancellationAgeCoefficientCalculator {
 
-    @Autowired private DateTimeUtil dateTimeUtil;
-    @Autowired private TCAgeCoefficientRepository ageCoefficientRepository;
+    private final DateTimeUtil dateTimeUtil;
+    private final TCAgeCoefficientRepository ageCoefficientRepository;
+
+    public TravelCancellationAgeCoefficientCalculator(DateTimeUtil dateTimeUtil, TCAgeCoefficientRepository ageCoefficientRepository) {
+        this.dateTimeUtil = dateTimeUtil;
+        this.ageCoefficientRepository = ageCoefficientRepository;
+    }
 
     BigDecimal calculate(PersonDTO person) {
         int age = calculateAge(person);

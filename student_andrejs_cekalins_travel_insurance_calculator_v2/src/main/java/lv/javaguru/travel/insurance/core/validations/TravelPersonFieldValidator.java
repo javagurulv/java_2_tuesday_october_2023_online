@@ -1,6 +1,8 @@
 package lv.javaguru.travel.insurance.core.validations;
 
 import liquibase.pro.packaged.A;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import lv.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
@@ -15,10 +17,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class TravelPersonFieldValidator {
 
-    @Autowired
-    List<TravelPersonFieldValidation> personFieldValidations;
+   private final List<TravelPersonFieldValidation> personFieldValidations;
 
     public List<ValidationErrorDTO> validate(AgreementDTO agreement) {
         return agreement.getPersons().stream()
