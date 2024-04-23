@@ -2,8 +2,10 @@ package lv.javaguru.travel.insurance.jobs;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lv.javaguru.travel.insurance.core.api.comamnd.TravelExportAgreementToXmlCoreCommand;
 import lv.javaguru.travel.insurance.core.api.comamnd.TravelGetAgreementCoreCommand;
 import lv.javaguru.travel.insurance.core.api.dto.AgreementDTO;
+import lv.javaguru.travel.insurance.core.services.TravelExportAgreementToXmlService;
 import lv.javaguru.travel.insurance.core.services.TravelGetAgreementService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,53 +20,17 @@ import java.io.*;
 @Component
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 class AgreementXmlExporter {
-    private static final Logger logger = LoggerFactory.getLogger(AgreementXmlExporter.class);
+    private static final Logger logger = LoggerFactory.getLogger(AgreementXmlExporterJob.class);
 
-    @Value( "${agreement.xml.exporter.job.path}" )
-    private String agreementExportPath;
 
-    private final TravelGetAgreementService agreementService;
+    private final TravelExportAgreementToXmlService agreementToXmlService;
 
-    void exportAgreement(String agreementUuid) {
-        try {
-            logger.info("AgreementXmlExporterJob started for uuid = " + agreementUuid);
-            AgreementDTO agreement = getAgreementData(agreementUuid);
-            String agreementXml = convertAgreementToXml(agreement);
-            storeXmlToFile(agreementUuid, agreementXml);
-            logger.info("AgreementXmlExporterJob finished for uuid = " + agreementUuid);
-        } catch (Exception e) {
-            logger.info("AgreementXmlExporterJob failed for agreement uuid = " + agreementUuid, e);
-        }
-    }
 
-    private AgreementDTO getAgreementData(String agreementUuid) {
-        TravelGetAgreementCoreCommand command = new TravelGetAgreementCoreCommand(agreementUuid);
-        return agreementService.getAgreement(command).getAgreement();
-    }
+    public void exportAgreement(String agreementUuid) {
+        logger.info("AgreementXmlExporterJob started for uuid = " + agreementUuid);
+        agreementToXmlService.export(new TravelExportAgreementToXmlCoreCommand(agreementUuid));
+        logger.info("AgreementXmlExporterJob finished for uuid = " + agreementUuid);
 
-    private String convertAgreementToXml(AgreementDTO agreement) throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(AgreementDTO.class);
-        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-        StringWriter sw = new StringWriter();
-        jaxbMarshaller.marshal(agreement, sw);
-        return sw.toString();
-    }
-
-    private void storeXmlToFile(String agreementUuid,
-                                String agreementXml) throws IOException {
-        File file = new File(agreementExportPath + "/agreement-" + agreementUuid + ".xml");
-
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-
-        FileWriter fw = new FileWriter(file.getAbsoluteFile());
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(agreementXml);
-        bw.close();
     }
 
 }

@@ -1,10 +1,10 @@
 package lv.javaguru.travel.insurance.jobs;
 
 
-import lv.javaguru.travel.insurance.core.api.comamnd.TravelGetAllAgreementUuidsCoreCommand;
-import lv.javaguru.travel.insurance.core.api.comamnd.TravelGetAllAgreementUuidsCoreResult;
+import lv.javaguru.travel.insurance.core.api.comamnd.TravelGetNotExportedAgreementUuidsCoreCommand;
+import lv.javaguru.travel.insurance.core.api.comamnd.TravelGetNotExportedAgreementUuidsCoreResult;
 
-import lv.javaguru.travel.insurance.core.services.TravelGetAllAgreementUuidsService;
+import lv.javaguru.travel.insurance.core.services.TravelGetNotExportedAgreementUuidsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,12 +28,12 @@ public class AgreementXmlExporterJob {
     @Value( "${agreement.xml.exporter.job.thread.count}" )
     private Integer threadCount;
 
-    private final TravelGetAllAgreementUuidsService allAgreementUuidsService;
+    private final TravelGetNotExportedAgreementUuidsService notExportedAgreementUuidsService;
     private final AgreementXmlExporter agreementXmlExporter;
 
-    AgreementXmlExporterJob(TravelGetAllAgreementUuidsService allAgreementUuidsService,
+    AgreementXmlExporterJob(TravelGetNotExportedAgreementUuidsService notExportedAgreementUuidsService,
                             AgreementXmlExporter agreementXmlExporter) {
-        this.allAgreementUuidsService = allAgreementUuidsService;
+        this.notExportedAgreementUuidsService = notExportedAgreementUuidsService;
         this.agreementXmlExporter = agreementXmlExporter;
     }
 
@@ -46,14 +46,14 @@ public class AgreementXmlExporterJob {
 
     private void executeJob() {
         logger.info("AgreementXmlExporterJob started");
-        List<String> allAgreementUuids = getAllAgreementUuids();
-        exportAgreements(allAgreementUuids);
+        List<String> notExportedYetAgreementUuids = getNotExportedYetAgreementUuids();
+        exportAgreements(notExportedYetAgreementUuids);
         logger.info("AgreementXmlExporterJob finished");
     }
 
-    private List<String> getAllAgreementUuids() {
-        TravelGetAllAgreementUuidsCoreResult result = allAgreementUuidsService.getAllAgreementUuids(
-                new TravelGetAllAgreementUuidsCoreCommand()
+    private List<String> getNotExportedYetAgreementUuids() {
+        TravelGetNotExportedAgreementUuidsCoreResult result = notExportedAgreementUuidsService.getAgreementUuids(
+                new TravelGetNotExportedAgreementUuidsCoreCommand()
         );
         return result.getAgreementUuids();
     }

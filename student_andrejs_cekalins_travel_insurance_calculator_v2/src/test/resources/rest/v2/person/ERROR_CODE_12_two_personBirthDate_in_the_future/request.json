@@ -7,14 +7,14 @@
     {
       "personFirstName" : "Vasja",
       "personLastName" : "Pupkin",
-      "personCode": "11a11",
+      "personCode": "111111-22222",
       "personBirthDate" : "2030-05-29",
       "medicalRiskLimitLevel" : "LEVEL_10000"
     },
     {
       "personFirstName" : "Petja",
       "personLastName" : "Pupkin",
-      "personCode": "11a12",
+      "personCode": "111111-22223",
       "personBirthDate" : "9150-02-29",
       "medicalRiskLimitLevel" : "LEVEL_10000"
     }

@@ -6,25 +6,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lv.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 
-
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TravelGetAllAgreementUuidsCoreResult {
+public class TravelExportAgreementToXmlCoreResult {
 
     private List<ValidationErrorDTO> errors;
 
-    private List<String> agreementUuids;
-
-    public boolean hasErrors() {
-        return errors != null && !errors.isEmpty();
-    }
-
-    public TravelGetAllAgreementUuidsCoreResult(List<ValidationErrorDTO> errors) {
-        this.errors = errors;
-    }
-
+    public boolean hasErrors() { return errors != null && !errors.isEmpty(); }
 }
