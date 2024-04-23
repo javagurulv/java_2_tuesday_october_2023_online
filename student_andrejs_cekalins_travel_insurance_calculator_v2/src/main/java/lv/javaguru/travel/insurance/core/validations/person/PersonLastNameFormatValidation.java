@@ -16,28 +16,29 @@ import java.util.regex.Pattern;
 
 @Component
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-class PersonCodeFormatValidation extends TravelPersonFieldValidationImpl {
+public class PersonLastNameFormatValidation extends TravelPersonFieldValidationImpl {
 
     private final ValidationErrorFactory errorFactory;
 
     @Override
     public Optional<ValidationErrorDTO> validate(AgreementDTO agreement, PersonDTO person) {
-        if (!isPersonCodeNullOrBlank(person) && !isValidFormat(person)) {
-            Placeholder placeholder = new Placeholder("PERSONAL_CODE", person.getPersonCode());
-            return Optional.of(errorFactory.buildError("ERROR_CODE_21", List.of(placeholder)));
+        if (!isPersonLastNameNullOrBlank(person) &&     !isValidFormat(person)) {
+            Placeholder placeholder = new Placeholder("PERSON_LAST_NAME", person.getPersonLastName());
+            return Optional.of(errorFactory.buildError("ERROR_CODE_23", List.of(placeholder)));
         } else {
             return Optional.empty();
         }
     }
 
-    private boolean isPersonCodeNullOrBlank(PersonDTO person) {
-        return person.getPersonCode() == null || person.getPersonCode().isBlank();
+    private boolean isPersonLastNameNullOrBlank(PersonDTO person) {
+        return person.getPersonLastName() == null || person.getPersonLastName().isBlank();
     }
 
     private boolean isValidFormat(PersonDTO person) {
-        String patternString = "\\d{6}-\\d{5}$";
+        String patternString = "^[A-Za-z]+([ -][A-Za-z]+)*$";
         Pattern pattern = Pattern.compile(patternString);
-        Matcher matcher = pattern.matcher(person.getPersonCode());
+        Matcher matcher = pattern.matcher(person.getPersonLastName());
         return matcher.matches();
     }
+
 }
