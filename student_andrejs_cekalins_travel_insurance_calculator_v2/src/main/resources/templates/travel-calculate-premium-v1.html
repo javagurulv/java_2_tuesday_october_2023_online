@@ -47,11 +47,11 @@
 <td th:if="${response.errors != null}">
     <h3>Travel Insurance Premium Calculation ERRORS</h3>
     <tr th:each="error : ${response.errors}">
-<td th:text="${error.errorCode}" />
-<td th:text="${error.description}" />
-<br>
-<br>
-</tr>
+        <td th:text="${error.errorCode}" />
+        <td th:text="${error.description}" />
+        <br>
+        <br>
+    </tr>
 </td>
 
 <br>
@@ -66,11 +66,29 @@
 <td th:if="${response.risks != null}">
     <h3>Travel Insurance Premium Calculation RISKS</h3>
     <tr th:each="risk : ${response.risks}">
-<td th:text="${risk.riskIc}" />
-<td th:text="${risk.premium}" />
-<br>
-</tr>
+        <td th:text="${risk.riskIc}" />
+        <td th:text="${risk.premium}" />
+        <br>
+    </tr>
 </td>
+
+<br>
+
+<button onclick="window.location.href='/insurance/travel/web/v1';">Clear Form</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var date = new Date();
+
+    date.setDate(date.getDate() + 1); // Set to tomorrow's date
+    var dateString = date.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+    document.getElementById('agreementDateFrom').value = dateString; // Set the value of the date input
+
+    date.setDate(date.getDate() + 1);
+    dateString = date.toISOString().split('T')[0];
+    document.getElementById('agreementDateTo').value = dateString;
+  });
+</script>
 
 </body>
 </html>
