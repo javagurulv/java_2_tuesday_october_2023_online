@@ -22,7 +22,7 @@ public class PersonLastNameFormatValidation extends TravelPersonFieldValidationI
 
     @Override
     public Optional<ValidationErrorDTO> validate(AgreementDTO agreement, PersonDTO person) {
-        if (!isPersonLastNameNullOrBlank(person) &&     !isValidFormat(person)) {
+        if (!isPersonLastNameNullOrBlank(person) && !isValidFormat(person)) {
             Placeholder placeholder = new Placeholder("PERSON_LAST_NAME", person.getPersonLastName());
             return Optional.of(errorFactory.buildError("ERROR_CODE_23", List.of(placeholder)));
         } else {
